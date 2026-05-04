@@ -12,6 +12,7 @@ A mobile application for collective Islamic worship.
 
 - 🛡️ [Gizlilik Politikası / Privacy Policy](./privacy.html)
 - 📄 [Kullanım Koşulları / Terms of Service](./terms.html)
+- 🗑️ [Hesap Silme / Account Deletion](./account-delete.html)
 
 ---
 
