@@ -15,6 +15,18 @@
           {
             "/": "/join/*",
             "comment": "Path-based davet (manevisosyal://join/CODE uyumlu)"
+          },
+          {
+            "/": "/auth/verify",
+            "comment": "Supabase email onayi sonrasi redirect"
+          },
+          {
+            "/": "/auth/reset-password",
+            "comment": "Supabase sifre sifirlama sonrasi redirect"
+          },
+          {
+            "/": "/auth/*",
+            "comment": "Diger auth flow yedek pattern"
           }
         ]
       }
