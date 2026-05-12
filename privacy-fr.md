@@ -27,8 +27,6 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 **E-mail :** emirhan.ayaz171@icloud.com
 **Application :** Manevi Halka (com.emrhnayz.spiritualcircle)
 
-[Si une entité juridique est créée : ajouter la raison sociale, le numéro d'identification fiscale et l'adresse.]
-
 ---
 
 ## 2. Informations que nous collectons
@@ -81,8 +79,8 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 | **Expo** ([confidentialité](https://expo.dev/privacy)) | Infrastructure de notifications push | Jeton d'appareil |
 | **Apple Sign In** | Connexion OAuth | Apple ID, e-mail, nom |
 | **Google Sign In** | Connexion OAuth | Google ID, e-mail, nom |
-
-[Si Sentry / PostHog / etc. sont ajoutés, les énumérer ici]
+| **Sentry** ([confidentialité](https://sentry.io/privacy/)) | Rapports d'erreurs, suivi des plantages | Journaux d'erreurs anonymes, traces d'appels, informations appareil/système |
+| **PostHog** ([confidentialité](https://posthog.com/privacy)) | Analyses produit (désinscription possible) | Événements d'utilisation anonymes (aucune PII), hébergés sur des serveurs UE |
 
 ---
 

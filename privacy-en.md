@@ -29,8 +29,6 @@ rights you have.
 **Email:** emirhan.ayaz171@icloud.com
 **App:** Manevi Halka (com.emrhnayz.spiritualcircle)
 
-[If a legal entity is established: add company name, tax ID, and address.]
-
 ---
 
 ## 2. Information We Collect
@@ -93,8 +91,8 @@ We use the following third-party services to provide our service:
 | **Expo** ([privacy](https://expo.dev/privacy)) | Push notification infrastructure | Device token |
 | **Apple Sign In** | OAuth login | Apple ID, email, name |
 | **Google Sign In** | OAuth login | Google ID, email, name |
-
-[If Sentry / PostHog / etc. are added, list them here]
+| **Sentry** ([privacy](https://sentry.io/privacy/)) | Error reporting, crash tracking | Anonymous error logs, stack traces, device/OS info |
+| **PostHog** ([privacy](https://posthog.com/privacy)) | Product analytics (opt-out available) | Anonymous usage events (no PII), hosted on EU servers |
 
 ---
 

@@ -29,8 +29,6 @@ haklarınızın neler olduğunu açıklar.
 **E-posta:** emirhan.ayaz171@icloud.com
 **Uygulama:** Manevi Halka (com.emrhnayz.spiritualcircle)
 
-[Eğer tüzel kişilik kuruldu ise: Şirket adı, vergi numarası ve adres ekle.]
-
 ---
 
 ## 2. Topladığımız Bilgiler
@@ -92,8 +90,8 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 | **Expo** ([gizlilik](https://expo.dev/privacy)) | Push bildirim altyapısı | Cihaz tokeni |
 | **Apple Sign In** | OAuth giriş | Apple ID, e-posta, ad |
 | **Google Sign In** | OAuth giriş | Google ID, e-posta, ad |
-
-[Sentry / PostHog / vb. eklenirse buraya da listele]
+| **Sentry** ([gizlilik](https://sentry.io/privacy/)) | Hata raporlama, crash takibi | Anonim hata kayıtları, stack trace, cihaz/OS bilgisi |
+| **PostHog** ([gizlilik](https://posthog.com/privacy)) | Ürün analitiği (opt-out var) | Anonim kullanım olayları (PII yok), EU sunucularda barındırılır |
 
 ---
 

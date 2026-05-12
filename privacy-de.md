@@ -29,8 +29,6 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 **E-Mail:** emirhan.ayaz171@icloud.com
 **App:** Manevi Halka (com.emrhnayz.spiritualcircle)
 
-[Falls eine juristische Person gegründet wird: Firmenname, Steuernummer und Anschrift ergänzen.]
-
 ---
 
 ## 2. Welche Informationen wir erheben
@@ -98,8 +96,8 @@ Dienstes:
 | **Expo** ([Datenschutz](https://expo.dev/privacy)) | Push-Benachrichtigungsinfrastruktur | Geräte-Token |
 | **Apple Sign In** | OAuth-Anmeldung | Apple-ID, E-Mail, Name |
 | **Google Sign In** | OAuth-Anmeldung | Google-ID, E-Mail, Name |
-
-[Sofern Sentry / PostHog / etc. hinzugefügt werden, hier aufführen]
+| **Sentry** ([Datenschutz](https://sentry.io/privacy/)) | Fehlerberichte, Absturz-Tracking | Anonyme Fehlerprotokolle, Stack Traces, Geräte-/Betriebssystem-Informationen |
+| **PostHog** ([Datenschutz](https://posthog.com/privacy)) | Produktanalyse (Opt-out verfügbar) | Anonyme Nutzungsereignisse (keine personenbezogenen Daten), gehostet auf EU-Servern |
 
 ---
 

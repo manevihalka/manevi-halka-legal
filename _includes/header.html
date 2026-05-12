@@ -1,0 +1,91 @@
+<header class="site-header" role="banner">
+  <div class="wrapper site-header-inner">
+    <a class="site-title" rel="author" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+
+    {%- comment -%}
+      Detect current page base name and language from URL.
+      Examples:
+        /terms.html     → base=terms, lang=tr
+        /privacy-en.html → base=privacy, lang=en
+        /account-delete-ar.html → base=account-delete, lang=ar
+    {%- endcomment -%}
+    {%- assign url = page.url | remove_first: "/" | remove: ".html" -%}
+    {%- assign current_lang = "tr" -%}
+    {%- assign current_base = url -%}
+    {%- if url contains "-ar" -%}
+      {%- assign current_lang = "ar" -%}
+      {%- assign current_base = url | remove: "-ar" -%}
+    {%- elsif url contains "-fr" -%}
+      {%- assign current_lang = "fr" -%}
+      {%- assign current_base = url | remove: "-fr" -%}
+    {%- elsif url contains "-de" -%}
+      {%- assign current_lang = "de" -%}
+      {%- assign current_base = url | remove: "-de" -%}
+    {%- elsif url contains "-en" -%}
+      {%- assign current_lang = "en" -%}
+      {%- assign current_base = url | remove: "-en" -%}
+    {%- endif -%}
+
+    {%- comment -%} Only render language nav for known policy pages {%- endcomment -%}
+    {%- if current_base == "privacy" or current_base == "terms" or current_base == "account-delete" -%}
+    <nav class="site-nav lang-nav">
+      <a href="/{{ current_base }}.html" class="lang-link {% if current_lang == 'tr' %}active{% endif %}">Türkçe</a>
+      <a href="/{{ current_base }}-en.html" class="lang-link {% if current_lang == 'en' %}active{% endif %}">English</a>
+      <a href="/{{ current_base }}-de.html" class="lang-link {% if current_lang == 'de' %}active{% endif %}">Deutsch</a>
+      <a href="/{{ current_base }}-fr.html" class="lang-link {% if current_lang == 'fr' %}active{% endif %}">Français</a>
+      <a href="/{{ current_base }}-ar.html" class="lang-link {% if current_lang == 'ar' %}active{% endif %}">العربية</a>
+    </nav>
+    {%- endif -%}
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-top: 5px solid #1e4d35 !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    min-height: auto !important;
+  }
+  .site-header-inner {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+  .site-title {
+    color: #1e4d35 !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    font-size: 18px !important;
+  }
+  .lang-nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+    font-size: 14px !important;
+    float: none !important;
+    line-height: 1 !important;
+  }
+  .lang-nav .lang-link {
+    color: #6b7280 !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    padding: 4px 0 !important;
+    transition: color 0.15s !important;
+  }
+  .lang-nav .lang-link:hover {
+    color: #1e4d35 !important;
+    text-decoration: none !important;
+  }
+  .lang-nav .lang-link.active {
+    color: #1e4d35 !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid #1e4d35 !important;
+  }
+  @media (max-width: 600px) {
+    .site-header-inner { flex-direction: column; align-items: flex-start; }
+    .lang-nav { gap: 12px; }
+  }
+</style>
