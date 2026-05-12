@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1e4d35">
+
+<title>Manevi Halka — Cemaatle Hatim, Cevşen, Zikir</title>
+<meta name="description" content="Aile ve dostlarınızla birlikte Kur'an hatmi, Cevşen, zikir ve kitap okumalarınızı organize edin. 5 dilde mevcut.">
+
+<!-- Open Graph - WhatsApp/Telegram link önizleme -->
+<meta property="og:title" content="Manevi Halka">
+<meta property="og:description" content="Cemaatle ve şahsi ibadet, modern bir uygulamada.">
+<meta property="og:image" content="https://manevihalka.app/icon.png">
+<meta property="og:url" content="https://manevihalka.app">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
+
+<!-- Ionicons (app ile ayni iconlar) -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, #f0f9f1 0%, #fefefe 60%);
+    color: #1f2937;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 32px 0 56px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(30, 77, 53, 0.18);
+    margin-bottom: 28px;
+  }
+
+  h1 {
+    font-size: 44px;
+    font-weight: 800;
+    color: #1e4d35;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+
+  .tagline {
+    font-size: 18px;
+    color: #4b5563;
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-top: 32px;
+  }
+
+  @media (min-width: 540px) {
+    .cta-buttons { flex-direction: row; justify-content: center; }
+  }
+
+  .store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: #1e4d35;
+    color: #fff;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(30, 77, 53, 0.25);
+    opacity: 0.9;
+  }
+
+  .store-badge .small {
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.75;
+    display: block;
+    text-align: left;
+  }
+
+  .store-badge .big {
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+    text-align: left;
+  }
+
+  /* Features */
+  .features {
+    margin: 64px 0;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e4d35;
+    margin-bottom: 36px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: #d1fae5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .card-icon ion-icon {
+    font-size: 30px;
+    color: #1e4d35;
+  }
+
+  .card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+  }
+
+  .card p {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.55;
+  }
+
+  /* Languages */
+  .languages {
+    text-align: center;
+    padding: 24px 0;
+    margin: 24px 0 48px;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .languages p {
+    color: #6b7280;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+  }
+
+  .lang-list {
+    margin-top: 8px;
+    font-weight: 600;
+    color: #1e4d35;
+    font-size: 16px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 32px 0 8px;
+    color: #6b7280;
+    font-size: 13px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 24px;
+    margin-bottom: 16px;
+  }
+
+  .footer-links a {
+    color: #1e4d35;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+  .copyright {
+    font-size: 12px;
+    color: #9ca3af;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <main class="hero">
+    <img src="icon.png" alt="Manevi Halka" class="logo">
+    <h1>Manevi Halka</h1>
+    <p class="tagline">Cemaatle ve şahsi ibadet, modern bir uygulamada.</p>
+
+    <div class="cta-buttons">
+      <span class="store-badge">
+        <span>
+          <span class="small">Yakında</span>
+          <span class="big">App Store'da</span>
+        </span>
+      </span>
+      <span class="store-badge">
+        <span>
+          <span class="small">Yakında</span>
+          <span class="big">Google Play'de</span>
+        </span>
+      </span>
+    </div>
+  </main>
+
+  <section class="features">
+    <h2 class="section-title">Özellikler</h2>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-icon">
+          <ion-icon name="book"></ion-icon>
+        </div>
+        <h3>Kur'an Hatmi</h3>
+        <p>Aile veya halkanızda cüz dağıtımı, otomatik sıralı turlar, tamamlanma sertifikası. Tek başına ya da 30 kişi birlikte.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <ion-icon name="shield-checkmark"></ion-icon>
+        </div>
+        <h3>Cevşen-i Kebir</h3>
+        <p>101 bab paylaşımlı veya kişisel okuma. Günlük tek bab, takipli ilerleme, hatim sertifikası.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <ion-icon name="heart"></ion-icon>
+        </div>
+        <h3>Zikir Halkaları</h3>
+        <p>Esma-ül Hüsna, salavat, zikirmatik. Halka olarak paylaşımlı veya kişisel zikir takibi.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">
+          <ion-icon name="library"></ion-icon>
+        </div>
+        <h3>Kitap Okuması</h3>
+        <p>Halka okuma turları, kişisel kitaplık, kaldığınız sayfa, günlük/haftalık ilerleme grafiği.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="languages">
+    <p>5 dilde kullanılabilir</p>
+    <div class="lang-list">Türkçe · English · Deutsch · Français · العربية</div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/privacy.html">Gizlilik Politikası</a>
+      <a href="/terms.html">Kullanım Koşulları</a>
+      <a href="/account-delete.html">Hesap Silme</a>
+      <a href="mailto:emirhan.ayaz171@icloud.com">İletişim</a>
+    </div>
+    <p class="copyright">© 2026 Manevi Halka — Tüm hakları saklıdır.</p>
+  </footer>
+</div>
+
+</body>
+</html>
