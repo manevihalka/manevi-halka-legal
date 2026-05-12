@@ -4,18 +4,10 @@ title: Nutzungsbedingungen
 lang: de
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <a href="/terms.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Türkçe</a> ·
-  <a href="/terms-en.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">English</a> ·
-  <strong style="color:#1e4d35;margin:0 6px">Deutsch</strong> ·
-  <a href="/terms-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
-  <a href="/terms-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Nutzungsbedingungen
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 3. Mai 2026
+**Zuletzt aktualisiert:** 12. Mai 2026
 
 Mit der Nutzung der mobilen Anwendung Manevi Halka („die App") akzeptieren
 Sie diese Nutzungsbedingungen. Bitte lesen Sie sie sorgfältig.
@@ -53,8 +45,7 @@ unter 16, kann die Zustimmung der Erziehungsberechtigten erforderlich sein
 Sie können Ihr Konto jederzeit in der App löschen:
 **Profil → Einstellungen → Konto und Sicherheit → Konto löschen**
 
-Die Löschung wird innerhalb von 24 Stunden abgeschlossen und ist
-unwiderruflich.
+Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können es innerhalb von **30 Tagen** durch erneute Anmeldung wiederherstellen; nach Ablauf dieser Frist wird es automatisch und endgültig gelöscht. Einzelheiten finden Sie in der Datenschutzerklärung §5.
 
 ---
 

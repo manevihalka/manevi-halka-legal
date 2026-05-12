@@ -4,14 +4,6 @@ title: Account Deletion
 lang: en
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <a href="/account-delete.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Türkçe</a> ·
-  <strong style="color:#1e4d35;margin:0 6px">English</strong> ·
-  <a href="/account-delete-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
-  <a href="/account-delete-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
-  <a href="/account-delete-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Account Deletion
 
 **App:** Manevi Halka
@@ -20,7 +12,17 @@ lang: en
 
 You may delete your Manevi Halka account and data at any time.
 
-## 1. Delete From Within The App (Recommended)
+## 1. Deletion Flow — 30-Day Recovery + Permanent Deletion
+
+Account deletion is a **two-step process**:
+
+1. **Soft-delete (immediate, reversible):** Tapping "Delete Account" marks your account. Push notifications stop, and your account becomes invisible to other members.
+2. **30-day recovery window:** If you sign in again during this period, your account is restored with all your data intact.
+3. **Permanent deletion (automatic):** After 30 days, a daily cron job (pg_cron, 03:00 UTC) **permanently deletes** your account and all associated data. This step is irreversible.
+
+If you want **immediate permanent deletion** without the 30-day wait, contact us by email (§4 below).
+
+## 2. Delete From Within The App (Recommended)
 
 1. Open the Manevi Halka app
 2. Sign in to your account
@@ -29,41 +31,43 @@ You may delete your Manevi Halka account and data at any time.
 5. Tap the red **"Delete Account"** button at the bottom
 6. Follow the confirmation steps
 
-Your account and all associated data are deleted **immediately and
-irreversibly**.
+## 3. Export Your Data Before Deletion (Optional)
 
-## 2. Request Deletion by Email
+If you wish, back up all your data before deletion:
 
-If you cannot access the app or have trouble deleting from inside the app,
-send an email to the address below **from the email associated with your
-account**:
+**Profile → Settings → Data Export → Download as PDF**
+
+This feature is provided under GDPR/KVKK data portability rights and includes: profile, halka memberships, worship progress, Quran/book notes, and subscription status.
+
+## 4. Request Deletion by Email
+
+If you cannot access the app or want **immediate permanent deletion**, send an email **from the address associated with your account**:
 
 - **Email:** [emirhan.ayaz171@icloud.com](mailto:emirhan.ayaz171@icloud.com)
 - **Subject:** Account Deletion Request
-- **Body:** "I request deletion of my Manevi Halka account."
+- **Body:** "I request deletion of my Manevi Halka account. [Immediate / 30-day soft-delete is fine]"
 
-Your request will be processed **within 30 days** and we will notify you of
-the outcome by email.
+Your request will be processed **within 30 days** and you will be notified of the outcome by email.
 
 ## Data That Is Deleted
 
-When you delete your account, the following is permanently removed:
+After the 30-day period (or upon immediate deletion request), the following is permanently removed:
 
 - Email address and account identifier
 - Profile data (name, username, profile picture)
 - Worship progress (dhikr counts, Quran completion, prayer tracking)
 - Halka (group) memberships (records attributed to you are anonymized)
+- Quran verse notes, book reading notes
 - Push notification tokens
 - Subscription status
 
 ## Data That May Be Retained
 
-For legal obligations and fraud prevention, limited data may be retained in
-an anonymized form for up to **90 days**:
+For legal obligations and fraud prevention, limited data may be retained in an anonymized form for up to **90 days**:
 
 - Deletion timestamp (anonymous log)
 - Billing records (as legally required by RevenueCat)
 
 ---
 
-**Last updated:** May 4, 2026
+**Last updated:** May 12, 2026

@@ -4,18 +4,10 @@ title: Kullanım Koşulları
 lang: tr
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <strong style="color:#1e4d35;margin:0 6px">Türkçe</strong> ·
-  <a href="/terms-en.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">English</a> ·
-  <a href="/terms-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
-  <a href="/terms-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
-  <a href="/terms-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Kullanım Koşulları
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 3 Mayıs 2026
+**Son güncelleme:** 12 Mayıs 2026
 
 Manevi Halka mobil uygulamasını ("Uygulama") kullanarak bu Kullanım
 Koşullarını kabul etmiş olursunuz. Lütfen dikkatlice okuyun.
@@ -51,7 +43,7 @@ altındaysanız, ebeveyn onayı gerekebilir (yasal zorunluluk gereği —
 İstediğiniz zaman uygulama içinden hesabınızı silebilirsiniz:
 **Profil → Ayarlar → Hesap Güvenliği → Hesabımı Sil**
 
-Silme işlemi 24 saat içinde tamamlanır ve geri alınamaz.
+Hesabınız önce **soft-delete** olarak işaretlenir. **30 gün** içinde tekrar giriş yaparak geri alabilirsiniz; bu süre sonunda otomatik olarak ve kalıcı olarak silinir. Detaylar için Gizlilik Politikası §5'e bakın.
 
 ---
 

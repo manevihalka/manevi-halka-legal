@@ -4,18 +4,10 @@ title: Datenschutzerklärung
 lang: de
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <a href="/privacy.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Türkçe</a> ·
-  <a href="/privacy-en.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">English</a> ·
-  <strong style="color:#1e4d35;margin:0 6px">Deutsch</strong> ·
-  <a href="/privacy-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
-  <a href="/privacy-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 3. Mai 2026
+**Zuletzt aktualisiert:** 12. Mai 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -27,7 +19,7 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 
 **Name:** Emirhan Ayaz
 **E-Mail:** emirhan.ayaz171@icloud.com
-**App:** Manevi Halka (com.emrhnayz.spiritualcircle)
+**App:** Manevi Halka
 
 ---
 
@@ -41,6 +33,7 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 - **Einstellungen:** App-Sprache, Design, Benachrichtigungseinstellungen
 - **Nutzerinhalte:** Von Ihnen erstellte Gruppenbeschreibungen, individuelle
   Dhikr-Texte, Notizen zu Koranversen, Notizen zu Buchlektüren
+- **Abschlusszertifikate:** Bei Hatim-, Cevshen- und Buchabschlüssen wird **lokal auf Ihrem Gerät** ein PDF-Zertifikat erzeugt (nicht auf unsere Server hochgeladen, bleibt zum Teilen auf Ihrem Gerät)
 
 ### 2.2. Automatisch erhobene Informationen
 
@@ -104,10 +97,7 @@ Dienstes:
 ## 5. Speicherdauer
 
 - **Aktives Konto:** Daten werden so lange aufbewahrt, wie Ihr Konto aktiv ist
-- **Kontolöschung:** Alle Ihre personenbezogenen Daten werden **innerhalb
-  von 24 Stunden dauerhaft gelöscht**. Lediglich Buchhaltungs- bzw.
-  Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können
-  (anonymisiert) erhalten bleiben
+- **Kontolöschung:** Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können Ihr Konto innerhalb von **30 Tagen** wiederherstellen, indem Sie sich erneut anmelden. Nach Ablauf der 30 Tage löscht ein automatisierter Cron-Auftrag (pg_cron) Ihre sämtlichen personenbezogenen Daten **endgültig**. Wenn Sie eine sofortige endgültige Löschung wünschen, können Sie uns per E-Mail kontaktieren. Lediglich Buchhaltungs- bzw. Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können (anonymisiert) erhalten bleiben
 - **Benachrichtigungsprotokolle:** Automatische Löschung nach 30 Tagen
 - **Audit-Protokolle:** Aufbewahrung 12 Monate zu Sicherheits- und
   Compliance-Zwecken
@@ -123,8 +113,8 @@ Gemäß GDPR (EU) und KVKK (Türkei) stehen Ihnen die folgenden Rechte zu:
   in der App)
 - **Recht auf Löschung:** Konto und sämtliche Daten löschen (in der App:
   Profil → Einstellungen → Konto und Sicherheit → Konto löschen)
-- **Datenübertragbarkeit:** Eine Kopie Ihrer Daten anfordern
-- **Widerspruch:** Widerspruch gegen bestimmte Verarbeitungstätigkeiten
+- **Datenübertragbarkeit:** Eine Kopie Ihrer Daten anfordern. **In der App:** Profil → Einstellungen → Datenexport (PDF) – hier können Sie sämtliche Ihrer Daten als PDF herunterladen
+- **Widerspruch:** Widerspruch gegen bestimmte Verarbeitungstätigkeiten. Sie können die Analytik-Datensammlung jederzeit deaktivieren: Profil → Einstellungen → Datenschutz → Analytik (standardmäßig aktiviert)
 - **Beschwerde:** Beschwerde bei Ihrer Datenschutzaufsichtsbehörde einreichen
 
 Für Anfragen: **emirhan.ayaz171@icloud.com**

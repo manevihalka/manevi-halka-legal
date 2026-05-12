@@ -4,18 +4,10 @@ title: Conditions d'utilisation
 lang: fr
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <a href="/terms.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Türkçe</a> ·
-  <a href="/terms-en.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">English</a> ·
-  <a href="/terms-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
-  <strong style="color:#1e4d35;margin:0 6px">Français</strong> ·
-  <a href="/terms-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Conditions d'utilisation
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 3 mai 2026
+**Dernière mise à jour :** 12 mai 2026
 
 En utilisant l'application mobile Manevi Halka (« l'Application »), vous acceptez les présentes Conditions d'utilisation. Veuillez les lire attentivement.
 
@@ -45,7 +37,7 @@ Vous devez être âgé d'**au moins 13 ans** pour utiliser l'Application. Si vou
 Vous pouvez supprimer votre compte à tout moment dans l'application :
 **Profil → Paramètres → Sécurité du compte → Supprimer mon compte**
 
-La suppression est effective dans un délai de 24 heures et est irréversible.
+Votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez le restaurer en vous reconnectant dans un délai de **30 jours** ; passé ce délai, il est automatiquement et définitivement supprimé. Voir la Politique de confidentialité §5 pour plus de détails.
 
 ---
 

@@ -4,18 +4,10 @@ title: Gizlilik Politikası
 lang: tr
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <strong style="color:#1e4d35;margin:0 6px">Türkçe</strong> ·
-  <a href="/privacy-en.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">English</a> ·
-  <a href="/privacy-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
-  <a href="/privacy-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
-  <a href="/privacy-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 3 Mayıs 2026
+**Son güncelleme:** 12 Mayıs 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -27,7 +19,7 @@ haklarınızın neler olduğunu açıklar.
 
 **İsim:** Emirhan Ayaz
 **E-posta:** emirhan.ayaz171@icloud.com
-**Uygulama:** Manevi Halka (com.emrhnayz.spiritualcircle)
+**Uygulama:** Manevi Halka
 
 ---
 
@@ -41,6 +33,7 @@ haklarınızın neler olduğunu açıklar.
 - **Tercihler:** Uygulama dili, tema, bildirim tercihleri
 - **Kullanıcı içeriği:** Oluşturduğunuz halka açıklamaları, özel zikir metinleri,
   Kuran ayet notları, kitap okuma notları
+- **Tamamlama sertifikaları:** Hatim, Cevşen ve kitap tamamlamalarında **cihazınızda lokal olarak** PDF sertifika üretilir (sunucuya yüklenmez, sadece paylaşım için cihazınızda kalır)
 
 ### 2.2. Otomatik toplanan bilgiler
 
@@ -98,9 +91,7 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 ## 5. Veri Saklama
 
 - **Aktif hesap:** Hesabınız aktif olduğu sürece verileriniz saklanır
-- **Hesap silindiğinde:** Tüm kişisel verileriniz **24 saat içinde** kalıcı olarak
-  silinir. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik
-  kayıtları (anonim hale getirilmiş) tutulabilir
+- **Hesap silindiğinde:** Hesabınız önce **soft-delete** olarak işaretlenir. **30 gün** içinde uygulamaya tekrar giriş yaparak hesabınızı geri yükleyebilirsiniz. 30 gün sonra otomatik bir cron görevi (pg_cron) tüm kişisel verilerinizi **kalıcı olarak siler**. Anında kalıcı silme isterseniz e-posta ile başvurabilirsiniz. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik kayıtları (anonim hale getirilmiş) tutulabilir
 - **Bildirim logları:** 30 gün sonra otomatik silinir
 - **Audit logları:** Güvenlik ve uyumluluk için 12 ay saklanır
 
@@ -114,8 +105,8 @@ Türkiye'de KVKK, AB'de GDPR kapsamında şu haklara sahipsiniz:
 - **Düzeltme:** Yanlış bilgileri güncelleme (uygulamadan profil ekranı üzerinden)
 - **Silme:** Hesabınızı ve tüm verilerinizi silme (uygulama içinden
   Profil → Ayarlar → Hesap Güvenliği → Hesabımı Sil)
-- **Veri taşınabilirliği:** Verilerinizin bir kopyasını talep etme
-- **İtiraz:** Belirli işleme faaliyetlerine itiraz
+- **Veri taşınabilirliği:** Verilerinizin bir kopyasını talep etme. **Uygulama içinden de** Profil → Ayarlar → Veri Dışa Aktar ile tüm verilerinizi PDF olarak indirebilirsiniz
+- **İtiraz:** Belirli işleme faaliyetlerine itiraz. **Analitik veri toplamayı** istediğiniz zaman kapatabilirsiniz: Profil → Ayarlar → Gizlilik → Analitik (varsayılan açık)
 - **Şikayet:** Veri Koruma Otoritesi'ne şikayette bulunma (Türkiye için: KVKK)
 
 Talepler için: **emirhan.ayaz171@icloud.com**

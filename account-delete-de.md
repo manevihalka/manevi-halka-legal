@@ -4,26 +4,25 @@ title: Konto löschen
 lang: de
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <a href="/account-delete.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Türkçe</a> ·
-  <a href="/account-delete-en.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">English</a> ·
-  <strong style="color:#1e4d35;margin:0 6px">Deutsch</strong> ·
-  <a href="/account-delete-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
-  <a href="/account-delete-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Konto löschen
 
 **App:** Manevi Halka
 **Entwickler:** Emirhan Ayaz
 **Kontakt:** emirhan.ayaz171@icloud.com
 
----
+Sie können Ihr Konto und Ihre Daten in der Manevi-Halka-App jederzeit löschen.
 
-Sie können Ihr Konto und Ihre Daten in der Manevi-Halka-App jederzeit
-löschen.
+## 1. Löschvorgang – 30 Tage Widerruf + endgültige Löschung
 
-### 1. Löschen über die App (empfohlene Methode)
+Die Kontolöschung erfolgt in **zwei Stufen**:
+
+1. **Vorläufige Löschung (soft-delete, sofort, widerrufbar):** Mit dem Antippen von „Konto löschen" wird Ihr Konto entsprechend markiert. Push-Benachrichtigungen werden eingestellt, und Ihr Konto ist für andere Mitglieder nicht mehr sichtbar.
+2. **30-tägiges Widerrufsfenster:** Wenn Sie sich innerhalb dieses Zeitraums erneut anmelden, wird Ihr Konto mit sämtlichen Daten vollständig wiederhergestellt.
+3. **Endgültige Löschung (automatisch):** Nach Ablauf der 30 Tage löscht ein täglich ausgeführter Cron-Auftrag (pg_cron, 03:00 UTC) Ihr Konto und alle zugehörigen Daten **endgültig**. Dieser Schritt ist unwiderruflich.
+
+Wenn Sie eine **sofortige endgültige Löschung** ohne die 30-tägige Wartefrist wünschen, kontaktieren Sie uns bitte per E-Mail (siehe §4 unten).
+
+## 2. Löschen über die App (empfohlene Methode)
 
 1. Öffnen Sie die Manevi-Halka-App
 2. Melden Sie sich mit Ihrem Konto an
@@ -32,43 +31,43 @@ löschen.
 5. Tippen Sie unten auf die rote Schaltfläche **„Konto löschen"**
 6. Folgen Sie den Schritten zur Bestätigung
 
-Ihr Konto und sämtliche zugehörigen Daten werden **unverzüglich und
-unwiderruflich** gelöscht.
+## 3. Datenexport vor der Löschung (optional)
 
-### 2. Löschanfrage per E-Mail
+Auf Wunsch können Sie sämtliche Ihrer Daten vor der Löschung sichern:
 
-Sollten Sie keinen Zugriff auf die App haben oder Probleme bei der Löschung
-innerhalb der App auftreten, senden Sie bitte eine E-Mail an die unten
-angegebene Adresse **von der mit Ihrem Konto verknüpften E-Mail-Adresse**:
+**Profil → Einstellungen → Datenexport → Als PDF herunterladen**
+
+Diese Funktion wird im Rahmen des Rechts auf Datenübertragbarkeit nach GDPR/KVKK bereitgestellt und umfasst folgende Inhalte: Profil, Halka-Mitgliedschaften, Fortschrittsdaten zu den Gottesdienstaktivitäten, Notizen zu Koran/Büchern sowie den Abonnementstatus.
+
+## 4. Löschanfrage per E-Mail
+
+Sollten Sie keinen Zugriff auf die App haben oder eine **sofortige endgültige Löschung** wünschen, senden Sie eine E-Mail **von der mit Ihrem Konto verknüpften E-Mail-Adresse**:
 
 - **E-Mail:** [emirhan.ayaz171@icloud.com](mailto:emirhan.ayaz171@icloud.com)
 - **Betreff:** Antrag auf Kontolöschung
-- **Inhalt:** „Ich beantrage die Löschung meines Manevi-Halka-Kontos."
+- **Inhalt:** „Ich beantrage die Löschung meines Manevi-Halka-Kontos. [Sofortige Löschung / 30-tägige vorläufige Löschung in Ordnung]"
 
-Ihre Anfrage wird **innerhalb von 30 Tagen** bearbeitet, und wir teilen
-Ihnen das Ergebnis per E-Mail mit.
+Ihre Anfrage wird **innerhalb von 30 Tagen** bearbeitet, und wir teilen Ihnen das Ergebnis per E-Mail mit.
 
-### Daten, die gelöscht werden
+## Daten, die gelöscht werden
 
-Wenn Sie Ihr Konto löschen, werden folgende Daten dauerhaft entfernt:
+Nach Ablauf der 30-tägigen Frist (oder bei sofortiger Löschungsanfrage) werden folgende Daten endgültig entfernt:
 
 - E-Mail-Adresse und Konto-Kennung
 - Profildaten (Name, Benutzername, Profilbild)
 - Gottesdienstfortschritt (Dhikr-Zählungen, Koranlektüre, Gebetsverfolgung)
-- Halka- (Gruppen-) Mitgliedschaften (Ihnen zugeordnete Aufzeichnungen
-  werden anonymisiert)
+- Halka- (Gruppen-) Mitgliedschaften (Ihnen zugeordnete Aufzeichnungen werden anonymisiert)
+- Notizen zu Koranversen, Notizen zu Buchlektüren
 - Push-Benachrichtigungs-Token
 - Abonnementstatus
 
-### Daten, die aufbewahrt werden können
+## Daten, die aufbewahrt werden können
 
-Aufgrund gesetzlicher Pflichten und zur Betrugsprävention können
-eingeschränkte Daten in anonymisierter Form bis zu **90 Tage** aufbewahrt
-werden:
+Aufgrund gesetzlicher Pflichten und zur Betrugsprävention können eingeschränkte Daten in anonymisierter Form bis zu **90 Tage** aufbewahrt werden:
 
 - Zeitpunkt der Löschung (anonymes Protokoll)
 - Abrechnungsdaten (gesetzlich vorgeschrieben durch RevenueCat)
 
 ---
 
-**Zuletzt aktualisiert:** 4. Mai 2026
+**Zuletzt aktualisiert:** 12. Mai 2026

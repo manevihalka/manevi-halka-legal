@@ -4,18 +4,10 @@ title: Politique de confidentialité
 lang: fr
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <a href="/privacy.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Türkçe</a> ·
-  <a href="/privacy-en.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">English</a> ·
-  <a href="/privacy-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
-  <strong style="color:#1e4d35;margin:0 6px">Français</strong> ·
-  <a href="/privacy-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 3 mai 2026
+**Dernière mise à jour :** 12 mai 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -25,7 +17,7 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 **Nom :** Emirhan Ayaz
 **E-mail :** emirhan.ayaz171@icloud.com
-**Application :** Manevi Halka (com.emrhnayz.spiritualcircle)
+**Application :** Manevi Halka
 
 ---
 
@@ -37,6 +29,7 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 - **Authentification :** si vous utilisez la connexion avec Apple ou Google, le jeton d'identité du service concerné
 - **Préférences :** langue de l'application, thème, préférences de notification
 - **Contenu utilisateur :** descriptions de groupes que vous créez, textes de dhikr personnalisés, notes sur les versets du Coran, notes de lecture de livres
+- **Certificats d'achèvement :** lors de la finalisation d'un Hatim, Cevshen ou livre, un certificat PDF est généré **localement sur votre appareil** (jamais envoyé à nos serveurs, conservé sur l'appareil pour le partage)
 
 ### 2.2. Informations collectées automatiquement
 
@@ -87,7 +80,7 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 ## 5. Conservation des données
 
 - **Compte actif :** les données sont conservées tant que votre compte est actif
-- **Suppression du compte :** toutes vos données personnelles sont **définitivement supprimées dans un délai de 24 heures**. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
+- **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
 - **Journaux de notifications :** supprimés automatiquement après 30 jours
 - **Journaux d'audit :** conservés pendant 12 mois pour des raisons de sécurité et de conformité
 
@@ -100,8 +93,8 @@ En vertu du RGPD (UE) et du KVKK (Turquie), vous disposez des droits suivants :
 - **Droit d'accès :** connaître les données que nous conservons à votre sujet
 - **Droit de rectification :** mettre à jour des informations inexactes (via l'écran de profil de l'application)
 - **Droit à l'effacement :** supprimer votre compte et toutes vos données (dans l'application : Profil → Paramètres → Sécurité du compte → Supprimer mon compte)
-- **Portabilité des données :** demander une copie de vos données
-- **Droit d'opposition :** vous opposer à certaines activités de traitement
+- **Portabilité des données :** demander une copie de vos données. **Dans l'application :** Profil → Paramètres → Exportation des données (PDF) télécharge l'ensemble de vos données au format PDF
+- **Droit d'opposition :** vous opposer à certaines activités de traitement. Vous pouvez désactiver la collecte de données analytiques à tout moment : Profil → Paramètres → Confidentialité → Analytique (activé par défaut)
 - **Droit de réclamation :** introduire une réclamation auprès de votre autorité de protection des données
 
 Pour toute demande : **emirhan.ayaz171@icloud.com**

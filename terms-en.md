@@ -4,18 +4,10 @@ title: Terms of Service
 lang: en
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <a href="/terms.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Türkçe</a> ·
-  <strong style="color:#1e4d35;margin:0 6px">English</strong> ·
-  <a href="/terms-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
-  <a href="/terms-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
-  <a href="/terms-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Terms of Service
 
 **Effective date:** May 3, 2026
-**Last updated:** May 3, 2026
+**Last updated:** May 12, 2026
 
 By using the Manevi Halka mobile application ("the App") you accept these
 Terms of Service. Please read carefully.
@@ -49,7 +41,7 @@ parental consent may be required (legal requirement varies by country).
 You can delete your account anytime in-app:
 **Profile → Settings → Account Security → Delete My Account**
 
-The deletion completes within 24 hours and is irreversible.
+Your account is first marked as **soft-deleted**. You can restore it by signing in again within **30 days**; after that period, it is automatically and permanently deleted. See Privacy Policy §5 for details.
 
 ---
 

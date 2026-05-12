@@ -4,18 +4,10 @@ title: Privacy Policy
 lang: en
 ---
 
-<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
-  <a href="/privacy.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Türkçe</a> ·
-  <strong style="color:#1e4d35;margin:0 6px">English</strong> ·
-  <a href="/privacy-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
-  <a href="/privacy-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
-  <a href="/privacy-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
-</div>
-
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** May 3, 2026
+**Last updated:** May 12, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -27,7 +19,7 @@ rights you have.
 
 **Name:** Emirhan Ayaz
 **Email:** emirhan.ayaz171@icloud.com
-**App:** Manevi Halka (com.emrhnayz.spiritualcircle)
+**App:** Manevi Halka
 
 ---
 
@@ -41,6 +33,7 @@ rights you have.
 - **Preferences:** App language, theme, notification preferences
 - **User content:** Group descriptions you create, custom dhikr texts,
   Quran verse notes, book reading notes
+- **Completion certificates:** When you complete a Hatim, Cevshen, or book, a PDF certificate is generated **locally on your device** (never uploaded to our servers, stays on your device for sharing)
 
 ### 2.2. Automatically collected information
 
@@ -99,9 +92,7 @@ We use the following third-party services to provide our service:
 ## 5. Data Retention
 
 - **Active account:** Data is retained as long as your account is active
-- **Account deletion:** All your personal data is **permanently deleted within
-  24 hours**. Only accounting/subscription records that must legally be retained
-  may be kept (anonymized)
+- **Account deletion:** Your account is first marked as **soft-deleted**. You can **restore your account within 30 days** by signing in again. After 30 days, an automated cron job (pg_cron) **permanently deletes** all your personal data. If you want immediate permanent deletion, contact us by email. Only accounting/subscription records that must legally be retained may be kept (anonymized)
 - **Notification logs:** Auto-deleted after 30 days
 - **Audit logs:** Retained for 12 months for security and compliance
 
@@ -115,8 +106,8 @@ Under GDPR (EU) and KVKK (Turkey), you have these rights:
 - **Rectification:** Update inaccurate information (via app's profile screen)
 - **Erasure:** Delete your account and all data (in-app:
   Profile → Settings → Account Security → Delete My Account)
-- **Portability:** Request a copy of your data
-- **Object:** Object to specific processing activities
+- **Portability:** Request a copy of your data. **In-app:** Profile → Settings → Data Export downloads all your data as a PDF
+- **Object:** Object to specific processing activities. **Analytics opt-out** is available anytime: Profile → Settings → Privacy → Analytics (default on)
 - **Complaint:** File a complaint with your data protection authority
 
 For requests: **emirhan.ayaz171@icloud.com**
