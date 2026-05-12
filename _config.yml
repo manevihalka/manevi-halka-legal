@@ -7,3 +7,11 @@ include:
   - .well-known
 keep_files:
   - .well-known
+
+# Hide auto-generated page list in header nav (we have our own language switcher
+# on each page). Empty array → minima loops over nothing → no nav links.
+header_pages: []
+
+# Hide minima's footer (we have our own in index.html, and don't want it on policy pages)
+minima:
+  social_links: []
