@@ -3,3 +3,7 @@ description: Privacy Policy and Terms of Service for the Manevi Halka mobile app
 theme: minima
 markdown: kramdown
 permalink: /:basename.html
+include:
+  - .well-known
+keep_files:
+  - .well-known

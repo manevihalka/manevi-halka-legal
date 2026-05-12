@@ -1,0 +1,26 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["V8S3KKJ955.com.emrhnayz.spiritualcircle"],
+        "components": [
+          {
+            "/": "/join.html",
+            "comment": "Halka davet linki - web smart redirect uyumlu"
+          },
+          {
+            "/": "/join",
+            "comment": "Halka davet linki - clean URL formati"
+          },
+          {
+            "/": "/join/*",
+            "comment": "Path-based davet (manevisosyal://join/CODE uyumlu)"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["V8S3KKJ955.com.emrhnayz.spiritualcircle"]
+  }
+}
