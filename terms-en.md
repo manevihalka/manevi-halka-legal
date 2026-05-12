@@ -1,7 +1,16 @@
 ---
 layout: default
 title: Terms of Service
+lang: en
 ---
+
+<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
+  <a href="/terms.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Türkçe</a> ·
+  <strong style="color:#1e4d35;margin:0 6px">English</strong> ·
+  <a href="/terms-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
+  <a href="/terms-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
+  <a href="/terms-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
+</div>
 
 # Terms of Service
 

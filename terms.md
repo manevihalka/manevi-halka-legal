@@ -1,7 +1,16 @@
 ---
 layout: default
 title: Kullanım Koşulları
+lang: tr
 ---
+
+<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
+  <strong style="color:#1e4d35;margin:0 6px">Türkçe</strong> ·
+  <a href="/terms-en.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">English</a> ·
+  <a href="/terms-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
+  <a href="/terms-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
+  <a href="/terms-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
+</div>
 
 # Kullanım Koşulları
 
@@ -10,9 +19,6 @@ title: Kullanım Koşulları
 
 Manevi Halka mobil uygulamasını ("Uygulama") kullanarak bu Kullanım
 Koşullarını kabul etmiş olursunuz. Lütfen dikkatlice okuyun.
-
-> **Türkçe / English:** Bu metin Türkçe yazılmıştır. İngilizce versiyon için
-> [TERMS_OF_SERVICE_en.md](./TERMS_OF_SERVICE_en.md) dosyasına bakın.
 
 ---
 

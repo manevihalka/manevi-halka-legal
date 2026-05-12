@@ -1,7 +1,16 @@
 ---
 layout: default
 title: Gizlilik Politikası
+lang: tr
 ---
+
+<div style="text-align:right;padding:8px 0;margin-bottom:20px;font-size:14px;border-bottom:1px solid #e5e7eb">
+  <strong style="color:#1e4d35;margin:0 6px">Türkçe</strong> ·
+  <a href="/privacy-en.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">English</a> ·
+  <a href="/privacy-de.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Deutsch</a> ·
+  <a href="/privacy-fr.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">Français</a> ·
+  <a href="/privacy-ar.html" style="color:#1e4d35;margin:0 6px;text-decoration:none">العربية</a>
+</div>
 
 # Gizlilik Politikası
 
@@ -11,9 +20,6 @@ title: Gizlilik Politikası
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
 haklarınızın neler olduğunu açıklar.
-
-> **Türkçe / English:** Bu politika Türkçe yazılmıştır. İngilizce versiyon için
-> [PRIVACY_POLICY_en.md](./PRIVACY_POLICY_en.md) dosyasına bakın.
 
 ---
 
