@@ -158,6 +158,24 @@
     color: #1e4d35;
   }
 
+  /* Özel marka ikonları (tek-renk PNG maske → kart rengine boyanır) */
+  .cicon {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    background-color: #1e4d35;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+  .cicon-quran  { -webkit-mask-image: url('icons/quran.png');  mask-image: url('icons/quran.png'); }
+  .cicon-cevsen { -webkit-mask-image: url('icons/cevsen.png'); mask-image: url('icons/cevsen.png'); }
+  .cicon-zikir  { -webkit-mask-image: url('icons/zikir.png');  mask-image: url('icons/zikir.png'); }
+  .cicon-book   { -webkit-mask-image: url('icons/book.png');   mask-image: url('icons/book.png'); }
+
   .card h3 {
     font-size: 18px;
     font-weight: 700;
@@ -256,7 +274,7 @@
 
       <div class="card">
         <div class="card-icon">
-          <ion-icon name="book"></ion-icon>
+          <span class="cicon cicon-quran"></span>
         </div>
         <h3>Kur'an Hatmi</h3>
         <p>Aile veya halkanızda cüz dağıtımı, otomatik sıralı turlar, tamamlanma sertifikası. Tek başına ya da 30 kişi birlikte.</p>
@@ -264,7 +282,7 @@
 
       <div class="card">
         <div class="card-icon">
-          <ion-icon name="shield-checkmark"></ion-icon>
+          <span class="cicon cicon-cevsen"></span>
         </div>
         <h3>Cevşen-i Kebir</h3>
         <p>101 bab paylaşımlı veya kişisel okuma. Günlük tek bab, takipli ilerleme, hatim sertifikası.</p>
@@ -272,7 +290,7 @@
 
       <div class="card">
         <div class="card-icon">
-          <ion-icon name="heart"></ion-icon>
+          <span class="cicon cicon-zikir"></span>
         </div>
         <h3>Zikir Halkaları</h3>
         <p>Esma-ül Hüsna, salavat, zikirmatik. Halka olarak paylaşımlı veya kişisel zikir takibi.</p>
@@ -280,7 +298,7 @@
 
       <div class="card">
         <div class="card-icon">
-          <ion-icon name="library"></ion-icon>
+          <span class="cicon cicon-book"></span>
         </div>
         <h3>Kitap Okuması</h3>
         <p>Halka okuma turları, kişisel kitaplık, kaldığınız sayfa, günlük/haftalık ilerleme grafiği.</p>

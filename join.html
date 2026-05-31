@@ -175,7 +175,10 @@
 <script>
   (function () {
     var params = new URLSearchParams(window.location.search);
-    var code = (params.get('code') || '').toUpperCase().trim();
+    // 'code' = grup daveti, 'event' = tek seferlik halka daveti. İkisi de aynı
+    // deep link'e (manevisosyal://join/CODE) gider; app kodu grup VEYA event
+    // olarak çözer.
+    var code = (params.get('code') || params.get('event') || '').toUpperCase().trim();
     var statusEl = document.getElementById('status');
     var codeBox = document.getElementById('codeBox');
     var codeText = document.getElementById('codeText');
