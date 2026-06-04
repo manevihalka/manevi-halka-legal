@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 12. Mai 2026
+**Zuletzt aktualisiert:** 4. Juni 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -33,6 +33,9 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 - **Einstellungen:** App-Sprache, Design, Benachrichtigungseinstellungen
 - **Nutzerinhalte:** Von Ihnen erstellte Gruppenbeschreibungen, individuelle
   Dhikr-Texte, Notizen zu Koranversen, Notizen zu Buchlektüren
+- **Einmaliger Kreis (Widmung):** Titel und Widmungstext eines von Ihnen
+  erstellten einmaligen Kreises. Für personenbezogene Daten Dritter (z. B. einen
+  Namen), die Sie im Widmungstext eingeben, sind Sie verantwortlich
 - **Abschlusszertifikate:** Bei Hatim-, Cevshen- und Buchabschlüssen wird **lokal auf Ihrem Gerät** ein PDF-Zertifikat erzeugt (nicht auf unsere Server hochgeladen, bleibt zum Teilen auf Ihrem Gerät)
 
 ### 2.2. Automatisch erhobene Informationen
@@ -98,6 +101,11 @@ Dienstes:
 
 - **Aktives Konto:** Daten werden so lange aufbewahrt, wie Ihr Konto aktiv ist
 - **Kontolöschung:** Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können Ihr Konto innerhalb von **30 Tagen** wiederherstellen, indem Sie sich erneut anmelden. Nach Ablauf der 30 Tage löscht ein automatisierter Cron-Auftrag (pg_cron) Ihre sämtlichen personenbezogenen Daten **endgültig**. Wenn Sie eine sofortige endgültige Löschung wünschen, können Sie uns per E-Mail kontaktieren. Lediglich Buchhaltungs- bzw. Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können (anonymisiert) erhalten bleiben
+- **Abgeschlossene einmalige Kreise:** Wenn ein einmaliger Kreis endet, wird eine
+  Zusammenfassung (Teilnehmerzahl, abgeschlossene Aufgaben) archiviert; einzelne
+  Aufgabendetails werden gelöscht
+- **Inaktive Kreise:** Kreise ohne längere Aktivität werden automatisch eingefroren
+  und später archiviert (Inhalte bleiben erhalten, die aktive Aufgabenverteilung stoppt)
 - **Benachrichtigungsprotokolle:** Automatische Löschung nach 30 Tagen
 - **Audit-Protokolle:** Aufbewahrung 12 Monate zu Sicherheits- und
   Compliance-Zwecken

@@ -70,4 +70,4 @@ Yasal yükümlülükler ve dolandırıcılık önleme amacıyla bazı sınırlı
 
 ---
 
-**Son güncelleme:** 12 Mayıs 2026
+**Son güncelleme:** 4 Haziran 2026

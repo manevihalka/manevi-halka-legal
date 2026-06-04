@@ -70,4 +70,4 @@ Aufgrund gesetzlicher Pflichten und zur Betrugsprävention können eingeschränk
 
 ---
 
-**Zuletzt aktualisiert:** 12. Mai 2026
+**Zuletzt aktualisiert:** 4. Juni 2026

@@ -7,7 +7,7 @@ lang: tr
 # Kullanım Koşulları
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 12 Mayıs 2026
+**Son güncelleme:** 4 Haziran 2026
 
 Manevi Halka mobil uygulamasını ("Uygulama") kullanarak bu Kullanım
 Koşullarını kabul etmiş olursunuz. Lütfen dikkatlice okuyun.
@@ -17,9 +17,10 @@ Koşullarını kabul etmiş olursunuz. Lütfen dikkatlice okuyun.
 ## 1. Hizmet Açıklaması
 
 Manevi Halka; Kuran-ı Kerim okuma takibi, Cevşen-i Kebir hatim akışları,
-zikir sayaçları, namaz vakitleri ve İslami kitap okuma takibi için
-geliştirilmiş bir mobil uygulamadır. Tek başına ya da arkadaşlarla
-oluşturulan halka grupları içinde kullanılabilir.
+zikir sayaçları, namaz vakitleri, dini günler ve İslami kitap okuma takibi için
+geliştirilmiş bir mobil uygulamadır. Tek başına, arkadaşlarla oluşturulan
+halka grupları içinde ya da bir vesile için kurulan tek seferlik kolektif
+halkalarda kullanılabilir.
 
 ---
 
@@ -131,7 +132,7 @@ kaynaklarına atıf yapılarak kullanılır.
 
 ### 5.2. Sizin içeriğiniz
 
-Oluşturduğunuz içerik (notlar, halka açıklamaları, özel zikirler) sizindir.
+Oluşturduğunuz içerik (notlar, halka açıklamaları, özel zikirler, tek seferlik halka ithafları) sizindir.
 Bize sadece uygulamayı çalıştırmak için gereken sınırlı, geçici bir lisans
 verirsiniz.
 

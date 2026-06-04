@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 12 Mayıs 2026
+**Son güncelleme:** 4 Haziran 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -33,6 +33,9 @@ haklarınızın neler olduğunu açıklar.
 - **Tercihler:** Uygulama dili, tema, bildirim tercihleri
 - **Kullanıcı içeriği:** Oluşturduğunuz halka açıklamaları, özel zikir metinleri,
   Kuran ayet notları, kitap okuma notları
+- **Tek Seferlik Halka (Vesile):** Oluşturduğunuz tek seferlik halkanın başlığı ve
+  ithaf/vesile metni. İthaf metnine yazdığınız üçüncü kişilere ait bilgilerden
+  (örneğin bir isim) siz sorumlusunuz
 - **Tamamlama sertifikaları:** Hatim, Cevşen ve kitap tamamlamalarında **cihazınızda lokal olarak** PDF sertifika üretilir (sunucuya yüklenmez, sadece paylaşım için cihazınızda kalır)
 
 ### 2.2. Otomatik toplanan bilgiler
@@ -92,6 +95,10 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 
 - **Aktif hesap:** Hesabınız aktif olduğu sürece verileriniz saklanır
 - **Hesap silindiğinde:** Hesabınız önce **soft-delete** olarak işaretlenir. **30 gün** içinde uygulamaya tekrar giriş yaparak hesabınızı geri yükleyebilirsiniz. 30 gün sonra otomatik bir cron görevi (pg_cron) tüm kişisel verilerinizi **kalıcı olarak siler**. Anında kalıcı silme isterseniz e-posta ile başvurabilirsiniz. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik kayıtları (anonim hale getirilmiş) tutulabilir
+- **Tamamlanan tek seferlik halkalar:** Halka bittiğinde özeti (katılımcı sayısı,
+  tamamlanan iş) arşivlenir; bireysel görev detayları temizlenir
+- **Hareketsiz halkalar:** Uzun süre işlem görmeyen halkalar otomatik olarak
+  dondurulur ve sonra arşivlenir (içerik saklanır, aktif görev dağıtımı durur)
 - **Bildirim logları:** 30 gün sonra otomatik silinir
 - **Audit logları:** Güvenlik ve uyumluluk için 12 ay saklanır
 

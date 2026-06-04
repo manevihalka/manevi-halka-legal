@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 12 mai 2026
+**Dernière mise à jour :** 4 juin 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -29,6 +29,7 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 - **Authentification :** si vous utilisez la connexion avec Apple ou Google, le jeton d'identité du service concerné
 - **Préférences :** langue de l'application, thème, préférences de notification
 - **Contenu utilisateur :** descriptions de groupes que vous créez, textes de dhikr personnalisés, notes sur les versets du Coran, notes de lecture de livres
+- **Cercle ponctuel (dédicace) :** le titre et le texte de dédicace de tout cercle ponctuel que vous créez. Vous êtes responsable des informations de tiers (par exemple un nom) que vous saisissez dans le texte de dédicace
 - **Certificats d'achèvement :** lors de la finalisation d'un Hatim, Cevshen ou livre, un certificat PDF est généré **localement sur votre appareil** (jamais envoyé à nos serveurs, conservé sur l'appareil pour le partage)
 
 ### 2.2. Informations collectées automatiquement
@@ -81,6 +82,8 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 
 - **Compte actif :** les données sont conservées tant que votre compte est actif
 - **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
+- **Cercles ponctuels terminés :** lorsqu'un cercle ponctuel se termine, un résumé (nombre de participants, travail accompli) est archivé ; les détails individuels des tâches sont effacés
+- **Cercles inactifs :** les cercles sans activité prolongée sont automatiquement gelés puis archivés (le contenu est conservé, la distribution active des tâches s'arrête)
 - **Journaux de notifications :** supprimés automatiquement après 30 jours
 - **Journaux d'audit :** conservés pendant 12 mois pour des raisons de sécurité et de conformité
 
