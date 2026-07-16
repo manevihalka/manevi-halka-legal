@@ -175,10 +175,15 @@
 <script>
   (function () {
     var params = new URLSearchParams(window.location.search);
-    // 'code' = grup daveti, 'event' = tek seferlik halka daveti. İkisi de aynı
+    // 'code' = grup daveti, 'event' = tek seferlik halka daveti. İkisi aynı
     // deep link'e (manevisosyal://join/CODE) gider; app kodu grup VEYA event
     // olarak çözer.
-    var code = (params.get('code') || params.get('event') || '').toUpperCase().trim();
+    // 'zikir' = paylaşılan zikir listesi. TİPİ deep link'te de taşırız
+    // (manevisosyal://join?zikir=CODE): app tarafındaki çözüm deterministik
+    // kalsın diye /join/CODE biçimine DÜŞÜRÜLMEZ (o biçim tipsizdir ve app onu
+    // grup→event sırasıyla dener; zikir orada kaybolur).
+    var zikir = (params.get('zikir') || '').toUpperCase().trim();
+    var code = zikir || (params.get('code') || params.get('event') || '').toUpperCase().trim();
     var statusEl = document.getElementById('status');
     var codeBox = document.getElementById('codeBox');
     var codeText = document.getElementById('codeText');
@@ -194,7 +199,18 @@
     codeText.textContent = code;
     codeBox.style.display = 'block';
 
-    var deepLink = 'manevisosyal://join/' + code;
+    // Zikir paylaşımında başlık/etiket bağlama uysun (sayfa metni TR — grup
+    // davetiyle aynı davranış).
+    if (zikir) {
+      var h1 = document.querySelector('h1');
+      if (h1) h1.textContent = 'Zikir Listesi';
+      var label = document.querySelector('.code-label');
+      if (label) label.textContent = 'Paylaşım Kodu';
+    }
+
+    var deepLink = zikir
+      ? 'manevisosyal://join?zikir=' + zikir
+      : 'manevisosyal://join/' + code;
     openAppBtn.href = deepLink;
 
     var ua = navigator.userAgent || '';
