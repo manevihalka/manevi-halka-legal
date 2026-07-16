@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** June 4, 2026
+**Last updated:** July 16, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -36,12 +36,16 @@ rights you have.
 - **One-time circle (dedication):** The title and dedication text of any one-time
   circle you create. You are responsible for any third-party information (e.g., a
   name) you enter in the dedication text
+- **Dhikr list sharing:** You can share your personal dhikr list with others via a share
+  code/link. When you share, a copy (snapshot) of your list at that moment is stored with
+  the share code; recipients can add the list to their own library. You can revoke a share
+  at any time
 - **Completion certificates:** When you complete a Hatim, Cevshen, or book, a PDF certificate is generated **locally on your device** (never uploaded to our servers, stays on your device for sharing)
 
 ### 2.2. Automatically collected information
 
 - **Progress data:** Quran page progress, completed tasks, hatim count,
-  dhikr counters, Cevshen knot completions
+  dhikr counters, Cevshen knot completions, your Cetele (memorization) progress and review schedule
 - **Notification token:** Device token for push notifications (Apple APNs /
   Google FCM)
 - **Location:** Only your device's current location, used to compute prayer
@@ -100,6 +104,9 @@ We use the following third-party services to provide our service:
   (participant count, work completed) is archived; individual task details are cleared
 - **Inactive circles:** Circles with no activity for a long time are automatically
   frozen and later archived (content is kept, active task distribution stops)
+- **Shared dhikr lists:** A snapshot created when you share a dhikr list continues to be
+  kept for those who added it to their library, even if you delete your account; however,
+  your name as the sharer is anonymized when your account is deleted
 - **Notification logs:** Auto-deleted after 30 days
 - **Audit logs:** Retained for 12 months for security and compliance
 

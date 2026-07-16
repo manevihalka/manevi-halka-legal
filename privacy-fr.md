@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 4 juin 2026
+**Dernière mise à jour :** 16 juillet 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -30,11 +30,15 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 - **Préférences :** langue de l'application, thème, préférences de notification
 - **Contenu utilisateur :** descriptions de groupes que vous créez, textes de dhikr personnalisés, notes sur les versets du Coran, notes de lecture de livres
 - **Cercle ponctuel (dédicace) :** le titre et le texte de dédicace de tout cercle ponctuel que vous créez. Vous êtes responsable des informations de tiers (par exemple un nom) que vous saisissez dans le texte de dédicace
+- **Partage de liste de dhikr :** vous pouvez partager votre liste de dhikr personnelle
+  avec d'autres via un code/lien de partage. Lors du partage, une copie (instantané) de
+  votre liste à ce moment-là est stockée avec le code de partage ; les destinataires peuvent
+  ajouter la liste à leur propre bibliothèque. Vous pouvez révoquer un partage à tout moment
 - **Certificats d'achèvement :** lors de la finalisation d'un Hatim, Cevshen ou livre, un certificat PDF est généré **localement sur votre appareil** (jamais envoyé à nos serveurs, conservé sur l'appareil pour le partage)
 
 ### 2.2. Informations collectées automatiquement
 
-- **Données de progression :** progression des pages du Coran, tâches accomplies, nombre de khatm, compteurs de dhikr, achèvements des nœuds du Cevshen
+- **Données de progression :** progression des pages du Coran, tâches accomplies, nombre de khatm, compteurs de dhikr, achèvements des nœuds du Cevshen, votre progression Cetele (mémorisation) et votre calendrier de révision
 - **Jeton de notification :** jeton de l'appareil pour les notifications push (Apple APNs / Google FCM)
 - **Localisation :** uniquement la position actuelle de votre appareil, utilisée pour calculer les heures de prière. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul.
 - **Informations d'abonnement :** si vous avez un abonnement Premium : durée, type de formule, boutique (App Store / Play Store), statut de l'abonnement
@@ -84,6 +88,10 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 - **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
 - **Cercles ponctuels terminés :** lorsqu'un cercle ponctuel se termine, un résumé (nombre de participants, travail accompli) est archivé ; les détails individuels des tâches sont effacés
 - **Cercles inactifs :** les cercles sans activité prolongée sont automatiquement gelés puis archivés (le contenu est conservé, la distribution active des tâches s'arrête)
+- **Listes de dhikr partagées :** un instantané créé lorsque vous partagez une liste de
+  dhikr continue d'être conservé pour ceux qui l'ont ajoutée à leur bibliothèque, même si
+  vous supprimez votre compte ; toutefois, votre nom en tant que personne ayant partagé est
+  anonymisé lors de la suppression de votre compte
 - **Journaux de notifications :** supprimés automatiquement après 30 jours
 - **Journaux d'audit :** conservés pendant 12 mois pour des raisons de sécurité et de conformité
 

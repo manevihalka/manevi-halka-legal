@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 4. Juni 2026
+**Zuletzt aktualisiert:** 16. Juli 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -36,12 +36,16 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 - **Einmaliger Kreis (Widmung):** Titel und Widmungstext eines von Ihnen
   erstellten einmaligen Kreises. Für personenbezogene Daten Dritter (z. B. einen
   Namen), die Sie im Widmungstext eingeben, sind Sie verantwortlich
+- **Teilen von Dhikr-Listen:** Sie können Ihre persönliche Dhikr-Liste über einen
+  Teilen-Code/-Link mit anderen teilen. Beim Teilen wird eine Kopie (Momentaufnahme) Ihrer
+  Liste zu diesem Zeitpunkt mit dem Teilen-Code gespeichert; Empfänger können die Liste zu
+  ihrer eigenen Bibliothek hinzufügen. Sie können eine Freigabe jederzeit widerrufen
 - **Abschlusszertifikate:** Bei Hatim-, Cevshen- und Buchabschlüssen wird **lokal auf Ihrem Gerät** ein PDF-Zertifikat erzeugt (nicht auf unsere Server hochgeladen, bleibt zum Teilen auf Ihrem Gerät)
 
 ### 2.2. Automatisch erhobene Informationen
 
 - **Fortschrittsdaten:** Koran-Seitenfortschritt, abgeschlossene Aufgaben,
-  Hatim-Zählung, Dhikr-Zähler, Cevshen-Knoten-Abschlüsse
+  Hatim-Zählung, Dhikr-Zähler, Cevshen-Knoten-Abschlüsse, Ihr Cetele-Fortschritt (Auswendiglernen) und Wiederholungsplan
 - **Benachrichtigungs-Token:** Geräte-Token für Push-Benachrichtigungen
   (Apple APNs / Google FCM)
 - **Standort:** Ausschließlich der aktuelle Standort Ihres Geräts, zur
@@ -106,6 +110,10 @@ Dienstes:
   Aufgabendetails werden gelöscht
 - **Inaktive Kreise:** Kreise ohne längere Aktivität werden automatisch eingefroren
   und später archiviert (Inhalte bleiben erhalten, die aktive Aufgabenverteilung stoppt)
+- **Geteilte Dhikr-Listen:** Eine beim Teilen einer Dhikr-Liste erstellte Momentaufnahme
+  bleibt für diejenigen erhalten, die sie zu ihrer Bibliothek hinzugefügt haben, auch wenn
+  Sie Ihr Konto löschen; Ihr Name als teilende Person wird jedoch bei der Kontolöschung
+  anonymisiert
 - **Benachrichtigungsprotokolle:** Automatische Löschung nach 30 Tagen
 - **Audit-Protokolle:** Aufbewahrung 12 Monate zu Sicherheits- und
   Compliance-Zwecken

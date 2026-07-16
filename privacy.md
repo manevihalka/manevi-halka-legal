@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 4 Haziran 2026
+**Son güncelleme:** 16 Temmuz 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -36,12 +36,16 @@ haklarınızın neler olduğunu açıklar.
 - **Tek Seferlik Halka (Vesile):** Oluşturduğunuz tek seferlik halkanın başlığı ve
   ithaf/vesile metni. İthaf metnine yazdığınız üçüncü kişilere ait bilgilerden
   (örneğin bir isim) siz sorumlusunuz
+- **Zikir listesi paylaşımı:** Kişisel zikir listenizi bir paylaşım kodu/bağlantısı ile
+  başkalarıyla paylaşabilirsiniz. Paylaştığınızda listenizin o anki bir kopyası (anlık
+  görüntü) paylaşım koduyla saklanır; kodu alanlar bu listeyi kendi kütüphanelerine
+  ekleyebilir. Paylaşımı istediğiniz zaman iptal edebilirsiniz
 - **Tamamlama sertifikaları:** Hatim, Cevşen ve kitap tamamlamalarında **cihazınızda lokal olarak** PDF sertifika üretilir (sunucuya yüklenmez, sadece paylaşım için cihazınızda kalır)
 
 ### 2.2. Otomatik toplanan bilgiler
 
 - **İlerleme verisi:** Kuran sayfa ilerlemesi, tamamlanan görevler, hatim sayısı,
-  zikir sayaçları, cevsen ukde tamamlamaları
+  zikir sayaçları, cevsen ukde tamamlamaları, Cetele (ezber) ilerlemeniz ve tekrar takvimi
 - **Bildirim tokeni:** Push bildirim göndermek için cihaz tokeni (Apple APNs / Google FCM)
 - **Konum:** Sadece namaz vakitlerini hesaplamak için cihazınızın anlık konumu.
   **Konum verisi sunucularımıza gönderilmez ve kaydedilmez** — yalnızca cihazda
@@ -99,6 +103,9 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
   tamamlanan iş) arşivlenir; bireysel görev detayları temizlenir
 - **Hareketsiz halkalar:** Uzun süre işlem görmeyen halkalar otomatik olarak
   dondurulur ve sonra arşivlenir (içerik saklanır, aktif görev dağıtımı durur)
+- **Paylaşılan zikir listeleri:** Bir zikir listesi paylaştığınızda oluşan anlık görüntü,
+  hesabınızı silseniz bile onu kütüphanesine ekleyenler için saklanmaya devam eder; ancak
+  paylaşan olarak adınız hesabınız silinince anonim hale getirilir
 - **Bildirim logları:** 30 gün sonra otomatik silinir
 - **Audit logları:** Güvenlik ve uyumluluk için 12 ay saklanır
 
