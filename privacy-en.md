@@ -49,7 +49,7 @@ rights you have.
 - **Notification token:** Device token for push notifications (Apple APNs /
   Google FCM)
 - **Location:** Only your device's current location, used to compute prayer
-  times. **Location data is not sent to or stored on our servers** — used
+  times and the qibla direction. **Location data is not sent to or stored on our servers** — used
   only on-device for calculation.
 - **Subscription info:** If you have a Premium subscription: term, plan
   type, store (App Store / Play Store), subscription status

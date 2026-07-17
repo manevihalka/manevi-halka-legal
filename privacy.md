@@ -47,7 +47,7 @@ haklarınızın neler olduğunu açıklar.
 - **İlerleme verisi:** Kuran sayfa ilerlemesi, tamamlanan görevler, hatim sayısı,
   zikir sayaçları, cevsen ukde tamamlamaları, Cetele (ezber) ilerlemeniz ve tekrar takvimi
 - **Bildirim tokeni:** Push bildirim göndermek için cihaz tokeni (Apple APNs / Google FCM)
-- **Konum:** Sadece namaz vakitlerini hesaplamak için cihazınızın anlık konumu.
+- **Konum:** Sadece namaz vakitlerini ve kıble yönünü hesaplamak için cihazınızın anlık konumu.
   **Konum verisi sunucularımıza gönderilmez ve kaydedilmez** — yalnızca cihazda
   hesap için kullanılır.
 - **Abonelik bilgisi:** Premium aboneliğiniz varsa süre, plan tipi, mağaza (App Store /

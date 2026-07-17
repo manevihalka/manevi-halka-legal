@@ -40,7 +40,7 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 - **Données de progression :** progression des pages du Coran, tâches accomplies, nombre de khatm, compteurs de dhikr, achèvements des nœuds du Cevshen, votre progression Cetele (mémorisation) et votre calendrier de révision
 - **Jeton de notification :** jeton de l'appareil pour les notifications push (Apple APNs / Google FCM)
-- **Localisation :** uniquement la position actuelle de votre appareil, utilisée pour calculer les heures de prière. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul.
+- **Localisation :** uniquement la position actuelle de votre appareil, utilisée pour calculer les heures de prière et la direction de la qibla. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul.
 - **Informations d'abonnement :** si vous avez un abonnement Premium : durée, type de formule, boutique (App Store / Play Store), statut de l'abonnement
 
 ### 2.3. Informations que nous NE collectons PAS

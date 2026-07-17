@@ -49,7 +49,7 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 - **Benachrichtigungs-Token:** Geräte-Token für Push-Benachrichtigungen
   (Apple APNs / Google FCM)
 - **Standort:** Ausschließlich der aktuelle Standort Ihres Geräts, zur
-  Berechnung der Gebetszeiten. **Standortdaten werden weder an unsere
+  Berechnung der Gebetszeiten und der Qibla-Richtung. **Standortdaten werden weder an unsere
   Server übertragen noch dort gespeichert** – sie werden nur lokal auf
   dem Gerät zur Berechnung verwendet.
 - **Abonnementdaten:** Bei einem Premium-Abonnement: Laufzeit, Tariftyp,
