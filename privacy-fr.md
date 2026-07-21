@@ -35,6 +35,7 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
   votre liste à ce moment-là est stockée avec le code de partage ; les destinataires peuvent
   ajouter la liste à leur propre bibliothèque. Vous pouvez révoquer un partage à tout moment
 - **Certificats d'achèvement :** lors de la finalisation d'un Hatim, Cevshen ou livre, un certificat PDF est généré **localement sur votre appareil** (jamais envoyé à nos serveurs, conservé sur l'appareil pour le partage)
+- **Signalements :** lorsque vous utilisez la fonctionnalité « Signaler » de l'application, votre signalement (identifiant du compte signalant, informations sur le groupe, le membre ou l'événement signalé, motif sélectionné et, le cas échéant, votre description) est conservé sur nos serveurs. Ces enregistrements sont utilisés uniquement pour examiner le signalement et prévenir les abus, ne sont jamais partagés avec des tiers et sont supprimés ou anonymisés dans un délai raisonnable après la clôture de l'examen
 
 ### 2.2. Informations collectées automatiquement
 

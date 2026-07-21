@@ -7,7 +7,7 @@ lang: tr
 # Kullanım Koşulları
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 4 Haziran 2026
+**Son güncelleme:** 21 Temmuz 2026
 
 Manevi Halka mobil uygulamasını ("Uygulama") kullanarak bu Kullanım
 Koşullarını kabul etmiş olursunuz. Lütfen dikkatlice okuyun.
@@ -67,6 +67,16 @@ Uygulamayı kullanırken **YAPMAMANIZ gereken** şeyler:
 Halka açıklaması, özel zikir metni gibi ürettiğiniz içeriklerin doğruluğundan
 ve uygunluğundan siz sorumlusunuz. Uygunsuz içerik bildirildiğinde inceleme
 sonrası kaldırılabilir.
+
+### 3.2. İçerik şikayeti ve moderasyon
+
+Uygulamadaki halka adları, duyurular, görünen adlar ve benzeri kullanıcı
+içerikleri topluluk kurallarına tabidir. Uygunsuz, rahatsız edici veya
+kötüye kullanım niteliğindeki içerik ve davranışları uygulama içindeki
+**"Şikayet et"** özelliğiyle bildirebilirsiniz. Şikayetler gizli tutulur;
+bildirimler en geç **24 saat** içinde incelenir ve gerekli görülürse
+içeriğin kaldırılması, üyenin halkadan çıkarılması veya hesabın
+kısıtlanması dahil önlemler alınır.
 
 ---
 

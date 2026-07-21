@@ -41,6 +41,13 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   Liste zu diesem Zeitpunkt mit dem Teilen-Code gespeichert; Empfänger können die Liste zu
   ihrer eigenen Bibliothek hinzufügen. Sie können eine Freigabe jederzeit widerrufen
 - **Abschlusszertifikate:** Bei Hatim-, Cevshen- und Buchabschlüssen wird **lokal auf Ihrem Gerät** ein PDF-Zertifikat erzeugt (nicht auf unsere Server hochgeladen, bleibt zum Teilen auf Ihrem Gerät)
+- **Meldedaten:** Wenn Sie die Funktion „Melden" in der App nutzen, wird Ihre
+  Meldung (Kennung des meldenden Kontos, Angaben zur gemeldeten Gruppe bzw.
+  zum gemeldeten Mitglied oder Ereignis, der gewählte Grund und ggf. Ihre
+  Erläuterung) auf unseren Servern gespeichert. Diese Daten werden
+  ausschließlich zur Prüfung der Meldung und zur Verhinderung von Missbrauch
+  verwendet, nicht an Dritte weitergegeben und nach Abschluss der Prüfung
+  innerhalb einer angemessenen Frist gelöscht oder anonymisiert
 
 ### 2.2. Automatisch erhobene Informationen
 

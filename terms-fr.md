@@ -7,7 +7,7 @@ lang: fr
 # Conditions d'utilisation
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 4 juin 2026
+**Dernière mise à jour :** 21 juillet 2026
 
 En utilisant l'application mobile Manevi Halka (« l'Application »), vous acceptez les présentes Conditions d'utilisation. Veuillez les lire attentivement.
 
@@ -58,6 +58,10 @@ Nous nous réservons le droit de suspendre ou de fermer les comptes en cas de vi
 ### 3.1. Descriptions de groupes et textes de dhikr personnalisés
 
 Vous êtes responsable de l'exactitude et du caractère approprié du contenu que vous créez (descriptions de groupes, textes de dhikr personnalisés, etc.). Tout contenu inapproprié peut être supprimé après examen lorsqu'il est signalé.
+
+### 3.2. Signalement de contenu et modération
+
+Les noms de groupes, les annonces, les noms affichés et tout contenu utilisateur similaire dans l'Application sont soumis aux règles de la communauté. Vous pouvez signaler tout contenu ou comportement inapproprié, offensant ou abusif via la fonctionnalité **« Signaler »** de l'application. Les signalements restent confidentiels ; ils sont examinés dans un délai maximal de **24 heures** et, si nécessaire, des mesures sont prises, pouvant aller jusqu'à la suppression du contenu, l'exclusion du membre du groupe ou la restriction du compte.
 
 ---
 

@@ -70,4 +70,4 @@ For legal obligations and fraud prevention, limited data may be retained in an a
 
 ---
 
-**Last updated:** June 4, 2026
+**Last updated:** July 21, 2026

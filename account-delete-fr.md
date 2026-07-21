@@ -70,4 +70,4 @@ Pour les obligations légales et la prévention de la fraude, certaines données
 
 ---
 
-**Dernière mise à jour :** 4 juin 2026
+**Dernière mise à jour :** 21 juillet 2026

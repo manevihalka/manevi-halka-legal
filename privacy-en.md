@@ -41,6 +41,12 @@ rights you have.
   the share code; recipients can add the list to their own library. You can revoke a share
   at any time
 - **Completion certificates:** When you complete a Hatim, Cevshen, or book, a PDF certificate is generated **locally on your device** (never uploaded to our servers, stays on your device for sharing)
+- **Report records:** When you use the in-app "Report" feature, your report
+  (the reporting account ID, the reported group/member/event, the selected
+  reason, and your optional note) is stored on our servers. These records are
+  used solely to review the report and prevent abuse, are never shared with
+  third parties, and are deleted or anonymized within a reasonable period
+  after the review is completed
 
 ### 2.2. Automatically collected information
 

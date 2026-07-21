@@ -41,6 +41,12 @@ haklarınızın neler olduğunu açıklar.
   görüntü) paylaşım koduyla saklanır; kodu alanlar bu listeyi kendi kütüphanelerine
   ekleyebilir. Paylaşımı istediğiniz zaman iptal edebilirsiniz
 - **Tamamlama sertifikaları:** Hatim, Cevşen ve kitap tamamlamalarında **cihazınızda lokal olarak** PDF sertifika üretilir (sunucuya yüklenmez, sadece paylaşım için cihazınızda kalır)
+- **Şikayet kayıtları:** Uygulama içi "Şikayet et" özelliğini kullandığınızda
+  şikayetiniz (şikayet eden hesap kimliği, şikayet edilen halka/üye/etkinlik
+  bilgisi, seçilen sebep ve varsa açıklamanız) sunucularımızda saklanır. Bu
+  kayıtlar yalnız şikayetin incelenmesi ve kötüye kullanımın önlenmesi amacıyla
+  kullanılır, üçüncü kişilerle paylaşılmaz ve inceleme tamamlandıktan sonra
+  makul bir süre içinde silinir veya anonimleştirilir
 
 ### 2.2. Otomatik toplanan bilgiler
 

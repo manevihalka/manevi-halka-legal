@@ -7,7 +7,7 @@ lang: en
 # Terms of Service
 
 **Effective date:** May 3, 2026
-**Last updated:** June 4, 2026
+**Last updated:** July 21, 2026
 
 By using the Manevi Halka mobile application ("the App") you accept these
 Terms of Service. Please read carefully.
@@ -65,6 +65,15 @@ We reserve the right to suspend or close accounts in case of violation.
 You are responsible for the accuracy and appropriateness of content you create
 (group descriptions, custom dhikr texts, etc.). Inappropriate content may be
 removed after review when reported.
+
+### 3.2. Content reporting and moderation
+
+Group names, announcements, display names, and similar user content in the
+App are subject to community rules. You can report inappropriate, offensive,
+or abusive content and behavior via the in-app **"Report"** feature. Reports
+are kept confidential; they are reviewed within **24 hours** at the latest,
+and where warranted we take measures including removing the content,
+removing the member from the group, or restricting the account.
 
 ---
 
