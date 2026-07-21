@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 16 juillet 2026
+**Dernière mise à jour :** 21 juillet 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -40,7 +40,7 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 - **Données de progression :** progression des pages du Coran, tâches accomplies, nombre de khatm, compteurs de dhikr, achèvements des nœuds du Cevshen, votre progression Cetele (mémorisation) et votre calendrier de révision
 - **Jeton de notification :** jeton de l'appareil pour les notifications push (Apple APNs / Google FCM)
-- **Localisation :** uniquement la position actuelle de votre appareil, utilisée pour calculer les heures de prière et la direction de la qibla. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul.
+- **Localisation :** uniquement la position actuelle de votre appareil, utilisée pour calculer les heures de prière et la direction de la qibla. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul. Afin que l'application puisse remarquer un changement de lieu et vous proposer les horaires de votre nouvelle ville, la dernière coordonnée connue est conservée **uniquement sur votre appareil** ; elle est supprimée lorsque vous effacez les données de votre compte.
 - **Informations d'abonnement :** si vous avez un abonnement Premium : durée, type de formule, boutique (App Store / Play Store), statut de l'abonnement
 
 ### 2.3. Informations que nous NE collectons PAS

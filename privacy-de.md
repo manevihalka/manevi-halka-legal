@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 16. Juli 2026
+**Zuletzt aktualisiert:** 21. Juli 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -51,7 +51,10 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 - **Standort:** Ausschließlich der aktuelle Standort Ihres Geräts, zur
   Berechnung der Gebetszeiten und der Qibla-Richtung. **Standortdaten werden weder an unsere
   Server übertragen noch dort gespeichert** – sie werden nur lokal auf
-  dem Gerät zur Berechnung verwendet.
+  dem Gerät zur Berechnung verwendet. Damit die App einen Ortswechsel bemerken und
+  Gebetszeiten für Ihre neue Stadt vorschlagen kann, wird die zuletzt bekannte Koordinate
+  **ausschließlich auf Ihrem Gerät** gespeichert; sie wird gelöscht, wenn Sie Ihre
+  Kontodaten löschen.
 - **Abonnementdaten:** Bei einem Premium-Abonnement: Laufzeit, Tariftyp,
   Store (App Store / Play Store), Abonnementstatus
 

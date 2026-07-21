@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** July 16, 2026
+**Last updated:** July 21, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -50,7 +50,9 @@ rights you have.
   Google FCM)
 - **Location:** Only your device's current location, used to compute prayer
   times and the qibla direction. **Location data is not sent to or stored on our servers** — used
-  only on-device for calculation.
+  only on-device for calculation. So that the app can notice you have moved and offer
+  prayer times for your new city, the last known coordinate is stored **on your device
+  only**; it is deleted when you clear your account data.
 - **Subscription info:** If you have a Premium subscription: term, plan
   type, store (App Store / Play Store), subscription status
 

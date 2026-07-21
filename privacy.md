@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 16 Temmuz 2026
+**Son güncelleme:** 21 Temmuz 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -49,7 +49,9 @@ haklarınızın neler olduğunu açıklar.
 - **Bildirim tokeni:** Push bildirim göndermek için cihaz tokeni (Apple APNs / Google FCM)
 - **Konum:** Sadece namaz vakitlerini ve kıble yönünü hesaplamak için cihazınızın anlık konumu.
   **Konum verisi sunucularımıza gönderilmez ve kaydedilmez** — yalnızca cihazda
-  hesap için kullanılır.
+  hesap için kullanılır. Şehir değiştirdiğinizi fark edip vakitleri yeni şehrinize
+  göre önerebilmek için son bilinen koordinat **yalnızca cihazınızda** saklanır;
+  hesap verilerinizi sildiğinizde bu kayıt da silinir.
 - **Abonelik bilgisi:** Premium aboneliğiniz varsa süre, plan tipi, mağaza (App Store /
   Play Store), abonelik durumu
 
