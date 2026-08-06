@@ -370,37 +370,6 @@
 
   .card p { font-size: 14.5px; }
 
-  /* ─────────── Deger seridi ─────────── */
-  .strip { padding: 0 0 64px; }
-
-  .strip-inner {
-    background: var(--green);
-    border-radius: 22px;
-    padding: 34px 28px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 22px;
-    text-align: center;
-    box-shadow: 0 18px 44px rgba(30, 77, 53, 0.22);
-  }
-
-  @media (min-width: 720px) { .strip-inner { grid-template-columns: repeat(3, 1fr); } }
-
-  .strip-item .k {
-    display: block;
-    font-size: 24px;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -0.4px;
-    margin-bottom: 4px;
-  }
-
-  .strip-item .v {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.76);
-    line-height: 1.5;
-  }
-
   /* ─────────── Kapanis ─────────── */
   .closing { text-align: center; padding: 0 0 72px; }
 
@@ -644,7 +613,7 @@
       <p class="tagline reveal" data-i18n="tagline">On your own or with loved ones. Your whole journey in one app.</p>
 
       <div class="cta-buttons reveal">
-        <a class="store-badge" href="https://apps.apple.com/app/manevi-halka/id6760654292">
+        <a class="store-badge" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
           </svg>
@@ -653,7 +622,7 @@
             <span class="big">App Store</span>
           </span>
         </a>
-        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
+        <a class="store-badge" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/>
             <path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/>
@@ -746,28 +715,12 @@
       </div>
     </section>
 
-    <section class="strip">
-      <div class="strip-inner reveal">
-        <div class="strip-item">
-          <span class="k" data-i18n="s1k">5 languages</span>
-          <span class="v" data-i18n="s1v">Turkish, English, German, French, Arabic</span>
-        </div>
-        <div class="strip-item">
-          <span class="k" data-i18n="s2k">No ads</span>
-          <span class="v" data-i18n="s2v">A calm, serious interface with nothing to distract you</span>
-        </div>
-        <div class="strip-item">
-          <span class="k" data-i18n="s3k">Privacy first</span>
-          <span class="v" data-i18n="s3v">Export your data or delete your account whenever you want</span>
-        </div>
-      </div>
-    </section>
 
     <section class="closing">
       <h2 class="reveal" data-i18n="closeTitle">Start your circle today</h2>
       <p class="reveal" data-i18n="closeText">With your family, your friends, or on your own. Worship lasts longer together.</p>
       <div class="cta-buttons reveal">
-        <a class="store-badge" href="https://apps.apple.com/app/manevi-halka/id6760654292">
+        <a class="store-badge" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
           </svg>
@@ -776,7 +729,7 @@
             <span class="big">App Store</span>
           </span>
         </a>
-        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
+        <a class="store-badge" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/>
             <path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/>
@@ -797,9 +750,9 @@
         <strong>Türkçe · English · Deutsch · Français · العربية</strong>
       </p>
       <div class="footer-links">
-        <a id="lnkPrivacy" href="/privacy-en.html" data-i18n="privacy">Privacy Policy</a>
-        <a id="lnkTerms" href="/terms-en.html" data-i18n="terms">Terms of Service</a>
-        <a id="lnkDelete" href="/account-delete-en.html" data-i18n="deleteAcc">Account Deletion</a>
+        <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy-en.html" data-i18n="privacy">Privacy Policy</a>
+        <a id="lnkTerms" target="_blank" rel="noopener" href="/terms-en.html" data-i18n="terms">Terms of Service</a>
+        <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete-en.html" data-i18n="deleteAcc">Account Deletion</a>
         <a href="mailto:emirhan.ayaz171@icloud.com" data-i18n="contact">Contact</a>
       </div>
       <p class="copyright">© 2026 Manevi Halka</p>
@@ -859,9 +812,6 @@
       f5d: "Kıble bulucu, namaz ve nafile takibi, ezber çalışması, virdler ve dini günler.",
       f6t: "Kitap Okuma Halkaları",
       f6d: "Ortak okuma turları, kişisel kitaplık, kaldığın sayfa, günlük ve haftalık ilerleme.",
-      s1k: "5 dil", s1v: "Türkçe, İngilizce, Almanca, Fransızca, Arapça",
-      s2k: "Reklamsız", s2v: "Şık ve akıcı bir arayüz, dikkat dağıtan hiçbir şey yok",
-      s3k: "Gizliliğe saygılı", s3v: "Verini dışa aktar ya da hesabını istediğin an sil",
       closeTitle: "Halkanı bugün kur",
       closeText: "Ailenle, dostlarınla ya da tek başına. İbadet birlikte daha kalıcı olur.",
       langsLabel: "5 dilde kullanılabilir",
@@ -897,9 +847,6 @@
       f5d: "Qibla finder, prayer and nafl tracking, memorization practice, awrad and religious days.",
       f6t: "Book Reading Circles",
       f6d: "Shared reading rounds, a personal library, your last page, daily and weekly progress.",
-      s1k: "5 languages", s1v: "Turkish, English, German, French, Arabic",
-      s2k: "No ads", s2v: "An elegant, smooth interface with nothing to distract you",
-      s3k: "Privacy first", s3v: "Export your data or delete your account whenever you want",
       closeTitle: "Start your circle today",
       closeText: "With your family, your friends, or on your own. Worship lasts longer together.",
       langsLabel: "Available in 5 languages",
@@ -935,9 +882,6 @@
       f5d: "Qibla-Kompass, Gebets- und Nafl-Tracking, Auswendiglernen, Awrad und religiöse Tage.",
       f6t: "Buchlesekreise",
       f6d: "Gemeinsame Leserunden, eine persönliche Bibliothek, deine letzte Seite, täglicher und wöchentlicher Fortschritt.",
-      s1k: "5 Sprachen", s1v: "Türkisch, Englisch, Deutsch, Französisch, Arabisch",
-      s2k: "Werbefrei", s2v: "Eine elegante, flüssige Oberfläche ohne Ablenkung",
-      s3k: "Datenschutz zuerst", s3v: "Exportiere deine Daten oder lösche dein Konto jederzeit",
       closeTitle: "Gründe deinen Kreis noch heute",
       closeText: "Mit deiner Familie, deinen Freunden oder allein. Gemeinsam bleibt man eher dran.",
       langsLabel: "In 5 Sprachen verfügbar",
@@ -973,9 +917,6 @@
       f5d: "Boussole qibla, suivi des prières et des nafl, mémorisation, awrad et jours religieux.",
       f6t: "Cercles de lecture",
       f6d: "Tours de lecture partagés, une bibliothèque personnelle, ta dernière page, progression quotidienne et hebdomadaire.",
-      s1k: "5 langues", s1v: "Turc, anglais, allemand, français, arabe",
-      s2k: "Sans publicité", s2v: "Une interface élégante et fluide, rien pour te distraire",
-      s3k: "Vie privée d'abord", s3v: "Exporte tes données ou supprime ton compte quand tu veux",
       closeTitle: "Crée ton cercle dès aujourd'hui",
       closeText: "Avec ta famille, tes amis, ou seul. Ensemble, on tient plus longtemps.",
       langsLabel: "Disponible en 5 langues",
@@ -1011,9 +952,6 @@
       f5d: "بوصلة القبلة، متابعة الفرائض والنوافل، الحفظ، الأوراد والأيام الدينية.",
       f6t: "حلقات قراءة الكتب",
       f6d: "جولات قراءة مشتركة، مكتبة شخصية، آخر صفحة وصلت إليها، وتقدّم يومي وأسبوعي.",
-      s1k: "5 لغات", s1v: "التركية، الإنجليزية، الألمانية، الفرنسية، العربية",
-      s2k: "بلا إعلانات", s2v: "واجهة أنيقة وسلسة، لا شيء يشتّت انتباهك",
-      s3k: "خصوصيتك أولًا", s3v: "صدّر بياناتك أو احذف حسابك متى شئت",
       closeTitle: "ابدأ حلقتك اليوم",
       closeText: "مع عائلتك أو أصدقائك أو وحدك. العبادة معًا أدوم.",
       langsLabel: "متوفّر بـ 5 لغات",
