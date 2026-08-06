@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 21 Temmuz 2026
+**Son güncelleme:** 6 Ağustos 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -111,6 +111,13 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
   tamamlanan iş) arşivlenir; bireysel görev detayları temizlenir
 - **Hareketsiz halkalar:** Uzun süre işlem görmeyen halkalar otomatik olarak
   dondurulur ve sonra arşivlenir (içerik saklanır, aktif görev dağıtımı durur)
+- **Boş kalmış halkalar:** 90 günden uzun süredir hareketsiz olan, en fazla tek üyesi
+  bulunan ve hiç okuma/görev içeriği barındırmayan halkalar, haftalık otomatik bir
+  görevle kalıcı olarak silinir
+- **Kullanılmayan misafir hesaplar:** Hiçbir kimlik (e-posta/Google/Apple) bağlanmamış
+  misafir hesaplar, 90 gün boyunca hiç kullanılmaz ve halka üyeliği, etkinlik katılımı,
+  aile planı veya aboneliği bulunmazsa silinmek üzere işaretlenir; 30 gün sonra
+  yukarıdaki kalıcı silme sürecine girer
 - **Paylaşılan zikir listeleri:** Bir zikir listesi paylaştığınızda oluşan anlık görüntü,
   hesabınızı silseniz bile onu kütüphanesine ekleyenler için saklanmaya devam eder; ancak
   paylaşan olarak adınız hesabınız silinince anonim hale getirilir

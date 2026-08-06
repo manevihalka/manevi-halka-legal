@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 21. Juli 2026
+**Zuletzt aktualisiert:** 6. August 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -120,6 +120,14 @@ Dienstes:
   Aufgabendetails werden gelöscht
 - **Inaktive Kreise:** Kreise ohne längere Aktivität werden automatisch eingefroren
   und später archiviert (Inhalte bleiben erhalten, die aktive Aufgabenverteilung stoppt)
+- **Leere, verlassene Kreise:** Kreise, die seit mehr als 90 Tagen inaktiv sind,
+  höchstens ein Mitglied haben und keinerlei Lese- bzw. Aufgabeninhalte enthalten,
+  werden durch einen wöchentlichen automatisierten Auftrag endgültig gelöscht
+- **Ungenutzte Gastkonten:** Gastkonten ohne verknüpfte Identität (E-Mail/Google/Apple),
+  die 90 Tage lang nicht genutzt werden und keine Kreismitgliedschaften,
+  Veranstaltungsteilnahmen, Familienpläne oder Abonnements aufweisen, werden zur
+  Löschung markiert und durchlaufen nach 30 Tagen den oben beschriebenen endgültigen
+  Löschprozess
 - **Geteilte Dhikr-Listen:** Eine beim Teilen einer Dhikr-Liste erstellte Momentaufnahme
   bleibt für diejenigen erhalten, die sie zu ihrer Bibliothek hinzugefügt haben, auch wenn
   Sie Ihr Konto löschen; Ihr Name als teilende Person wird jedoch bei der Kontolöschung

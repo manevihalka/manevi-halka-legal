@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** July 21, 2026
+**Last updated:** August 6, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -112,6 +112,13 @@ We use the following third-party services to provide our service:
   (participant count, work completed) is archived; individual task details are cleared
 - **Inactive circles:** Circles with no activity for a long time are automatically
   frozen and later archived (content is kept, active task distribution stops)
+- **Empty, abandoned circles:** Circles that have been inactive for more than 90 days,
+  have at most one member and contain no reading/task content are permanently deleted
+  by a weekly automated job
+- **Unused guest accounts:** Guest accounts with no linked identity (email/Google/Apple)
+  that remain unused for 90 days and have no circle memberships, event participation,
+  family plan or subscription are marked for deletion and go through the permanent
+  deletion process above after 30 days
 - **Shared dhikr lists:** A snapshot created when you share a dhikr list continues to be
   kept for those who added it to their library, even if you delete your account; however,
   your name as the sharer is anonymized when your account is deleted

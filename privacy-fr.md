@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 21 juillet 2026
+**Dernière mise à jour :** 6 août 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -89,6 +89,14 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 - **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
 - **Cercles ponctuels terminés :** lorsqu'un cercle ponctuel se termine, un résumé (nombre de participants, travail accompli) est archivé ; les détails individuels des tâches sont effacés
 - **Cercles inactifs :** les cercles sans activité prolongée sont automatiquement gelés puis archivés (le contenu est conservé, la distribution active des tâches s'arrête)
+- **Cercles vides et abandonnés :** les cercles inactifs depuis plus de 90 jours,
+  comptant au plus un membre et ne contenant aucun contenu de lecture ou de tâche
+  sont supprimés définitivement par une tâche automatisée hebdomadaire
+- **Comptes invités inutilisés :** les comptes invités sans identité liée
+  (e-mail/Google/Apple) restés inutilisés pendant 90 jours et sans adhésion à un
+  cercle, participation à un événement, offre familiale ni abonnement sont marqués
+  pour suppression, puis passent par le processus de suppression définitive
+  ci-dessus après 30 jours
 - **Listes de dhikr partagées :** un instantané créé lorsque vous partagez une liste de
   dhikr continue d'être conservé pour ceux qui l'ont ajoutée à leur bibliothèque, même si
   vous supprimez votre compte ; toutefois, votre nom en tant que personne ayant partagé est
