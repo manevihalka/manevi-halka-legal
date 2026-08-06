@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#1e4d35">
 
-<title>Manevi Halka — Cemaatle Hatim, Cevşen, Zikir</title>
-<meta name="description" content="Aile ve dostlarınızla birlikte Kur'an hatmi, Cevşen, zikir ve kitap okumalarınızı organize edin. 5 dilde mevcut.">
+<title>Manevi Halka</title>
+<meta name="description" id="metaDesc" content="Build khatm, Jawshan and dhikr circles with family and friends. Prayer times, tasbih, qibla finder and more in one app.">
 
-<!-- Open Graph - WhatsApp/Telegram link önizleme -->
+<!-- Open Graph - WhatsApp/Telegram link onizleme -->
 <meta property="og:title" content="Manevi Halka">
-<meta property="og:description" content="Cemaatle ve şahsi ibadet, modern bir uygulamada.">
+<meta property="og:description" content="Worship on your own or with loved ones, in one app.">
 <meta property="og:image" content="https://manevihalka.app/icon.png">
 <meta property="og:url" content="https://manevihalka.app">
 <meta property="og:type" content="website">
@@ -19,67 +19,178 @@
 <link rel="icon" type="image/png" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
 
-<!-- Ionicons (app ile ayni iconlar) -->
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #1e4d35;
+    --green-soft: #2f6b4a;
+    --mint: #78d8a8;
+    --mint-bg: #e8f5ed;
+    --ink: #111827;
+    --body: #4b5563;
+    --muted: #9ca3af;
+    --line: #e5e7eb;
+    --page: #f6faf7;
+    --card: #ffffff;
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background: linear-gradient(180deg, #f0f9f1 0%, #fefefe 60%);
-    color: #1f2937;
-    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    background: var(--page);
+    color: var(--body);
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
+    overflow-x: hidden;
   }
+
+  /* Yumusak zemin isigi - derinlik katar, hicbir seyi ortmez */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(60rem 40rem at 50% -10%, rgba(120, 216, 168, 0.20), transparent 70%),
+      radial-gradient(40rem 30rem at 100% 20%, rgba(30, 77, 53, 0.06), transparent 70%);
+  }
+
+  .wrap { position: relative; z-index: 1; }
 
   .container {
-    max-width: 880px;
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 48px 24px;
+    padding: 0 20px;
   }
 
-  /* Hero */
+  /* ─────────── Header ─────────── */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(246, 250, 247, 0.82);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  header.site.scrolled {
+    border-bottom-color: var(--line);
+    box-shadow: 0 4px 20px rgba(17, 24, 39, 0.05);
+  }
+
+  .header-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--green);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+  }
+
+  .brand img {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .lang-picker {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .lang-picker select {
+    appearance: none;
+    -webkit-appearance: none;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 7px 32px 7px 12px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  html[dir="rtl"] .lang-picker select { padding: 7px 12px 7px 32px; }
+
+  .lang-picker select:hover { border-color: var(--mint); }
+
+  .lang-picker select:focus-visible {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(30, 77, 53, 0.12);
+  }
+
+  .lang-picker .chev {
+    position: absolute;
+    right: 11px;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    fill: var(--green-soft);
+  }
+
+  html[dir="rtl"] .lang-picker .chev { right: auto; left: 11px; }
+
+  /* ─────────── Hero ─────────── */
   .hero {
     text-align: center;
-    padding: 32px 0 56px;
+    padding: 72px 0 56px;
   }
 
-  .logo {
-    width: 120px;
-    height: 120px;
-    border-radius: 28px;
-    box-shadow: 0 20px 50px rgba(30, 77, 53, 0.18);
-    margin-bottom: 28px;
+  .hero .logo {
+    width: 108px;
+    height: 108px;
+    border-radius: 26px;
+    box-shadow: 0 18px 44px rgba(30, 77, 53, 0.22);
+    margin-bottom: 26px;
+    display: inline-block;
   }
 
-  h1 {
-    font-size: 44px;
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 52px);
     font-weight: 800;
-    color: #1e4d35;
-    letter-spacing: -0.5px;
-    margin-bottom: 10px;
+    color: var(--green);
+    letter-spacing: -1.2px;
+    line-height: 1.1;
+    margin-bottom: 14px;
   }
 
   .tagline {
-    font-size: 18px;
-    color: #4b5563;
-    margin-bottom: 36px;
-    font-style: italic;
+    font-size: clamp(16px, 2.4vw, 20px);
+    color: var(--body);
+    max-width: 36ch;
+    margin: 0 auto 32px;
   }
 
   .cta-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-    margin-top: 32px;
-  }
-
-  @media (min-width: 540px) {
-    .cta-buttons { flex-direction: row; justify-content: center; }
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .store-badge {
@@ -87,25 +198,21 @@
     align-items: center;
     gap: 12px;
     padding: 12px 24px;
-    background: #1e4d35;
+    background: var(--green);
     color: #fff;
     border-radius: 14px;
-    font-size: 15px;
-    font-weight: 600;
-    box-shadow: 0 6px 20px rgba(30, 77, 53, 0.25);
     text-decoration: none;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 6px 20px rgba(30, 77, 53, 0.25);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
 
   .store-badge:hover,
   .store-badge:focus-visible {
     transform: translateY(-2px);
-    box-shadow: 0 10px 26px rgba(30, 77, 53, 0.32);
+    box-shadow: 0 12px 28px rgba(30, 77, 53, 0.32);
   }
 
-  .store-badge:active {
-    transform: translateY(0);
-  }
+  .store-badge:active { transform: translateY(0); }
 
   .store-badge svg {
     width: 26px;
@@ -117,30 +224,79 @@
   .store-badge .small {
     font-size: 11px;
     font-weight: 500;
-    opacity: 0.75;
+    opacity: 0.78;
     display: block;
-    text-align: left;
+    text-align: start;
   }
 
   .store-badge .big {
     font-size: 16px;
     font-weight: 700;
     display: block;
-    text-align: left;
+    text-align: start;
+    line-height: 1.25;
   }
 
-  /* Features */
-  .features {
-    margin: 64px 0;
+  /* ─────────── Ekran gorselleri ─────────── */
+  .shots { padding: 8px 0 60px; }
+
+  .shots-track {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 26px 20px 30px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    scrollbar-width: none;
   }
 
+  .shots-track::-webkit-scrollbar { display: none; }
+
+  .shot {
+    flex: 0 0 auto;
+    width: 232px;
+    scroll-snap-align: center;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 14px 34px rgba(17, 24, 39, 0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .shot:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 46px rgba(17, 24, 39, 0.16);
+  }
+
+  .shot img { display: block; width: 100%; height: auto; }
+
+  .shots-hint {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ─────────── Bolum basligi ─────────── */
   .section-title {
     text-align: center;
-    font-size: 28px;
-    font-weight: 700;
-    color: #1e4d35;
+    font-size: clamp(24px, 3.6vw, 32px);
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -0.6px;
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 15px;
     margin-bottom: 36px;
   }
+
+  /* ─────────── Ozellikler ─────────── */
+  .features { padding: 8px 0 64px; }
 
   .grid {
     display: grid;
@@ -148,211 +304,611 @@
     gap: 16px;
   }
 
-  @media (min-width: 640px) {
-    .grid { grid-template-columns: 1fr 1fr; }
-  }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 
   .card {
-    background: #fff;
-    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
     padding: 24px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(120, 216, 168, 0.7);
+    box-shadow: 0 14px 30px rgba(30, 77, 53, 0.10);
   }
 
   .card-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 12px;
-    background: #d1fae5;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--mint-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
   }
 
-  .card-icon ion-icon {
-    font-size: 30px;
-    color: #1e4d35;
-  }
-
-  /* Özel marka ikonları (tek-renk PNG maske → kart rengine boyanır) */
   .cicon {
     display: inline-block;
-    width: 34px;
-    height: 34px;
-    background-color: #1e4d35;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-    -webkit-mask-size: contain;
-    mask-size: contain;
+    width: 30px;
+    height: 30px;
+    background-color: var(--green);
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center;  mask-position: center;
+    -webkit-mask-size: contain;     mask-size: contain;
   }
   .cicon-quran  { -webkit-mask-image: url('icons/quran.png');  mask-image: url('icons/quran.png'); }
   .cicon-cevsen { -webkit-mask-image: url('icons/cevsen.png'); mask-image: url('icons/cevsen.png'); }
   .cicon-zikir  { -webkit-mask-image: url('icons/zikir.png');  mask-image: url('icons/zikir.png'); }
   .cicon-book   { -webkit-mask-image: url('icons/book.png');   mask-image: url('icons/book.png'); }
 
+  .card-icon svg {
+    width: 28px; height: 28px;
+    fill: none; stroke: var(--green);
+    stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  }
+
   .card h3 {
     font-size: 18px;
     font-weight: 700;
-    color: #111827;
+    color: var(--ink);
     margin-bottom: 8px;
+    letter-spacing: -0.2px;
   }
 
-  .card p {
-    font-size: 14px;
-    color: #6b7280;
-    line-height: 1.55;
-  }
+  .card p { font-size: 14.5px; }
 
-  /* Languages */
-  .languages {
+  /* ─────────── Deger seridi ─────────── */
+  .strip { padding: 0 0 64px; }
+
+  .strip-inner {
+    background: var(--green);
+    border-radius: 22px;
+    padding: 34px 28px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
     text-align: center;
-    padding: 24px 0;
-    margin: 24px 0 48px;
-    border-top: 1px solid #e5e7eb;
-    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 18px 44px rgba(30, 77, 53, 0.22);
   }
 
-  .languages p {
-    color: #6b7280;
+  @media (min-width: 720px) { .strip-inner { grid-template-columns: repeat(3, 1fr); } }
+
+  .strip-item .k {
+    display: block;
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.4px;
+    margin-bottom: 4px;
+  }
+
+  .strip-item .v {
     font-size: 14px;
-    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.76);
+    line-height: 1.5;
   }
 
-  .lang-list {
-    margin-top: 8px;
-    font-weight: 600;
-    color: #1e4d35;
-    font-size: 16px;
+  /* ─────────── Kapanis ─────────── */
+  .closing { text-align: center; padding: 0 0 72px; }
+
+  .closing h2 {
+    font-size: clamp(22px, 3.4vw, 30px);
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
   }
 
-  /* Footer */
-  footer {
+  .closing p { max-width: 46ch; margin: 0 auto 28px; }
+
+  /* ─────────── Footer ─────────── */
+  footer.site {
+    border-top: 1px solid var(--line);
+    padding: 30px 0 40px;
     text-align: center;
-    padding: 32px 0 8px;
-    color: #6b7280;
+  }
+
+  .lang-line {
     font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .lang-line strong {
+    display: block;
+    color: var(--green-soft);
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 2px;
   }
 
   .footer-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px 24px;
-    margin-bottom: 16px;
+    gap: 8px 22px;
+    margin-bottom: 14px;
   }
 
   .footer-links a {
-    color: #1e4d35;
+    color: var(--green);
     text-decoration: none;
     font-weight: 500;
     font-size: 14px;
   }
 
-  .footer-links a:hover {
-    text-decoration: underline;
+  .footer-links a:hover { text-decoration: underline; }
+
+  .copyright { font-size: 12px; color: var(--muted); }
+
+  /* ─────────── Kaydirmayla beliren ogeler ─────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+                transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: opacity, transform;
   }
 
-  .copyright {
-    font-size: 12px;
-    color: #9ca3af;
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* "Hareketi azalt" tercihine SAYGI: tum animasyon kapanir */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .card:hover, .shot:hover, .store-badge:hover { transform: none; }
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <main class="hero">
-    <img src="icon.png" alt="Manevi Halka" class="logo">
-    <h1>Manevi Halka</h1>
-    <p class="tagline">Cemaatle ve şahsi ibadet, modern bir uygulamada.</p>
+<div class="wrap">
 
-    <div class="cta-buttons">
-      <a class="store-badge"
-         href="https://apps.apple.com/app/manevi-halka/id6760654292"
-         aria-label="Manevi Halka'yı App Store'dan indirin">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
-        </svg>
-        <span>
-          <span class="small">İndir</span>
-          <span class="big">App Store</span>
-        </span>
+  <header class="site" id="siteHeader">
+    <div class="header-inner">
+      <a class="brand" href="#top">
+        <img src="icon.png" alt="">
+        <span>Manevi Halka</span>
       </a>
-      <a class="store-badge"
-         href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle"
-         aria-label="Manevi Halka'yı Google Play'den indirin">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/>
-          <path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/>
-          <path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/>
-          <path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/>
-        </svg>
-        <span>
-          <span class="small">İndir</span>
-          <span class="big">Google Play</span>
-        </span>
-      </a>
+      <div class="lang-picker">
+        <select id="langSelect" aria-label="Language">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="ar">العربية</option>
+        </select>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      </div>
     </div>
-  </main>
+  </header>
 
-  <section class="features">
-    <h2 class="section-title">Özellikler</h2>
-    <div class="grid">
+  <div class="container" id="top">
 
-      <div class="card">
-        <div class="card-icon">
-          <span class="cicon cicon-quran"></span>
-        </div>
-        <h3>Kur'an Hatmi</h3>
-        <p>Aile veya halkanızda cüz dağıtımı, otomatik sıralı turlar, tamamlanma sertifikası. Tek başına ya da 30 kişi birlikte.</p>
+    <main class="hero">
+      <img src="icon.png" alt="Manevi Halka" class="logo reveal">
+      <h1 class="reveal">Manevi Halka</h1>
+      <p class="tagline reveal" data-i18n="tagline">On your own or with loved ones. Your whole journey in one app.</p>
+
+      <div class="cta-buttons reveal">
+        <a class="store-badge" href="https://apps.apple.com/app/manevi-halka/id6760654292">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
+          </svg>
+          <span>
+            <span class="small" data-i18n="get">Download</span>
+            <span class="big">App Store</span>
+          </span>
+        </a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/>
+            <path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/>
+            <path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/>
+            <path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/>
+          </svg>
+          <span>
+            <span class="small" data-i18n="get">Download</span>
+            <span class="big">Google Play</span>
+          </span>
+        </a>
       </div>
+    </main>
+  </div>
 
-      <div class="card">
-        <div class="card-icon">
-          <span class="cicon cicon-cevsen"></span>
-        </div>
-        <h3>Cevşen-i Kebir</h3>
-        <p>101 bab paylaşımlı veya kişisel okuma. Günlük tek bab, takipli ilerleme, hatim sertifikası.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">
-          <span class="cicon cicon-zikir"></span>
-        </div>
-        <h3>Zikir Halkaları</h3>
-        <p>Esma-ül Hüsna, salavat, zikirmatik. Halka olarak paylaşımlı veya kişisel zikir takibi.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">
-          <span class="cicon cicon-book"></span>
-        </div>
-        <h3>Kitap Okuması</h3>
-        <p>Halka okuma turları, kişisel kitaplık, kaldığınız sayfa, günlük/haftalık ilerleme grafiği.</p>
-      </div>
-
+  <section class="shots">
+    <div class="shots-track" id="shotsTrack">
+      <div class="shot reveal"><img data-shot="dashboard"    alt="" loading="lazy" width="620" height="1235"></div>
+      <div class="shot reveal"><img data-shot="flow-detail"  alt="" loading="lazy" width="620" height="1235"></div>
+      <div class="shot reveal"><img data-shot="prayer"       alt="" loading="lazy" width="620" height="1235"></div>
+      <div class="shot reveal"><img data-shot="quran-reader" alt="" loading="lazy" width="620" height="1235"></div>
+      <div class="shot reveal"><img data-shot="zikir"        alt="" loading="lazy" width="620" height="1235"></div>
     </div>
+    <p class="shots-hint" data-i18n="shotsHint">Swipe to explore the app</p>
   </section>
 
-  <section class="languages">
-    <p>5 dilde kullanılabilir</p>
-    <div class="lang-list">Türkçe · English · Deutsch · Français · العربية</div>
-  </section>
+  <div class="container">
 
-  <footer>
-    <div class="footer-links">
-      <a href="/privacy.html">Gizlilik Politikası</a>
-      <a href="/terms.html">Kullanım Koşulları</a>
-      <a href="/account-delete.html">Hesap Silme</a>
-      <a href="mailto:emirhan.ayaz171@icloud.com">İletişim</a>
-    </div>
-    <p class="copyright">© 2026 Manevi Halka — Tüm hakları saklıdır.</p>
-  </footer>
+    <section class="features">
+      <h2 class="section-title reveal" data-i18n="featuresTitle">What&#39;s inside</h2>
+      <p class="section-sub reveal" data-i18n="featuresSub">Worship itself is always free</p>
+
+      <div class="grid">
+        <div class="card reveal">
+          <div class="card-icon"><span class="cicon cicon-quran"></span></div>
+          <h3 data-i18n="f1t">Qur&#39;an Khatm</h3>
+          <p data-i18n="f1d">Share the juz among your circle, read in turns, complete the khatm together. Works solo or with thirty people.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon"><span class="cicon cicon-cevsen"></span></div>
+          <h3 data-i18n="f2t">Jawshan al-Kabir</h3>
+          <p data-i18n="f2d">101 chapters, shared or personal. One chapter a day, tracked progress, completion certificate.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon"><span class="cicon cicon-zikir"></span></div>
+          <h3 data-i18n="f3t">Dhikr and Tasbih</h3>
+          <p data-i18n="f3d">Asma ul-Husna, salawat, digital tasbih. Build your own dhikr lists, reorder them and share them.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v5l3 2"></path>
+            </svg>
+          </div>
+          <h3 data-i18n="f4t">Prayer Times</h3>
+          <p data-i18n="f4d">Home screen widget, live countdown, and your city updates by itself when you travel. 106 countries.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3l7 4v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V7z"></path>
+              <path d="M9.5 12.4l1.8 1.8 3.4-3.6"></path>
+            </svg>
+          </div>
+          <h3 data-i18n="f5t">Qibla and Daily Tracking</h3>
+          <p data-i18n="f5d">Qibla finder, prayer and nafl tracking, memorization practice, awrad and religious days.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon"><span class="cicon cicon-book"></span></div>
+          <h3 data-i18n="f6t">Book Reading Circles</h3>
+          <p data-i18n="f6d">Shared reading rounds, a personal library, your last page, daily and weekly progress.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="strip">
+      <div class="strip-inner reveal">
+        <div class="strip-item">
+          <span class="k" data-i18n="s1k">5 languages</span>
+          <span class="v" data-i18n="s1v">Turkish, English, German, French, Arabic</span>
+        </div>
+        <div class="strip-item">
+          <span class="k" data-i18n="s2k">No ads</span>
+          <span class="v" data-i18n="s2v">A calm, serious interface with nothing to distract you</span>
+        </div>
+        <div class="strip-item">
+          <span class="k" data-i18n="s3k">Privacy first</span>
+          <span class="v" data-i18n="s3v">Export your data or delete your account whenever you want</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <h2 class="reveal" data-i18n="closeTitle">Start your circle today</h2>
+      <p class="reveal" data-i18n="closeText">With your family, your friends, or on your own. Worship lasts longer together.</p>
+      <div class="cta-buttons reveal">
+        <a class="store-badge" href="https://apps.apple.com/app/manevi-halka/id6760654292">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
+          </svg>
+          <span>
+            <span class="small" data-i18n="get">Download</span>
+            <span class="big">App Store</span>
+          </span>
+        </a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/>
+            <path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/>
+            <path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/>
+            <path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/>
+          </svg>
+          <span>
+            <span class="small" data-i18n="get">Download</span>
+            <span class="big">Google Play</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site">
+      <p class="lang-line">
+        <span data-i18n="langsLabel">Available in 5 languages</span>
+        <strong>Türkçe · English · Deutsch · Français · العربية</strong>
+      </p>
+      <div class="footer-links">
+        <a id="lnkPrivacy" href="/privacy-en.html" data-i18n="privacy">Privacy Policy</a>
+        <a id="lnkTerms" href="/terms-en.html" data-i18n="terms">Terms of Service</a>
+        <a id="lnkDelete" href="/account-delete-en.html" data-i18n="deleteAcc">Account Deletion</a>
+        <a href="mailto:emirhan.ayaz171@icloud.com" data-i18n="contact">Contact</a>
+      </div>
+      <p class="copyright">© 2026 Manevi Halka</p>
+    </footer>
+
+  </div>
 </div>
+
+<script>
+(function () {
+  "use strict";
+
+  // Taban dil INGILIZCE: eslesmeyen tarayici dili Turkceye DEGIL buraya duser.
+  var FALLBACK = "en";
+  var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
+
+  var I18N = {
+    tr: {
+      title: "Manevi Halka — Hatim, Cevşen, Zikir ve Namaz Vakitleri",
+      desc: "Sevdiklerinle hatim, Cevşen ve zikir halkaları kur. Namaz vakitleri, zikirmatik, kıble ve dahası tek uygulamada.",
+      tagline: "İster tek başına ister sevdiklerinle. Manevi yolculuğun tek uygulamada.",
+      get: "İndir",
+      shotsHint: "Kaydırarak uygulamayı gez",
+      featuresTitle: "Neler var",
+      featuresSub: "İbadetin kendisi her zaman ücretsiz",
+      f1t: "Kur'an Hatmi",
+      f1d: "Cüzleri halkana dağıt, sırayla okuyun, hatmi birlikte tamamlayın. Tek başına da olur, otuz kişiyle de.",
+      f2t: "Cevşen-i Kebir",
+      f2d: "101 bab paylaşımlı ya da kişisel. Günde tek bab, takipli ilerleme, tamamlama sertifikası.",
+      f3t: "Zikir ve Tesbihat",
+      f3d: "Esmaül Hüsna, salavat, zikirmatik. Kendi zikir listeni kur, sırala ve paylaş.",
+      f4t: "Namaz Vakitleri",
+      f4d: "Ana ekran widget'ı, canlı geri sayım, seyahat edince kendiliğinden güncellenen şehir. 106 ülke.",
+      f5t: "Kıble ve Günlük Takip",
+      f5d: "Kıble bulucu, namaz ve nafile takibi, ezber çalışması, virdler ve dini günler.",
+      f6t: "Kitap Okuma Halkaları",
+      f6d: "Ortak okuma turları, kişisel kitaplık, kaldığın sayfa, günlük ve haftalık ilerleme.",
+      s1k: "5 dil", s1v: "Türkçe, İngilizce, Almanca, Fransızca, Arapça",
+      s2k: "Reklamsız", s2v: "Sade ve ciddi bir arayüz, dikkat dağıtan hiçbir şey yok",
+      s3k: "Gizliliğe saygılı", s3v: "Verini dışa aktar ya da hesabını istediğin an sil",
+      closeTitle: "Halkanı bugün kur",
+      closeText: "Ailenle, dostlarınla ya da tek başına. İbadet birlikte daha kalıcı olur.",
+      langsLabel: "5 dilde kullanılabilir",
+      privacy: "Gizlilik Politikası", terms: "Kullanım Koşulları",
+      deleteAcc: "Hesap Silme", contact: "İletişim",
+      suffix: ""
+    },
+    en: {
+      title: "Manevi Halka — Khatm, Jawshan, Dhikr and Prayer Times",
+      desc: "Build khatm, Jawshan and dhikr circles with family and friends. Prayer times, tasbih, qibla finder and more in one app.",
+      tagline: "On your own or with loved ones. Your whole journey in one app.",
+      get: "Download",
+      shotsHint: "Swipe to explore the app",
+      featuresTitle: "What's inside",
+      featuresSub: "Worship itself is always free",
+      f1t: "Qur'an Khatm",
+      f1d: "Share the juz among your circle, read in turns, complete the khatm together. Works solo or with thirty people.",
+      f2t: "Jawshan al-Kabir",
+      f2d: "101 chapters, shared or personal. One chapter a day, tracked progress, completion certificate.",
+      f3t: "Dhikr and Tasbih",
+      f3d: "Asma ul-Husna, salawat, digital tasbih. Build your own dhikr lists, reorder them and share them.",
+      f4t: "Prayer Times",
+      f4d: "Home screen widget, live countdown, and your city updates by itself when you travel. 106 countries.",
+      f5t: "Qibla and Daily Tracking",
+      f5d: "Qibla finder, prayer and nafl tracking, memorization practice, awrad and religious days.",
+      f6t: "Book Reading Circles",
+      f6d: "Shared reading rounds, a personal library, your last page, daily and weekly progress.",
+      s1k: "5 languages", s1v: "Turkish, English, German, French, Arabic",
+      s2k: "No ads", s2v: "A calm, serious interface with nothing to distract you",
+      s3k: "Privacy first", s3v: "Export your data or delete your account whenever you want",
+      closeTitle: "Start your circle today",
+      closeText: "With your family, your friends, or on your own. Worship lasts longer together.",
+      langsLabel: "Available in 5 languages",
+      privacy: "Privacy Policy", terms: "Terms of Service",
+      deleteAcc: "Account Deletion", contact: "Contact",
+      suffix: "-en"
+    },
+    de: {
+      title: "Manevi Halka — Chatma, Dschauschan, Dhikr und Gebetszeiten",
+      desc: "Gründe Chatma-, Dschauschan- und Dhikr-Kreise mit Familie und Freunden. Gebetszeiten, Tasbih, Qibla und mehr in einer App.",
+      tagline: "Allein oder mit deinen Liebsten. Dein spiritueller Weg in einer App.",
+      get: "Laden",
+      shotsHint: "Wische, um die App zu entdecken",
+      featuresTitle: "Was drinsteckt",
+      featuresSub: "Die Andacht selbst bleibt immer kostenlos",
+      f1t: "Koran-Chatma",
+      f1d: "Teile die Dschus in deinem Kreis auf, lest abwechselnd, vollendet die Chatma gemeinsam. Allein oder zu dreißigst.",
+      f2t: "Dschauschan al-Kabir",
+      f2d: "101 Kapitel, gemeinsam oder persönlich. Ein Kapitel pro Tag, verfolgter Fortschritt, Abschlusszertifikat.",
+      f3t: "Dhikr und Tasbih",
+      f3d: "Asma ul-Husna, Salawat, digitale Tasbih. Erstelle eigene Dhikr-Listen, sortiere und teile sie.",
+      f4t: "Gebetszeiten",
+      f4d: "Widget für den Startbildschirm, laufender Countdown, und deine Stadt aktualisiert sich beim Reisen von selbst. 106 Länder.",
+      f5t: "Qibla und tägliche Verfolgung",
+      f5d: "Qibla-Kompass, Gebets- und Nafl-Tracking, Auswendiglernen, Awrad und religiöse Tage.",
+      f6t: "Buchlesekreise",
+      f6d: "Gemeinsame Leserunden, eine persönliche Bibliothek, deine letzte Seite, täglicher und wöchentlicher Fortschritt.",
+      s1k: "5 Sprachen", s1v: "Türkisch, Englisch, Deutsch, Französisch, Arabisch",
+      s2k: "Werbefrei", s2v: "Eine ruhige, ernsthafte Oberfläche ohne Ablenkung",
+      s3k: "Datenschutz zuerst", s3v: "Exportiere deine Daten oder lösche dein Konto jederzeit",
+      closeTitle: "Gründe deinen Kreis noch heute",
+      closeText: "Mit deiner Familie, deinen Freunden oder allein. Gemeinsam bleibt man eher dran.",
+      langsLabel: "In 5 Sprachen verfügbar",
+      privacy: "Datenschutzerklärung", terms: "Nutzungsbedingungen",
+      deleteAcc: "Kontolöschung", contact: "Kontakt",
+      suffix: "-de"
+    },
+    fr: {
+      title: "Manevi Halka — Khatma, Jawshan, dhikr et heures de prière",
+      desc: "Crée des cercles de khatma, Jawshan et dhikr avec ta famille et tes amis. Heures de prière, tasbih, qibla et bien plus dans une seule appli.",
+      tagline: "Seul ou avec tes proches. Ton chemin spirituel dans une seule appli.",
+      get: "Télécharger",
+      shotsHint: "Fais glisser pour découvrir l'appli",
+      featuresTitle: "Ce que tu y trouves",
+      featuresSub: "La dévotion elle-même reste toujours gratuite",
+      f1t: "Khatma du Coran",
+      f1d: "Répartis les juz dans ton cercle, lisez à tour de rôle, achevez la khatma ensemble. Seul ou à trente.",
+      f2t: "Jawshan al-Kabir",
+      f2d: "101 chapitres, partagés ou personnels. Un chapitre par jour, progression suivie, certificat d'achèvement.",
+      f3t: "Dhikr et tasbih",
+      f3d: "Asma ul-Husna, salawat, tasbih numérique. Crée tes propres listes de dhikr, réordonne-les et partage-les.",
+      f4t: "Heures de prière",
+      f4d: "Widget d'écran d'accueil, compte à rebours en direct, et ta ville se met à jour quand tu voyages. 106 pays.",
+      f5t: "Qibla et suivi quotidien",
+      f5d: "Boussole qibla, suivi des prières et des nafl, mémorisation, awrad et jours religieux.",
+      f6t: "Cercles de lecture",
+      f6d: "Tours de lecture partagés, une bibliothèque personnelle, ta dernière page, progression quotidienne et hebdomadaire.",
+      s1k: "5 langues", s1v: "Turc, anglais, allemand, français, arabe",
+      s2k: "Sans publicité", s2v: "Une interface sobre et sérieuse, rien pour te distraire",
+      s3k: "Vie privée d'abord", s3v: "Exporte tes données ou supprime ton compte quand tu veux",
+      closeTitle: "Crée ton cercle dès aujourd'hui",
+      closeText: "Avec ta famille, tes amis, ou seul. Ensemble, on tient plus longtemps.",
+      langsLabel: "Disponible en 5 langues",
+      privacy: "Politique de confidentialité", terms: "Conditions d'utilisation",
+      deleteAcc: "Suppression du compte", contact: "Contact",
+      suffix: "-fr"
+    },
+    ar: {
+      title: "Manevi Halka — ختم القرآن والجوشن والذكر ومواقيت الصلاة",
+      desc: "أنشئ حلقات ختم القرآن والجوشن والذكر مع عائلتك وأصدقائك. مواقيت الصلاة والمسبحة وبوصلة القبلة والمزيد في تطبيق واحد.",
+      tagline: "وحدك أو مع أحبّتك. رحلتك الإيمانية في تطبيق واحد.",
+      get: "حمّل",
+      shotsHint: "اسحب لاستكشاف التطبيق",
+      featuresTitle: "ماذا يقدّم",
+      featuresSub: "العبادة نفسها مجانية دائمًا",
+      f1t: "ختم القرآن",
+      f1d: "وزّع الأجزاء على أفراد حلقتك، واقرؤوا بالتناوب، وأتمّوا الختمة معًا. يصلح للفرد وللثلاثين.",
+      f2t: "الجوشن الكبير",
+      f2d: "101 باب، مشتركة أو فردية. باب كل يوم، تقدّم متابَع، وشهادة إتمام.",
+      f3t: "الذكر والتسبيح",
+      f3d: "أسماء الله الحسنى، الصلاة على النبي، ومسبحة رقمية. أنشئ قوائم أذكارك ورتّبها وشاركها.",
+      f4t: "مواقيت الصلاة",
+      f4d: "أداة على الشاشة الرئيسية، عدّ تنازلي مباشر، ومدينتك تتحدّث تلقائيًا عند السفر. 106 دولة.",
+      f5t: "القبلة والمتابعة اليومية",
+      f5d: "بوصلة القبلة، متابعة الفرائض والنوافل، الحفظ، الأوراد والأيام الدينية.",
+      f6t: "حلقات قراءة الكتب",
+      f6d: "جولات قراءة مشتركة، مكتبة شخصية، آخر صفحة وصلت إليها، وتقدّم يومي وأسبوعي.",
+      s1k: "5 لغات", s1v: "التركية، الإنجليزية، الألمانية، الفرنسية، العربية",
+      s2k: "بلا إعلانات", s2v: "واجهة هادئة ورصينة، لا شيء يشتّت انتباهك",
+      s3k: "خصوصيتك أولًا", s3v: "صدّر بياناتك أو احذف حسابك متى شئت",
+      closeTitle: "ابدأ حلقتك اليوم",
+      closeText: "مع عائلتك أو أصدقائك أو وحدك. العبادة معًا أدوم.",
+      langsLabel: "متوفّر بـ 5 لغات",
+      privacy: "سياسة الخصوصية", terms: "شروط الاستخدام",
+      deleteAcc: "حذف الحساب", contact: "تواصل معنا",
+      suffix: "-ar"
+    }
+  };
+
+  function resolveLocale() {
+    try {
+      var saved = localStorage.getItem("mh_lang");
+      if (saved && SUPPORTED.indexOf(saved) !== -1) return saved;
+    } catch (e) { /* gizli mod: sessizce gec */ }
+
+    var list = (navigator.languages && navigator.languages.length)
+      ? navigator.languages
+      : [navigator.language || ""];
+    for (var i = 0; i < list.length; i++) {
+      var code = String(list[i] || "").toLowerCase().split("-")[0];
+      if (SUPPORTED.indexOf(code) !== -1) return code;
+    }
+    return FALLBACK;
+  }
+
+  function applyLocale(loc) {
+    var t = I18N[loc] || I18N[FALLBACK];
+    var html = document.documentElement;
+
+    html.setAttribute("lang", loc);
+    html.setAttribute("dir", loc === "ar" ? "rtl" : "ltr");
+
+    document.title = t.title;
+    var md = document.getElementById("metaDesc");
+    if (md) md.setAttribute("content", t.desc);
+
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) {
+      var key = nodes[i].getAttribute("data-i18n");
+      if (t[key] != null) nodes[i].textContent = t[key];
+    }
+
+    // Politika baglantilari secili dile gitsin
+    var sfx = t.suffix;
+    var p = document.getElementById("lnkPrivacy");
+    var tm = document.getElementById("lnkTerms");
+    var d = document.getElementById("lnkDelete");
+    if (p) p.setAttribute("href", "/privacy" + sfx + ".html");
+    if (tm) tm.setAttribute("href", "/terms" + sfx + ".html");
+    if (d) d.setAttribute("href", "/account-delete" + sfx + ".html");
+
+    // Ekran gorselleri secili dilin setinden gelsin
+    var shots = document.querySelectorAll("[data-shot]");
+    for (var j = 0; j < shots.length; j++) {
+      shots[j].setAttribute("src", "shots/" + loc + "/" + shots[j].getAttribute("data-shot") + ".jpg");
+      shots[j].setAttribute("alt", "Manevi Halka");
+    }
+
+    var sel = document.getElementById("langSelect");
+    if (sel && sel.value !== loc) sel.value = loc;
+  }
+
+  applyLocale(resolveLocale());
+
+  var sel = document.getElementById("langSelect");
+  if (sel) {
+    sel.addEventListener("change", function () {
+      var loc = sel.value;
+      applyLocale(loc);
+      try { localStorage.setItem("mh_lang", loc); } catch (e) { /* gizli mod */ }
+    });
+  }
+
+  // ── Kaydirmayla belirme ──
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var targets = document.querySelectorAll(".reveal");
+
+  if (reduce || !("IntersectionObserver" in window)) {
+    for (var k = 0; k < targets.length; k++) targets[k].classList.add("in");
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry, idx) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        // kademeli giris: ayni anda gorunen ogeler pespese belirir
+        setTimeout(function () { el.classList.add("in"); }, idx * 70);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+    for (var m = 0; m < targets.length; m++) io.observe(targets[m]);
+  }
+
+  // ── Kaydirinca baslik cizgisi ──
+  var header = document.getElementById("siteHeader");
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () {
+      if (header) header.classList.toggle("scrolled", window.scrollY > 8);
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 
 </body>
 </html>
