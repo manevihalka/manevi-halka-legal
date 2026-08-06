@@ -243,8 +243,14 @@
   .shots-track {
     display: flex;
     gap: 22px;
+    /* "safe center": icerik sigiyorsa ortalar, tasiyorsa soldan baslatir.
+       Duz "center" tasma halinde ilk karti erisilmez yapardi. */
+    justify-content: safe center;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    /* Hizalama "start": "center" olsaydi tarayici acilista ilk karti ortalamak
+       icin galeriyi kaydirip kartin solunu kirpiyordu (olculdu: scrollLeft 322). */
+    scroll-padding-inline-start: 20px;
     padding: 26px 20px 30px;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
@@ -256,7 +262,7 @@
   .shot {
     flex: 0 0 auto;
     width: 232px;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     border-radius: 26px;
     overflow: hidden;
     background: #fff;
@@ -446,6 +452,132 @@
 
   .copyright { font-size: 12px; color: var(--muted); }
 
+  /* ─────────── Canlanan hero ikonu ─────────── */
+  .logo-wrap {
+    position: relative;
+    width: 112px;
+    height: 112px;
+    margin: 0 auto 26px;
+    border-radius: 26px;
+    background: var(--green);
+    box-shadow: 0 18px 44px rgba(30, 77, 53, 0.22);
+    overflow: hidden;
+  }
+
+  .logo-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 9px;
+  }
+
+  /* Duraklama karesi hep durur; gif yalnizca oynarken ustune biner. */
+  .logo-anim { opacity: 0; transition: opacity 0.18s ease; }
+  .logo-wrap.playing .logo-anim { opacity: 1; }
+  .logo-wrap.playing .logo-still { opacity: 0; }
+  .logo-still { transition: opacity 0.18s ease; }
+
+  /* ─────────── Galeri oklari (yalniz genis ekran) ─────────── */
+  .shots-nav {
+    display: none;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  @media (min-width: 900px) { .shots-nav { display: flex; } }
+
+  .shots-nav button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--green);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .shots-nav button:hover {
+    border-color: var(--mint);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(30, 77, 53, 0.12);
+  }
+
+  .shots-nav svg { width: 18px; height: 18px; fill: currentColor; }
+
+  /* ─────────── Buyutec ─────────── */
+  .shot { cursor: zoom-in; border: 0; padding: 0; font: inherit; }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(9, 24, 17, 0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .lightbox.open { opacity: 1; visibility: visible; }
+
+  .lightbox img {
+    max-width: min(92vw, 420px);
+    max-height: 86vh;
+    width: auto;
+    height: auto;
+    border-radius: 22px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+  }
+
+  .lb-btn {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+  }
+
+  .lb-btn:hover { background: rgba(255, 255, 255, 0.26); }
+  .lb-btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+  .lb-close { top: 20px; inset-inline-end: 20px; }
+  .lb-prev  { inset-inline-start: 16px; }
+  .lb-next  { inset-inline-end: 16px; }
+
+  @media (min-width: 900px) {
+    .lb-prev { inset-inline-start: 40px; }
+    .lb-next { inset-inline-end: 40px; }
+  }
+
+  .lb-count {
+    position: absolute;
+    bottom: 22px;
+    inset-inline: 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+
   /* ─────────── Kaydirmayla beliren ogeler ─────────── */
   .reveal {
     opacity: 0;
@@ -491,7 +623,10 @@
   <div class="container" id="top">
 
     <main class="hero">
-      <img src="icon.png" alt="Manevi Halka" class="logo reveal">
+      <div class="logo-wrap reveal" id="logoWrap">
+        <img src="icon-anim-still.png" alt="Manevi Halka" class="logo-still">
+        <img src="icon-anim.gif" alt="" class="logo-anim" id="logoAnim" aria-hidden="true">
+      </div>
       <h1 class="reveal">Manevi Halka</h1>
       <p class="tagline reveal" data-i18n="tagline">On your own or with loved ones. Your whole journey in one app.</p>
 
@@ -523,13 +658,24 @@
 
   <section class="shots">
     <div class="shots-track" id="shotsTrack">
-      <div class="shot reveal"><img data-shot="dashboard"    alt="" loading="lazy" width="620" height="1235"></div>
-      <div class="shot reveal"><img data-shot="flow-detail"  alt="" loading="lazy" width="620" height="1235"></div>
-      <div class="shot reveal"><img data-shot="prayer"       alt="" loading="lazy" width="620" height="1235"></div>
-      <div class="shot reveal"><img data-shot="quran-reader" alt="" loading="lazy" width="620" height="1235"></div>
-      <div class="shot reveal"><img data-shot="zikir"        alt="" loading="lazy" width="620" height="1235"></div>
+      <button class="shot reveal" type="button" data-index="0" aria-label="Manevi Halka"><img data-shot="dashboard" alt="" loading="eager" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="1" aria-label="Manevi Halka"><img data-shot="flow-detail" alt="" loading="eager" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="2" aria-label="Manevi Halka"><img data-shot="prayer" alt="" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="3" aria-label="Manevi Halka"><img data-shot="quran-reader" alt="" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="4" aria-label="Manevi Halka"><img data-shot="event" alt="" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="5" aria-label="Manevi Halka"><img data-shot="zikir" alt="" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="6" aria-label="Manevi Halka"><img data-shot="qibla-explore" alt="" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="7" aria-label="Manevi Halka"><img data-shot="lifestyle" alt="" loading="lazy" width="620" height="1235"></button>
     </div>
     <p class="shots-hint" data-i18n="shotsHint">Swipe to explore the app</p>
+    <div class="shots-nav">
+      <button type="button" id="shotsPrev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg>
+      </button>
+      <button type="button" id="shotsNext" aria-label="Next">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 16.6 10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg>
+      </button>
+    </div>
   </section>
 
   <div class="container">
@@ -649,6 +795,20 @@
   </div>
 </div>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Manevi Halka">
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg>
+  </button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg>
+  </button>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 16.6 10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg>
+  </button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
 <script>
 (function () {
   "use strict";
@@ -656,6 +816,12 @@
   // Taban dil INGILIZCE: eslesmeyen tarayici dili Turkceye DEGIL buraya duser.
   var FALLBACK = "en";
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
+
+  var reduceMotion = !!(window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  // Buyutecte acik olan gorselin sirasi (-1 = kapali). applyLocale bunu okur.
+  var lbIndex = -1;
 
   var I18N = {
     tr: {
@@ -811,6 +977,12 @@
   };
 
   function resolveLocale() {
+    // 1) ?lang=de gibi acik istek (paylasilan baglantida dil sabitlemek icin)
+    try {
+      var q = new URLSearchParams(window.location.search).get("lang");
+      if (q && SUPPORTED.indexOf(q) !== -1) return q;
+    } catch (e) { /* eski tarayici */ }
+
     try {
       var saved = localStorage.getItem("mh_lang");
       if (saved && SUPPORTED.indexOf(saved) !== -1) return saved;
@@ -855,9 +1027,13 @@
     // Ekran gorselleri secili dilin setinden gelsin
     var shots = document.querySelectorAll("[data-shot]");
     for (var j = 0; j < shots.length; j++) {
-      shots[j].setAttribute("src", "shots/" + loc + "/" + shots[j].getAttribute("data-shot") + ".jpg");
+      var nm = shots[j].getAttribute("data-shot");
+      shots[j].setAttribute("src", "shots/" + loc + "/" + nm + ".jpg");
+      shots[j].setAttribute("data-lg", "shots/" + loc + "/" + nm + "@lg.jpg");
       shots[j].setAttribute("alt", "Manevi Halka");
     }
+    // Buyutec aciksa oradaki gorseli de yeni dile cevir
+    if (typeof lbIndexInternal !== "undefined" && lbIndexInternal >= 0) showLightbox(lbIndexInternal);
 
     var sel = document.getElementById("langSelect");
     if (sel && sel.value !== loc) sel.value = loc;
@@ -874,11 +1050,121 @@
     });
   }
 
+  // ── Buyutec ──
+  var lb = document.getElementById("lightbox");
+  var lbImg = document.getElementById("lbImg");
+  var lbCount = document.getElementById("lbCount");
+  var shotBtns = document.querySelectorAll(".shot");
+  var lbIndexInternal = -1;
+
+  function shotImgAt(i) {
+    var b = shotBtns[i];
+    return b ? b.querySelector("img") : null;
+  }
+
+  function showLightbox(i) {
+    var img = shotImgAt(i);
+    if (!img) return;
+    lbIndexInternal = i;
+    lbImg.setAttribute("src", img.getAttribute("data-lg") || img.getAttribute("src"));
+    lbCount.textContent = (i + 1) + " / " + shotBtns.length;
+  }
+
+  function openLightbox(i) {
+    showLightbox(i);
+    lb.classList.add("open");
+    document.body.style.overflow = "hidden";
+    var c = document.getElementById("lbClose");
+    if (c) c.focus();
+  }
+
+  function closeLightbox() {
+    lb.classList.remove("open");
+    lbIndexInternal = -1;
+    document.body.style.overflow = "";
+  }
+
+  function stepLightbox(d) {
+    if (lbIndexInternal < 0) return;
+    var n = (lbIndexInternal + d + shotBtns.length) % shotBtns.length;
+    showLightbox(n);
+  }
+
+  for (var b = 0; b < shotBtns.length; b++) {
+    (function (idx) {
+      shotBtns[idx].addEventListener("click", function () { openLightbox(idx); });
+    })(b);
+  }
+
+  document.getElementById("lbClose").addEventListener("click", closeLightbox);
+  document.getElementById("lbPrev").addEventListener("click", function () { stepLightbox(-1); });
+  document.getElementById("lbNext").addEventListener("click", function () { stepLightbox(1); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener("keydown", function (e) {
+    if (!lb.classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
+    else if (e.key === "ArrowRight") stepLightbox(1);
+    else if (e.key === "ArrowLeft") stepLightbox(-1);
+  });
+
+  // Dokunmatik kaydirma
+  var tx = 0;
+  lb.addEventListener("touchstart", function (e) { tx = e.changedTouches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", function (e) {
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 45) stepLightbox(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  // ── Galeri oklari ──
+  var track = document.getElementById("shotsTrack");
+  function slide(dir) {
+    if (!track) return;
+    var card = track.querySelector(".shot");
+    var step = card ? card.getBoundingClientRect().width + 22 : 254;
+    track.scrollBy({ left: dir * step * 2, behavior: "smooth" });
+  }
+  var pv = document.getElementById("shotsPrev");
+  var nx = document.getElementById("shotsNext");
+  if (pv) pv.addEventListener("click", function () { slide(-1); });
+  if (nx) nx.addEventListener("click", function () { slide(1); });
+
+  // ── Hero ikonu: 7 saniyede bir, bir kez oynar ──
+  // Gif sonsuz donguluyor; tek tur icin oynatip 1 sn sonra duraklama karesine
+  // donuyoruz. src'yi Blob URL'den yeniden atamak animasyonu bastan baslatir ve
+  // AGA CIKMAZ (gif bellekte). Cache-buster ("?v=1") her turda yeniden indirirdi.
+  (function () {
+    var wrap = document.getElementById("logoWrap");
+    var anim = document.getElementById("logoAnim");
+    if (!wrap || !anim || reduceMotion) return;
+
+    var GIF_MS = 1000;   // gif tam turu ~990 ms
+    var GAP_MS = 7000;   // turlar arasi bekleme
+    var blobUrl = null;
+
+    fetch(anim.getAttribute("src"))
+      .then(function (r) { return r.blob(); })
+      .then(function (b) { blobUrl = URL.createObjectURL(b); start(); })
+      .catch(function () { /* gif inmediyse duraklama karesi kalir, sorun degil */ });
+
+    function play() {
+      if (!blobUrl || document.hidden) return;
+      anim.setAttribute("src", "");
+      anim.setAttribute("src", blobUrl);
+      wrap.classList.add("playing");
+      setTimeout(function () { wrap.classList.remove("playing"); }, GIF_MS);
+    }
+
+    function start() {
+      setTimeout(play, 400);                 // sayfa oturunca bir kez
+      setInterval(play, GAP_MS + GIF_MS);    // sonra periyodik
+    }
+  })();
+
   // ── Kaydirmayla belirme ──
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var targets = document.querySelectorAll(".reveal");
 
-  if (reduce || !("IntersectionObserver" in window)) {
+  if (reduceMotion || !("IntersectionObserver" in window)) {
     for (var k = 0; k < targets.length; k++) targets[k].classList.add("in");
   } else {
     var io = new IntersectionObserver(function (entries) {
