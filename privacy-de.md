@@ -31,6 +31,18 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 - **Authentifizierung:** Bei Nutzung von „Mit Apple anmelden" oder „Mit Google
   anmelden" das Identitäts-Token des jeweiligen Dienstes
 - **Einstellungen:** App-Sprache, Design, Benachrichtigungseinstellungen
+- **Geräteübergreifende Sicherung:** Die persönlichen Andachtsaufzeichnungen und
+  Leseeinstellungen, die Sie in Ihrem Konto führen, werden auf unseren Servern
+  gesichert, damit sie bei einem Gerätewechsel nicht verloren gehen. Diese Sicherung
+  umfasst: **Ihre Aufzeichnungen zum Gebets- und Nafl-Tracking**, Ihre Einstellungen
+  für Gebetsverfolgung und Erinnerungen, Ihre Koran-Lesezeichen, Ihre zuletzt
+  gelesene Position in Koran und Dschauschan, Ihre Lesereinstellungen (zweite
+  Übersetzungssprache, Mushaf-Schriftstil) sowie Ihre laufenden Dhikr-Zählungen.
+  **Nur Sie können auf diese Sicherung zugreifen**; Mitglieder Ihrer Kreise,
+  Kreis-Administratoren und andere Nutzende können sie nicht einsehen (geschützt
+  durch zeilenbasierte Zugriffsregeln in der Datenbank). Mit der Löschung Ihres
+  Kontos wird auch die Sicherung gelöscht. **Ihre Standortkoordinaten sind in dieser
+  Sicherung NICHT enthalten** und verbleiben ausschließlich auf Ihrem Gerät
 - **Nutzerinhalte:** Von Ihnen erstellte Gruppenbeschreibungen, individuelle
   Dhikr-Texte, Notizen zu Koranversen, Notizen zu Buchlektüren
 - **Einmaliger Kreis (Widmung):** Titel und Widmungstext eines von Ihnen

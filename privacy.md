@@ -31,6 +31,16 @@ haklarınızın neler olduğunu açıklar.
 - **Kimlik doğrulama:** Apple ile Giriş veya Google ile Giriş kullanırsanız ilgili
   servisten alınan kimlik tokeni
 - **Tercihler:** Uygulama dili, tema, bildirim tercihleri
+- **Cihazlar arası yedekleme:** Hesabınıza bağlı olarak tuttuğunuz kişisel ibadet
+  kayıtları ve okuma tercihleriniz, cihaz değiştirdiğinizde kaybolmasın diye
+  sunucularımızda yedeklenir. Bu yedek şunları içerir: **namaz ve nafile takibi
+  kayıtlarınız**, namaz takibi ve hatırlatma tercihleriniz, Kuran yer imleriniz,
+  Kuran ve Cevşen'de kaldığınız son okuma konumu, okuyucu tercihleriniz (ikincil
+  meal dili, mushaf yazı stili) ve devam eden zikir sayımlarınız. **Bu yedeğe
+  yalnızca siz erişebilirsiniz**; halkanızdaki üyeler, halka yöneticileri ve diğer
+  kullanıcılar göremez (veritabanı düzeyinde satır bazlı erişim kuralıyla korunur).
+  Hesabınızı sildiğinizde bu yedek de silinir. **Konum koordinatlarınız bu yedeğe
+  DAHİL DEĞİLDİR**, yalnızca cihazınızda kalır
 - **Kullanıcı içeriği:** Oluşturduğunuz halka açıklamaları, özel zikir metinleri,
   Kuran ayet notları, kitap okuma notları
 - **Tek Seferlik Halka (Vesile):** Oluşturduğunuz tek seferlik halkanın başlığı ve

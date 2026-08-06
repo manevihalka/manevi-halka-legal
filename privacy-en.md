@@ -31,6 +31,17 @@ rights you have.
 - **Authentication:** If you use Sign in with Apple or Google, the identity
   token from the respective service
 - **Preferences:** App language, theme, notification preferences
+- **Cross-device backup:** The personal worship records and reading preferences you
+  keep while signed in are backed up on our servers so they are not lost when you
+  change devices. This backup includes: **your prayer and supererogatory (nafl)
+  tracking records**, your prayer tracking and reminder preferences, your Qur'an
+  bookmarks, your last reading position in the Qur'an and Jawshan, your reader
+  preferences (secondary translation language, mushaf font style) and your
+  in-progress dhikr counts. **Only you can access this backup**; members of your
+  circles, circle admins and other users cannot see it (protected by row-level
+  access rules in the database). The backup is deleted when you delete your account.
+  **Your location coordinates are NOT included in this backup** and remain only on
+  your device
 - **User content:** Group descriptions you create, custom dhikr texts,
   Quran verse notes, book reading notes
 - **One-time circle (dedication):** The title and dedication text of any one-time

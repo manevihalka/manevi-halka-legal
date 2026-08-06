@@ -28,6 +28,19 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 - **Informations de compte :** adresse e-mail, nom complet, photo de profil (facultative)
 - **Authentification :** si vous utilisez la connexion avec Apple ou Google, le jeton d'identité du service concerné
 - **Préférences :** langue de l'application, thème, préférences de notification
+- **Sauvegarde multi-appareils :** les enregistrements de dévotion personnels et les
+  préférences de lecture que vous conservez dans votre compte sont sauvegardés sur
+  nos serveurs afin de ne pas être perdus lors d'un changement d'appareil. Cette
+  sauvegarde comprend : **vos enregistrements de suivi des prières et des prières
+  surérogatoires (nafl)**, vos préférences de suivi et de rappel des prières, vos
+  signets du Coran, votre dernière position de lecture dans le Coran et le Jawshan,
+  vos préférences de lecture (langue de la traduction secondaire, style de police du
+  mushaf) ainsi que vos comptages de dhikr en cours. **Vous seul pouvez accéder à
+  cette sauvegarde** ; les membres de vos cercles, les administrateurs de cercle et
+  les autres utilisateurs ne peuvent pas la consulter (protection par règles d'accès
+  au niveau des lignes dans la base de données). La sauvegarde est supprimée lorsque
+  vous supprimez votre compte. **Vos coordonnées de localisation ne sont PAS incluses
+  dans cette sauvegarde** et restent uniquement sur votre appareil
 - **Contenu utilisateur :** descriptions de groupes que vous créez, textes de dhikr personnalisés, notes sur les versets du Coran, notes de lecture de livres
 - **Cercle ponctuel (dédicace) :** le titre et le texte de dédicace de tout cercle ponctuel que vous créez. Vous êtes responsable des informations de tiers (par exemple un nom) que vous saisissez dans le texte de dédicace
 - **Partage de liste de dhikr :** vous pouvez partager votre liste de dhikr personnelle
