@@ -11,7 +11,9 @@
 <!-- Open Graph - WhatsApp/Telegram link onizleme -->
 <meta property="og:title" content="Manevi Halka">
 <meta property="og:description" content="Worship on your own or with loved ones, in one app.">
-<meta property="og:image" content="https://manevihalka.app/icon.png">
+<meta property="og:image" content="https://manevihalka.app/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://manevihalka.app">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -568,6 +570,17 @@
     .lb-next { inset-inline-end: 40px; }
   }
 
+  .lb-caption {
+    position: absolute;
+    bottom: 46px;
+    inset-inline: 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0 70px;
+  }
+
   .lb-count {
     position: absolute;
     bottom: 22px;
@@ -806,6 +819,7 @@
   <button class="lb-btn lb-next" id="lbNext" aria-label="Next">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 16.6 10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg>
   </button>
+  <div class="lb-caption" id="lbCap"></div>
   <div class="lb-count" id="lbCount"></div>
 </div>
 
@@ -820,8 +834,9 @@
   var reduceMotion = !!(window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-  // Buyutecte acik olan gorselin sirasi (-1 = kapali). applyLocale bunu okur.
-  var lbIndex = -1;
+  // Secili dilin ceviri tablosu — buyutec aciklamasi buradan okur.
+  // I18N asagida tanimli; burada null baslar, ilk applyLocale doldurur.
+  var currentT = null;
 
   var I18N = {
     tr: {
@@ -845,13 +860,21 @@
       f6t: "Kitap Okuma Halkaları",
       f6d: "Ortak okuma turları, kişisel kitaplık, kaldığın sayfa, günlük ve haftalık ilerleme.",
       s1k: "5 dil", s1v: "Türkçe, İngilizce, Almanca, Fransızca, Arapça",
-      s2k: "Reklamsız", s2v: "Sade ve ciddi bir arayüz, dikkat dağıtan hiçbir şey yok",
+      s2k: "Reklamsız", s2v: "Şık ve akıcı bir arayüz, dikkat dağıtan hiçbir şey yok",
       s3k: "Gizliliğe saygılı", s3v: "Verini dışa aktar ya da hesabını istediğin an sil",
       closeTitle: "Halkanı bugün kur",
       closeText: "Ailenle, dostlarınla ya da tek başına. İbadet birlikte daha kalıcı olur.",
       langsLabel: "5 dilde kullanılabilir",
       privacy: "Gizlilik Politikası", terms: "Kullanım Koşulları",
       deleteAcc: "Hesap Silme", contact: "İletişim",
+      "cap_dashboard": "Ana ekran: görevlerin ve namazların tek bakışta",
+      "cap_flow-detail": "Halkan: üyeler, okumalar ve ilerleme",
+      "cap_prayer": "Namaz ve nafile takibi, haftalık tablo",
+      "cap_quran-reader": "Kur'an okuma ekranı, kişisel ayarlar",
+      "cap_event": "Özel günler için tek seferlik hatim halkaları",
+      "cap_zikir": "Günlük zikirler ve kendi listelerin",
+      "cap_qibla-explore": "Kıble bulucu, nerede olursan ol",
+      "cap_lifestyle": "Manevi yolculuğun hep yanında",
       suffix: ""
     },
     en: {
@@ -875,13 +898,21 @@
       f6t: "Book Reading Circles",
       f6d: "Shared reading rounds, a personal library, your last page, daily and weekly progress.",
       s1k: "5 languages", s1v: "Turkish, English, German, French, Arabic",
-      s2k: "No ads", s2v: "A calm, serious interface with nothing to distract you",
+      s2k: "No ads", s2v: "An elegant, smooth interface with nothing to distract you",
       s3k: "Privacy first", s3v: "Export your data or delete your account whenever you want",
       closeTitle: "Start your circle today",
       closeText: "With your family, your friends, or on your own. Worship lasts longer together.",
       langsLabel: "Available in 5 languages",
       privacy: "Privacy Policy", terms: "Terms of Service",
       deleteAcc: "Account Deletion", contact: "Contact",
+      "cap_dashboard": "Home: your tasks and prayers at a glance",
+      "cap_flow-detail": "Your circle: members, readings and progress",
+      "cap_prayer": "Prayer and nafl tracking with a weekly view",
+      "cap_quran-reader": "Qur'an reading screen with personal settings",
+      "cap_event": "One-time khatm circles for special days",
+      "cap_zikir": "Daily dhikr and your own lists",
+      "cap_qibla-explore": "Qibla finder, wherever you are",
+      "cap_lifestyle": "Your journey, always with you",
       suffix: "-en"
     },
     de: {
@@ -905,13 +936,21 @@
       f6t: "Buchlesekreise",
       f6d: "Gemeinsame Leserunden, eine persönliche Bibliothek, deine letzte Seite, täglicher und wöchentlicher Fortschritt.",
       s1k: "5 Sprachen", s1v: "Türkisch, Englisch, Deutsch, Französisch, Arabisch",
-      s2k: "Werbefrei", s2v: "Eine ruhige, ernsthafte Oberfläche ohne Ablenkung",
+      s2k: "Werbefrei", s2v: "Eine elegante, flüssige Oberfläche ohne Ablenkung",
       s3k: "Datenschutz zuerst", s3v: "Exportiere deine Daten oder lösche dein Konto jederzeit",
       closeTitle: "Gründe deinen Kreis noch heute",
       closeText: "Mit deiner Familie, deinen Freunden oder allein. Gemeinsam bleibt man eher dran.",
       langsLabel: "In 5 Sprachen verfügbar",
       privacy: "Datenschutzerklärung", terms: "Nutzungsbedingungen",
       deleteAcc: "Kontolöschung", contact: "Kontakt",
+      "cap_dashboard": "Startseite: Aufgaben und Gebete auf einen Blick",
+      "cap_flow-detail": "Dein Kreis: Mitglieder, Lesungen und Fortschritt",
+      "cap_prayer": "Gebets- und Nafl-Tracking mit Wochenübersicht",
+      "cap_quran-reader": "Koran-Lesebildschirm mit persönlichen Einstellungen",
+      "cap_event": "Einmalige Chatma-Kreise für besondere Tage",
+      "cap_zikir": "Tägliche Dhikr und eigene Listen",
+      "cap_qibla-explore": "Qibla-Kompass, wo immer du bist",
+      "cap_lifestyle": "Dein Weg, immer dabei",
       suffix: "-de"
     },
     fr: {
@@ -935,13 +974,21 @@
       f6t: "Cercles de lecture",
       f6d: "Tours de lecture partagés, une bibliothèque personnelle, ta dernière page, progression quotidienne et hebdomadaire.",
       s1k: "5 langues", s1v: "Turc, anglais, allemand, français, arabe",
-      s2k: "Sans publicité", s2v: "Une interface sobre et sérieuse, rien pour te distraire",
+      s2k: "Sans publicité", s2v: "Une interface élégante et fluide, rien pour te distraire",
       s3k: "Vie privée d'abord", s3v: "Exporte tes données ou supprime ton compte quand tu veux",
       closeTitle: "Crée ton cercle dès aujourd'hui",
       closeText: "Avec ta famille, tes amis, ou seul. Ensemble, on tient plus longtemps.",
       langsLabel: "Disponible en 5 langues",
       privacy: "Politique de confidentialité", terms: "Conditions d'utilisation",
       deleteAcc: "Suppression du compte", contact: "Contact",
+      "cap_dashboard": "Accueil : tes tâches et prières en un coup d'œil",
+      "cap_flow-detail": "Ton cercle : membres, lectures et progression",
+      "cap_prayer": "Suivi des prières et des nafl, vue hebdomadaire",
+      "cap_quran-reader": "Écran de lecture du Coran, réglages personnels",
+      "cap_event": "Cercles de khatma ponctuels pour les jours particuliers",
+      "cap_zikir": "Dhikr quotidiens et tes propres listes",
+      "cap_qibla-explore": "Boussole qibla, où que tu sois",
+      "cap_lifestyle": "Ton chemin, toujours avec toi",
       suffix: "-fr"
     },
     ar: {
@@ -965,13 +1012,21 @@
       f6t: "حلقات قراءة الكتب",
       f6d: "جولات قراءة مشتركة، مكتبة شخصية، آخر صفحة وصلت إليها، وتقدّم يومي وأسبوعي.",
       s1k: "5 لغات", s1v: "التركية، الإنجليزية، الألمانية، الفرنسية، العربية",
-      s2k: "بلا إعلانات", s2v: "واجهة هادئة ورصينة، لا شيء يشتّت انتباهك",
+      s2k: "بلا إعلانات", s2v: "واجهة أنيقة وسلسة، لا شيء يشتّت انتباهك",
       s3k: "خصوصيتك أولًا", s3v: "صدّر بياناتك أو احذف حسابك متى شئت",
       closeTitle: "ابدأ حلقتك اليوم",
       closeText: "مع عائلتك أو أصدقائك أو وحدك. العبادة معًا أدوم.",
       langsLabel: "متوفّر بـ 5 لغات",
       privacy: "سياسة الخصوصية", terms: "شروط الاستخدام",
       deleteAcc: "حذف الحساب", contact: "تواصل معنا",
+      "cap_dashboard": "الرئيسية: مهامك وصلواتك في لمحة",
+      "cap_flow-detail": "حلقتك: الأعضاء والقراءات والتقدّم",
+      "cap_prayer": "متابعة الفرائض والنوافل مع جدول أسبوعي",
+      "cap_quran-reader": "شاشة قراءة القرآن بإعداداتك الشخصية",
+      "cap_event": "حلقات ختم لمرة واحدة للأيام الخاصة",
+      "cap_zikir": "أذكار يومية وقوائمك الخاصة",
+      "cap_qibla-explore": "بوصلة القبلة أينما كنت",
+      "cap_lifestyle": "رحلتك معك دائمًا",
       suffix: "-ar"
     }
   };
@@ -1000,6 +1055,7 @@
 
   function applyLocale(loc) {
     var t = I18N[loc] || I18N[FALLBACK];
+    currentT = t;
     var html = document.documentElement;
 
     html.setAttribute("lang", loc);
@@ -1054,6 +1110,7 @@
   var lb = document.getElementById("lightbox");
   var lbImg = document.getElementById("lbImg");
   var lbCount = document.getElementById("lbCount");
+  var lbCap = document.getElementById("lbCap");
   var shotBtns = document.querySelectorAll(".shot");
   var lbIndexInternal = -1;
 
@@ -1068,6 +1125,7 @@
     lbIndexInternal = i;
     lbImg.setAttribute("src", img.getAttribute("data-lg") || img.getAttribute("src"));
     lbCount.textContent = (i + 1) + " / " + shotBtns.length;
+    lbCap.textContent = (currentT || I18N[FALLBACK])["cap_" + img.getAttribute("data-shot")] || "";
   }
 
   function openLightbox(i) {
