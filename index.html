@@ -188,6 +188,20 @@
     margin: 0 auto 32px;
   }
 
+  .tagline-sub {
+    font-size: clamp(14px, 1.9vw, 16px);
+    color: var(--muted);
+    max-width: 40ch;
+    margin: -20px auto 32px;
+  }
+
+  .close-wish {
+    font-size: clamp(14px, 1.9vw, 16px);
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 26px;
+  }
+
   .cta-buttons {
     display: flex;
     gap: 14px;
@@ -610,7 +624,8 @@
         <img src="icon-anim.gif" alt="" class="logo-anim" id="logoAnim" aria-hidden="true">
       </div>
       <h1 class="reveal">Manevi Halka</h1>
-      <p class="tagline reveal" data-i18n="tagline">On your own or with loved ones. Your whole journey in one app.</p>
+      <p class="tagline reveal" data-i18n="tagline">You do not have to walk this path alone.</p>
+      <p class="tagline-sub reveal" data-i18n="taglineSub">On your own or with loved ones. Your whole journey in one app.</p>
 
       <div class="cta-buttons reveal">
         <a class="store-badge" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
@@ -719,6 +734,7 @@
     <section class="closing">
       <h2 class="reveal" data-i18n="closeTitle">Start your circle today</h2>
       <p class="reveal" data-i18n="closeText">With your family, your friends, or on your own. Worship lasts longer together.</p>
+      <p class="close-wish reveal" data-i18n="closeWish" id="closeWish">May your intentions be accepted and your circles endure.</p>
       <div class="cta-buttons reveal">
         <a class="store-badge" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -794,26 +810,28 @@
   var I18N = {
     tr: {
       title: "Manevi Halka — Hatim, Cevşen, Zikir ve Namaz Vakitleri",
-      desc: "Sevdiklerinle hatim, Cevşen ve zikir halkaları kur. Namaz vakitleri, zikirmatik, kıble ve dahası tek uygulamada.",
-      tagline: "İster tek başına ister sevdiklerinle. Manevi yolculuğun tek uygulamada.",
+      desc: "Manevi yolculuğuna yalnız çıkmak zorunda değilsin. Sevdiklerinle hatim, Cevşen ve zikir halkaları kur; namaz vakitleri, kıble ve zikirmatik hep yanında.",
+      tagline: "Manevi yolculuğuna yalnız çıkmak zorunda değilsin.",
+      taglineSub: "İster tek başına ister sevdiklerinle. Manevi yolculuğun tek uygulamada.",
       get: "İndir",
       shotsHint: "Kaydırarak uygulamayı gez",
       featuresTitle: "Neler var",
       featuresSub: "İbadetin kendisi her zaman ücretsiz",
       f1t: "Kur'an Hatmi",
-      f1d: "Cüzleri halkana dağıt, sırayla okuyun, hatmi birlikte tamamlayın. Tek başına da olur, otuz kişiyle de.",
+      f1d: "Cüzler halkandaki herkese dağılır, sıra sana gelince haberin olur. Tek başına aylar süren bir hatim, birlikte haftalara iner.",
       f2t: "Cevşen-i Kebir",
-      f2d: "101 bab paylaşımlı ya da kişisel. Günde tek bab, takipli ilerleme, tamamlama sertifikası.",
+      f2d: "101 bab, paylaşımlı ya da kendi başına. Her gün bir bab okursun, nerede kaldığını uygulama hatırlar, tamamladığında sertifikan hazır olur.",
       f3t: "Zikir ve Tesbihat",
-      f3d: "Esmaül Hüsna, salavat, zikirmatik. Kendi zikir listeni kur, sırala ve paylaş.",
+      f3d: "Esmaül Hüsna, salavat ve tesbihat elinin altında. Kendi zikir listeni kurar, sırasını belirler, dilediğinde tek bağlantıyla paylaşırsın.",
       f4t: "Namaz Vakitleri",
-      f4d: "Ana ekran widget'ı, canlı geri sayım, seyahat edince kendiliğinden güncellenen şehir. 106 ülke.",
+      f4d: "Vakit yaklaşınca ana ekranındaki widget haber verir. Seyahat ettiğinde şehrin kendiliğinden güncellenir, 106 ülkede doğru vakit.",
       f5t: "Kıble ve Günlük Takip",
-      f5d: "Kıble bulucu, namaz ve nafile takibi, ezber çalışması, virdler ve dini günler.",
+      f5d: "Nerede olursan ol kıbleyi bulursun. Namazını, nafileni ve ezberini kayıt altına alır, virdlerini ve dini günleri kaçırmazsın.",
       f6t: "Kitap Okuma Halkaları",
-      f6d: "Ortak okuma turları, kişisel kitaplık, kaldığın sayfa, günlük ve haftalık ilerleme.",
+      f6d: "Bir kitabı halkanla birlikte okursun. Kaldığın sayfa seninle kalır, haftalık ilerlemeyi hep beraber görürsünüz.",
       closeTitle: "Halkanı bugün kur",
       closeText: "Ailenle, dostlarınla ya da tek başına. İbadet birlikte daha kalıcı olur.",
+      closeWish: "Niyetlerin kabul, halkaların daim olsun.",
       langsLabel: "5 dilde kullanılabilir",
       privacy: "Gizlilik Politikası", terms: "Kullanım Koşulları",
       deleteAcc: "Hesap Silme", contact: "İletişim",
@@ -829,26 +847,28 @@
     },
     en: {
       title: "Manevi Halka — Khatm, Jawshan, Dhikr and Prayer Times",
-      desc: "Build khatm, Jawshan and dhikr circles with family and friends. Prayer times, tasbih, qibla finder and more in one app.",
-      tagline: "On your own or with loved ones. Your whole journey in one app.",
+      desc: "You do not have to walk this path alone. Build khatm, Jawshan and dhikr circles with the people you love, with prayer times, qibla and a dhikr counter always at hand.",
+      tagline: "You do not have to walk this path alone.",
+      taglineSub: "On your own or with loved ones. Your whole journey in one app.",
       get: "Download",
       shotsHint: "Swipe to explore the app",
       featuresTitle: "What's inside",
       featuresSub: "Worship itself is always free",
       f1t: "Qur'an Khatm",
-      f1d: "Share the juz among your circle, read in turns, complete the khatm together. Works solo or with thirty people.",
+      f1d: "The juz are shared across your circle, and you know when your turn comes. A khatm that takes months alone is done in weeks together.",
       f2t: "Jawshan al-Kabir",
-      f2d: "101 chapters, shared or personal. One chapter a day, tracked progress, completion certificate.",
+      f2d: "101 chapters, shared or on your own. Read one a day, the app remembers where you stopped, and your certificate is ready when you finish.",
       f3t: "Dhikr and Tasbih",
-      f3d: "Asma ul-Husna, salawat, digital tasbih. Build your own dhikr lists, reorder them and share them.",
+      f3d: "Asma ul-Husna, salawat and tasbihat within reach. Build your own dhikr list, set its order, and share it with a single link.",
       f4t: "Prayer Times",
-      f4d: "Home screen widget, live countdown, and your city updates by itself when you travel. 106 countries.",
+      f4d: "The home screen widget tells you when a prayer time is near. Your city updates itself when you travel, with accurate times in 106 countries.",
       f5t: "Qibla and Daily Tracking",
-      f5d: "Qibla finder, prayer and nafl tracking, memorization practice, awrad and religious days.",
+      f5d: "Find the qibla wherever you are. Keep a record of your prayers, nafl and memorization, and never miss your awrad or the religious days.",
       f6t: "Book Reading Circles",
-      f6d: "Shared reading rounds, a personal library, your last page, daily and weekly progress.",
+      f6d: "Read a book together with your circle. Your page stays with you, and you follow the weekly progress as one.",
       closeTitle: "Start your circle today",
       closeText: "With your family, your friends, or on your own. Worship lasts longer together.",
+      closeWish: "May your intentions be accepted and your circles endure.",
       langsLabel: "Available in 5 languages",
       privacy: "Privacy Policy", terms: "Terms of Service",
       deleteAcc: "Account Deletion", contact: "Contact",
@@ -864,26 +884,28 @@
     },
     de: {
       title: "Manevi Halka — Chatma, Dschauschan, Dhikr und Gebetszeiten",
-      desc: "Gründe Chatma-, Dschauschan- und Dhikr-Kreise mit Familie und Freunden. Gebetszeiten, Tasbih, Qibla und mehr in einer App.",
-      tagline: "Allein oder mit deinen Liebsten. Dein spiritueller Weg in einer App.",
+      desc: "Diesen Weg musst du nicht allein gehen. Gründe Chatma-, Dschauschan- und Dhikr-Kreise mit deinen Liebsten, mit Gebetszeiten, Qibla und Dhikr-Zähler immer zur Hand.",
+      tagline: "Diesen Weg musst du nicht allein gehen.",
+      taglineSub: "Allein oder mit deinen Liebsten. Dein ganzer Weg in einer App.",
       get: "Laden",
       shotsHint: "Wische, um die App zu entdecken",
       featuresTitle: "Was drinsteckt",
       featuresSub: "Die Andacht selbst bleibt immer kostenlos",
       f1t: "Koran-Chatma",
-      f1d: "Teile die Dschus in deinem Kreis auf, lest abwechselnd, vollendet die Chatma gemeinsam. Allein oder zu dreißigst.",
+      f1d: "Die Dschus werden in deinem Kreis verteilt, und du erfährst, wann du an der Reihe bist. Eine Chatma, die allein Monate dauert, gelingt gemeinsam in Wochen.",
       f2t: "Dschauschan al-Kabir",
-      f2d: "101 Kapitel, gemeinsam oder persönlich. Ein Kapitel pro Tag, verfolgter Fortschritt, Abschlusszertifikat.",
+      f2d: "101 Abschnitte, gemeinsam oder für dich allein. Einer pro Tag, die App merkt sich, wo du aufgehört hast, und am Ende liegt dein Zertifikat bereit.",
       f3t: "Dhikr und Tasbih",
-      f3d: "Asma ul-Husna, Salawat, digitale Tasbih. Erstelle eigene Dhikr-Listen, sortiere und teile sie.",
+      f3d: "Asma ul-Husna, Salawat und Tasbihat in Reichweite. Stelle deine eigene Dhikr-Liste zusammen, ordne sie und teile sie mit einem einzigen Link.",
       f4t: "Gebetszeiten",
-      f4d: "Widget für den Startbildschirm, laufender Countdown, und deine Stadt aktualisiert sich beim Reisen von selbst. 106 Länder.",
+      f4d: "Das Widget auf dem Startbildschirm sagt dir Bescheid, wenn eine Gebetszeit naht. Auf Reisen aktualisiert sich deine Stadt von selbst, mit genauen Zeiten in 106 Ländern.",
       f5t: "Qibla und tägliche Verfolgung",
-      f5d: "Qibla-Kompass, Gebets- und Nafl-Tracking, Auswendiglernen, Awrad und religiöse Tage.",
+      f5d: "Finde die Qibla, wo immer du bist. Halte Gebete, Nafl und Auswendiglernen fest und verpasse weder deine Awrad noch die religiösen Tage.",
       f6t: "Buchlesekreise",
-      f6d: "Gemeinsame Leserunden, eine persönliche Bibliothek, deine letzte Seite, täglicher und wöchentlicher Fortschritt.",
+      f6d: "Lies ein Buch gemeinsam mit deinem Kreis. Deine Seite bleibt bei dir, und den wöchentlichen Fortschritt seht ihr zusammen.",
       closeTitle: "Gründe deinen Kreis noch heute",
       closeText: "Mit deiner Familie, deinen Freunden oder allein. Gemeinsam bleibt man eher dran.",
+      closeWish: "Mögen deine Absichten angenommen werden und deine Kreise Bestand haben.",
       langsLabel: "In 5 Sprachen verfügbar",
       privacy: "Datenschutzerklärung", terms: "Nutzungsbedingungen",
       deleteAcc: "Kontolöschung", contact: "Kontakt",
@@ -899,26 +921,28 @@
     },
     fr: {
       title: "Manevi Halka — Khatma, Jawshan, dhikr et heures de prière",
-      desc: "Crée des cercles de khatma, Jawshan et dhikr avec ta famille et tes amis. Heures de prière, tasbih, qibla et bien plus dans une seule appli.",
-      tagline: "Seul ou avec tes proches. Ton chemin spirituel dans une seule appli.",
+      desc: "Tu n'as pas à faire ce chemin seul. Crée des cercles de khatma, de Jawshan et de dhikr avec ceux que tu aimes, avec les horaires de prière, la qibla et un compteur de dhikr toujours à portée de main.",
+      tagline: "Tu n'as pas à faire ce chemin seul.",
+      taglineSub: "Seul ou avec ceux que tu aimes. Tout ton cheminement dans une seule application.",
       get: "Télécharger",
       shotsHint: "Fais glisser pour découvrir l'appli",
       featuresTitle: "Ce que tu y trouves",
       featuresSub: "La dévotion elle-même reste toujours gratuite",
       f1t: "Khatma du Coran",
-      f1d: "Répartis les juz dans ton cercle, lisez à tour de rôle, achevez la khatma ensemble. Seul ou à trente.",
+      f1d: "Les juz se répartissent dans ton cercle et tu sais quand vient ton tour. Une khatma qui prend des mois seul se termine en quelques semaines à plusieurs.",
       f2t: "Jawshan al-Kabir",
-      f2d: "101 chapitres, partagés ou personnels. Un chapitre par jour, progression suivie, certificat d'achèvement.",
+      f2d: "101 sections, en commun ou pour toi seul. Une par jour, l'application retient où tu t'es arrêté, et ton certificat t'attend à la fin.",
       f3t: "Dhikr et tasbih",
-      f3d: "Asma ul-Husna, salawat, tasbih numérique. Crée tes propres listes de dhikr, réordonne-les et partage-les.",
+      f3d: "Asma ul-Husna, salawat et tasbihat à portée de main. Compose ta propre liste de dhikr, ordonne-la et partage-la d'un simple lien.",
       f4t: "Heures de prière",
-      f4d: "Widget d'écran d'accueil, compte à rebours en direct, et ta ville se met à jour quand tu voyages. 106 pays.",
+      f4d: "Le widget de l'écran d'accueil te prévient quand une prière approche. En voyage, ta ville se met à jour toute seule, avec des horaires justes dans 106 pays.",
       f5t: "Qibla et suivi quotidien",
-      f5d: "Boussole qibla, suivi des prières et des nafl, mémorisation, awrad et jours religieux.",
+      f5d: "Trouve la qibla où que tu sois. Garde une trace de tes prières, de tes nafl et de ta mémorisation, sans manquer tes awrad ni les jours religieux.",
       f6t: "Cercles de lecture",
-      f6d: "Tours de lecture partagés, une bibliothèque personnelle, ta dernière page, progression quotidienne et hebdomadaire.",
+      f6d: "Lis un livre avec ton cercle. Ta page reste avec toi, et vous suivez ensemble la progression de la semaine.",
       closeTitle: "Crée ton cercle dès aujourd'hui",
       closeText: "Avec ta famille, tes amis, ou seul. Ensemble, on tient plus longtemps.",
+      closeWish: "Que tes intentions soient acceptées et que tes cercles durent.",
       langsLabel: "Disponible en 5 langues",
       privacy: "Politique de confidentialité", terms: "Conditions d'utilisation",
       deleteAcc: "Suppression du compte", contact: "Contact",
@@ -934,26 +958,28 @@
     },
     ar: {
       title: "Manevi Halka — ختم القرآن والجوشن والذكر ومواقيت الصلاة",
-      desc: "أنشئ حلقات ختم القرآن والجوشن والذكر مع عائلتك وأصدقائك. مواقيت الصلاة والمسبحة وبوصلة القبلة والمزيد في تطبيق واحد.",
-      tagline: "وحدك أو مع أحبّتك. رحلتك الإيمانية في تطبيق واحد.",
+      desc: "لست مضطرًا أن تسلك هذا الطريق وحدك. أنشئ حلقات الختمة والجوشن والذكر مع من تحب، ومواقيت الصلاة والقبلة وعدّاد الذكر دائمًا في متناول يدك.",
+      tagline: "لست مضطرًا أن تسلك هذا الطريق وحدك.",
+      taglineSub: "وحدك أو مع من تحب. رحلتك كلها في تطبيق واحد.",
       get: "حمّل",
       shotsHint: "اسحب لاستكشاف التطبيق",
       featuresTitle: "ماذا يقدّم",
       featuresSub: "العبادة نفسها مجانية دائمًا",
       f1t: "ختم القرآن",
-      f1d: "وزّع الأجزاء على أفراد حلقتك، واقرؤوا بالتناوب، وأتمّوا الختمة معًا. يصلح للفرد وللثلاثين.",
+      f1d: "تُوزَّع الأجزاء على أفراد حلقتك، وتعرف متى يأتي دورك. ختمة تستغرق شهورًا وحدك تكتمل في أسابيع معًا.",
       f2t: "الجوشن الكبير",
-      f2d: "101 باب، مشتركة أو فردية. باب كل يوم، تقدّم متابَع، وشهادة إتمام.",
+      f2d: "101 باب، مشتركة أو لك وحدك. باب كل يوم، والتطبيق يتذكر أين توقفت، وشهادتك جاهزة عند الختام.",
       f3t: "الذكر والتسبيح",
-      f3d: "أسماء الله الحسنى، الصلاة على النبي، ومسبحة رقمية. أنشئ قوائم أذكارك ورتّبها وشاركها.",
+      f3d: "أسماء الله الحسنى والصلوات والتسبيحات في متناول يدك. أنشئ قائمة أذكارك، ورتّبها، وشاركها برابط واحد.",
       f4t: "مواقيت الصلاة",
-      f4d: "أداة على الشاشة الرئيسية، عدّ تنازلي مباشر، ومدينتك تتحدّث تلقائيًا عند السفر. 106 دولة.",
+      f4d: "تُنبّهك أداة الشاشة الرئيسية عند اقتراب الوقت. وعند السفر تتحدّث مدينتك تلقائيًا، بمواقيت دقيقة في 106 دول.",
       f5t: "القبلة والمتابعة اليومية",
-      f5d: "بوصلة القبلة، متابعة الفرائض والنوافل، الحفظ، الأوراد والأيام الدينية.",
+      f5d: "اعرف القبلة أينما كنت. سجّل صلواتك ونوافلك وحفظك، ولا تفوّت أورادك ولا الأيام المباركة.",
       f6t: "حلقات قراءة الكتب",
-      f6d: "جولات قراءة مشتركة، مكتبة شخصية، آخر صفحة وصلت إليها، وتقدّم يومي وأسبوعي.",
+      f6d: "اقرأ كتابًا مع حلقتك. صفحتك تبقى معك، وتتابعون التقدّم الأسبوعي معًا.",
       closeTitle: "ابدأ حلقتك اليوم",
       closeText: "مع عائلتك أو أصدقائك أو وحدك. العبادة معًا أدوم.",
+      closeWish: "تقبّل الله نياتكم وأدام حلقاتكم.",
       langsLabel: "متوفّر بـ 5 لغات",
       privacy: "سياسة الخصوصية", terms: "شروط الاستخدام",
       deleteAcc: "حذف الحساب", contact: "تواصل معنا",
