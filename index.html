@@ -5,12 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#1e4d35">
 
-<title>Manevi Halka</title>
-<meta name="description" id="metaDesc" content="Build khatm, Jawshan and dhikr circles with family and friends. Prayer times, tasbih, qibla finder and more in one app.">
+<!-- Tema ILK BOYAMADAN ONCE atanmali (beyaz/koyu parlama olmasin): kayitli
+     tercih varsa o, yoksa cihaz tercihi. Anahtar mantigi js/mh-dynamic.js'te. -->
+<script>
+(function () {
+  var t = null;
+  try { t = localStorage.getItem("mh_theme"); } catch (e) { /* gizli mod */ }
+  if (t !== "dark" && t !== "light") {
+    try {
+      t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    } catch (e) { t = "light"; }
+  }
+  document.documentElement.setAttribute("data-theme", t);
+  // Tarayici cercevesi (adres cubugu tonu) da ilk andan dogru temada olsun
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (meta && t === "dark") meta.setAttribute("content", "#10231b");
+})();
+</script>
+
+<!-- ⚠️ BASLIK VE ACIKLAMA STATIK HTML'DE INGILIZCE DURUR, BOS BIRAKMA.
+     Dil secildiginde applyLocale bunlarin uzerine yaziyor; ama Google'in JS
+     render'i ikinci dalgada ve gecikmeli calisiyor. Buraya yalniz "Manevi
+     Halka" yazilirsa arama motoru sayfanin ne hakkinda oldugunu HIC ogrenemez
+     (13 Agu 2026'da olculdu: marka aramasi bile sonuc dondurmuyordu). -->
+<title>Manevi Halka: shared Qur'an khatm, Jawshan, dhikr and prayer times</title>
+<meta name="description" id="metaDesc" content="Share the juz with your circle, read in turns and complete the khatm together. Prayer times from the Diyanet calendar, qibla, dhikr counter and Jawshan, in one app for iPhone and Android.">
+<link rel="canonical" href="https://manevihalka.app/">
+
+<!-- iOS Safari'nin kendi kurulum seridi: sayfadaki her dugmeden yuksek donusur.
+     Uygulama zaten kuruluysa "Ac" der, ekstra maliyeti yok. -->
+<meta name="apple-itunes-app" content="app-id=6760654292">
+
+<!-- Vakitler bu alan adindan cekiliyor: el sikismayi erken baslat -->
+<link rel="preconnect" href="https://ezanvakti.emushaf.net" crossorigin>
+<link rel="dns-prefetch" href="https://ezanvakti.emushaf.net">
 
 <!-- Open Graph - WhatsApp/Telegram link onizleme -->
 <meta property="og:title" content="Manevi Halka">
-<meta property="og:description" content="Worship on your own or with loved ones, in one app.">
+<meta property="og:description" content="Build khatm, Jawshan and dhikr circles together. Prayer times, qibla and dhikr counter in one app.">
 <meta property="og:image" content="https://manevihalka.app/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -20,6 +52,49 @@
 
 <link rel="icon" type="image/png" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
+
+<!-- Yapisal veri. ⚠️ aggregateRating EKLEME (gercek puanimiz yok, uydurmak
+     yapisal veri politikasi ihlali). Fiyat "0": uygulama ucretsiz, abonelik
+     rakami buraya da YAZILMAZ (App Store 3.1.2(c) reddinin dersi). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://manevihalka.app/#org",
+      "name": "Manevi Halka",
+      "url": "https://manevihalka.app/",
+      "logo": "https://manevihalka.app/icon.png",
+      "email": "emirhan.ayaz171@icloud.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://manevihalka.app/#site",
+      "url": "https://manevihalka.app/",
+      "name": "Manevi Halka",
+      "publisher": { "@id": "https://manevihalka.app/#org" },
+      "inLanguage": ["tr", "en", "de", "fr", "ar"]
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://manevihalka.app/#app",
+      "name": "Manevi Halka",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "LifestyleApplication",
+      "url": "https://manevihalka.app/",
+      "image": "https://manevihalka.app/icon.png",
+      "description": "Shared Qur'an khatm, Jawshan and dhikr circles, with prayer times, qibla and a dhikr counter.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "publisher": { "@id": "https://manevihalka.app/#org" },
+      "sameAs": [
+        "https://apps.apple.com/app/manevi-halka/id6760654292",
+        "https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle"
+      ]
+    }
+  ]
+}
+</script>
 
 <style>
   :root {
@@ -34,9 +109,49 @@
     --page: #f6faf7;
     --card: #ffffff;
     --radius: 16px;
+    /* Dolu zeminli dugme/vurgu rengi: koyu temada --green acik naneye dondugu
+       icin beyaz metinli yuzeyler AYRI degiskenden okur. */
+    --pill: #1e4d35;
   }
 
+  /* ─────────── Koyu tema ─────────── */
+  :root[data-theme="dark"] {
+    --green: #8fd3ae;
+    --green-soft: #7ab894;
+    --mint-bg: #1d3227;
+    --ink: #eaf3ee;
+    --body: #b9c8c0;
+    --muted: #839589;
+    --line: #263a2f;
+    --page: #0e1a14;
+    --card: #152720;
+    --pill: #2f6b4a;
+    color-scheme: dark;
+  }
+
+  [data-theme="dark"] header.site { background: rgba(14, 26, 20, 0.82); }
+  [data-theme="dark"] body::before {
+    background:
+      radial-gradient(60rem 40rem at 50% -10%, rgba(120, 216, 168, 0.07), transparent 70%),
+      radial-gradient(40rem 30rem at 100% 20%, rgba(120, 216, 168, 0.04), transparent 70%);
+  }
+  [data-theme="dark"] .lang-list { box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4); }
+  [data-theme="dark"] .shot { background: var(--card); }
+  [data-theme="dark"] .shots-nav button { background: var(--card); }
+  /* Uygulama ikonu acik nane yesili: zemin her temada koyu marka yesili kalir */
+  [data-theme="dark"] .logo-wrap { background: #1e4d35; }
+
+  /* Arapcada harfler bitisik yazilir: letter-spacing harf baglarini KOPARIR
+     (uygulamadaki mutlak kural) — RTL'de tum aralik degerleri sifirlanir */
+  html[dir="rtl"] .dc-label,
+  html[dir="rtl"] .pc-now-name,
+  html[dir="rtl"] .month-table th { letter-spacing: 0; }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* [hidden] her display kuralını yener — .islamic-chip gibi display atayan
+     siniflar UA'nin [hidden] kuralini ezmesin (chip veri gelmeden gorunuyordu) */
+  [hidden] { display: none !important; }
 
   html { scroll-behavior: smooth; }
 
@@ -121,46 +236,119 @@
     align-items: center;
   }
 
-  .lang-picker select {
-    appearance: none;
-    -webkit-appearance: none;
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     font: inherit;
     font-size: 14px;
     font-weight: 600;
     color: var(--green);
-    background: #fff;
+    background: var(--card);
     border: 1px solid var(--line);
     border-radius: 10px;
-    padding: 7px 32px 7px 12px;
+    padding: 7px 11px;
     cursor: pointer;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  html[dir="rtl"] .lang-picker select { padding: 7px 12px 7px 32px; }
+  .lang-btn:hover { border-color: var(--mint); }
 
-  .lang-picker select:hover { border-color: var(--mint); }
-
-  .lang-picker select:focus-visible {
-    outline: none;
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(30, 77, 53, 0.12);
+  .lang-btn:focus-visible {
+    outline: 2px solid var(--mint);
+    outline-offset: 2px;
   }
 
   .lang-picker .chev {
-    position: absolute;
-    right: 11px;
     width: 14px;
     height: 14px;
-    pointer-events: none;
     fill: var(--green-soft);
+    transition: transform 0.2s ease;
   }
 
-  html[dir="rtl"] .lang-picker .chev { right: auto; left: 11px; }
+  .lang-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+
+  /* Panel HER ZAMAN asagi acilir; baslik sticky oldugu icin altta yer garanti.
+     inset-inline-end mantiksal ozellik: LTR'de saga, RTL'de sola hizalanir. */
+  .lang-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    inset-inline-end: 0;
+    min-width: 168px;
+    list-style: none;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 14px 34px rgba(17, 24, 39, 0.14);
+    z-index: 60;
+    transform-origin: top center;
+    animation: langOpen 0.16s ease;
+  }
+
+  @keyframes langOpen {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .lang-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 11px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .lang-list li:hover,
+  .lang-list li.active { background: var(--mint-bg); color: var(--green); }
+
+  .lang-list li:focus-visible {
+    outline: 2px solid var(--mint);
+    outline-offset: -2px;
+  }
+
+  /* Secili dilin tiki: ::after ile, ayri bir <svg> tasimadan.
+     ⚠️ FIZIKSEL border-left kullaniliyor, border-inline-start DEGIL: onay
+     isareti yone gore aynalanmaz. Mantiksal ozellikle yazilinca Arapcada
+     saga donup ">" gibi gorunuyordu. */
+  .lang-list li[aria-selected="true"]::after {
+    content: "";
+    width: 11px;
+    height: 6px;
+    border-left: 2px solid var(--green);
+    border-bottom: 2px solid var(--green);
+    transform: rotate(-45deg);
+    margin-bottom: 3px;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lang-list { animation: none; }
+    .lang-btn[aria-expanded="true"] .chev { transition: none; }
+  }
+
 
   /* ─────────── Hero ─────────── */
   .hero {
     text-align: center;
     padding: 72px 0 56px;
+  }
+
+  /* Telefonda hero SIKISIR: amac namaz vakitlerinin ilk ekranda gorunmesi.
+     Ziyaretci vakitler icin kaydirmak zorunda kalirsa "burada namaz vakti
+     yokmus" deyip cikiyor (kullanici karari, 13 Agu 2026). Bu degerleri
+     buyutursen vakit karti ekranin altina duser. */
+  @media (max-width: 560px) {
+    .hero { padding: 28px 0 24px; }
+    .hero .logo, .logo-wrap { width: 84px; height: 84px; margin-bottom: 16px; }
+    .cta-buttons { gap: 10px; }
+    .today { padding-top: 0; }
   }
 
   .hero .logo {
@@ -181,26 +369,55 @@
     margin-bottom: 14px;
   }
 
-  .tagline {
-    font-size: clamp(16px, 2.4vw, 20px);
+  /* H1'in ikinci satiri: ayni baslik ogesinin icinde ama govde puntosunda —
+     marka buyuk kalir, ürün tanimi okunur kalir. */
+  .h1-sub {
+    display: block;
+    font-size: clamp(15px, 2.2vw, 19px);
+    font-weight: 600;
+    color: var(--green-soft);
+    letter-spacing: -0.2px;
+    line-height: 1.35;
+    margin-top: 10px;
+  }
+
+  html[dir="rtl"] .h1-sub { letter-spacing: 0; }
+
+  /* NOT: eski .tagline / .tagline-sub kurallari kaldirildi. Hero artik
+     paragraf tasimiyor (ikon + ad + tanim satiri + dugmeler); aciklama
+     metni vakitlerin altindaki .intro-lead'e tasindi. */
+
+  /* Kapanis alintisi (Mevlana beyti). .close-wish yerine gecti. */
+  /* Alt bosluk zorunlu: kunye satiri indirme dugmelerine yapisik duruyordu */
+  .quote {
+    margin: 26px auto 34px;
+    max-width: 46ch;
+    text-align: center;
+  }
+
+  .quote blockquote {
+    font-size: clamp(15px, 2.1vw, 18px);
     color: var(--body);
-    max-width: 36ch;
-    margin: 0 auto 32px;
-  }
-
-  .tagline-sub {
-    font-size: clamp(14px, 1.9vw, 16px);
-    color: var(--muted);
-    max-width: 40ch;
-    margin: -20px auto 32px;
-  }
-
-  .close-wish {
-    font-size: clamp(14px, 1.9vw, 16px);
-    color: var(--muted);
     font-style: italic;
-    margin-top: 26px;
+    line-height: 1.6;
+    quotes: none;
   }
+
+  .quote blockquote::before { content: "\201C"; }
+  .quote blockquote::after  { content: "\201D"; }
+  /* Arapcada Latin tirnak yerine dilin kendi tirnagi */
+  html[dir="rtl"] .quote blockquote::before { content: "\00AB"; }
+  html[dir="rtl"] .quote blockquote::after  { content: "\00BB"; }
+
+  .quote figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green-soft);
+    letter-spacing: 0.2px;
+  }
+
+  html[dir="rtl"] .quote figcaption { letter-spacing: 0; }
 
   .cta-buttons {
     display: flex;
@@ -214,7 +431,7 @@
     align-items: center;
     gap: 12px;
     padding: 12px 24px;
-    background: var(--green);
+    background: var(--pill);
     color: #fff;
     border-radius: 14px;
     text-decoration: none;
@@ -228,14 +445,52 @@
     box-shadow: 0 12px 28px rgba(30, 77, 53, 0.32);
   }
 
-  .store-badge:active { transform: translateY(0); }
+  /* ⚠️ Odak halkasi ZORUNLU: eskiden yalniz transform + golge vardi, klavyeyle
+     gezen kullanici odagin nerede oldugunu goremiyordu. */
+  .store-badge:focus-visible,
+  .theme-toggle:focus-visible,
+  .pc-city:focus-visible,
+  .pc-gps:focus-visible,
+  .pc-month-btn:focus-visible,
+  .pc-primary:focus-visible,
+  .cp-row:focus-visible,
+  .cp-gps-row:focus-visible,
+  .cp-close:focus-visible,
+  .shot:focus-visible {
+    outline: 2px solid var(--mint);
+    outline-offset: 3px;
+  }
+
+  .store-badge:active { transform: translateY(0) scale(0.985); }
 
   .store-badge svg {
     width: 26px;
     height: 26px;
     flex-shrink: 0;
     fill: currentColor;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
+
+  .store-badge:hover svg,
+  .store-badge:focus-visible svg { transform: scale(1.09); }
+
+  /* Ziyaretcinin platformu algilaninca OTEKI magaza ikincil stile duser
+     (js/mh-dynamic.js initStoreButtons). Masaustunde ikisi de birincil kalir. */
+  .store-badge.secondary {
+    background: transparent;
+    color: var(--pill);
+    border: 1px solid var(--pill);
+    box-shadow: none;
+  }
+
+  .store-badge.secondary:hover,
+  .store-badge.secondary:focus-visible {
+    background: var(--mint-bg);
+    box-shadow: none;
+    transform: translateY(-2px);
+  }
+
+  [data-theme="dark"] .store-badge.secondary { color: var(--green); border-color: var(--green); }
 
   .store-badge .small {
     font-size: 11px;
@@ -251,6 +506,16 @@
     display: block;
     text-align: start;
     line-height: 1.25;
+  }
+
+  /* ─────────── Tanitim girisi (vakitlerin altinda) ─────────── */
+  .intro { padding: 18px 0 4px; text-align: center; }
+
+  .intro-lead {
+    font-size: clamp(15px, 2.1vw, 17.5px);
+    color: var(--body);
+    max-width: 52ch;
+    margin: 0 auto;
   }
 
   /* ─────────── Ekran gorselleri ─────────── */
@@ -590,6 +855,555 @@
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
     .card:hover, .shot:hover, .store-badge:hover { transform: none; }
+    .store-badge:hover svg, .store-badge:focus-visible svg { transform: none; }
+    .pc-spinner { animation: none; }
+    html.theme-anim * { transition: none !important; }
+  }
+
+  /* ─────────── Tema gecisi ───────────
+     ⚠️ `* { transition }` YAZMA: hover'i ve .reveal'i agirlastirir, ayrica
+     head'deki ilk-boyama-oncesi tema betiginin onledigi acilis renk sicramasini
+     GERI GETIRIR (sayfa her acilista soluyormus gibi gorunur).
+     Cozum: gecis yalniz dugmeye basildigi anda var. js/mh-dynamic.js bu sinifi
+     ekleyip 340 ms sonra KALDIRIYOR — kaldirmayi atlarsan gecis kalici olur. */
+  html.theme-anim body,
+  html.theme-anim header.site,
+  html.theme-anim .card,
+  html.theme-anim .shot,
+  html.theme-anim .shots-nav button,
+  html.theme-anim .prayer-card,
+  html.theme-anim .month-wrap,
+  html.theme-anim .pc-row,
+  html.theme-anim .month-table td,
+  html.theme-anim .month-table th,
+  html.theme-anim .store-badge,
+  html.theme-anim .theme-toggle,
+  html.theme-anim .lang-btn,
+  html.theme-anim .lang-list,
+  html.theme-anim .cp-panel,
+  html.theme-anim .cp-search {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* View Transitions ile tema degisimi: varsayilan capraz gecis biraz uzun,
+     260 ms daha canli duruyor. Desteklemeyen tarayici bu blogu yok sayar. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 260ms;
+  }
+
+  /* ─────────── Tema anahtari ─────────── */
+  .header-tools { display: flex; align-items: center; gap: 8px; }
+
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--green);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease;
+  }
+
+  .theme-toggle:hover { border-color: var(--mint); }
+
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ─────────── Bugun bolumu (dinamik modüller) ─────────── */
+  .today { padding: 0 0 34px; }
+
+  .today-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px 16px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  .date-line { font-size: 15px; color: var(--body); font-weight: 600; }
+  .date-line .date-sep { color: var(--muted); margin: 0 6px; }
+  .date-line .hijri { color: var(--green-soft); }
+
+  .islamic-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--mint-bg);
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  .islamic-chip svg { width: 13px; height: 13px; }
+
+  .today-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+  @media (min-width: 680px) {
+    .today-grid { grid-template-columns: 1fr 1fr; }
+    .prayer-card { grid-column: 1 / -1; }
+  }
+
+  @media (min-width: 1000px) {
+    .today-grid { grid-template-columns: 1.12fr 1fr 1fr; }
+    .prayer-card { grid-column: auto; }
+  }
+
+  /* ── Vakit karti ── */
+  .prayer-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    min-height: 330px;
+  }
+
+  .pc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .pc-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    color: var(--ink);
+    font-size: 15px;
+  }
+
+  .pc-title svg, .pc-city svg, .pc-gps svg, .pc-month-btn svg, .pc-primary svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  .pc-title svg { width: 18px; height: 18px; color: var(--green); }
+  .pc-actions { display: inline-flex; gap: 6px; }
+
+  .pc-city {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--green);
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 5px 10px;
+    cursor: pointer;
+    max-width: 160px;
+    transition: border-color 0.2s ease;
+  }
+
+  .pc-city:hover { border-color: var(--mint); }
+  .pc-city span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pc-city svg { width: 14px; height: 14px; }
+
+  .pc-gps {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--green);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease;
+  }
+
+  .pc-gps:hover { border-color: var(--mint); }
+  .pc-gps svg { width: 15px; height: 15px; }
+
+  .pc-now { text-align: center; padding: 8px 0 14px; }
+  .pc-now-label { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+
+  .pc-now-name {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--green);
+    font-weight: 800;
+    margin-top: 3px;
+  }
+
+  .pc-countdown {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+
+  .pc-rows { display: flex; flex-direction: column; gap: 3px; }
+
+  .pc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6.5px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--body);
+  }
+
+  .pc-row strong { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 700; }
+  .pc-row.muted { opacity: 0.6; }
+  .pc-row.current { background: var(--pill); color: rgba(255, 255, 255, 0.85); }
+  .pc-row.current strong { color: #fff; }
+
+  .pc-foot { margin-top: auto; padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+
+  .pc-month-btn {
+    align-self: center;
+    display: inline-flex;
+    gap: 7px;
+    align-items: center;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--green);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  .pc-month-btn:hover { border-color: var(--mint); }
+  .pc-month-btn svg { width: 15px; height: 15px; }
+  .pc-src { font-size: 11.5px; color: var(--muted); text-align: center; }
+
+  .pc-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 200px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .pc-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--pill);
+    color: #fff;
+    border: 0;
+    font: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 9px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .pc-primary svg { width: 15px; height: 15px; }
+
+  .pc-spinner {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 3px solid var(--mint-bg);
+    border-top-color: var(--green);
+    animation: pcspin 0.8s linear infinite;
+  }
+
+  @keyframes pcspin { to { transform: rotate(360deg); } }
+
+  /* ── Gunun ayeti / hadisi kartlari ── */
+  .daily-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-color: #24473a; /* foto inene kadar */
+    min-height: 330px;
+    display: flex;
+    border: 1px solid var(--line);
+  }
+
+  .dc-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(20, 40, 34, 0.38), rgba(20, 40, 34, 0.62));
+  }
+
+  .dc-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    padding: 22px;
+    width: 100%;
+  }
+
+  .dc-appicon { width: 40px; height: 40px; border-radius: 10px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); }
+
+  .dc-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #f1e4be;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+  }
+
+  .dc-label svg { width: 13px; height: 13px; }
+
+  .dc-text {
+    color: #fff;
+    font-size: 15.5px;
+    line-height: 1.62;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+    max-width: 40ch;
+  }
+
+  .dc-hadith { font-style: italic; }
+
+  .dc-arabic {
+    font-family: "MushafSubset", "Scheherazade New", serif;
+    font-size: 22px;
+    line-height: 2.1;
+  }
+
+  .dc-ref { color: #f1e4be; font-size: 13px; font-weight: 700; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55); }
+
+  .tanzil-note { font-size: 11.5px; color: var(--muted); text-align: center; margin-top: 12px; }
+
+  /* ── 30 gunluk takvim ── */
+  .month-wrap {
+    margin-top: 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+
+  .month-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .month-head h3 { color: var(--ink); font-size: 16px; letter-spacing: -0.2px; }
+  .month-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .month-scroll { overflow-x: auto; }
+
+  .month-table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 560px; }
+
+  .month-table th {
+    font-size: 11.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    text-align: end;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 700;
+  }
+
+  .month-table th:first-child { text-align: start; }
+
+  .month-table td {
+    padding: 7px 10px;
+    text-align: end;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .month-table td.mt-date { text-align: start; }
+  .mt-date strong { color: var(--ink); display: block; font-size: 13px; }
+  .mt-date span { font-size: 11px; color: var(--muted); }
+  .month-table tr.today td { background: var(--mint-bg); }
+  .month-table tr.friday td.mt-date strong { color: var(--green); }
+  .month-table tr:last-child td { border-bottom: 0; }
+
+  /* ── Sehir secici ── */
+  .cp-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    background: rgba(9, 24, 17, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+  }
+
+  @media (min-width: 640px) { .cp-overlay { align-items: center; padding: 24px; } }
+
+  .cp-overlay.open { opacity: 1; visibility: visible; }
+
+  .cp-panel {
+    background: var(--card);
+    width: 100%;
+    max-width: 460px;
+    max-height: 82vh;
+    border-radius: 20px 20px 0 0;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (min-width: 640px) { .cp-panel { border-radius: 20px; } }
+
+  .cp-top { display: flex; justify-content: space-between; align-items: center; }
+  .cp-title { font-weight: 800; color: var(--ink); font-size: 16px; }
+
+  .cp-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    border: 0;
+    background: var(--mint-bg);
+    color: var(--green);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cp-close svg { width: 16px; height: 16px; fill: currentColor; }
+  .cp-hint { font-size: 12px; color: var(--muted); }
+
+  .cp-search {
+    font: inherit;
+    font-size: 14px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--page);
+    color: var(--ink);
+    outline: none;
+  }
+
+  .cp-search:focus { border-color: var(--green); }
+
+  #cpResults { overflow-y: auto; display: flex; flex-direction: column; gap: 2px; min-height: 140px; }
+
+  .cp-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: transparent;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    font: inherit;
+    text-align: start;
+  }
+
+  .cp-row:hover { background: var(--mint-bg); }
+  .cp-row strong { color: var(--ink); font-size: 14px; }
+  .cp-row span { color: var(--muted); font-size: 12px; }
+
+  .cp-gps-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px dashed var(--line);
+    background: transparent;
+    color: var(--green);
+    font: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    justify-content: center;
+  }
+
+  .cp-gps-row svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+
+  .cp-privacy { font-size: 11px; color: var(--muted); text-align: center; }
+  .cp-empty { color: var(--muted); font-size: 13px; text-align: center; padding: 20px 0; }
+
+  /* ── Yazdirilabilir imsakiye ──
+     Takvim ACIKKEN yazdirma yalniz imsakiyeyi basar (body.print-month,
+     toggleMonth yonetir); takvim kapaliyken sayfa normal basilir — aksi
+     halde Cmd+P bos sayfa uretirdi. Koyu temada da kagit icin ACIK palet
+     zorlanir (koyu degiskenler beyaz kagitta okunmuyordu). */
+  @media print {
+    :root, :root[data-theme="dark"] {
+      --green: #1e4d35;
+      --green-soft: #2f6b4a;
+      --mint-bg: #eef5f0;
+      --ink: #111827;
+      --body: #4b5563;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --page: #fff;
+      --card: #fff;
+      --pill: #1e4d35;
+    }
+    body { background: #fff; }
+    body::before { display: none; }
+    #printBtn, .lightbox, .cp-overlay, .theme-toggle { display: none !important; }
+    body.print-month header.site, body.print-month .hero, body.print-month .shots,
+    body.print-month .features, body.print-month .closing, body.print-month footer.site,
+    body.print-month .today-head, body.print-month .today-grid, body.print-month .tanzil-note {
+      display: none !important;
+    }
+    body.print-month .month-wrap { border: 0; padding: 0; margin: 0; }
+    .month-table tr.today td { background: #eef5f0; }
   }
 </style>
 </head>
@@ -603,32 +1417,60 @@
         <img src="icon.png" alt="">
         <span>Manevi Halka</span>
       </a>
-      <div class="lang-picker">
-        <select id="langSelect" aria-label="Language">
-          <option value="tr">Türkçe</option>
-          <option value="en">English</option>
-          <option value="de">Deutsch</option>
-          <option value="fr">Français</option>
-          <option value="ar">العربية</option>
-        </select>
-        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <div class="header-tools">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg id="iconMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.5A8.3 8.3 0 0 1 9.5 3.8a8.3 8.3 0 1 0 10.7 10.7z"/></svg>
+          <svg id="iconSun" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2.5V5M12 19v2.5M21.5 12H19M5 12H2.5M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8M18.7 18.7l-1.8-1.8M7.1 7.1L5.3 5.3"/></svg>
+        </button>
+        <!-- ⚠️ YERLESIK <select> DEGIL, kendi panelimiz. Sebep: yerlesik select'in
+             acilis YONUNU tarayici belirliyor ve CSS ile degistirilemiyor; Arapcada
+             (ve alt kenara yakin durumlarda) yukari dogru aciliyordu, gorunum
+             tarayiciya gore degisiyordu. Panel her zaman ASAGI acilir; baslik
+             sticky oldugu icin altta her zaman yer var. -->
+        <div class="lang-picker" id="langPicker">
+          <button type="button" class="lang-btn" id="langBtn"
+                  aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+            <span id="langBtnLabel">English</span>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <ul class="lang-list" id="langList" role="listbox" aria-label="Language" tabindex="-1" hidden>
+            <li role="option" data-lang="tr" tabindex="-1">Türkçe</li>
+            <li role="option" data-lang="en" tabindex="-1">English</li>
+            <li role="option" data-lang="de" tabindex="-1">Deutsch</li>
+            <li role="option" data-lang="fr" tabindex="-1">Français</li>
+            <li role="option" data-lang="ar" tabindex="-1">العربية</li>
+          </ul>
+        </div>
       </div>
     </div>
   </header>
 
+  <!-- ⚠️ <main> BURADA ACILIR, kapanisi footer'dan HEMEN ONCE. Eskiden yalniz
+       hero'yu sariyordu, yani sayfanin %90'i ana icerik disinda kaliyordu
+       (ekran okuyucu "ana icerige atla" dediginde yalniz basligi buluyordu). -->
+  <main id="content">
+
   <div class="container" id="top">
 
-    <main class="hero">
+    <section class="hero">
       <div class="logo-wrap reveal" id="logoWrap">
         <img src="icon-anim-still.png" alt="Manevi Halka" class="logo-still">
-        <img src="icon-anim.gif" alt="" class="logo-anim" id="logoAnim" aria-hidden="true">
+        <!-- ⚠️ src YOK, data-src VAR: 215 KB'lik gif ilk boyamayi bekletmesin.
+             js/mh-dynamic.js sayfa yuklendikten sonra bos bir anda indiriyor. -->
+        <img data-src="icon-anim.gif" alt="" class="logo-anim" id="logoAnim" aria-hidden="true">
       </div>
-      <h1 class="reveal">Manevi Halka</h1>
-      <p class="tagline reveal" data-i18n="tagline">You do not have to walk this path alone.</p>
-      <p class="tagline-sub reveal" data-i18n="taglineSub">On your own or with loved ones. Your whole journey in one app.</p>
+      <!-- Iki satirli H1: marka + NE OLDUGU. Ikinci satir hem ziyaretcinin
+           "bu ne" sorusunu ilk saniyede yanitliyor hem sayfanin tek anahtar
+           kelime tasiyan basligi. Ikisini ayirma. -->
+      <!-- ⚠️ HERO BILEREK KISA: ikon + ad + tek tanim satiri + dugmeler.
+           Telefonda namaz vakitleri ILK EKRANDA gorunsun diye (kullanici
+           karari, 13 Agu 2026): vakitler icin kaydirmak gerekirse ziyaretci
+           "burada namaz vakti yokmus" deyip cikiyor. Buraya paragraf EKLEME;
+           uygulamanin tanitimi vakitlerin ALTINDAKI bolumde. -->
+      <h1 class="reveal">Manevi Halka<span class="h1-sub" data-i18n="h1sub">Shared khatm, Jawshan and dhikr circles</span></h1>
 
-      <div class="cta-buttons reveal">
-        <a class="store-badge" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
+      <div class="cta-buttons reveal" id="ctaHero">
+        <a class="store-badge" data-store="ios" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
           </svg>
@@ -637,7 +1479,7 @@
             <span class="big">App Store</span>
           </span>
         </a>
-        <a class="store-badge" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
+        <a class="store-badge" data-store="android" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&amp;referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dhero">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/>
             <path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/>
@@ -650,7 +1492,46 @@
           </span>
         </a>
       </div>
-    </main>
+    </section>
+  </div>
+
+  <!-- ── Bugun: hicri tarih + vakitler + gunun ayeti/hadisi ──
+       Icerik js/mh-dynamic.js tarafindan doldurulur; veri data/*.json
+       (uygulama reposundaki scripts/site-export/build-site-data.mjs uretir). -->
+  <div class="container">
+    <section class="today" id="todaySection" aria-labelledby="todayTitle">
+      <!-- Sayfada "namaz vakitleri" ifadesinin STATIK olarak gectigi tek yer.
+           Baslik olmadan bu bolum arama motoru icin adsizdi. -->
+      <h2 class="section-title reveal" id="todayTitle" data-i18n="todayTitle">Prayer times and the verse of the day</h2>
+      <div class="today-head reveal">
+        <div class="date-line">
+          <span id="dlGreg"></span><span class="date-sep">·</span><span class="hijri" id="dlHijri"></span>
+        </div>
+        <div class="islamic-chip" id="islamicChip" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2l1.9 5.7 5.7 1.9-5.7 1.9L12 17.2l-1.9-5.7L4.4 9.6l5.7-1.9z"/></svg>
+          <span id="islamicChipText"></span>
+        </div>
+      </div>
+
+      <div class="today-grid">
+        <article class="prayer-card reveal" id="prayerCard"></article>
+        <!-- Kartlar veri inene kadar gizli: bos yesil kutu gorunmesin -->
+        <article class="daily-card reveal" id="ayahCard" hidden></article>
+        <article class="daily-card reveal" id="hadithCard" hidden></article>
+      </div>
+      <p class="tanzil-note reveal" id="tanzilNote" hidden></p>
+
+      <div class="month-wrap" id="monthWrap" hidden></div>
+    </section>
+  </div>
+
+  <!-- Uygulamanin tanitimi BURADAN baslar, vakitlerin ALTINDA: once faydayi
+       ver, sonra anlat. Hero'dan buraya tasinan aciklama cumlesi. -->
+  <div class="container">
+    <section class="intro">
+      <h2 class="section-title reveal" data-i18n="introTitle">What is Manevi Halka</h2>
+      <p class="intro-lead reveal" data-i18n="taglineSub">Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.</p>
+    </section>
   </div>
 
   <section class="shots">
@@ -734,9 +1615,23 @@
     <section class="closing">
       <h2 class="reveal" data-i18n="closeTitle">Start your circle today</h2>
       <p class="reveal" data-i18n="closeText">With your family, your friends, or on your own. Worship lasts longer together.</p>
-      <p class="close-wish reveal" data-i18n="closeWish" id="closeWish">May your intentions be accepted and your circles endure.</p>
+      <!-- ⚠️ ALINTI ATFI: kaynagi ASIL ESERDE dogrulanmadan buraya soz KOYMA.
+           Dolasimdaki "Mevlana sozleri"nin cogu uydurma ya da Coleman Barks'in
+           serbest Ingilizce yorumunun geri cevirisi. Bu beyit Mesnevi I. defter
+           1207 (Nicholson tertibi); Ganjoor ve Nicholson paralel metninde
+           dogrulandi. Beyit NUMARASI siteye YAZILMADI: edisyonlar arasinda
+           yuzlerce beyit kayiyor, numarasiz kunye her edisyonda dogru kalir.
+           Turkce metin Veled Celebi (Izbudak) tercumesine dayanir: 4 May 1953'te
+           vefat etti, 1 Oca 2024'ten beri KAMU MALI. ⚠️ Golpinarli (2053'e
+           kadar) ve Sefik Can (2076) tercumelerinden ALINTILAMA; Nicholson'in
+           Ingilizcesi icin de Gibb Memorial Trust hak talep ediyor, o yuzden
+           en/de/fr/ar cevirileri Turkceden BIZ yazdik. -->
+      <figure class="quote reveal">
+        <blockquote data-i18n="quoteText">Unity of heart surpasses unity of language.</blockquote>
+        <figcaption data-i18n="quoteSource">Rumi, Masnavi</figcaption>
+      </figure>
       <div class="cta-buttons reveal">
-        <a class="store-badge" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
+        <a class="store-badge" data-store="ios" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
           </svg>
@@ -745,7 +1640,7 @@
             <span class="big">App Store</span>
           </span>
         </a>
-        <a class="store-badge" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
+        <a class="store-badge" data-store="android" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&amp;referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dclose">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/>
             <path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/>
@@ -760,6 +1655,10 @@
       </div>
     </section>
 
+  </div>
+  </main>
+
+  <div class="container">
     <footer class="site">
       <p class="lang-line">
         <span data-i18n="langsLabel">Available in 5 languages</span>
@@ -792,6 +1691,26 @@
   <div class="lb-count" id="lbCount"></div>
 </div>
 
+<!-- ── Sehir secici (vakit modulu) ── -->
+<div class="cp-overlay" id="cityPicker" role="dialog" aria-modal="true">
+  <div class="cp-panel">
+    <div class="cp-top">
+      <span class="cp-title"></span>
+      <button type="button" class="cp-close" id="cpClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg>
+      </button>
+    </div>
+    <p class="cp-hint"></p>
+    <input type="text" class="cp-search" id="cpSearch" autocomplete="off">
+    <button type="button" class="cp-gps-row" id="cpGps">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/><path d="M12 2.5V6M12 18v3.5M21.5 12H18M6 12H2.5"/></svg>
+      <span></span>
+    </button>
+    <div id="cpResults"></div>
+    <p class="cp-privacy"></p>
+  </div>
+</div>
+
 <script>
 (function () {
   "use strict";
@@ -809,10 +1728,12 @@
 
   var I18N = {
     tr: {
-      title: "Manevi Halka — Hatim, Cevşen, Zikir ve Namaz Vakitleri",
-      desc: "Manevi yolculuğuna yalnız çıkmak zorunda değilsin. Sevdiklerinle hatim, Cevşen ve zikir halkaları kur; namaz vakitleri, kıble ve zikirmatik hep yanında.",
-      tagline: "Manevi yolculuğuna yalnız çıkmak zorunda değilsin.",
-      taglineSub: "İster tek başına ister sevdiklerinle. Manevi yolculuğun tek uygulamada.",
+      title: "Manevi Halka: birlikte hatim, Cevşen, zikir ve namaz vakitleri",
+      desc: "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve Cevşen tek uygulamada.",
+      h1sub: "Birlikte hatim, Cevşen ve zikir halkaları",
+      taglineSub: "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Namaz vakitleri, kıble ve zikir sayacı da aynı uygulamada.",
+      todayTitle: "Namaz vakitleri ve günün ayeti",
+      introTitle: "Manevi Halka nedir",
       get: "İndir",
       shotsHint: "Kaydırarak uygulamayı gez",
       featuresTitle: "Neler var",
@@ -830,8 +1751,9 @@
       f6t: "Kitap Okuma Halkaları",
       f6d: "Bir kitabı halkanla birlikte okursun. Kaldığın sayfa seninle kalır, haftalık ilerlemeyi hep beraber görürsünüz.",
       closeTitle: "Halkanı bugün kur",
-      closeText: "Ailenle, dostlarınla ya da tek başına. İbadet birlikte daha kalıcı olur.",
-      closeWish: "Niyetlerin kabul, halkaların daim olsun.",
+      closeText: "Ailenle, dostlarınla ya da tek başına.",
+      quoteText: "Gönül birliği, dil birliğinden üstündür.",
+      quoteSource: "Mevlânâ, Mesnevî",
       langsLabel: "5 dilde kullanılabilir",
       privacy: "Gizlilik Politikası", terms: "Kullanım Koşulları",
       deleteAcc: "Hesap Silme", contact: "İletişim",
@@ -846,10 +1768,12 @@
       suffix: ""
     },
     en: {
-      title: "Manevi Halka — Khatm, Jawshan, Dhikr and Prayer Times",
-      desc: "You do not have to walk this path alone. Build khatm, Jawshan and dhikr circles with the people you love, with prayer times, qibla and a dhikr counter always at hand.",
-      tagline: "You do not have to walk this path alone.",
-      taglineSub: "On your own or with loved ones. Your whole journey in one app.",
+      title: "Manevi Halka: shared Qur'an khatm, Jawshan, dhikr and prayer times",
+      desc: "Share the juz with your circle, read in turns and complete the khatm together. Prayer times from the Diyanet calendar, qibla, dhikr counter and Jawshan, in one app.",
+      h1sub: "Shared khatm, Jawshan and dhikr circles",
+      taglineSub: "Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.",
+      todayTitle: "Prayer times and the verse of the day",
+      introTitle: "What is Manevi Halka",
       get: "Download",
       shotsHint: "Swipe to explore the app",
       featuresTitle: "What's inside",
@@ -867,8 +1791,9 @@
       f6t: "Book Reading Circles",
       f6d: "Read a book together with your circle. Your page stays with you, and you follow the weekly progress as one.",
       closeTitle: "Start your circle today",
-      closeText: "With your family, your friends, or on your own. Worship lasts longer together.",
-      closeWish: "May your intentions be accepted and your circles endure.",
+      closeText: "With your family, your friends, or on your own.",
+      quoteText: "Unity of heart surpasses unity of language.",
+      quoteSource: "Rumi, Masnavi",
       langsLabel: "Available in 5 languages",
       privacy: "Privacy Policy", terms: "Terms of Service",
       deleteAcc: "Account Deletion", contact: "Contact",
@@ -883,10 +1808,12 @@
       suffix: "-en"
     },
     de: {
-      title: "Manevi Halka — Chatma, Dschauschan, Dhikr und Gebetszeiten",
-      desc: "Diesen Weg musst du nicht allein gehen. Gründe Chatma-, Dschauschan- und Dhikr-Kreise mit deinen Liebsten, mit Gebetszeiten, Qibla und Dhikr-Zähler immer zur Hand.",
-      tagline: "Diesen Weg musst du nicht allein gehen.",
-      taglineSub: "Allein oder mit deinen Liebsten. Dein ganzer Weg in einer App.",
+      title: "Manevi Halka: Chatma, Dschauschan, Dhikr und Gebetszeiten",
+      desc: "Teile die Dschus in deinem Kreis, lest reihum und vollendet die Chatma gemeinsam. Gebetszeiten nach dem Diyanet-Kalender, Qibla, Dhikr-Zähler und Dschauschan in einer App.",
+      h1sub: "Chatma, Dschauschan und Dhikr gemeinsam",
+      taglineSub: "Teile die Dschus in deinem Kreis, lest reihum, vollendet die Chatma gemeinsam. Gebetszeiten, Qibla und Dhikr-Zähler sind in derselben App.",
+      todayTitle: "Gebetszeiten und Vers des Tages",
+      introTitle: "Was ist Manevi Halka",
       get: "Laden",
       shotsHint: "Wische, um die App zu entdecken",
       featuresTitle: "Was drinsteckt",
@@ -904,8 +1831,9 @@
       f6t: "Buchlesekreise",
       f6d: "Lies ein Buch gemeinsam mit deinem Kreis. Deine Seite bleibt bei dir, und den wöchentlichen Fortschritt seht ihr zusammen.",
       closeTitle: "Gründe deinen Kreis noch heute",
-      closeText: "Mit deiner Familie, deinen Freunden oder allein. Gemeinsam bleibt man eher dran.",
-      closeWish: "Mögen deine Absichten angenommen werden und deine Kreise Bestand haben.",
+      closeText: "Mit deiner Familie, deinen Freunden oder allein.",
+      quoteText: "Einheit der Herzen wiegt mehr als Einheit der Sprache.",
+      quoteSource: "Rumi, Masnawi",
       langsLabel: "In 5 Sprachen verfügbar",
       privacy: "Datenschutzerklärung", terms: "Nutzungsbedingungen",
       deleteAcc: "Kontolöschung", contact: "Kontakt",
@@ -920,10 +1848,12 @@
       suffix: "-de"
     },
     fr: {
-      title: "Manevi Halka — Khatma, Jawshan, dhikr et heures de prière",
-      desc: "Tu n'as pas à faire ce chemin seul. Crée des cercles de khatma, de Jawshan et de dhikr avec ceux que tu aimes, avec les horaires de prière, la qibla et un compteur de dhikr toujours à portée de main.",
-      tagline: "Tu n'as pas à faire ce chemin seul.",
-      taglineSub: "Seul ou avec ceux que tu aimes. Tout ton cheminement dans une seule application.",
+      title: "Manevi Halka : khatma, Jawshan, dhikr et heures de prière",
+      desc: "Répartis les juz dans ton cercle, lisez à tour de rôle et terminez la khatma ensemble. Heures de prière selon le calendrier de la Diyanet, qibla, compteur de dhikr et Jawshan dans une seule application.",
+      h1sub: "Khatma, Jawshan et dhikr, ensemble",
+      taglineSub: "Répartis les juz dans ton cercle, lisez à tour de rôle, terminez la khatma ensemble. Les heures de prière, la qibla et un compteur de dhikr sont dans la même application.",
+      todayTitle: "Heures de prière et verset du jour",
+      introTitle: "Qu'est-ce que Manevi Halka",
       get: "Télécharger",
       shotsHint: "Fais glisser pour découvrir l'appli",
       featuresTitle: "Ce que tu y trouves",
@@ -941,8 +1871,9 @@
       f6t: "Cercles de lecture",
       f6d: "Lis un livre avec ton cercle. Ta page reste avec toi, et vous suivez ensemble la progression de la semaine.",
       closeTitle: "Crée ton cercle dès aujourd'hui",
-      closeText: "Avec ta famille, tes amis, ou seul. Ensemble, on tient plus longtemps.",
-      closeWish: "Que tes intentions soient acceptées et que tes cercles durent.",
+      closeText: "Avec ta famille, tes amis, ou seul.",
+      quoteText: "L'union des cœurs vaut mieux que l'union des langues.",
+      quoteSource: "Rûmî, Masnavî",
       langsLabel: "Disponible en 5 langues",
       privacy: "Politique de confidentialité", terms: "Conditions d'utilisation",
       deleteAcc: "Suppression du compte", contact: "Contact",
@@ -957,10 +1888,12 @@
       suffix: "-fr"
     },
     ar: {
-      title: "Manevi Halka — ختم القرآن والجوشن والذكر ومواقيت الصلاة",
-      desc: "لست مضطرًا أن تسلك هذا الطريق وحدك. أنشئ حلقات الختمة والجوشن والذكر مع من تحب، ومواقيت الصلاة والقبلة وعدّاد الذكر دائمًا في متناول يدك.",
-      tagline: "لست مضطرًا أن تسلك هذا الطريق وحدك.",
-      taglineSub: "وحدك أو مع من تحب. رحلتك كلها في تطبيق واحد.",
+      title: "Manevi Halka: ختم القرآن والجوشن والذكر ومواقيت الصلاة",
+      desc: "وزّع الأجزاء على حلقتك، واقرأوا بالتناوب، وأتمّوا الختمة معًا. مواقيت الصلاة وفق تقويم ديانت، والقبلة، وعدّاد الذكر، والجوشن في تطبيق واحد.",
+      h1sub: "حلقات ختم القرآن والجوشن والذكر معًا",
+      taglineSub: "وزّع الأجزاء على حلقتك، واقرأوا بالتناوب، وأتمّوا الختمة معًا. مواقيت الصلاة والقبلة وعدّاد الذكر في التطبيق نفسه.",
+      todayTitle: "مواقيت الصلاة وآية اليوم",
+      introTitle: "ما هو تطبيق Manevi Halka",
       get: "حمّل",
       shotsHint: "اسحب لاستكشاف التطبيق",
       featuresTitle: "ماذا يقدّم",
@@ -978,8 +1911,9 @@
       f6t: "حلقات قراءة الكتب",
       f6d: "اقرأ كتابًا مع حلقتك. صفحتك تبقى معك، وتتابعون التقدّم الأسبوعي معًا.",
       closeTitle: "ابدأ حلقتك اليوم",
-      closeText: "مع عائلتك أو أصدقائك أو وحدك. العبادة معًا أدوم.",
-      closeWish: "تقبّل الله نياتكم وأدام حلقاتكم.",
+      closeText: "مع عائلتك أو أصدقائك أو وحدك.",
+      quoteText: "وحدة القلوب خيرٌ من وحدة الألسنة.",
+      quoteSource: "جلال الدين الرومي، المثنوي",
       langsLabel: "متوفّر بـ 5 لغات",
       privacy: "سياسة الخصوصية", terms: "شروط الاستخدام",
       deleteAcc: "حذف الحساب", contact: "تواصل معنا",
@@ -1044,31 +1978,134 @@
     if (tm) tm.setAttribute("href", "/terms" + sfx + ".html");
     if (d) d.setAttribute("href", "/account-delete" + sfx + ".html");
 
-    // Ekran gorselleri secili dilin setinden gelsin
+    // Ekran gorselleri secili dilin setinden gelsin.
+    // ⚠️ alt ve aria-label cap_* ceviriden gelir: sekiz gorselin hepsi
+    // "Manevi Halka" diye etiketliyken ekran okuyucu kullanicisi hangi karenin
+    // ne oldugunu ayirt edemiyordu (ceviriler zaten vardi, kullanilmiyordu).
     var shots = document.querySelectorAll("[data-shot]");
     for (var j = 0; j < shots.length; j++) {
       var nm = shots[j].getAttribute("data-shot");
+      var cap = t["cap_" + nm] || "Manevi Halka";
       shots[j].setAttribute("src", "shots/" + loc + "/" + nm + ".jpg");
       shots[j].setAttribute("data-lg", "shots/" + loc + "/" + nm + "@lg.jpg");
-      shots[j].setAttribute("alt", "Manevi Halka");
+      shots[j].setAttribute("alt", cap);
+      var shotBtn = shots[j].parentNode;
+      if (shotBtn && shotBtn.classList && shotBtn.classList.contains("shot")) {
+        shotBtn.setAttribute("aria-label", cap);
+      }
     }
     // Buyutec aciksa oradaki gorseli de yeni dile cevir
     if (typeof lbIndexInternal !== "undefined" && lbIndexInternal >= 0) showLightbox(lbIndexInternal);
 
-    var sel = document.getElementById("langSelect");
-    if (sel && sel.value !== loc) sel.value = loc;
+    // Dil secici dugmesi ve panelin isaretli satiri
+    var lbtn = document.getElementById("langBtn");
+    var llabel = document.getElementById("langBtnLabel");
+    var llist = document.getElementById("langList");
+    if (lbtn && llabel && llist) {
+      var opts = llist.querySelectorAll("li");
+      for (var o = 0; o < opts.length; o++) {
+        var isCur = opts[o].getAttribute("data-lang") === loc;
+        opts[o].setAttribute("aria-selected", isCur ? "true" : "false");
+        if (isCur) llabel.textContent = opts[o].textContent;
+      }
+    }
+
+    // Dinamik moduller (js/mh-dynamic.js) dil degisimini buradan duyar
+    try {
+      document.dispatchEvent(new CustomEvent("mh:locale", { detail: loc }));
+    } catch (e) { /* eski tarayici */ }
   }
 
   applyLocale(resolveLocale());
 
-  var sel = document.getElementById("langSelect");
-  if (sel) {
-    sel.addEventListener("change", function () {
-      var loc = sel.value;
+  // ── Dil secici (kendi panelimiz) ──
+  // Yerlesik <select> yerine yazildi: acilis yonu tarayiciya birakilamiyordu.
+  // Erisilebilirlik yerlesik select'ten BEDAVA gelmiyor, elle kuruluyor:
+  // role=listbox + aria-expanded + ok tuslari + Escape + odak geri donusu.
+  (function () {
+    var btn = document.getElementById("langBtn");
+    var list = document.getElementById("langList");
+    if (!btn || !list) return;
+    var items = [].slice.call(list.querySelectorAll("li"));
+
+    function isOpen() { return !list.hidden; }
+
+    function open(focusIndex) {
+      list.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      var idx = focusIndex;
+      if (idx == null) {
+        idx = items.findIndex ? items.findIndex(function (li) {
+          return li.getAttribute("aria-selected") === "true";
+        }) : 0;
+      }
+      focusItem(idx < 0 ? 0 : idx);
+    }
+
+    function close(returnFocus) {
+      if (!isOpen()) return;
+      list.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+      for (var i = 0; i < items.length; i++) items[i].classList.remove("active");
+      if (returnFocus) btn.focus();
+    }
+
+    function focusItem(i) {
+      var idx = (i + items.length) % items.length;
+      for (var k = 0; k < items.length; k++) items[k].classList.toggle("active", k === idx);
+      items[idx].focus();
+    }
+
+    function currentIndex() {
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].classList.contains("active")) return i;
+      }
+      return 0;
+    }
+
+    function choose(li) {
+      var loc = li.getAttribute("data-lang");
       applyLocale(loc);
       try { localStorage.setItem("mh_lang", loc); } catch (e) { /* gizli mod */ }
+      close(true);
+    }
+
+    btn.addEventListener("click", function () {
+      if (isOpen()) close(false); else open();
     });
-  }
+
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        open(e.key === "ArrowDown" ? 0 : items.length - 1);
+      }
+    });
+
+    list.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { e.preventDefault(); close(true); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); focusItem(currentIndex() + 1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); focusItem(currentIndex() - 1); }
+      else if (e.key === "Home") { e.preventDefault(); focusItem(0); }
+      else if (e.key === "End") { e.preventDefault(); focusItem(items.length - 1); }
+      else if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        choose(items[currentIndex()]);
+      } else if (e.key === "Tab") {
+        close(false); // odak disari cikiyorsa panel acik kalmasin
+      }
+    });
+
+    for (var i = 0; i < items.length; i++) {
+      (function (li) {
+        li.addEventListener("click", function () { choose(li); });
+      })(items[i]);
+    }
+
+    document.addEventListener("click", function (e) {
+      if (!isOpen()) return;
+      if (!btn.contains(e.target) && !list.contains(e.target)) close(false);
+    });
+  })();
 
   // ── Buyutec ──
   var lb = document.getElementById("lightbox");
@@ -1152,22 +2189,38 @@
   if (nx) nx.addEventListener("click", function () { slide(1); });
 
   // ── Hero ikonu: 7 saniyede bir, bir kez oynar ──
-  // Gif sonsuz donguluyor; tek tur icin oynatip 1 sn sonra duraklama karesine
-  // donuyoruz. src'yi Blob URL'den yeniden atamak animasyonu bastan baslatir ve
-  // AGA CIKMAZ (gif bellekte). Cache-buster ("?v=1") her turda yeniden indirirdi.
+  // Gif TEK OYNAR (NETSCAPE dongu blogu dosyadan cikarildi): 990 ms'lik tur
+  // bitince son karede donar; son kare duraklama karesiyle birebir, gecis
+  // gorunmez. Eski hali sonsuz donguluydu ve 1000 ms'lik zamanlayici ikinci
+  // turun ilk karelerini gosterip "yanip sonme" izlenimi veriyordu — donguyu
+  // gif'e geri EKLEME. src'yi Blob URL'den yeniden atamak animasyonu bastan
+  // baslatir ve AGA CIKMAZ (gif bellekte).
   (function () {
     var wrap = document.getElementById("logoWrap");
     var anim = document.getElementById("logoAnim");
     if (!wrap || !anim || reduceMotion) return;
 
-    var GIF_MS = 1000;   // gif tam turu ~990 ms
+    var GIF_MS = 1050;   // gif tam turu 990 ms + son karede donma payi
     var GAP_MS = 7000;   // turlar arasi bekleme
     var blobUrl = null;
 
-    fetch(anim.getAttribute("src"))
-      .then(function (r) { return r.blob(); })
-      .then(function (b) { blobUrl = URL.createObjectURL(b); start(); })
-      .catch(function () { /* gif inmediyse duraklama karesi kalir, sorun degil */ });
+    // ⚠️ Gif 215 KB ve ILK BOYAMA icin gereksiz (durakla karesi zaten ekranda).
+    // src yerine data-src'den okunuyor ve indirme sayfa yuklendikten SONRA,
+    // tarayici bos kaldiginda basliyor. Kritik yoldan cikarildi.
+    function fetchGif() {
+      fetch(anim.getAttribute("data-src"))
+        .then(function (r) { return r.blob(); })
+        .then(function (b) { blobUrl = URL.createObjectURL(b); start(); })
+        .catch(function () { /* gif inmediyse duraklama karesi kalir, sorun degil */ });
+    }
+
+    function scheduleFetch() {
+      if (window.requestIdleCallback) window.requestIdleCallback(fetchGif, { timeout: 3000 });
+      else setTimeout(fetchGif, 1200);
+    }
+
+    if (document.readyState === "complete") scheduleFetch();
+    else window.addEventListener("load", scheduleFetch, { once: true });
 
     function play() {
       if (!blobUrl || document.hidden) return;
@@ -1217,6 +2270,8 @@
   onScroll();
 })();
 </script>
+
+<script src="js/mh-dynamic.js" defer></script>
 
 </body>
 </html>

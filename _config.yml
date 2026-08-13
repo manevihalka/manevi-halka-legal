@@ -1,5 +1,8 @@
 title: Manevi Halka — Legal
 description: Privacy Policy and Terms of Service for the Manevi Halka mobile application
+# Mutlak adres üretimi için (canonical, sitemap). sitemap.xml ELLE bakımlı,
+# jekyll-sitemap eklentisi bilerek kullanılmıyor — gerekçe sitemap.xml içinde.
+url: https://manevihalka.app
 theme: minima
 markdown: kramdown
 permalink: /:basename.html

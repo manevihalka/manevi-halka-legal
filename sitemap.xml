@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Elle bakımlı site haritası.
+
+  ⚠️ jekyll-sitemap eklentisi BİLEREK kullanılmadı: index.html'de front matter
+  YOK (bu bir koruma, Jekyll dosyaya hiç dokunmuyor), eklenti ise front
+  matter'sız dosyaları güvenilir biçimde listelemiyor. Yani sitenin EN ÖNEMLİ
+  adresi haritada olmayabilirdi.
+
+  ⚠️ join.html ve auth/* buraya GİRMEZ: davet ve e-posta akışı sayfaları,
+  ikisi de noindex. "Davet linki geçersiz" ekranının arama sonuçlarına
+  düşmesini istemiyoruz.
+
+  Yeni politika sayfası eklenirse buraya da eklenmeli.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://manevihalka.app/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url><loc>https://manevihalka.app/privacy.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/privacy-en.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/privacy-de.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/privacy-fr.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/privacy-ar.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <url><loc>https://manevihalka.app/terms.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/terms-en.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/terms-de.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/terms-fr.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/terms-ar.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <url><loc>https://manevihalka.app/account-delete.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://manevihalka.app/account-delete-en.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://manevihalka.app/account-delete-de.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://manevihalka.app/account-delete-fr.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://manevihalka.app/account-delete-ar.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+
+</urlset>

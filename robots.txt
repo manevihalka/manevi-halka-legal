@@ -1,0 +1,12 @@
+# manevihalka.app
+#
+# ⚠️ join.html ve auth/ sayfaları BİLEREK engellenmiyor. İkisinde de
+# <meta name="robots" content="noindex"> var; Disallow yazsaydık tarayıcı
+# sayfayı hiç çekmez, dolayısıyla noindex'i GÖREMEZ ve başka bir yerden
+# bağlantı verilmişse sayfa yine indekslenebilirdi. Doğru yol: çekilmesine
+# izin ver, sayfadaki noindex işini yapsın.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://manevihalka.app/sitemap.xml

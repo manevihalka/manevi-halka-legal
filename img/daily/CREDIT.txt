@@ -1,0 +1,54 @@
+Günün Ayeti kartı arka plan fotoğrafları — lisans kaydı
+=========================================================
+
+Tümü TİCARİ kullanıma açık, ATIF GEREKTİRMEYEN lisanslar (Unsplash License /
+Pexels License). Uygulamada gömülü kullanım serbest. Atıf zorunlu değildir;
+aşağıdaki kayıt yalnız izlenebilirlik içindir.
+
+01.jpg — Kubbetü's-Sahra (Kudüs) · altın kubbe, akşam mavisi
+  Kaynak: Pexels · Pexels License (ticari OK, atıf gerekmez)
+  https://www.pexels.com/photo/golden-dome-of-the-rock-in-jerusalem-in-israel-19838213/
+
+02.jpg — Mescid-i Nebevî yeşil kubbe (Medine)
+  Kaynak: Unsplash · Unsplash License (ticari OK, atıf gerekmez)
+  https://unsplash.com/photos/a-domed-building-with-a-green-dome-YpMYTuKTglA
+
+03.jpg — Kâbe, Mescid-i Haram (Mekke)
+  Kaynak: Unsplash · Unsplash License (ticari OK, atıf gerekmez)
+  https://unsplash.com/photos/kaaba-mecca-saudi-arabia-8Kg-2kK97Xc
+
+04.jpg — Cami iç mekânı, sıcak altın ton (Ayasofya — günümüzde cami)
+  Kaynak: Pexels · Pexels License (ticari OK, atıf gerekmez)
+  https://www.pexels.com/photo/majestic-golden-interior-of-mosque-13234206/
+
+05.jpg — Kul Şerif Camii (Kazan) · teal kubbe & minareler
+  Kaynak: Unsplash · Unsplash License (ticari OK, atıf gerekmez)
+  https://unsplash.com/photos/a-grand-mosque-with-blue-domes-and-tall-minarets-37a-m2txn5Y
+
+07.jpg — Şemsi Ahmed Paşa Camii gün batımı silüeti (Üsküdar, İstanbul)
+  Kaynak: Wikimedia Commons · CC0 (kamu malı, atıf gerekmez)
+  https://commons.wikimedia.org/wiki/File:Sunset_and_%C5%9Eemsi_Ahmed_Pa%C5%9Fa_Mosque.jpg
+
+08.jpg — Sultanahmet Camii gece (İstanbul)
+  Kaynak: rawpixel · CC0 (Openverse lisans kaydı; ticari OK, atıf gerekmez)
+  https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvZnJibHVlX21vc3F1ZV9pc3RhbmJ1bF90dXJraXNoLWltYWdlLWt5YmU4bWpqLmpwZw.jpg
+
+09.jpg — Fatih Camii turuncu gün batımı silüeti (İstanbul)
+  Kaynak: rawpixel · CC0 (Openverse lisans kaydı; ticari OK, atıf gerekmez)
+  https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvZnJpc3RhbmJ1bF90dXJrZXlfYm9zcGhvcnVzX29yaWVudF8yLWltYWdlLWt5YmRpYzU0LmpwZw.jpg
+
+10.jpg — Şeyh Zayid Camii gece + hilal (Abu Dabi)
+  Kaynak: rawpixel (Pexels kökenli px1436763) · CC0 (Openverse lisans kaydı)
+  https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcHgxNDM2NzYzLWltYWdlLWt3dnh2eWZ2LmpwZw.jpg
+
+11.jpg — Hilal + yıldızlı gökte yeşil kubbeli cami
+  Kaynak: WordPress Photo Directory · CC0 (kamu malı, atıf gerekmez)
+  https://pd.w.org/2022/12/38363999839da5c27.65211166-2048x1152.jpg
+
+12.jpg — Çöl kumulunda gün batımı
+  Kaynak: Flickr · CC0 (Openverse lisans kaydı; ticari OK, atıf gerekmez)
+  https://live.staticflickr.com/3954/15722815116_52b07af423_b.jpg
+
+İşlem: width 1100'e küçültüldü (küçükler olduğu gibi), JPEG q~70 (sips).
+Orijinaller saklanmadı. 07-12 Openverse (openverse.org) CC0/PD filtresiyle bulundu.
+Lisans referansı: unsplash.com/license · pexels.com/license · creativecommons.org/publicdomain/zero/1.0
