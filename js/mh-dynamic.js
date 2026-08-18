@@ -723,20 +723,68 @@
   }
 
   // ── Diyanet ilce cozumu (lib/diyanetApi.ts port) ─────────────────────────
-  var CITY_CACHE_KEY = "mh_diyanet_city_v1";
+  // ⚠️ v2: v1 anahtari 429 kaynakli ZEHIRLI olumsuz kayitlar icerebiliyor
+  // (asagidaki nota bak) — surum atlamak etkilenen tarayicilari temizler.
+  var CITY_CACHE_KEY = "mh_diyanet_city_v2";
   var TIMES_CACHE_KEY = "mh_diyanet_times_v1";
+  var ILCELER_CACHE_KEY = "mh_diyanet_ilceler_v1";
   var CITY_TTL = 90 * 24 * 3600 * 1000;      // pozitif: 90 gun
   var NEG_TTL = 24 * 3600 * 1000;            // negatif: 24 saat
   var TIMES_TTL = 12 * 3600 * 1000;          // vakitler: 12 saat (takvim ileri kaysin)
+  var ILCELER_TTL = 30 * 24 * 3600 * 1000;   // eyalet ilce listeleri: 30 gun
   var NEAREST_MAX_KM = 150;
 
+  /**
+   * ⚠️ ezanvakti'nin Cloudflare'i kisa pencerede ~15 istekten sonra 429
+   * donduruyor (17 Agu 2026'da olculdu: Almanya taramasinin 16 eyaletinden
+   * 15'i gecti, sonuncusu — Jena'nin bagli oldugu Thuringen — 429 yedi).
+   * Bu yuzden: (a) 429/5xx/ag hatasinda geri cekilerek en fazla 2 kez
+   * yeniden dene; (b) yanit `no-store` tasidigi icin tarayici HTTP onbellegi
+   * CALISMIYOR — eyalet listelerini localStorage'da biz sakliyoruz ki bir
+   * yeniden deneme 16 istegi bastan atip limite tekrar carpmasin.
+   */
   function fetchJson(url) {
-    return fetch(url, { headers: { Accept: "application/json" } }).then(function (r) {
-      if (!r.ok) throw new Error(url + " " + r.status);
-      return r.json();
-    });
+    var delays = [0, 2500, 5000];
+    var attempt = 0;
+    function doFetch() {
+      return fetch(url, { headers: { Accept: "application/json" } }).then(function (r) {
+        if (!r.ok) {
+          var err = new Error(url + " " + r.status);
+          err.status = r.status;
+          throw err;
+        }
+        return r.json();
+      });
+    }
+    function retryable(e) { return !e.status || e.status === 429 || e.status >= 500; }
+    function go() {
+      var wait = delays[attempt];
+      return (wait ? delay(wait) : Promise.resolve()).then(doFetch).catch(function (e) {
+        attempt++;
+        if (attempt < delays.length && retryable(e)) return go();
+        throw e;
+      });
+    }
+    return go();
   }
   function delay(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  /** Eyalet ilce listesi: once localStorage, yoksa ag + sakla. */
+  function fetchIlceler(sehirID) {
+    var cache = lsGetJson(ILCELER_CACHE_KEY) || {};
+    var hit = cache[sehirID];
+    if (hit && Date.now() - hit.at < ILCELER_TTL && Array.isArray(hit.data) && hit.data.length) {
+      return Promise.resolve({ data: hit.data, fromCache: true });
+    }
+    return fetchJson(API + "/ilceler/" + sehirID).then(function (data) {
+      if (Array.isArray(data) && data.length) {
+        var fresh = lsGetJson(ILCELER_CACHE_KEY) || {};
+        fresh[sehirID] = { at: Date.now(), data: data };
+        lsSet(ILCELER_CACHE_KEY, JSON.stringify(fresh));
+      }
+      return { data: Array.isArray(data) ? data : [], fromCache: false };
+    });
+  }
 
   function coordIndexFor(cc) {
     return loadCities().then(function (data) {
@@ -777,20 +825,36 @@
     });
   }
 
-  function matchIlce(ilceler, targets) {
-    var i, tIdx;
-    for (tIdx = 0; tIdx < targets.length; tIdx++) {
-      for (i = 0; i < ilceler.length; i++) {
+  function exactIlce(ilceler, targets) {
+    for (var tIdx = 0; tIdx < targets.length; tIdx++) {
+      for (var i = 0; i < ilceler.length; i++) {
         if (normalize(ilceler[i].IlceAdi) === targets[tIdx]) return ilceler[i];
       }
     }
-    for (tIdx = 0; tIdx < targets.length; tIdx++) {
-      for (i = 0; i < ilceler.length; i++) {
+    return null;
+  }
+
+  /**
+   * ⚠️ Alt dizgi eslesmesi EYALET TARAMASINDA KULLANILMAZ, yalniz tek eyalet
+   * icinde (Turkiye fast-path) ya da koordinatsiz son care olarak. Sebep
+   * olculdu (17 Agu 2026): "ERFURT" hedefi, alfabetik olarak Thuringen'den
+   * ONCE taranan Nordrhein-Westfalen'deki "WIPPERFURTH" icinde alt dizgi
+   * olarak gecince sehir 300 km oteye cozuluyordu — oysa Thuringen'de tam
+   * adiyla ERFURT var. Sitede adlar kendi katalogumuzdan geldigi icin tam
+   * eslesme asil yol, tutmazsa koordinatca en yakin ilce dogru cevap.
+   */
+  function fuzzyIlce(ilceler, targets) {
+    for (var tIdx = 0; tIdx < targets.length; tIdx++) {
+      for (var i = 0; i < ilceler.length; i++) {
         var norm = normalize(ilceler[i].IlceAdi);
         if (norm.indexOf(targets[tIdx]) !== -1 || targets[tIdx].indexOf(norm) !== -1) return ilceler[i];
       }
     }
     return null;
+  }
+
+  function matchIlce(ilceler, targets) {
+    return exactIlce(ilceler, targets) || fuzzyIlce(ilceler, targets);
   }
 
   function resolveDiyanetCity(cc, cityName, coords) {
@@ -827,7 +891,8 @@
         if (stateMatch) break;
       }
       if (stateMatch) {
-        return fetchJson(API + "/ilceler/" + stateMatch.SehirID).then(function (ilceler) {
+        return fetchIlceler(stateMatch.SehirID).then(function (res) {
+          var ilceler = res.data;
           var merkez = matchIlce(ilceler, targets);
           if (!merkez) {
             for (var i = 0; i < ilceler.length; i++) {
@@ -840,35 +905,55 @@
         });
       }
 
-      // State-by-state tarama (Almanya deseni) + ad tutmazsa koordinatca en yakin.
+      // State-by-state tarama (Almanya deseni): eyalet icinde YALNIZ tam
+      // eslesme aranir (fuzzyIlce'nin basindaki uyariya bak — Erfurt/
+      // Wipperfurth vakasi). Tam eslesme hicbir eyalette yoksa koordinatca
+      // en yakin ilce; koordinat da yoksa son care alt dizgi eslesmesi.
+      // Onbellekten gelen eyaletler icin bekleme yok; aga cikanlar arasinda
+      // 400 ms (150 ms 429 sinirina carpiyordu, olculdu).
       var allIlceler = [];
       var idx = 0;
+      var hadFailure = false;
       function scanNext() {
         if (idx >= states.length) return Promise.resolve(null);
         var state = states[idx++];
-        var wait = idx > 1 ? delay(150) : Promise.resolve();
-        return wait.then(function () {
-          return fetchJson(API + "/ilceler/" + state.SehirID).catch(function () { return []; });
-        }).then(function (ilceler) {
-          if (Array.isArray(ilceler) && ilceler.length > 0) {
-            if (coords) allIlceler = allIlceler.concat(ilceler);
-            var m = matchIlce(ilceler, targets);
+        return fetchIlceler(state.SehirID).catch(function () {
+          hadFailure = true;
+          return { data: [], fromCache: false };
+        }).then(function (res) {
+          var ilceler = res.data;
+          if (ilceler.length > 0) {
+            allIlceler = allIlceler.concat(ilceler);
+            var m = exactIlce(ilceler, targets);
             if (m) return m;
           }
-          return scanNext();
+          var wait = res.fromCache ? Promise.resolve() : delay(400);
+          return wait.then(scanNext);
         });
       }
       return scanNext().then(function (m) {
         if (m) { store(m.IlceID, m.IlceAdi); return { ilceID: m.IlceID, ilceName: m.IlceAdi }; }
+        function fail() {
+          // ⚠️ Tarama KIRLIYSE (herhangi bir eyalet cekilemedi) olumsuz kayit
+          // YAZILMAZ: 429 yuzunden gorunmeyen eyalet "katalogda yok" demek
+          // degildir. Eski davranis Jena'yi 24 saat boyunca cozumsuz birakti.
+          if (!hadFailure) store("", "");
+          return null;
+        }
+        function fuzzyFallback() {
+          // Koordinatsiz son care (sitede sehirler hep koordinatli geldigi
+          // icin normalde bu dala dusulmez)
+          var fz = fuzzyIlce(allIlceler, targets);
+          if (fz) { store(fz.IlceID, fz.IlceAdi); return { ilceID: fz.IlceID, ilceName: fz.IlceAdi }; }
+          return fail();
+        }
         if (coords && allIlceler.length > 0) {
           return nearestIlce(cc, coords.lat, coords.lon, allIlceler).then(function (near) {
             if (near) { store(near.ilce.IlceID, near.ilce.IlceAdi); return { ilceID: near.ilce.IlceID, ilceName: near.ilce.IlceAdi }; }
-            store("", "");
-            return null;
+            return fuzzyFallback();
           });
         }
-        store("", "");
-        return null;
+        return fuzzyFallback();
       });
     });
   }
@@ -957,7 +1042,7 @@
       "</div></div>" + innerHtml;
     var cb = $("cityBtn"), gb = $("gpsBtn");
     if (cb) cb.addEventListener("click", openPicker);
-    if (gb) gb.addEventListener("click", useGps);
+    if (gb) gb.addEventListener("click", function () { useGps(); });
   }
 
   function renderPrayerLoading(msg) {
@@ -1274,8 +1359,18 @@
     startPrayerFlow(true);
   }
 
-  function useGps() {
-    if (!navigator.geolocation) { alert(t("gpsError")); return; }
+  /**
+   * @param opts.silent Acilistaki otomatik kullanim: hata durumunda alert
+   *   YOK, sessizce saat dilimi tahminine dusulur. Dugmeden cagrildiginda
+   *   (silent yok) kullanici bilgilendirilir.
+   */
+  function useGps(opts) {
+    var silent = !!(opts && opts.silent);
+    if (!navigator.geolocation) {
+      if (silent) { startPrayerFlow(false); return; }
+      alert(t("gpsError"));
+      return;
+    }
     var seqAtClick = flowSeq;
     renderPrayerLoading(t("resolving"));
     navigator.geolocation.getCurrentPosition(function (pos) {
@@ -1284,14 +1379,34 @@
       nearestCatalogCity(pos.coords.latitude, pos.coords.longitude).then(function (city) {
         if (flowSeq !== seqAtClick) return;
         if (city) setCity(city);
-        else { renderPrayerError(); }
+        else if (silent) startPrayerFlow(false);
+        else renderPrayerError();
       });
     }, function () {
       if (flowSeq !== seqAtClick) return;
+      if (silent) { startPrayerFlow(false); return; }
       alert(t("gpsError"));
       if (prayerState === "ready") renderPrayerReady();
       else startPrayerFlow(false);
     }, { enableHighAccuracy: false, timeout: 12000, maximumAge: 600000 });
+  }
+
+  /**
+   * Acilis akisi: kayitli sehir > (izin ZATEN verilmisse) GPS > saat dilimi
+   * tahmini. Izin sorgusu PENCERE ACMAZ — yalniz mevcut durumu okur; "granted"
+   * degilse konum hic istenmez (kullanici istegi, 17 Agu 2026: izin verdigi
+   * halde site tahmini sehri gosteriyordu).
+   */
+  function initialPrayerFlow() {
+    if (loadSavedCity()) { startPrayerFlow(false); return; }
+    if (navigator.permissions && navigator.permissions.query && navigator.geolocation) {
+      navigator.permissions.query({ name: "geolocation" }).then(function (st) {
+        if (st.state === "granted") useGps({ silent: true });
+        else startPrayerFlow(false);
+      }).catch(function () { startPrayerFlow(false); });
+    } else {
+      startPrayerFlow(false);
+    }
   }
 
   // ── sehir secici ─────────────────────────────────────────────────────────
@@ -1420,7 +1535,7 @@
       renderCards();
     }).catch(function () { /* kartlar bos kalir, sayfa calismaya devam eder */ });
 
-    startPrayerFlow(false);
+    initialPrayerFlow();
 
     document.addEventListener("mh:locale", function (e) {
       locale = e.detail || "en";
