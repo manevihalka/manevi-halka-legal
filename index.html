@@ -393,6 +393,7 @@
     --durD: 5.8s; --delD: -2.6s;
     --durE: 3.6s; --delE: -1.5s;
     --durF: 3.8s; --delF: -0.7s;
+    --durG: 6.9s; --durH: 5.9s; --durI: 6.6s; --durJ: 5.6s;
   }
 
   /* ─────────── Kandil askisi (hero) ───────────
@@ -479,6 +480,40 @@
   .kandil-rig.kandil-d { inset-inline-end: 17%;   --drop: 340px; --lamp: 17px; --pool: 160px; --dur: var(--durD); --delay: var(--delD); --flick: 2.9s; --dim: 0.6; }
   .kandil-rig.kandil-e { inset-inline-start: calc(50% - 140px); --drop: 130px; --lamp: 15px; --pool: 140px; --dur: var(--durE); --delay: var(--delE); --flick: 3.3s; --dim: 0.55; }
   .kandil-rig.kandil-f { inset-inline-end: calc(50% - 140px);   --drop: 145px; --lamp: 15px; --pool: 145px; --dur: var(--durF); --delay: var(--delF); --flick: 2.7s; --dim: 0.55; }
+
+  /* Genis ekran KENAR ciftleri (g/h sol, i/j sag): kapsayici 1080px'te
+     ortalandigi icin genis ekranda dis kenarlar bombos kaliyordu (kullanici
+     istegi, 18 Agu). Konum kapsayiciya DEGIL gorunum alanina gore:
+     calc(50% - 50vw + Xpx) hero merkezinden viewport kenarina uzanir;
+     .wrap'in overflow-x: clip'i tasan isik kutularini kirpar.
+     Parlama surmedikleri icin display ile acilip kapanmalari saat kilidini
+     etkilemez (o kural yalniz e/f icindir). Sureler yine T ∝ √L.
+
+     ⚠️ KENAR PAYI SALINIMA GORE HESAPLANIR, SABIT DEGIL. Ilk yazimda g
+     48px'e kondu ve +7°'de lamba merkezi -7px'e, yani EKRANIN TAMAMEN
+     DISINA cikiyordu (i de 2px payla siyiriyordu; klon uzerinde ±7°
+     sabitlenerek olculdu). Gerekli pay = salinim genligi (sin7° × ip boyu,
+     g icin ~60px) + lambanin yarisi (13px) + gorsel bosluk. Ip boyunu
+     degistirirsen bu insetleri de buyut.
+
+     ⚠️ ESIKLER DE OLCUMLE SECILDI, keyfi degil: kenar bosluğu
+     (100vw-1080px)/2 kadar. Ic kandil h'nin salinim ucu ile mevcut a
+     kandilinin salinim ucu ust uste binmesin diye ciftin tamami ancak
+     1660px'te aciliyor; 1500-1660 arasinda yalniz uzun dis kandil (g/i)
+     goruluyor — o araliga iki kandil sigmiyor, sokusturmak iplerin
+     capraz gecmesine yol aciyordu. */
+  .kandil-rig.kandil-g, .kandil-rig.kandil-h,
+  .kandil-rig.kandil-i, .kandil-rig.kandil-j { display: none; }
+
+  @media (min-width: 1500px) {
+    .kandil-rig.kandil-g { display: block; inset-inline-start: calc(50% - 50vw + 92px); --drop: 470px; --lamp: 26px; --pool: 220px; --dur: var(--durG); --delay: -2.2s; --flick: 3.4s; }
+    .kandil-rig.kandil-i { display: block; inset-inline-end: calc(50% - 50vw + 92px);   --drop: 430px; --lamp: 26px; --pool: 210px; --dur: var(--durI); --delay: -3.7s; --flick: 3s; }
+  }
+
+  @media (min-width: 1660px) {
+    .kandil-rig.kandil-h { display: block; inset-inline-start: calc(50% - 50vw + 175px); --drop: 340px; --lamp: 20px; --pool: 175px; --dur: var(--durH); --delay: -0.9s; --flick: 2.8s; --dim: 0.8; }
+    .kandil-rig.kandil-j { display: block; inset-inline-end: calc(50% - 50vw + 175px);   --drop: 310px; --lamp: 20px; --pool: 170px; --dur: var(--durJ); --delay: -1.6s; --flick: 2.5s; --dim: 0.8; }
+  }
 
   .kandil {
     display: flex;
@@ -2028,6 +2063,39 @@
           <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
         </span>
       </span>
+      <!-- g-j: genis ekran kenar ciftleri; CSS gosterir (g/i ≥1500px, h/j ≥1660px) -->
+      <span class="kandil-rig kandil-g" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
+      <span class="kandil-rig kandil-h" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
+      <span class="kandil-rig kandil-i" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
+      <span class="kandil-rig kandil-j" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
       <div class="logo-wrap reveal" id="logoWrap">
         <img src="icon-anim-still.png" alt="Manevi Halka" class="logo-still">
         <!-- ⚠️ src YOK, data-src VAR: 215 KB'lik gif ilk boyamayi bekletmesin.
@@ -2920,7 +2988,9 @@
         pos: 0, vel: 0, held: false,
         morph: null, kxW: 0, kyW: 0, thd: 0,
         k: 0.052 + i * 0.007,   // sertlik: her kandil biraz farkli tepki versin
-        damp: 0.885 - i * 0.012,
+        // damp tabani: 10 rig'de (g-j kenar ciftleri) formul 0.777'ye dusup
+        // son kandilleri "camurda salliyordu" — 0.83'te kelepceli.
+        damp: Math.max(0.83, 0.885 - i * 0.012),
         reach: 1, arm: 100
       };
     });
