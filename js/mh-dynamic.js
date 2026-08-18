@@ -857,6 +857,24 @@
     return exactIlce(ilceler, targets) || fuzzyIlce(ilceler, targets);
   }
 
+  /**
+   * Derleme aninda uretilmis ilce kimligi haritasi (data/prayer-ilce-map.json,
+   * _gen/build-prayer-ilce-map.mjs). 3.044 sehrin kimligi hazir geldigi icin
+   * ziyaretci eyalet taramasi yapmaz — soguk acilis 6-60 sn'den 1-2 sn'ye
+   * indi (18 Agu 2026, tablette "donmus gibi" bildirimi; sorun kureseldi,
+   * TR 81 eyaletle en kotusuydu). Harita yuklenemezse ya da sehir haritada
+   * yoksa asagidaki canli tarama YEDEK olarak aynen durur.
+   */
+  var ilceMapPromise = null;
+  function loadIlceMap() {
+    if (!ilceMapPromise) {
+      ilceMapPromise = fetch("data/prayer-ilce-map.json")
+        .then(function (r) { return r.ok ? r.json() : {}; })
+        .catch(function () { return {}; });
+    }
+    return ilceMapPromise;
+  }
+
   function resolveDiyanetCity(cc, cityName, coords) {
     cc = cc.toUpperCase();
     var ulkeID = DIYANET_COUNTRY_MAP[cc];
@@ -877,6 +895,18 @@
     }
 
     var targets = cityCandidates(cityName);
+
+    return loadIlceMap().then(function (ilceMap) {
+      var hazir = ilceMap[cacheKey];
+      if (hazir) {
+        store(hazir[0], hazir[1]);
+        return { ilceID: hazir[0], ilceName: hazir[1] };
+      }
+      return resolveDiyanetCityLive(cc, ulkeID, targets, coords, store);
+    });
+  }
+
+  function resolveDiyanetCityLive(cc, ulkeID, targets, coords, store) {
 
     return fetchJson(API + "/sehirler/" + ulkeID).then(function (states) {
       if (!Array.isArray(states) || states.length === 0) return null;
@@ -917,6 +947,12 @@
       function scanNext() {
         if (idx >= states.length) return Promise.resolve(null);
         var state = states[idx++];
+        // Ilerleme sayaci: uzun taramada (Almanya 16, Turkiye 81 eyalet)
+        // sabit yazi "donmus" gibi okunuyordu (18 Agu tablet bildirimi).
+        // Yalniz yukleme ekrani goruniyorsa dokun — baska durum ezilmesin.
+        if (prayerState === "loading" && states.length > 3) {
+          renderPrayerLoading(t("resolving") + " (" + idx + "/" + states.length + ")");
+        }
         return fetchIlceler(state.SehirID).catch(function () {
           hadFailure = true;
           return { data: [], fromCache: false };
