@@ -170,6 +170,39 @@
     overflow-x: hidden;
   }
 
+  /* ─────────── Girih zemini ───────────
+     Uygulamanin premium arka plan desenleriyle (girih/rumi ailesi) ayni
+     gorsel dil: sekiz koseli yildiz kafesi. STATIK ve maske tabanli — renk
+     tema degiskeninden gelir, iki temada da calisir; animasyon BILEREK yok
+     (buyuk katmanli animasyonun kare dusurdugu bu projede olculdu). Kart
+     zeminleri dolu oldugu icin desen yalniz bos alanlarda hissedilir.
+     Karo TEK yerde, --girih degiskeninde durur: kandilin isik golu
+     (.kandil-lume) ayni karonun HIZALI bir kopyasini cizer, ikisi ayrisirsa
+     cift cizgi olusur. position absolute (fixed DEGIL) ayni sozlesmenin
+     parcasi: desen belgeyle birlikte kaymali ki isik golundeki kopya
+     kaydirmada tabandan ayrilmasin. */
+  :root {
+    --girih: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='88'%20height='88'%3E%3Cdefs%3E%3Cg%20id='s'%20fill='none'%20stroke='%23fff'%20stroke-width='1'%3E%3Crect%20x='-15'%20y='-15'%20width='30'%20height='30'/%3E%3Cg%20transform='rotate(45)'%3E%3Crect%20x='-15'%20y='-15'%20width='30'%20height='30'/%3E%3C/g%3E%3C/g%3E%3C/defs%3E%3Cuse%20href='%23s'%20transform='translate(0%200)'/%3E%3Cuse%20href='%23s'%20transform='translate(88%200)'/%3E%3Cuse%20href='%23s'%20transform='translate(0%2088)'/%3E%3Cuse%20href='%23s'%20transform='translate(88%2088)'/%3E%3Cuse%20href='%23s'%20transform='translate(44%2044)'/%3E%3C/svg%3E");
+  }
+  body { position: relative; } /* body::after inset:0 tum belge boyunu kaplasin */
+  body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-color: var(--green);
+    opacity: 0.06;
+    -webkit-mask-image: var(--girih);
+    mask-image: var(--girih);
+    -webkit-mask-size: 88px 88px;
+    mask-size: 88px 88px;
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+  }
+
+  [data-theme="dark"] body::after { opacity: 0.08; }
+
   /* Yumusak zemin isigi - derinlik katar, hicbir seyi ortmez */
   body::before {
     content: "";
@@ -182,7 +215,13 @@
       radial-gradient(40rem 30rem at 100% 20%, rgba(30, 77, 53, 0.06), transparent 70%);
   }
 
-  .wrap { position: relative; z-index: 1; }
+  /* ⚠️ overflow-x: `clip`, `hidden` DEGIL. Kenardaki kandillerin isik golu
+     bilerek ekran disina tasar (32px olculdu); body'deki overflow-x: hidden
+     tek basina yeterli degil, iOS Safari'de yatay surukleme yine olabiliyor.
+     `clip` kaydirma kabi YARATMAZ, yani yapiskan basligi (position: sticky)
+     bozmaz — `hidden` bozardi. position: fixed katmanlar (lightbox,
+     sehir secici) kirpilmaz, cunku kapsayici bloklari goruntu alanidir. */
+  .wrap { position: relative; z-index: 1; overflow-x: clip; }
 
   .container {
     max-width: 1080px;
@@ -343,7 +382,387 @@
   .hero {
     text-align: center;
     padding: 72px 0 56px;
+    position: relative; /* kandil askisi buna gore konumlanir */
+
+    /* Kandil salinim zamanlamalari TEK KAYNAK burada: hem rig'ler hem logonun
+       kenar parlamasi (asagida) ayni degiskenleri okur. Rakami rig kuralina
+       elle yazma — parlama lambadan koparsa sebep budur. */
+    --durA: 6.4s; --delA: 0s;
+    --durB: 5.1s; --delB: -1.1s;
+    --durC: 5.4s; --delC: -1.9s;
+    --durD: 5.8s; --delD: -2.6s;
+    --durE: 3.6s; --delE: -1.5s;
+    --durF: 3.8s; --delF: -0.7s;
   }
+
+  /* ─────────── Kandil askisi (hero) ───────────
+     Mahya geleneginin yankisi: ustten inen dort ince ip, uclarinda kandil,
+     alevin cevresinde isik halkasi ve kandilin gectigi yerde zemindeki girih
+     motiflerini aydinlatan bir isik golu.
+     KURULUM: .kandil-rig (konum + degiskenler) icinde uc kardes:
+     .kandil-lume (zemin aydinlatmasi), .kandil-halo (alev parisi),
+     .kandil (donen sarkac: ip + lamba).
+     Isik golu blend ile YAPILAMAZ: .wrap z-index:1 stacking context kurdugu
+     icin mix-blend-mode arkadaki body::after desenini goremez. Cozum, ayni
+     girih karosunun (--girih) HIZALI bir kopyasini dairesel maske
+     penceresinde gostermek; hizalama --mx/--my ile JS'ten gelir (alignLume)
+     ve body::after'in absolute olmasina dayanir.
+     ⚠️ UC ANIMASYON AYNI --dur/--delay/easing'i PAYLASIR (sarkac, halo, gol).
+     Birinin suresini degistirip otekini unutursan isik alevden ayrilir.
+     DERINLIK: dort kandil iki KADEMEDE. Yakin cift (a, b) kenarlarda, buyuk
+     ve parlak; uzak cift (c, d) iceride, kucuk ve soluk. Olcek --lamp ile,
+     solukluk --dim ile verilir. Bu, referans uygulamada da (Azan Time Pro
+     acilis ekrani) kullanilan derinlik ipucudur: tek kademe "dort ayni sus",
+     iki kademe "derinligi olan mekan" diye okunuyor.
+     ⚠️ DERINLIK ICIN RIG'I SCALE ETME. Rig olceklenirse icindeki .kandil-lume
+     de olceklenir ve tasidigi girih kopyasinin karosu 88px olmaktan cikar →
+     taban desenle ayrisir, cift cizgi olur. Olcek YALNIZ lambaya (--lamp) ve
+     gol/halo capina uygulanir.
+
+     Degiskenler — yalniz ILK DORDU elle yazilir, gerisi TURETILIR:
+       --drop  ip boyu
+       --lamp  lamba genisligi (derinlik kademesi)
+       --pool  golun capi
+       --dim   derinlik soluklugu (1 = yakin)
+       --dur / --delay / --flick  zamanlama
+     Turetilenler (elle hesaplama YOK, --drop degisince kendiliginden uyar):
+       --flameoff alev merkezinin svg ustunden uzakligi = --lamp x 13/24 - 2px
+       --amp      ucun yatay yolu = sin(7deg) x (--drop + --flameoff)
+       --sweep    golun yolu = --amp x 1.6. ⚠️ BILEREK daha buyuk: kandil
+                  egilince isik konisi de suprur, yani zemindeki leke lambadan
+                  DAHA COK yol alir. 1:1 yapilinca hareket 88px'lik karo
+                  yaninda fark edilmiyordu ("isildayan alanlar sabit gibi").
+       --ring     alev cevresindeki isik halkasinin yaricapi
+       --halosize halo kutusu. ⚠️ 6.6x/1.5x DENENDI ve GERI ALINDI (18 Agu):
+                  "isik halkalari uzun olsun" istegi IP BOYU icinmis, halo
+                  buyutmesi begenilmedi. Halo 5x / halka 1.08x kalir.
+
+     ⚠️ SURELER RASTGELE DEGIL: gercek sarkacta T = 2π√(L/g), yani kisa ip
+     HIZLI salinir. Dordu de bu orana gore verildi (√176:√118:√142:√104 =
+     4,2:3,4:3,8:3,2 sn) — hem fiziksel olarak tutarli hem de periyotlar
+     ortakbolensiz oldugu icin dordu surekli faz kaydirir, tekrar gozle
+     yakalanmaz. Bir ip boyunu degistirirsen suresini de bu orana gore
+     guncelle. Olcum notu: referans uygulamanin kandilleri ~1 sn periyot /
+     7px genlikle bizden HIZLI ama COK daha kucuk genlikte sallaniyor. */
+  .kandil-rig {
+    position: absolute;
+    top: 0;
+    width: 24px;
+    z-index: -1; /* hero metninin ALTINDA kalsin (isik golu yaziya binmesin) */
+    pointer-events: none;
+
+    --lamp: 24px;
+    --dim: 1;
+    --flameoff: calc(var(--lamp) * 0.5417 - 2px);
+    --amp: calc((var(--drop) + var(--flameoff)) * 0.1219); /* sin(7deg) */
+    --sweep: calc(var(--amp) * 1.6);
+    --ring: calc(var(--lamp) * 1.08);
+    --halosize: calc(var(--lamp) * 5);
+    /* Kaydirma tepkisinin isik golune ekledigi pay; JS --tiltdeg'i 4 dereceyle
+       sinirliyor, 1,6 kat carpanla en fazla ~21px ediyor. */
+    --tiltroom: 24px;
+  }
+
+  /* Uc kademe, alti kandil:
+     - On cift (a/b): kenarlarda, buyuk ve parlak.
+     - Orta cift (c/d): ic kisimda, kucuk ve soluk (derinlik). ≤900px'te
+       gizlenir; parlamayi SURMEDIKLERI icin saatlerinin sifirlanmasi zararsiz.
+     - Ikon cifti (e/f): ikonun hemen iki yaninda, en kisa ipler — logonun
+       kenar parlamasini SUREN lambalar bunlar (gozle atif kurulsun diye
+       bitisik). Konum ikona GORELI (calc 50%), her genislikte yanindalar;
+       HICBIR kirilimda gizlenMEZler — parlama kaynagi display:none olursa
+       donuste animasyon saati sifirlanir ve kilit bozulur (asagidaki logo
+       parlamasi yorumundaki tuzak). */
+  .kandil-rig.kandil-a { inset-inline-start: 5%;  --drop: 405px; --lamp: 26px; --pool: 215px; --dur: var(--durA); --delay: var(--delA); --flick: 3.1s; }
+  .kandil-rig.kandil-b { inset-inline-end: 6%;    --drop: 270px; --lamp: 26px; --pool: 190px; --dur: var(--durB); --delay: var(--delB); --flick: 2.6s; }
+  .kandil-rig.kandil-c { inset-inline-start: 19%; --drop: 300px; --lamp: 17px; --pool: 150px; --dur: var(--durC); --delay: var(--delC); --flick: 3.7s; --dim: 0.6; }
+  .kandil-rig.kandil-d { inset-inline-end: 17%;   --drop: 340px; --lamp: 17px; --pool: 160px; --dur: var(--durD); --delay: var(--delD); --flick: 2.9s; --dim: 0.6; }
+  .kandil-rig.kandil-e { inset-inline-start: calc(50% - 140px); --drop: 130px; --lamp: 15px; --pool: 140px; --dur: var(--durE); --delay: var(--delE); --flick: 3.3s; --dim: 0.55; }
+  .kandil-rig.kandil-f { inset-inline-end: calc(50% - 140px);   --drop: 145px; --lamp: 15px; --pool: 145px; --dur: var(--durF); --delay: var(--delF); --flick: 2.7s; --dim: 0.55; }
+
+  .kandil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--green-soft);
+    opacity: calc(0.5 * var(--dim, 1));
+    transform-origin: top center;
+    animation: kandilSway var(--dur, 8s) ease-in-out infinite alternate;
+    animation-delay: var(--delay, 0s);
+  }
+
+  /* Ip: duz cizgi DEGIL, salinimla bukulen bir yay. CSS `d` ozelligi
+     animasyonlu; uclarda kavis en fazla, ortada duz — sarkacin ivmesi de
+     oyle davranir (uclarda maksimum, merkezde sifir). Desteklemeyen eski
+     tarayicida CSS `d` yok sayilir ve attribute'taki DUZ yol cizilir. */
+  .kandil .rope {
+    /* Genislik lambayla birlikte kucululur: hem kavis hem cizgi kalinligi
+       (preserveAspectRatio="none" oldugu icin cizgi x oraninca olcekleniyor)
+       uzak kandilde inceliyor — istenen perspektif etkisi. */
+    width: calc(var(--lamp, 24px) * 0.83);
+    height: var(--drop, 90px);
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1;
+    opacity: 0.5;
+  }
+
+  .kandil .rope path {
+    d: path("M10 0 C 14.6 26, 14.6 72, 10 100");
+    animation: ropeBow var(--dur, 8s) ease-in-out infinite alternate;
+    animation-delay: var(--delay, 0s);
+  }
+
+  .kandil .lamp {
+    width: var(--lamp, 24px);
+    height: auto;
+    display: block;
+    margin-top: -2px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Kandilin ici: sicak, soluk bir isik noktasi */
+  .kandil .flame { fill: #d9b970; stroke: none; opacity: 0.75; }
+
+  /* Alev cevresi: ince isik halkasi + yumusak parilti. Sarkacin ICINDE degil
+     (donen ataya opacity/transform stacking maliyeti binmesin), rig'de ayni
+     zamanlamayla yatay surukleniyor — kaynak alevle cakisik kalir. */
+  .kandil-halo {
+    position: absolute;
+    top: calc(var(--drop, 90px) + var(--flameoff, 11px));
+    left: 50%;
+    width: var(--halosize, 120px);
+    height: var(--halosize, 120px);
+    margin-top: calc(var(--halosize, 120px) / -2);
+    margin-left: calc(var(--halosize, 120px) / -2);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle,
+        transparent calc(var(--ring, 26px) - 3px),
+        rgba(217, 185, 112, 0.30) var(--ring, 26px),
+        rgba(217, 185, 112, 0.30) calc(var(--ring, 26px) + 1.5px),
+        transparent calc(var(--ring, 26px) + 5px)),
+      radial-gradient(circle, rgba(217, 185, 112, 0.32) 0, rgba(217, 185, 112, 0.12) 32%, transparent 62%);
+    animation:
+      kandilDrift var(--dur, 8s) ease-in-out infinite alternate,
+      kandilFlicker var(--flick, 3s) ease-in-out infinite alternate;
+    animation-delay: var(--delay, 0s), 0s;
+  }
+
+  /* Zemin aydinlatmasi: girih karosunun hizali kopyasi, uzerinde gezen bir
+     isik lekesi.
+     ISIN KENDISI ARKA PLANDA, maskede DEGIL: maske yalniz girih karosu (tek
+     katman, --mx/--my ile taban desene kilitli, SABIT); salinan sey isigin
+     background-position'i. Bunun uc faydasi var: (1) tek maske katmani, yani
+     mask-composite'e ihtiyac yok — eski tarayicilarda da calisir; (2) her
+     karede yalniz bir renk gecisi boyanir, maske kesisimi yeniden
+     hesaplanmaz; (3) eleman transform TASIMAZ, tasisaydi kopya karo tabandan
+     ayrilip cift cizgi yapardi.
+     Genislik = --pool + 2 x (--sweep + --tiltroom): isik lekesinin
+     (background-size = --pool) kutu icinde kayabilecegi pay bu; --tiltroom
+     kaydirma tepkisinin ekledigi fazla yol icin. ⚠️ Konum yuzdesi (kutu -
+     leke) uzerinden cozulur, yani 50% her zaman ORTA demektir ve uzerine
+     eklenen px'ler oldugu gibi gecerlidir — pay artinca hizalama bozulmaz,
+     yalniz leke kenara dayanmadan once daha cok yol bulur. */
+  .kandil-lume {
+    --lume: rgba(158, 126, 52, 0.40);
+    position: absolute;
+    top: calc(var(--drop, 90px) + var(--flameoff, 11px));
+    left: 50%;
+    width: calc(var(--pool, 190px) + 2 * (var(--sweep, 14px) + var(--tiltroom, 24px)));
+    height: var(--pool, 190px);
+    margin-top: calc(var(--pool, 190px) / -2);
+    margin-left: calc((var(--pool, 190px) + 2 * (var(--sweep, 14px) + var(--tiltroom, 24px))) / -2);
+    /* Surukleme/siddetli salinimda havuzun yolu kutudan uzun olabilir;
+       kutu ICI pay (--lumepx, en cok ±--tiltroom) background-position'a,
+       TASAN kisim (--lumeshift) elemanin kendisine gider. Eleman kayinca
+       tasidigi girih kopyasi tabandan gecici ayrisir — isik o an zaten
+       hizli hareket ettigi icin gozle secilemez; yay durulunca kayma 0'a
+       doner ve hizalama kendiliginden geri gelir. Kutuyu buyutmek yerine
+       bu yol secildi: kutu buyuklugu BOSTA her karenin boyama alanidir. */
+    translate: var(--lumeshift, 0px) var(--tilty, 0px);
+    background-image: radial-gradient(circle, var(--lume) 0, var(--lume) 24%, transparent 56%);
+    background-size: var(--pool, 190px) var(--pool, 190px);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    /* ⚠️ Maske konumu, elemanin translate'ini (--lumeshift/--tilty) GERI ALIR:
+       eleman isikla birlikte kayarken tasidigi girih kopyasi sayfaya cakili
+       kalir. Telafisiz halinde desen lambayla birlikte yuruyordu ("arka plan
+       onunla geliyor" bildirimi) — isik desenin USTUNDEN gecmeli, deseni
+       tasimamali. */
+    -webkit-mask-image: var(--girih);
+    -webkit-mask-size: 88px 88px;
+    -webkit-mask-repeat: repeat;
+    -webkit-mask-position: calc(var(--mx, 0px) - var(--lumeshift, 0px)) calc(var(--my, 0px) - var(--tilty, 0px));
+    mask-image: var(--girih);
+    mask-size: 88px 88px;
+    mask-repeat: repeat;
+    mask-position: calc(var(--mx, 0px) - var(--lumeshift, 0px)) calc(var(--my, 0px) - var(--tilty, 0px));
+    animation:
+      lumeDrift var(--dur, 8s) ease-in-out infinite alternate,
+      kandilFlicker var(--flick, 3s) ease-in-out infinite alternate;
+    animation-delay: var(--delay, 0s), 0s;
+  }
+
+  [data-theme="dark"] .kandil-lume { --lume: rgba(217, 185, 112, 0.46); }
+
+  /* ⚠️ UC ANIMASYONDA DA --tiltdeg / --tiltpx TOPLANIYOR. Kaydirma tepkisini
+     JS bu iki degiskenle veriyor; calisan bir animasyonun keyframe'i icindeki
+     ozel deger degistiginde tarayici degeri YENIDEN COZUYOR (olculdu), yani
+     salinim kesilmeden uzerine biniyor. Bu yuzden JS'in transform'a dogrudan
+     yazmasi gerekmiyor — yazsaydi animasyon onu ezerdi.
+     Birine ekleyip otekini unutma: acisi degisen kandilin isigi yerinde
+     kalirsa alevden kopar. */
+  /* --kx/--ky: surukleme sirasinda ip gevseyip esneyebildigi icin lamba
+     artik her zaman "aski etrafinda donme" ile ifade edilemez; bu cift,
+     donme uygulanmadan once tum sarkacin otelenmesidir (bosta 0). */
+  @keyframes kandilSway {
+    from { transform: translate(var(--kx, 0px), var(--ky, 0px)) rotate(calc(7deg + var(--tiltdeg, 0deg))); }
+    to   { transform: translate(var(--kx, 0px), var(--ky, 0px)) rotate(calc(-7deg + var(--tiltdeg, 0deg))); }
+  }
+
+  /* Kavis, ucun gittigi yonun TERSINE sarkar (ip ucu ceker, govde geride
+     kalir). from = tip solda → belly saga. */
+  @keyframes ropeBow {
+    from { d: path("M10 0 C 14.6 26, 14.6 72, 10 100"); }
+    to   { d: path("M10 0 C 5.4 26, 5.4 72, 10 100"); }
+  }
+
+  /* ─────────── Canli ip (tutulan lamba) ───────────
+     Tutulan lambanin ipi verlet zinciriyle JS'te cizilir (nokta zinciri +
+     mesafe kisiti; esin: guerrillacontra'nin verlet ip deneyi). CSS ipi bu
+     sirada yalniz GORUNMEZ yapilir — visibility animasyon saatini
+     SIFIRLAMAZ (display sifirlar!), birakista CSS ipi hic dokunulmamis
+     fazinda geri gelir ve salinimla senkronu bozulmaz. */
+  .kandil-rig .rope-live {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    pointer-events: none;
+    fill: none;
+    stroke: var(--green-soft);
+    stroke-width: 1;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    opacity: calc(0.25 * var(--dim, 1));
+  }
+  [data-theme="dark"] .kandil-rig .rope-live { opacity: calc(0.3 * var(--dim, 1)); }
+  .kandil-rig.grabbed .rope-live { display: block; }
+  .kandil-rig.grabbed .kandil .rope { visibility: hidden; }
+
+  /* rotate(+) sarkacin ucunu SOLA goturur (y ekseni asagi bakar, pozitif aci
+     saat yonu) — drift'in from'u bu yuzden eksi genlik. */
+  /* --tilty: alevin DIKEY kaymasi. Kucuk acida onemsiz (7 derecede 0,4px)
+     ama suruklemede alev yay uzerinde 50-90px yukselir; yalniz yatay kanal
+     tasindiginda isik asagida kalip alevden kopuyordu (kullanici bildirimi,
+     18 Agu 2026, ikinci tur). */
+  @keyframes kandilDrift {
+    from { transform: translate(calc(var(--amp, 8px) * -1 + var(--tiltpx, 0px)), var(--tilty, 0px)); }
+    to   { transform: translate(calc(var(--amp, 8px) + var(--tiltpx, 0px)), var(--tilty, 0px)); }
+  }
+
+  /* --lumepx JS'te hesaplanir: kucuk acida tiltpx x 1,6 (koni suprmesi),
+     buyuk acida (surukleme) birebir — 1,6 sabit kalsaydi havuz surklenen
+     alevden 70-90px one kacardi. */
+  @keyframes lumeDrift {
+    from { background-position: calc(50% - var(--sweep, 14px) + var(--lumepx, 0px)) 50%; }
+    to   { background-position: calc(50% + var(--sweep, 14px) + var(--lumepx, 0px)) 50%; }
+  }
+
+  /* Solukluk (--dim) buraya da katilmali: halo ve gol opakligini bu animasyon
+     suruyor, disaridan verilen opacity ezilirdi. */
+  @keyframes kandilFlicker {
+    from { opacity: calc(0.66 * var(--dim, 1)); }
+    to   { opacity: calc(1 * var(--dim, 1)); }
+  }
+
+  /* ─────────── Yeniden dogum ikizleri ───────────
+     Govdeleri asillarla BIREBIR AYNI. Animasyonun ADI degisince tarayici onu
+     sifirdan baslatir — birakis devri bunu bilerek kullanir: sarkacin durdugu
+     acida taban salinimini o aciya denk gelen gecikmeyle YENIDEN baslatir
+     (ayni recalc'ta --delay + ad degisir, ara kare olusmaz). Boylece lamba
+     eski faza "yetismek" zorunda kalmaz; salinim kaldigi yerden buyur.
+     ⚠️ Asil keyframe'i degistirirsen ikizini de degistir. Flicker adlari
+     listede AYNEN kalir — adi degismeyen animasyonun saati korunur. */
+  @keyframes kandilSwayB {
+    from { transform: translate(var(--kx, 0px), var(--ky, 0px)) rotate(calc(7deg + var(--tiltdeg, 0deg))); }
+    to   { transform: translate(var(--kx, 0px), var(--ky, 0px)) rotate(calc(-7deg + var(--tiltdeg, 0deg))); }
+  }
+  @keyframes kandilDriftB {
+    from { transform: translate(calc(var(--amp, 8px) * -1 + var(--tiltpx, 0px)), var(--tilty, 0px)); }
+    to   { transform: translate(calc(var(--amp, 8px) + var(--tiltpx, 0px)), var(--tilty, 0px)); }
+  }
+  @keyframes lumeDriftB {
+    from { background-position: calc(50% - var(--sweep, 14px) + var(--lumepx, 0px)) 50%; }
+    to   { background-position: calc(50% + var(--sweep, 14px) + var(--lumepx, 0px)) 50%; }
+  }
+  @keyframes ropeBowB {
+    from { d: path("M10 0 C 14.6 26, 14.6 72, 10 100"); }
+    to   { d: path("M10 0 C 5.4 26, 5.4 72, 10 100"); }
+  }
+  @keyframes logoGlowLeftB  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes logoGlowRightB { from { opacity: 1; } to { opacity: 0; } }
+
+  .kandil-rig.reborn .kandil { animation-name: kandilSwayB; }
+  .kandil-rig.reborn .kandil-halo { animation-name: kandilDriftB, kandilFlicker; }
+  .kandil-rig.reborn .kandil-lume { animation-name: lumeDriftB, kandilFlicker; }
+  .kandil-rig.reborn .kandil .rope path { animation-name: ropeBowB; }
+  .logo-wrap.gbl::before { animation-name: logoGlowLeftB; }
+  .logo-wrap.gbr::after  { animation-name: logoGlowRightB; }
+
+  [data-theme="dark"] .kandil { opacity: calc(0.6 * var(--dim, 1)); }
+
+  @media (max-width: 900px) {
+    /* Orta cift dar ekranda kenar ve ikon ciftlerinin arasina sikisiyor. */
+    .kandil-rig.kandil-c, .kandil-rig.kandil-d { display: none; }
+  }
+
+  @media (max-width: 560px) {
+    /* Dar ekranda ikon cifti + EN DISTA iki uzun kandil (kullanici istegi,
+       18 Agu). Sureler .hero degiskeninde degisiyor ki logonun kenar
+       parlamasi da ayni ritme gecsin (T ∝ √L). */
+    .hero { --durE: 2.8s; --durF: 3s; --durA: 3.8s; --durB: 3.2s; }
+    .kandil { opacity: calc(0.42 * var(--dim, 1)); }
+    .kandil-rig.kandil-a { inset-inline-start: 4%; --drop: 220px; --lamp: 22px; --pool: 165px; }
+    .kandil-rig.kandil-b { inset-inline-end: 5%;   --drop: 160px; --lamp: 22px; --pool: 150px; }
+    .kandil-rig.kandil-e { inset-inline-start: calc(50% - 98px); --drop: 78px; --pool: 130px; }
+    .kandil-rig.kandil-f { inset-inline-end: calc(50% - 98px);   --drop: 90px; --pool: 140px; }
+  }
+
+  /* ─────────── Cami ufku (footer ustu) ───────────
+     Cizgisel siluet; dolgusuz. Footer'in ust cizgisi zemin gorevi gorur,
+     yapilar o cizginin ustunde durur. Simetrik tasarim → RTL'de aynalama
+     gerektirmez. */
+  .skyline {
+    max-width: 1080px;
+    margin: 44px auto -1px;
+    padding: 0 20px;
+    color: var(--green-soft);
+    opacity: 0.26;
+    pointer-events: none;
+  }
+
+  .skyline svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  }
+
+  [data-theme="dark"] .skyline { opacity: 0.3; }
 
   /* Telefonda hero SIKISIR: amac namaz vakitlerinin ilk ekranda gorunmesi.
      Ziyaretci vakitler icin kaydirmak zorunda kalirsa "burada namaz vakti
@@ -734,6 +1153,82 @@
   .logo-wrap.playing .logo-still { opacity: 0; }
   .logo-still { transition: opacity 0.18s ease; }
 
+  /* ─────────── Logo kenarinda kandil isigi ───────────
+     SUREKLI DEGIL (sabit kenar isigi denendi, "etiket gibi" diye reddedildi):
+     parlama yalniz lamba logoya DOGRU salindigi anda belirir, lamba
+     uzaklasirken soner. Faz kilidi zamanlama esitligiyle kurulur:
+     ::before/::after, dinledigi lambanin --dur/--delay'ini birebir kullanir
+     (degiskenler .hero'da, tek kaynak) — ayni easing + alternate + ayni
+     baslama ani = kayma yapisal olarak imkansiz.
+     ⚠️ DINLENEN CIFT IKONUN YANINDAKI e/f — ve e/f HICBIR genislikte
+     gizlenMEmeli. display:none'dan geri gelen elemanin animasyonu SIFIRDAN
+     baslar; parlamanin degisken takasi ise saati sifirlamaz → kaynak cift
+     bir kez gizlenirse kilit kalici bozulur (iPad dondurmesi 768↔1024 bu
+     tuzaga tam oturur). Dar ekranda gizlenenler a/b ve c/d'dir (onlar
+     parlama surmez, saatlerinin sifirlanmasi zararsiz). Kaynagin ikon
+     BITISIGINDE olmasi ayni zamanda kullanici geri bildirimi: uzak lambalar
+     dinlenirken "yaklasan lambayla isik ayni anda dusmuyor" diye okunuyordu.
+     Yon esleme kandilSway'in isaretinden gelir: rotate(+7deg) ucu SOLA
+     goturur. Yani SOLDAKI lamba logoya "to" karesinde yaklasir (parlama
+     0→1), SAGDAKI lamba "from" karesinde yaklasir (parlama 1→0).
+     ⚠️ Kaydirma tepkisi (--tiltdeg) buraya YANSITILMIYOR: etkisi ±4 derece
+     ve gecici; iki keyframe'e katmak icin opaklige derece karistirmak
+     gerekirdi. Kabul edilen sadelestirme.
+     z-index: 1 sart — logo <img>'leri inset:0 kapliyor, ::before varsayilan
+     boyamada onlarin ALTINDA kalip hic gorunmez. */
+  .logo-wrap::before,
+  .logo-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .logo-wrap::before {
+    background: radial-gradient(90% 75% at 0% 40%, rgba(217, 185, 112, 0.32), rgba(217, 185, 112, 0.09) 46%, transparent 68%);
+    animation: logoGlowLeft var(--durE, 4s) ease-in-out infinite alternate;
+    animation-delay: var(--delE, 0s);
+  }
+
+  .logo-wrap::after {
+    background: radial-gradient(90% 75% at 100% 40%, rgba(217, 185, 112, 0.32), rgba(217, 185, 112, 0.09) 46%, transparent 68%);
+    animation: logoGlowRight var(--durF, 4s) ease-in-out infinite alternate;
+    animation-delay: var(--delF, 0s);
+  }
+
+  /* RTL'de fiziksel kenarlar takaslanir (e saga, f sola gecer) ama donusun
+     isareti degismez: fiziksel soldaki lamba yine "to" karesinde, sagdaki
+     yine "from" karesinde logoya yaklasir. Keyframe'ler AYNEN kalir, yalniz
+     zamanlamalar takaslanir. dir degisimi display'e dokunmadigi icin
+     animasyon saatleri sifirlanmaz, kilit bozulmaz. */
+  html[dir="rtl"] .logo-wrap::before { animation-duration: var(--durF, 4s); animation-delay: var(--delF, 0s); }
+  html[dir="rtl"] .logo-wrap::after  { animation-duration: var(--durE, 4s); animation-delay: var(--delE, 0s); }
+
+  @keyframes logoGlowLeft  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes logoGlowRight { from { opacity: 1; } to { opacity: 0; } }
+
+  /* Gezici isik lekesi: lamba ikona YAKLASTIRILINCA, alevin ikon yuzeyindeki
+     EN YAKIN noktasina konan radyal isik (JS konumlar: kandilMotion →
+     glowBoost). Kenar degradelerinin aksine SABIT DEGIL — ust dahil her
+     kenari aydinlatabilir ("ikonun ust tarafi hic aydinlanmiyor" bildirimi).
+     overflow:hidden lekeyi karonun icine kirpar: kenara konan lekenin gorunen
+     yarisi tam olarak "yuzeye vuran isik" okunusu verir. Bosta opaklik 0. */
+  .logo-spot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 190px;
+    height: 190px;
+    margin: -95px 0 0 -95px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    background: radial-gradient(circle, rgba(217, 185, 112, 0.55) 0, rgba(217, 185, 112, 0.22) 34%, transparent 68%);
+  }
+
   /* ─────────── Galeri oklari (yalniz genis ekran) ─────────── */
   .shots-nav {
     display: none;
@@ -862,6 +1357,9 @@
     .card:hover, .shot:hover, .store-badge:hover { transform: none; }
     .store-badge:hover svg, .store-badge:focus-visible svg { transform: none; }
     .pc-spinner { animation: none; }
+    .kandil, .kandil-halo, .kandil-lume, .kandil .rope path { animation: none; }
+    /* Parlamanin dinlenme degeri opacity:0 → animasyonsuz gorunmez, dogru. */
+    .logo-wrap::before, .logo-wrap::after { animation: none; }
     html.theme-anim * { transition: none !important; }
   }
 
@@ -1401,7 +1899,8 @@
     }
     body { background: #fff; }
     body::before { display: none; }
-    #printBtn, .lightbox, .cp-overlay, .theme-toggle { display: none !important; }
+    body::after { display: none; }
+    #printBtn, .lightbox, .cp-overlay, .theme-toggle, .kandil-rig, .skyline { display: none !important; }
     body.print-month header.site, body.print-month .hero, body.print-month .shots,
     body.print-month .features, body.print-month .closing, body.print-month footer.site,
     body.print-month .today-head, body.print-month .today-grid, body.print-month .tanzil-note {
@@ -1458,6 +1957,77 @@
   <div class="container" id="top">
 
     <section class="hero">
+      <!-- Kandil askisi: yalniz susleme, iceriksiz.
+           Lamba cizimi tek <symbol>, dort rig onu <use> ile cagirir.
+           Rig icinde sira onemli: lume (en altta) → halo → kandil.
+           ⚠️ Ipin attribute d'si DUZ; kavis CSS'te (animasyonlu `d`), yani
+           `d` ozelligini desteklemeyen tarayicida ip duz kalir, kirilmaz. -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="kandilLamp" viewBox="0 0 24 34">
+          <circle cx="12" cy="2.4" r="1.7"/>
+          <path d="M12 4.1v2.4"/>
+          <path d="M8.6 9.6c0-1.9 1.5-3.1 3.4-3.1s3.4 1.2 3.4 3.1"/>
+          <path d="M7.6 9.6h8.8"/>
+          <path d="M8.4 9.6c-.5 4 .8 6.4 1.7 8.2M15.6 9.6c.5 4-.8 6.4-1.7 8.2"/>
+          <path d="M10.1 17.8h3.8"/>
+          <path d="M12 17.8v2.6"/>
+          <circle cx="12" cy="21.6" r="1.1"/>
+          <!-- ⚠️ Alevin rengi sunum ozniteligiyle de yazili: <use> icerigi golge
+               agacina klonlanir ve `.kandil .flame` secicisinin oraya isleyecegi
+               garanti degil. Oznitelik CSS'ten dusuk oncelikli, yani seciciyi
+               ezmez; yalniz islemedigi durumda alev yesil bir cember olarak
+               cizilmesin diye duruyor. -->
+          <circle class="flame" cx="12" cy="13" r="1.9" fill="#d9b970" stroke="none" opacity="0.75"/>
+        </symbol>
+      </svg>
+      <span class="kandil-rig kandil-a" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
+      <span class="kandil-rig kandil-c" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
+      <span class="kandil-rig kandil-d" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
+      <span class="kandil-rig kandil-b" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
+      <span class="kandil-rig kandil-e" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
+      <span class="kandil-rig kandil-f" aria-hidden="true">
+        <span class="kandil-lume"></span>
+        <span class="kandil-halo"></span>
+        <span class="kandil">
+          <svg class="rope" viewBox="0 0 20 100" preserveAspectRatio="none"><path d="M10 0 L10 100"/></svg>
+          <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
+        </span>
+      </span>
       <div class="logo-wrap reveal" id="logoWrap">
         <img src="icon-anim-still.png" alt="Manevi Halka" class="logo-still">
         <!-- ⚠️ src YOK, data-src VAR: 215 KB'lik gif ilk boyamayi bekletmesin.
@@ -1534,7 +2104,7 @@
        ver, sonra anlat. Hero'dan buraya tasinan aciklama cumlesi. -->
   <div class="container">
     <section class="intro">
-      <h2 class="section-title reveal" data-i18n="introTitle">What is Manevi Halka</h2>
+      <h2 class="section-title reveal" data-i18n="introTitle">What is the Manevi Halka app</h2>
       <p class="intro-lead reveal" data-i18n="taglineSub">Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.</p>
     </section>
   </div>
@@ -1663,6 +2233,34 @@
   </div>
   </main>
 
+  <!-- Cami ufku: cizgisel siluet, footer'in ust cizgisi zemin olur -->
+  <div class="skyline" aria-hidden="true">
+    <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax meet">
+      <!-- buyuk kubbe + alem -->
+      <path d="M538 150 V116 C538 80 562 60 600 60 C638 60 662 80 662 116 V150"/>
+      <path d="M600 60 V47"/>
+      <circle cx="600" cy="42.5" r="3.5"/>
+      <!-- yan kubbeler -->
+      <path d="M484 150 V132 C484 116 496 108 511 108 C526 108 538 116 538 132"/>
+      <path d="M662 132 C662 116 674 108 689 108 C704 108 716 116 716 132 V150"/>
+      <!-- sol minare -->
+      <path d="M424 150 V62 M436 150 V62"/>
+      <path d="M420 100 H440 M420 93 H440"/>
+      <path d="M424 62 L430 36 L436 62"/>
+      <path d="M430 36 V28"/>
+      <circle cx="430" cy="25" r="2"/>
+      <!-- sag minare -->
+      <path d="M764 150 V62 M776 150 V62"/>
+      <path d="M760 100 H780 M760 93 H780"/>
+      <path d="M764 62 L770 36 L776 62"/>
+      <path d="M770 36 V28"/>
+      <circle cx="770" cy="25" r="2"/>
+      <!-- uzak kucuk kubbeler -->
+      <path d="M312 150 V140 C312 130 320 124 330 124 C340 124 348 130 348 140 V150"/>
+      <path d="M852 150 V140 C852 130 860 124 870 124 C880 124 888 130 888 140 V150"/>
+    </svg>
+  </div>
+
   <div class="container">
     <footer class="site">
       <p class="lang-line">
@@ -1738,7 +2336,7 @@
       h1sub: "Birlikte hatim, Cevşen ve zikir halkaları",
       taglineSub: "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Namaz vakitleri, kıble ve zikir sayacı da aynı uygulamada.",
       todayTitle: "Namaz vakitleri ve günün ayeti",
-      introTitle: "Manevi Halka nedir",
+      introTitle: "Manevi Halka uygulaması nedir",
       get: "İndir",
       shotsHint: "Kaydırarak uygulamayı gez",
       featuresTitle: "Neler var",
@@ -1778,7 +2376,7 @@
       h1sub: "Shared khatm, Jawshan and dhikr circles",
       taglineSub: "Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.",
       todayTitle: "Prayer times and the verse of the day",
-      introTitle: "What is Manevi Halka",
+      introTitle: "What is the Manevi Halka app",
       get: "Download",
       shotsHint: "Swipe to explore the app",
       featuresTitle: "What's inside",
@@ -1818,7 +2416,7 @@
       h1sub: "Chatma, Dschauschan und Dhikr gemeinsam",
       taglineSub: "Teile die Dschus in deinem Kreis, lest reihum, vollendet die Chatma gemeinsam. Gebetszeiten, Qibla und Dhikr-Zähler sind in derselben App.",
       todayTitle: "Gebetszeiten und Vers des Tages",
-      introTitle: "Was ist Manevi Halka",
+      introTitle: "Was ist die Manevi-Halka-App",
       get: "Laden",
       shotsHint: "Wische, um die App zu entdecken",
       featuresTitle: "Was drinsteckt",
@@ -1858,7 +2456,7 @@
       h1sub: "Khatma, Jawshan et dhikr, ensemble",
       taglineSub: "Répartis les juz dans ton cercle, lisez à tour de rôle, terminez la khatma ensemble. Les heures de prière, la qibla et un compteur de dhikr sont dans la même application.",
       todayTitle: "Heures de prière et verset du jour",
-      introTitle: "Qu'est-ce que Manevi Halka",
+      introTitle: "Qu'est-ce que l'application Manevi Halka",
       get: "Télécharger",
       shotsHint: "Fais glisser pour découvrir l'appli",
       featuresTitle: "Ce que tu y trouves",
@@ -2273,6 +2871,688 @@
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  // ── Kandil isik golu hizalamasi ──
+  // .kandil-lume zemindeki girih karosunun hizali bir kopyasini tasir; karo
+  // body::after'da body kutusunun sol ustunden doser (88px). Buradaki isin
+  // tamami: elemanin body'ye gore konumunu olcup desen katmanini ayni faza
+  // cekmek. Olcum bir kez + resize'da — kare basina is YOK (eleman transform
+  // tasimaz, rect animasyonda degismez).
+  function alignLume() {
+    var bodyBox = document.body.getBoundingClientRect();
+    var lumes = document.querySelectorAll(".kandil-lume");
+    for (var li = 0; li < lumes.length; li++) {
+      var r = lumes[li].getBoundingClientRect();
+      var dx = r.left - bodyBox.left;
+      var dy = r.top - bodyBox.top;
+      lumes[li].style.setProperty("--mx", (-(dx % 88)) + "px");
+      lumes[li].style.setProperty("--my", (-(dy % 88)) + "px");
+    }
+  }
+  alignLume();
+
+  // ── Kandil hareketi: kaydirma tepkisi + tutup sallama ──
+  // Iki giris kaynagi (kaydirma itkisi, isaretciyle surukleme) TEK yay
+  // sistemine akar; yay --tiltdeg/--tiltpx/--lumepx/--lumeshift yazar,
+  // CSS keyframe'leri bunlari kendi tabanlarina EKLER.
+  // ⚠️ TASARIMIN CEKIRDEGI: animasyonlar HICBIR ZAMAN durdurulmaz.
+  // Surukleme "hedef aci - o anki taban acisi" FARKI olarak yazilir
+  // (taban = olculen toplam aci - son yazilan fark). Animasyon durdurulup
+  // birakista yeniden baslatilsaydi o elemanin saati sifirlanir, logo
+  // parlamasinin faz kilidi ILK suruklemede kalici bozulurdu.
+  // Maliyet: rAF yalniz kaydirma/surukleme ve sonumleme boyunca doner,
+  // sonra kendini kapatir; hero gorunmuyorken hic baslamaz.
+  (function kandilMotion() {
+    var rigs = [].slice.call(document.querySelectorAll(".kandil-rig"));
+    if (!rigs.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var IMPULSE = 0.004;   // kaydirilan her px'in hiza kattigi aci
+    var TICK = 1000 / 60;  // yay HER ZAMAN 60 Hz adimla cozulur, bkz. step()
+    var LUME_ROOM = 24;    // havuzun kutu ICI payi — CSS --tiltroom ile AYNI
+    var logoWrap = document.querySelector(".logo-wrap");
+
+    var springs = rigs.map(function (rig, i) {
+      return {
+        rig: rig,
+        kandil: rig.querySelector(".kandil"),
+        lamp: rig.querySelector(".lamp"),
+        pos: 0, vel: 0, held: false,
+        morph: null, kxW: 0, kyW: 0, thd: 0,
+        k: 0.052 + i * 0.007,   // sertlik: her kandil biraz farkli tepki versin
+        damp: 0.885 - i * 0.012,
+        reach: 1, arm: 100
+      };
+    });
+
+    var iconCX = 0, iconCY = 0, iconRect = null, spot = null;
+    if (logoWrap) {
+      spot = document.createElement("span");
+      spot.className = "logo-spot";
+      spot.setAttribute("aria-hidden", "true");
+      logoWrap.appendChild(spot);
+    }
+    function measure() {
+      if (logoWrap) {
+        var lr = logoWrap.getBoundingClientRect();
+        iconCX = lr.left + lr.width / 2;
+        iconCY = lr.top + lr.height / 2;
+        iconRect = { l: lr.left, t: lr.top, r: lr.right, b: lr.bottom };
+      }
+      // ⚠️ BASLIK CARPISMASI DENENDI VE GERI ALINDI (18 Agu, ayni gun):
+      // kullanici istemisti ama uzun ipli lambalarin dinlenme noktasi tam
+      // baslik bandinin ALTINA dusuyor — yukari kaldirilan lamba basligin
+      // alt yuzeyine takilip kaliyordu ("yukari kaydirma kisitlanmis").
+      // Kati cisim yalniz IKON. Geri eklenecekse once uzun lambalarin
+      // basligin altinda dogdugu gercegiyle yuzles.
+      springs.forEach(function (s) {
+        var cs = getComputedStyle(s.rig);
+        var drop = parseFloat(cs.getPropertyValue("--drop")) || 90;
+        var lamp = parseFloat(cs.getPropertyValue("--lamp")) || 24;
+        s.drop = drop;                     // ip boyu (canli ip bunu kullanir)
+        s.arm = drop + lamp * 0.5417 - 2;  // alev merkezinin askiya uzakligi
+        s.reach = Math.min(1, s.arm / 188);
+        s.durS = parseFloat(getComputedStyle(s.kandil).animationDuration) || 4; // devir gecikme cozumu icin
+        var rr = s.rig.getBoundingClientRect();
+        s.ax = rr.left + rr.width / 2;     // aski (dunya koordinati)
+        s.ay = rr.top;
+        // Leke referansi: alev DINLENMEDEYKEN ikon YUZEYINE uzakligi. Isik
+        // bu uzakliktan yaklasilan pay uzerinden acilir → bosta tam 0,
+        // kilitli kenar parlamasina dokunmaz.
+        if (iconRect) {
+          var rfx = s.ax, rfy = s.ay + s.arm;
+          var rqx = Math.max(iconRect.l, Math.min(iconRect.r, rfx));
+          var rqy = Math.max(iconRect.t, Math.min(iconRect.b, rfy));
+          s.restSurf = Math.sqrt(Math.pow(rfx - rqx, 2) + Math.pow(rfy - rqy, 2));
+        }
+      });
+    }
+    measure();
+
+    // Kucuk acida isik golu alevin 1,6 kati yol alir (isik konisinin
+    // suprmesi; birebir olsa hareket 88px'lik karo yaninda kayboluyordu).
+    // Buyuk acida (surukleme) birebire iner — 1,6 sabit kalsaydi havuz
+    // surklenen alevden 70-90px one kacardi. Gecis surekli, sicrama yok.
+    function lumeFactor(deg) {
+      var a = Math.abs(deg);
+      if (a <= 5) return 1.6;
+      if (a >= 15) return 1.0;
+      return 1.6 - 0.6 * (a - 5) / 10;
+    }
+
+    // ⚠️ Eski tanh doygunlugu KALDIRILDI: cikisi 4°'ye sikistiriyordu, oysa
+    // surukleme 70°'ye cikabilmeli (kirpilsaydi birakista lamba ziplardi).
+    // Kaydirmanin asirilarini artik itki kucuklugu + acida sertlesen yay
+    // sinirlar (asagida k carpani) — buyuk acida ip "gerilir".
+    function write(s) {
+      var deg = s.pos;
+      // ⚠️ ISARET: rotate(+) ucu SOLA goturur (y ekseni asagi), yani +1° lik
+      // fark isigi -x'e tasimali. Taban animasyonda bu terslik keyframe'lerde
+      // yapisal cozulur (sway from=+7 ↔ drift from=-amp); fark kanalinda
+      // buradaki eksiyle cozulur. Eksi unutulunca isik surklemenin TERSINE
+      // kacti (kullanici bildirimi, 18 Agu 2026) — kaydirmada 1-3 derecede
+      // gorunmuyordu, suruklemede aciga cikti.
+      var rad = deg * Math.PI / 180;
+      var px = -s.arm * Math.sin(rad);
+      var py = s.arm * (Math.cos(rad) - 1); // alev yayda YUKARI da cikar
+      setLight(s, deg, px, py);
+    }
+
+    // Isik kanallarinin tek yazicisi — hem aci-yayi hem serbest uc (surukleme)
+    // buradan gecer, iki yol ayrisamaz.
+    // exactBase verilirse (zincir yolu): px MUTLAK alev sapmasidir ve
+    // keyframe'lerin o anki TABAN terimi (halo -amp·B/7, havuz -1,6amp·B/7)
+    // DUSULEREK yazilir; dusulmezse isik alev cevresinde taban salinimi
+    // genligiyle (±11-21px) geziniyordu ("isik hizali durmuyor" bildirimi).
+    // exactBase yokken (kaydirma yayi, kucuk aci): taban terimi keyframe'le
+    // zaten ortusur, havuz 1,6 kat yol alir (koni yanilsamasi).
+    function setLight(s, deg, px, py, exactBase) {
+      var tiltpx, lumeTotal;
+      if (exactBase === undefined) {
+        tiltpx = px;
+        lumeTotal = px * lumeFactor(deg);
+      } else {
+        var amp = s.arm * 0.12187; // sin(7°) — keyframe genligi
+        tiltpx = px + amp * (exactBase / 7);
+        lumeTotal = px + 1.6 * amp * (exactBase / 7);
+      }
+      var inBox = Math.max(-LUME_ROOM, Math.min(LUME_ROOM, lumeTotal));
+      s.rig.style.setProperty("--tiltdeg", deg.toFixed(3) + "deg");
+      // ⚠️ Buraya px DEGIL tiltpx yazilir. Bir kez px yazildi ve taban
+      // telafisi olu degisken kaldi: halo gercek tarayicida taban genligiyle
+      // (±12px) geziniyordu. Panel olcumu yakalayamadi cunku gizli sekmede
+      // CSS animasyonlari da donuk — taban terimi sabitken hata sabit ve
+      // kucuk gorunur. Boyle bir suphede once tabani hareket ettirerek olc.
+      s.rig.style.setProperty("--tiltpx", tiltpx.toFixed(2) + "px");
+      s.rig.style.setProperty("--tilty", py.toFixed(2) + "px");
+      s.rig.style.setProperty("--lumepx", inBox.toFixed(2) + "px");
+      s.rig.style.setProperty("--lumeshift", (lumeTotal - inBox).toFixed(2) + "px");
+      glowBoost(s, px, py);
+    }
+
+    // Gezici isik lekesi — FIZIKSEL: HERHANGI bir lambanin alevi ikona
+    // yaklastirilinca, leke alevin ikon YUZEYINDEKI en yakin noktasina konur
+    // (ust kenar dahil — sabit kenar degradeleri usttekini hic
+    // aydinlatamiyordu, kullanici bildirimi 18 Agu 2026). Parlaklik IKI
+    // kosulun kucugu: (a) dinlenmeden ne kadar yaklasildi (bosta tam 0
+    // garantisi), (b) yuzeye gercek yakinlik (uzaktaki dev lambanin kucuk
+    // kipirdanisi ikonu yakmasin). Sahiplik: lekeyi son yakan rig soner;
+    // sahipsiz sifirlama olsaydi bostaki rig surklenenin isigini ezerdi.
+    var spotOwn = null;
+    function glowBoost(s, px, py) {
+      if (!spot || !iconRect || s.restSurf === undefined) return;
+      var fxw = s.ax + px, fyw = s.ay + s.arm + py; // alevin dunya konumu
+      var qx = Math.max(iconRect.l, Math.min(iconRect.r, fxw));
+      var qy = Math.max(iconRect.t, Math.min(iconRect.b, fyw));
+      var dSurf = Math.sqrt(Math.pow(fxw - qx, 2) + Math.pow(fyw - qy, 2));
+      var boost = Math.max(0, Math.min(1, Math.min((s.restSurf - dSurf) / 60, (140 - dSurf) / 90)));
+      if (boost > 0.01) {
+        spotOwn = s;
+        spot.style.opacity = boost.toFixed(3);
+        spot.style.transform = "translate(" + (qx - iconRect.l).toFixed(1) + "px, " + (qy - iconRect.t).toFixed(1) + "px)";
+      } else if (spotOwn === s) {
+        spot.style.opacity = "0";
+        spotOwn = null;
+      }
+    }
+
+    var pending = 0, running = false, visible = true, lastY = window.scrollY;
+    var lastT = 0, acc = 0;
+    var drag = null; // {s, pid, vel, lastTilt, lastT}
+
+    function kick() {
+      if (!running && visible) { running = true; lastT = 0; requestAnimationFrame(step); }
+    }
+
+    // ⚠️ Sonumleme SABIT 60 Hz adimla cozulur, kare basina DEGIL: kare basina
+    // cozulseydi 120 Hz ekranda (ProMotion) salinim yariya inen surede
+    // sonerdi. Gecen sure biriktirilip tam adimlara bolunuyor; ust sinir,
+    // sekmeye geri donuldugunde biriken surenin patlamasini onluyor.
+    function step(now) {
+      var dt = lastT ? Math.min(now - lastT, 120) : TICK;
+      lastT = now;
+      acc += dt;
+      var ticks = 0;
+      while (acc >= TICK && ticks < 8) { acc -= TICK; ticks++; }
+
+      var impulse = pending * IMPULSE;
+      pending = 0;
+      var moving = false;
+
+      for (var i = 0; i < springs.length; i++) {
+        var s = springs[i];
+        if (s.ropeActive) { moving = true; continue; } // zincir fizigi devrede
+        if (s.morph) {
+          // Birakis morfu: fizik salinimi DURDURULMAZ (eski kurgu "dur,
+          // sonra taban salinimini yeniden buyut" idi ve "bir anda eski
+          // salinimina geri donuyor" diye reddedildi). Zincirden devralinan
+          // aci+hiz tek eksenli sarkac olarak surmeye devam eder; ekrana
+          // cizilen aci, fizik ile tabanin AGIRLIKLI ORTALAMASIDIR ve
+          // agirlik ~2,5 saniyede fizikten tabana akar. Her terim surekli
+          // oldugu icin geciste kirilma MATEMATIKSEL olarak imkansiz.
+          moving = true;
+          var m = s.morph;
+          var bb2 = baseAngle(s);
+          var dec = m.fast ? 0.9 : 0.975; // devir sonrasi kalinti hizli iner
+          for (var tb2 = 0; tb2 < ticks; tb2++) {
+            var alpha = -(0.45 / s.arm) * Math.sin(m.th); // sarkac ivmesi (rad/tik²)
+            m.om = (m.om + alpha) * 0.99;
+            m.th += m.om;
+            m.w *= dec;
+          }
+          if (m.w < 0.02) {
+            s.morph = null; s.pos = 0; s.vel = 0;
+            s.rig.style.setProperty("--kx", "0px");
+            s.rig.style.setProperty("--ky", "0px");
+            write(s);
+          } else {
+            s.pos = m.w * (m.th * 180 / Math.PI - bb2);
+            s.vel = 0;
+            s.rig.style.setProperty("--kx", (m.kx0 * m.w).toFixed(2) + "px");
+            s.rig.style.setProperty("--ky", (m.ky0 * m.w).toFixed(2) + "px");
+            write(s);
+          }
+          continue;
+        }
+        s.vel += impulse * s.reach;
+        for (var t = 0; t < ticks; t++) {
+          // Acida sertlesen yay: buyuk savrulmada ip gerilmis gibi toparlar.
+          var k = s.k * (1 + Math.pow(Math.abs(s.pos) / 30, 2));
+          // Sonum de aciya bagli: buyuk acida hafif (birakilan lamba birkac
+          // kez GERCEKTEN salinsin — sabit 0.885 ile 45°'den 400 ms'de
+          // oturuyordu, cansiz), kuculdukce tabana doner ve sakin oturur.
+          var damp = Math.min(0.975, s.damp + Math.abs(s.pos) * 0.004);
+          s.vel = (s.vel - k * s.pos) * damp;
+          s.pos += s.vel;
+        }
+        if (s.pos > 80) { s.pos = 80; s.vel = 0; }
+        else if (s.pos < -80) { s.pos = -80; s.vel = 0; }
+        if (Math.abs(s.pos) > 0.015 || Math.abs(s.vel) > 0.015) moving = true;
+        write(s);
+      }
+
+      // Canli zincirler: tutulanda ve birakis salinimida her kare islenir.
+      for (var ri = 0; ri < springs.length; ri++) {
+        var rs = springs[ri];
+        if (!rs.ropeActive) continue;
+        ropeTick(rs, Math.max(1, ticks));
+        bobWrite(rs);
+        if (!rs.held) {
+          // Devir ani: sarkacin TEPE noktasi (hiz isaret degistirir) ve tepe
+          // acisi taban genligi civarindayken (≤7,5°), taban salinimi TAM O
+          // ACIDAN yeniden baslatilir (asagida). Boylece lamba eski faza
+          // "yetismek" zorunda kalmaz — onceki morf kurgusu eski faza
+          // baglaniyordu ve "durduktan sonra sert basliyor, ilk yeri bir
+          // anda degisiyor" diye reddedildi. Konum birebir, hiz iki tarafta
+          // da ~0 (tepe = donus ani; taban da uclarinda yavastir).
+          var dth = rs.thPrev === undefined ? 0 : (rs.thd - rs.thPrev) / Math.max(1, ticks);
+          rs.freeT = (rs.freeT || 0) + ticks;
+          var tepe = rs.thPrev !== undefined && rs.dthPrev !== undefined && dth !== 0 && (dth > 0) !== (rs.dthPrev > 0);
+          if (dth !== 0) rs.dthPrev = dth;
+          rs.thPrev = rs.thd;
+          var taut = Math.abs(rs.kxW) < 6 && Math.abs(rs.kyW) < 8;
+          if (tepe && Math.abs(rs.thd) <= 7.5 && taut && rs.freeT > 20) {
+            rebase(rs);
+          } else if (rs.freeT > 600) {
+            // 10 sn'de uygun tepe cikmadi (ornegin lamba tamamen durdu):
+            // devir orta bacaktan yapilsa "aniden harekete baslama" hissi
+            // geri gelirdi — durgun lambayi eski faza YAVAS morf baglar.
+            rs.morph = { w: 1, th: rs.thd * Math.PI / 180, om: (rs.dthPrev || 0) * Math.PI / 180, kx0: rs.kxW, ky0: rs.kyW };
+            ropeStop(rs);
+          }
+        }
+      }
+
+      if (moving && visible) { requestAnimationFrame(step); return; }
+      running = false;
+      lastT = 0; acc = 0;
+      for (var j = 0; j < springs.length; j++) {
+        springs[j].pos = 0; springs[j].vel = 0; springs[j].morph = null;
+        springs[j].rig.style.setProperty("--kx", "0px");
+        springs[j].rig.style.setProperty("--ky", "0px");
+        write(springs[j]);
+        ropeStop(springs[j]); // yay durulunca CSS ipi kaldigi fazdan devralir
+      }
+    }
+
+    window.addEventListener("scroll", function () {
+      var y = window.scrollY;
+      pending += y - lastY;
+      lastY = y;
+      kick();
+    }, { passive: true });
+
+    // ── Canli ip (verlet) ──
+    // Tutulan lambanin ipi duz cizgi degil GERCEK ip: nokta zinciri +
+    // mesafe kisiti (esin: guerrillacontra'nin verlet ip deneyi,
+    // codepen.io/guerrillacontra/pen/XPZeww). Lamba zincirin SON noktasidir:
+    // tutulurken o nokta isaretcide mihli (yukari kaldirinca ip gevser,
+    // cekince asagidaki esneme payi kadar uzar), birakilinca agir serbest
+    // nokta olur ve sarkac hareketi zincirin fiziginden DOGAR. Lambanin
+    // donusu ve isik, son parcanin yonunden turetilip mevcut fark
+    // kanallarina yazilir — animasyonlar yine hic durdurulmaz.
+    var ROPE_UP = 64; // askinin ustune kaldirma payi (viewBox tepesi)
+
+    // Tek dikdortgenle SUREKLI carpisma. Iki durum:
+    // (a) yeni konum kutunun icinde → onceki konumun gectigi yuzeye geri
+    //     alinir, o yuzey boyunca kayma serbest;
+    // (b) yeni konum disarida ama YOL kutudan geciyor (kose ustunden gecis,
+    //     hizli fiske) → nokta girdigi yuzeyde hedefe dogru en fazla KOSEYE
+    //     kadar kaydirilir; sonraki adimda yol temizse kendiliginden kurtulur
+    //     → koseyi dolanma bu iki adimdan DOGAR.
+    // Onceki iki deneme ve dersleri: "en yakin kenara it" kosede isinlatiyor
+    // (en yakin kenar kare kare degisiyor); "yalniz uc-nokta-iceride testi"
+    // kose uzerinden gecen yolu gormuyor ve lamba kutunun bir yanindan
+    // otekine atliyordu ("kosede takilma/kayma" bildirimleri, 18 Agu).
+    function collideRect(pt, L2, T2, R2, B2) {
+      var cx = pt.x, cy = pt.y, px = pt.ox, py = pt.oy;
+      var mdx = cx - px, mdy = cy - py;
+      var inside = cx > L2 && cx < R2 && cy > T2 && cy < B2;
+      if (!inside) {
+        // ⚠️ ONCEKI konum icerideyse nokta KACIYOR demektir — engelleme!
+        // Bu kosul olmadan cikis yolu da "kutudan geciyor" sayilip nokta
+        // geriye, sozde giris yuzeyine isinlaniyordu (izlemede yakalandi:
+        // iceriden cikan uc 149px geri firlatildi).
+        if (px > L2 && px < R2 && py > T2 && py < B2) return;
+        // yol kutudan geciyor mu? (slab kesisimi)
+        var t0x = -1e9, t1x = 1e9, t0y = -1e9, t1y = 1e9, ta, tb;
+        if (mdx !== 0) { ta = (L2 - px) / mdx; tb = (R2 - px) / mdx; t0x = Math.min(ta, tb); t1x = Math.max(ta, tb); }
+        else if (px <= L2 || px >= R2) return;
+        if (mdy !== 0) { ta = (T2 - py) / mdy; tb = (B2 - py) / mdy; t0y = Math.min(ta, tb); t1y = Math.max(ta, tb); }
+        else if (py <= T2 || py >= B2) return;
+        var tEnter = Math.max(t0x, t0y), tExit = Math.min(t1x, t1y);
+        if (tEnter >= tExit || tExit <= 0 || tEnter >= 1) return; // kesismiyor
+        if (t0x > t0y) {
+          pt.x = mdx > 0 ? L2 : R2;
+          pt.y = Math.max(T2, Math.min(B2, cy)); // yuzeyde, en fazla koseye
+        } else {
+          pt.y = mdy > 0 ? T2 : B2;
+          pt.x = Math.max(L2, Math.min(R2, cx));
+        }
+        return;
+      }
+      // icinde: girdigi yuzeye geri, o eksende serbest kayma
+      var tx = mdx > 0 ? (L2 - px) / mdx : (mdx < 0 ? (R2 - px) / mdx : -1);
+      var ty = mdy > 0 ? (T2 - py) / mdy : (mdy < 0 ? (B2 - py) / mdy : -1);
+      if (tx < 0 || tx > 1) tx = -1;
+      if (ty < 0 || ty > 1) ty = -1;
+      if (tx >= ty && tx >= 0) { pt.x = mdx > 0 ? L2 : R2; return; }
+      if (ty >= 0) { pt.y = mdy > 0 ? T2 : B2; return; }
+      // onceki de icerdeydi (teorik yedek): en yakin kenar
+      var dl = cx - L2, drr = R2 - cx, dtp = cy - T2, dbt = B2 - cy;
+      var mm = Math.min(dl, drr, dtp, dbt);
+      if (mm === dl) pt.x = L2; else if (mm === drr) pt.x = R2;
+      else if (mm === dtp) pt.y = T2; else pt.y = B2;
+    }
+
+    function ropeTick(s, ticks) {
+      var p = s.ropePts, n = p.length, seg = s.drop / (n - 1);
+      for (var t = 0; t < ticks; t++) {
+        // Kuyruk sonumu: uc dinlenmeye yaklasinca surtunme artar; yoksa
+        // kucuk genlikli sallanti 8+ saniye suruyordu (cevrimdisi olculdu).
+        var lpv = p[n - 1];
+        var fric = (!s.held && (Math.abs(lpv.x - s.ropeAx) + Math.abs(lpv.y - s.drop)) < 10) ? 0.95 : 0.985;
+        for (var i = 1; i < n; i++) {
+          if (i === n - 1 && s.held) {
+            // Mihli uc — ISINLANMA DEGIL, tik basina hiz tavaniyla izler.
+            // Duz atama denendi ve kosede patladi: kati cisim yuzeyinde
+            // bekleyen lambayla isaretci arasinda mesafe birikiyor, yol
+            // acildigi anda uc TEK karede 115px atliyordu (cevrimdisi
+            // olculdu). 28px/tik = normal harekette fark edilmez (1680px/s),
+            // kose donusunde surekli, hizli bir savrulmaya donusur.
+            p[i].ox = p[i].x; p[i].oy = p[i].y;
+            var pdx = s.bobX - p[i].x, pdy = s.bobY - p[i].y;
+            var pd = Math.sqrt(pdx * pdx + pdy * pdy);
+            if (pd > 28) { p[i].x += pdx / pd * 28; p[i].y += pdy / pd * 28; }
+            else { p[i].x = s.bobX; p[i].y = s.bobY; }
+            continue;
+          }
+          var vx = (p[i].x - p[i].ox) * fric, vy = (p[i].y - p[i].oy) * fric;
+          p[i].ox = p[i].x; p[i].oy = p[i].y;
+          p[i].x += vx; p[i].y += vy + 0.45; // yercekimi
+        }
+        // 8 gecis (3 DEGIL): az geciste zincir lastik gibi uzuyor ve
+        // dinlenmede gozle gorulur sarkiyordu; referans ip/kumas deneyleri
+        // de (dissimulate, guerrillacontra) coklu gecis kullaniyor.
+        for (var pass = 0; pass < 8; pass++) {
+          for (var j = 0; j < n - 1; j++) {
+            var dx = p[j + 1].x - p[j].x, dy = p[j + 1].y - p[j].y;
+            var d = Math.sqrt(dx * dx + dy * dy) || 1;
+            var diff = (d - seg) / d;
+            // Agirliklar: aski (0) sabit; uc tutuluyorsa sabit, serbestse
+            // AGIR (0.22) — lamba ipin geri kalanindan agir, zincir ona uyar.
+            var wA = (j === 0) ? 0 : 0.5;
+            var wB = (j + 1 === n - 1) ? (s.held ? 0 : 0.22) : 0.5;
+            var tot = wA + wB || 1;
+            p[j].x += dx * diff * (wA / tot); p[j].y += dy * diff * (wA / tot);
+            p[j + 1].x -= dx * diff * (wB / tot); p[j + 1].y -= dy * diff * (wB / tot);
+          }
+        }
+        // KATI CISIM (yalniz ikon): noktalar kutuya giremez, yuzeyde kayar,
+        // koseden DOLANIR (collideRect yukarida). Baslik carpismasi denendi
+        // ve geri alindi — gerekce measure() icindeki uyarida.
+        if (s.cols) {
+          for (var ci = 1; ci < n; ci++) {
+            var pt = p[ci];
+            var rad = (ci === n - 1) ? 9 : 1.5; // uc = lamba govdesi, kalin
+            for (var ri2 = 0; ri2 < s.cols.length; ri2++) {
+              var c = s.cols[ri2];
+              collideRect(pt, c.l - rad, c.t - rad, c.r + rad, c.b + rad);
+            }
+          }
+        }
+      }
+      // Orta noktalardan gecen yumusatilmis yol (poligon kirikligi olmasin).
+      var d2 = "M" + p[0].x.toFixed(1) + " " + p[0].y.toFixed(1);
+      for (var q = 1; q < n - 1; q++) {
+        var mx = (p[q].x + p[q + 1].x) / 2, my = (p[q].y + p[q + 1].y) / 2;
+        d2 += " Q" + p[q].x.toFixed(1) + " " + p[q].y.toFixed(1) + " " + mx.toFixed(1) + " " + my.toFixed(1);
+      }
+      d2 += " L" + p[n - 1].x.toFixed(1) + " " + p[n - 1].y.toFixed(1);
+      s.ropePath.setAttribute("d", d2);
+    }
+
+    // Zincirin durumunu gorsel kanallara cevirir: konum ucun kendisi, donus
+    // ipin GERGINLIGINE gore. ⚠️ Donusu ipin son parcasindan almak DENENDI
+    // ve yanlisti: gevsek ip uca ALTTAN yaklasir, lamba 150°+ donup bas
+    // asagi kaliyordu. Dogrusu: gerginken radyal (ip halkadan ceker, lamba
+    // iple hizalanir), gevsekken lamba tutulan noktadan asagi SARKAR
+    // (hareketten hafif yatma payiyla); ikisi arasinda surekli gecis.
+    function bobWrite(s) {
+      var p = s.ropePts, n = p.length;
+      var bx = p[n - 1].x - s.ropeAx, by = p[n - 1].y;
+      var taut = Math.min(1, Math.sqrt(bx * bx + by * by) / s.drop);
+      var thRad = Math.atan2(-bx, by);
+      var vx = p[n - 1].x - p[n - 1].ox;
+      var thSlack = Math.max(-0.45, Math.min(0.45, -vx * 0.055));
+      var tb = Math.max(0, Math.min(1, (taut - 0.82) / 0.16));
+      var thRaw = thSlack + (thRad - thSlack) * tb;
+      s.thS += (thRaw - s.thS) * 0.35; // kare arasi yumusatma, ani mod gecisi ziplatmasin
+      var th = s.thS;
+      var thd = th * 180 / Math.PI;
+      var bb = baseAngle(s);
+      var tilt = thd - bb;
+      s.thd = thd; // morf gecisi bu aciyi devralir
+      s.pos = tilt; s.vel = 0; // aci-yayi devraldiginda buradan devam eder
+      // Lamba yerlesimi: once otele (--kx/--ky), sonra dondur. Baglanti
+      // noktasi = (kx,ky) + R(th)(0,drop) = uc olacak sekilde cozulur.
+      var kx = bx + s.drop * Math.sin(th);
+      var ky = by - s.drop * Math.cos(th);
+      s.kxW = kx; s.kyW = ky; // devir yumusatmasi kalintiyi buradan okur
+      s.rig.style.setProperty("--kx", kx.toFixed(2) + "px");
+      s.rig.style.setProperty("--ky", ky.toFixed(2) + "px");
+      var fo = s.arm - s.drop; // alevin ip ucundan uzakligi
+      var fx = bx - Math.sin(th) * fo;
+      var fy = by + Math.cos(th) * fo;
+      setLight(s, tilt, fx, fy - s.arm, bb);
+    }
+
+    function ropeStart(s) {
+      if (!s.ropeEl) {
+        var NS = "http://www.w3.org/2000/svg";
+        s.ropeEl = document.createElementNS(NS, "svg");
+        s.ropeEl.setAttribute("class", "rope-live");
+        s.ropePath = document.createElementNS(NS, "path");
+        s.ropeEl.appendChild(s.ropePath);
+        s.rig.appendChild(s.ropeEl);
+      }
+      var W = Math.ceil((s.drop + 40) * 2), H = Math.ceil(s.drop + 110);
+      s.ropeAx = W / 2;
+      s.ropeEl.setAttribute("width", W);
+      s.ropeEl.setAttribute("height", H + ROPE_UP);
+      s.ropeEl.setAttribute("viewBox", "0 " + (-ROPE_UP) + " " + W + " " + (H + ROPE_UP));
+      s.ropeEl.style.top = (-ROPE_UP) + "px";
+      var m = /matrix\(([-\d.e]+), ([-\d.e]+)/.exec(getComputedStyle(s.kandil).transform);
+      var th = m ? Math.atan2(+m[2], +m[1]) : 0;
+      var n = 11; // 8'den fazla nokta: kavis puruzsuz, sarkma dogal
+      s.ropePts = [];
+      for (var i = 0; i < n; i++) {
+        var t = i / (n - 1);
+        var x = s.ropeAx - Math.sin(th) * s.drop * t, y = Math.cos(th) * s.drop * t;
+        s.ropePts.push({ x: x, y: y, ox: x, oy: y });
+      }
+      s.bobX = s.ropePts[n - 1].x;
+      s.bobY = s.ropePts[n - 1].y;
+      s.thS = th; // yon yumusatmasinin baslangici = mevcut aci
+      s.morph = null; // morf surerken yeniden tutulursa zincir devralir
+      // Carpisma kutulari (ikon + baslik metni) ASKIYA GORELI saklanir:
+      // kutular ve aski birlikte kaydigi icin kullanici surukleme sirasinda
+      // sayfayi kaydirsa da dogru kalirlar.
+      var rr2 = s.rig.getBoundingClientRect();
+      var axw = rr2.left + rr2.width / 2, ayw = rr2.top;
+      s.cols = [];
+      if (iconRect) {
+        s.cols.push({ l: iconRect.l - axw + s.ropeAx, t: iconRect.t - ayw, r: iconRect.r - axw + s.ropeAx, b: iconRect.b - ayw });
+      }
+      s.ropeActive = true;
+      s.rig.classList.add("grabbed");
+      ropeTick(s, 1);
+    }
+
+    // Yalniz GORSEL kapanis: canli ip cekilir, CSS ipi geri gelir. Kanallar
+    // SIFIRLANMAZ — kalintilari kisa morf indirir.
+    function ropeStop(s) {
+      if (!s.ropeActive) return;
+      s.ropeActive = false;
+      s.rig.classList.remove("grabbed");
+    }
+
+    // Duzlestirilmis ease-in-out tersi: E(u)=3u²-2u³ icin E(u)=hedef cozumu.
+    // CSS "ease-in-out" bezier'ine yakinsamasi ±%2, aci karsiligi ≤0,3° —
+    // devir eslemesi icin fazlasiyla yeter.
+    function invEase(target) {
+      var u = 0.5;
+      for (var i = 0; i < 5; i++) {
+        var f = 3 * u * u - 2 * u * u * u - target;
+        var df = 6 * u - 6 * u * u;
+        if (df < 0.0001) break;
+        u -= f / df;
+        if (u < 0.001) u = 0.001; else if (u > 0.999) u = 0.999;
+      }
+      return u;
+    }
+
+    // Devir: taban salinimini, sarkacin su anki tepe acisina denk gelen
+    // fazdan YENIDEN baslatir. Ad degisimi (ikiz keyframe) + ayni recalc'ta
+    // --delay → animasyon tam istenen acida, sifir hizla dogar. e/f icin
+    // logonun eslesen parlama sozde-elemani da AYNI recalc'ta ayni gecikmeyle
+    // yeniden dogar — kilit korunur (farkli recalc'ta yapilsa saatler ayrisir).
+    var glowTw = { l: false, r: false };
+    function rebase(s) {
+      var thp = Math.max(-6.95, Math.min(6.95, s.thd));
+      var d;
+      // Bacak secimi YONE gore: sarkac asagi donuyorsa (artidan tepe) taban
+      // inen bacaktan, yukari donuyorsa cikan bacaktan baslar — boylece
+      // konumla birlikte HAREKET YONU de eslesir.
+      var inen = s.dthPrev < 0 || (s.dthPrev === 0 && s.thd >= 0);
+      if (inen) {
+        var u1 = invEase((7 - thp) / 14); // θb(u) = 7 - 14E(u)
+        d = -(u1 * s.durS);
+      } else {
+        var u2 = invEase((thp + 7) / 14); // θb(u) = -7 + 14E(u)
+        d = -((1 + u2) * s.durS);
+      }
+      s.rig.style.setProperty("--delay", d.toFixed(3) + "s");
+      s.rb = !s.rb;
+      s.rig.classList.toggle("reborn", s.rb);
+      // e/f ise: eslesen parlama tarafi (fiziksel taraf dir'e gore degisir)
+      var isE = s.rig.className.indexOf("kandil-e") > -1;
+      var isF = s.rig.className.indexOf("kandil-f") > -1;
+      if ((isE || isF) && logoWrap) {
+        var rtl = document.documentElement.getAttribute("dir") === "rtl";
+        var side = isE ? (rtl ? "r" : "l") : (rtl ? "l" : "r");
+        logoWrap.style.setProperty(isE ? "--delE" : "--delF", d.toFixed(3) + "s");
+        glowTw[side] = !glowTw[side];
+        logoWrap.classList.toggle(side === "l" ? "gbl" : "gbr", glowTw[side]);
+      }
+      // kalintilar (θ farki ≤0,55° + ip sarkmasi ~3px) kisa morfla iner
+      s.morph = { w: 1, fast: true, th: s.thd * Math.PI / 180, om: 0, kx0: s.kxW, ky0: s.kyW };
+      ropeStop(s);
+    }
+
+    // ── Surukleme ──
+    // Lambalar z-index -1'de, ustlerini hero'nun kutulari ortuyor →
+    // pointer-events onlara HIC ulasamaz. Bu yuzden isabet testi elle
+    // yapilir (lamba kutusu + genisletilmis pay); ayrica kucuk lambaya
+    // dokunmatikte tam isabet beklemek zaten kotu UX olurdu.
+    function lampHit(x, y) {
+      for (var i = 0; i < springs.length; i++) {
+        var s = springs[i];
+        if (!s.lamp || s.rig.offsetParent === null) continue; // gizli rig (mobilde a/b)
+        var r = s.lamp.getBoundingClientRect();
+        if (x >= r.left - 14 && x <= r.right + 14 && y >= r.top - 12 && y <= r.bottom + 16) return s;
+      }
+      return null;
+    }
+
+    function baseAngle(s) {
+      // Toplam aci animasyondan okunur; taban = toplam - bizim yazdigimiz fark.
+      var m = /matrix\(([-\d.e]+), ([-\d.e]+)/.exec(getComputedStyle(s.kandil).transform);
+      var cur = m ? Math.atan2(+m[2], +m[1]) * 180 / Math.PI : 0;
+      return cur - s.pos;
+    }
+
+    function dragTo(x, y) {
+      var s = drag.s;
+      var r = s.rig.getBoundingClientRect();
+      var ax = r.left + r.width / 2, ay = r.top; // ipin asili oldugu nokta — SABIT
+      var dx = x - ax, dy = y - ay;
+      var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      // Ip gevseyebilir (yukari/iceri goturmek serbest: mesafe ip boyundan
+      // kisaysa uc AYNEN isaretcide, zincir sarkar) ama KOPARILAMAZ: ip
+      // boyunun otesi lastik gibi direnerek uzar, en cok ~26px.
+      var lim = s.drop + Math.min(26, Math.max(0, dist - s.drop) * 0.25);
+      var f = dist > lim ? lim / dist : 1;
+      s.bobX = s.ropeAx + dx * f;
+      s.bobY = dy * f;
+    }
+
+    function endDrag(e) {
+      if (!drag || (e && e.pointerId !== undefined && e.pointerId !== drag.pid)) return;
+      var s = drag.s;
+      s.held = false; // uc serbest: savurma hizi zincirin eylemsizliginde zaten var
+      s.thPrev = undefined; s.dthPrev = undefined; s.freeT = 0; // devir olcerleri sifirdan
+      drag = null;
+      document.documentElement.style.cursor = "";
+      kick();
+    }
+
+    document.addEventListener("pointerdown", function (e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      var s = lampHit(e.clientX, e.clientY);
+      if (!s) return;
+      drag = { s: s, pid: e.pointerId };
+      s.held = true;
+      document.documentElement.style.cursor = "grabbing";
+      // Yakalama sart: fare pencere DISINDA birakilirsa pointerup gelmez,
+      // surukleme asili kalir → lamba mihli, takviye acik, ikon soluk
+      // gorunur (kullanici ekran goruntusuyle bildirdi). Yakalanan isaretci
+      // pencere disinda birakilsa da pointerup'i teslim eder.
+      try { document.body.setPointerCapture(e.pointerId); } catch (err) {}
+      ropeStart(s);              // zinciri mevcut acida kurar (ropeAx burada dogar)
+      dragTo(e.clientX, e.clientY);
+      kick();
+      e.preventDefault();
+    });
+
+    document.addEventListener("pointermove", function (e) {
+      if (drag) {
+        if (e.pointerId === drag.pid) dragTo(e.clientX, e.clientY);
+        return;
+      }
+      // El isareti: lambanin uzerinde "tutabilirsin" ipucu. 4 kutu olcumu,
+      // mousemove basina onemsiz.
+      document.documentElement.style.cursor = lampHit(e.clientX, e.clientY) ? "grab" : "";
+    });
+
+    document.addEventListener("pointerup", endDrag);
+    document.addEventListener("pointercancel", endDrag);
+    window.addEventListener("blur", function () { endDrag(); }); // sekme/pencere degisiminde birak
+    // Dokunmatikte surukleme sirasinda sayfa KAYMASIN; pasif olmayan
+    // dinleyici yalniz drag aktifken engeller, normal kaydirmaya dokunmaz.
+    document.addEventListener("touchmove", function (e) {
+      if (drag) e.preventDefault();
+    }, { passive: false });
+
+    var hero = document.querySelector(".hero");
+    if (hero && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+      }, { rootMargin: "120px" }).observe(hero);
+    }
+
+    window.addEventListener("resize", measure);
+    // Dil degisince dir="rtl" canli atanir; fiziksel taraf yeniden olculmeli.
+    if ("MutationObserver" in window) {
+      new MutationObserver(measure).observe(document.documentElement, { attributes: true, attributeFilter: ["dir"] });
+    }
+  })();
+
+  var lumeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(lumeTimer);
+    lumeTimer = setTimeout(alignLume, 150);
+  });
 })();
 </script>
 
