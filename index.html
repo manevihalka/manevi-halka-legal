@@ -754,6 +754,64 @@
 
   [data-theme="dark"] .kandil { opacity: calc(0.6 * var(--dim, 1)); }
 
+  /* ─────────── Acik tema, GENIS EKRAN: kenar parlamasi + hafif sicak zemin ───────────
+     Sikayet (18 Agu): acik tema "asiri beyaz, goz aliyor". Olculdu — zemin
+     L* 97.9, kartlar 100, yani sayfanin tamami ekranin verebildigi en parlak
+     beyazin bir tik altindaydi. Ustune susleme katmani KOYU tema icin
+     ayarlandigindan (beyaz uzerine altin isik gorunmez) goz duz bir beyaz
+     duvara bakiyordu: ne parlaklik dusuk ne bakacak bir sey vardi.
+
+     Uc sey ayni anda degisiyor:
+       1) Kenar parlamasi — dort kenardan iceri sonen yesil. Isigi BAKMADIGIN
+          yerden alir (merkez okuma alani parlak kalir). Olcum: kenarda
+          L* 97.6 → 87.5, sayfanin toplam isigi 1900px'te %7 dusuyor.
+       2) Hafif sicak zemin (#f8f5ef, L* 96.9) — kalan isigi BAKTIGIN yerden
+          alir ve soguk mavi-beyaz keskinligini kirar. Toplam dusus %9.6.
+       3) Susleme guclendirme — kandil, ip, isik havuzu ve girih acik temada
+          okunur hale gelir. Kenar parlamasi zaten kenar kandillerinin
+          durdugu yere denk geldigi icin altin lambalar koyu zemin kazanir.
+
+     ⚠️ TELEFONDA BILEREK YOK (kullanici karari, 18 Agu: "telefondaki mevcut
+     gorunumu koruyalim, suanki halini cok sevdim"). Esik 900px ve bu sayi
+     keyfi degil: kandil c/d ciftinin belirdigi, duzenin genisledigi mevcut
+     kirilma noktasi. 900px altinda hicbir deger degismez, telefon birebir
+     eski halinde kalir (olculerek dogrulandi).
+
+     ⚠️ RENK #1e4d35 DEGIL #2f6b4a: marka yesili dusuk saydamlikta yesil
+     degil GRI okunuyor, sayfa temiz degil kirli gorunuyordu. Doygunluk sart.
+
+     ⚠️ GENISLIK min() ile KELEPCELI: sabit 380px, 390px'lik bir ekranda iki
+     kenarin birlesip sayfayi bastan basa yesile boyamasi demek (telefonda
+     olculdu). Esik zaten 900px ama kelepce orta genislikleri de koruyor:
+     1000px'te cerceve 200px, 1900px'te 380px.
+
+     ⚠️ body::before'un ikinci radyali (sagdaki yesil bulut) buraya
+     TASINDI — yerini duzgun bir sag kenar aldi, tepedeki nane aydinligi
+     aynen duruyor. Koyu temaya hicbiri dokunmuyor: secici :not() ile
+     ayrilmis, dark kurallari kendi degerlerinde kaliyor. */
+  @media (min-width: 901px) {
+    :root:not([data-theme="dark"]) {
+      --page: #f8f5ef;
+      --edge-x: min(380px, 20vw);
+      --edge-y: min(260px, 22vh);
+    }
+    :root:not([data-theme="dark"]) header.site { background: rgba(248, 245, 239, 0.82); }
+
+    :root:not([data-theme="dark"]) body::before {
+      background:
+        radial-gradient(60rem 40rem at 50% -10%, rgba(120, 216, 168, 0.20), transparent 70%),
+        linear-gradient(to right,  rgba(47, 107, 74, 0.22) 0, rgba(47, 107, 74, 0.095) calc(var(--edge-x) * 0.34), rgba(47, 107, 74, 0) var(--edge-x)),
+        linear-gradient(to left,   rgba(47, 107, 74, 0.22) 0, rgba(47, 107, 74, 0.095) calc(var(--edge-x) * 0.34), rgba(47, 107, 74, 0) var(--edge-x)),
+        linear-gradient(to bottom, rgba(47, 107, 74, 0.15) 0, rgba(47, 107, 74, 0.065) calc(var(--edge-y) * 0.34), rgba(47, 107, 74, 0) var(--edge-y)),
+        linear-gradient(to top,    rgba(47, 107, 74, 0.15) 0, rgba(47, 107, 74, 0.065) calc(var(--edge-y) * 0.34), rgba(47, 107, 74, 0) var(--edge-y));
+    }
+
+    :root:not([data-theme="dark"]) body::after { opacity: 0.085; }
+    :root:not([data-theme="dark"]) .kandil { opacity: calc(0.68 * var(--dim, 1)); }
+    :root:not([data-theme="dark"]) .kandil .rope { opacity: 0.62; }
+    :root:not([data-theme="dark"]) .kandil-lume { --lume: rgba(150, 116, 44, 0.55); }
+  }
+
   @media (max-width: 900px) {
     /* Orta cift dar ekranda kenar ve ikon ciftlerinin arasina sikisiyor. */
     .kandil-rig.kandil-c, .kandil-rig.kandil-d { display: none; }
