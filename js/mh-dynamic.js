@@ -2,6 +2,16 @@
  * manevihalka.app dinamik modulleri — namaz vakitleri, gunun ayeti/hadisi,
  * hicri tarih + dini gunler, koyu tema.
  *
+ * ⚠️ VARLIK YOLLARI KOK-MUTLAK ("/data/...", "/img/...", "/fonts/...", "/icon.png").
+ * GORELI YAZMA. Sayfa artik yalniz kokte degil dil alt klasorlerinde de sunulacak
+ * (/tr/, /de/ ...). Goreli yol oradan cozulunce /tr/data/daily.json'a gider, 404
+ * doner ve hata catch ile YUTULUR: namaz vakti karti, Gunun Ayeti ve Hadisi
+ * sessizce bos kalir, konsola tek satir bile dusmez. Belirtisi olmayan bir ariza
+ * oldugu icin kural buraya yazildi.
+ * ⚠️ Cozum olarak <base href="/"> DE KULLANILMAZ: index.html'de 11 adet href="#..."
+ * var (10'u kandil lambalarinin <use> referansi), base etiketi hepsini belge
+ * disina cozer ve lambalar kaybolur.
+ *
  * VERI KAYNAKLARI (elle metin tutulmaz, drift olmasin):
  *   - data/daily.json + data/cities.json: uygulama reposundaki
  *     scripts/site-export/build-site-data.mjs uretir. Icerik degisirse
@@ -478,14 +488,14 @@
   // ── veri yukleyiciler ────────────────────────────────────────────────────
   function loadDaily() {
     if (dailyData) return Promise.resolve(dailyData);
-    return fetch("data/daily.json").then(function (r) {
+    return fetch("/data/daily.json").then(function (r) {
       if (!r.ok) throw new Error("daily.json " + r.status);
       return r.json();
     }).then(function (j) { dailyData = j; return j; });
   }
   function loadCities() {
     if (citiesData) return Promise.resolve(citiesData);
-    return fetch("data/cities.json").then(function (r) {
+    return fetch("/data/cities.json").then(function (r) {
       if (!r.ok) throw new Error("cities.json " + r.status);
       return r.json();
     }).then(function (j) { citiesData = j; return j; });
@@ -666,7 +676,7 @@
    *  (U+08D2 vb.), font subset'i yalniz AR dilinde ve gerekince yuklenir. */
   function ensureArabicFont() {
     if (fontLoaded || !window.FontFace) return Promise.resolve();
-    var face = new FontFace("MushafSubset", "url(fonts/mushaf-ar-subset.woff)");
+    var face = new FontFace("MushafSubset", "url(/fonts/mushaf-ar-subset.woff)");
     return face.load().then(function (f) {
       document.fonts.add(f);
       fontLoaded = true;
@@ -692,10 +702,10 @@
         bodyHtml = '<p class="dc-text dc-arabic" dir="rtl">' + esc(ayah.arabic) + "</p>";
         ensureArabicFont();
       }
-      ayahCard.style.backgroundImage = "url(img/daily/" + ayah.bgIndex + ".webp)";
+      ayahCard.style.backgroundImage = "url(/img/daily/" + ayah.bgIndex + ".webp)";
       ayahCard.innerHTML =
         '<div class="dc-scrim"></div><div class="dc-inner">' +
-        '<img class="dc-appicon" src="icon.png" alt="" loading="lazy">' +
+        '<img class="dc-appicon" src="/icon.png" alt="" loading="lazy">' +
         '<div class="dc-label">' + (ayah.specialName ? svgSparkle() : "") + esc(ayahLabel) + "</div>" +
         bodyHtml +
         '<div class="dc-ref">' + esc(ayah.reference) + "</div></div>";
@@ -706,10 +716,10 @@
         ? upperLoc(hadith.specialName, locale)
         : upperLoc(pickLoc(dailyData.labels.hadith, locale), locale);
       var hBg = (ayah ? ayah.bgIndex + 5 : 5) % BG_COUNT; // ayetle ayni gun farkli foto
-      hadithCard.style.backgroundImage = "url(img/daily/" + hBg + ".webp)";
+      hadithCard.style.backgroundImage = "url(/img/daily/" + hBg + ".webp)";
       hadithCard.innerHTML =
         '<div class="dc-scrim"></div><div class="dc-inner">' +
-        '<img class="dc-appicon" src="icon.png" alt="" loading="lazy">' +
+        '<img class="dc-appicon" src="/icon.png" alt="" loading="lazy">' +
         '<div class="dc-label">' + (hadith.specialName ? svgSparkle() : "") + esc(hadithLabel) + "</div>" +
         '<p class="dc-text dc-hadith">' + "“" + esc(hadith.text) + "”</p>" +
         '<div class="dc-ref">' + esc(hadith.source) + "</div></div>";
@@ -868,7 +878,7 @@
   var ilceMapPromise = null;
   function loadIlceMap() {
     if (!ilceMapPromise) {
-      ilceMapPromise = fetch("data/prayer-ilce-map.json")
+      ilceMapPromise = fetch("/data/prayer-ilce-map.json")
         .then(function (r) { return r.ok ? r.json() : {}; })
         .catch(function () { return {}; });
     }

@@ -1145,10 +1145,10 @@
     -webkit-mask-position: center;  mask-position: center;
     -webkit-mask-size: contain;     mask-size: contain;
   }
-  .cicon-quran  { -webkit-mask-image: url('icons/quran.png');  mask-image: url('icons/quran.png'); }
-  .cicon-cevsen { -webkit-mask-image: url('icons/cevsen.png'); mask-image: url('icons/cevsen.png'); }
-  .cicon-zikir  { -webkit-mask-image: url('icons/zikir.png');  mask-image: url('icons/zikir.png'); }
-  .cicon-book   { -webkit-mask-image: url('icons/book.png');   mask-image: url('icons/book.png'); }
+  .cicon-quran  { -webkit-mask-image: url('/icons/quran.png');  mask-image: url('/icons/quran.png'); }
+  .cicon-cevsen { -webkit-mask-image: url('/icons/cevsen.png'); mask-image: url('/icons/cevsen.png'); }
+  .cicon-zikir  { -webkit-mask-image: url('/icons/zikir.png');  mask-image: url('/icons/zikir.png'); }
+  .cicon-book   { -webkit-mask-image: url('/icons/book.png');   mask-image: url('/icons/book.png'); }
 
   .card-icon svg {
     width: 28px; height: 28px;
@@ -2011,7 +2011,7 @@
   <header class="site" id="siteHeader">
     <div class="header-inner">
       <a class="brand" href="#top">
-        <img src="icon.png" alt="">
+        <img src="/icon.png" alt="">
         <span>Manevi Halka</span>
       </a>
       <div class="header-tools">
@@ -2155,10 +2155,10 @@
         </span>
       </span>
       <div class="logo-wrap reveal" id="logoWrap">
-        <img src="icon-anim-still.png" alt="Manevi Halka" class="logo-still">
+        <img src="/icon-anim-still.png" alt="Manevi Halka" class="logo-still">
         <!-- ⚠️ src YOK, data-src VAR: 215 KB'lik gif ilk boyamayi bekletmesin.
              js/mh-dynamic.js sayfa yuklendikten sonra bos bir anda indiriyor. -->
-        <img data-src="icon-anim.gif" alt="" class="logo-anim" id="logoAnim" aria-hidden="true">
+        <img data-src="/icon-anim.gif" alt="" class="logo-anim" id="logoAnim" aria-hidden="true">
       </div>
       <!-- Iki satirli H1: marka + NE OLDUGU. Ikinci satir hem ziyaretcinin
            "bu ne" sorusunu ilk saniyede yanitliyor hem sayfanin tek anahtar
@@ -2715,8 +2715,8 @@
     for (var j = 0; j < shots.length; j++) {
       var nm = shots[j].getAttribute("data-shot");
       var cap = t["cap_" + nm] || "Manevi Halka";
-      shots[j].setAttribute("src", "shots/" + loc + "/" + nm + ".jpg");
-      shots[j].setAttribute("data-lg", "shots/" + loc + "/" + nm + "@lg.jpg");
+      shots[j].setAttribute("src", "/shots/" + loc + "/" + nm + ".jpg");
+      shots[j].setAttribute("data-lg", "/shots/" + loc + "/" + nm + "@lg.jpg");
       shots[j].setAttribute("alt", cap);
       var shotBtn = shots[j].parentNode;
       if (shotBtn && shotBtn.classList && shotBtn.classList.contains("shot")) {
@@ -3684,7 +3684,11 @@
 })();
 </script>
 
-<script src="js/mh-dynamic.js" defer></script>
+<!-- ⚠️ Varlik yollari KOK-MUTLAK yazilir (bu etiket, ikon gorselleri ve
+     applyLocale'in urettigi shots/ yollari dahil). Sayfa dil alt klasorlerinden
+     de sunulacagi icin goreli yol /tr/js/... gibi cozulup 404 doner. Gerekce ve
+     <base> etiketinin neden kullanilamadigi: js/mh-dynamic.js dosya basi. -->
+<script src="/js/mh-dynamic.js" defer></script>
 
 </body>
 </html>
