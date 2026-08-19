@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: index.html
+     Uretici: node _gen/build-locale-pages.mjs
+     mh-build src=sha256:9cb7f925b767608deca4555a86d466fcf5e49d28cb6c29f361bb25c78c036980 locale=tr -->
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,9 +31,9 @@
      render'i ikinci dalgada ve gecikmeli calisiyor. Buraya yalniz "Manevi
      Halka" yazilirsa arama motoru sayfanin ne hakkinda oldugunu HIC ogrenemez
      (13 Agu 2026'da olculdu: marka aramasi bile sonuc dondurmuyordu). -->
-<title>Manevi Halka: shared Qur'an khatm, Jawshan, dhikr and prayer times</title>
-<meta name="description" id="metaDesc" content="Share the juz with your circle, read in turns and complete the khatm together. Prayer times from the Diyanet calendar, qibla, dhikr counter and Jawshan, in one app for iPhone and Android.">
-<link rel="canonical" href="https://manevihalka.app/">
+<title>Manevi Halka: birlikte hatim, Cevşen, zikir ve namaz vakitleri</title>
+<meta name="description" id="metaDesc" content="Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve Cevşen tek uygulamada.">
+<link rel="canonical" href="https://manevihalka.app/tr/">
 
 <!-- Dil alternatifleri. ⚠️ Bu bloğun içi _gen/build-locale-pages.mjs tarafından
      yazılır, ELLE DÜZENLEME. Kök aynı anda "en" ve "x-default" taşır: gerçekten
@@ -57,12 +60,17 @@
 <link rel="dns-prefetch" href="https://ezanvakti.emushaf.net">
 
 <!-- Open Graph - WhatsApp/Telegram link onizleme -->
-<meta property="og:title" content="Manevi Halka">
-<meta property="og:description" content="Build khatm, Jawshan and dhikr circles together. Prayer times, qibla and dhikr counter in one app.">
+<meta property="og:title" content="Manevi Halka: birlikte hatim, Cevşen, zikir ve namaz vakitleri">
+<meta property="og:description" content="Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve Cevşen tek uygulamada.">
 <meta property="og:image" content="https://manevihalka.app/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://manevihalka.app">
+<meta property="og:url" content="https://manevihalka.app/tr/">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ar_AR">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -76,6 +84,15 @@
 {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://manevihalka.app/tr/#page",
+      "url": "https://manevihalka.app/tr/",
+      "name": "Manevi Halka: birlikte hatim, Cevşen, zikir ve namaz vakitleri",
+      "description": "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve Cevşen tek uygulamada.",
+      "inLanguage": "tr",
+      "isPartOf": { "@id": "https://manevihalka.app/#site" }
+    },
     {
       "@type": "Organization",
       "@id": "https://manevihalka.app/#org",
@@ -2038,7 +2055,7 @@
         <div class="lang-picker" id="langPicker">
           <button type="button" class="lang-btn" id="langBtn"
                   aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
-            <span id="langBtnLabel">English</span>
+            <span id="langBtnLabel">Türkçe</span>
             <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
           </button>
           <ul class="lang-list" id="langList" role="listbox" aria-label="Language" tabindex="-1" hidden>
@@ -2181,7 +2198,7 @@
            karari, 13 Agu 2026): vakitler icin kaydirmak gerekirse ziyaretci
            "burada namaz vakti yokmus" deyip cikiyor. Buraya paragraf EKLEME;
            uygulamanin tanitimi vakitlerin ALTINDAKI bolumde. -->
-      <h1 class="reveal">Manevi Halka<span class="h1-sub" data-i18n="h1sub">Shared khatm, Jawshan and dhikr circles</span></h1>
+      <h1 class="reveal">Manevi Halka<span class="h1-sub" data-i18n="h1sub">Birlikte hatim, Cevşen ve zikir halkaları</span></h1>
 
       <div class="cta-buttons reveal" id="ctaHero">
         <a class="store-badge" data-store="ios" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
@@ -2189,7 +2206,7 @@
             <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
           </svg>
           <span>
-            <span class="small" data-i18n="get">Download</span>
+            <span class="small" data-i18n="get">İndir</span>
             <span class="big">App Store</span>
           </span>
         </a>
@@ -2201,7 +2218,7 @@
             <path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/>
           </svg>
           <span>
-            <span class="small" data-i18n="get">Download</span>
+            <span class="small" data-i18n="get">İndir</span>
             <span class="big">Google Play</span>
           </span>
         </a>
@@ -2216,7 +2233,7 @@
     <section class="today" id="todaySection" aria-labelledby="todayTitle">
       <!-- Sayfada "namaz vakitleri" ifadesinin STATIK olarak gectigi tek yer.
            Baslik olmadan bu bolum arama motoru icin adsizdi. -->
-      <h2 class="section-title reveal" id="todayTitle" data-i18n="todayTitle">Prayer times and the verse of the day</h2>
+      <h2 class="section-title reveal" id="todayTitle" data-i18n="todayTitle">Namaz vakitleri ve günün ayeti</h2>
       <div class="today-head reveal">
         <div class="date-line">
           <span id="dlGreg"></span><span class="date-sep">·</span><span class="hijri" id="dlHijri"></span>
@@ -2243,23 +2260,23 @@
        ver, sonra anlat. Hero'dan buraya tasinan aciklama cumlesi. -->
   <div class="container">
     <section class="intro">
-      <h2 class="section-title reveal" data-i18n="introTitle">What is the Manevi Halka app</h2>
-      <p class="intro-lead reveal" data-i18n="taglineSub">Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.</p>
+      <h2 class="section-title reveal" data-i18n="introTitle">Manevi Halka uygulaması nedir</h2>
+      <p class="intro-lead reveal" data-i18n="taglineSub">Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Namaz vakitleri, kıble ve zikir sayacı da aynı uygulamada.</p>
     </section>
   </div>
 
   <section class="shots">
     <div class="shots-track" id="shotsTrack">
-      <button class="shot reveal" type="button" data-index="0" aria-label="Manevi Halka"><img data-shot="dashboard" alt="" loading="eager" width="620" height="1235"></button>
-      <button class="shot reveal" type="button" data-index="1" aria-label="Manevi Halka"><img data-shot="flow-detail" alt="" loading="eager" width="620" height="1235"></button>
-      <button class="shot reveal" type="button" data-index="2" aria-label="Manevi Halka"><img data-shot="prayer" alt="" loading="lazy" width="620" height="1235"></button>
-      <button class="shot reveal" type="button" data-index="3" aria-label="Manevi Halka"><img data-shot="quran-reader" alt="" loading="lazy" width="620" height="1235"></button>
-      <button class="shot reveal" type="button" data-index="4" aria-label="Manevi Halka"><img data-shot="event" alt="" loading="lazy" width="620" height="1235"></button>
-      <button class="shot reveal" type="button" data-index="5" aria-label="Manevi Halka"><img data-shot="zikir" alt="" loading="lazy" width="620" height="1235"></button>
-      <button class="shot reveal" type="button" data-index="6" aria-label="Manevi Halka"><img data-shot="qibla-explore" alt="" loading="lazy" width="620" height="1235"></button>
-      <button class="shot reveal" type="button" data-index="7" aria-label="Manevi Halka"><img data-shot="lifestyle" alt="" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="0" aria-label="Ana ekran: görevlerin ve namazların tek bakışta"><img data-shot="dashboard" src="/shots/tr/dashboard.jpg" data-lg="/shots/tr/dashboard@lg.jpg" alt="Ana ekran: görevlerin ve namazların tek bakışta" loading="eager" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="1" aria-label="Halkan: üyeler, okumalar ve ilerleme"><img data-shot="flow-detail" src="/shots/tr/flow-detail.jpg" data-lg="/shots/tr/flow-detail@lg.jpg" alt="Halkan: üyeler, okumalar ve ilerleme" loading="eager" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="2" aria-label="Namaz ve nafile takibi, haftalık tablo"><img data-shot="prayer" src="/shots/tr/prayer.jpg" data-lg="/shots/tr/prayer@lg.jpg" alt="Namaz ve nafile takibi, haftalık tablo" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="3" aria-label="Kur'an okuma ekranı, kişisel ayarlar"><img data-shot="quran-reader" src="/shots/tr/quran-reader.jpg" data-lg="/shots/tr/quran-reader@lg.jpg" alt="Kur'an okuma ekranı, kişisel ayarlar" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="4" aria-label="Özel günler için tek seferlik hatim halkaları"><img data-shot="event" src="/shots/tr/event.jpg" data-lg="/shots/tr/event@lg.jpg" alt="Özel günler için tek seferlik hatim halkaları" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="5" aria-label="Günlük zikirler ve kendi listelerin"><img data-shot="zikir" src="/shots/tr/zikir.jpg" data-lg="/shots/tr/zikir@lg.jpg" alt="Günlük zikirler ve kendi listelerin" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="6" aria-label="Kıble bulucu, nerede olursan ol"><img data-shot="qibla-explore" src="/shots/tr/qibla-explore.jpg" data-lg="/shots/tr/qibla-explore@lg.jpg" alt="Kıble bulucu, nerede olursan ol" loading="lazy" width="620" height="1235"></button>
+      <button class="shot reveal" type="button" data-index="7" aria-label="Manevi yolculuğun hep yanında"><img data-shot="lifestyle" src="/shots/tr/lifestyle.jpg" data-lg="/shots/tr/lifestyle@lg.jpg" alt="Manevi yolculuğun hep yanında" loading="lazy" width="620" height="1235"></button>
     </div>
-    <p class="shots-hint" data-i18n="shotsHint">Swipe to explore the app</p>
+    <p class="shots-hint" data-i18n="shotsHint">Kaydırarak uygulamayı gez</p>
     <div class="shots-nav">
       <button type="button" id="shotsPrev" aria-label="Previous">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg>
@@ -2273,26 +2290,26 @@
   <div class="container">
 
     <section class="features">
-      <h2 class="section-title reveal" data-i18n="featuresTitle">What&#39;s inside</h2>
-      <p class="section-sub reveal" data-i18n="featuresSub">Worship itself is always free</p>
+      <h2 class="section-title reveal" data-i18n="featuresTitle">Neler var</h2>
+      <p class="section-sub reveal" data-i18n="featuresSub">İbadetin kendisi her zaman ücretsiz</p>
 
       <div class="grid">
         <div class="card reveal">
           <div class="card-icon"><span class="cicon cicon-quran"></span></div>
-          <h3 data-i18n="f1t">Qur&#39;an Khatm</h3>
-          <p data-i18n="f1d">Share the juz among your circle, read in turns, complete the khatm together. Works solo or with thirty people.</p>
+          <h3 data-i18n="f1t">Kur'an Hatmi</h3>
+          <p data-i18n="f1d">Cüzler halkandaki herkese dağılır, sıra sana gelince haberin olur. Tek başına aylar süren bir hatim, birlikte haftalara iner.</p>
         </div>
 
         <div class="card reveal">
           <div class="card-icon"><span class="cicon cicon-cevsen"></span></div>
-          <h3 data-i18n="f2t">Jawshan al-Kabir</h3>
-          <p data-i18n="f2d">101 chapters, shared or personal. One chapter a day, tracked progress, completion certificate.</p>
+          <h3 data-i18n="f2t">Cevşen-i Kebir</h3>
+          <p data-i18n="f2d">101 bab, paylaşımlı ya da kendi başına. Her gün bir bab okursun, nerede kaldığını uygulama hatırlar, tamamladığında sertifikan hazır olur.</p>
         </div>
 
         <div class="card reveal">
           <div class="card-icon"><span class="cicon cicon-zikir"></span></div>
-          <h3 data-i18n="f3t">Dhikr and Tasbih</h3>
-          <p data-i18n="f3d">Asma ul-Husna, salawat, digital tasbih. Build your own dhikr lists, reorder them and share them.</p>
+          <h3 data-i18n="f3t">Zikir ve Tesbihat</h3>
+          <p data-i18n="f3d">Esmaül Hüsna, salavat ve tesbihat elinin altında. Kendi zikir listeni kurar, sırasını belirler, dilediğinde tek bağlantıyla paylaşırsın.</p>
         </div>
 
         <div class="card reveal">
@@ -2302,8 +2319,8 @@
               <path d="M12 7v5l3 2"></path>
             </svg>
           </div>
-          <h3 data-i18n="f4t">Prayer Times</h3>
-          <p data-i18n="f4d">Home screen widget, live countdown, and your city updates by itself when you travel. 106 countries.</p>
+          <h3 data-i18n="f4t">Namaz Vakitleri</h3>
+          <p data-i18n="f4d">Vakit yaklaşınca ana ekranındaki widget haber verir. Seyahat ettiğinde şehrin kendiliğinden güncellenir, 106 ülkede doğru vakit.</p>
         </div>
 
         <div class="card reveal">
@@ -2313,22 +2330,22 @@
               <path d="M9.5 12.4l1.8 1.8 3.4-3.6"></path>
             </svg>
           </div>
-          <h3 data-i18n="f5t">Qibla and Daily Tracking</h3>
-          <p data-i18n="f5d">Qibla finder, prayer and nafl tracking, memorization practice, awrad and religious days.</p>
+          <h3 data-i18n="f5t">Kıble ve Günlük Takip</h3>
+          <p data-i18n="f5d">Nerede olursan ol kıbleyi bulursun. Namazını, nafileni ve ezberini kayıt altına alır, virdlerini ve dini günleri kaçırmazsın.</p>
         </div>
 
         <div class="card reveal">
           <div class="card-icon"><span class="cicon cicon-book"></span></div>
-          <h3 data-i18n="f6t">Book Reading Circles</h3>
-          <p data-i18n="f6d">Shared reading rounds, a personal library, your last page, daily and weekly progress.</p>
+          <h3 data-i18n="f6t">Kitap Okuma Halkaları</h3>
+          <p data-i18n="f6d">Bir kitabı halkanla birlikte okursun. Kaldığın sayfa seninle kalır, haftalık ilerlemeyi hep beraber görürsünüz.</p>
         </div>
       </div>
     </section>
 
 
     <section class="closing">
-      <h2 class="reveal" data-i18n="closeTitle">Start your circle today</h2>
-      <p class="reveal" data-i18n="closeText">With your family, your friends, or on your own. Worship lasts longer together.</p>
+      <h2 class="reveal" data-i18n="closeTitle">Halkanı bugün kur</h2>
+      <p class="reveal" data-i18n="closeText">Ailenle, dostlarınla ya da tek başına.</p>
       <!-- ⚠️ ALINTI ATFI: kaynagi ASIL ESERDE dogrulanmadan buraya soz KOYMA.
            Dolasimdaki "Mevlana sozleri"nin cogu uydurma ya da Coleman Barks'in
            serbest Ingilizce yorumunun geri cevirisi. Bu beyit Mesnevi I. defter
@@ -2341,8 +2358,8 @@
            Ingilizcesi icin de Gibb Memorial Trust hak talep ediyor, o yuzden
            en/de/fr/ar cevirileri Turkceden BIZ yazdik. -->
       <figure class="quote reveal">
-        <blockquote data-i18n="quoteText">Unity of heart surpasses unity of language.</blockquote>
-        <figcaption data-i18n="quoteSource">Rumi, Masnavi</figcaption>
+        <blockquote data-i18n="quoteText">Gönül birliği, dil birliğinden üstündür.</blockquote>
+        <figcaption data-i18n="quoteSource">Mevlânâ, Mesnevî</figcaption>
       </figure>
       <div class="cta-buttons reveal">
         <a class="store-badge" data-store="ios" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
@@ -2350,7 +2367,7 @@
             <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
           </svg>
           <span>
-            <span class="small" data-i18n="get">Download</span>
+            <span class="small" data-i18n="get">İndir</span>
             <span class="big">App Store</span>
           </span>
         </a>
@@ -2362,7 +2379,7 @@
             <path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/>
           </svg>
           <span>
-            <span class="small" data-i18n="get">Download</span>
+            <span class="small" data-i18n="get">İndir</span>
             <span class="big">Google Play</span>
           </span>
         </a>
@@ -2403,14 +2420,14 @@
   <div class="container">
     <footer class="site">
       <p class="lang-line">
-        <span data-i18n="langsLabel">Available in 5 languages</span>
+        <span data-i18n="langsLabel">5 dilde kullanılabilir</span>
         <strong>Türkçe · English · Deutsch · Français · العربية</strong>
       </p>
       <div class="footer-links">
-        <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy-en.html" data-i18n="privacy">Privacy Policy</a>
-        <a id="lnkTerms" target="_blank" rel="noopener" href="/terms-en.html" data-i18n="terms">Terms of Service</a>
-        <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete-en.html" data-i18n="deleteAcc">Account Deletion</a>
-        <a href="mailto:emirhan.ayaz171@icloud.com" data-i18n="contact">Contact</a>
+        <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy.html" data-i18n="privacy">Gizlilik Politikası</a>
+        <a id="lnkTerms" target="_blank" rel="noopener" href="/terms.html" data-i18n="terms">Kullanım Koşulları</a>
+        <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete.html" data-i18n="deleteAcc">Hesap Silme</a>
+        <a href="mailto:emirhan.ayaz171@icloud.com" data-i18n="contact">İletişim</a>
       </div>
       <p class="copyright">© 2026 Manevi Halka</p>
     </footer>
@@ -2469,36 +2486,38 @@
   var currentT = null;
 
   var I18N = {
-    tr: {
-      title: "Manevi Halka: birlikte hatim, Cevşen, zikir ve namaz vakitleri",
-      desc: "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve Cevşen tek uygulamada.",
-      h1sub: "Birlikte hatim, Cevşen ve zikir halkaları",
-      taglineSub: "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Namaz vakitleri, kıble ve zikir sayacı da aynı uygulamada.",
-      todayTitle: "Namaz vakitleri ve günün ayeti",
-      introTitle: "Manevi Halka uygulaması nedir",
-      get: "İndir",
-      shotsHint: "Kaydırarak uygulamayı gez",
-      featuresTitle: "Neler var",
-      featuresSub: "İbadetin kendisi her zaman ücretsiz",
-      f1t: "Kur'an Hatmi",
-      f1d: "Cüzler halkandaki herkese dağılır, sıra sana gelince haberin olur. Tek başına aylar süren bir hatim, birlikte haftalara iner.",
-      f2t: "Cevşen-i Kebir",
-      f2d: "101 bab, paylaşımlı ya da kendi başına. Her gün bir bab okursun, nerede kaldığını uygulama hatırlar, tamamladığında sertifikan hazır olur.",
-      f3t: "Zikir ve Tesbihat",
-      f3d: "Esmaül Hüsna, salavat ve tesbihat elinin altında. Kendi zikir listeni kurar, sırasını belirler, dilediğinde tek bağlantıyla paylaşırsın.",
-      f4t: "Namaz Vakitleri",
-      f4d: "Vakit yaklaşınca ana ekranındaki widget haber verir. Seyahat ettiğinde şehrin kendiliğinden güncellenir, 106 ülkede doğru vakit.",
-      f5t: "Kıble ve Günlük Takip",
-      f5d: "Nerede olursan ol kıbleyi bulursun. Namazını, nafileni ve ezberini kayıt altına alır, virdlerini ve dini günleri kaçırmazsın.",
-      f6t: "Kitap Okuma Halkaları",
-      f6d: "Bir kitabı halkanla birlikte okursun. Kaldığın sayfa seninle kalır, haftalık ilerlemeyi hep beraber görürsünüz.",
-      closeTitle: "Halkanı bugün kur",
-      closeText: "Ailenle, dostlarınla ya da tek başına.",
-      quoteText: "Gönül birliği, dil birliğinden üstündür.",
-      quoteSource: "Mevlânâ, Mesnevî",
-      langsLabel: "5 dilde kullanılabilir",
-      privacy: "Gizlilik Politikası", terms: "Kullanım Koşulları",
-      deleteAcc: "Hesap Silme", contact: "İletişim",
+    "tr": {
+      "title": "Manevi Halka: birlikte hatim, Cevşen, zikir ve namaz vakitleri",
+      "desc": "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve Cevşen tek uygulamada.",
+      "h1sub": "Birlikte hatim, Cevşen ve zikir halkaları",
+      "taglineSub": "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Namaz vakitleri, kıble ve zikir sayacı da aynı uygulamada.",
+      "todayTitle": "Namaz vakitleri ve günün ayeti",
+      "introTitle": "Manevi Halka uygulaması nedir",
+      "get": "İndir",
+      "shotsHint": "Kaydırarak uygulamayı gez",
+      "featuresTitle": "Neler var",
+      "featuresSub": "İbadetin kendisi her zaman ücretsiz",
+      "f1t": "Kur'an Hatmi",
+      "f1d": "Cüzler halkandaki herkese dağılır, sıra sana gelince haberin olur. Tek başına aylar süren bir hatim, birlikte haftalara iner.",
+      "f2t": "Cevşen-i Kebir",
+      "f2d": "101 bab, paylaşımlı ya da kendi başına. Her gün bir bab okursun, nerede kaldığını uygulama hatırlar, tamamladığında sertifikan hazır olur.",
+      "f3t": "Zikir ve Tesbihat",
+      "f3d": "Esmaül Hüsna, salavat ve tesbihat elinin altında. Kendi zikir listeni kurar, sırasını belirler, dilediğinde tek bağlantıyla paylaşırsın.",
+      "f4t": "Namaz Vakitleri",
+      "f4d": "Vakit yaklaşınca ana ekranındaki widget haber verir. Seyahat ettiğinde şehrin kendiliğinden güncellenir, 106 ülkede doğru vakit.",
+      "f5t": "Kıble ve Günlük Takip",
+      "f5d": "Nerede olursan ol kıbleyi bulursun. Namazını, nafileni ve ezberini kayıt altına alır, virdlerini ve dini günleri kaçırmazsın.",
+      "f6t": "Kitap Okuma Halkaları",
+      "f6d": "Bir kitabı halkanla birlikte okursun. Kaldığın sayfa seninle kalır, haftalık ilerlemeyi hep beraber görürsünüz.",
+      "closeTitle": "Halkanı bugün kur",
+      "closeText": "Ailenle, dostlarınla ya da tek başına.",
+      "quoteText": "Gönül birliği, dil birliğinden üstündür.",
+      "quoteSource": "Mevlânâ, Mesnevî",
+      "langsLabel": "5 dilde kullanılabilir",
+      "privacy": "Gizlilik Politikası",
+      "terms": "Kullanım Koşulları",
+      "deleteAcc": "Hesap Silme",
+      "contact": "İletişim",
       "cap_dashboard": "Ana ekran: görevlerin ve namazların tek bakışta",
       "cap_flow-detail": "Halkan: üyeler, okumalar ve ilerleme",
       "cap_prayer": "Namaz ve nafile takibi, haftalık tablo",
@@ -2507,171 +2526,15 @@
       "cap_zikir": "Günlük zikirler ve kendi listelerin",
       "cap_qibla-explore": "Kıble bulucu, nerede olursan ol",
       "cap_lifestyle": "Manevi yolculuğun hep yanında",
-      suffix: ""
-    },
-    en: {
-      title: "Manevi Halka: shared Qur'an khatm, Jawshan, dhikr and prayer times",
-      desc: "Share the juz with your circle, read in turns and complete the khatm together. Prayer times from the Diyanet calendar, qibla, dhikr counter and Jawshan, in one app.",
-      h1sub: "Shared khatm, Jawshan and dhikr circles",
-      taglineSub: "Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.",
-      todayTitle: "Prayer times and the verse of the day",
-      introTitle: "What is the Manevi Halka app",
-      get: "Download",
-      shotsHint: "Swipe to explore the app",
-      featuresTitle: "What's inside",
-      featuresSub: "Worship itself is always free",
-      f1t: "Qur'an Khatm",
-      f1d: "The juz are shared across your circle, and you know when your turn comes. A khatm that takes months alone is done in weeks together.",
-      f2t: "Jawshan al-Kabir",
-      f2d: "101 chapters, shared or on your own. Read one a day, the app remembers where you stopped, and your certificate is ready when you finish.",
-      f3t: "Dhikr and Tasbih",
-      f3d: "Asma ul-Husna, salawat and tasbihat within reach. Build your own dhikr list, set its order, and share it with a single link.",
-      f4t: "Prayer Times",
-      f4d: "The home screen widget tells you when a prayer time is near. Your city updates itself when you travel, with accurate times in 106 countries.",
-      f5t: "Qibla and Daily Tracking",
-      f5d: "Find the qibla wherever you are. Keep a record of your prayers, nafl and memorization, and never miss your awrad or the religious days.",
-      f6t: "Book Reading Circles",
-      f6d: "Read a book together with your circle. Your page stays with you, and you follow the weekly progress as one.",
-      closeTitle: "Start your circle today",
-      closeText: "With your family, your friends, or on your own.",
-      quoteText: "Unity of heart surpasses unity of language.",
-      quoteSource: "Rumi, Masnavi",
-      langsLabel: "Available in 5 languages",
-      privacy: "Privacy Policy", terms: "Terms of Service",
-      deleteAcc: "Account Deletion", contact: "Contact",
-      "cap_dashboard": "Home: your tasks and prayers at a glance",
-      "cap_flow-detail": "Your circle: members, readings and progress",
-      "cap_prayer": "Prayer and nafl tracking with a weekly view",
-      "cap_quran-reader": "Qur'an reading screen with personal settings",
-      "cap_event": "One-time khatm circles for special days",
-      "cap_zikir": "Daily dhikr and your own lists",
-      "cap_qibla-explore": "Qibla finder, wherever you are",
-      "cap_lifestyle": "Your journey, always with you",
-      suffix: "-en"
-    },
-    de: {
-      title: "Manevi Halka: Chatma, Dschauschan, Dhikr und Gebetszeiten",
-      desc: "Teile die Dschus in deinem Kreis, lest reihum und vollendet die Chatma gemeinsam. Gebetszeiten nach dem Diyanet-Kalender, Qibla, Dhikr-Zähler und Dschauschan in einer App.",
-      h1sub: "Chatma, Dschauschan und Dhikr gemeinsam",
-      taglineSub: "Teile die Dschus in deinem Kreis, lest reihum, vollendet die Chatma gemeinsam. Gebetszeiten, Qibla und Dhikr-Zähler sind in derselben App.",
-      todayTitle: "Gebetszeiten und Vers des Tages",
-      introTitle: "Was ist die Manevi-Halka-App",
-      get: "Laden",
-      shotsHint: "Wische, um die App zu entdecken",
-      featuresTitle: "Was drinsteckt",
-      featuresSub: "Die Andacht selbst bleibt immer kostenlos",
-      f1t: "Koran-Chatma",
-      f1d: "Die Dschus werden in deinem Kreis verteilt, und du erfährst, wann du an der Reihe bist. Eine Chatma, die allein Monate dauert, gelingt gemeinsam in Wochen.",
-      f2t: "Dschauschan al-Kabir",
-      f2d: "101 Abschnitte, gemeinsam oder für dich allein. Einer pro Tag, die App merkt sich, wo du aufgehört hast, und am Ende liegt dein Zertifikat bereit.",
-      f3t: "Dhikr und Tasbih",
-      f3d: "Asma ul-Husna, Salawat und Tasbihat in Reichweite. Stelle deine eigene Dhikr-Liste zusammen, ordne sie und teile sie mit einem einzigen Link.",
-      f4t: "Gebetszeiten",
-      f4d: "Das Widget auf dem Startbildschirm sagt dir Bescheid, wenn eine Gebetszeit naht. Auf Reisen aktualisiert sich deine Stadt von selbst, mit genauen Zeiten in 106 Ländern.",
-      f5t: "Qibla und tägliche Verfolgung",
-      f5d: "Finde die Qibla, wo immer du bist. Halte Gebete, Nafl und Auswendiglernen fest und verpasse weder deine Awrad noch die religiösen Tage.",
-      f6t: "Buchlesekreise",
-      f6d: "Lies ein Buch gemeinsam mit deinem Kreis. Deine Seite bleibt bei dir, und den wöchentlichen Fortschritt seht ihr zusammen.",
-      closeTitle: "Gründe deinen Kreis noch heute",
-      closeText: "Mit deiner Familie, deinen Freunden oder allein.",
-      quoteText: "Einheit der Herzen wiegt mehr als Einheit der Sprache.",
-      quoteSource: "Rumi, Masnawi",
-      langsLabel: "In 5 Sprachen verfügbar",
-      privacy: "Datenschutzerklärung", terms: "Nutzungsbedingungen",
-      deleteAcc: "Kontolöschung", contact: "Kontakt",
-      "cap_dashboard": "Startseite: Aufgaben und Gebete auf einen Blick",
-      "cap_flow-detail": "Dein Kreis: Mitglieder, Lesungen und Fortschritt",
-      "cap_prayer": "Gebets- und Nafl-Tracking mit Wochenübersicht",
-      "cap_quran-reader": "Koran-Lesebildschirm mit persönlichen Einstellungen",
-      "cap_event": "Einmalige Chatma-Kreise für besondere Tage",
-      "cap_zikir": "Tägliche Dhikr und eigene Listen",
-      "cap_qibla-explore": "Qibla-Kompass, wo immer du bist",
-      "cap_lifestyle": "Dein Weg, immer dabei",
-      suffix: "-de"
-    },
-    fr: {
-      title: "Manevi Halka : khatma, Jawshan, dhikr et heures de prière",
-      desc: "Répartis les juz dans ton cercle, lisez à tour de rôle et terminez la khatma ensemble. Heures de prière selon le calendrier de la Diyanet, qibla, compteur de dhikr et Jawshan dans une seule application.",
-      h1sub: "Khatma, Jawshan et dhikr, ensemble",
-      taglineSub: "Répartis les juz dans ton cercle, lisez à tour de rôle, terminez la khatma ensemble. Les heures de prière, la qibla et un compteur de dhikr sont dans la même application.",
-      todayTitle: "Heures de prière et verset du jour",
-      introTitle: "Qu'est-ce que l'application Manevi Halka",
-      get: "Télécharger",
-      shotsHint: "Fais glisser pour découvrir l'appli",
-      featuresTitle: "Ce que tu y trouves",
-      featuresSub: "La dévotion elle-même reste toujours gratuite",
-      f1t: "Khatma du Coran",
-      f1d: "Les juz se répartissent dans ton cercle et tu sais quand vient ton tour. Une khatma qui prend des mois seul se termine en quelques semaines à plusieurs.",
-      f2t: "Jawshan al-Kabir",
-      f2d: "101 sections, en commun ou pour toi seul. Une par jour, l'application retient où tu t'es arrêté, et ton certificat t'attend à la fin.",
-      f3t: "Dhikr et tasbih",
-      f3d: "Asma ul-Husna, salawat et tasbihat à portée de main. Compose ta propre liste de dhikr, ordonne-la et partage-la d'un simple lien.",
-      f4t: "Heures de prière",
-      f4d: "Le widget de l'écran d'accueil te prévient quand une prière approche. En voyage, ta ville se met à jour toute seule, avec des horaires justes dans 106 pays.",
-      f5t: "Qibla et suivi quotidien",
-      f5d: "Trouve la qibla où que tu sois. Garde une trace de tes prières, de tes nafl et de ta mémorisation, sans manquer tes awrad ni les jours religieux.",
-      f6t: "Cercles de lecture",
-      f6d: "Lis un livre avec ton cercle. Ta page reste avec toi, et vous suivez ensemble la progression de la semaine.",
-      closeTitle: "Crée ton cercle dès aujourd'hui",
-      closeText: "Avec ta famille, tes amis, ou seul.",
-      quoteText: "L'union des cœurs vaut mieux que l'union des langues.",
-      quoteSource: "Rûmî, Masnavî",
-      langsLabel: "Disponible en 5 langues",
-      privacy: "Politique de confidentialité", terms: "Conditions d'utilisation",
-      deleteAcc: "Suppression du compte", contact: "Contact",
-      "cap_dashboard": "Accueil : tes tâches et prières en un coup d'œil",
-      "cap_flow-detail": "Ton cercle : membres, lectures et progression",
-      "cap_prayer": "Suivi des prières et des nafl, vue hebdomadaire",
-      "cap_quran-reader": "Écran de lecture du Coran, réglages personnels",
-      "cap_event": "Cercles de khatma ponctuels pour les jours particuliers",
-      "cap_zikir": "Dhikr quotidiens et tes propres listes",
-      "cap_qibla-explore": "Boussole qibla, où que tu sois",
-      "cap_lifestyle": "Ton chemin, toujours avec toi",
-      suffix: "-fr"
-    },
-    ar: {
-      title: "Manevi Halka: ختم القرآن والجوشن والذكر ومواقيت الصلاة",
-      desc: "وزّع الأجزاء على حلقتك، واقرأوا بالتناوب، وأتمّوا الختمة معًا. مواقيت الصلاة وفق تقويم ديانت، والقبلة، وعدّاد الذكر، والجوشن في تطبيق واحد.",
-      h1sub: "حلقات ختم القرآن والجوشن والذكر معًا",
-      taglineSub: "وزّع الأجزاء على حلقتك، واقرأوا بالتناوب، وأتمّوا الختمة معًا. مواقيت الصلاة والقبلة وعدّاد الذكر في التطبيق نفسه.",
-      todayTitle: "مواقيت الصلاة وآية اليوم",
-      introTitle: "ما هو تطبيق Manevi Halka",
-      get: "حمّل",
-      shotsHint: "اسحب لاستكشاف التطبيق",
-      featuresTitle: "ماذا يقدّم",
-      featuresSub: "العبادة نفسها مجانية دائمًا",
-      f1t: "ختم القرآن",
-      f1d: "تُوزَّع الأجزاء على أفراد حلقتك، وتعرف متى يأتي دورك. ختمة تستغرق شهورًا وحدك تكتمل في أسابيع معًا.",
-      f2t: "الجوشن الكبير",
-      f2d: "101 باب، مشتركة أو لك وحدك. باب كل يوم، والتطبيق يتذكر أين توقفت، وشهادتك جاهزة عند الختام.",
-      f3t: "الذكر والتسبيح",
-      f3d: "أسماء الله الحسنى والصلوات والتسبيحات في متناول يدك. أنشئ قائمة أذكارك، ورتّبها، وشاركها برابط واحد.",
-      f4t: "مواقيت الصلاة",
-      f4d: "تُنبّهك أداة الشاشة الرئيسية عند اقتراب الوقت. وعند السفر تتحدّث مدينتك تلقائيًا، بمواقيت دقيقة في 106 دول.",
-      f5t: "القبلة والمتابعة اليومية",
-      f5d: "اعرف القبلة أينما كنت. سجّل صلواتك ونوافلك وحفظك، ولا تفوّت أورادك ولا الأيام المباركة.",
-      f6t: "حلقات قراءة الكتب",
-      f6d: "اقرأ كتابًا مع حلقتك. صفحتك تبقى معك، وتتابعون التقدّم الأسبوعي معًا.",
-      closeTitle: "ابدأ حلقتك اليوم",
-      closeText: "مع عائلتك أو أصدقائك أو وحدك.",
-      quoteText: "وحدة القلوب خيرٌ من وحدة الألسنة.",
-      quoteSource: "جلال الدين الرومي، المثنوي",
-      langsLabel: "متوفّر بـ 5 لغات",
-      privacy: "سياسة الخصوصية", terms: "شروط الاستخدام",
-      deleteAcc: "حذف الحساب", contact: "تواصل معنا",
-      "cap_dashboard": "الرئيسية: مهامك وصلواتك في لمحة",
-      "cap_flow-detail": "حلقتك: الأعضاء والقراءات والتقدّم",
-      "cap_prayer": "متابعة الفرائض والنوافل مع جدول أسبوعي",
-      "cap_quran-reader": "شاشة قراءة القرآن بإعداداتك الشخصية",
-      "cap_event": "حلقات ختم لمرة واحدة للأيام الخاصة",
-      "cap_zikir": "أذكار يومية وقوائمك الخاصة",
-      "cap_qibla-explore": "بوصلة القبلة أينما كنت",
-      "cap_lifestyle": "رحلتك معك دائمًا",
-      suffix: "-ar"
+      "suffix": ""
     }
   };
 
   function resolveLocale() {
+    // Uretilmis dil sayfasi: dil ADRESTEN gelir, tercih onu ezemez.
+    try { localStorage.setItem("mh_lang", "tr"); } catch (e) {}
+    return "tr";
+    /* eslint-disable no-unreachable */
     // 1) ?lang=de gibi acik istek (paylasilan baglantida dil sabitlemek icin)
     try {
       var q = new URLSearchParams(window.location.search).get("lang");
@@ -2806,9 +2669,11 @@
     }
 
     function choose(li) {
+      // Uretilmis dil sayfasi: secim bir GEZINME. Metin degistirilmez.
+      var a = li.querySelector("a");
+      if (a && a.getAttribute("href")) { location.href = a.getAttribute("href"); return; }
       var loc = li.getAttribute("data-lang");
-      applyLocale(loc);
-      try { localStorage.setItem("mh_lang", loc); } catch (e) { /* gizli mod */ }
+      if (loc) { applyLocale(loc); try { localStorage.setItem("mh_lang", loc); } catch (e) {} }
       close(true);
     }
 
