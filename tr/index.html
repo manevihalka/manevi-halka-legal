@@ -892,7 +892,19 @@
   @media (max-width: 560px) {
     .hero { padding: 28px 0 24px; }
     .hero .logo, .logo-wrap { width: 84px; height: 84px; margin-bottom: 16px; }
-    .cta-buttons { gap: 10px; }
+    /* Kapanis dilegi: alintidan SONRA, indirme dugmelerinin hemen ustunde.
+     Alintiyla ayni agirlikta olmamali; alinti otorite, bu bizim kendi
+     sesimiz. Tirnak YOK, kaynak YOK, italik YOK (alinti gibi durmasin). */
+  .close-wish {
+    margin: 0 auto 22px;
+    max-width: 44ch;
+    text-align: center;
+    font-size: clamp(14px, 1.9vw, 16px);
+    line-height: 1.6;
+    color: var(--green-soft);
+  }
+
+  .cta-buttons { gap: 10px; }
     .today { padding-top: 0; }
   }
 
@@ -2361,6 +2373,7 @@
         <blockquote data-i18n="quoteText">Gönül birliği, dil birliğinden üstündür.</blockquote>
         <figcaption data-i18n="quoteSource">Mevlânâ, Mesnevî</figcaption>
       </figure>
+      <p class="close-wish reveal" data-i18n="closeWish">İbadetin kabul olsun, halkan daim olsun.</p>
       <div class="cta-buttons reveal">
         <a class="store-badge" data-store="ios" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -2511,6 +2524,7 @@
       "f6d": "Bir kitabı halkanla birlikte okursun. Kaldığın sayfa seninle kalır, haftalık ilerlemeyi hep beraber görürsünüz.",
       "closeTitle": "Halkanı bugün kur",
       "closeText": "Ailenle, dostlarınla ya da tek başına.",
+      "closeWish": "İbadetin kabul olsun, halkan daim olsun.",
       "quoteText": "Gönül birliği, dil birliğinden üstündür.",
       "quoteSource": "Mevlânâ, Mesnevî",
       "langsLabel": "5 dilde kullanılabilir",

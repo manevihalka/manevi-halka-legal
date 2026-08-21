@@ -875,7 +875,19 @@
   @media (max-width: 560px) {
     .hero { padding: 28px 0 24px; }
     .hero .logo, .logo-wrap { width: 84px; height: 84px; margin-bottom: 16px; }
-    .cta-buttons { gap: 10px; }
+    /* Kapanis dilegi: alintidan SONRA, indirme dugmelerinin hemen ustunde.
+     Alintiyla ayni agirlikta olmamali; alinti otorite, bu bizim kendi
+     sesimiz. Tirnak YOK, kaynak YOK, italik YOK (alinti gibi durmasin). */
+  .close-wish {
+    margin: 0 auto 22px;
+    max-width: 44ch;
+    text-align: center;
+    font-size: clamp(14px, 1.9vw, 16px);
+    line-height: 1.6;
+    color: var(--green-soft);
+  }
+
+  .cta-buttons { gap: 10px; }
     .today { padding-top: 0; }
   }
 
@@ -2344,6 +2356,7 @@
         <blockquote data-i18n="quoteText">Unity of heart surpasses unity of language.</blockquote>
         <figcaption data-i18n="quoteSource">Rumi, Masnavi</figcaption>
       </figure>
+      <p class="close-wish reveal" data-i18n="closeWish">May your worship be accepted, and your circle endure.</p>
       <div class="cta-buttons reveal">
         <a class="store-badge" data-store="ios" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -2494,6 +2507,7 @@
       f6d: "Bir kitabı halkanla birlikte okursun. Kaldığın sayfa seninle kalır, haftalık ilerlemeyi hep beraber görürsünüz.",
       closeTitle: "Halkanı bugün kur",
       closeText: "Ailenle, dostlarınla ya da tek başına.",
+      closeWish: "İbadetin kabul olsun, halkan daim olsun.",
       quoteText: "Gönül birliği, dil birliğinden üstündür.",
       quoteSource: "Mevlânâ, Mesnevî",
       langsLabel: "5 dilde kullanılabilir",
@@ -2534,6 +2548,7 @@
       f6d: "Read a book together with your circle. Your page stays with you, and you follow the weekly progress as one.",
       closeTitle: "Start your circle today",
       closeText: "With your family, your friends, or on your own.",
+      closeWish: "May your worship be accepted, and your circle endure.",
       quoteText: "Unity of heart surpasses unity of language.",
       quoteSource: "Rumi, Masnavi",
       langsLabel: "Available in 5 languages",
@@ -2574,6 +2589,7 @@
       f6d: "Lies ein Buch gemeinsam mit deinem Kreis. Deine Seite bleibt bei dir, und den wöchentlichen Fortschritt seht ihr zusammen.",
       closeTitle: "Gründe deinen Kreis noch heute",
       closeText: "Mit deiner Familie, deinen Freunden oder allein.",
+      closeWish: "Mögen deine Taten angenommen werden und dein Kreis bestehen.",
       quoteText: "Einheit der Herzen wiegt mehr als Einheit der Sprache.",
       quoteSource: "Rumi, Masnawi",
       langsLabel: "In 5 Sprachen verfügbar",
@@ -2614,6 +2630,7 @@
       f6d: "Lis un livre avec ton cercle. Ta page reste avec toi, et vous suivez ensemble la progression de la semaine.",
       closeTitle: "Crée ton cercle dès aujourd'hui",
       closeText: "Avec ta famille, tes amis, ou seul.",
+      closeWish: "Que tes adorations soient acceptées et que ton cercle perdure.",
       quoteText: "L'union des cœurs vaut mieux que l'union des langues.",
       quoteSource: "Rûmî, Masnavî",
       langsLabel: "Disponible en 5 langues",
@@ -2654,6 +2671,7 @@
       f6d: "اقرأ كتابًا مع حلقتك. صفحتك تبقى معك، وتتابعون التقدّم الأسبوعي معًا.",
       closeTitle: "ابدأ حلقتك اليوم",
       closeText: "مع عائلتك أو أصدقائك أو وحدك.",
+      closeWish: "تقبّل الله عبادتك، وأدام حلقتك على الخير.",
       quoteText: "وحدة القلوب خيرٌ من وحدة الألسنة.",
       quoteSource: "جلال الدين الرومي، المثنوي",
       langsLabel: "متوفّر بـ 5 لغات",
