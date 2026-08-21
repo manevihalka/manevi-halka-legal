@@ -264,7 +264,7 @@
       today: "Bugün",
       sourceNote: "Vakitler Diyanet İşleri Başkanlığı takvimine göredir.",
       nearestNote: "Vakit kaynağı: {name}",
-      tanzil: "Ayet mealleri Tanzil Projesi verisiyle sunulur (CC BY 3.0).",
+      tanzil: "Meal kaynağı: Tanzil Project ({link}) / Alquran.cloud.",
       themeToggle: "Temayı değiştir",
       dateHeader: "Tarih",
       appCta: "Vakit bildirimleri ve fazlası uygulamada",
@@ -292,7 +292,7 @@
       today: "Today",
       sourceNote: "Times follow the official calendar of the Diyanet (Turkish Presidency of Religious Affairs).",
       nearestNote: "Times source: {name}",
-      tanzil: "Qur'an translations are provided from Tanzil Project data (CC BY 3.0).",
+      tanzil: "Translation source: Tanzil Project ({link}) / Alquran.cloud.",
       themeToggle: "Toggle theme",
       dateHeader: "Date",
       appCta: "Prayer notifications and more in the app",
@@ -320,7 +320,7 @@
       today: "Heute",
       sourceNote: "Die Zeiten folgen dem offiziellen Kalender der Diyanet (türkische Religionsbehörde).",
       nearestNote: "Zeitquelle: {name}",
-      tanzil: "Koranübersetzungen stammen aus Daten des Tanzil-Projekts (CC BY 3.0).",
+      tanzil: "Quelle der Übersetzungen: Tanzil Project ({link}) / Alquran.cloud.",
       themeToggle: "Design wechseln",
       dateHeader: "Datum",
       appCta: "Gebetsbenachrichtigungen und mehr in der App",
@@ -348,7 +348,7 @@
       today: "Aujourd'hui",
       sourceNote: "Les horaires suivent le calendrier officiel de la Diyanet (Présidence des affaires religieuses de Turquie).",
       nearestNote: "Source des horaires : {name}",
-      tanzil: "Les traductions du Coran proviennent des données du projet Tanzil (CC BY 3.0).",
+      tanzil: "Source des traductions : Projet Tanzil ({link}) / Alquran.cloud.",
       themeToggle: "Changer de thème",
       dateHeader: "Date",
       appCta: "Notifications de prière et plus encore dans l'appli",
@@ -376,7 +376,7 @@
       today: "اليوم",
       sourceNote: "المواقيت وفق التقويم الرسمي لرئاسة الشؤون الدينية التركية (ديانت).",
       nearestNote: "مصدر المواقيت: {name}",
-      tanzil: "ترجمات القرآن مقدَّمة من بيانات مشروع تنزيل (CC BY 3.0).",
+      tanzil: "مصدر الترجمات: مشروع تنزيل ({link}) / Alquran.cloud.",
       themeToggle: "تبديل المظهر",
       dateHeader: "التاريخ",
       appCta: "تنبيهات الصلاة والمزيد في التطبيق",
@@ -725,7 +725,25 @@
         '<div class="dc-ref">' + esc(hadith.source) + "</div></div>";
     }
     var tn = $("tanzilNote");
-    if (tn) { tn.textContent = t("tanzil"); tn.hidden = false; }
+    if (tn) {
+      // ⚠️ LISANS IDDIASI YAZMA. tanzil.net/trans/ sayfasinda Creative Commons
+      // HIC gecmiyor; orada yazan sart "non-commercial purposes only". Burasi
+      // yalnizca KAYNAK atfidir ve uygulama icindeki metinle birebir aynidir
+      // (locales/*.json quranPrefs.footnote). Baglanti tesadufi degil: Tanzil
+      // ucten fazla ceviri kullanandan tanzil.net/trans/ adresine geri baglanti
+      // istiyor, sitede dort meal kullaniliyor.
+      var parts = String(t("tanzil")).split("{link}");
+      tn.textContent = "";
+      tn.appendChild(document.createTextNode(parts[0]));
+      var a = document.createElement("a");
+      a.href = "https://tanzil.net/trans/";
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "tanzil.net";
+      tn.appendChild(a);
+      if (parts.length > 1) tn.appendChild(document.createTextNode(parts[1]));
+      tn.hidden = false;
+    }
   }
 
   function svgSparkle() {
