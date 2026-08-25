@@ -7,7 +7,7 @@ lang: fr
 # Conditions d'utilisation
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 21 juillet 2026
+**Dernière mise à jour :** 25 août 2026
 
 En utilisant l'application mobile Manevi Halka (« l'Application »), vous acceptez les présentes Conditions d'utilisation. Veuillez les lire attentivement.
 
@@ -16,6 +16,15 @@ En utilisant l'application mobile Manevi Halka (« l'Application »), vous accep
 ## 1. Description du service
 
 Manevi Halka est une application mobile permettant de suivre la lecture du Coran, les parcours de khatm du Cevshen-i Kebir, les compteurs de dhikr, les heures de prière, les jours religieux et la lecture d'ouvrages islamiques. Elle peut être utilisée en solo, au sein de groupes d'amis (halaqa) ou dans des cercles collectifs ponctuels créés pour une occasion particulière.
+
+Une partie des cercles collectifs ponctuels peut également être partagée via
+**manevihalka.app** : la personne qui ouvre le lien peut prendre une portion ou
+contribuer à un dhikr commun, sans installer l'application ni créer de compte.
+Cet usage est lui aussi régi par les présentes Conditions. Aucun compte personnel
+n'étant créé, les droits liés à un compte n'existent pas (historique de
+progression, synchronisation entre appareils, abonnement) ; une portion ainsi
+prise ne peut être suivie que pendant la durée du cercle concerné, au moyen de
+l'identifiant conservé dans ce navigateur.
 
 ---
 

@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 6. August 2026
+**Zuletzt aktualisiert:** 25. August 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -61,6 +61,23 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   verwendet, nicht an Dritte weitergegeben und nach Abschluss der Prüfung
   innerhalb einer angemessenen Frist gelöscht oder anonymisiert
 
+- **Check-ins gemeinsamer Praxis:** Wenn du **aus eigenem Entschluss** an der
+  gemeinsamen Praxis eines Kreises teilnimmst (Gebetsverfolgung, Auswendiglernen
+  bzw. Wiederholung, Bittgebet), werden der Tag und die Einheit, die du
+  markierst (zum Beispiel „Maghrib, 22. August"), auf unseren Servern
+  gespeichert. Nur **die Leitung dieses Kreises** sieht diesen Eintrag; andere
+  Mitglieder des Kreises und andere Nutzer sehen ihn nicht. Die Teilnahme ist
+  eine eigene, ausdrückliche Handlung: Mitglied eines Kreises zu sein schließt
+  dich NICHT in eine gemeinsame Praxis ein, du musst der Aufgabe zusätzlich
+  beitreten. Wenn du die Aufgabe oder den Kreis verlässt, werden diese Einträge
+  **sofort gelöscht**.
+  **Deine persönliche Gebetsverfolgung auf dem Startbildschirm ist davon
+  vollständig getrennt und wird niemals hierher übertragen.** Die beiden
+  Markierungen sind unabhängig: Ein Gebet auf deiner persönlichen Karte zu
+  markieren markiert nicht die Kreisaufgabe, und niemand, auch nicht die
+  Leitung, kann deinen persönlichen Eintrag sehen (siehe den Punkt
+  „Geräteübergreifende Sicherung" oben)
+
 ### 2.2. Automatisch erhobene Informationen
 
 - **Fortschrittsdaten:** Koran-Seitenfortschritt, abgeschlossene Aufgaben,
@@ -85,6 +102,52 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 - Sensible personenbezogene Daten (außer Religionszugehörigkeit – freiwillig
   durch die Nutzung der App offenbart, da diese die Nachverfolgung
   islamischer Praktiken zum Zweck hat)
+
+---
+
+### 2.4. Teilnahme über das Web ohne Konto (manevihalka.app)
+
+Wenn Sie die App nicht installiert haben, können Sie den Einladungslink eines
+Kreises auf **manevihalka.app** öffnen und ohne Konto einen Abschnitt übernehmen
+oder zu einem gemeinsamen Dhikr beitragen. In diesem Fall erheben wir
+**ausschließlich** Folgendes:
+
+- **Eine in Ihrem Browser erzeugte Zufallskennung.** Sie verbleibt im lokalen
+  Speicher Ihres Browsers. Die Kennung selbst wird auf unseren Servern **nicht
+  gespeichert**, sondern nur ein nicht umkehrbarer Hashwert davon (SHA-256). Sie
+  dient einem einzigen Zweck: damit Sie beim erneuten Aufruf desselben Links
+  Ihren eigenen Abschnitt wiedersehen
+- **Ihre Oberflächensprache** (um die Seite in der richtigen Sprache anzuzeigen)
+- **Der von Ihnen übernommene Abschnitt** (Seiten- oder Kapitelbereich) und ob
+  Sie ihn als gelesen markiert haben
+- **Die Anzahl, die Sie zu einem gemeinsamen Dhikr beigetragen haben**
+- **Zeitpunkt der ersten Teilnahme und des letzten Besuchs**
+- **Ein Name, sofern Sie einen angeben.** Er ist freiwillig und niemals
+  Voraussetzung für irgendetwas: einen Abschnitt übernehmen, beitragen, als
+  gelesen markieren – all das funktioniert ohne Namen. Lassen Sie das Feld leer,
+  erscheinen Sie im Kreis als „Gast". Einen angegebenen Namen können Sie später
+  auf derselben Seite wieder entfernen
+- **Zur Begrenzung von Missbrauch:** Ihre IP-Adresse wird **niemals im Klartext
+  gespeichert**; es wird lediglich ein nicht umkehrbarer Hashwert (SHA-256)
+  zusammen mit einem Zähler abgelegt, und diese Einträge werden **nach einer
+  Stunde automatisch gelöscht**
+
+**Nicht erhoben werden:** E-Mail-Adresse, Telefonnummer, Konto, Standort. Ein
+Name wird nur erfasst, wenn Sie selbst einen eingeben.
+Die Seite enthält **keine** Werbe-, Analyse- oder Tracking-Werkzeuge und sendet
+keine Anfrage an Dritte (sämtliche verwendeten Dateien stammen von unseren
+eigenen Servern).
+
+Haben Sie keinen Namen angegeben, **können die Verwaltung und die Mitglieder des
+Kreises nicht sehen, wer Sie sind**; sie sehen lediglich, dass der Abschnitt
+übernommen wurde beziehungsweise dass ein Beitrag zur Zählung hinzugekommen ist.
+Haben Sie einen Namen angegeben, sehen sie diesen zusammen mit dem übernommenen
+Abschnitt und Ihrem Beitrag.
+
+Wenn Sie die Websitedaten Ihres Browsers löschen, geht die Kennung verloren und
+die Verbindung zu Ihrem Abschnitt ist unterbrochen. Möchten Sie auf diese Daten
+zugreifen oder deren Löschung verlangen, genügt es, uns Ihre Kennung mitzuteilen;
+ohne sie können wir den Eintrag nicht auffinden.
 
 ---
 
@@ -125,6 +188,10 @@ Dienstes:
 
 ## 5. Speicherdauer
 
+- **Check-ins gemeinsamer Praxis:** Einträge werden **180 Tage** aufbewahrt und
+  danach von einem täglichen automatischen Vorgang endgültig gelöscht. Wenn du
+  die Aufgabe oder den Kreis verlässt, werden deine Einträge sofort gelöscht,
+  ohne diese Frist abzuwarten
 - **Aktives Konto:** Daten werden so lange aufbewahrt, wie Ihr Konto aktiv ist
 - **Kontolöschung:** Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können Ihr Konto innerhalb von **30 Tagen** wiederherstellen, indem Sie sich erneut anmelden. Nach Ablauf der 30 Tage löscht ein automatisierter Cron-Auftrag (pg_cron) Ihre sämtlichen personenbezogenen Daten **endgültig**. Wenn Sie eine sofortige endgültige Löschung wünschen, können Sie uns per E-Mail kontaktieren. Lediglich Buchhaltungs- bzw. Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können (anonymisiert) erhalten bleiben
 - **Abgeschlossene einmalige Kreise:** Wenn ein einmaliger Kreis endet, wird eine
@@ -147,6 +214,12 @@ Dienstes:
 - **Benachrichtigungsprotokolle:** Automatische Löschung nach 30 Tagen
 - **Audit-Protokolle:** Aufbewahrung 12 Monate zu Sicherheits- und
   Compliance-Zwecken
+
+- **Teilnahme über das Web ohne Konto:** Ein Gasteintrag gehört zu dem Kreis, in
+  dem er entstanden ist. Wird dieser Kreis nach seinem Ende gelöscht (24 Stunden
+  nach dem Enddatum), werden der Gasteintrag, der übernommene Abschnitt und die
+  beigetragene Anzahl endgültig mitgelöscht. Missbrauchszähler werden nach einer
+  Stunde gelöscht
 
 ---
 
@@ -219,6 +292,12 @@ Gerät gespeichert:
 
 Durch das Löschen Ihres Kontos oder die Deinstallation der App werden
 diese Daten entfernt.
+
+**Website (manevihalka.app):** Die Seite für die Teilnahme ohne Konto verwendet
+keine Cookies, legt jedoch **einen einzigen Wert** im lokalen Speicher Ihres
+Browsers ab: die oben beschriebene Zufallskennung (Abschnitt 2.4). Für Analyse-
+oder Werbezwecke wird nichts gespeichert. Das Löschen der Websitedaten Ihres
+Browsers entfernt auch diesen Wert.
 
 ---
 

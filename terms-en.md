@@ -7,7 +7,7 @@ lang: en
 # Terms of Service
 
 **Effective date:** May 3, 2026
-**Last updated:** July 21, 2026
+**Last updated:** August 25, 2026
 
 By using the Manevi Halka mobile application ("the App") you accept these
 Terms of Service. Please read carefully.
@@ -20,6 +20,14 @@ Manevi Halka is a mobile app for tracking Quran reading, Cevshen-i Kebir hatim
 flows, dhikr counters, prayer times, religious days, and Islamic book reading.
 It can be used solo, in friend groups (halaqa), or in one-time collective circles
 created for a special occasion.
+
+Some one-time collective circles can also be shared through **manevihalka.app**:
+whoever opens the link may take on a portion, or contribute to a shared dhikr,
+without installing the app or creating an account. That use is likewise governed
+by these Terms. Because no personal account is created, account-based rights do
+not arise (progress history, cross-device sync, subscription); a portion taken on
+this way can only be followed for the duration of that circle, through the
+identifier stored in that browser.
 
 ---
 

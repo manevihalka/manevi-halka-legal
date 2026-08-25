@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** August 6, 2026
+**Last updated:** August 25, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -59,6 +59,20 @@ rights you have.
   third parties, and are deleted or anonymized within a reasonable period
   after the review is completed
 
+- **Shared practice check-ins:** If you join a circle's shared practice (prayer
+  tracking, memorisation/review, supplication) **of your own accord**, the day
+  and unit you mark (for example "maghrib, 22 August") is stored on our servers.
+  Only **that circle's admin** can see this record; other members of the circle
+  and other users cannot. Joining is a separate, explicit act: being a member of
+  a circle does NOT enrol you in a shared practice, you have to join the task as
+  well. When you leave the task or leave the circle, these check-ins are
+  **deleted immediately**.
+  **Your personal prayer tracking on the home screen is entirely separate and
+  is never transferred here.** The two markings are independent: marking a
+  prayer on your personal card does not mark the circle task, and nobody,
+  including the admin, can see your personal record (see the "Cross-device
+  backup" item above)
+
 ### 2.2. Automatically collected information
 
 - **Progress data:** Quran page progress, completed tasks, hatim count,
@@ -79,6 +93,44 @@ rights you have.
 - Health data
 - Sensitive personal data (except religion — voluntarily provided through use
   of the app, given the nature of tracking Islamic practices)
+
+---
+
+### 2.4. Joining from the web without an account (manevihalka.app)
+
+If you do not have the app, you can open a circle's invitation link on
+**manevihalka.app** and take on a portion, or contribute to a shared dhikr,
+without creating an account. In that case we collect **only** the following:
+
+- **A random identifier generated in your browser.** It is kept in your browser's
+  local storage. The identifier itself is **not stored** on our servers; only an
+  irreversible digest of it (SHA-256) is kept. It serves one purpose: so that you
+  can see your own portion when you return to the same link
+- **Your interface language** (to show the page in the right language)
+- **The portion you took on** (page or chapter range) and whether you marked it finished
+- **The count you added** to a shared dhikr
+- **First-seen and last-seen timestamps**
+- **A name, if you choose to give one.** It is optional and never a condition
+  for anything: taking on a portion, contributing, marking it finished — all of
+  it works without a name. If you leave it blank you appear in the circle as
+  "Guest". You can remove a name you gave from the same page later
+- **To limit abuse:** your IP address is **never written in raw form**; an
+  irreversible digest of it (SHA-256) is kept with a counter, and those records are
+  **deleted automatically after 1 hour**
+
+**Not collected:** email, phone number, account, location. A name is taken only
+if you type one. The page carries
+**no** advertising, analytics or tracking tools, and makes no request to any third
+party (every file it uses is served from our own servers).
+
+If you gave no name, the circle's administrator and members **cannot see who you
+are**; they only see that the portion was taken on, or that a contribution was
+added to the count. If you gave a name, they see that name alongside the portion
+you took and what you contributed.
+
+Clearing your browser's site data removes the identifier and severs the link to
+your portion. If you wish to access or erase this data, simply send us your
+identifier; without it we have no way to locate the record.
 
 ---
 
@@ -117,6 +169,9 @@ We use the following third-party services to provide our service:
 
 ## 5. Data Retention
 
+- **Shared practice check-ins:** Check-ins are kept for **180 days**, then
+  permanently deleted by a daily automated job. If you leave the task or the
+  circle, your check-ins are deleted immediately, without waiting for that period
 - **Active account:** Data is retained as long as your account is active
 - **Account deletion:** Your account is first marked as **soft-deleted**. You can **restore your account within 30 days** by signing in again. After 30 days, an automated cron job (pg_cron) **permanently deletes** all your personal data. If you want immediate permanent deletion, contact us by email. Only accounting/subscription records that must legally be retained may be kept (anonymized)
 - **Completed one-time circles:** When a one-time circle ends, a summary
@@ -135,6 +190,11 @@ We use the following third-party services to provide our service:
   your name as the sharer is anonymized when your account is deleted
 - **Notification logs:** Auto-deleted after 30 days
 - **Audit logs:** Retained for 12 months for security and compliance
+
+- **Web participation without an account:** A guest record belongs to the circle
+  it was created in. When that circle is deleted after it ends (24 hours after its
+  end date), the guest record, the portion taken and the contributed count are
+  permanently deleted with it. Abuse counters are deleted after 1 hour
 
 ---
 
@@ -200,6 +260,11 @@ data is stored locally on your device:
 - Widget data (UserDefaults / SharedPreferences)
 
 Deleting your account or uninstalling the app removes this data.
+
+**Website (manevihalka.app):** The account-free participation page uses no
+cookies, but stores **a single value** in your browser's local storage: the random
+identifier described above (section 2.4). Nothing is written for analytics or
+advertising. Clearing your browser's site data also removes this value.
 
 ---
 

@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-itunes-app" content="app-id=6760654292">
+<title>Manevi Halka</title>
+<!--
+  Web üzerinden hatim katılımı. Tasarım: manevi-halka reposunda
+  docs/WEB_HATIM_KATILIMI.md (kilitli karar belgesi).
+
+  EKRAN KURGUSU (24 Ağu 2026, kullanıcı kararı + ChatGPT istişaresi):
+  Bu bir LİSTE değil DURUM HARİTASI. 30 sabit, numaralı ve KISMEN DOLABİLEN
+  nesne var; kısmi doluluk ızgarayı listeden anlamlı kılıyor (liste ancak her
+  satırda sûre/âyet gösterilecekse üstün olurdu, biz o detayı onay ekranına
+  taşıdık).
+
+  ⚠️ DOLU CÜZLERİ SONA SIRALAMA. Numaralı bir diziyi doluluğa göre yeniden
+  dizmek mekânsal hafızayı bozar. "Müsait" süzgeci zaten doluları kaldırıyor.
+  (Uygulamanın kendi ızgarası sona sıralıyor; web'de BİLEREK yapmıyoruz.)
+
+  ⚠️ ÖNERİ KURALI: "sıradaki tamamen boş cüz" DEĞİL, "en küçük numaralı
+  BİTMEMİŞ cüzü kapatacak kadar". Herkes yeni cüz açarsa hatim parçalanır,
+  her cüzde 2-3 sayfa artık kalır ve son %5 sürünür.
+
+  ⚠️ Bu sayfa veritabanına DOĞRUDAN erişemez. Tek kapı `guest-event` Edge
+  Function'ı; misafir RPC'lerinin hiçbiri anon'a açık değil (ölçüldü).
+
+  ⚠️ Anlık senkron sinyali VERİ DEĞİL. Kanal public, sahte mesaj gönderilebilir
+  (üretimde denendi). Sinyal gelince payload OKUNMAZ, sunucudan yeniden okunur.
+-->
+<style>
+  /* ── Palet ──────────────────────────────────────────────────────────────
+     Ana siteden (manevihalka.app) BİREBİR alındı. Tutarlılık üç şeyle kuruluyor:
+     bu palet, girih filigranı ve kart dili (18-20px köşe, hafif gölge, ince
+     sıcak kenarlık).
+     ⚠️ ALTIN (--gold) BİR DURUM RENGİ DEĞİLDİR. İlerleme çubuğuna koyulursa
+     "üstlenildi = ödül/başarı" çağrışımı doğuyor ve ekran üç renkli bir
+     gösterge paneline dönüyor. Altın yalnız atmosfer aksanı: hero ayracı,
+     ithaf kartının üst çizgisi, öneri kartının vurgusu, seçili cüzün halkası. */
+  :root {
+    --bg:#f8f5ef; --card:#ffffff; --ink:#1f2937;
+    --primary-dark:#1e4d35; --primary:#2f6b4a; --soft-green:#eef5f0;
+    --gold:#d9b970; --soft-gold:#f1e4be;
+    --muted:#6f806f; --sub:#59665d;
+    --line:rgba(30,77,53,.10); --line-strong:rgba(30,77,53,.18);
+    --done:#2f6b4a; --held:#8bad98; --free:#e7e8e3;
+    --full-bg:#f3f2ed;
+    --shadow:0 3px 14px rgba(30,50,35,.045);
+  }
+  /* Koyu tema SİSTEMİ izler. ⚠️ v1'de manuel tema düğmesi YOK: ana sitenin
+     iki temalı kimliği korunsun ama 30 saniyelik misafir işlemine tema
+     seçici koymak gereksiz arayüz olur. */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0e1512; --card:#16211c; --ink:#e8eae6;
+      --primary-dark:#cfe6d8; --primary:#4f9b74; --soft-green:#18241e;
+      --gold:#c9a961; --soft-gold:#2a2418;
+      --muted:#8ea394; --sub:#9db0a3;
+      --line:rgba(207,230,216,.10); --line-strong:rgba(207,230,216,.18);
+      --done:#4f9b74; --held:#31624a; --free:#22302a;
+      --full-bg:#131c17;
+      --shadow:0 3px 14px rgba(0,0,0,.25);
+    }
+  }
+
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background:var(--bg); color:var(--ink); min-height:100vh;
+    padding:0 0 48px; -webkit-font-smoothing:antialiased;
+  }
+  .shell { max-width:960px; margin:0 auto; padding:0 16px; }
+  .narrow { max-width:720px; margin:0 auto; }
+  .mid    { max-width:800px; margin:0 auto; }
+
+  /* ── Hero ───────────────────────────────────────────────────────────────
+     Ana sitenin atmosferi yalnız BURAYA taşınıyor, bütün sayfaya değil.
+     Animasyon yok, kubbe silueti yok, kandil yok: davet linkinden gelen kişi
+     30 saniyelik bir iş yapıyor, atmosfer onu yavaşlatmamalı. */
+  .hero {
+    position:relative; overflow:hidden; text-align:center;
+    padding:34px 18px 26px; border-bottom:1px solid var(--line);
+  }
+  .hero::before {
+    content:""; position:absolute; inset:0; opacity:.045; pointer-events:none;
+    /* ⚠️ SVG data URI içinde CSS değişkeni ÇÖZÜLMEZ (dış kaynak olarak
+       ayrıştırılır). Renk gömülü yazılır, koyu tema ayrı kuralla ezer. */
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%231e4d35' stroke-width='1.1'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:64px 64px;
+  }
+  .hero > * { position:relative; }
+  .hero-mark { width:30px; height:30px; margin:0 auto 12px; display:block;
+    color:var(--primary); opacity:.85; }
+  .eyebrow { font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:8px; }
+  h1 { font-size:22px; font-weight:600; line-height:1.3; color:var(--primary-dark); }
+  .hero-rule { width:44px; height:1px; background:var(--gold); margin:14px auto; opacity:.8; }
+  .hero-sub { font-size:14px; color:var(--sub); }
+  .hero-date { font-size:12px; color:var(--muted); margin-top:5px; }
+
+  .brandbar { text-align:center; padding:14px 0 0; font-size:11px;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+
+  /* ── Kart dili ──────────────────────────────────────────────────────── */
+  .panel { background:var(--card); border:1px solid var(--line);
+    border-radius:18px; box-shadow:var(--shadow); padding:18px 16px; margin-top:16px; }
+  .panel-head { display:flex; align-items:center; justify-content:center; gap:7px;
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:12px; }
+  .panel-head svg { width:14px; height:14px; }
+
+  /* Üç durumlu ilerleme. Altın YOK, üstlenildi açık yeşil. */
+  .bar { height:9px; border-radius:6px; background:var(--free); overflow:hidden; display:flex; }
+  .bar > .done { background:var(--done); }
+  .bar > .held { background:var(--held); }
+  .legend { font-size:12.5px; color:var(--sub); text-align:center; margin-top:10px; line-height:1.55; }
+  .legend .k { display:inline-flex; align-items:center; gap:5px; margin:0 5px; white-space:nowrap; }
+  .legend .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+
+  /* İthaf kartının üst çizgisi altın: atmosfer aksanı. */
+  .suggest { position:relative; margin-top:16px; padding:18px 16px; border-radius:18px;
+    background:var(--soft-green); border:1px solid var(--line);
+    text-align:center; overflow:hidden; }
+  .suggest::after { content:""; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent); opacity:.7; }
+  .suggest .cuz { font-size:20px; font-weight:700; color:var(--primary-dark); margin-top:2px; }
+  .suggest .sub { font-size:13.5px; color:var(--sub); margin-top:3px; }
+
+  /* Çoklu hatim serisi bilgisi. Seri SEÇTİRİLMİYOR (kilitli tasarım): tek
+     görev alan misafire çip barı gereksiz bilişsel yük. Ama hangi hatimde
+     olduğunu SÖYLEMEK şart, yoksa hatim yarılanmışken "01 Cüz müsait"
+     görüp sebebini anlayamıyor. */
+  .series-note { text-align:center; font-size:12.5px; color:var(--muted);
+    margin-top:22px; display:flex; align-items:center; justify-content:center; gap:6px; }
+  .series-note svg { width:13px; height:13px; }
+
+  /* ── Ortak zikir/dua ─────────────────────────────────────────────────────
+     Cüz ızgarasından farklı olarak burada KART DEĞİL SATIR var: kalemler az
+     (2-5 tane) ve her birinin adı uzun; kare hücrelere sığmaz. */
+  .zrow { padding:16px 16px 14px; border-bottom:1px solid var(--line); }
+  .zrow:last-child { border-bottom:0; }
+  .zname { font-size:16px; font-weight:600; color:var(--primary-dark); line-height:1.3; }
+  .zar { font-size:19px; color:var(--sub); margin-top:5px; line-height:1.7;
+         direction:rtl; text-align:right; }
+  /* Arapça satırının kutusu punto x 1.7 kadar yüksek; çubuk hemen ardına
+     gelince göz "bitişik" okuyor. Ayrımı boşlukla veriyoruz. */
+  .zrow .bar { margin-top:12px; }
+  .znums { display:flex; justify-content:space-between; align-items:baseline;
+           gap:10px; margin-top:11px; font-size:12.5px; color:var(--muted); }
+  .znums b { font-size:15px; font-weight:600; color:var(--ink); }
+  .zmine { font-size:12.5px; color:var(--primary); margin-top:7px; }
+  .zlocked { font-size:12.5px; color:var(--muted); margin-top:9px;
+             display:flex; align-items:center; gap:6px; }
+  .zlocked svg { width:13px; height:13px; }
+
+  /* Sayaç ekranı: tek kalem var, ortalı okunur. Satır listesinde ise kalemler
+     alt alta diziliyor ve sola dayalı kalması gerekiyor — bu yüzden ortalama
+     .zcount'a bağlı, .zname/.zar'a değil. */
+  .zcount { text-align:center; }
+  .zcount .zar { text-align:center; margin-top:8px; }
+
+  /* ── Yetişmeyen paylar (pool_divide havuz anı) ───────────────────────────
+     Cüz ızgarası DEĞİL: paylar hazır boyutta ve az sayıda (kadro kadar).
+     Seçilecek bir aralık yok, üstlenilecek bir satır var. */
+  .dlead { text-align:center; font-size:14px; color:var(--sub);
+           line-height:1.55; margin:0 0 4px; }
+  .drow { padding:15px 16px; border-bottom:1px solid var(--line);
+          display:flex; align-items:center; gap:14px; }
+  .drow:last-child { border-bottom:0; }
+  .drow .info { flex:1 1 auto; min-width:0; }
+  .drow .rng { font-size:17px; font-weight:650; color:var(--primary-dark);
+               font-variant-numeric:tabular-nums; }
+  .drow .sub { font-size:12.5px; color:var(--muted); margin-top:3px; }
+  .drow button { width:auto; flex:0 0 auto; margin:0; padding:10px 18px;
+                 font-size:14px; border-radius:11px; }
+
+  /* ── İsteğe bağlı ad ─────────────────────────────────────────────────────
+     Ad hiçbir yerde ön koşul değil. Bu yüzden kutu sayfanın ana akışını
+     kesmiyor: sessiz bir panel, "Geç" birinci sınıf bir seçenek. */
+  .namebox { padding:16px; text-align:center; }
+  .namebox .q { font-size:15px; font-weight:600; color:var(--primary-dark); }
+  .namebox .w { font-size:12.5px; color:var(--muted); line-height:1.5;
+                margin:6px auto 12px; max-width:340px; }
+  .namebox input { width:100%; max-width:320px; padding:12px 14px; font-size:15px;
+    font-family:inherit; color:var(--ink); background:var(--card);
+    border:1px solid var(--line-strong); border-radius:12px; text-align:center;
+    box-sizing:border-box; }
+  .namebox input:focus { outline:none; border-color:var(--primary); }
+  .namebox .row { display:flex; gap:10px; justify-content:center; margin-top:12px; }
+  .namebox .row button { width:auto; flex:0 0 auto; margin:0; padding:11px 22px;
+                         font-size:14px; border-radius:11px; }
+  .namerow { display:flex; align-items:center; justify-content:center; gap:10px;
+             padding:13px 16px; font-size:13.5px; color:var(--sub); flex-wrap:wrap; }
+  .namerow b { color:var(--primary-dark); font-weight:650; }
+  .namerow button { width:auto; margin:0; padding:7px 14px; font-size:12.5px;
+                    border-radius:9px; }
+
+  /* Sayaç: halka ŞEKLİ değil DOKUNMA ALANI. Parmak nereye düşerse düşsün
+     sayması için bütün daire tıklanabilir; iç metin seçilemez olmalı ki
+     hızlı dokunuşta metin seçimi tetiklenmesin. */
+  .zdial { width:190px; height:190px; margin:22px auto 0; border-radius:50%;
+           border:2px solid var(--line-strong); background:var(--soft-green);
+           display:flex; flex-direction:column; align-items:center;
+           justify-content:center; cursor:pointer; user-select:none;
+           -webkit-user-select:none; -webkit-tap-highlight-color:transparent;
+           transition:transform .08s ease; }
+  .zdial:active { transform:scale(.97); }
+  .zdial .v { font-size:52px; font-weight:650; line-height:1;
+              color:var(--primary-dark); font-variant-numeric:tabular-nums; }
+  .zdial .l { font-size:11.5px; color:var(--muted); margin-top:8px;
+              max-width:130px; text-align:center; line-height:1.35; }
+  .zchips { display:flex; gap:10px; justify-content:center; margin-top:16px; }
+  .zchips button { flex:0 0 auto; width:auto; min-width:96px; padding:11px 16px;
+                   margin:0;
+                   border-radius:999px; border:1px solid var(--line-strong);
+                   background:var(--card); color:var(--primary-dark);
+                   font-size:14px; font-weight:600; cursor:pointer;
+                   font-family:inherit; }
+
+  .tabs { display:flex; gap:8px; justify-content:center; margin:22px 0 12px; }
+  .tabs button { flex:0 0 auto; width:auto; padding:8px 20px; border-radius:11px;
+    border:1px solid var(--line-strong); background:var(--card); color:var(--muted);
+    font-size:13px; font-weight:650; margin:0; }
+  .tabs button.on { background:var(--primary); border-color:var(--primary); color:#fff; }
+
+  /* ── Cüz ızgarası ────────────────────────────────────────────────────
+     Zenginlik numaranın tipografisinden ve ince çerçeveden geliyor, desenden
+     değil. Kartın tamamını desenle kaplamıyoruz: sağ üstte tek küçük parça. */
+  .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
+  .cell { position:relative; overflow:hidden; padding:14px 12px 12px;
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    box-shadow:var(--shadow); cursor:pointer; text-align:center; }
+  .cell::before {
+    content:""; position:absolute; top:-14px; right:-14px; width:52px; height:52px;
+    opacity:.05; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%231e4d35' stroke-width='1.4'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:52px 52px;
+  }
+  .cell > * { position:relative; }
+  .cell .n { font-size:31px; font-weight:650; line-height:1; color:var(--primary-dark);
+    font-variant-numeric:tabular-nums; }
+  .cell .u { font-size:12px; color:var(--muted); margin-top:3px; }
+  .cell .s { font-size:13px; color:var(--sub); margin-top:9px; }
+  .cell .b { height:3px; border-radius:2px; background:var(--free); margin-top:8px; overflow:hidden; }
+  .cell .b > i { display:block; height:100%; background:var(--held); }
+  /* Dolu kart soluk ama NUMARA OKUNUR kalır. */
+  .cell.full { background:var(--full-bg); opacity:.58; cursor:default; box-shadow:none; }
+  /* Seçili: kalın yeşil çerçeve değil, sakin halka. */
+  .cell.sel { border:1.5px solid var(--primary); box-shadow:0 0 0 3px rgba(47,107,74,.08); }
+
+  button { width:100%; padding:14px 18px; border-radius:13px; border:none;
+    font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:12px; }
+  .primary { background:var(--primary); color:#fff; }
+  .ghost { background:var(--card); color:var(--sub); border:1px solid var(--line-strong); }
+
+  .block { margin:18px 0; padding:20px 14px; border-radius:18px;
+    background:var(--soft-green); border:1px solid var(--line); text-align:center; }
+  .pages { font-size:23px; font-weight:700; color:var(--primary-dark); line-height:1.3;
+    font-variant-numeric:tabular-nums; }
+  .ref { font-size:13px; color:var(--sub); margin-top:5px; text-align:center; }
+  .count { font-size:12px; color:var(--muted); margin-top:4px; }
+
+  .amt { margin-top:16px; }
+  .amt .lbl { font-size:12.5px; color:var(--sub); text-align:center; margin-bottom:9px; }
+  .amt .row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+  .amt button { width:auto; flex:0 0 auto; padding:9px 19px; font-size:15px; margin-top:0;
+    border:1px solid var(--line-strong); background:var(--card); color:var(--sub); }
+  .amt button.on { background:var(--primary); border-color:var(--primary); color:#fff; }
+
+  .mine-row { padding:12px 0; border-top:1px solid var(--line); text-align:center; }
+  .mine-row:first-of-type { border-top:none; }
+  .mine-row .p { font-size:16px; font-weight:700; color:var(--primary-dark);
+    font-variant-numeric:tabular-nums; }
+  .mine-row .r { font-size:12.5px; color:var(--muted); margin-top:2px; }
+  .mine-row .acts { display:flex; gap:8px; justify-content:center; margin-top:9px; }
+  .mine-row .acts button { width:auto; flex:0 0 auto; padding:7px 15px; font-size:13px; margin-top:0; }
+  .mine-row .tick { font-size:13px; font-weight:650; color:var(--primary); margin-top:7px; }
+
+  .msg { text-align:center; font-size:15px; color:var(--sub); line-height:1.6; padding:12px 0; }
+  .err { color:#b91c1c; }
+  .ok-title { text-align:center; font-size:19px; font-weight:700; color:var(--primary-dark); line-height:1.4; }
+  .cta { display:block; text-align:center; margin-top:18px; padding:13px; border-radius:13px;
+    border:1px solid var(--line); background:var(--soft-green); color:var(--primary-dark);
+    text-decoration:none; font-size:14px; font-weight:650; }
+  .recovery { margin-top:16px; font-size:12px; color:var(--muted); text-align:center; }
+  .recovery button { width:auto; padding:6px 13px; font-size:12px; margin-top:7px; }
+  .links { margin-top:26px; text-align:center; font-size:12px; }
+  .links a { color:var(--muted); text-decoration:none; margin:0 9px; }
+  .hidden { display:none; }
+
+  /* Koyu temada girih rengi açık yeşile döner (data URI'de değişken çalışmaz). */
+  @media (prefers-color-scheme: dark) {
+    .hero::before {
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23cfe6d8' stroke-width='1.1'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E");
+      opacity:.06;
+    }
+    .cell::before {
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23cfe6d8' stroke-width='1.4'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E");
+      opacity:.07;
+    }
+  }
+
+  /* ── Geniş ekran ─────────────────────────────────────────────────────
+     Boşluk sorunu DEKORLA değil bilgi yoğunluğuyla çözülüyor: ızgara
+     genişliyor, ithaf ve ilerleme dar/okunaklı kalıyor. */
+  @media (min-width:640px) { .grid { grid-template-columns:repeat(3, 1fr); } }
+  @media (min-width:900px) {
+    .grid { grid-template-columns:repeat(4, 1fr); }
+    h1 { font-size:26px; }
+    .hero { padding:48px 18px 34px; }
+    .cell .n { font-size:34px; }
+  }
+</style>
+</head>
+<body>
+<div class="brandbar">Manevi Halka</div>
+
+<header class="hero" id="hero">
+  <svg class="hero-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 6.5S9.5 4.5 5 4.5v13c4.5 0 7 2 7 2s2.5-2 7-2v-13c-4.5 0-7 2-7 2z"/>
+    <path d="M12 6.5v13"/>
+  </svg>
+  <div class="eyebrow hidden" id="eyebrow"></div>
+  <h1 id="title">…</h1>
+  <div class="hero-rule hidden" id="heroRule"></div>
+  <div class="hero-sub hidden" id="heroSub"></div>
+  <div class="hero-date hidden" id="deadline"></div>
+</header>
+
+<main class="shell">
+  <div id="stage"></div>
+  <div class="narrow">
+    <a class="cta hidden" id="appCta" href="https://apps.apple.com/app/id6760654292"></a>
+    <div class="links">
+      <a id="privacyLink" href="/privacy.html"></a>
+      <a id="termsLink" href="/terms.html"></a>
+    </div>
+  </div>
+</main>
+
+<!-- Supabase istemcisi KENDİ SUNUCUMUZDAN. İki sebeple CDN'den alınmıyor:
+     (1) Bu sayfa misafirden hiçbir şey toplamıyor; CDN'e giden istek her
+         ziyaretçinin IP'sini üçüncü bir tarafa verirdi.
+     (2) "@2" kayan sürümdü, yani her yükleme farklı kod getirebilirdi ve
+         SRI konulamıyordu. Sürüm burada donduruldu (2.112.4).
+     Yalnız CANLI SENKRON için kullanılıyor; veri çağrılarının hepsi
+     doğrudan fetch ile edge function'a gidiyor. Yüklenemezse sayfa
+     çalışmaya devam eder, yoklama (polling) devreye girer. -->
+<!-- ⚠️ Yol "assets/" ALTINDA, "vendor/" değil: Jekyll'in varsayılan
+     dışlama listesi vendor/ alt dizinlerini (bundle, cache, gems, ruby)
+     atıyor ve o ad Ruby geleneğine ait. Canlı senkronu böyle bir
+     belirsizliğe bağlamıyoruz; assets/ minima'nın kanonik statik dizini. -->
+<script src="/assets/vendor/supabase-js-2.112.4.js"></script>
+<script>
+(function () {
+  var SUPA_URL = 'https://ohmescuwjyaitykemuub.supabase.co';
+  // Publishable (anon) anahtar. Gizli DEĞİL: APK içinde de dağıtılıyor ve tek
+  // başına hiçbir şeye erişim vermez — misafir RPC'lerinin hepsi anon'a kapalı.
+  var SUPA_ANON = 'sb_publishable_RsHHr49q-XcPki42KsXEjA_kBUOGupH';
+  var FN = SUPA_URL + '/functions/v1/guest-event';
+  var POLL_MS = 20000;
+
+  // ── Diller. Taban İNGİLİZCE (Kural 9 ilkesi). ─────────────────────────────
+  // ⚠️ "Allah" beş dilde de AYNEN kullanılır. Uygulamanın locale dosyalarında
+  // "Allah" 26 kez geçiyor, "Gott"/"Dieu"/"God" SIFIR kez. Buraya yerel karşılık
+  // yazma, uygulamayla çelişir.
+  // ⚠️ Türkçede "Cüz 7'nin" gibi ek gerekmesin diye cüz adı ile açıklama AYRI
+  // satırda tutuluyor; sayının son sesine göre değişen ek üretilemez.
+  var S = {
+    en: { loading:'Loading…', ongoing:'The recitation is in progress.',
+      legend:'{done} completed · {held} undertaken · {free} available',
+      lgDone:'completed', lgHeld:'undertaken', lgFree:'available', cuzWord:'Juz', seriesNote:'Recitation {n} is in progress; the earlier ones are complete.', seriesNoteOpen:'This circle holds {t} recitations; the first is in progress.', nextLbl:'Next portion', cuzN:'Juz {n}', closesIn:'{p} pages left to finish it',
+      freeIn:'{p} pages available', takeThis:'Take this',
+      avail:'Available', all:'All', full:'Full',
+      pagesRange:'Pages {a}-{b}', pageCount:'{p} pages',
+      confirmQ:'Do you confirm that you will read this portion?',
+      confirm:'I confirm, I will take it', cancel:'Cancel',
+      entrusted:'Pages {a}-{b} are entrusted to you.', mayAccept:'May Allah accept it.',
+      another:'Would you like to take another portion?', takeAnother:'Take another portion',
+      none:'There is no portion available right now.', closed:'This recitation is closed.',
+      quota:'You have 40 pages open right now. Mark them as finished to take more.',
+      taken:'That portion was just taken. Let us give you another one.',
+      amountLbl:'How much will you read?', heroEyebrow:'Intention of this recitation', ebZikir:'Intention of this dhikr', ebDua:'Intention of this supplication', myLbl:'Your portions', markDone:'I finished it', dropIt:'Remove', sure:'Sure?', doneMark:'Finished', gone:'This recitation is no longer available.', slow:'Too many attempts. Please wait a moment and try again.', error:'Something went wrong. Please try again.', notFound:'Invitation link is not valid.',
+      openApp:'Open in the app', until:'Until {d}',
+      keepLink:'Save this link to return to your portion later.', copy:'Copy link', copied:'Copied',
+ zHead:'Recitations in this circle', zOf:'{a} of {b}', zMine:'Your contribution: {n}', zAdd:'Add to the count', zMemberOnly:'For circle members', zTargetOnly:'Target {n} each', zSession:'Counted in this session', zSubmit:'Add my count', zNone:'This circle has no shared recitation yet.', zDone:'Your count has been added.', zReached:'Target reached.', zZero:'Count first, then add it.', dHead:'Portions not finished in time', dLead:'These portions were left unfinished. Take one and the recitation is completed.', dTake:'Take this on', dWait:'The portions have been shared out. Whatever is left unfinished opens up here on {d}.', dNone:'Every portion has an owner right now.', dBab:'Chapter {a}-{b}', dBabCount:'{p} chapters', ebCevsen:'Intention of this Jawshan', ongoingCevsen:'The Jawshan is being recited.', nAsk:'Add your name?', nWhy:'The circle will see who took this on. You can skip this — it changes nothing.', nPh:'Your name (optional)', nSave:'Save', nSkip:'Skip', nEdit:'Name', nClear:'Remove name', nSaved:'Saved.', privacy:'Privacy', terms:'Terms', arrow:'→' },
+    tr: { loading:'Yükleniyor…', ongoing:'Hatim devam ediyor.',
+      legend:'{done} tamamlandı · {held} üstlenildi · {free} müsait',
+      lgDone:'tamamlandı', lgHeld:'üstlenildi', lgFree:'müsait', cuzWord:'Cüz', seriesNote:'{n}. hatim okunuyor, öncekiler tamamlandı.', seriesNoteOpen:'Halkada {t} hatim var, birincisi okunuyor.', nextLbl:'Sıradaki bölüm', cuzN:'{n}. Cüz', closesIn:'Bitmesine {p} sayfa kaldı',
+      freeIn:'{p} sayfa müsait', takeThis:'Bunu al',
+      avail:'Müsait', all:'Tümü', full:'Dolu',
+      pagesRange:'Sayfa {a}-{b}', pageCount:'{p} sayfa',
+      confirmQ:'Bu bölümü okuyacağını onaylıyor musun?',
+      confirm:'Onaylıyorum, alıyorum', cancel:'Vazgeç',
+      entrusted:'Sayfa {a}-{b} sana emanet edildi.', mayAccept:'Allah kabul etsin.',
+      another:'Başka bir bölüm almak ister misin?', takeAnother:'Başka bölüm al',
+      none:'Şu anda alınabilecek bölüm yok.', closed:'Bu hatim kapandı.',
+      quota:'Şu an 40 sayfan açık. Aldıklarını tamamladıkça yenilerini alabilirsin.',
+      taken:'Bu bölüm az önce alındı, sana başka bir bölüm verelim.',
+      amountLbl:'Ne kadar okuyacaksın?', heroEyebrow:'Hatim niyeti', ebZikir:'Zikir niyeti', ebDua:'Dua niyeti', myLbl:'Aldığın bölümler', markDone:'Tamamladım', dropIt:'Kaldır', sure:'Emin misin?', doneMark:'Tamamlandı', gone:'Bu hatim artık mevcut değil.', slow:'Çok fazla deneme oldu. Biraz bekleyip tekrar dene.', error:'Bir şeyler ters gitti. Tekrar dener misin?', notFound:'Davet bağlantısı geçerli değil.',
+      openApp:'Uygulamada aç', until:'{d} tarihine kadar',
+      keepLink:'Bölümüne sonra dönmek için bu bağlantıyı kaydet.', copy:'Bağlantıyı kopyala', copied:'Kopyalandı',
+ zHead:'Halkadaki zikirler', zOf:'{b} hedefin {a} tanesi', zMine:'Senin katkın: {n}', zAdd:'Sayıma katıl', zMemberOnly:'Halka üyeleri için', zTargetOnly:'Kişi başı {n}', zSession:'Bu oturumda saydığın', zSubmit:'Katkımı ekle', zNone:'Bu halkada henüz ortak zikir yok.', zDone:'Katkın eklendi.', zReached:'Hedefe ulaşıldı.', zZero:'Önce say, sonra ekle.', dHead:'Yetişmeyen paylar', dLead:'Bu paylar yarım kaldı. Birini üstlenirsen hatim tamamlanır.', dTake:'Bunu üstlen', dWait:'Paylar dağıtıldı. Yetişmeyenler {d} tarihinde burada açılır.', dNone:'Şu anda bütün payların sahibi var.', dBab:'{a}-{b}. Bab', dBabCount:'{p} bab', ebCevsen:'Cevşen niyeti', ongoingCevsen:'Cevşen okunuyor.', nAsk:'Adını yazmak ister misin?', nWhy:'Halkadakiler bunu kimin üstlendiğini görsün diye. Boş bırakabilirsin, hiçbir şey değişmez.', nPh:'Adın (isteğe bağlı)', nSave:'Kaydet', nSkip:'Geç', nEdit:'Ad', nClear:'Adı kaldır', nSaved:'Kaydedildi.', privacy:'Gizlilik', terms:'Şartlar', arrow:'→' },
+    de: { loading:'Wird geladen…', ongoing:'Die Chatma läuft.',
+      legend:'{done} abgeschlossen · {held} übernommen · {free} verfügbar',
+      lgDone:'abgeschlossen', lgHeld:'übernommen', lgFree:'verfügbar', cuzWord:'Dschus', seriesNote:'Chatma {n} läuft, die vorherigen sind abgeschlossen.', seriesNoteOpen:'Dieser Kreis umfasst {t} Chatmas, die erste läuft.', nextLbl:'Nächster Abschnitt', cuzN:'Dschus {n}', closesIn:'Noch {p} Seiten bis zum Abschluss',
+      freeIn:'{p} Seiten verfügbar', takeThis:'Diesen nehmen',
+      avail:'Verfügbar', all:'Alle', full:'Vergeben',
+      pagesRange:'Seite {a}-{b}', pageCount:'{p} Seiten',
+      confirmQ:'Bestätigst du, dass du diesen Abschnitt liest?',
+      confirm:'Ich bestätige, ich nehme ihn', cancel:'Abbrechen',
+      entrusted:'Seite {a}-{b} ist dir anvertraut.', mayAccept:'Möge Allah es annehmen.',
+      another:'Möchtest du einen weiteren Abschnitt nehmen?', takeAnother:'Weiteren Abschnitt nehmen',
+      none:'Zurzeit ist kein Abschnitt verfügbar.', closed:'Diese Chatma ist beendet.',
+      quota:'Du hast gerade 40 Seiten offen. Markiere sie als gelesen, um weitere zu nehmen.',
+      taken:'Dieser Abschnitt wurde gerade vergeben. Wir geben dir einen anderen.',
+      amountLbl:'Wie viel wirst du lesen?', heroEyebrow:'Absicht dieser Chatma', ebZikir:'Absicht dieses Dhikr', ebDua:'Absicht dieses Gebets', myLbl:'Deine Abschnitte', markDone:'Ich habe ihn gelesen', dropIt:'Entfernen', sure:'Sicher?', doneMark:'Gelesen', gone:'Diese Chatma ist nicht mehr verfügbar.', slow:'Zu viele Versuche. Warte kurz und versuche es erneut.', error:'Etwas ist schiefgelaufen. Bitte versuche es erneut.', notFound:'Einladungslink ist ungültig.',
+      openApp:'In der App öffnen', until:'Bis {d}',
+      keepLink:'Speichere diesen Link, um später zu deinem Abschnitt zurückzukehren.', copy:'Link kopieren', copied:'Kopiert',
+ zHead:'Gebete in diesem Kreis', zOf:'{a} von {b}', zMine:'Dein Beitrag: {n}', zAdd:'Mitzählen', zMemberOnly:'Für Kreismitglieder', zTargetOnly:'Je {n} pro Person', zSession:'In dieser Sitzung gezählt', zSubmit:'Beitrag hinzufügen', zNone:'Dieser Kreis hat noch kein gemeinsames Gebet.', zDone:'Dein Beitrag wurde hinzugefügt.', zReached:'Ziel erreicht.', zZero:'Zähle zuerst, dann füge hinzu.', dHead:'Nicht rechtzeitig gelesene Abschnitte', dLead:'Diese Abschnitte blieben offen. Übernimm einen, dann wird die Chatma vollendet.', dTake:'Übernehmen', dWait:'Die Abschnitte sind verteilt. Was offen bleibt, wird am {d} hier freigegeben.', dNone:'Zurzeit hat jeder Abschnitt einen Leser.', dBab:'Kapitel {a}-{b}', dBabCount:'{p} Kapitel', ebCevsen:'Absicht dieses Dschauschan', ongoingCevsen:'Das Dschauschan wird gelesen.', nAsk:'Möchtest du deinen Namen angeben?', nWhy:'Damit der Kreis sieht, wer das übernommen hat. Du kannst es auch lassen — es ändert nichts.', nPh:'Dein Name (optional)', nSave:'Speichern', nSkip:'Überspringen', nEdit:'Name', nClear:'Namen entfernen', nSaved:'Gespeichert.', privacy:'Datenschutz', terms:'Nutzungsbedingungen', arrow:'→' },
+    fr: { loading:'Chargement…', ongoing:'La khatma est en cours.',
+      legend:'{done} terminées · {held} prises en charge · {free} disponibles',
+      lgDone:'terminées', lgHeld:'prises', lgFree:'disponibles', cuzWord:'Juz', seriesNote:'La khatma {n} est en cours, les précédentes sont terminées.', seriesNoteOpen:'Ce cercle compte {t} khatmas, la première est en cours.', nextLbl:'Portion suivante', cuzN:'Juz {n}', closesIn:'Encore {p} pages pour la terminer',
+      freeIn:'{p} pages disponibles', takeThis:'Prendre celle-ci',
+      avail:'Disponible', all:'Tout', full:'Prise',
+      pagesRange:'Pages {a}-{b}', pageCount:'{p} pages',
+      confirmQ:'Confirmes-tu que tu liras cette portion ?',
+      confirm:'Je confirme, je la prends', cancel:'Annuler',
+      entrusted:'Les pages {a}-{b} te sont confiées.', mayAccept:'Qu’Allah l’accepte.',
+      another:'Veux-tu prendre une autre portion ?', takeAnother:'Prendre une autre portion',
+      none:'Aucune portion disponible pour le moment.', closed:'Cette khatma est terminée.',
+      quota:'Tu as 40 pages en cours. Marque-les comme terminées pour en prendre d’autres.',
+      taken:'Cette portion vient d’être prise. Nous t’en donnons une autre.',
+      amountLbl:'Combien vas-tu lire ?', heroEyebrow:'Intention de cette khatma', ebZikir:'Intention de ce dhikr', ebDua:'Intention de cette invocation', myLbl:'Tes portions', markDone:'Je l’ai terminée', dropIt:'Retirer', sure:'Sûr ?', doneMark:'Terminée', gone:'Cette khatma n’est plus disponible.', slow:'Trop de tentatives. Patiente un instant et réessaie.', error:'Une erreur est survenue. Réessaie.', notFound:'Le lien d’invitation n’est pas valide.',
+      openApp:'Ouvrir dans l’application', until:'Jusqu’au {d}',
+      keepLink:'Enregistre ce lien pour revenir à ta portion plus tard.', copy:'Copier le lien', copied:'Copié',
+ zHead:'Invocations de ce cercle', zOf:'{a} sur {b}', zMine:'Ta contribution : {n}', zAdd:'Participer au décompte', zMemberOnly:'Pour les membres du cercle', zTargetOnly:'{n} par personne', zSession:'Compté dans cette session', zSubmit:'Ajouter mon décompte', zNone:'Ce cercle n’a pas encore d’invocation commune.', zDone:'Ta contribution a été ajoutée.', zReached:'Objectif atteint.', zZero:'Compte d’abord, puis ajoute.', dHead:'Portions restées inachevées', dLead:'Ces portions sont restées en suspens. Prends-en une et la khatma s’achève.', dTake:'Prendre celle-ci', dWait:'Les portions sont réparties. Ce qui reste inachevé s’ouvrira ici le {d}.', dNone:'Chaque portion a un lecteur pour le moment.', dBab:'Chapitre {a}-{b}', dBabCount:'{p} chapitres', ebCevsen:'Intention de ce Jawshan', ongoingCevsen:'Le Jawshan est en cours de lecture.', nAsk:'Veux-tu indiquer ton nom ?', nWhy:'Pour que le cercle voie qui s’en est chargé. Tu peux passer — cela ne change rien.', nPh:'Ton nom (facultatif)', nSave:'Enregistrer', nSkip:'Passer', nEdit:'Nom', nClear:'Retirer le nom', nSaved:'Enregistré.', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
+    ar: { loading:'…جارٍ التحميل', ongoing:'.الختمة جارية',
+      legend:'{done} مكتملة · {held} متعهَّد بها · {free} متاحة',
+      lgDone:'مكتملة', lgHeld:'متعهَّد بها', lgFree:'متاحة', cuzWord:'جزء', seriesNote:'.الختمة {n} جارية، وسابقاتها اكتملت', seriesNoteOpen:'.عدد الختمات في هذه الحلقة: {t}، والأولى جارية', nextLbl:'الجزء التالي', cuzN:'الجزء {n}', closesIn:'بقيت {p} صفحة لإتمامه',
+      freeIn:'{p} صفحة متاحة', takeThis:'خذ هذا',
+      avail:'المتاح', all:'الكل', full:'مأخوذ',
+      pagesRange:'الصفحات {a}-{b}', pageCount:'{p} صفحة',
+      confirmQ:'هل تؤكد أنك ستقرأ هذا الجزء؟',
+      confirm:'أؤكد، سآخذه', cancel:'إلغاء',
+      entrusted:'.الصفحات {a}-{b} أمانة لديك', mayAccept:'.تقبّل الله',
+      another:'هل تريد أخذ جزء آخر؟', takeAnother:'خذ جزءًا آخر',
+      none:'.لا يوجد جزء متاح الآن', closed:'.انتهت هذه الختمة',
+      quota:'.لديك 40 صفحة مفتوحة الآن. أتمّها لتأخذ المزيد',
+      taken:'.أُخذ هذا الجزء للتو، سنعطيك جزءًا آخر',
+      amountLbl:'كم ستقرأ؟', heroEyebrow:'نية هذه الختمة', ebZikir:'نية هذا الذكر', ebDua:'نية هذا الدعاء', myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟', doneMark:'تم', gone:'.لم تعد هذه الختمة متاحة', slow:'.محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة', error:'.حدث خطأ ما. حاول مرة أخرى', notFound:'.رابط الدعوة غير صالح',
+      openApp:'افتح في التطبيق', until:'حتى {d}',
+      keepLink:'.احفظ هذا الرابط للعودة إلى جزئك لاحقًا', copy:'انسخ الرابط', copied:'تم النسخ',
+ zHead:'أذكار هذه الحلقة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}', zAdd:'شارك في العدّ', zMemberOnly:'لأعضاء الحلقة', zTargetOnly:'{n} لكل شخص', zSession:'ما عددته في هذه الجلسة', zSubmit:'أضف عدّي', zNone:'.لا يوجد ذكر مشترك في هذه الحلقة بعد', zDone:'.تمت إضافة مشاركتك', zReached:'.تم بلوغ الهدف', zZero:'.عُدّ أولاً ثم أضف', dHead:'أجزاء لم تُنجَز', dLead:'.بقيت هذه الأجزاء دون إتمام. خذ واحدًا منها فتكتمل الختمة', dTake:'أتكفّل بهذا', dWait:'.وُزّعت الأجزاء. وما لم يُنجَز يُفتَح هنا في {d}', dNone:'.كل جزء له قارئ في الوقت الحالي', dBab:'الباب {a}-{b}', dBabCount:'{p} بابًا', ebCevsen:'نية هذا الجوشن', ongoingCevsen:'.الجوشن قيد القراءة', nAsk:'أتحبّ أن تكتب اسمك؟', nWhy:'.ليرى أهل الحلقة من تكفّل بهذا. ولك أن تتركه، فلا يتغيّر شيء', nPh:'(اسمك (اختياري', nSave:'حفظ', nSkip:'تخطٍّ', nEdit:'الاسم', nClear:'إزالة الاسم', nSaved:'.تم الحفظ', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
+  };
+  var POLICY_SUFFIX = { en:'-en', tr:'', de:'-de', fr:'-fr', ar:'-ar' };
+  var NAME_IDX = { tr:0, en:1, de:1, fr:1, ar:2 };
+  var LOCALE_TAG = { tr:'tr-TR', en:'en-US', de:'de-DE', fr:'fr-FR', ar:'ar' };
+
+  var forced = (new URLSearchParams(location.search).get('lang') || '').slice(0,2).toLowerCase();
+  var lang = forced || (navigator.language || 'en').slice(0,2).toLowerCase();
+  if (!S[lang]) lang = 'en';
+  var T = S[lang];
+  document.documentElement.lang = lang;
+  if (lang === 'ar') document.documentElement.dir = 'rtl';
+
+  function fmt(s, o) { return String(s).replace(/\{(\w+)\}/g, function (_, k) { return o[k]; }); }
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, cls, txt) {
+    var d = document.createElement(tag);
+    if (cls) d.className = cls;
+    if (txt != null) d.textContent = txt;
+    return d;
+  }
+
+  $('privacyLink').textContent = T.privacy;
+  $('privacyLink').href = '/privacy' + POLICY_SUFFIX[lang] + '.html';
+  $('termsLink').textContent = T.terms;
+  $('termsLink').href = '/terms' + POLICY_SUFFIX[lang] + '.html';
+  $('appCta').textContent = T.openApp;
+
+  // ── Durum ─────────────────────────────────────────────────────────────────
+  var params = new URLSearchParams(location.search);
+  var webToken = (params.get('w') || '').trim();
+  var guestKey = 'mh_guest_' + webToken;
+  // Misafir jetonu EVENT BAŞINA saklanır: tek jetonu bütün hatimlerde kullanmak
+  // katılımları birbirine bağlardı, gerek yok.
+  var guestToken = params.get('g') || localStorage.getItem(guestKey) || null;
+  if (params.get('g')) { try { localStorage.setItem(guestKey, params.get('g')); } catch (e) {} }
+
+  var REFS = null, NAMES = null;
+  var board = null, offer = null, busy = false;
+  // Onay ekranında seçilen sayfa adedi. null = bloğun tamamı.
+  var chosenLen = null;
+  var filter = 'avail';                 // avail | all
+  // ⚠️ Ekran durumu AÇIK DEĞİŞKENDE. DOM'a bakarak çıkarmak kırılgan: bir
+  // önceki sürümde 'done' ekranındaki kopyala düğmesi onay ekranı sanılıyor ve
+  // ilerleme çubuğu HİÇ güncellenmiyordu.
+  var mode = 'loading';                 // loading | board | confirm | done | message
+
+  function newGuestToken() {
+    var a = new Uint8Array(32); crypto.getRandomValues(a);
+    return Array.prototype.map.call(a, function (b) {
+      return ('0' + b.toString(16)).slice(-2);
+    }).join('');
+  }
+
+  // ── Sûre + âyet ───────────────────────────────────────────────────────────
+  // ⚠️ Sayfa numarası ÖNDE ve ÇIPLAK, sûre parantezde altta (kullanıcı kararı,
+  // üç kez teyit edildi). "Uygulamada sayfa" gibi etiket EKLEME.
+  function surahName(n) {
+    if (!NAMES || !NAMES[n]) return '';
+    return NAMES[n][NAME_IDX[lang]] || NAMES[n][1] || '';
+  }
+  function refLabel(a, b) {
+    if (!REFS) return '';
+    var x = REFS[a - 1], y = REFS[b - 1];
+    if (!x || !y) return '';
+    var fs = x[0].split(':'), ls = y[1].split(':');
+    var left = surahName(+fs[0]) + ' ' + fs[1];
+    var right = (fs[0] === ls[0]) ? ls[1] : (surahName(+ls[0]) + ' ' + ls[1]);
+    // U+2192 bidi tarafından aynalanmaz; Arapçada '←' kullanılır.
+    return left + ' ' + T.arrow + ' ' + right;
+  }
+
+  // ── Sunucu ────────────────────────────────────────────────────────────────
+  function call(action, extra) {
+    var body = Object.assign({ action: action, web_token: webToken }, extra || {});
+    if (guestToken) body.guest_token = guestToken;
+    return fetch(FN, {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json', 'apikey':SUPA_ANON,
+                 'Authorization':'Bearer ' + SUPA_ANON },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      return r.json().then(function (j) { return { status:r.status, body:j }; });
+    });
+  }
+
+  // ── Ekranlar ──────────────────────────────────────────────────────────────
+  /**
+   * Sunucudan gelen SABİT hata anahtarını kullanıcı metnine çevirir.
+   * ⚠️ Tanınmayan her hatayı "bir şeyler ters gitti" diye göstermek KÖTÜ:
+   * 24 Ağu 2026'da hatim silinince kullanıcı tam onay anında o jenerik metni
+   * gördü ve ne olduğunu anlayamadı. Bilinen hâller AÇIKÇA anlatılır.
+   * Dönen değer: [metin, sayfaYenilenmeli]
+   */
+  function errText(code) {
+    if (code === 'block_taken')   return [T.taken, true];
+    if (code === 'quota_reached') return [T.quota, false];
+    if (code === 'closed')        return [T.closed, false];
+    if (code === 'not_found')     return [T.gone, false];
+    if (code === 'rate_limited')  return [T.slow, false];
+    return [T.error, false];
+  }
+
+  function stageMessage(text, isError) {
+    mode = 'message';
+    $('stage').innerHTML = '';
+    var w = el('div', 'narrow');
+    w.appendChild(el('div', 'msg' + (isError ? ' err' : ''), text));
+    $('stage').appendChild(w);
+  }
+  var STORE_IOS = 'https://apps.apple.com/app/manevi-halka/id6760654292';
+  var STORE_PLAY = 'https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle';
+
+  function showAppCta() {
+    // ⚠️ Bağlantı sabit App Store'du: Android'den gelen kişi yanlış mağazaya
+    // düşüyordu. join.html ile aynı ayrım, aynı adresler.
+    var a = $('appCta');
+    if (/Android/i.test(navigator.userAgent || '')) a.href = STORE_PLAY;
+    a.classList.remove('hidden');
+  }
+
+  /**
+   * ⚠️ HİYERARŞİ: hatmin duygusal merkezi KİMİN İÇİN yapıldığıdır. Bu yüzden
+   * İTHAF ana satırdır (h1), hatim adı altta ikincil satıra iner. Önceki
+   * sürümde ithaf 13px gri italikti, yani neredeyse dipnottu; oysa kişinin
+   * linke tıklama sebebi o.
+   * ⚠️ İthaf vefat eden biri içinse ÖZEL "anma modu" TASARLAMA. Aynı tipografi
+   * herkes için çalışmalı; ithaf "kızım şifa bulsun" da olabilir.
+   * İthaf yoksa hatim adı h1 olur ve eyebrow gizlenir.
+   */
+  // Hero simgesi: açık kitap YALNIZ Kur'an halkalarına ait. Zikir/dua halkasında
+  // tesbih halkası çiziliyor (Ionicons dilinde, dolgu yok, aynı çizgi kalınlığı).
+  var MARK_BOOK  = ["M12 6.5S9.5 4.5 5 4.5v13c4.5 0 7 2 7 2s2.5-2 7-2v-13c-4.5 0-7 2-7 2z", "M12 6.5v13"];
+  var MARK_BEADS = ["M12 4.2a7.8 7.8 0 1 0 0 15.6 7.8 7.8 0 0 0 0-15.6z", "M12 2.6v3.2"];
+
+  function applyHeroMark() {
+    var svg = document.querySelector('.hero-mark');
+    if (!svg) return;
+    // Açık kitap YALNIZ Kur'an'a ait; Cevşen ve zikir/dua halkasında değil.
+    var isList = (board.type !== 'quran');
+    var paths = isList ? MARK_BEADS : MARK_BOOK;
+    svg.innerHTML = '';
+    paths.forEach(function (d) {
+      var n = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      n.setAttribute('d', d);
+      svg.appendChild(n);
+    });
+  }
+
+  function renderHeader() {
+    applyHeroMark();
+    var hasDed = !!(board.dedication && board.dedication.trim());
+    if (hasDed) {
+      // Halka tipine göre: zikir halkasına "Hatim niyeti" demek yanlış olur.
+      $('eyebrow').textContent = board.type === 'zikir'  ? T.ebZikir
+                               : board.type === 'dua'    ? T.ebDua
+                               : board.type === 'cevsen' ? T.ebCevsen
+                               : T.heroEyebrow;
+      $('eyebrow').classList.remove('hidden');
+      $('title').textContent = board.dedication;
+      if (board.title) {
+        $('heroSub').textContent = board.title;
+        $('heroSub').classList.remove('hidden');
+        $('heroRule').classList.remove('hidden');
+      }
+    } else {
+      $('title').textContent = board.title || 'Manevi Halka';
+    }
+    if (board.end_date) {
+      try {
+        $('deadline').textContent = fmt(T.until, {
+          d: new Date(board.end_date).toLocaleDateString(LOCALE_TAG[lang],
+              { day:'numeric', month:'long' })
+        });
+        $('deadline').classList.remove('hidden');
+      } catch (e) {}
+    }
+  }
+
+  function icon(d) {
+    var n = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    n.setAttribute('viewBox', '0 0 24 24'); n.setAttribute('fill', 'none');
+    n.setAttribute('stroke', 'currentColor'); n.setAttribute('stroke-width', '1.7');
+    n.setAttribute('stroke-linecap', 'round'); n.setAttribute('stroke-linejoin', 'round');
+    var pth = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    pth.setAttribute('d', d); n.appendChild(pth);
+    return n;
+  }
+  function panelHead(text, d) {
+    var h = el('div', 'panel-head');
+    h.appendChild(icon(d));
+    h.appendChild(el('span', null, text));
+    return h;
+  }
+  var ICON_PROGRESS = 'M3 12h4l3 8 4-16 3 8h4';
+  var ICON_MINE     = 'M4 7h16M4 12h16M4 17h10';
+  var ICON_NEXT     = 'M5 12h14M13 6l6 6-6 6';
+
+  /**
+   * Üç durumlu ilerleme.
+   * ⚠️ ALTIN KULLANMA. "üstlenildi"yi altın yapmak onu ödül/başarı gibi
+   * gösteriyor ve ekranı üç renkli bir gösterge paneline çeviriyor.
+   * Üstlenildi = yeşilin açık tonu (--held); altın atmosfer aksanı olarak
+   * hero ayracında, öneri kartında ve seçili cüzde kalır.
+   */
+  function progressNode() {
+    var done = 0, held = 0, total = 0;
+    board.series.forEach(function (x) {
+      total += x.total; done += x.done; held += (x.taken - x.done);
+    });
+    var free = Math.max(0, total - done - held);
+
+    var wrap = el('div', 'panel');
+    wrap.appendChild(panelHead(T.ongoing, ICON_PROGRESS));
+    var bar = el('div', 'bar');
+    var d = el('div', 'done'); d.style.width = (done / Math.max(1,total) * 100) + '%';
+    var h = el('div', 'held'); h.style.width = (held / Math.max(1,total) * 100) + '%';
+    bar.appendChild(d); bar.appendChild(h);
+    wrap.appendChild(bar);
+
+    var lg = el('div', 'legend');
+    [[T.lgDone, done, 'var(--done)'], [T.lgHeld, held, 'var(--held)'],
+     [T.lgFree, free, 'var(--free)']].forEach(function (p) {
+      var k = el('span', 'k');
+      var dot = el('span', 'dot'); dot.style.background = p[2];
+      k.appendChild(dot);
+      k.appendChild(el('span', null, p[1] + ' ' + p[0]));
+      lg.appendChild(k);
+    });
+    wrap.appendChild(lg);
+    return wrap;
+  }
+
+  /**
+   * Misafirin KENDİ aldıkları. Aynı linkten tekrar girince buradan görüyor,
+   * çünkü jeton tarayıcıda (localStorage) saklı ve sunucu ona kendi
+   * satırlarını dönüyor.
+   * ⚠️ Burada BAŞKASININ bölümü asla görünmez; sunucu yalnız jetonla eşleşeni
+   * döndürüyor (web_board `mine`).
+   */
+  function myNode() {
+    var list = board.mine || [];
+    if (!list.length) return null;
+    var box = el('div', 'panel');
+    box.appendChild(panelHead(T.myLbl, ICON_MINE));
+    list.forEach(function (m) {
+      var row = el('div', 'mine-row');
+      row.appendChild(el('div', 'p', unitLabel(m.start_page, m.end_page)));
+      // Sûre atfı yalnız Kur'an'da anlamlı; Cevşen'de bab adı tablosu yok.
+      if (board.type !== 'cevsen') {
+        var r = refLabel(m.start_page, m.end_page);
+        if (r) row.appendChild(el('div', 'r', '(' + r + ')'));
+      }
+
+      if (m.confirmed) {
+        // Teyit edilmiş bölüm kapanmıştır; eylem gösterilmez.
+        row.appendChild(el('div', 'tick', '\u2713 ' + T.doneMark));
+      } else {
+        var acts = el('div', 'acts');
+        var ok = el('button', 'primary', T.markDone);
+        ok.onclick = function () { confirmClaim(m.unit_id); };
+        // İki dokunuşlu onay: yerel confirm() penceresi yerine düğme metnini
+        // değiştiriyoruz. Yanlışlıkla iade edip bölümü kaybetmesin.
+        var rm = el('button', 'ghost', T.dropIt);
+        var armed = false;
+        rm.onclick = function () {
+          if (!armed) { armed = true; rm.textContent = T.sure; return; }
+          dropClaim(m.unit_id);
+        };
+        acts.appendChild(ok); acts.appendChild(rm);
+        row.appendChild(acts);
+      }
+      box.appendChild(row);
+    });
+    return box;
+  }
+
+  function suggestNode() {
+    var g = board.suggestion;
+    if (!g) return null;
+    var box = el('div', 'suggest');
+    box.appendChild(panelHead(T.nextLbl, ICON_NEXT));
+    box.appendChild(el('div', 'cuz', fmt(T.cuzN, { n:g.cuz })));
+    var pages = g.end_page - g.start_page + 1;
+    // "closes" yalnız bu bloğu almak cüzü GERÇEKTEN bitiriyorsa true gelir.
+    // Boşluk ikiye bölünmüşse ya da kota yetmiyorsa false → yanlış söz vermeyiz.
+    box.appendChild(el('div', 'sub',
+      g.closes ? fmt(T.closesIn, { p:pages }) : fmt(T.freeIn, { p:pages })));
+    var b = el('button', 'primary', T.takeThis);
+    b.onclick = function () { takeBlock(g); };
+    box.appendChild(b);
+    return box;
+  }
+
+  var ICON_SERIES = 'M4 12a8 8 0 0 1 13.7-5.7L20 8M20 4v4h-4M20 12a8 8 0 0 1-13.7 5.7L4 16M4 20v-4h4';
+
+  function gridNode() {
+    var wrap = el('div');
+    // Birden çok hatim serisi varsa hangisinde olduğumuzu söyle.
+    if ((board.series_count || 1) > 1) {
+      var note = el('div', 'series-note');
+      note.appendChild(icon(ICON_SERIES));
+      note.appendChild(el('span', null,
+        (board.active_series || 0) > 0
+          ? fmt(T.seriesNote,     { n: (board.active_series || 0) + 1 })
+          : fmt(T.seriesNoteOpen, { t: board.series_count })));
+      wrap.appendChild(note);
+    }
+    var tabs = el('div', 'tabs');
+    [['avail', T.avail], ['all', T.all]].forEach(function (p) {
+      var b = el('button', filter === p[0] ? 'on' : '', p[1]);
+      b.onclick = function () { filter = p[0]; renderBoard(); };
+      tabs.appendChild(b);
+    });
+    wrap.appendChild(tabs);
+
+    var grid = el('div', 'grid');
+    // ⚠️ Cüz sırası 1→30 SABİT. Doluluğa göre yeniden sıralamak mekânsal
+    // hafızayı bozar; "Müsait" süzgeci zaten doluları kaldırıyor.
+    board.cuz.forEach(function (c) {
+      if (filter === 'avail' && c.free === 0) return;
+      var full = c.free === 0;
+      var cell = el('div', 'cell' + (full ? ' full' : ''));
+      // Zenginlik numaranın tipografisinden geliyor: sıfır dolgulu iki hane
+      // bölüm işareti gibi okunuyor ve ızgaraya ritim veriyor.
+      cell.appendChild(el('div', 'n', ('0' + c.n).slice(-2)));
+      cell.appendChild(el('div', 'u', T.cuzWord));
+      cell.appendChild(el('div', 's',
+        full ? T.full : fmt(T.freeIn, { p:c.free })));
+      // Çubuk yalnız KISMİ dolulukta anlamlı; boş ve dolu kartta gürültü.
+      if (!full && c.free < c.total) {
+        var b = el('div', 'b');
+        var bi = el('i'); bi.style.width = ((c.total - c.free) / c.total * 100) + '%';
+        b.appendChild(bi); cell.appendChild(b);
+      }
+      if (!full) cell.onclick = function () { pickCuz(c.n); };
+      grid.appendChild(cell);
+    });
+    wrap.appendChild(grid);
+    return wrap;
+  }
+
+  var ICON_ZIKIR  = 'M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z';
+  var ICON_LOCKED = 'M6 10V8a6 6 0 0 1 12 0v2M5 10h14v10H5z';
+
+  // Sayaçta o oturumda sayılan miktar. Sunucudaki katkının ÜSTÜNE eklenir.
+  var zItem = null, zSession = 0;
+  // Katkı onayı: DOM'a sonradan eklenen bir düğüm, kendi yayınımız geri gelip
+  // tahtayı yeniden çizdirdiğinde siliniyordu. Bayrak olarak tutulup her
+  // çizimde yeniden basılıyor, sonra kendiliğinden sönüyor.
+  var zJustAdded = false, zAddedTimer = null;
+
+  function nf(n) { return Number(n || 0).toLocaleString(LOCALE_TAG[lang]); }
+
+  /**
+   * Ortak zikir tahtası.
+   *
+   * ⚠️ Cüz ızgarasıyla YAPISAL FARKI: burada kıt kaynak YOK. Bir sayfayı biri
+   * alınca öteki alamaz, ama zikirde hedefe doğru herkes ekler. Bu yüzden
+   * kilit, kira, kota ve onay adımlarının HİÇBİRİ burada yok — sayfayı bunlarla
+   * simetrik yapmaya çalışma, gereksiz sürtünme olur.
+   */
+  function renderZikirBoard() {
+    mode = 'board';
+    renderHeader();
+    var host = $('stage'); host.innerHTML = '';
+    var mid = el('div', 'mid'); host.appendChild(mid);
+
+    var items = board.items || [];
+    if (!items.length) { host.appendChild(el('div', 'msg', T.zNone)); showAppCta(); return; }
+
+    if (zJustAdded) mid.appendChild(el('div', 'msg', T.zDone));
+
+    var panel = el('div', 'panel');
+    panel.appendChild(panelHead(T.zHead, ICON_ZIKIR));
+
+    items.forEach(function (it) {
+      var row = el('div', 'zrow');
+      row.appendChild(el('div', 'zname', it.latin || ''));
+      if (it.arabic) row.appendChild(el('div', 'zar', it.arabic));
+
+      if (it.open) {
+        var total = it.total || 0, target = it.target || 0;
+        var pct = target > 0 ? Math.min(100, total * 100 / target) : 0;
+
+        var bar = el('div', 'bar');
+        var d = el('div', 'done'); d.style.width = pct + '%';
+        bar.appendChild(d);
+        row.appendChild(bar);
+
+        var nums = el('div', 'znums');
+        var left = el('div'); left.appendChild(el('b', null, nf(total)));
+        left.appendChild(document.createTextNode(' / ' + nf(target)));
+        nums.appendChild(left);
+        if (total >= target && target > 0) nums.appendChild(el('span', null, T.zReached));
+        row.appendChild(nums);
+
+        if (it.mine > 0) row.appendChild(el('div', 'zmine', fmt(T.zMine, { n: nf(it.mine) })));
+
+        var b = el('button', 'primary', T.zAdd);
+        b.onclick = function () { openCounter(it); };
+        row.appendChild(b);
+      } else {
+        // BİREYSEL kalem: kişi başı hedef, halkanın tamamlanmasını tanımadığı
+        // kişilere bağlar. Web'e kapalı ama GÖSTERİLİYOR ki misafir halkanın
+        // ne yaptığını görsün, eksik bir şey varmış hissi olmasın.
+        if (it.target) row.appendChild(el('div', 'znums', fmt(T.zTargetOnly, { n: nf(it.target) })));
+        var lk = el('div', 'zlocked');
+        lk.appendChild(icon(ICON_LOCKED));
+        lk.appendChild(el('span', null, T.zMemberOnly));
+        row.appendChild(lk);
+      }
+      panel.appendChild(row);
+    });
+
+    mid.appendChild(panel);
+    var nn = nameNode(); if (nn) mid.appendChild(nn);
+    showAppCta();
+  }
+
+  var ICON_HANDOFF = 'M4 12h12M12 7l5 5-5 5M20 5v14';
+
+  /** Pay etiketi: Kuran'da SAYFA, Cevşen'de BAB. Aynı kolonlar, farklı birim. */
+  function unitLabel(a, b) {
+    return board.type === 'cevsen' ? fmt(T.dBab, { a:a, b:b })
+                                   : fmt(T.pagesRange, { a:a, b:b });
+  }
+  function unitCount(n) {
+    return board.type === 'cevsen' ? fmt(T.dBabCount, { p:n })
+                                   : fmt(T.pageCount,  { p:n });
+  }
+
+  /**
+   * Yetişmeyen paylar tahtası (pool_divide).
+   *
+   * ⚠️ Bu halkaya web'den BAŞTAN katılınamaz: külliyat dağıtımda kayıtlı kişilere
+   * bölünür ve kadro kilitlenir, dönmeyen misafire pay verilirse o pay havuz
+   * açılana kadar ölü kalır. Sayfanın anlamı "halkaya katıl" değil, havuz
+   * açıldıktan sonra "yetişmeyen payı üstlen".
+   */
+  function renderDivideBoard() {
+    mode = 'board';
+    renderHeader();
+    var host = $('stage'); host.innerHTML = '';
+    var mid = el('div', 'mid'); host.appendChild(mid);
+    mid.appendChild(divideProgressNode());
+
+    // Kopya bileşen YAZMA: pool_claim ile aynı myNode() kullanılıyor. Sunucu
+    // 'mine' alanlarını bilerek aynı adlarla döndürüyor (20260825f).
+    var mn = myNode(); if (mn) mid.appendChild(mn);
+    // Erken dönüşlerden ÖNCE: "açık pay yok" hâlinde de adını düzenleyebilmeli.
+    var nnTop = nameNode(); if (nnTop) mid.appendChild(nnTop);
+
+    var open = board.open || [];
+    if (!open.length) {
+      // İki ayrı sebep, iki ayrı cümle: havuz henüz AÇILMADI mı, yoksa açıldı
+      // da her payın sahibi mi var? Tek mesaj ikisini de yanlış anlatır.
+      if (!board.released && board.release_at) {
+        var d = '';
+        try {
+          d = new Date(board.release_at).toLocaleDateString(LOCALE_TAG[lang],
+                { day:'numeric', month:'long' });
+        } catch (e) {}
+        mid.appendChild(el('div', 'msg', fmt(T.dWait, { d: d })));
+      } else {
+        mid.appendChild(el('div', 'msg', T.dNone));
+      }
+      showAppCta();
+      return;
+    }
+
+    if (board.slots_left <= 0) { mid.appendChild(el('div', 'msg', T.quota)); showAppCta(); return; }
+
+    var panel = el('div', 'panel');
+    panel.appendChild(panelHead(T.dHead, ICON_HANDOFF));
+    panel.appendChild(el('div', 'dlead', T.dLead));
+    open.forEach(function (u) {
+      var row = el('div', 'drow');
+      var info = el('div', 'info');
+      info.appendChild(el('div', 'rng', unitLabel(u.start, u.end)));
+      var sub = unitCount(u.len);
+      // Sûre atfı yalnız Kuran'da anlamlı; Cevşen'de bab adı tablosu yok.
+      if (board.type !== 'cevsen') {
+        var r = refLabel(u.start, u.end);
+        if (r) sub += ' · ' + r;
+      }
+      info.appendChild(el('div', 'sub', sub));
+      row.appendChild(info);
+      var b = el('button', 'primary', T.dTake);
+      b.onclick = function () { claimUnit(u.id); };
+      row.appendChild(b);
+      panel.appendChild(row);
+    });
+    mid.appendChild(panel);
+    showAppCta();
+  }
+
+  // ⚠️ DOM'u progressNode() ile birebir aynı tutuyoruz (.panel > head + .bar +
+  // .legend). Ayrı bir kabuk ("panel-body" gibi) uydurmak iki tahtayı görsel
+  // olarak ayrıştırır; ortak stil zaten bu yapıya göre yazılmış.
+  function divideProgressNode() {
+    var total = Math.max(1, board.total || 0);
+    var done = board.done || 0, held = board.taken || 0;
+    var free = Math.max(0, total - done - held);
+
+    var wrap = el('div', 'panel');
+    wrap.appendChild(panelHead(
+      board.type === 'cevsen' ? T.ongoingCevsen : T.ongoing, ICON_PROGRESS));
+    var bar = el('div', 'bar');
+    var d = el('div', 'done'); d.style.width = (done / total * 100) + '%';
+    var h = el('div', 'held'); h.style.width = (held / total * 100) + '%';
+    bar.appendChild(d); bar.appendChild(h);
+    wrap.appendChild(bar);
+
+    var lg = el('div', 'legend');
+    [[T.lgDone, done, 'var(--done)'], [T.lgHeld, held, 'var(--held)'],
+     [T.lgFree, free, 'var(--free)']].forEach(function (x) {
+      var k = el('span', 'k');
+      var dot = el('span', 'dot'); dot.style.background = x[2];
+      k.appendChild(dot);
+      k.appendChild(el('span', null, x[1] + ' ' + x[0]));
+      lg.appendChild(k);
+    });
+    wrap.appendChild(lg);
+    return wrap;
+  }
+
+  function claimUnit(unitId) {
+    if (busy) return;
+    busy = true;
+    stageMessage(T.loading, false);
+    call('claim_unit', { unit_id: unitId }).then(function (r) {
+      busy = false;
+      if (r.status === 200 && r.body.ok) { goBoard(); return; }
+      var m = errText(r.body && r.body.error);
+      stageMessage(m[0], m[0] === T.error);
+      // Pay kapıldıysa tahtayı taze getir, kullanıcı ölü listeye bakmasın.
+      if ((r.body && r.body.error) === 'block_taken') setTimeout(goBoard, 1400);
+    }).catch(function () { busy = false; stageMessage(T.error, true); });
+  }
+
+  var ICON_PERSON = 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM5 20a7 7 0 0 1 14 0';
+  var nameSkipped = false;   // "Geç" bu oturumda bir daha sormasın
+
+  /**
+   * İSTEĞE BAĞLI ad paneli.
+   *
+   * ⚠️ Ad hiçbir yerde ÖN KOŞUL değil — bölüm üstlenmek, zikir eklemek,
+   * tamamlamak, iade etmek: hepsi adsız çalışır. Bu panel bir kapı değil,
+   * bir teklif. "Geç" birinci sınıf seçenek ve basılınca oturum boyunca bir
+   * daha sorulmuyor.
+   *
+   * Yalnız bir iş ÜSTLENMİŞ kişiye gösteriliyor (guest_known): sayfayı açıp
+   * çıkacak kişiden ad istemek hem gereksiz hem de boş kayıt üretirdi.
+   */
+  function nameNode() {
+    if (!board.guest_known) return null;
+
+    // Ad zaten varsa: küçük bir satır, değiştir/kaldır.
+    if (board.guest_name) {
+      var row = el('div', 'namerow');
+      row.appendChild(icon(ICON_PERSON));
+      var b = el('b', null, board.guest_name);
+      row.appendChild(el('span', null, T.nEdit + ': '));
+      row.appendChild(b);
+      var rm = el('button', 'ghost', T.nClear);
+      rm.onclick = function () { saveName(''); };
+      row.appendChild(rm);
+      var wrap = el('div', 'panel'); wrap.appendChild(row);
+      return wrap;
+    }
+
+    if (nameSkipped) return null;
+
+    var box = el('div', 'namebox');
+    box.appendChild(el('div', 'q', T.nAsk));
+    box.appendChild(el('div', 'w', T.nWhy));
+    var inp = document.createElement('input');
+    inp.type = 'text'; inp.maxLength = 40; inp.placeholder = T.nPh;
+    inp.autocomplete = 'off'; inp.setAttribute('aria-label', T.nPh);
+    box.appendChild(inp);
+    var row = el('div', 'row');
+    var ok = el('button', 'primary', T.nSave);
+    ok.onclick = function () { saveName(inp.value); };
+    var no = el('button', 'ghost', T.nSkip);
+    no.onclick = function () { nameSkipped = true; renderAnyBoard(); };
+    // Enter da kaydetsin: mobilde klavyenin "bitti" tuşu doğal beklenti.
+    inp.onkeydown = function (e) { if (e.key === 'Enter') { e.preventDefault(); saveName(inp.value); } };
+    row.appendChild(ok); row.appendChild(no);
+    box.appendChild(row);
+    var wrap = el('div', 'panel'); wrap.appendChild(box);
+    return wrap;
+  }
+
+  function saveName(v) {
+    if (busy) return;
+    busy = true;
+    call('set_name', { name: v }).then(function (r) {
+      busy = false;
+      if (r.status === 200 && r.body.ok) {
+        board.guest_name = (r.body.result && r.body.result.name) || null;
+        nameSkipped = false;
+        renderAnyBoard();
+        return;
+      }
+      // Ad kaydedilemezse akışı BOZMA: zaten isteğe bağlı bir alan.
+      nameSkipped = true;
+      renderAnyBoard();
+    }).catch(function () { busy = false; nameSkipped = true; renderAnyBoard(); });
+  }
+
+  function openCounter(it) { zItem = it; zSession = 0; renderCounter(); }
+
+  /**
+   * Sayaç. Serbest sayı girişi BİLEREK YOK: biri "10000" yazarsa halkanın
+   * ortak sayacı anlamsızlaşır. Yalnız dokunma ve iki çip (+33/+100) — küresel
+   * zikirde alınan kararın aynısı, adımlar tesbih turlarına karşılık geliyor.
+   */
+  function renderCounter() {
+    mode = 'count';
+    var host = $('stage'); host.innerHTML = '';
+    var st = el('div', 'narrow'); host.appendChild(st);
+
+    var card = el('div', 'block zcount');
+    card.appendChild(el('div', 'zname', zItem.latin || ''));
+    if (zItem.arabic) card.appendChild(el('div', 'zar', zItem.arabic));
+    st.appendChild(card);
+
+    var dial = el('div', 'zdial');
+    dial.appendChild(el('div', 'v', nf(zSession)));
+    dial.appendChild(el('div', 'l', T.zSession));
+    dial.onclick = function () { zSession += 1; renderCounter(); };
+    st.appendChild(dial);
+
+    var chips = el('div', 'zchips');
+    [33, 100].forEach(function (n) {
+      var b = el('button', null, '+' + n);
+      b.onclick = function (e) { e.stopPropagation(); zSession += n; renderCounter(); };
+      chips.appendChild(b);
+    });
+    st.appendChild(chips);
+
+    var send = el('button', 'primary', T.zSubmit);
+    send.onclick = onContribute;
+    st.appendChild(send);
+    var no = el('button', 'ghost', T.cancel);
+    no.onclick = function () { zItem = null; goBoard(); };
+    st.appendChild(no);
+  }
+
+  function onContribute() {
+    if (zSession <= 0) { return; }
+    if (!guestToken) { guestToken = newGuestToken(); }
+    // MUTLAK gönderiyoruz (sunucudaki katkı + bu oturum). Aynı istek iki kez
+    // giderse sunucu GREATEST uyguladığı için ikinci gidiş hiçbir şey değiştirmez.
+    var absolute = (zItem.mine || 0) + zSession;
+    var item = zItem.id;
+    stageMessage(T.loading, false);
+    call('zikir_contribute', { item: item, count: absolute }).then(function (r) {
+      if (r.status !== 200 || !r.body.ok) {
+        var m = errText(r.body && r.body.error);
+        stageMessage(m[0], true);
+        return;
+      }
+      zItem = null; zSession = 0;
+      zJustAdded = true;
+      if (zAddedTimer) clearTimeout(zAddedTimer);
+      zAddedTimer = setTimeout(function () {
+        zJustAdded = false;
+        if (mode === 'board') renderAnyBoard();
+      }, 4000);
+      return loadBoard().then(renderZikirBoard);
+    }).catch(function () { stageMessage(T.error, true); });
+  }
+
+  function renderBoard() {
+    mode = 'board';
+    renderHeader();
+    var st = $('stage');
+    st.innerHTML = '';
+
+    // ⚠️ Geniş ekranda ızgara genişler, ilerleme ve "aldığın bölümler" DAR
+    // kalır. Uzun satır okumayı zorlaştırır; boşluk sorununu dekorla değil
+    // ızgaranın sütun sayısıyla çözüyoruz.
+    var mid = el('div', 'mid');
+    mid.appendChild(progressNode());
+    var mn = myNode(); if (mn) mid.appendChild(mn);
+    var nn = nameNode(); if (nn) mid.appendChild(nn);
+    st.appendChild(mid);
+
+    if (!board.joinable) { st.appendChild(el('div', 'msg', T.closed)); showAppCta(); return; }
+    if (board.quota_left <= 0) { st.appendChild(el('div', 'msg', T.quota)); showAppCta(); return; }
+    if (!board.suggestion) { st.appendChild(el('div', 'msg', T.none)); showAppCta(); return; }
+
+    var sg = suggestNode();
+    if (sg) { var w = el('div', 'mid'); w.appendChild(sg); st.appendChild(w); }
+    st.appendChild(gridNode());
+  }
+
+  /**
+   * Miktar seçenekleri: 5'in katları + (kat değilse) azami miktarın kendisi.
+   * ⚠️ Bu "aralık seçtirmek" DEĞİL: kişi hangi SAYFALARI değil NE KADAR
+   * okuyacağını seçiyor, başlangıç yine sunucunun verdiği yer. 20 sayfa
+   * taahhüt edemeyen kişi hiç almadan çıkmasın diye (kullanıcı kararı).
+   * Parçalanma riski "bitmemiş cüzü kapat" önerisiyle dengeleniyor.
+   */
+  function amountChoices(max) {
+    var out = [];
+    for (var n = 5; n < max; n += 5) out.push(n);
+    out.push(max);                       // her zaman tamamı da seçilebilir
+    return out;
+  }
+
+  function renderConfirm() {
+    mode = 'confirm';
+    var host = $('stage'); host.innerHTML = '';
+    var st = el('div', 'narrow'); host.appendChild(st);
+    var maxLen = offer.end_page - offer.start_page + 1;
+    if (chosenLen == null || chosenLen > maxLen) chosenLen = maxLen;
+    var endPage = offer.start_page + chosenLen - 1;
+
+    var box = el('div', 'block');
+    // Sayfa ÖNDE ve büyük, sûre parantezde altta.
+    box.appendChild(el('div', 'pages',
+      fmt(T.pagesRange, { a:offer.start_page, b:endPage })));
+    var r = refLabel(offer.start_page, endPage);
+    if (r) box.appendChild(el('div', 'ref', '(' + r + ')'));
+    box.appendChild(el('div', 'count', fmt(T.pageCount, { p: chosenLen })));
+    st.appendChild(box);
+
+    // Seçenek yalnız birden fazlaysa gösterilir; 5 sayfalık bir bölümde
+    // "5 mi 5 mi?" diye sormak anlamsız.
+    var opts = amountChoices(maxLen);
+    if (opts.length > 1) {
+      var amt = el('div', 'amt');
+      amt.appendChild(el('div', 'lbl', T.amountLbl));
+      var row = el('div', 'row');
+      opts.forEach(function (n) {
+        var b = el('button', n === chosenLen ? 'on' : '', String(n));
+        b.onclick = function () { chosenLen = n; renderConfirm(); };
+        row.appendChild(b);
+      });
+      amt.appendChild(row);
+      st.appendChild(amt);
+    }
+
+    st.appendChild(el('div', 'msg', T.confirmQ));
+    var yes = el('button', 'primary', T.confirm); yes.onclick = onConfirm;
+    var no = el('button', 'ghost', T.cancel); no.onclick = onCancel;
+    st.appendChild(yes); st.appendChild(no);
+  }
+
+  function renderDone(claim) {
+    mode = 'done';
+    var host = $('stage'); host.innerHTML = '';
+    var st = el('div', 'narrow'); host.appendChild(st);
+    st.appendChild(el('div', 'ok-title',
+      fmt(T.entrusted, { a:claim.start_page, b:claim.end_page })));
+    var r = refLabel(claim.start_page, claim.end_page);
+    if (r) st.appendChild(el('div', 'ref', '(' + r + ')'));
+    st.appendChild(el('div', 'msg', T.mayAccept));
+
+    if (claim.quota_left > 0) {
+      st.appendChild(el('div', 'msg', T.another));
+      var b = el('button', 'primary', T.takeAnother);
+      b.onclick = function () { goBoard(); };
+      st.appendChild(b);
+    }
+    var rec = el('div', 'recovery');
+    rec.appendChild(el('div', null, T.keepLink));
+    var cp = el('button', 'ghost', T.copy);
+    cp.onclick = function () {
+      var url = location.origin + location.pathname + '?w=' + encodeURIComponent(webToken) +
+                '&g=' + encodeURIComponent(guestToken);
+      if (navigator.clipboard) navigator.clipboard.writeText(url);
+      cp.textContent = T.copied;
+    };
+    rec.appendChild(cp); st.appendChild(rec);
+    showAppCta();
+  }
+
+  // ── Akış ──────────────────────────────────────────────────────────────────
+  function loadBoard() {
+    return call('board').then(function (r) {
+      if (r.status !== 200 || !r.body.ok) {
+        // Hatim silinmiş / bağlantı geçersiz / hız sınırı: sebebi SÖYLE.
+        var m = errText(r.body && r.body.error);
+        var err = new Error('load'); err.userText = m[0]; throw err;
+      }
+      board = r.body.board;
+      return board;
+    });
+  }
+
+  function pickCuz(n) {
+    if (busy) return;
+    busy = true;
+    call('cuz', { series: board.active_series, cuz: n }).then(function (r) {
+      busy = false;
+      if (r.status === 200 && r.body.ok && r.body.offer && r.body.offer.available) {
+        takeBlock(r.body.offer);
+        return;
+      }
+      var reason = (r.body && r.body.offer && r.body.offer.reason) || (r.body && r.body.error);
+      if (reason === 'quota' || reason === 'quota_reached') { stageMessage(T.quota); showAppCta(); return; }
+      if (reason === 'not_found') { stageMessage(T.gone); showAppCta(); return; }
+      if (reason === 'rate_limited') { stageMessage(T.slow); return; }
+      // Az önce alınmış: sunucudan taze harita iste, aynı cüzü zorlama.
+      stageMessage(T.taken);
+      setTimeout(goBoard, 900);
+    }).catch(function () { busy = false; stageMessage(T.error, true); });
+  }
+
+  function takeBlock(g) {
+    if (busy) return;
+    busy = true;
+    if (!guestToken) {
+      guestToken = newGuestToken();
+      try { localStorage.setItem(guestKey, guestToken); } catch (e) {}
+    }
+    call('lease', { series: g.series, start_page: g.start_page, end_page: g.end_page })
+      .then(function (r) {
+        busy = false;
+        if (r.status === 200 && r.body.ok) { offer = g; chosenLen = null; renderConfirm(); return; }
+        var m = errText(r.body && r.body.error);
+        stageMessage(m[0], m[0] === T.error);
+        if (m[1]) setTimeout(goBoard, 900); else showAppCta();
+      })
+      .catch(function () { busy = false; stageMessage(T.error, true); });
+  }
+
+  function onCancel() {
+    if (!offer) return;
+    var o = offer;
+    call('release', { series:o.series, start_page:o.start_page, end_page:o.end_page })
+      .catch(function () {}).then(function () { goBoard(); });
+  }
+
+  function onConfirm() {
+    if (busy || !offer) return;
+    busy = true;
+    var endPage = offer.start_page + (chosenLen || (offer.end_page - offer.start_page + 1)) - 1;
+    call('commit', { series:offer.series, start_page:offer.start_page,
+                     end_page:endPage, locale:lang })
+      .then(function (r) {
+        busy = false;
+        if (r.status === 200 && r.body.ok) { renderDone(r.body.claim); loadBoard(); return; }
+        var m = errText(r.body && r.body.error);
+        stageMessage(m[0], m[0] === T.error);
+        if (m[1]) setTimeout(goBoard, 900); else showAppCta();
+      })
+      .catch(function () { busy = false; stageMessage(T.error, true); });
+  }
+
+  /**
+   * ARKA PLAN tazelemesi: realtime sinyali ve 20sn yoklama bunu çağırır.
+   * Moda saygı duyar; onay ekranındaki kullanıcının önünden bloğu çekmez.
+   *
+   * ⚠️ KULLANICI İSTEĞİYLE geri dönmek için BUNU KULLANMA, goBoard() kullan.
+   * İlk yazımda ikisi aynı fonksiyondu ve "Vazgeç" ile "Başka bölüm al"
+   * ÇALIŞMIYORDU: ikisi de refresh() çağırıyordu, refresh() de mod hâlâ
+   * 'confirm'/'done' olduğu için erken dönüyordu. Sessizce hiçbir şey olmuyordu.
+   */
+  function refresh() {
+    // 'confirm' ve 'count': kullanıcı bir şeyin ORTASINDA. Yayın gelince
+    // ekranı yeniden çizmek onaylamak üzere olduğu bölümü ya da o ana kadar
+    // saydığı miktarı siler. Tahtaya döndüğünde zaten taze veri çekiliyor.
+    if (mode === 'confirm' || mode === 'count') return Promise.resolve();
+    if (mode === 'done') return loadBoard().catch(function () {});
+    return loadBoard().then(renderAnyBoard).catch(function (e) {
+      // Hata hâlinde başlık yer tutucusu ("…") ekranda KALMASIN.
+      if ($('title').textContent === '…') $('title').textContent = 'Manevi Halka';
+      stageMessage((e && e.userText) || T.error, !e || !e.userText);
+      showAppCta();
+    });
+  }
+
+  function confirmClaim(unitId) {
+    if (busy) return;
+    busy = true;
+    call('confirm_claim', { unit_id: unitId }).then(function (r) {
+      busy = false;
+      if (r.status === 200 && r.body.ok) { goBoard(); return; }
+      var m = errText(r.body && r.body.error);
+      stageMessage(m[0], m[0] === T.error);
+    }).catch(function () { busy = false; stageMessage(T.error, true); });
+  }
+
+  function dropClaim(unitId) {
+    if (busy) return;
+    busy = true;
+    call('drop_claim', { unit_id: unitId }).then(function (r) {
+      busy = false;
+      if (r.status === 200 && r.body.ok) { goBoard(); return; }
+      var m = errText(r.body && r.body.error);
+      stageMessage(m[0], m[0] === T.error);
+    }).catch(function () { busy = false; stageMessage(T.error, true); });
+  }
+
+  // Tahta tipi jetondan bilinemez; sunucunun döndürdüğü 'kind' karar verir.
+  function renderAnyBoard() {
+    if (board && board.kind === 'zikir')  return renderZikirBoard();
+    if (board && board.kind === 'divide') return renderDivideBoard();
+    return renderBoard();
+  }
+
+  /** KULLANICI isteğiyle seçim ekranına dön. Modu zorlar, bu yüzden çalışır. */
+  function goBoard() {
+    offer = null;
+    chosenLen = null;
+    mode = 'board';
+    return loadBoard().then(renderAnyBoard).catch(function (e) {
+      if ($('title').textContent === '…') $('title').textContent = 'Manevi Halka';
+      stageMessage((e && e.userText) || T.error, !e || !e.userText);
+      showAppCta();
+    });
+  }
+
+  // ── Anlık senkron ─────────────────────────────────────────────────────────
+  // ⚠️ Gelen mesajın İÇERİĞİ OKUNMAZ. Kanal public; sahte mesaj gönderilebilir
+  // (üretimde denenerek kanıtlandı). Sinyal yalnız "şimdi tazele" demektir.
+  var rtTimer = null, rtLast = 0;
+  var RT_WINDOW = 400;
+
+  /**
+   * Yayın sinyali geldi.
+   *
+   * ⚠️ Düz fren (her sinyalde 350 ms bekle) KULLANILMIYOR: tek bir değişiklikte
+   * bile o süreyi ekrana ekliyordu. Bunun yerine ÖNDEN tetikleme —
+   * ilk sinyal ANINDA çiziliyor, pencere içindeki ardıllar tek bir kuyruğa
+   * düşüyor. Böylece tekil güncelleme gecikmesiz kalıyor ama toplu değişiklikler
+   * (havuz açılışı N payı birden 'open' yapar, süresi dolmuş kiralar toplu
+   * silinir) yine tek yeniden çekimde birleşiyor.
+   */
+  function onSignal() {
+    if (busy) return;
+    var now = Date.now();
+    if (now - rtLast >= RT_WINDOW) { rtLast = now; refresh(); return; }
+    if (rtTimer) return;                       // pencere için kuyrukta zaten biri var
+    rtTimer = setTimeout(function () {
+      rtTimer = null; rtLast = Date.now();
+      if (!busy) refresh();
+    }, RT_WINDOW - (now - rtLast));
+  }
+
+  function startRealtime() {
+    try {
+      if (!window.supabase || !window.supabase.createClient) return;
+      window.supabase.createClient(SUPA_URL, SUPA_ANON)
+        .channel('event:web:' + webToken)
+        .on('broadcast', { event: 'pool_change' }, onSignal)
+        .subscribe();
+    } catch (e) { /* realtime yoksa polling yeter */ }
+  }
+
+  // ── Açılış ────────────────────────────────────────────────────────────────
+  stageMessage(T.loading);
+  if (!webToken || webToken.length < 16) {
+    $('title').textContent = 'Manevi Halka';
+    stageMessage(T.notFound, true); showAppCta(); return;
+  }
+
+  fetch('/data/quran-page-refs.json')
+    .then(function (r) { return r.json(); })
+    .then(function (j) { REFS = j.refs; NAMES = j.names; })
+    .catch(function () { /* sûre adı gösterilemezse sayfa yine çalışır */ })
+    .then(function () { return refresh(); })
+    .then(function () {
+      startRealtime();
+      setInterval(function () { if (!busy) refresh(); }, POLL_MS);
+    });
+})();
+</script>
+</body>
+</html>

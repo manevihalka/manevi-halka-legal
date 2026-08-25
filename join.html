@@ -288,8 +288,21 @@
       }
     }
 
+    // Web misafir jetonu (hatim havuzu ve ortak zikir/dua halkalarında bulunur). Varsa,
+    // uygulaması OLMAYAN kişiyi mağazaya atmak yerine CANLI HATİM SAYFASINA
+    // götürüyoruz: orada hatmi görüp bir bölüm üstlenebilir.
+    // Gerekçe: bugünkü mağaza yönlendirmesi o kişiyi SIFIR katkıyla kaybediyor
+    // (manevi-halka reposu docs/WEB_HATIM_KATILIMI.md bölüm 1).
+    // ⚠️ 'w' YOKSA davranış AYNEN eskisi gibi kalır; başka hiçbir link tipi
+    // (grup daveti, zikir listesi) bu daldan etkilenmez.
+    var webToken = (params.get('w') || '').trim();
+
     // Kullanıcı app'i açtıysa sayfa background'a düşer; düşmediyse 2sn sonra fallback göster
     var fallbackTimer = setTimeout(function () {
+      if (webToken && !zikir) {
+        window.location.replace('/halka.html?w=' + encodeURIComponent(webToken));
+        return;
+      }
       statusEl.textContent = T.notFound;
       fallback.classList.add('show');
     }, 2500);

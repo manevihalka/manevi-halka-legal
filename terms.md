@@ -7,7 +7,7 @@ lang: tr
 # Kullanım Koşulları
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 21 Temmuz 2026
+**Son güncelleme:** 25 Ağustos 2026
 
 Manevi Halka mobil uygulamasını ("Uygulama") kullanarak bu Kullanım
 Koşullarını kabul etmiş olursunuz. Lütfen dikkatlice okuyun.
@@ -21,6 +21,14 @@ zikir sayaçları, namaz vakitleri, dini günler ve İslami kitap okuma takibi i
 geliştirilmiş bir mobil uygulamadır. Tek başına, arkadaşlarla oluşturulan
 halka grupları içinde ya da bir vesile için kurulan tek seferlik kolektif
 halkalarda kullanılabilir.
+
+Tek seferlik kolektif halkaların bir kısmı **manevihalka.app** üzerinden de
+paylaşılabilir: bağlantıyı açan kişi uygulamayı yüklemeden ve hesap açmadan bir
+bölüm üstlenebilir ya da ortak bir zikre katkı verebilir. Bu kullanım da işbu
+şartlara tabidir. Hesapsız katılımda kişisel hesap oluşmadığı için hesaba bağlı
+haklar (ilerleme geçmişi, cihazlar arası eşitleme, abonelik) doğmaz; üstlenilen
+bölüm yalnız ilgili halka süresince ve o tarayıcıda saklanan tanıtıcıyla
+izlenebilir.
 
 ---
 

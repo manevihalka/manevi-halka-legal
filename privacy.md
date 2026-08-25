@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 6 Ağustos 2026
+**Son güncelleme:** 25 Ağustos 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -58,6 +58,19 @@ haklarınızın neler olduğunu açıklar.
   kullanılır, üçüncü kişilerle paylaşılmaz ve inceleme tamamlandıktan sonra
   makul bir süre içinde silinir veya anonimleştirilir
 
+- **Ortak amel görev beyanları:** Bir halkanın ortak ameline (namaz takibi,
+  ezber/müracaa, dua) **kendi isteğinle** katılırsan, işaretlediğin gün ve birim
+  (örneğin "akşam, 22 Ağustos") sunucularımızda saklanır. Bu kaydı **yalnız o
+  halkanın yöneticisi** görür; halkadaki diğer üyeler ve başka kullanıcılar
+  göremez. Katılım ayrı ve açık bir eylemdir: halkaya üye olmak seni bir ortak
+  amele dahil ETMEZ, göreve ayrıca katılman gerekir. Görevden ayrıldığında ya da
+  halkadan çıktığında bu beyanların **anında silinir**.
+  **Ana ekrandaki kişisel namaz takibin bundan tamamen ayrıdır ve buraya
+  hiçbir şekilde aktarılmaz.** İki işaretleme birbirinden bağımsızdır: kişisel
+  kartında bir vakti işaretlemen halka görevini işaretlemez, kişisel kaydını
+  yönetici dahil hiç kimse göremez (yukarıdaki "Cihazlar arası yedekleme"
+  maddesine bak)
+
 ### 2.2. Otomatik toplanan bilgiler
 
 - **İlerleme verisi:** Kuran sayfa ilerlemesi, tamamlanan görevler, hatim sayısı,
@@ -77,6 +90,45 @@ haklarınızın neler olduğunu açıklar.
 - Sağlık verisi
 - Hassas kişisel bilgi (din hariç — uygulamanın doğası gereği İslami pratikleri
   takip etmek için gönüllü olarak sağlanır)
+
+---
+
+### 2.4. Hesapsız web katılımı (manevihalka.app)
+
+Bir halkanın davet bağlantısını uygulama yüklü değilken **manevihalka.app**
+üzerinde açabilir, hesap oluşturmadan bir bölüm üstlenebilir ya da ortak bir
+zikre katkı verebilirsiniz. Bu durumda toplananlar **yalnız şunlardır**:
+
+- **Tarayıcınızda üretilen rastgele bir tanıtıcı.** Tarayıcınızın yerel
+  deposunda (local storage) durur. Sunucumuzda tanıtıcının kendisi
+  **saklanmaz**, yalnızca geri çevrilemez bir özeti (SHA-256) tutulur. Tek bir
+  amaca hizmet eder: aynı bağlantıya tekrar geldiğinizde kendi bölümünüzü
+  görebilmeniz
+- **Arayüz diliniz** (sayfayı doğru dilde göstermek için)
+- **Üstlendiğiniz bölüm** (sayfa ya da bab aralığı) ve tamamladı olarak
+  işaretleyip işaretlemediğiniz
+- **Ortak zikre eklediğiniz sayı**
+- **İlk katılım ve son görülme zamanı**
+- **İsteğe bağlı olarak yazdığınız ad.** Zorunlu değildir ve hiçbir işlemin
+  ön koşulu değildir: bölüm üstlenmek, katkı vermek, tamamlamak, hepsi ad
+  vermeden çalışır. Boş bırakırsanız halkada "Misafir" olarak görünürsünüz.
+  Yazdığınız adı sonradan aynı sayfadan kaldırabilirsiniz
+- **Kötüye kullanımı sınırlamak için:** IP adresiniz **ham hâliyle yazılmaz**;
+  geri çevrilemez bir özeti (SHA-256) bir sayaçla birlikte tutulur ve bu
+  kayıtlar **1 saat sonra otomatik silinir**
+
+**Toplanmayanlar:** e-posta, telefon, hesap, konum. Ad yalnızca siz
+yazarsanız alınır. Sayfada reklam,
+ölçümleme ya da izleme aracı **yoktur**; sayfa hiçbir üçüncü tarafa istek atmaz
+(kullandığı bütün dosyalar kendi sunucumuzdan gelir).
+
+Halkanın yöneticisi ve üyeleri, ad yazmadıysanız kim olduğunuzu **göremez**;
+yalnızca o bölümün üstlenildiğini ya da sayıya katkı geldiğini görürler. Ad
+yazdıysanız o adı, üstlendiğiniz bölüm ve katkınızla birlikte görürler.
+
+Tarayıcınızın site verilerini temizlerseniz tanıtıcı kaybolur ve o bölümle
+bağınız kopar. Bu verilere erişmek ya da sildirmek isterseniz tanıtıcınızı bize
+iletmeniz yeterlidir; onsuz kaydı bulmamız mümkün değildir.
 
 ---
 
@@ -115,6 +167,9 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 
 ## 5. Veri Saklama
 
+- **Ortak amel görev beyanları:** İşaretlemeler **180 gün** saklanır, sonra
+  günlük otomatik bir görevle kalıcı olarak silinir. Görevden ya da halkadan
+  ayrıldığında beyanların bu süreyi beklemeden anında silinir
 - **Aktif hesap:** Hesabınız aktif olduğu sürece verileriniz saklanır
 - **Hesap silindiğinde:** Hesabınız önce **soft-delete** olarak işaretlenir. **30 gün** içinde uygulamaya tekrar giriş yaparak hesabınızı geri yükleyebilirsiniz. 30 gün sonra otomatik bir cron görevi (pg_cron) tüm kişisel verilerinizi **kalıcı olarak siler**. Anında kalıcı silme isterseniz e-posta ile başvurabilirsiniz. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik kayıtları (anonim hale getirilmiş) tutulabilir
 - **Tamamlanan tek seferlik halkalar:** Halka bittiğinde özeti (katılımcı sayısı,
@@ -133,6 +188,11 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
   paylaşan olarak adınız hesabınız silinince anonim hale getirilir
 - **Bildirim logları:** 30 gün sonra otomatik silinir
 - **Audit logları:** Güvenlik ve uyumluluk için 12 ay saklanır
+
+- **Hesapsız web katılımı:** Misafir kaydı, bağlı olduğu halkaya aittir. Halka
+  bittikten sonra silindiğinde (bitiş tarihinden 24 saat sonra) misafir kaydı,
+  üstlenilen bölüm bilgisi ve katkı sayısı da birlikte kalıcı olarak silinir.
+  Kötüye kullanım sayaçları 1 saat sonra silinir
 
 ---
 
@@ -198,6 +258,11 @@ yerel veriler cihazınızda saklanır:
 - Widget verisi (UserDefaults / SharedPreferences)
 
 Hesabınızı silerseniz veya uygulamayı kaldırırsanız bu veriler de silinir.
+
+**Web sayfası (manevihalka.app):** Hesapsız katılım sayfası çerez kullanmaz,
+ancak tarayıcının yerel deposunda **tek bir değer** saklar: yukarıda anlatılan
+rastgele tanıtıcı (bölüm 2.4). Ölçümleme ya da reklam amaçlı hiçbir değer
+yazılmaz. Tarayıcınızın site verilerini temizlemek bu değeri de siler.
 
 ---
 

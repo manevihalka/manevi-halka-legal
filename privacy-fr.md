@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 6 août 2026
+**Dernière mise à jour :** 25 août 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -50,6 +50,21 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 - **Certificats d'achèvement :** lors de la finalisation d'un Hatim, Cevshen ou livre, un certificat PDF est généré **localement sur votre appareil** (jamais envoyé à nos serveurs, conservé sur l'appareil pour le partage)
 - **Signalements :** lorsque vous utilisez la fonctionnalité « Signaler » de l'application, votre signalement (identifiant du compte signalant, informations sur le groupe, le membre ou l'événement signalé, motif sélectionné et, le cas échéant, votre description) est conservé sur nos serveurs. Ces enregistrements sont utilisés uniquement pour examiner le signalement et prévenir les abus, ne sont jamais partagés avec des tiers et sont supprimés ou anonymisés dans un délai raisonnable après la clôture de l'examen
 
+- **Marques des pratiques communes :** si tu rejoins **de ton propre gré** la
+  pratique commune d'un cercle (suivi des prières, mémorisation/révision,
+  invocation), le jour et l'unité que tu marques (par exemple « maghrib,
+  22 août ») sont conservés sur nos serveurs. Seul **l'administrateur de ce
+  cercle** voit cet enregistrement ; les autres membres du cercle et les autres
+  utilisateurs ne le voient pas. Rejoindre est un acte distinct et explicite :
+  être membre d'un cercle ne t'inscrit PAS à une pratique commune, tu dois aussi
+  rejoindre la tâche. Lorsque tu quittes la tâche ou le cercle, ces marques sont
+  **supprimées immédiatement**.
+  **Ton suivi personnel des prières sur l'écran d'accueil en est totalement
+  séparé et n'est jamais transféré ici.** Les deux marquages sont indépendants :
+  marquer une prière sur ta carte personnelle ne marque pas la tâche du cercle,
+  et personne, pas même l'administrateur, ne peut voir ton enregistrement
+  personnel (voir le point « Sauvegarde entre appareils » ci-dessus)
+
 ### 2.2. Informations collectées automatiquement
 
 - **Données de progression :** progression des pages du Coran, tâches accomplies, nombre de khatm, compteurs de dhikr, achèvements des nœuds du Cevshen, votre progression Cetele (mémorisation) et votre calendrier de révision
@@ -62,6 +77,50 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 - Données de carte bancaire ou de paiement (gérées par Apple/Google — jamais visibles pour nous)
 - Données de santé
 - Données personnelles sensibles (à l'exception de la religion — fournie volontairement par l'utilisation de l'application, compte tenu de la nature du suivi des pratiques islamiques)
+
+---
+
+### 2.4. Participation depuis le web sans compte (manevihalka.app)
+
+Si l'application n'est pas installée, vous pouvez ouvrir le lien d'invitation
+d'un cercle sur **manevihalka.app** et y prendre une portion, ou contribuer à un
+dhikr commun, sans créer de compte. Dans ce cas, nous collectons **uniquement**
+ce qui suit :
+
+- **Un identifiant aléatoire généré dans votre navigateur.** Il reste dans le
+  stockage local de votre navigateur. L'identifiant lui-même n'est **pas
+  conservé** sur nos serveurs ; seule une empreinte irréversible (SHA-256) l'est.
+  Il ne sert qu'à une chose : vous permettre de retrouver votre propre portion en
+  revenant sur le même lien
+- **La langue de votre interface** (pour afficher la page dans la bonne langue)
+- **La portion que vous avez prise** (plage de pages ou de chapitres) et si vous
+  l'avez marquée comme terminée
+- **Le nombre que vous avez ajouté** à un dhikr commun
+- **La date de première participation et celle de la dernière visite**
+- **Un nom, si vous choisissez d'en donner un.** Il est facultatif et n'est
+  jamais une condition : prendre une portion, contribuer, la marquer comme
+  terminée — tout cela fonctionne sans nom. Si vous laissez le champ vide, vous
+  apparaissez dans le cercle comme « Invité ». Vous pouvez retirer plus tard un
+  nom que vous avez donné, depuis la même page
+- **Pour limiter les abus :** votre adresse IP n'est **jamais enregistrée en
+  clair** ; seule une empreinte irréversible (SHA-256) est conservée avec un
+  compteur, et ces enregistrements sont **supprimés automatiquement au bout
+  d'une heure**
+
+**Ne sont pas collectés :** adresse e-mail, numéro de téléphone, compte,
+localisation. Un nom n'est recueilli que si vous en saisissez un. La page ne contient **aucun** outil publicitaire, de mesure
+d'audience ou de suivi, et n'adresse aucune requête à un tiers (tous les fichiers
+qu'elle utilise proviennent de nos propres serveurs).
+
+Si vous n'avez pas donné de nom, l'administrateur et les membres du cercle **ne
+peuvent pas savoir qui vous êtes** ; ils voient seulement que la portion a été
+prise, ou qu'une contribution s'est ajoutée au décompte. Si vous avez donné un
+nom, ils le voient avec la portion que vous avez prise et votre contribution.
+
+Si vous effacez les données de site de votre navigateur, l'identifiant disparaît
+et le lien avec votre portion est rompu. Si vous souhaitez accéder à ces données
+ou en demander l'effacement, il vous suffit de nous communiquer votre
+identifiant ; sans lui, il nous est impossible de retrouver l'enregistrement.
 
 ---
 
@@ -98,6 +157,10 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 
 ## 5. Conservation des données
 
+- **Marques des pratiques communes :** les marques sont conservées **180 jours**,
+  puis supprimées définitivement par une tâche automatique quotidienne. Si tu
+  quittes la tâche ou le cercle, tes marques sont supprimées immédiatement, sans
+  attendre ce délai
 - **Compte actif :** les données sont conservées tant que votre compte est actif
 - **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
 - **Cercles ponctuels terminés :** lorsqu'un cercle ponctuel se termine, un résumé (nombre de participants, travail accompli) est archivé ; les détails individuels des tâches sont effacés
@@ -116,6 +179,12 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   anonymisé lors de la suppression de votre compte
 - **Journaux de notifications :** supprimés automatiquement après 30 jours
 - **Journaux d'audit :** conservés pendant 12 mois pour des raisons de sécurité et de conformité
+
+- **Participation depuis le web sans compte :** un enregistrement d'invité
+  appartient au cercle dans lequel il a été créé. Lorsque ce cercle est supprimé
+  après sa clôture (24 heures après sa date de fin), l'enregistrement d'invité, la
+  portion prise et le nombre contribué sont supprimés définitivement avec lui. Les
+  compteurs anti-abus sont supprimés au bout d'une heure
 
 ---
 
@@ -172,6 +241,12 @@ L'Application est une application mobile et n'utilise pas de cookies web. Toutef
 - Données de widget (UserDefaults / SharedPreferences)
 
 La suppression de votre compte ou la désinstallation de l'application supprime ces données.
+
+**Site web (manevihalka.app) :** la page de participation sans compte n'utilise
+pas de cookies, mais conserve **une seule valeur** dans le stockage local de
+votre navigateur : l'identifiant aléatoire décrit plus haut (section 2.4). Rien
+n'est écrit à des fins de mesure d'audience ou de publicité. Effacer les données
+de site de votre navigateur supprime également cette valeur.
 
 ---
 
