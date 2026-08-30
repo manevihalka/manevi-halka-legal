@@ -285,6 +285,13 @@
   .cta { display:block; text-align:center; margin-top:18px; padding:13px; border-radius:13px;
     border:1px solid var(--line); background:var(--soft-green); color:var(--primary-dark);
     text-decoration:none; font-size:14px; font-weight:650; }
+  /* Cevşen bab haritası: SALT OKUNUR. Hücre sayısı korpusa göre değişir
+     (kısmi Cevşen halkası olabilir), o yüzden sabit sütun sayısı YOK. */
+  .babmap { display:flex; flex-wrap:wrap; gap:4px; margin-top:12px; }
+  .babcell { width:16px; height:16px; border-radius:4px;
+    background:var(--free); border:1px solid var(--line); }
+  .babcell.held { background:var(--held); border-color:transparent; }
+  .babcell.done { background:var(--done); border-color:transparent; }
   .cta-sub { display:block; text-align:center; margin-top:9px; font-size:12.5px;
     color:var(--muted); text-decoration:none; }
   .recovery { margin-top:16px; font-size:12px; color:var(--muted); text-align:center; }
@@ -382,7 +389,7 @@
       pagesRange:'Pages {a}-{b}', pageCount:'{p} pages',
       confirmQ:'Do you confirm that you will read this portion?',
       confirm:'I confirm, I will take it', cancel:'Cancel',
-      entrusted:'Pages {a}-{b} are entrusted to you.', mayAccept:'May Allah accept it.',
+      entrusted:'Pages {a}-{b} are entrusted to you.', entrustedBab:'Chapters {a}-{b} are entrusted to you.', mayAccept:'May Allah accept it.',
       another:'Would you like to take another portion?', takeAnother:'Take another portion',
       none:'There is no portion available right now.', closed:'This recitation is closed.',
       quota:'You have 40 pages open right now. Mark them as finished to take more.',
@@ -390,7 +397,7 @@
       amountLbl:'How much will you read?', heroEyebrow:'Intention of this recitation', ebZikir:'Intention of this dhikr', ebDua:'Intention of this supplication', myLbl:'Your portions', markDone:'I finished it', dropIt:'Remove', sure:'Sure?', doneMark:'Finished', gone:'This recitation is no longer available.', slow:'Too many attempts. Please wait a moment and try again.', error:'Something went wrong. Please try again.', notFound:'Invitation link is not valid.',
       openApp:'Open in the app', getApp:'Install the app', until:'Until {d}',
       keepLink:'Save this link to return to your portion later.', copy:'Copy link', copied:'Copied',
- zHead:'Recitations in this circle', zOf:'{a} of {b}', zMine:'Your contribution: {n}', zAdd:'Add to the count', zMemberOnly:'For circle members', zTargetOnly:'Target {n} each', zSession:'Counted in this session', zSubmit:'Add my count', zNone:'This circle has no shared recitation yet.', zDone:'Your count has been added.', zReached:'Target reached.', zZero:'Count first, then add it.', dHead:'Portions not finished in time', dLead:'These portions were left unfinished. Take one and the recitation is completed.', dTake:'Take this on', dWait:'The portions have been shared out. Whatever is left unfinished opens up here on {d}.', dNone:'Every portion has an owner right now.', dBab:'Chapter {a}-{b}', dBabCount:'{p} chapters', ebCevsen:'Intention of this Jawshan', ongoingCevsen:'The Jawshan is being recited.', nAsk:'Add your name?', nWhy:'The circle will see who took this on. You can skip this — it changes nothing.', nPh:'Your name (optional)', nSave:'Save', nSkip:'Skip', nEdit:'Name', nClear:'Remove name', nSaved:'Saved.', privacy:'Privacy', terms:'Terms', arrow:'→' },
+ zHead:'Recitations in this circle', zOf:'{a} of {b}', zMine:'Your contribution: {n}', zAdd:'Add to the count', zMemberOnly:'For circle members', zTargetOnly:'Target {n} each', zSession:'Counted in this session', zSubmit:'Add my count', zNone:'This circle has no shared recitation yet.', zDone:'Your count has been added.', zReached:'Target reached.', zZero:'Count first, then add it.', bNext:'Next open portion', bHowMany:'How many chapters will you read?', bAllTaken:'Every chapter has an owner right now.', dHead:'Portions not finished in time', dLead:'These portions were left unfinished. Take one and the recitation is completed.', dTake:'Take this on', dWait:'The portions have been shared out. Whatever is left unfinished opens up here on {d}.', dNone:'Every portion has an owner right now.', dBab:'Chapter {a}-{b}', dBabCount:'{p} chapters', ebCevsen:'Intention of this Jawshan', ongoingCevsen:'The Jawshan is being recited.', nAsk:'Add your name?', nWhy:'The circle will see who took this on. You can skip this — it changes nothing.', nPh:'Your name (optional)', nSave:'Save', nSkip:'Skip', nEdit:'Name', nClear:'Remove name', nSaved:'Saved.', privacy:'Privacy', terms:'Terms', arrow:'→' },
     tr: { loading:'Yükleniyor…', ongoing:'Hatim devam ediyor.',
       legend:'{done} tamamlandı · {held} üstlenildi · {free} müsait',
       lgDone:'tamamlandı', lgHeld:'üstlenildi', lgFree:'müsait', cuzWord:'Cüz', seriesNote:'{n}. hatim okunuyor, öncekiler tamamlandı.', seriesNoteOpen:'Halkada {t} hatim var, birincisi okunuyor.', nextLbl:'Sıradaki bölüm', cuzN:'{n}. Cüz', closesIn:'Bitmesine {p} sayfa kaldı',
@@ -399,7 +406,7 @@
       pagesRange:'Sayfa {a}-{b}', pageCount:'{p} sayfa',
       confirmQ:'Bu bölümü okuyacağını onaylıyor musun?',
       confirm:'Onaylıyorum, alıyorum', cancel:'Vazgeç',
-      entrusted:'Sayfa {a}-{b} sana emanet edildi.', mayAccept:'Allah kabul etsin.',
+      entrusted:'Sayfa {a}-{b} sana emanet edildi.', entrustedBab:'{a}-{b}. Bab sana emanet edildi.', mayAccept:'Allah kabul etsin.',
       another:'Başka bir bölüm almak ister misin?', takeAnother:'Başka bölüm al',
       none:'Şu anda alınabilecek bölüm yok.', closed:'Bu hatim kapandı.',
       quota:'Şu an 40 sayfan açık. Aldıklarını tamamladıkça yenilerini alabilirsin.',
@@ -407,7 +414,7 @@
       amountLbl:'Ne kadar okuyacaksın?', heroEyebrow:'Hatim niyeti', ebZikir:'Zikir niyeti', ebDua:'Dua niyeti', myLbl:'Aldığın bölümler', markDone:'Tamamladım', dropIt:'Kaldır', sure:'Emin misin?', doneMark:'Tamamlandı', gone:'Bu hatim artık mevcut değil.', slow:'Çok fazla deneme oldu. Biraz bekleyip tekrar dene.', error:'Bir şeyler ters gitti. Tekrar dener misin?', notFound:'Davet bağlantısı geçerli değil.',
       openApp:'Uygulamada aç', getApp:'Uygulamayı indir', until:'{d} tarihine kadar',
       keepLink:'Bölümüne sonra dönmek için bu bağlantıyı kaydet.', copy:'Bağlantıyı kopyala', copied:'Kopyalandı',
- zHead:'Halkadaki zikirler', zOf:'{b} hedefin {a} tanesi', zMine:'Senin katkın: {n}', zAdd:'Sayıma katıl', zMemberOnly:'Halka üyeleri için', zTargetOnly:'Kişi başı {n}', zSession:'Bu oturumda saydığın', zSubmit:'Katkımı ekle', zNone:'Bu halkada henüz ortak zikir yok.', zDone:'Katkın eklendi.', zReached:'Hedefe ulaşıldı.', zZero:'Önce say, sonra ekle.', dHead:'Yetişmeyen paylar', dLead:'Bu paylar yarım kaldı. Birini üstlenirsen hatim tamamlanır.', dTake:'Bunu üstlen', dWait:'Paylar dağıtıldı. Yetişmeyenler {d} tarihinde burada açılır.', dNone:'Şu anda bütün payların sahibi var.', dBab:'{a}-{b}. Bab', dBabCount:'{p} bab', ebCevsen:'Cevşen niyeti', ongoingCevsen:'Cevşen okunuyor.', nAsk:'Adını yazmak ister misin?', nWhy:'Halkadakiler bunu kimin üstlendiğini görsün diye. Boş bırakabilirsin, hiçbir şey değişmez.', nPh:'Adın (isteğe bağlı)', nSave:'Kaydet', nSkip:'Geç', nEdit:'Ad', nClear:'Adı kaldır', nSaved:'Kaydedildi.', privacy:'Gizlilik', terms:'Şartlar', arrow:'→' },
+ zHead:'Halkadaki zikirler', zOf:'{b} hedefin {a} tanesi', zMine:'Senin katkın: {n}', zAdd:'Sayıma katıl', zMemberOnly:'Halka üyeleri için', zTargetOnly:'Kişi başı {n}', zSession:'Bu oturumda saydığın', zSubmit:'Katkımı ekle', zNone:'Bu halkada henüz ortak zikir yok.', zDone:'Katkın eklendi.', zReached:'Hedefe ulaşıldı.', zZero:'Önce say, sonra ekle.', bNext:'Sıradaki boş bölüm', bHowMany:'Kaç bab okuyacaksın?', bAllTaken:'Şu anda bütün babların sahibi var.', dHead:'Yetişmeyen paylar', dLead:'Bu paylar yarım kaldı. Birini üstlenirsen hatim tamamlanır.', dTake:'Bunu üstlen', dWait:'Paylar dağıtıldı. Yetişmeyenler {d} tarihinde burada açılır.', dNone:'Şu anda bütün payların sahibi var.', dBab:'{a}-{b}. Bab', dBabCount:'{p} bab', ebCevsen:'Cevşen niyeti', ongoingCevsen:'Cevşen okunuyor.', nAsk:'Adını yazmak ister misin?', nWhy:'Halkadakiler bunu kimin üstlendiğini görsün diye. Boş bırakabilirsin, hiçbir şey değişmez.', nPh:'Adın (isteğe bağlı)', nSave:'Kaydet', nSkip:'Geç', nEdit:'Ad', nClear:'Adı kaldır', nSaved:'Kaydedildi.', privacy:'Gizlilik', terms:'Şartlar', arrow:'→' },
     de: { loading:'Wird geladen…', ongoing:'Die Chatma läuft.',
       legend:'{done} abgeschlossen · {held} übernommen · {free} verfügbar',
       lgDone:'abgeschlossen', lgHeld:'übernommen', lgFree:'verfügbar', cuzWord:'Dschus', seriesNote:'Chatma {n} läuft, die vorherigen sind abgeschlossen.', seriesNoteOpen:'Dieser Kreis umfasst {t} Chatmas, die erste läuft.', nextLbl:'Nächster Abschnitt', cuzN:'Dschus {n}', closesIn:'Noch {p} Seiten bis zum Abschluss',
@@ -416,7 +423,7 @@
       pagesRange:'Seite {a}-{b}', pageCount:'{p} Seiten',
       confirmQ:'Bestätigst du, dass du diesen Abschnitt liest?',
       confirm:'Ich bestätige, ich nehme ihn', cancel:'Abbrechen',
-      entrusted:'Seite {a}-{b} ist dir anvertraut.', mayAccept:'Möge Allah es annehmen.',
+      entrusted:'Seite {a}-{b} ist dir anvertraut.', entrustedBab:'Kapitel {a}-{b} sind dir anvertraut.', mayAccept:'Möge Allah es annehmen.',
       another:'Möchtest du einen weiteren Abschnitt nehmen?', takeAnother:'Weiteren Abschnitt nehmen',
       none:'Zurzeit ist kein Abschnitt verfügbar.', closed:'Diese Chatma ist beendet.',
       quota:'Du hast gerade 40 Seiten offen. Markiere sie als gelesen, um weitere zu nehmen.',
@@ -424,7 +431,7 @@
       amountLbl:'Wie viel wirst du lesen?', heroEyebrow:'Absicht dieser Chatma', ebZikir:'Absicht dieses Dhikr', ebDua:'Absicht dieses Gebets', myLbl:'Deine Abschnitte', markDone:'Ich habe ihn gelesen', dropIt:'Entfernen', sure:'Sicher?', doneMark:'Gelesen', gone:'Diese Chatma ist nicht mehr verfügbar.', slow:'Zu viele Versuche. Warte kurz und versuche es erneut.', error:'Etwas ist schiefgelaufen. Bitte versuche es erneut.', notFound:'Einladungslink ist ungültig.',
       openApp:'In der App öffnen', getApp:'App installieren', until:'Bis {d}',
       keepLink:'Speichere diesen Link, um später zu deinem Abschnitt zurückzukehren.', copy:'Link kopieren', copied:'Kopiert',
- zHead:'Gebete in diesem Kreis', zOf:'{a} von {b}', zMine:'Dein Beitrag: {n}', zAdd:'Mitzählen', zMemberOnly:'Für Kreismitglieder', zTargetOnly:'Je {n} pro Person', zSession:'In dieser Sitzung gezählt', zSubmit:'Beitrag hinzufügen', zNone:'Dieser Kreis hat noch kein gemeinsames Gebet.', zDone:'Dein Beitrag wurde hinzugefügt.', zReached:'Ziel erreicht.', zZero:'Zähle zuerst, dann füge hinzu.', dHead:'Nicht rechtzeitig gelesene Abschnitte', dLead:'Diese Abschnitte blieben offen. Übernimm einen, dann wird die Chatma vollendet.', dTake:'Übernehmen', dWait:'Die Abschnitte sind verteilt. Was offen bleibt, wird am {d} hier freigegeben.', dNone:'Zurzeit hat jeder Abschnitt einen Leser.', dBab:'Kapitel {a}-{b}', dBabCount:'{p} Kapitel', ebCevsen:'Absicht dieses Dschauschan', ongoingCevsen:'Das Dschauschan wird gelesen.', nAsk:'Möchtest du deinen Namen angeben?', nWhy:'Damit der Kreis sieht, wer das übernommen hat. Du kannst es auch lassen — es ändert nichts.', nPh:'Dein Name (optional)', nSave:'Speichern', nSkip:'Überspringen', nEdit:'Name', nClear:'Namen entfernen', nSaved:'Gespeichert.', privacy:'Datenschutz', terms:'Nutzungsbedingungen', arrow:'→' },
+ zHead:'Gebete in diesem Kreis', zOf:'{a} von {b}', zMine:'Dein Beitrag: {n}', zAdd:'Mitzählen', zMemberOnly:'Für Kreismitglieder', zTargetOnly:'Je {n} pro Person', zSession:'In dieser Sitzung gezählt', zSubmit:'Beitrag hinzufügen', zNone:'Dieser Kreis hat noch kein gemeinsames Gebet.', zDone:'Dein Beitrag wurde hinzugefügt.', zReached:'Ziel erreicht.', zZero:'Zähle zuerst, dann füge hinzu.', bNext:'Nächster freier Abschnitt', bHowMany:'Wie viele Kapitel wirst du lesen?', bAllTaken:'Zurzeit hat jedes Kapitel einen Leser.', dHead:'Nicht rechtzeitig gelesene Abschnitte', dLead:'Diese Abschnitte blieben offen. Übernimm einen, dann wird die Chatma vollendet.', dTake:'Übernehmen', dWait:'Die Abschnitte sind verteilt. Was offen bleibt, wird am {d} hier freigegeben.', dNone:'Zurzeit hat jeder Abschnitt einen Leser.', dBab:'Kapitel {a}-{b}', dBabCount:'{p} Kapitel', ebCevsen:'Absicht dieses Dschauschan', ongoingCevsen:'Das Dschauschan wird gelesen.', nAsk:'Möchtest du deinen Namen angeben?', nWhy:'Damit der Kreis sieht, wer das übernommen hat. Du kannst es auch lassen — es ändert nichts.', nPh:'Dein Name (optional)', nSave:'Speichern', nSkip:'Überspringen', nEdit:'Name', nClear:'Namen entfernen', nSaved:'Gespeichert.', privacy:'Datenschutz', terms:'Nutzungsbedingungen', arrow:'→' },
     fr: { loading:'Chargement…', ongoing:'La khatma est en cours.',
       legend:'{done} terminées · {held} prises en charge · {free} disponibles',
       lgDone:'terminées', lgHeld:'prises', lgFree:'disponibles', cuzWord:'Juz', seriesNote:'La khatma {n} est en cours, les précédentes sont terminées.', seriesNoteOpen:'Ce cercle compte {t} khatmas, la première est en cours.', nextLbl:'Portion suivante', cuzN:'Juz {n}', closesIn:'Encore {p} pages pour la terminer',
@@ -433,7 +440,7 @@
       pagesRange:'Pages {a}-{b}', pageCount:'{p} pages',
       confirmQ:'Confirmes-tu que tu liras cette portion ?',
       confirm:'Je confirme, je la prends', cancel:'Annuler',
-      entrusted:'Les pages {a}-{b} te sont confiées.', mayAccept:'Qu’Allah l’accepte.',
+      entrusted:'Les pages {a}-{b} te sont confiées.', entrustedBab:'Les chapitres {a}-{b} te sont confiés.', mayAccept:'Qu’Allah l’accepte.',
       another:'Veux-tu prendre une autre portion ?', takeAnother:'Prendre une autre portion',
       none:'Aucune portion disponible pour le moment.', closed:'Cette khatma est terminée.',
       quota:'Tu as 40 pages en cours. Marque-les comme terminées pour en prendre d’autres.',
@@ -441,7 +448,7 @@
       amountLbl:'Combien vas-tu lire ?', heroEyebrow:'Intention de cette khatma', ebZikir:'Intention de ce dhikr', ebDua:'Intention de cette invocation', myLbl:'Tes portions', markDone:'Je l’ai terminée', dropIt:'Retirer', sure:'Sûr ?', doneMark:'Terminée', gone:'Cette khatma n’est plus disponible.', slow:'Trop de tentatives. Patiente un instant et réessaie.', error:'Une erreur est survenue. Réessaie.', notFound:'Le lien d’invitation n’est pas valide.',
       openApp:'Ouvrir dans l’application', getApp:'Installer l’application', until:'Jusqu’au {d}',
       keepLink:'Enregistre ce lien pour revenir à ta portion plus tard.', copy:'Copier le lien', copied:'Copié',
- zHead:'Invocations de ce cercle', zOf:'{a} sur {b}', zMine:'Ta contribution : {n}', zAdd:'Participer au décompte', zMemberOnly:'Pour les membres du cercle', zTargetOnly:'{n} par personne', zSession:'Compté dans cette session', zSubmit:'Ajouter mon décompte', zNone:'Ce cercle n’a pas encore d’invocation commune.', zDone:'Ta contribution a été ajoutée.', zReached:'Objectif atteint.', zZero:'Compte d’abord, puis ajoute.', dHead:'Portions restées inachevées', dLead:'Ces portions sont restées en suspens. Prends-en une et la khatma s’achève.', dTake:'Prendre celle-ci', dWait:'Les portions sont réparties. Ce qui reste inachevé s’ouvrira ici le {d}.', dNone:'Chaque portion a un lecteur pour le moment.', dBab:'Chapitre {a}-{b}', dBabCount:'{p} chapitres', ebCevsen:'Intention de ce Jawshan', ongoingCevsen:'Le Jawshan est en cours de lecture.', nAsk:'Veux-tu indiquer ton nom ?', nWhy:'Pour que le cercle voie qui s’en est chargé. Tu peux passer — cela ne change rien.', nPh:'Ton nom (facultatif)', nSave:'Enregistrer', nSkip:'Passer', nEdit:'Nom', nClear:'Retirer le nom', nSaved:'Enregistré.', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
+ zHead:'Invocations de ce cercle', zOf:'{a} sur {b}', zMine:'Ta contribution : {n}', zAdd:'Participer au décompte', zMemberOnly:'Pour les membres du cercle', zTargetOnly:'{n} par personne', zSession:'Compté dans cette session', zSubmit:'Ajouter mon décompte', zNone:'Ce cercle n’a pas encore d’invocation commune.', zDone:'Ta contribution a été ajoutée.', zReached:'Objectif atteint.', zZero:'Compte d’abord, puis ajoute.', bNext:'Prochaine portion libre', bHowMany:'Combien de chapitres vas-tu lire ?', bAllTaken:'Chaque chapitre a un lecteur pour le moment.', dHead:'Portions restées inachevées', dLead:'Ces portions sont restées en suspens. Prends-en une et la khatma s’achève.', dTake:'Prendre celle-ci', dWait:'Les portions sont réparties. Ce qui reste inachevé s’ouvrira ici le {d}.', dNone:'Chaque portion a un lecteur pour le moment.', dBab:'Chapitre {a}-{b}', dBabCount:'{p} chapitres', ebCevsen:'Intention de ce Jawshan', ongoingCevsen:'Le Jawshan est en cours de lecture.', nAsk:'Veux-tu indiquer ton nom ?', nWhy:'Pour que le cercle voie qui s’en est chargé. Tu peux passer — cela ne change rien.', nPh:'Ton nom (facultatif)', nSave:'Enregistrer', nSkip:'Passer', nEdit:'Nom', nClear:'Retirer le nom', nSaved:'Enregistré.', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
     ar: { loading:'…جارٍ التحميل', ongoing:'.الختمة جارية',
       legend:'{done} مكتملة · {held} متعهَّد بها · {free} متاحة',
       lgDone:'مكتملة', lgHeld:'متعهَّد بها', lgFree:'متاحة', cuzWord:'جزء', seriesNote:'.الختمة {n} جارية، وسابقاتها اكتملت', seriesNoteOpen:'.عدد الختمات في هذه الحلقة: {t}، والأولى جارية', nextLbl:'الجزء التالي', cuzN:'الجزء {n}', closesIn:'بقيت {p} صفحة لإتمامه',
@@ -450,7 +457,7 @@
       pagesRange:'الصفحات {a}-{b}', pageCount:'{p} صفحة',
       confirmQ:'هل تؤكد أنك ستقرأ هذا الجزء؟',
       confirm:'أؤكد، سآخذه', cancel:'إلغاء',
-      entrusted:'.الصفحات {a}-{b} أمانة لديك', mayAccept:'.تقبّل الله',
+      entrusted:'.الصفحات {a}-{b} أمانة لديك', entrustedBab:'.الأبواب {a}-{b} أمانة لديك', mayAccept:'.تقبّل الله',
       another:'هل تريد أخذ جزء آخر؟', takeAnother:'خذ جزءًا آخر',
       none:'.لا يوجد جزء متاح الآن', closed:'.انتهت هذه الختمة',
       quota:'.لديك 40 صفحة مفتوحة الآن. أتمّها لتأخذ المزيد',
@@ -458,7 +465,7 @@
       amountLbl:'كم ستقرأ؟', heroEyebrow:'نية هذه الختمة', ebZikir:'نية هذا الذكر', ebDua:'نية هذا الدعاء', myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟', doneMark:'تم', gone:'.لم تعد هذه الختمة متاحة', slow:'.محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة', error:'.حدث خطأ ما. حاول مرة أخرى', notFound:'.رابط الدعوة غير صالح',
       openApp:'افتح في التطبيق', getApp:'ثبّت التطبيق', until:'حتى {d}',
       keepLink:'.احفظ هذا الرابط للعودة إلى جزئك لاحقًا', copy:'انسخ الرابط', copied:'تم النسخ',
- zHead:'أذكار هذه الحلقة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}', zAdd:'شارك في العدّ', zMemberOnly:'لأعضاء الحلقة', zTargetOnly:'{n} لكل شخص', zSession:'ما عددته في هذه الجلسة', zSubmit:'أضف عدّي', zNone:'.لا يوجد ذكر مشترك في هذه الحلقة بعد', zDone:'.تمت إضافة مشاركتك', zReached:'.تم بلوغ الهدف', zZero:'.عُدّ أولاً ثم أضف', dHead:'أجزاء لم تُنجَز', dLead:'.بقيت هذه الأجزاء دون إتمام. خذ واحدًا منها فتكتمل الختمة', dTake:'أتكفّل بهذا', dWait:'.وُزّعت الأجزاء. وما لم يُنجَز يُفتَح هنا في {d}', dNone:'.كل جزء له قارئ في الوقت الحالي', dBab:'الباب {a}-{b}', dBabCount:'{p} بابًا', ebCevsen:'نية هذا الجوشن', ongoingCevsen:'.الجوشن قيد القراءة', nAsk:'أتحبّ أن تكتب اسمك؟', nWhy:'.ليرى أهل الحلقة من تكفّل بهذا. ولك أن تتركه، فلا يتغيّر شيء', nPh:'(اسمك (اختياري', nSave:'حفظ', nSkip:'تخطٍّ', nEdit:'الاسم', nClear:'إزالة الاسم', nSaved:'.تم الحفظ', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
+ zHead:'أذكار هذه الحلقة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}', zAdd:'شارك في العدّ', zMemberOnly:'لأعضاء الحلقة', zTargetOnly:'{n} لكل شخص', zSession:'ما عددته في هذه الجلسة', zSubmit:'أضف عدّي', zNone:'.لا يوجد ذكر مشترك في هذه الحلقة بعد', zDone:'.تمت إضافة مشاركتك', zReached:'.تم بلوغ الهدف', zZero:'.عُدّ أولاً ثم أضف', bNext:'الجزء المتاح التالي', bHowMany:'كم بابًا ستقرأ؟', bAllTaken:'.كل باب له قارئ في الوقت الحالي', dHead:'أجزاء لم تُنجَز', dLead:'.بقيت هذه الأجزاء دون إتمام. خذ واحدًا منها فتكتمل الختمة', dTake:'أتكفّل بهذا', dWait:'.وُزّعت الأجزاء. وما لم يُنجَز يُفتَح هنا في {d}', dNone:'.كل جزء له قارئ في الوقت الحالي', dBab:'الباب {a}-{b}', dBabCount:'{p} بابًا', ebCevsen:'نية هذا الجوشن', ongoingCevsen:'.الجوشن قيد القراءة', nAsk:'أتحبّ أن تكتب اسمك؟', nWhy:'.ليرى أهل الحلقة من تكفّل بهذا. ولك أن تتركه، فلا يتغيّر شيء', nPh:'(اسمك (اختياري', nSave:'حفظ', nSkip:'تخطٍّ', nEdit:'الاسم', nClear:'إزالة الاسم', nSaved:'.تم الحفظ', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
   };
   var POLICY_SUFFIX = { en:'-en', tr:'', de:'-de', fr:'-fr', ar:'-ar' };
   var NAME_IDX = { tr:0, en:1, de:1, fr:1, ar:2 };
@@ -503,6 +510,7 @@
   var board = null, offer = null, busy = false;
   // Onay ekranında seçilen sayfa adedi. null = bloğun tamamı.
   var chosenLen = null;
+  var babLen = null;              // Cevşen havuzunda seçilen bab sayısı
   var filter = 'avail';                 // avail | all
   // ⚠️ Ekran durumu AÇIK DEĞİŞKENDE. DOM'a bakarak çıkarmak kırılgan: bir
   // önceki sürümde 'done' ekranındaki kopyala düğmesi onay ekranı sanılıyor ve
@@ -699,7 +707,7 @@
     var free = Math.max(0, total - done - held);
 
     var wrap = el('div', 'panel');
-    wrap.appendChild(panelHead(T.ongoing, ICON_PROGRESS));
+    wrap.appendChild(panelHead(board.type === 'cevsen' ? T.ongoingCevsen : T.ongoing, ICON_PROGRESS));
     var bar = el('div', 'bar');
     var d = el('div', 'done'); d.style.width = (done / Math.max(1,total) * 100) + '%';
     var h = el('div', 'held'); h.style.width = (held / Math.max(1,total) * 100) + '%';
@@ -986,6 +994,79 @@
   // ⚠️ DOM'u progressNode() ile birebir aynı tutuyoruz (.panel > head + .bar +
   // .legend). Ayrı bir kabuk ("panel-body" gibi) uydurmak iki tahtayı görsel
   // olarak ayrıştırır; ortak stil zaten bu yapıya göre yazılmış.
+  /**
+   * Cevşen ortak havuzu (pool_claim, kind='bab').
+   *
+   * ⚠️ KURAN TAHTASININ KOPYASI DEĞİL. Orada cüz ızgarası SEÇİCİDİR (kullanıcı
+   * cüze dokunur, sonra miktar seçer). Cevşen'in 101 bölümünün cüz gibi
+   * geleneksel bir alt bölümü YOKTUR; hücre seçtirmek olmayan bir birim icat
+   * etmek olurdu. Bu yüzden burada harita SALT OKUNURDUR, üstlenme doğrudan
+   * miktar seçicisinden yapılır. Karar ve gerekçe: ana repo
+   * supabase/migrations/20260830_cevsen_claim_pool.sql başı.
+   *
+   * Kopya bileşen YAZILMADI: ilerleme çubuğu (progressNode), "aldığın
+   * bölümler" (myNode) ve ad paneli (nameNode) Kuran tahtasıyla ORTAK —
+   * sunucu alan adlarını bilerek aynı döndürüyor.
+   */
+  function renderBabBoard() {
+    mode = 'board';
+    renderHeader();
+    var host = $('stage'); host.innerHTML = '';
+    var mid = el('div', 'mid'); host.appendChild(mid);
+
+    // Harita AYRI panel DEĞİL: ilerleme çubuğuyla aynı veriyi anlatıyor, ikisini
+    // ayırmak aynı şeyi iki başlık altında tekrarlamak olurdu. Çubuk "ne kadar",
+    // harita "nerede" der; birlikte tek panelde dururlar.
+    var prog = progressNode();
+    var mp = board.map || [];
+    if (mp.length) {
+      var grid = el('div', 'babmap');
+      mp.forEach(function (st) {
+        grid.appendChild(el('div', 'babcell' + (st === 2 ? ' done' : st === 1 ? ' held' : '')));
+      });
+      prog.appendChild(grid);
+    }
+    mid.appendChild(prog);
+    var mn = myNode(); if (mn) mid.appendChild(mn);
+    var nn = nameNode(); if (nn) mid.appendChild(nn);
+
+    if (!board.joinable) { mid.appendChild(el('div', 'msg', T.closed)); showAppCta(); return; }
+    if (board.quota_left <= 0) { mid.appendChild(el('div', 'msg', T.quota)); showAppCta(); return; }
+
+    var g = board.suggestion;
+    if (!g) { mid.appendChild(el('div', 'msg', T.bAllTaken)); showAppCta(); return; }
+
+    // ── Miktar seçici ─────────────────────────────────────────────────────
+    // Adımlar Kuran'daki "5'in katları" kuralının aynısı; boşluk küçükse
+    // kırpılır ve "kalanın hepsi" tek seçenek olarak kalır. Kota da kırpar.
+    var maxLen = Math.min(g.gap_len, board.quota_left);
+    var steps = [5, 10, 20].filter(function (n) { return n < maxLen; });
+    steps.push(maxLen);
+    if (babLen == null || steps.indexOf(babLen) < 0) babLen = steps[0];
+
+    var box = el('div', 'panel');
+    box.appendChild(panelHead(T.bNext, ICON_NEXT));
+    box.appendChild(el('div', 'rng', fmt(T.dBab, { a: g.start_page, b: g.start_page + babLen - 1 })));
+    var amt = el('div', 'amt');
+    amt.appendChild(el('div', 'lbl', T.bHowMany));
+    var row = el('div', 'chips');
+    steps.forEach(function (n) {
+      var b = el('button', n === babLen ? 'on' : '', fmt(T.dBabCount, { p: n }));
+      b.onclick = function () { babLen = n; renderAnyBoard(); };
+      row.appendChild(b);
+    });
+    amt.appendChild(row);
+    box.appendChild(amt);
+
+    var ok = el('button', 'primary', T.dTake);
+    ok.onclick = function () {
+      takeBlock({ series: g.series, start_page: g.start_page, end_page: g.start_page + babLen - 1 });
+    };
+    box.appendChild(ok);
+    mid.appendChild(box);
+    showAppCta();
+  }
+
   function divideProgressNode() {
     var total = Math.max(1, board.total || 0);
     var done = board.done || 0, held = board.taken || 0;
@@ -1207,17 +1288,24 @@
     var endPage = offer.start_page + chosenLen - 1;
 
     var box = el('div', 'block');
-    // Sayfa ÖNDE ve büyük, sûre parantezde altta.
-    box.appendChild(el('div', 'pages',
-      fmt(T.pagesRange, { a:offer.start_page, b:endPage })));
-    var r = refLabel(offer.start_page, endPage);
-    if (r) box.appendChild(el('div', 'ref', '(' + r + ')'));
-    box.appendChild(el('div', 'count', fmt(T.pageCount, { p: chosenLen })));
+    // Birim ÖNDE ve büyük: Kuran'da SAYFA, Cevşen'de BAB. Ortak yardımcılar
+    // (unitLabel/unitCount) zaten bu ayrımı yapıyor — burada elle
+    // T.pagesRange/T.pageCount yazmak Cevşen halkasında "Sayfa 17-21" gibi
+    // yanlış bir etiket basar (tarayıcı testinde yakalandı, 30 Ağu 2026).
+    box.appendChild(el('div', 'pages', unitLabel(offer.start_page, endPage)));
+    // Sûre atfı yalnız Kuran'da anlamlı; Cevşen'de bab adı tablosu YOK.
+    if (board.type !== 'cevsen') {
+      var r = refLabel(offer.start_page, endPage);
+      if (r) box.appendChild(el('div', 'ref', '(' + r + ')'));
+    }
+    box.appendChild(el('div', 'count', unitCount(chosenLen)));
     st.appendChild(box);
 
     // Seçenek yalnız birden fazlaysa gösterilir; 5 sayfalık bir bölümde
     // "5 mi 5 mi?" diye sormak anlamsız.
-    var opts = amountChoices(maxLen);
+    // ⚠️ Cevşen havuzunda miktar ZATEN tahtada seçildi (renderBabBoard) ve
+    // teklif tam o uzunlukta geldi; burada ikinci kez sormak akışı tekrar eder.
+    var opts = board.kind === 'bab' ? [] : amountChoices(maxLen);
     if (opts.length > 1) {
       var amt = el('div', 'amt');
       amt.appendChild(el('div', 'lbl', T.amountLbl));
@@ -1241,10 +1329,16 @@
     mode = 'done';
     var host = $('stage'); host.innerHTML = '';
     var st = el('div', 'narrow'); host.appendChild(st);
+    // ⚠️ Birim tipe göre. Cevşen halkasında "Sayfa 17-21 emanet edildi" demek
+    // yanlış (tarayıcı testinde yakalandı, 30 Ağu 2026); sûre atfı da Cevşen'de
+    // anlamsız — bab adı tablosu YOK.
+    var isBab = board && board.type === 'cevsen';
     st.appendChild(el('div', 'ok-title',
-      fmt(T.entrusted, { a:claim.start_page, b:claim.end_page })));
-    var r = refLabel(claim.start_page, claim.end_page);
-    if (r) st.appendChild(el('div', 'ref', '(' + r + ')'));
+      fmt(isBab ? T.entrustedBab : T.entrusted, { a:claim.start_page, b:claim.end_page })));
+    if (!isBab) {
+      var r = refLabel(claim.start_page, claim.end_page);
+      if (r) st.appendChild(el('div', 'ref', '(' + r + ')'));
+    }
     st.appendChild(el('div', 'msg', T.mayAccept));
 
     if (claim.quota_left > 0) {
@@ -1388,6 +1482,7 @@
   function renderAnyBoard() {
     if (board && board.kind === 'zikir')  return renderZikirBoard();
     if (board && board.kind === 'divide') return renderDivideBoard();
+    if (board && board.kind === 'bab')    return renderBabBoard();
     return renderBoard();
   }
 
