@@ -9,6 +9,32 @@
      kisi buraya duser: sayfadaki her dugmeden yuksek donusen yer burasi.
      Uygulama zaten kuruluysa Safari serit yerine "Ac" gosterir. -->
 <meta name="apple-itunes-app" content="app-id=6760654292">
+<script>
+/* Web misafir jetonu (?w=) tasiyan davet linkleri DOGRUDAN canli halka
+   sayfasina gider; bu sayfa hic cizilmez.
+
+   ⚠️ Bu blok <head> icinde ve GOVDE BOYANMADAN once calisir. Yonlendirmeyi
+   gövdenin sonundaki betige birakirsan marka ekrani bir an gorunur ve
+   kullanici bunu "uygulama tanitimi -> basarisiz -> teselli sayfasi" diye
+   okur (kullanici geri bildirimi, 30 Agu 2026). Buradan asagi tasima.
+
+   Davet kodu da tasiniyor (&c=): halka.html "Uygulamada ac" dugmesini
+   ancak kodu bilirse dogru halkaya baglayabilir.
+
+   Zikir listesi paylasimi bu daldan MUAF: onun web karsiligi yok. */
+(function () {
+  try {
+    var p = new URLSearchParams(window.location.search);
+    var w = (p.get('w') || '').trim();
+    if (!w) return;
+    if ((p.get('zikir') || '').trim()) return;
+    var c = (p.get('code') || p.get('event') || '').toUpperCase().trim();
+    if (!/^[A-Z0-9]{4,12}$/.test(c)) c = '';
+    window.location.replace('/halka.html?w=' + encodeURIComponent(w) +
+                            (c ? '&c=' + encodeURIComponent(c) : ''));
+  } catch (e) {}
+})();
+</script>
 <title>Manevi Halka · Join</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -162,7 +188,7 @@
 
     <div id="fallback">
       <a href="#" class="btn" id="openAppBtn">Open App</a>
-      <p class="hint">App didn’t open? It may not be installed yet:</p>
+      <p class="hint">Don’t have the app yet?</p>
       <div class="store-row">
         <a href="https://apps.apple.com/app/manevi-halka/id6760654292" id="iosBtn">App Store</a>
         <a href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle" id="androidBtn">Google Play</a>
@@ -183,30 +209,30 @@
     // İngilizceye düşer (uygulamadaki Kural 9 ile aynı ilke). Uygulama adı
     // "Manevi Halka" beş dilde de sabittir, çevrilmez.
     var STRINGS = {
-      en: { join: 'Join the Circle', zikir: 'Dhikr List', opening: 'Opening Manevi Halka…',
+      en: { join: 'Join the Circle', zikir: 'Dhikr List', opening: 'Open the app, or install it below.',
             inviteCode: 'Invite Code', shareCode: 'Share Code', openApp: 'Open App',
-            hint: 'App didn’t open? It may not be installed yet:',
-            invalid: 'Invalid invitation link.', notFound: 'App not found. Please install it first:',
+            hint: 'Don’t have the app yet?',
+            invalid: 'Invalid invitation link.',
             privacy: 'Privacy', terms: 'Terms', title: 'Manevi Halka · Join' },
-      tr: { join: 'Halkaya Katıl', zikir: 'Zikir Listesi', opening: 'Manevi Halka açılıyor…',
+      tr: { join: 'Halkaya Katıl', zikir: 'Zikir Listesi', opening: 'Uygulaman varsa aç, yoksa aşağıdan indir.',
             inviteCode: 'Davet Kodu', shareCode: 'Paylaşım Kodu', openApp: 'Uygulamayı Aç',
-            hint: 'Uygulama açılmadı mı? Henüz yüklü olmayabilir:',
-            invalid: 'Geçersiz davet bağlantısı.', notFound: 'Uygulama bulunamadı. Önce yükleyin:',
+            hint: 'Uygulaman yok mu?',
+            invalid: 'Geçersiz davet bağlantısı.',
             privacy: 'Gizlilik', terms: 'Şartlar', title: 'Manevi Halka · Katıl' },
-      de: { join: 'Dem Kreis beitreten', zikir: 'Dhikr-Liste', opening: 'Manevi Halka wird geöffnet…',
+      de: { join: 'Dem Kreis beitreten', zikir: 'Dhikr-Liste', opening: 'Öffne die App oder installiere sie unten.',
             inviteCode: 'Einladungscode', shareCode: 'Freigabecode', openApp: 'App öffnen',
-            hint: 'App nicht geöffnet? Sie ist vielleicht noch nicht installiert:',
-            invalid: 'Ungültiger Einladungslink.', notFound: 'App nicht gefunden. Bitte zuerst installieren:',
+            hint: 'Du hast die App noch nicht?',
+            invalid: 'Ungültiger Einladungslink.',
             privacy: 'Datenschutz', terms: 'Nutzungsbedingungen', title: 'Manevi Halka · Beitreten' },
-      fr: { join: 'Rejoindre le cercle', zikir: 'Liste de dhikr', opening: 'Ouverture de Manevi Halka…',
+      fr: { join: 'Rejoindre le cercle', zikir: 'Liste de dhikr', opening: 'Ouvre l’application, ou installe-la ci-dessous.',
             inviteCode: 'Code d’invitation', shareCode: 'Code de partage', openApp: 'Ouvrir l’application',
-            hint: 'L’application ne s’est pas ouverte ? Elle n’est peut-être pas installée :',
-            invalid: 'Lien d’invitation invalide.', notFound: 'Application introuvable. Installez-la d’abord :',
+            hint: 'Tu n’as pas encore l’application ?',
+            invalid: 'Lien d’invitation invalide.',
             privacy: 'Confidentialité', terms: 'Conditions', title: 'Manevi Halka · Rejoindre' },
-      ar: { join: 'انضم إلى الحلقة', zikir: 'قائمة الأذكار', opening: '…جارٍ فتح Manevi Halka',
+      ar: { join: 'انضم إلى الحلقة', zikir: 'قائمة الأذكار', opening: 'افتح التطبيق، أو ثبّته من الأسفل',
             inviteCode: 'رمز الدعوة', shareCode: 'رمز المشاركة', openApp: 'فتح التطبيق',
-            hint: ':لم يفتح التطبيق؟ ربما لم يُثبَّت بعد',
-            invalid: '.رابط دعوة غير صالح', notFound: ':لم يُعثر على التطبيق. ثبّته أولاً',
+            hint: 'أليس لديك التطبيق بعد؟',
+            invalid: '.رابط دعوة غير صالح',
             privacy: 'الخصوصية', terms: 'الشروط', title: 'Manevi Halka · انضمام' }
     };
     // Politika sayfası son eki — permalink şeması /:basename.html (İNGİLİZCE
@@ -271,54 +297,20 @@
       : 'manevisosyal://join/' + code;
     openAppBtn.href = deepLink;
 
-    var ua = navigator.userAgent || '';
-    var isIOS = /iPhone|iPad|iPod/i.test(ua);
-    var isAndroid = /Android/i.test(ua);
+    /* ⚠️ BURADA ESKIDEN OTOMATIK UYGULAMA ACMA DENEMESI VARDI. GERI KOYMA.
+       iOS'ta gizli iframe, Android'de window.location.href ile ozel semaya
+       (manevisosyal://) gidiliyor, 2500 ms bekleniyor, sonra yedege
+       dusuluyordu. 30 Agu 2026'da iki platformda da OLCULDU: uygulama kurulu
+       olmasina ragmen ikisinde de uygulama ACILMADI, sure dolup yedege
+       dusuldu. Sebep ortak: tarayicilar OTOMATIK sema gecisini engelliyor,
+       yalniz KULLANICI DOKUNUSUYLA tetiklenene izin veriyor.
+       (Chrome'un kabul ettigi bicim intent:// -- bizimki o degil.)
 
-    // App'i aç (custom scheme)
-    function tryOpen() {
-      // iOS Safari için iframe deep link yöntemi; Android için window.location
-      if (isIOS) {
-        var iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = deepLink;
-        document.body.appendChild(iframe);
-      } else {
-        window.location.href = deepLink;
-      }
-    }
-
-    // Web misafir jetonu (hatim havuzu ve ortak zikir/dua halkalarında bulunur). Varsa,
-    // uygulaması OLMAYAN kişiyi mağazaya atmak yerine CANLI HATİM SAYFASINA
-    // götürüyoruz: orada hatmi görüp bir bölüm üstlenebilir.
-    // Gerekçe: bugünkü mağaza yönlendirmesi o kişiyi SIFIR katkıyla kaybediyor
-    // (manevi-halka reposu docs/WEB_HATIM_KATILIMI.md bölüm 1).
-    // ⚠️ 'w' YOKSA davranış AYNEN eskisi gibi kalır; başka hiçbir link tipi
-    // (grup daveti, zikir listesi) bu daldan etkilenmez.
-    var webToken = (params.get('w') || '').trim();
-
-    // Kullanıcı app'i açtıysa sayfa background'a düşer; düşmediyse 2sn sonra fallback göster
-    var fallbackTimer = setTimeout(function () {
-      if (webToken && !zikir) {
-        window.location.replace('/halka.html?w=' + encodeURIComponent(webToken));
-        return;
-      }
-      statusEl.textContent = T.notFound;
-      fallback.classList.add('show');
-    }, 2500);
-
-    // Sayfa visibility kaybederse fallback'i iptal et (app açıldı demek)
-    function onVisibilityChange() {
-      if (document.hidden) {
-        clearTimeout(fallbackTimer);
-      }
-    }
-    document.addEventListener('visibilitychange', onVisibilityChange);
-    window.addEventListener('pagehide', onVisibilityChange);
-    window.addEventListener('blur', onVisibilityChange);
-
-    // 100ms sonra dene (DOM hazır)
-    setTimeout(tryOpen, 100);
+       Yani o 2500 ms hicbir sey satin almiyordu; uygulamayi acan tek sey
+       isletim sistemi duzeyindeki Universal Link / App Links (o da bu sayfa
+       hic yuklenmeden devreye girer) ve asagidaki dugme. Bu yuzden yedek
+       ARTIK HEMEN gosteriliyor. */
+    fallback.classList.add('show');
   })();
 </script>
 </body>
