@@ -82,7 +82,7 @@
       "name": "Manevi Halka",
       "url": "https://manevihalka.app/",
       "logo": "https://manevihalka.app/icon.png",
-      "email": "emirhan.ayaz171@icloud.com"
+      "email": "support@manevihalka.app"
     },
     {
       "@type": "WebSite",
@@ -112,6 +112,7 @@
 }
 </script>
 
+<link rel="stylesheet" href="/assets/ortak-hatim.css">
 <style>
   :root {
     --green: #1e4d35;
@@ -1763,6 +1764,25 @@
   @keyframes pcspin { to { transform: rotate(360deg); } }
 
   /* ── Gunun ayeti / hadisi kartlari ── */
+  /* ── Ortak Hatim kartı (ana sayfa girişi) ──────────────────────────────
+     Görsel dil BİLEREK .prayer-card ailesinden: bu "sitenin canlı içeriği"
+     diye okunmalı, reklam kutusu diye değil. */
+  .circle-card {
+    margin-top: 28px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 18px 24px;
+    text-align: center;
+  }
+  .circle-card .section-title { margin-bottom: 8px; }
+  .cc-lead { color: var(--body); font-size: 15px; line-height: 1.6;
+             max-width: 520px; margin: 0 auto; }
+  /* ⚠️ Kart ORTALI ama bileşenin ızgarası ve listeleri sola dayalı olmalı;
+     ortalama yalnız başlık + açıklamada kalsın diye mount noktası sıfırlanır. */
+  #ccMount { text-align: initial; margin-top: 4px; }
+  .cc-note { margin-top: 14px; font-size: 12.5px; color: var(--muted); }
+
   .daily-card {
     position: relative;
     border-radius: var(--radius);
@@ -2249,6 +2269,33 @@
 
       <div class="month-wrap" id="monthWrap" hidden></div>
     </section>
+
+    <!-- ── Ortak Hatim kartı ───────────────────────────────────────────────
+         ⚠️ YERİ BİLİNÇLİ: vakitlerin hemen ALTINDA, tanıtımın ÜSTÜNDE. Sayfa
+         tam burada ikiye ayrılıyor (üstte canlı ve faydalı olan, altta
+         tanıtım) ve bu kart canlı tarafın son öğesi. Her gün vakit bakmaya
+         gelen kişi zaten burada; süregiden ortak hatim tam ona hitap ediyor.
+         ⛔ Vakitlerin ÜSTÜNE taşıma (kilitli karar). ⛔ Hero'ya koyma: hero
+         kimlik + indirme, oraya canlı tahta koymak siteyi web uygulaması gibi
+         gösterir. ⛔ "Neler var" listesine koyma: o liste uygulamanın
+         İÇİNDEKİLERİ sayıyor, bu ise uygulamanın dışında.
+
+         ⚠️ BAŞLIK VE AÇIKLAMA STATİK, yalnız SAYILAR gizli. Günün Ayeti kartı
+         veri inene kadar tamamen gizli; bu kart öyle DEĞİL. Sebebi ölçüldü
+         (_gen/build-locale-pages.mjs başı): sitenin arama motoruna görünen
+         statik metni 245 kelime ve "hatim" görünür metinde SIFIR kez
+         geçiyordu. Metni JS'e bağlarsak o kazanç kaybolur; ayrıca ağ koparsa
+         sayfada açıklanmamış boş bir yer kalır. -->
+    <section class="circle-card" aria-labelledby="ccTitle">
+      <h2 class="section-title reveal" id="ccTitle" data-i18n="ccTitle">Shared Khatm</h2>
+      <p class="cc-lead reveal" data-i18n="ccLead">An ongoing khatm shared with readers all over the world. Take a portion, or join the shared dhikr.</p>
+      <!-- ⚠️ Tahtanın kendisi BU DOSYADA DEĞİL: /js/ortak-hatim.js. AYNI
+           bileşen /hatim.html'de de çalışıyor; iki kopya tutulsaydı biri
+           güncellenir öteki bayatlardı. Buradaki başlık ve açıklama STATİK
+           kalıyor (arama motoru için); bileşen altına mount ediliyor. -->
+      <div id="ccMount"></div>
+      <p class="cc-note" data-i18n="ccNote">No account needed</p>
+    </section>
   </div>
 
   <!-- Uygulamanin tanitimi BURADAN baslar, vakitlerin ALTINDA: once faydayi
@@ -2420,10 +2467,11 @@
         <strong>Türkçe · English · Deutsch · Français · العربية</strong>
       </p>
       <div class="footer-links">
+        <a href="/hatim.html" data-i18n="ccTitle">Shared Khatm</a>
         <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy-en.html" data-i18n="privacy">Privacy Policy</a>
         <a id="lnkTerms" target="_blank" rel="noopener" href="/terms-en.html" data-i18n="terms">Terms of Service</a>
         <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete-en.html" data-i18n="deleteAcc">Account Deletion</a>
-        <a href="mailto:emirhan.ayaz171@icloud.com" data-i18n="contact">Contact</a>
+        <a href="mailto:support@manevihalka.app" data-i18n="contact">Contact</a>
       </div>
       <p class="copyright">© 2026 Manevi Halka</p>
     </footer>
@@ -2489,6 +2537,9 @@
       taglineSub: "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Namaz vakitleri, kıble ve zikir sayacı da aynı uygulamada.",
       todayTitle: "Namaz vakitleri ve günün ayeti",
       introTitle: "Manevi Halka uygulaması nedir",
+      ccTitle: "Ortak Hatim",
+      ccLead: "Dünyanın her yerinden okuyanlarla süregiden ortak bir hatim. Bir bölüm üstlen, ya da ortak zikre katıl.",
+      ccNote: "Hesap gerekmiyor",
       get: "İndir",
       shotsHint: "Kaydırarak uygulamayı gez",
       featuresTitle: "Neler var",
@@ -2530,6 +2581,9 @@
       taglineSub: "Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.",
       todayTitle: "Prayer times and the verse of the day",
       introTitle: "What is the Manevi Halka app",
+      ccTitle: "Shared Khatm",
+      ccLead: "An ongoing khatm shared with readers all over the world. Take a portion, or join the shared dhikr.",
+      ccNote: "No account needed",
       get: "Download",
       shotsHint: "Swipe to explore the app",
       featuresTitle: "What's inside",
@@ -2571,6 +2625,9 @@
       taglineSub: "Teile die Dschus in deinem Kreis, lest reihum, vollendet die Chatma gemeinsam. Gebetszeiten, Qibla und Dhikr-Zähler sind in derselben App.",
       todayTitle: "Gebetszeiten und Vers des Tages",
       introTitle: "Was ist die Manevi-Halka-App",
+      ccTitle: "Gemeinsame Chatma",
+      ccLead: "Eine fortlaufende Chatma mit Lesern aus aller Welt. Übernimm einen Abschnitt oder mach beim gemeinsamen Dhikr mit.",
+      ccNote: "Kein Konto nötig",
       get: "Laden",
       shotsHint: "Wische, um die App zu entdecken",
       featuresTitle: "Was drinsteckt",
@@ -2612,6 +2669,9 @@
       taglineSub: "Répartis les juz dans ton cercle, lisez à tour de rôle, terminez la khatma ensemble. Les heures de prière, la qibla et un compteur de dhikr sont dans la même application.",
       todayTitle: "Heures de prière et verset du jour",
       introTitle: "Qu'est-ce que l'application Manevi Halka",
+      ccTitle: "Khatma commune",
+      ccLead: "Une khatma continue partagée avec des lecteurs du monde entier. Prends une portion, ou rejoins le dhikr commun.",
+      ccNote: "Sans compte",
       get: "Télécharger",
       shotsHint: "Fais glisser pour découvrir l'appli",
       featuresTitle: "Ce que tu y trouves",
@@ -2653,6 +2713,9 @@
       taglineSub: "وزّع الأجزاء على حلقتك، واقرأوا بالتناوب، وأتمّوا الختمة معًا. مواقيت الصلاة والقبلة وعدّاد الذكر في التطبيق نفسه.",
       todayTitle: "مواقيت الصلاة وآية اليوم",
       introTitle: "ما هو تطبيق Manevi Halka",
+      ccTitle: "ختمة مشتركة",
+      ccLead: ".ختمة مستمرة مع قارئين من كل أنحاء العالم. تكفّل بجزء أو شارك في الذكر المشترك",
+      ccNote: "لا حاجة إلى حساب",
       get: "حمّل",
       shotsHint: "اسحب لاستكشاف التطبيق",
       featuresTitle: "ماذا يقدّم",
@@ -3719,6 +3782,17 @@
      applyLocale'in urettigi shots/ yollari dahil). Sayfa dil alt klasorlerinden
      de sunulacagi icin goreli yol /tr/js/... gibi cozulup 404 doner. Gerekce ve
      <base> etiketinin neden kullanilamadigi: js/mh-dynamic.js dosya basi. -->
+<!-- Ortak Hatim bileşeni: ana sayfadaki kart ve /hatim.html AYNI kodu
+     kullanır. chrome:false -> yalnız tahta; canlı senkron (websocket) ve
+     20 sn'lik yoklama YOK, ana sayfaya her ziyarette o maliyeti bindirmek
+     kartın değerine göre pahalı olurdu. Sayılar eylemlerden sonra tazeleniyor.
+     ⚠️ supabase-js BURADA YÜKLENMİYOR: yalnız canlı senkron için gerekiyor,
+     o da bu modda kapalı. -->
+<script src="/js/ortak-hatim.js"></script>
+<script>
+  MHOrtakHatim.mount(document.getElementById("ccMount"), { chrome: false });
+</script>
+
 <script src="/js/mh-dynamic.js" defer></script>
 
 </body>

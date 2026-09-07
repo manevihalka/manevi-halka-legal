@@ -1,0 +1,191 @@
+/* Ortak Hatim bileşeni: ana sayfadaki kart ve /hatim.html AYNI kodu kullanır.
+   Tasarım kararları: manevi-halka reposunda docs/WEB_KURESEL_OKUMA.md.
+
+   ⚠️ HER KURAL `.mhh` ALTINDA. Bileşen iki farklı sayfaya giriyor ve
+   index.html'in kendi `button`, `.grid`, `.tabs`, `.panel` kuralları var;
+   kapsamsız bırakılırsa ana sayfa sessizce bozulur.
+
+   ⚠️ PALET BİLEŞENİN KENDİSİNDE. index.html değişkenleri (--green, --mint)
+   hatim.html'de yok; ortak dosya kendi değişkenlerini tanımlar ki iki sayfada
+   da birebir aynı görünsün.
+
+   ⚠️ KOYU TEMA İKİ MEKANİZMAYA BİRDEN uymalı: hatim.html sistemi izliyor
+   (prefers-color-scheme), index.html'de ise elle tema düğmesi var
+   (data-theme). Yalnız birine bakmak ana sayfada açık temada koyu kart
+   (ya da tersi) verir. */
+.mhh {
+  --p-dark:#1e4d35; --p:#2f6b4a; --soft:#eef5f0;
+  --gold:#d9b970; --ink2:#1f2937; --muted2:#6f806f; --sub2:#59665d;
+  --card2:#ffffff; --line2:rgba(30,77,53,.10); --line3:rgba(30,77,53,.18);
+  --done2:#2f6b4a; --held2:#8bad98; --free2:#e7e8e3; --full2:#f3f2ed;
+  --sh:0 3px 14px rgba(30,50,35,.045);
+  color:var(--ink2);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .mhh {
+    --p-dark:#cfe6d8; --p:#4f9b74; --soft:#18241e;
+    --gold:#c9a961; --ink2:#e8eae6; --muted2:#8ea394; --sub2:#9db0a3;
+    --card2:#16211c; --line2:rgba(207,230,216,.10); --line3:rgba(207,230,216,.18);
+    --done2:#4f9b74; --held2:#31624a; --free2:#22302a; --full2:#131c17;
+    --sh:0 3px 14px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"] .mhh {
+  --p-dark:#cfe6d8; --p:#4f9b74; --soft:#18241e;
+  --gold:#c9a961; --ink2:#e8eae6; --muted2:#8ea394; --sub2:#9db0a3;
+  --card2:#16211c; --line2:rgba(207,230,216,.10); --line3:rgba(207,230,216,.18);
+  --done2:#4f9b74; --held2:#31624a; --free2:#22302a; --full2:#131c17;
+  --sh:0 3px 14px rgba(0,0,0,.25);
+}
+
+.mhh .mid { max-width:800px; margin:0 auto; }
+.mhh .narrow { max-width:720px; margin:0 auto; }
+.mhh .hidden { display:none; }
+
+.mhh .panel { background:var(--card2); border:1px solid var(--line2);
+  border-radius:18px; box-shadow:var(--sh); padding:18px 16px; margin-top:16px; }
+.mhh .panel-head { display:flex; align-items:center; justify-content:center; gap:7px;
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted2); margin-bottom:12px; }
+.mhh .panel-head svg { width:14px; height:14px; }
+
+/* Üç durumlu ilerleme. ⚠️ ALTIN KULLANMA: "üstlenildi"yi altın yapmak onu
+   ödül gibi gösterir ve ekranı gösterge paneline çevirir. */
+.mhh .bar { height:9px; border-radius:6px; background:var(--free2);
+  overflow:hidden; display:flex; }
+.mhh .bar > .done { background:var(--done2); }
+.mhh .bar > .held { background:var(--held2); }
+.mhh .legend { font-size:12.5px; color:var(--sub2); text-align:center;
+  margin-top:10px; line-height:1.55; }
+.mhh .legend .k { display:inline-flex; align-items:center; gap:5px;
+  margin:0 5px; white-space:nowrap; }
+.mhh .legend .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+.mhh .cycle { font-size:12.5px; color:var(--muted2); text-align:center;
+  margin-top:10px; display:flex; align-items:center; justify-content:center; gap:6px; }
+.mhh .cycle svg { width:13px; height:13px; }
+
+.mhh .suggest { position:relative; margin-top:16px; padding:18px 16px;
+  border-radius:18px; background:var(--soft); border:1px solid var(--line2);
+  text-align:center; overflow:hidden; }
+.mhh .suggest::after { content:""; position:absolute; top:0; left:0; right:0;
+  height:2px; background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:.7; }
+.mhh .suggest .cuz { font-size:20px; font-weight:700; color:var(--p-dark); margin-top:2px; }
+.mhh .suggest .sub { font-size:13.5px; color:var(--sub2); margin-top:3px; }
+
+.mhh .zrow { padding:16px 16px 14px; border-bottom:1px solid var(--line2); }
+.mhh .zrow:last-child { border-bottom:0; }
+.mhh .zname { font-size:16px; font-weight:600; color:var(--p-dark); line-height:1.3; }
+.mhh .zmean { font-size:12.5px; color:var(--muted2); margin-top:3px; line-height:1.45; }
+.mhh .zar { font-size:19px; color:var(--sub2); margin-top:7px; line-height:1.7;
+  direction:rtl; text-align:right; }
+.mhh .zrow .bar, .mhh .zcard .bar { margin-top:12px; }
+.mhh .znums { display:flex; justify-content:space-between; align-items:baseline;
+  gap:10px; margin-top:11px; font-size:12.5px; color:var(--muted2); }
+.mhh .znums b { font-size:15px; font-weight:600; color:var(--ink2); }
+.mhh .zmine { font-size:12.5px; color:var(--p); margin-top:7px; }
+.mhh .zcount { text-align:center; }
+.mhh .zcount .zar { text-align:center; margin-top:8px; }
+
+/* Sayaç: halka ŞEKLİ değil DOKUNMA ALANI. Parmak nereye düşerse düşsün saysın. */
+.mhh .zdial { width:190px; height:190px; margin:22px auto 0; border-radius:50%;
+  border:2px solid var(--line3); background:var(--soft); display:flex;
+  flex-direction:column; align-items:center; justify-content:center;
+  cursor:pointer; user-select:none; -webkit-user-select:none;
+  -webkit-tap-highlight-color:transparent; transition:transform .08s ease; }
+.mhh .zdial:active { transform:scale(.97); }
+.mhh .zdial .v { font-size:52px; font-weight:650; line-height:1;
+  color:var(--p-dark); font-variant-numeric:tabular-nums; }
+.mhh .zdial .l { font-size:11.5px; color:var(--muted2); margin-top:8px;
+  max-width:130px; text-align:center; line-height:1.35; }
+.mhh .zchips { display:flex; gap:10px; justify-content:center; margin-top:16px; }
+.mhh .zchips button { flex:0 0 auto; width:auto; min-width:96px; padding:11px 16px;
+  margin:0; border-radius:999px; border:1px solid var(--line3);
+  background:var(--card2); color:var(--p-dark); font-size:14px; font-weight:600; }
+
+/* Daraltılmış zikir: ikinci kart BİLEREK yarım kalır. "Yanda başkaları var"
+   mesajını nokta göstergesi ya da ipucu metni değil kartın KENDİSİ verir. */
+.mhh .zpeek { margin-top:16px; }
+.mhh .zscroll { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch; padding-bottom:6px; scrollbar-width:none; }
+.mhh .zscroll::-webkit-scrollbar { display:none; }
+.mhh .zcard { flex:0 0 82%; scroll-snap-align:start; background:var(--card2);
+  border:1px solid var(--line2); border-radius:18px; box-shadow:var(--sh);
+  padding:18px 16px; }
+/* ⚠️ Genişlik keyfi DEĞİL: görünen oran (100 - taban) / taban. Taban %66'da
+   sonraki kart tam yarım görünür (777 px şeritte kart 513, görünen 252 = %49).
+   Dar ekranda %82: %66 orada kartı 226 px'e indirip Arapça satırı ve düğmeyi
+   sıkıştırıyor, 50 px'lik şerit (%18) zaten "devamı var" demeye yetiyor.
+   ⛔ Tabanı küçültme: kart daraldıkça sonraki DAHA ÇOK görünür ve şerit iki
+   sütunlu ızgaraya döner (ilk denemede masaüstünde %70 görünüyordu). */
+@media (min-width:640px) { .mhh .zcard { flex-basis:66%; } }
+
+.mhh .tabs { display:flex; gap:8px; justify-content:center; margin:22px 0 12px;
+  flex-wrap:wrap; }
+.mhh .tabs button { flex:0 0 auto; width:auto; padding:8px 20px; border-radius:11px;
+  border:1px solid var(--line3); background:var(--card2); color:var(--muted2);
+  font-size:13px; font-weight:650; margin:0; }
+.mhh .tabs button.on { background:var(--p); border-color:var(--p); color:#fff; }
+.mhh .tabs.main { margin:4px 0 4px; }
+.mhh .tabs.main button { padding:10px 22px; font-size:14px; }
+
+/* Cüz ızgarası: zenginlik numaranın tipografisinden, desenden değil. */
+.mhh .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
+.mhh .cell { position:relative; overflow:hidden; padding:14px 12px 12px;
+  background:var(--card2); border:1px solid var(--line2); border-radius:16px;
+  box-shadow:var(--sh); cursor:pointer; text-align:center; }
+.mhh .cell .n { font-size:31px; font-weight:650; line-height:1; color:var(--p-dark);
+  font-variant-numeric:tabular-nums; }
+.mhh .cell .u { font-size:12px; color:var(--muted2); margin-top:3px; }
+.mhh .cell .s { font-size:13px; color:var(--sub2); margin-top:9px; }
+.mhh .cell .b { height:3px; border-radius:2px; background:var(--free2);
+  margin-top:8px; overflow:hidden; }
+.mhh .cell .b > i { display:block; height:100%; background:var(--held2); }
+/* Dolu kart soluk ama NUMARA OKUNUR kalır. */
+.mhh .cell.full { background:var(--full2); opacity:.58; cursor:default; box-shadow:none; }
+
+.mhh button { width:100%; padding:14px 18px; border-radius:13px; border:none;
+  font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:12px; }
+.mhh .primary { background:var(--p); color:#fff; }
+.mhh .ghost { background:var(--card2); color:var(--sub2); border:1px solid var(--line3); }
+.mhh .expander { max-width:320px; margin-left:auto; margin-right:auto; display:block;
+  font-size:14px; padding:11px 18px; }
+
+.mhh .block { margin:18px 0; padding:20px 14px; border-radius:18px;
+  background:var(--soft); border:1px solid var(--line2); text-align:center; }
+.mhh .pages { font-size:23px; font-weight:700; color:var(--p-dark); line-height:1.3;
+  font-variant-numeric:tabular-nums; }
+.mhh .ref { font-size:13px; color:var(--sub2); margin-top:5px; text-align:center; }
+.mhh .count { font-size:12px; color:var(--muted2); margin-top:4px; }
+
+.mhh .amt { margin-top:16px; }
+.mhh .amt .lbl { font-size:12.5px; color:var(--sub2); text-align:center; margin-bottom:9px; }
+.mhh .amt .row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.mhh .amt button { width:auto; flex:0 0 auto; padding:9px 19px; font-size:15px;
+  margin-top:0; border:1px solid var(--line3); background:var(--card2); color:var(--sub2); }
+.mhh .amt button.on { background:var(--p); border-color:var(--p); color:#fff; }
+
+.mhh .mine-row { padding:12px 0; border-top:1px solid var(--line2); text-align:center; }
+.mhh .mine-row:first-of-type { border-top:none; }
+.mhh .mine-row .p { font-size:16px; font-weight:700; color:var(--p-dark);
+  font-variant-numeric:tabular-nums; }
+.mhh .mine-row .r { font-size:12.5px; color:var(--muted2); margin-top:2px; }
+.mhh .mine-row .acts { display:flex; gap:8px; justify-content:center; margin-top:9px; }
+.mhh .mine-row .acts button { width:auto; flex:0 0 auto; padding:7px 15px;
+  font-size:13px; margin-top:0; }
+.mhh .mine-row .tick { font-size:13px; font-weight:650; color:var(--p); margin-top:7px; }
+.mhh .mine-row .past { font-size:12.5px; color:var(--muted2); margin-top:7px; }
+
+.mhh .msg { text-align:center; font-size:15px; color:var(--sub2); line-height:1.6;
+  padding:12px 0; }
+.mhh .err { color:#b91c1c; }
+.mhh .ok-title { text-align:center; font-size:19px; font-weight:700;
+  color:var(--p-dark); line-height:1.4; }
+.mhh .recovery { margin-top:16px; font-size:12px; color:var(--muted2); text-align:center; }
+.mhh .recovery button { width:auto; padding:6px 13px; font-size:12px; margin-top:7px; }
+
+@media (min-width:640px) { .mhh .grid { grid-template-columns:repeat(3, 1fr); } }
+@media (min-width:900px) {
+  .mhh .grid { grid-template-columns:repeat(4, 1fr); }
+  .mhh .cell .n { font-size:34px; }
+}

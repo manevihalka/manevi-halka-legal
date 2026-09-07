@@ -21,6 +21,14 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Ortak Hatim: canlı katılım sayfası. join.html'in aksine noindex DEĞİL;
+       bu bir davet sayfası değil varış sayfası. -->
+  <url>
+    <loc>https://manevihalka.app/hatim.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url><loc>https://manevihalka.app/privacy.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
   <url><loc>https://manevihalka.app/privacy-en.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
   <url><loc>https://manevihalka.app/privacy-de.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
@@ -43,7 +51,7 @@
   <!-- MH:LOCALES:BASLA -->
   <url>
     <loc>https://manevihalka.app/tr/</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-09-07</lastmod>
   </url>
 <!-- MH:LOCALES:BITIS -->
 </urlset>
