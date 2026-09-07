@@ -8,7 +8,7 @@ lang: en
 
 **App:** Manevi Halka
 **Developer:** Emirhan Ayaz
-**Contact:** emirhan.ayaz171@icloud.com
+**Contact:** privacy@manevihalka.app
 
 You may delete your Manevi Halka account and data at any time.
 
@@ -43,7 +43,7 @@ This feature is provided under GDPR/KVKK data portability rights and includes: p
 
 If you cannot access the app or want **immediate permanent deletion**, send an email **from the address associated with your account**:
 
-- **Email:** [emirhan.ayaz171@icloud.com](mailto:emirhan.ayaz171@icloud.com)
+- **Email:** [privacy@manevihalka.app](mailto:privacy@manevihalka.app)
 - **Subject:** Account Deletion Request
 - **Body:** "I request deletion of my Manevi Halka account. [Immediate / 30-day soft-delete is fine]"
 
@@ -70,4 +70,4 @@ For legal obligations and fraud prevention, limited data may be retained in an a
 
 ---
 
-**Last updated:** July 21, 2026
+**Last updated:** September 6, 2026

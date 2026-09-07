@@ -8,7 +8,7 @@ lang: tr
 
 **Uygulama:** Manevi Halka
 **Geliştirici:** Emirhan Ayaz
-**İletişim:** emirhan.ayaz171@icloud.com
+**İletişim:** privacy@manevihalka.app
 
 Manevi Halka uygulamasındaki hesabınızı ve verilerinizi istediğiniz zaman silebilirsiniz.
 
@@ -43,7 +43,7 @@ Bu özellik GDPR/KVKK taşınabilirlik hakkı kapsamındadır ve aşağıdaki t�
 
 Uygulamaya erişiminiz yoksa veya **anında kalıcı silme** istiyorsanız, **hesabınızla ilişkili e-posta adresinden** mesaj atın:
 
-- **E-posta:** [emirhan.ayaz171@icloud.com](mailto:emirhan.ayaz171@icloud.com)
+- **E-posta:** [privacy@manevihalka.app](mailto:privacy@manevihalka.app)
 - **Konu:** Hesap Silme Talebi
 - **İçerik:** "Manevi Halka hesabımın silinmesini talep ediyorum. [Anında silme / 30 gün soft-delete kabul]"
 
@@ -70,4 +70,4 @@ Yasal yükümlülükler ve dolandırıcılık önleme amacıyla bazı sınırlı
 
 ---
 
-**Son güncelleme:** 21 Temmuz 2026
+**Son güncelleme:** 6 Eylül 2026

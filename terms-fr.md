@@ -7,7 +7,7 @@ lang: fr
 # Conditions d'utilisation
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 25 août 2026
+**Dernière mise à jour :** 6 septembre 2026
 
 En utilisant l'application mobile Manevi Halka (« l'Application »), vous acceptez les présentes Conditions d'utilisation. Veuillez les lire attentivement.
 
@@ -178,11 +178,11 @@ Nous pouvons mettre à jour les présentes Conditions de temps à autre. Pour le
 - Les présentes Conditions sont régies par **les lois de la République de Türkiye**
 - Les litiges relèvent des **tribunaux et bureaux d'exécution d'Istanbul (Çağlayan)**
 - Les droits des consommateurs de l'UE / du Royaume-Uni (le cas échéant) sont réservés
-- Pour les réclamations des consommateurs, premier contact : emirhan.ayaz171@icloud.com
+- Pour les réclamations des consommateurs, premier contact : support@manevihalka.app
 
 ---
 
 ## 10. Contact
 
-**E-mail :** emirhan.ayaz171@icloud.com
+**E-mail :** support@manevihalka.app
 **Objet :** Manevi Halka — Conditions d'utilisation

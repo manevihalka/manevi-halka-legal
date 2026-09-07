@@ -7,7 +7,7 @@ lang: de
 # Nutzungsbedingungen
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 25. August 2026
+**Zuletzt aktualisiert:** 6. September 2026
 
 Mit der Nutzung der mobilen Anwendung Manevi Halka („die App") akzeptieren
 Sie diese Nutzungsbedingungen. Bitte lesen Sie sie sorgfältig.
@@ -225,11 +225,11 @@ Nutzung nach Änderungen gilt als Zustimmung zu den neuen Bedingungen.
 - Verbraucherrechte der EU / des Vereinigten Königreichs (sofern anwendbar)
   bleiben vorbehalten
 - Für Verbraucheransprüche zunächst Kontaktaufnahme unter:
-  emirhan.ayaz171@icloud.com
+  support@manevihalka.app
 
 ---
 
 ## 10. Kontakt
 
-**E-Mail:** emirhan.ayaz171@icloud.com
+**E-Mail:** support@manevihalka.app
 **Betreff:** Manevi Halka – Nutzungsbedingungen

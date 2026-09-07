@@ -7,7 +7,7 @@ lang: en
 # Terms of Service
 
 **Effective date:** May 3, 2026
-**Last updated:** August 25, 2026
+**Last updated:** September 6, 2026
 
 By using the Manevi Halka mobile application ("the App") you accept these
 Terms of Service. Please read carefully.
@@ -204,11 +204,11 @@ of the new Terms.
 - These Terms are governed by **the laws of the Republic of Türkiye**
 - Disputes are subject to the **Istanbul (Çağlayan) Courts and Enforcement Offices**
 - EU / UK consumer rights (if applicable) are reserved
-- For consumer claims, first contact: emirhan.ayaz171@icloud.com
+- For consumer claims, first contact: support@manevihalka.app
 
 ---
 
 ## 10. Contact
 
-**Email:** emirhan.ayaz171@icloud.com
+**Email:** support@manevihalka.app
 **Subject:** Manevi Halka — Terms of Service

@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 25 Ağustos 2026
+**Son güncelleme:** 6 Eylül 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -18,7 +18,7 @@ haklarınızın neler olduğunu açıklar.
 ## 1. Veri Sorumlusu
 
 **İsim:** Emirhan Ayaz
-**E-posta:** emirhan.ayaz171@icloud.com
+**E-posta:** privacy@manevihalka.app
 **Uygulama:** Manevi Halka
 
 ---
@@ -208,7 +208,7 @@ Türkiye'de KVKK, AB'de GDPR kapsamında şu haklara sahipsiniz:
 - **İtiraz:** Belirli işleme faaliyetlerine itiraz. **Analitik veri toplamayı** istediğiniz zaman kapatabilirsiniz: Profil → Ayarlar → Gizlilik → Analitik (varsayılan açık)
 - **Şikayet:** Veri Koruma Otoritesi'ne şikayette bulunma (Türkiye için: KVKK)
 
-Talepler için: **emirhan.ayaz171@icloud.com**
+Talepler için: **privacy@manevihalka.app**
 
 ---
 
@@ -277,7 +277,7 @@ uygulama içi bildirim göndereceğiz. Yürürlük tarihi en üstte belirtilir.
 
 Sorularınız için:
 
-**E-posta:** emirhan.ayaz171@icloud.com
+**E-posta:** privacy@manevihalka.app
 **Konu:** Manevi Halka — Gizlilik
 
 15 gün içinde yanıt veririz.

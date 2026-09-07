@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** August 25, 2026
+**Last updated:** September 6, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -18,7 +18,7 @@ rights you have.
 ## 1. Data Controller
 
 **Name:** Emirhan Ayaz
-**Email:** emirhan.ayaz171@icloud.com
+**Email:** privacy@manevihalka.app
 **App:** Manevi Halka
 
 ---
@@ -210,7 +210,7 @@ Under GDPR (EU) and KVKK (Turkey), you have these rights:
 - **Object:** Object to specific processing activities. **Analytics opt-out** is available anytime: Profile → Settings → Privacy → Analytics (default on)
 - **Complaint:** File a complaint with your data protection authority
 
-For requests: **emirhan.ayaz171@icloud.com**
+For requests: **privacy@manevihalka.app**
 
 ---
 
@@ -279,7 +279,7 @@ we will send an in-app notification. The effective date is shown at the top.
 
 For questions:
 
-**Email:** emirhan.ayaz171@icloud.com
+**Email:** privacy@manevihalka.app
 **Subject:** Manevi Halka — Privacy
 
 We respond within 15 days.

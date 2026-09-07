@@ -7,7 +7,7 @@ lang: tr
 # Kullanım Koşulları
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 25 Ağustos 2026
+**Son güncelleme:** 6 Eylül 2026
 
 Manevi Halka mobil uygulamasını ("Uygulama") kullanarak bu Kullanım
 Koşullarını kabul etmiş olursunuz. Lütfen dikkatlice okuyun.
@@ -207,11 +207,11 @@ devam etmeniz, yeni Koşulları kabul etmiş olduğunuz anlamına gelir.
 - Bu Koşullar **Türkiye Cumhuriyeti hukuku**na tabidir
 - Uyuşmazlıklarda **İstanbul (Çağlayan) Mahkemeleri ve İcra Daireleri** yetkilidir
 - AB / Birleşik Krallık tüketici hakları (varsa) saklıdır
-- Tüketici hakları için ilk başvuru: emirhan.ayaz171@icloud.com
+- Tüketici hakları için ilk başvuru: support@manevihalka.app
 
 ---
 
 ## 10. İletişim
 
-**E-posta:** emirhan.ayaz171@icloud.com
+**E-posta:** support@manevihalka.app
 **Konu:** Manevi Halka — Kullanım Koşulları

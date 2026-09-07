@@ -6,4 +6,4 @@ Public hosting of Privacy Policy and Terms of Service for the
 - **Privacy Policy:** [/privacy](./privacy.md)
 - **Terms of Service:** [/terms](./terms.md)
 
-For questions: emirhan.ayaz171@icloud.com
+For questions: support@manevihalka.app

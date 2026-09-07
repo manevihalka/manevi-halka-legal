@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 25 août 2026
+**Dernière mise à jour :** 6 septembre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -16,7 +16,7 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 ## 1. Responsable du traitement
 
 **Nom :** Emirhan Ayaz
-**E-mail :** emirhan.ayaz171@icloud.com
+**E-mail :** privacy@manevihalka.app
 **Application :** Manevi Halka
 
 ---
@@ -199,7 +199,7 @@ En vertu du RGPD (UE) et du KVKK (Turquie), vous disposez des droits suivants :
 - **Droit d'opposition :** vous opposer à certaines activités de traitement. Vous pouvez désactiver la collecte de données analytiques à tout moment : Profil → Paramètres → Confidentialité → Analytique (activé par défaut)
 - **Droit de réclamation :** introduire une réclamation auprès de votre autorité de protection des données
 
-Pour toute demande : **emirhan.ayaz171@icloud.com**
+Pour toute demande : **privacy@manevihalka.app**
 
 ---
 
@@ -260,7 +260,7 @@ Nous pouvons mettre à jour la présente politique de temps à autre. Pour les m
 
 Pour toute question :
 
-**E-mail :** emirhan.ayaz171@icloud.com
+**E-mail :** privacy@manevihalka.app
 **Objet :** Manevi Halka — Confidentialité
 
 Nous répondons sous 15 jours.

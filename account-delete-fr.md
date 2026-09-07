@@ -8,7 +8,7 @@ lang: fr
 
 **Application :** Manevi Halka
 **Développeur :** Emirhan Ayaz
-**Contact :** emirhan.ayaz171@icloud.com
+**Contact :** privacy@manevihalka.app
 
 Vous pouvez supprimer votre compte Manevi Halka et vos données à tout moment.
 
@@ -43,7 +43,7 @@ Cette fonctionnalité est fournie au titre du droit à la portabilité des donn�
 
 Si vous ne pouvez pas accéder à l'application ou si vous souhaitez une **suppression définitive immédiate**, envoyez un e-mail **depuis l'adresse associée à votre compte** :
 
-- **E-mail :** [emirhan.ayaz171@icloud.com](mailto:emirhan.ayaz171@icloud.com)
+- **E-mail :** [privacy@manevihalka.app](mailto:privacy@manevihalka.app)
 - **Objet :** Demande de suppression de compte
 - **Corps du message :** « Je demande la suppression de mon compte Manevi Halka. [Suppression immédiate / suppression réversible de 30 jours acceptée] »
 
@@ -70,4 +70,4 @@ Pour les obligations légales et la prévention de la fraude, certaines données
 
 ---
 
-**Dernière mise à jour :** 21 juillet 2026
+**Dernière mise à jour :** 6 septembre 2026

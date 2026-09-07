@@ -8,7 +8,7 @@ lang: de
 
 **App:** Manevi Halka
 **Entwickler:** Emirhan Ayaz
-**Kontakt:** emirhan.ayaz171@icloud.com
+**Kontakt:** privacy@manevihalka.app
 
 Sie können Ihr Konto und Ihre Daten in der Manevi-Halka-App jederzeit löschen.
 
@@ -43,7 +43,7 @@ Diese Funktion wird im Rahmen des Rechts auf Datenübertragbarkeit nach GDPR/KVK
 
 Sollten Sie keinen Zugriff auf die App haben oder eine **sofortige endgültige Löschung** wünschen, senden Sie eine E-Mail **von der mit Ihrem Konto verknüpften E-Mail-Adresse**:
 
-- **E-Mail:** [emirhan.ayaz171@icloud.com](mailto:emirhan.ayaz171@icloud.com)
+- **E-Mail:** [privacy@manevihalka.app](mailto:privacy@manevihalka.app)
 - **Betreff:** Antrag auf Kontolöschung
 - **Inhalt:** „Ich beantrage die Löschung meines Manevi-Halka-Kontos. [Sofortige Löschung / 30-tägige vorläufige Löschung in Ordnung]"
 
@@ -70,4 +70,4 @@ Aufgrund gesetzlicher Pflichten und zur Betrugsprävention können eingeschränk
 
 ---
 
-**Zuletzt aktualisiert:** 21. Juli 2026
+**Zuletzt aktualisiert:** 6. September 2026
