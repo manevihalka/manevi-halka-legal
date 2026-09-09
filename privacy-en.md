@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** September 6, 2026
+**Last updated:** September 9, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -98,9 +98,11 @@ rights you have.
 
 ### 2.4. Joining from the web without an account (manevihalka.app)
 
-If you do not have the app, you can open a circle's invitation link on
-**manevihalka.app** and take on a portion, or contribute to a shared dhikr,
-without creating an account. In that case we collect **only** the following:
+On **manevihalka.app** you can take on a portion or contribute to a shared dhikr
+without creating an account. There are two ways in: opening a circle's
+invitation link when you do not have the app, or visiting the public **Shared
+Reading** page (no invitation needed). In both cases we collect **only** the
+following:
 
 - **A random identifier generated in your browser.** It is kept in your browser's
   local storage. The identifier itself is **not stored** on our servers; only an
@@ -131,6 +133,12 @@ you took and what you contributed.
 Clearing your browser's site data removes the identifier and severs the link to
 your portion. If you wish to access or erase this data, simply send us your
 identifier; without it we have no way to locate the record.
+
+
+**Three things are different on the Shared Reading page:** there is **no name
+field** and you are never asked for one; the page has no administrator and no
+members, so nobody sees anything about you, only the shared counter grows; and
+because the page never ends, your record follows a 90-day retention rule.
 
 ---
 
@@ -194,7 +202,12 @@ We use the following third-party services to provide our service:
 - **Web participation without an account:** A guest record belongs to the circle
   it was created in. When that circle is deleted after it ends (24 hours after its
   end date), the guest record, the portion taken and the contributed count are
-  permanently deleted with it. Abuse counters are deleted after 1 hour
+  permanently deleted with it. Abuse counters are deleted after 1 hour.
+  Because the Shared Reading page never ends, records there follow a separate
+  rule: if you make no contribution for **90 days**, your guest record, the
+  portion you took and your dhikr contribution are deleted automatically. If a
+  portion is still open in your name at that moment, deletion waits until it
+  closes
 
 ---
 

@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 6 septembre 2026
+**Dernière mise à jour :** 9 septembre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -82,10 +82,11 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 ### 2.4. Participation depuis le web sans compte (manevihalka.app)
 
-Si l'application n'est pas installée, vous pouvez ouvrir le lien d'invitation
-d'un cercle sur **manevihalka.app** et y prendre une portion, ou contribuer à un
-dhikr commun, sans créer de compte. Dans ce cas, nous collectons **uniquement**
-ce qui suit :
+Sur **manevihalka.app**, vous pouvez prendre une portion ou contribuer à un
+dhikr commun sans créer de compte. Deux chemins y mènent : ouvrir le lien
+d'invitation d'un cercle lorsque l'application n'est pas installée, ou visiter
+la page publique **Lecture commune** (aucune invitation requise). Dans les deux
+cas, nous collectons **uniquement** ce qui suit :
 
 - **Un identifiant aléatoire généré dans votre navigateur.** Il reste dans le
   stockage local de votre navigateur. L'identifiant lui-même n'est **pas
@@ -121,6 +122,13 @@ Si vous effacez les données de site de votre navigateur, l'identifiant dispara�
 et le lien avec votre portion est rompu. Si vous souhaitez accéder à ces données
 ou en demander l'effacement, il vous suffit de nous communiquer votre
 identifiant ; sans lui, il nous est impossible de retrouver l'enregistrement.
+
+
+**Trois choses diffèrent sur la page « Lecture commune » :** il n'y a **pas de
+champ nom** et il ne vous en est jamais demandé ; la page n'a ni administrateur
+ni membres, personne ne voit donc quoi que ce soit vous concernant, seul le
+compteur commun augmente ; et comme la page ne se termine jamais, votre
+enregistrement suit une règle de conservation de 90 jours.
 
 ---
 
@@ -184,7 +192,12 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   appartient au cercle dans lequel il a été créé. Lorsque ce cercle est supprimé
   après sa clôture (24 heures après sa date de fin), l'enregistrement d'invité, la
   portion prise et le nombre contribué sont supprimés définitivement avec lui. Les
-  compteurs anti-abus sont supprimés au bout d'une heure
+  compteurs anti-abus sont supprimés au bout d'une heure.
+  Comme la page « Lecture commune » ne se termine jamais, une règle distincte
+  s'y applique : si vous ne contribuez pas pendant **90 jours**, votre
+  enregistrement d'invité, la portion prise et votre contribution au dhikr sont
+  supprimés automatiquement. Si une portion est encore ouverte à votre nom à ce
+  moment-là, la suppression attend qu'elle soit close
 
 ---
 

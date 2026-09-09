@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 6. September 2026
+**Zuletzt aktualisiert:** 9. September 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -107,10 +107,11 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 
 ### 2.4. Teilnahme über das Web ohne Konto (manevihalka.app)
 
-Wenn Sie die App nicht installiert haben, können Sie den Einladungslink eines
-Kreises auf **manevihalka.app** öffnen und ohne Konto einen Abschnitt übernehmen
-oder zu einem gemeinsamen Dhikr beitragen. In diesem Fall erheben wir
-**ausschließlich** Folgendes:
+Auf **manevihalka.app** können Sie ohne Konto einen Abschnitt übernehmen oder zu
+einem gemeinsamen Dhikr beitragen. Dafür gibt es zwei Wege: den Einladungslink
+eines Kreises öffnen, wenn Sie die App nicht installiert haben, oder die
+öffentliche Seite **Gemeinsames Lesen** besuchen (ohne Einladung). In beiden
+Fällen erheben wir **ausschließlich** Folgendes:
 
 - **Eine in Ihrem Browser erzeugte Zufallskennung.** Sie verbleibt im lokalen
   Speicher Ihres Browsers. Die Kennung selbst wird auf unseren Servern **nicht
@@ -148,6 +149,13 @@ Wenn Sie die Websitedaten Ihres Browsers löschen, geht die Kennung verloren und
 die Verbindung zu Ihrem Abschnitt ist unterbrochen. Möchten Sie auf diese Daten
 zugreifen oder deren Löschung verlangen, genügt es, uns Ihre Kennung mitzuteilen;
 ohne sie können wir den Eintrag nicht auffinden.
+
+
+**Auf der Seite „Gemeinsames Lesen" ist dreierlei anders:** Es gibt **kein
+Namensfeld**, Sie werden nie danach gefragt; die Seite hat weder Administrator
+noch Mitglieder, niemand sieht also etwas über Sie, es wächst nur der
+gemeinsame Zähler; und da die Seite nie endet, gilt für Ihren Eintrag eine
+Aufbewahrungsfrist von 90 Tagen.
 
 ---
 
@@ -219,7 +227,12 @@ Dienstes:
   dem er entstanden ist. Wird dieser Kreis nach seinem Ende gelöscht (24 Stunden
   nach dem Enddatum), werden der Gasteintrag, der übernommene Abschnitt und die
   beigetragene Anzahl endgültig mitgelöscht. Missbrauchszähler werden nach einer
-  Stunde gelöscht
+  Stunde gelöscht.
+  Da die Seite „Gemeinsames Lesen" nie endet, gilt dort eine eigene Regel:
+  Tragen Sie **90 Tage** lang nichts bei, werden Ihr Gasteintrag, der
+  übernommene Abschnitt und Ihr Dhikr-Beitrag automatisch gelöscht. Ist zu
+  diesem Zeitpunkt noch ein Abschnitt auf Sie offen, wartet die Löschung, bis
+  er abgeschlossen ist
 
 ---
 

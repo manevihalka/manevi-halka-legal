@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 6 Eylül 2026
+**Son güncelleme:** 9 Eylül 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -95,9 +95,11 @@ haklarınızın neler olduğunu açıklar.
 
 ### 2.4. Hesapsız web katılımı (manevihalka.app)
 
-Bir halkanın davet bağlantısını uygulama yüklü değilken **manevihalka.app**
-üzerinde açabilir, hesap oluşturmadan bir bölüm üstlenebilir ya da ortak bir
-zikre katkı verebilirsiniz. Bu durumda toplananlar **yalnız şunlardır**:
+**manevihalka.app** üzerinde hesap oluşturmadan bir bölüm üstlenebilir ya da
+ortak bir zikre katkı verebilirsiniz. Bunun iki yolu vardır: uygulama yüklü
+değilken bir halkanın davet bağlantısını açmak, ya da herkese açık **Ortak
+Okuma** sayfasına girmek (davet gerekmez). İkisinde de toplananlar
+**yalnız şunlardır**:
 
 - **Tarayıcınızda üretilen rastgele bir tanıtıcı.** Tarayıcınızın yerel
   deposunda (local storage) durur. Sunucumuzda tanıtıcının kendisi
@@ -129,6 +131,12 @@ yazdıysanız o adı, üstlendiğiniz bölüm ve katkınızla birlikte görürle
 Tarayıcınızın site verilerini temizlerseniz tanıtıcı kaybolur ve o bölümle
 bağınız kopar. Bu verilere erişmek ya da sildirmek isterseniz tanıtıcınızı bize
 iletmeniz yeterlidir; onsuz kaydı bulmamız mümkün değildir.
+
+
+**Ortak Okuma sayfasında üç şey farklıdır:** ad alanı **yoktur**, hiç sorulmaz;
+sayfanın yöneticisi ya da üyesi yoktur, yani kimse sizin hakkınızda bir şey
+görmez, yalnız ortak sayaç artar; ve sayfa bitmediği için kaydınız 90 günlük
+saklama kuralına tabidir.
 
 ---
 
@@ -192,7 +200,11 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 - **Hesapsız web katılımı:** Misafir kaydı, bağlı olduğu halkaya aittir. Halka
   bittikten sonra silindiğinde (bitiş tarihinden 24 saat sonra) misafir kaydı,
   üstlenilen bölüm bilgisi ve katkı sayısı da birlikte kalıcı olarak silinir.
-  Kötüye kullanım sayaçları 1 saat sonra silinir
+  Kötüye kullanım sayaçları 1 saat sonra silinir.
+  Ortak Okuma sayfası bitmediği için oradaki kayıtlar ayrı bir kurala tabidir:
+  **90 gün** boyunca hiç katkı vermediyseniz misafir kaydınız, üstlendiğiniz
+  bölüm bilgisi ve zikir katkınız otomatik olarak silinir. O sırada üzerinizde
+  kapanmamış bir bölüm varsa silme, o bölüm kapanana kadar bekler
 
 ---
 
