@@ -18,6 +18,7 @@ window.MHOrtakHatim = (function () {
     var CHROME = !!opts.chrome;
     host.classList.add('mhh');
     var stageEl = document.createElement('div');
+    stageEl.className = 'stage';
     host.appendChild(stageEl);
   var SUPA_URL = 'https://ohmescuwjyaitykemuub.supabase.co';
   // Publishable (anon) anahtar. Gizli DEĞİL: APK içinde de dağıtılıyor ve tek
@@ -583,6 +584,47 @@ window.MHOrtakHatim = (function () {
     return row;
   }
 
+  var REDUCED = !!(window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  /**
+   * Sekmeler arası yumuşak geçiş.
+   *
+   * ⚠️ ASIL SORUN ANİMASYON DEĞİL AĞDI: ilk yazımda sekmeye basınca
+   * `goBoard()` çağrılıyor, o da iki isteği yeniden atıyordu. Oysa tahta ve
+   * zikirler ZATEN bellekte (loadBoard ikisini birden çekiyor). Kullanıcı önce
+   * birkaç yüz milisaniye bekliyor, sonra ekran tek karede değişiyordu; bu
+   * "takılma" diye okunuyordu (kullanıcı bildirimi, 9 Eyl 2026).
+   * Artık sekme değişimi AĞA ÇIKMIYOR, yalnız yeniden çiziyor.
+   *
+   * ⚠️ Sönme süresi kısa (130 ms). Uzun olsaydı "yavaş" diye okunurdu; yükseklik
+   * değişimi de opaklık sıfırken oluyor, o yüzden sıçrama görünmüyor.
+   */
+  function swapStage(render) {
+    if (REDUCED) { render(); ensureTabsVisible(); return; }
+    stageEl.classList.add('fading');
+    setTimeout(function () {
+      render();
+      void stageEl.offsetHeight;              // reflow: geçiş sıfırdan başlasın
+      stageEl.classList.remove('fading');
+      ensureTabsVisible();
+    }, 130);
+  }
+
+  /**
+   * Zikir listesi uzun; dibindeyken Hatim'e geçen kişi ızgaranın ortasına
+   * düşüyordu. Sekme satırı ekranın üstünde kaldıysa oraya dönülür.
+   * ⚠️ Yalnız GEREKİRSE: her geçişte kaydırmak da rahatsız edici olurdu.
+   */
+  function ensureTabsVisible() {
+    var t = stageEl.querySelector('.tabs.main');
+    if (!t) return;
+    var top = t.getBoundingClientRect().top;
+    if (top >= 0) return;
+    window.scrollTo({ top: window.scrollY + top - 64,
+                      behavior: REDUCED ? 'auto' : 'smooth' });
+  }
+
   function tabsNode() {
     var w = el('div', 'tabs main');
     [['zikir', T.tabZikir], ['hatim', T.tabHatim]].forEach(function (p) {
@@ -590,9 +632,11 @@ window.MHOrtakHatim = (function () {
       b.onclick = function () {
         if (tab === p[0]) return;
         tab = p[0]; offer = null; chosenLen = null; zItem = null; filter = 'avail';
+        mode = 'board';
         // ⚠️ URL'i yalnız kendi sayfasında yaz; ana sayfa kartı sekmesiz.
         if (CHROME) { try { history.replaceState(null, '', location.pathname + '?t=' + tab); } catch (e) {} }
-        goBoard();
+        // ⛔ goBoard() ÇAĞIRMA: o ağa çıkar. Veri zaten bellekte.
+        swapStage(renderAnyBoard);
       };
       w.appendChild(b);
     });

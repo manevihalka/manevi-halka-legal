@@ -38,6 +38,12 @@
   --sh:0 3px 14px rgba(0,0,0,.25);
 }
 
+/* Sekme geçişi: kısa sönme. ⚠️ Yükseklik değişimi opaklık sıfırken olsun
+   diye render tam ortada yapılıyor (swapStage). */
+.mhh .stage { transition:opacity .13s ease; }
+.mhh .stage.fading { opacity:0; }
+@media (prefers-reduced-motion: reduce) { .mhh .stage { transition:none; } }
+
 .mhh .mid { max-width:800px; margin:0 auto; }
 .mhh .narrow { max-width:720px; margin:0 auto; }
 .mhh .hidden { display:none; }
