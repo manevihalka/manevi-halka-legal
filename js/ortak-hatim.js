@@ -17,10 +17,7 @@ window.MHOrtakHatim = (function () {
     opts = opts || {};
     var CHROME = !!opts.chrome;
     host.classList.add('mhh');
-    var tabsEl = document.createElement('div');
-    tabsEl.className = 'tabs main';
     var stageEl = document.createElement('div');
-    host.appendChild(tabsEl);
     host.appendChild(stageEl);
   var SUPA_URL = 'https://ohmescuwjyaitykemuub.supabase.co';
   // Publishable (anon) anahtar. Gizli DEĞİL: APK içinde de dağıtılıyor ve tek
@@ -39,8 +36,8 @@ window.MHOrtakHatim = (function () {
   // ⚠️ Türkçede "Cüz 7'nin" gibi ek üretilemez; cüz adı ile açıklama AYRI satırda.
   var S = {
     en: { loading:'Loading…',
-      pageTitle:'Shared Khatm', pageSub:'Meet in the same recitation with readers all over the world. No account needed.',
-      tabQuran:"Qur'an", tabZikir:'Dhikr',
+      pageTitle:'Shared Reading', pageSub:'Read together with people all over the world: the shared khatm and the shared dhikr. No account needed.',
+      tabHatim:'Khatm', tabZikir:'Dhikr',
       ongoing:'The recitation is in progress.',
       cycleN:'Recitation {n} is in progress', cycleFirst:'The first recitation is in progress',
       lgDone:'completed', lgHeld:'undertaken', lgFree:'available',
@@ -48,7 +45,7 @@ window.MHOrtakHatim = (function () {
       nextLbl:'Next portion', cuzN:'Juz {n}',
       closesIn:'{p} left to finish it', freeIn:'{p} available', takeThis:'Take this',
       avail:'Available', all:'All', full:'Full',
-      expand:'Expand', collapse:'Collapse',
+      mapHead:'Juz map', joinCta:'Join the shared reading',
       pagesRange:'Pages {a}-{b}',
       pageCount:'{p} pages',
       confirmQ:'Do you confirm that you will read this portion?',
@@ -71,8 +68,8 @@ window.MHOrtakHatim = (function () {
       zSubmit:'Add my count', zNone:'There is no shared dhikr right now.', zZero:'Count first, then add it.',
       home:'Home', privacy:'Privacy', terms:'Terms', arrow:'→' },
     tr: { loading:'Yükleniyor…',
-      pageTitle:'Ortak Hatim', pageSub:'Dünyanın her yerinden okuyanlarla aynı hatimde ve zikirde buluş. Hesap gerekmiyor.',
-      tabQuran:"Kur'an", tabZikir:'Zikir',
+      pageTitle:'Ortak Okuma', pageSub:'Dünyanın her yerinden okuyanlarla aynı hatimde ve zikirde buluş. Hesap gerekmiyor.',
+      tabHatim:'Hatim', tabZikir:'Zikir',
       ongoing:'Hatim devam ediyor.',
       cycleN:'{n}. hatim okunuyor', cycleFirst:'İlk hatim okunuyor',
       lgDone:'tamamlandı', lgHeld:'üstlenildi', lgFree:'müsait',
@@ -80,7 +77,7 @@ window.MHOrtakHatim = (function () {
       nextLbl:'Sıradaki bölüm', cuzN:'{n}. Cüz',
       closesIn:'Bitmesine {p} kaldı', freeIn:'{p} müsait', takeThis:'Bunu al',
       avail:'Müsait', all:'Tümü', full:'Dolu',
-      expand:'Genişlet', collapse:'Daralt',
+      mapHead:'Cüz haritası', joinCta:'Ortak okumaya katıl',
       pagesRange:'Sayfa {a}-{b}',
       pageCount:'{p} sayfa',
       confirmQ:'Bu bölümü okuyacağını onaylıyor musun?',
@@ -103,8 +100,8 @@ window.MHOrtakHatim = (function () {
       zSubmit:'Katkımı ekle', zNone:'Şu anda ortak zikir yok.', zZero:'Önce say, sonra ekle.',
       home:'Ana sayfa', privacy:'Gizlilik', terms:'Şartlar', arrow:'→' },
     de: { loading:'Wird geladen…',
-      pageTitle:'Gemeinsame Chatma', pageSub:'Lies gemeinsam mit Menschen aus aller Welt in derselben Chatma. Ohne Konto.',
-      tabQuran:'Koran', tabZikir:'Dhikr',
+      pageTitle:'Gemeinsames Lesen', pageSub:'Lies gemeinsam mit Menschen aus aller Welt: dieselbe Chatma und dasselbe Dhikr. Ohne Konto.',
+      tabHatim:'Chatma', tabZikir:'Dhikr',
       ongoing:'Die Chatma läuft.',
       cycleN:'Chatma {n} läuft', cycleFirst:'Die erste Chatma läuft',
       lgDone:'abgeschlossen', lgHeld:'übernommen', lgFree:'verfügbar',
@@ -112,7 +109,7 @@ window.MHOrtakHatim = (function () {
       nextLbl:'Nächster Abschnitt', cuzN:'Dschus {n}',
       closesIn:'Noch {p} bis zum Abschluss', freeIn:'{p} verfügbar', takeThis:'Diesen nehmen',
       avail:'Verfügbar', all:'Alle', full:'Vergeben',
-      expand:'Erweitern', collapse:'Einklappen',
+      mapHead:'Dschus-Karte', joinCta:'Beim gemeinsamen Lesen mitmachen',
       pagesRange:'Seite {a}-{b}',
       pageCount:'{p} Seiten',
       confirmQ:'Bestätigst du, dass du diesen Abschnitt liest?',
@@ -135,8 +132,8 @@ window.MHOrtakHatim = (function () {
       zSubmit:'Beitrag hinzufügen', zNone:'Zurzeit gibt es kein gemeinsames Dhikr.', zZero:'Zähle zuerst, dann füge hinzu.',
       home:'Startseite', privacy:'Datenschutz', terms:'Nutzungsbedingungen', arrow:'→' },
     fr: { loading:'Chargement…',
-      pageTitle:'Khatma commune', pageSub:'Rejoins la même khatma que des lecteurs du monde entier. Sans compte.',
-      tabQuran:'Coran', tabZikir:'Dhikr',
+      pageTitle:'Lecture commune', pageSub:'Lis avec des gens du monde entier : la même khatma et le même dhikr. Sans compte.',
+      tabHatim:'Khatma', tabZikir:'Dhikr',
       ongoing:'La khatma est en cours.',
       cycleN:'La khatma {n} est en cours', cycleFirst:'La première khatma est en cours',
       lgDone:'terminées', lgHeld:'prises', lgFree:'disponibles',
@@ -144,7 +141,7 @@ window.MHOrtakHatim = (function () {
       nextLbl:'Portion suivante', cuzN:'Juz {n}',
       closesIn:'Encore {p} pour la terminer', freeIn:'{p} disponibles', takeThis:'Prendre celle-ci',
       avail:'Disponible', all:'Tout', full:'Prise',
-      expand:'Développer', collapse:'Réduire',
+      mapHead:'Carte des juz', joinCta:'Rejoindre la lecture commune',
       pagesRange:'Pages {a}-{b}',
       pageCount:'{p} pages',
       confirmQ:'Confirmes-tu que tu liras cette portion ?',
@@ -167,8 +164,8 @@ window.MHOrtakHatim = (function () {
       zSubmit:'Ajouter mon décompte', zNone:'Aucune invocation commune pour le moment.', zZero:'Compte d’abord, puis ajoute.',
       home:'Accueil', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
     ar: { loading:'…جارٍ التحميل',
-      pageTitle:'ختمة مشتركة', pageSub:'.اقرأ في الختمة نفسها مع قارئين من كل أنحاء العالم، دون حساب',
-      tabQuran:'القرآن', tabZikir:'الذكر',
+      pageTitle:'القراءة المشتركة', pageSub:'.اقرأ مع أناس من كل أنحاء العالم: الختمة نفسها والذكر نفسه، دون حساب',
+      tabHatim:'الختمة', tabZikir:'الذكر',
       ongoing:'.الختمة جارية',
       cycleN:'الختمة {n} جارية', cycleFirst:'الختمة الأولى جارية',
       lgDone:'مكتملة', lgHeld:'متعهَّد بها', lgFree:'متاحة',
@@ -176,7 +173,7 @@ window.MHOrtakHatim = (function () {
       nextLbl:'الجزء التالي', cuzN:'الجزء {n}',
       closesIn:'بقي {p} لإتمامه', freeIn:'{p} متاحة', takeThis:'خذ هذا',
       avail:'المتاح', all:'الكل', full:'مأخوذ',
-      expand:'توسيع', collapse:'طيّ',
+      mapHead:'خريطة الأجزاء', joinCta:'شارك في القراءة المشتركة',
       pagesRange:'الصفحات {a}-{b}',
       pageCount:'{p} صفحة',
       confirmQ:'هل تؤكد أنك ستقرأ هذا الجزء؟',
@@ -230,7 +227,9 @@ window.MHOrtakHatim = (function () {
   var T = S[lang];
   if (CHROME) {
     document.documentElement.lang = lang;
-    if (lang === 'ar') document.documentElement.dir = 'rtl';
+    // ⚠️ Her iki yönü de YAZ. Yalnız 'ar' iken rtl kurmak yetmiyordu: dil
+    // seçiciyle Arapçadan çıkan kullanıcıda yön rtl kalıyordu.
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   }
 
   function fmt(s, o) { return String(s).replace(/\{(\w+)\}/g, function (_, k) { return o[k]; }); }
@@ -264,23 +263,25 @@ window.MHOrtakHatim = (function () {
   var guestToken = params.get('g') || localStorage.getItem(guestKey) || null;
   if (params.get('g')) { try { localStorage.setItem(guestKey, params.get('g')); } catch (e) {} }
 
-  // ⚠️ Cevşen SUNUCUDA AÇIK (kota 10 bab, tahta hazır) ama SİTEDE
-  // GÖSTERİLMİYOR: kullanıcı kararı, 7 Eyl 2026. Geri açmak için buraya
-  // 'cevsen' eklemek + bab etiketlerini geri getirmek yeterli; sunucu
-  // tarafında hiçbir şey gerekmiyor.
-  var TABS = ['quran', 'zikir'];
+  // ⚠️ İKİ SEKME: Zikir ve Hatim. İkisini tek ekranda alt alta koymak DENENDİ
+  // ve BEĞENİLMEDİ (kullanıcı, 9 Eyl 2026: "bu ikisinin karışık göründüğü
+  // ekranı beğenmedim"). Sekmeler ayırıyor, her sekme kendi içinde TAM AÇIK
+  // (genişlet/daralt yok).
+  // ⚠️ VARSAYILAN ZİKİR, Hatim değil (kullanıcı isteği: "ilk olarak ekranda
+  // ortak zikirler görünsün"). Zikir tek dokunuşluk bir katkı, hatim taahhüt
+  // gerektiriyor; düşük eşikli olan önce geliyor.
+  // ⚠️ Cevşen SUNUCUDA AÇIK (kota 10 bab, tahta hazır) ama sitede
+  // gösterilmiyor; geri açmak için bab etiketlerini geri getirmek yeterli,
+  // sunucu tarafında hiçbir şey gerekmiyor.
+  var PAGE_URL = '/ortak-okuma.html';
+  var TABS = ['zikir', 'hatim'];
   var tab = params.get('t');
-  if (TABS.indexOf(tab) < 0) tab = 'quran';
+  if (TABS.indexOf(tab) < 0) tab = 'zikir';
 
   var REFS = null, NAMES = null;
   var board = null, dhikr = null, offer = null, busy = false;
   var chosenLen = null;
   var filter = 'avail';
-  // ⚠️ Varsayılan DARALTILMIŞ. Sayfa açılır açılmaz 30 hücrelik ızgarayı
-  // sermek, 30 saniyelik bir iş için gelen kişiyi bir gösterge paneliyle
-  // karşılamak demek. Önce ilerleme ve sıradaki bölüm; ızgara isteyene.
-  // Modül değişkeni olduğu için 20 sn'lik yoklama yeniden çizince kapanmıyor.
-  var expanded = false;
   // ⚠️ Ekran durumu AÇIK DEĞİŞKENDE tutulur; DOM'a bakarak çıkarmak kırılgan.
   var mode = 'loading';   // loading | board | confirm | done | count | message
 
@@ -399,25 +400,6 @@ window.MHOrtakHatim = (function () {
   var ICON_CYCLE    = 'M4 12a8 8 0 0 1 13.7-5.7L20 8M20 4v4h-4M20 12a8 8 0 0 1-13.7 5.7L4 16M4 20v-4h4';
   var ICON_ZIKIR    = 'M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z';
 
-  function mainTabs() {
-    var host = tabsEl;
-    host.innerHTML = '';
-    [['quran', T.tabQuran], ['zikir', T.tabZikir]].forEach(function (p) {
-      var b = el('button', tab === p[0] ? 'on' : '', p[1]);
-      b.onclick = function () {
-        if (tab === p[0]) return;
-        tab = p[0]; offer = null; chosenLen = null; zItem = null;
-        filter = 'avail'; expanded = false;
-        // Sekme URL'de taşınır: yenileme ve paylaşma bağlamı korusun.
-        // ⚠️ URL'i yalnız kendi sayfasında yaz: ana sayfanın adres çubuğunu
-        // bir kart yüzünden değiştirmek yanlış olur.
-        if (CHROME) { try { history.replaceState(null, '', location.pathname + '?t=' + tab); } catch (e) {} }
-        mainTabs(); goBoard();
-      };
-      host.appendChild(b);
-    });
-  }
-
   /**
    * Üç durumlu ilerleme.
    * ⚠️ ALTIN KULLANMA: "üstlenildi"yi altın yapmak onu ödül gibi gösterir.
@@ -501,36 +483,31 @@ window.MHOrtakHatim = (function () {
 
   function groupLabel(g) { return fmt(T.cuzN, { n:g.g }); }
 
-  /** Daraltılmış <-> genişletilmiş. Durum modül değişkeninde, o yüzden
-   *  arka plan tazelemesi yeniden çizince açık kalan görünüm kapanmıyor. */
-  function expanderButton() {
-    var b = el('button', 'ghost expander', expanded ? T.collapse : T.expand);
-    b.onclick = function () { expanded = !expanded; renderAnyBoard(); };
-    return b;
-  }
-
   function suggestNode() {
-    var s = board.suggest;
-    if (!s) return null;
+    var sg = board.suggest;
+    if (!sg) return null;
     var g = null;
-    (board.groups || []).forEach(function (x) { if (x.g === s.g) g = x; });
+    (board.groups || []).forEach(function (x) { if (x.g === sg.g) g = x; });
     if (!g) return null;
     var box = el('div', 'suggest');
     box.appendChild(panelHead(T.nextLbl, ICON_NEXT));
     box.appendChild(el('div', 'cuz', groupLabel(g)));
-    // "closes" yalnız grup GERÇEKTEN yarımsa true gelir; hiç dokunulmamış
-    // gruba "bitmesine N kaldı" demek yanlış olur.
-    box.appendChild(el('div', 'sub', s.closes
-      ? fmt(T.closesIn, { p: unitCount(s.free) })
-      : fmt(T.freeIn,   { p: unitCount(s.free) })));
+    // ⚠️ "closes" yalnız grup GERÇEKTEN yarımsa true gelir; hiç dokunulmamış
+    // cüze "bitmesine N sayfa kaldı" demek yanlış olur, kimse başlamamıştır.
+    box.appendChild(el('div', 'sub', sg.closes
+      ? fmt(T.closesIn, { p: unitCount(sg.free) })
+      : fmt(T.freeIn,   { p: unitCount(sg.free) })));
     var b = el('button', 'primary', T.takeThis);
     b.onclick = function () { pickGroup(g.g); };
     box.appendChild(b);
     return box;
   }
 
+  var ICON_MAP = 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z';
+
   function gridNode() {
     var wrap = el('div');
+    wrap.appendChild(panelHead(T.mapHead, ICON_MAP));
     var tabs = el('div', 'tabs');
     [['avail', T.avail], ['all', T.all]].forEach(function (p) {
       var b = el('button', filter === p[0] ? 'on' : '', p[1]);
@@ -606,32 +583,38 @@ window.MHOrtakHatim = (function () {
     return row;
   }
 
-  function renderZikir() {
+  function tabsNode() {
+    var w = el('div', 'tabs main');
+    [['zikir', T.tabZikir], ['hatim', T.tabHatim]].forEach(function (p) {
+      var b = el('button', tab === p[0] ? 'on' : '', p[1]);
+      b.onclick = function () {
+        if (tab === p[0]) return;
+        tab = p[0]; offer = null; chosenLen = null; zItem = null; filter = 'avail';
+        // ⚠️ URL'i yalnız kendi sayfasında yaz; ana sayfa kartı sekmesiz.
+        if (CHROME) { try { history.replaceState(null, '', location.pathname + '?t=' + tab); } catch (e) {} }
+        goBoard();
+      };
+      w.appendChild(b);
+    });
+    return w;
+  }
+
+  /** Zikir sekmesi: bütün zikirler tam hâliyle, dikey liste. Yatay şerit
+   *  daraltılmış görünüm içindi; sekme geldiği için o hâl kalktı. */
+  function renderZikirTab() {
     mode = 'board';
     hideAppCta();
     var st = stageEl; st.innerHTML = '';
     var mid = el('div', 'mid'); st.appendChild(mid);
+    mid.appendChild(tabsNode());
 
     var items = (dhikr && dhikr.items) || [];
     if (!items.length) { mid.appendChild(el('div', 'msg', T.zNone)); showAppCta(); return; }
 
-    if (expanded) {
-      var box = el('div', 'panel');
-      box.appendChild(panelHead(T.zHead, ICON_ZIKIR));
-      items.forEach(function (it) { box.appendChild(zikirNode(it, 'zrow')); });
-      mid.appendChild(box);
-    } else {
-      // Daraltılmış: İLK zikir tam, İKİNCİSİ yarım görünür ve şerit
-      // kaydırılabilir. Kaydırılabilirliği anlatan şey yarım kartın kendisi.
-      var peek = el('div', 'zpeek');
-      peek.appendChild(panelHead(T.zHead, ICON_ZIKIR));
-      var sc = el('div', 'zscroll');
-      items.forEach(function (it) { sc.appendChild(zikirNode(it, 'zcard')); });
-      peek.appendChild(sc);
-      mid.appendChild(peek);
-    }
-
-    mid.appendChild(expanderButton());
+    var box = el('div', 'panel');
+    box.appendChild(panelHead(T.zHead, ICON_ZIKIR));
+    items.forEach(function (it) { box.appendChild(zikirNode(it, 'zrow')); });
+    mid.appendChild(box);
     showAppCta();
   }
 
@@ -709,23 +692,26 @@ window.MHOrtakHatim = (function () {
     // ⚠️ Geniş ekranda ızgara genişler, ilerleme ve "aldığın bölümler" DAR
     // kalır: uzun satır okumayı zorlaştırır.
     var mid = el('div', 'mid');
+    mid.appendChild(tabsNode());
     mid.appendChild(progressNode());
     var mn = myNode(); if (mn) mid.appendChild(mn);
     st.appendChild(mid);
 
     if (!board.active) { st.appendChild(el('div', 'msg', T.closed)); showAppCta(); return; }
-    if ((board.quota_max - board.quota_used) <= 0) {
-      st.appendChild(el('div', 'msg', T.quota)); showAppCta(); return;
+
+    var left = board.quota_max - board.quota_used;
+    if (left <= 0) {
+      st.appendChild(el('div', 'msg', T.quota));
+    } else if (!board.suggest) {
+      st.appendChild(el('div', 'msg', T.none));
+    } else {
+      var sg = suggestNode();
+      if (sg) { var w = el('div', 'mid'); w.appendChild(sg); st.appendChild(w); }
     }
-    if (!board.suggest) { st.appendChild(el('div', 'msg', T.none)); showAppCta(); return; }
 
-    var sg = suggestNode();
-    if (sg) { var w = el('div', 'mid'); w.appendChild(sg); st.appendChild(w); }
-
-    // ⚠️ Izgara YALNIZ genişletilince. Daraltılmış hâlde birincil eylem zaten
-    // öneri kartında ("Bunu al"); 30 hücrelik harita seçim yapmak İSTEYENE.
-    if (expanded) st.appendChild(gridNode());
-    var ew = el('div', 'mid'); ew.appendChild(expanderButton()); st.appendChild(ew);
+    // ⚠️ Cüz haritası TAM AÇIK. "Genişlet" düğmesi YOK: bu sayfaya bilerek
+    // gelen kişiden bir şeyi açmasını istemek gereksiz.
+    if (left > 0) st.appendChild(gridNode());
     showAppCta();
   }
 
@@ -808,30 +794,29 @@ window.MHOrtakHatim = (function () {
   }
 
   // ── Akış ──────────────────────────────────────────────────────────────────
+  /**
+   * Sayfa iki bölümü birden gösterdiği için ikisi de tek turda çekilir.
+   * ⚠️ Zikir çağrısı DÜŞERSE sayfa düşmez: tahta asıl içerik, zikir şeridi
+   * boş kalır. Tersi geçerli değil, tahta gelmezse gösterilecek bir şey yok.
+   */
   function loadBoard() {
-    if (tab === 'zikir') {
-      return call('dhikr_list', {}).then(function (r) {
-        if (r.status !== 200 || !r.body.ok) {
-          var m = errText(r.body && r.body.error);
-          var e1 = new Error('load'); e1.userText = m[0]; throw e1;
-        }
-        dhikr = r.body.dhikr;
-        return dhikr;
-      });
-    }
-    return call('board', { type: tab }).then(function (r) {
-      if (r.status !== 200 || !r.body.ok) {
-        var m = errText(r.body && r.body.error);
-        var e2 = new Error('load'); e2.userText = m[0]; throw e2;
+    return Promise.all([
+      call('board', { type: 'quran' }),
+      call('dhikr_list', {})
+    ]).then(function (rs) {
+      var b = rs[0], d = rs[1];
+      if (b.status !== 200 || !b.body.ok) {
+        var m = errText(b.body && b.body.error);
+        var e = new Error('load'); e.userText = m[0]; throw e;
       }
-      board = r.body.board;
+      board = b.body.board;
+      dhikr = (d.status === 200 && d.body && d.body.ok) ? d.body.dhikr : { items: [] };
       return board;
     });
   }
 
   function renderAnyBoard() {
-    if (tab === 'zikir') return renderZikir();
-    return renderBoard();
+    return tab === 'zikir' ? renderZikirTab() : renderBoard();
   }
 
   function pickGroup(g) {
@@ -954,8 +939,62 @@ window.MHOrtakHatim = (function () {
     mount(host, { chrome: CHROME, lang: next });
   });
 
+  // ── Ana sayfa kartı ───────────────────────────────────────────────────────
+  // Tek sakin kart: iki satır, iki sayı, tek eylem. ⛔ Kendi kendine dönen
+  // slayt YOK (kullanıcı ile konuşuldu, 9 Eyl 2026): register'ı reklama
+  // kaydırır, dönen banner'lar zaten kör noktaya düşer, ve hareket eden
+  // içerik ekran okuyucuyla "hareketi azalt" tercihinde ayrı iş çıkarır.
+  // İkna eden şey slogan değil sayının canlı olması.
+  /**
+   * ⚠️ Çubuk İSTEĞE BAĞLI. Zikir satırında BİLEREK yok: hedef 1.000.000 ve
+   * sayaç 205, yani çubuk aylarca çizgi kadar bile dolmuyor ve "bozuk" diye
+   * okunuyor (9 Eyl 2026). Kur'an satırında anlamlı, orada 604'te 27.
+   */
+  function sumRow(label, value, doneFrac, heldFrac) {
+    var row = el('div', 'sumrow');
+    row.appendChild(el('span', 'k', label));
+    if (doneFrac != null) {
+      var bar = el('div', 'bar');
+      var d = el('div', 'done'); d.style.width = (Math.min(1, doneFrac) * 100) + '%';
+      var h = el('div', 'held'); h.style.width = (Math.min(1, heldFrac || 0) * 100) + '%';
+      bar.appendChild(d); bar.appendChild(h);
+      row.appendChild(bar);
+    } else {
+      row.appendChild(el('span', 'spacer'));
+    }
+    row.appendChild(el('span', 'v', value));
+    return row;
+  }
+
+  function renderCard() {
+    var wrap = el('div', 'sum');
+    stageEl.appendChild(wrap);
+    // Tek okuma: özet ucu hem hatmi hem ilk zikri döner, misafir gerektirmez.
+    call('summary', {}).then(function (r) {
+      if (r.status !== 200 || !r.body.ok || !r.body.summary) return;
+      var sum = r.body.summary, q = null;
+      (sum.hatim || []).forEach(function (x) { if (x.type === 'quran') q = x; });
+      if (!q || !q.total) return;
+
+      wrap.appendChild(sumRow(T.tabHatim,
+        fmt(T.freeIn, { p: unitCount(nf(q.open)) }),
+        q.done / q.total, q.claimed / q.total));
+
+      var d = sum.dhikr;
+      if (d && d.target) {
+        wrap.appendChild(sumRow(T.tabZikir,
+          dhikrText(d.slug)[0] + ' · ' + nf(d.current) + ' / ' + nf(d.target)));
+      }
+
+      var a = el('a', 'cta-main', T.joinCta);
+      a.href = PAGE_URL;
+      wrap.appendChild(a);
+    }).catch(function () { /* kartın metni statik; sayılar görünmez, o kadar */ });
+  }
+
   // ── Açılış ────────────────────────────────────────────────────────────────
-  mainTabs();
+  if (!CHROME) { renderCard(); return; }
+
   stageMessage(T.loading);
 
   fetch('/data/quran-page-refs.json')

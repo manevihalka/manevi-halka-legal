@@ -21,10 +21,12 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Ortak Hatim: canlı katılım sayfası. join.html'in aksine noindex DEĞİL;
-       bu bir davet sayfası değil varış sayfası. -->
+  <!-- Ortak Okuma: canlı katılım sayfası. join.html'in aksine noindex DEĞİL;
+       bu bir davet sayfası değil varış sayfası.
+       ⚠️ Eski adres /hatim.html yönlendirme kabuğu olarak duruyor ve BURAYA
+       GİRMEZ: noindex, canonical bu sayfayı gösteriyor. -->
   <url>
-    <loc>https://manevihalka.app/hatim.html</loc>
+    <loc>https://manevihalka.app/ortak-okuma.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -51,7 +53,7 @@
   <!-- MH:LOCALES:BASLA -->
   <url>
     <loc>https://manevihalka.app/tr/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-09</lastmod>
   </url>
 <!-- MH:LOCALES:BITIS -->
 </urlset>

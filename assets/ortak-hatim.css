@@ -79,7 +79,7 @@
 .mhh .zmean { font-size:12.5px; color:var(--muted2); margin-top:3px; line-height:1.45; }
 .mhh .zar { font-size:19px; color:var(--sub2); margin-top:7px; line-height:1.7;
   direction:rtl; text-align:right; }
-.mhh .zrow .bar, .mhh .zcard .bar { margin-top:12px; }
+.mhh .zrow .bar { margin-top:12px; }
 .mhh .znums { display:flex; justify-content:space-between; align-items:baseline;
   gap:10px; margin-top:11px; font-size:12.5px; color:var(--muted2); }
 .mhh .znums b { font-size:15px; font-weight:600; color:var(--ink2); }
@@ -103,22 +103,6 @@
   margin:0; border-radius:999px; border:1px solid var(--line3);
   background:var(--card2); color:var(--p-dark); font-size:14px; font-weight:600; }
 
-/* Daraltılmış zikir: ikinci kart BİLEREK yarım kalır. "Yanda başkaları var"
-   mesajını nokta göstergesi ya da ipucu metni değil kartın KENDİSİ verir. */
-.mhh .zpeek { margin-top:16px; }
-.mhh .zscroll { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch; padding-bottom:6px; scrollbar-width:none; }
-.mhh .zscroll::-webkit-scrollbar { display:none; }
-.mhh .zcard { flex:0 0 82%; scroll-snap-align:start; background:var(--card2);
-  border:1px solid var(--line2); border-radius:18px; box-shadow:var(--sh);
-  padding:18px 16px; }
-/* ⚠️ Genişlik keyfi DEĞİL: görünen oran (100 - taban) / taban. Taban %66'da
-   sonraki kart tam yarım görünür (777 px şeritte kart 513, görünen 252 = %49).
-   Dar ekranda %82: %66 orada kartı 226 px'e indirip Arapça satırı ve düğmeyi
-   sıkıştırıyor, 50 px'lik şerit (%18) zaten "devamı var" demeye yetiyor.
-   ⛔ Tabanı küçültme: kart daraldıkça sonraki DAHA ÇOK görünür ve şerit iki
-   sütunlu ızgaraya döner (ilk denemede masaüstünde %70 görünüyordu). */
-@media (min-width:640px) { .mhh .zcard { flex-basis:66%; } }
 
 .mhh .tabs { display:flex; gap:8px; justify-content:center; margin:22px 0 12px;
   flex-wrap:wrap; }
@@ -126,8 +110,9 @@
   border:1px solid var(--line3); background:var(--card2); color:var(--muted2);
   font-size:13px; font-weight:650; margin:0; }
 .mhh .tabs button.on { background:var(--p); border-color:var(--p); color:#fff; }
-.mhh .tabs.main { margin:4px 0 4px; }
-.mhh .tabs.main button { padding:10px 22px; font-size:14px; }
+/* Ana sekmeler (Zikir / Hatim) sayfanın ekseni: süzgeç sekmelerinden belirgin. */
+.mhh .tabs.main { margin:4px 0 6px; }
+.mhh .tabs.main button { padding:10px 24px; font-size:14.5px; }
 
 /* Cüz ızgarası: zenginlik numaranın tipografisinden, desenden değil. */
 .mhh .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
@@ -148,8 +133,29 @@
   font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:12px; }
 .mhh .primary { background:var(--p); color:#fff; }
 .mhh .ghost { background:var(--card2); color:var(--sub2); border:1px solid var(--line3); }
-.mhh .expander { max-width:320px; margin-left:auto; margin-right:auto; display:block;
-  font-size:14px; padding:11px 18px; }
+/* ── Ana sayfa özeti (chrome:false) ────────────────────────────────────────
+   İki satır, iki sayı, tek eylem. Etiket solda, çubuk ortada esner, sayı
+   sağda; dar ekranda çubuk kendi satırına iner ki sayı sıkışmasın.
+   ⛔ Kendi kendine dönen slayt YOK: register'ı reklama kaydırır, dönen
+   banner'lar kör noktaya düşer, hareket eden içerik ekran okuyucuyla ve
+   "hareketi azalt" tercihiyle ayrı iş çıkarır. */
+.mhh .sum { margin-top:14px; }
+.mhh .sumrow { display:flex; align-items:center; gap:12px; padding:11px 0; }
+.mhh .sumrow + .sumrow { border-top:1px solid var(--line2); }
+.mhh .sumrow .k { flex:0 0 auto; min-width:58px; font-size:13.5px; font-weight:650;
+  color:var(--p-dark); text-align:start; }
+.mhh .sumrow .bar { flex:1 1 auto; }
+/* Çubuğu olmayan satırda (zikir) sayı yine sağa yaslansın. */
+.mhh .sumrow .spacer { flex:1 1 auto; }
+.mhh .sumrow .v { flex:0 0 auto; font-size:12.5px; color:var(--muted2); text-align:end; }
+@media (max-width:560px) {
+  .mhh .sumrow { flex-wrap:wrap; gap:8px 12px; }
+  .mhh .sumrow .bar { order:3; flex-basis:100%; }
+  .mhh .sumrow .v { margin-inline-start:auto; }
+}
+.mhh .cta-main { display:block; max-width:320px; margin:18px auto 0; padding:13px 22px;
+  border-radius:13px; background:var(--p); color:#fff; text-decoration:none;
+  font-weight:700; font-size:15px; text-align:center; }
 
 .mhh .block { margin:18px 0; padding:20px 14px; border-radius:18px;
   background:var(--soft); border:1px solid var(--line2); text-align:center; }
