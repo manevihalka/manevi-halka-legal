@@ -1,0 +1,101 @@
+/* Sitenin ORTAK KABUĞU: palet, girih zemini, zemin ışıkları.
+   index.html ve ortak-okuma.html AYNI dosyayı kullanır.
+
+   ⚠️ BURAYA KADAR OLAN ŞEY "SİTENİN GÖRÜNÜŞÜ"DÜR. İkinci bir kopya tutma:
+   9 Eyl 2026'da ortak-okuma.html kendi paletiyle yazılmıştı ve kullanıcı
+   "iki ayrı site gibi duruyor" dedi (zemin daha solgun, desen yalnız hero'da,
+   yeşiller tutmuyor). Yeni bir sayfa eklerken bu dosyayı BAĞLA, renk kopyalama.
+
+   ⚠️ Sayfaya özel yerleşim (başlık yüksekliği, hero, kart ızgarası) buraya
+   GİRMEZ; sayfalar orada farklılaşabilir. Buradakiler yalnız ortak olanlar. */
+
+:root {
+  --green: #1e4d35;
+  --green-soft: #2f6b4a;
+  --mint: #78d8a8;
+  --mint-bg: #e8f5ed;
+  --ink: #111827;
+  --body: #4b5563;
+  --muted: #9ca3af;
+  --line: #e5e7eb;
+  --page: #f6faf7;
+  --card: #ffffff;
+  --radius: 16px;
+  /* Dolu zeminli dugme/vurgu rengi: koyu temada --green acik naneye dondugu
+     icin beyaz metinli yuzeyler AYRI degiskenden okur. */
+  --pill: #1e4d35;
+}
+
+/* ─────────── Koyu tema ─────────── */
+:root[data-theme="dark"] {
+  --green: #8fd3ae;
+  --green-soft: #7ab894;
+  --mint-bg: #1d3227;
+  --ink: #eaf3ee;
+  --body: #b9c8c0;
+  --muted: #839589;
+  --line: #263a2f;
+  --page: #0e1a14;
+  --card: #152720;
+  --pill: #2f6b4a;
+  color-scheme: dark;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  background: var(--page);
+  color: var(--body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─────────── Girih zemini ───────────
+   Uygulamanin premium arka plan desenleriyle (girih/rumi ailesi) ayni gorsel
+   dil: sekiz koseli yildiz kafesi. STATIK ve maske tabanli — renk tema
+   degiskeninden gelir, iki temada da calisir; animasyon BILEREK yok (buyuk
+   katmanli animasyonun kare dusurdugu bu projede olculdu). Kart zeminleri
+   dolu oldugu icin desen yalniz bos alanlarda hissedilir.
+   Karo TEK yerde, --girih degiskeninde durur: index.html'deki kandilin isik
+   golu (.kandil-lume) ayni karonun HIZALI bir kopyasini cizer, ikisi
+   ayrisirsa cift cizgi olusur. position absolute (fixed DEGIL) ayni
+   sozlesmenin parcasi: desen belgeyle birlikte kaymali. */
+:root {
+  --girih: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='88'%20height='88'%3E%3Cdefs%3E%3Cg%20id='s'%20fill='none'%20stroke='%23fff'%20stroke-width='1'%3E%3Crect%20x='-15'%20y='-15'%20width='30'%20height='30'/%3E%3Cg%20transform='rotate(45)'%3E%3Crect%20x='-15'%20y='-15'%20width='30'%20height='30'/%3E%3C/g%3E%3C/g%3E%3C/defs%3E%3Cuse%20href='%23s'%20transform='translate(0%200)'/%3E%3Cuse%20href='%23s'%20transform='translate(88%200)'/%3E%3Cuse%20href='%23s'%20transform='translate(0%2088)'/%3E%3Cuse%20href='%23s'%20transform='translate(88%2088)'/%3E%3Cuse%20href='%23s'%20transform='translate(44%2044)'/%3E%3C/svg%3E");
+}
+body { position: relative; } /* body::after inset:0 tum belge boyunu kaplasin */
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-color: var(--green);
+  opacity: 0.06;
+  -webkit-mask-image: var(--girih);
+  mask-image: var(--girih);
+  -webkit-mask-size: 88px 88px;
+  mask-size: 88px 88px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+
+[data-theme="dark"] body::after { opacity: 0.08; }
+
+/* Yumusak zemin isigi - derinlik katar, hicbir seyi ortmez */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(60rem 40rem at 50% -10%, rgba(120, 216, 168, 0.20), transparent 70%),
+    radial-gradient(40rem 30rem at 100% 20%, rgba(30, 77, 53, 0.06), transparent 70%);
+}
+
+/* ⚠️ overflow-x: `clip`, `hidden` DEGIL. index.html'de kenardaki kandillerin
+   isik golu bilerek ekran disina tasar; `clip` kaydirma kabi YARATMAZ, yani
+   yapiskan basligi (position: sticky) bozmaz — `hidden` bozardi. */
+.wrap { position: relative; z-index: 1; overflow-x: clip; }

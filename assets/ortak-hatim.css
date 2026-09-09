@@ -13,36 +13,33 @@
    (prefers-color-scheme), index.html'de ise elle tema düğmesi var
    (data-theme). Yalnız birine bakmak ana sayfada açık temada koyu kart
    (ya da tersi) verir. */
+/* ⚠️ PALET SİTENİN ORTAK PALETİNDEN TÜRETİLİR (/assets/site-chrome.css).
+   Bileşen 9 Eyl 2026'ya kadar kendi renklerini taşıyordu ve iki sayfada hafif
+   farklı çıkıyordu; kullanıcı "iki ayrı site gibi duruyor" dedi. Yedek
+   değerler yalnız bu dosya tek başına kullanılırsa devreye girer. */
 .mhh {
-  --p-dark:#1e4d35; --p:#2f6b4a; --soft:#eef5f0;
-  --gold:#d9b970; --ink2:#1f2937; --muted2:#6f806f; --sub2:#59665d;
-  --card2:#ffffff; --line2:rgba(30,77,53,.10); --line3:rgba(30,77,53,.18);
-  --done2:#2f6b4a; --held2:#8bad98; --free2:#e7e8e3; --full2:#f3f2ed;
+  --p-dark: var(--green, #1e4d35);
+  --p:      var(--pill, #2f6b4a);
+  --soft:   var(--mint-bg, #eef5f0);
+  --ink2:   var(--ink, #1f2937);
+  --muted2: var(--muted, #6f806f);
+  --sub2:   var(--body, #59665d);
+  --card2:  var(--card, #ffffff);
+  --line2:  var(--line, rgba(30,77,53,.10));
+  --done2:  var(--green-soft, #2f6b4a);
+  --free2:  var(--line, #e7e8e3);
+  /* Bileşene özgü olanlar: sitede karşılığı yok. */
+  --gold:#d9b970; --line3:rgba(30,77,53,.18); --held2:#8bad98; --full2:#f3f2ed;
   --sh:0 3px 14px rgba(30,50,35,.045);
   color:var(--ink2);
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .mhh {
-    --p-dark:#cfe6d8; --p:#4f9b74; --soft:#18241e;
-    --gold:#c9a961; --ink2:#e8eae6; --muted2:#8ea394; --sub2:#9db0a3;
-    --card2:#16211c; --line2:rgba(207,230,216,.10); --line3:rgba(207,230,216,.18);
-    --done2:#4f9b74; --held2:#31624a; --free2:#22302a; --full2:#131c17;
-    --sh:0 3px 14px rgba(0,0,0,.25);
-  }
-}
+/* ⚠️ Koyu tema YALNIZ data-theme ile: iki sayfa da tema düğmesini kullanıyor
+   ve tercihi mh_theme'de tutuyor. prefers-color-scheme dalı KALDIRILDI, yoksa
+   sistemi koyu olup siteyi açık tutan kullanıcıda kart koyu çıkıyordu. */
 :root[data-theme="dark"] .mhh {
-  --p-dark:#cfe6d8; --p:#4f9b74; --soft:#18241e;
-  --gold:#c9a961; --ink2:#e8eae6; --muted2:#8ea394; --sub2:#9db0a3;
-  --card2:#16211c; --line2:rgba(207,230,216,.10); --line3:rgba(207,230,216,.18);
-  --done2:#4f9b74; --held2:#31624a; --free2:#22302a; --full2:#131c17;
-  --sh:0 3px 14px rgba(0,0,0,.25);
+  --line3:rgba(207,230,216,.18); --held2:#31624a; --full2:#131c17;
+  --gold:#c9a961; --sh:0 3px 14px rgba(0,0,0,.25);
 }
-
-/* Sekme geçişi: kısa sönme. ⚠️ Yükseklik değişimi opaklık sıfırken olsun
-   diye render tam ortada yapılıyor (swapStage). */
-.mhh .stage { transition:opacity .13s ease; }
-.mhh .stage.fading { opacity:0; }
-@media (prefers-reduced-motion: reduce) { .mhh .stage { transition:none; } }
 
 .mhh .mid { max-width:800px; margin:0 auto; }
 .mhh .narrow { max-width:720px; margin:0 auto; }
