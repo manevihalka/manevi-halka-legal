@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 9 Eylül 2026
+**Son güncelleme:** 25 Eylül 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -162,6 +162,7 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 | Hizmet | Amaç | Veri |
 |--------|------|------|
 | **Supabase** ([gizlilik](https://supabase.com/privacy)) | Veritabanı, kimlik doğrulama, sunucu fonksiyonları | Hesap, ilerleme, tüm uygulama verisi |
+| **Resend** ([gizlilik](https://resend.com/legal/privacy-policy)) | Hesap e-postaları (doğrulama, şifre sıfırlama) | E-posta adresi ve e-postanın içeriği; EU sunucularından gönderilir |
 | **RevenueCat** ([gizlilik](https://www.revenuecat.com/privacy)) | Abonelik yönetimi | Kullanıcı ID, abonelik durumu |
 | **Apple Push Notification Service** | iOS push bildirim | Cihaz tokeni |
 | **Google Firebase Cloud Messaging** | Android push bildirim | Cihaz tokeni |

@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 9. September 2026
+**Zuletzt aktualisiert:** 25. September 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -183,6 +183,7 @@ Dienstes:
 | Dienst | Zweck | Daten |
 |--------|-------|-------|
 | **Supabase** ([Datenschutz](https://supabase.com/privacy)) | Datenbank, Authentifizierung, Server-Funktionen | Konto, Fortschritt, sämtliche App-Daten |
+| **Resend** ([Datenschutz](https://resend.com/legal/privacy-policy)) | Konto-E-Mails (Bestätigung, Passwort zurücksetzen) | E-Mail-Adresse und E-Mail-Inhalt; Versand über EU-Server |
 | **RevenueCat** ([Datenschutz](https://www.revenuecat.com/privacy)) | Abonnementverwaltung | Nutzer-ID, Abonnementstatus |
 | **Apple Push Notification Service** | iOS Push-Benachrichtigungen | Geräte-Token |
 | **Google Firebase Cloud Messaging** | Android Push-Benachrichtigungen | Geräte-Token |

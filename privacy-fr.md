@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 9 septembre 2026
+**Dernière mise à jour :** 25 septembre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -152,6 +152,7 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 | Service | Finalité | Données |
 |---------|----------|---------|
 | **Supabase** ([confidentialité](https://supabase.com/privacy)) | Base de données, authentification, fonctions serveur | Compte, progression, toutes les données de l'application |
+| **Resend** ([confidentialité](https://resend.com/legal/privacy-policy)) | E-mails liés au compte (vérification, réinitialisation du mot de passe) | Adresse e-mail et contenu de l'e-mail ; envoi depuis des serveurs UE |
 | **RevenueCat** ([confidentialité](https://www.revenuecat.com/privacy)) | Gestion des abonnements | Identifiant utilisateur, statut d'abonnement |
 | **Apple Push Notification Service** | Notifications push iOS | Jeton d'appareil |
 | **Google Firebase Cloud Messaging** | Notifications push Android | Jeton d'appareil |

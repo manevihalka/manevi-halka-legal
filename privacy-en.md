@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** September 9, 2026
+**Last updated:** September 25, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -164,6 +164,7 @@ We use the following third-party services to provide our service:
 | Service | Purpose | Data |
 |---------|---------|------|
 | **Supabase** ([privacy](https://supabase.com/privacy)) | Database, auth, server functions | Account, progress, all app data |
+| **Resend** ([privacy](https://resend.com/legal/privacy-policy)) | Account emails (verification, password reset) | Email address and email content; sent from EU servers |
 | **RevenueCat** ([privacy](https://www.revenuecat.com/privacy)) | Subscription management | User ID, subscription status |
 | **Apple Push Notification Service** | iOS push notifications | Device token |
 | **Google Firebase Cloud Messaging** | Android push notifications | Device token |
