@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1e4d35">
+<title>Manevi Halka</title>
+<link rel="icon" type="image/png" href="/icon.png">
+<script>
+  /* Akıllı indirme bağlantısı (manevihalka.app/indir).
+     Telefondan açan kişiyi sayfa boyanmadan kendi mağazasına götürür; bilgisayarda
+     QR kodu ve iki mağaza düğmesi görünür. Mağaza adresi https olduğu için otomatik
+     geçiş tarayıcıda engellenmez (engellenen, özel şemaya otomatik geçiştir; bkz. join.html).
+     ?utm_source=... / ?utm_medium=... Google Play kurulum kaynağına aktarılır, böylece
+     Play Console'da X, QR vb. ayrı görünür. App Store kampanya ölçümü ASC sağlayıcı
+     jetonu (pt) ister, burada yok. Test için ?stay=1 yönlendirmeyi durdurur. */
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var clean = function (v, d) { return ((v || d) + '').replace(/[^A-Za-z0-9._-]/g, '').slice(0, 40) || d; };
+    var src = clean(q.get('utm_source'), 'manevihalka.app');
+    var med = clean(q.get('utm_medium'), 'indir');
+    window.MH_STORE = {
+      ios: 'https://apps.apple.com/app/manevi-halka/id6760654292',
+      android: 'https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=' +
+        encodeURIComponent('utm_source=' + src + '&utm_medium=' + med + '&utm_campaign=indir')
+    };
+    var ua = navigator.userAgent || '';
+    var ios = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var android = /Android/.test(ua);
+    window.MH_PLATFORM = ios ? 'ios' : (android ? 'android' : 'other');
+    if (q.get('stay') !== '1') {
+      if (ios) location.replace(window.MH_STORE.ios);
+      else if (android) location.replace(window.MH_STORE.android);
+    }
+  })();
+</script>
+<style>
+  :root { --bg:#f2f6f3; --card:#ffffff; --text:#1f2937; --muted:#5b6b63; --green:#1e4d35; --pill:#1e4d35; --mint-bg:#eef5f0; --edge:#dfe9e2; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0f1714; --card:#17221d; --text:#e6f0ea; --muted:#9fb3a9; --green:#8fd1ae; --pill:#2e7a52; --mint-bg:#1f2e27; --edge:#24342d; }
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px;
+    background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  .card { width:100%; max-width:440px; background:var(--card); border:1px solid var(--edge); border-radius:24px;
+    padding:36px 28px 28px; text-align:center; box-shadow:0 20px 60px rgba(30,77,53,.12); }
+  .icon { width:72px; height:72px; margin:0 auto 18px; display:block; }
+  h1 { font-size:24px; font-weight:800; color:var(--green); letter-spacing:-.3px; margin-bottom:10px; line-height:1.25; }
+  .sub { font-size:15px; line-height:1.55; color:var(--muted); margin-bottom:24px; }
+  .qr-wrap { display:inline-flex; padding:22px; background:#fff; border-radius:16px; border:1px solid var(--edge); margin-bottom:24px; }
+  .qr { display:block; width:168px; height:168px; color:#10271b; }
+  .stores { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .store-badge { display:inline-flex; align-items:center; gap:12px; padding:12px 22px; background:var(--pill); color:#fff;
+    border-radius:14px; text-decoration:none; text-align:start; }
+  .store-badge:focus-visible { outline:2px solid var(--green); outline-offset:3px; }
+  .store-badge svg { width:26px; height:26px; flex-shrink:0; fill:currentColor; }
+  .store-badge .small { display:block; font-size:11px; opacity:.85; }
+  .store-badge .big { display:block; font-size:17px; font-weight:700; line-height:1.2; }
+  .note { margin-top:20px; font-size:13px; color:var(--muted); }
+  .home { margin-top:14px; font-size:13px; }
+  .home a { color:var(--green); text-decoration:none; font-weight:600; }
+  @media (max-width:520px) { .qr-wrap { display:none; } }
+</style>
+</head>
+<body>
+<main class="card">
+  <img class="icon" src="/email/icon.png" width="72" height="72" alt="Manevi Halka">
+  <h1 id="title">Get Manevi Halka</h1>
+  <p class="sub" id="sub">Scan this code with your phone’s camera, or choose your store.</p>
+  <div class="qr-wrap"><svg class="qr" viewBox="0 0 33 33" width="168" height="168" shape-rendering="crispEdges" role="img" aria-label="QR"><path d="M0,0h1v1h-1zM1,0h1v1h-1zM2,0h1v1h-1zM3,0h1v1h-1zM4,0h1v1h-1zM5,0h1v1h-1zM6,0h1v1h-1zM8,0h1v1h-1zM9,0h1v1h-1zM10,0h1v1h-1zM11,0h1v1h-1zM12,0h1v1h-1zM14,0h1v1h-1zM19,0h1v1h-1zM20,0h1v1h-1zM21,0h1v1h-1zM23,0h1v1h-1zM26,0h1v1h-1zM27,0h1v1h-1zM28,0h1v1h-1zM29,0h1v1h-1zM30,0h1v1h-1zM31,0h1v1h-1zM32,0h1v1h-1zM0,1h1v1h-1zM6,1h1v1h-1zM8,1h1v1h-1zM9,1h1v1h-1zM10,1h1v1h-1zM14,1h1v1h-1zM17,1h1v1h-1zM23,1h1v1h-1zM26,1h1v1h-1zM32,1h1v1h-1zM0,2h1v1h-1zM2,2h1v1h-1zM3,2h1v1h-1zM4,2h1v1h-1zM6,2h1v1h-1zM9,2h1v1h-1zM12,2h1v1h-1zM13,2h1v1h-1zM14,2h1v1h-1zM15,2h1v1h-1zM16,2h1v1h-1zM18,2h1v1h-1zM19,2h1v1h-1zM23,2h1v1h-1zM24,2h1v1h-1zM26,2h1v1h-1zM28,2h1v1h-1zM29,2h1v1h-1zM30,2h1v1h-1zM32,2h1v1h-1zM0,3h1v1h-1zM2,3h1v1h-1zM3,3h1v1h-1zM4,3h1v1h-1zM6,3h1v1h-1zM8,3h1v1h-1zM9,3h1v1h-1zM12,3h1v1h-1zM15,3h1v1h-1zM18,3h1v1h-1zM21,3h1v1h-1zM24,3h1v1h-1zM26,3h1v1h-1zM28,3h1v1h-1zM29,3h1v1h-1zM30,3h1v1h-1zM32,3h1v1h-1zM0,4h1v1h-1zM2,4h1v1h-1zM3,4h1v1h-1zM4,4h1v1h-1zM6,4h1v1h-1zM10,4h1v1h-1zM12,4h1v1h-1zM13,4h1v1h-1zM16,4h1v1h-1zM17,4h1v1h-1zM18,4h1v1h-1zM21,4h1v1h-1zM22,4h1v1h-1zM23,4h1v1h-1zM24,4h1v1h-1zM26,4h1v1h-1zM28,4h1v1h-1zM29,4h1v1h-1zM30,4h1v1h-1zM32,4h1v1h-1zM0,5h1v1h-1zM6,5h1v1h-1zM9,5h1v1h-1zM10,5h1v1h-1zM12,5h1v1h-1zM14,5h1v1h-1zM15,5h1v1h-1zM16,5h1v1h-1zM22,5h1v1h-1zM23,5h1v1h-1zM26,5h1v1h-1zM32,5h1v1h-1zM0,6h1v1h-1zM1,6h1v1h-1zM2,6h1v1h-1zM3,6h1v1h-1zM4,6h1v1h-1zM5,6h1v1h-1zM6,6h1v1h-1zM8,6h1v1h-1zM10,6h1v1h-1zM12,6h1v1h-1zM14,6h1v1h-1zM16,6h1v1h-1zM18,6h1v1h-1zM20,6h1v1h-1zM22,6h1v1h-1zM24,6h1v1h-1zM26,6h1v1h-1zM27,6h1v1h-1zM28,6h1v1h-1zM29,6h1v1h-1zM30,6h1v1h-1zM31,6h1v1h-1zM32,6h1v1h-1zM8,7h1v1h-1zM15,7h1v1h-1zM16,7h1v1h-1zM17,7h1v1h-1zM19,7h1v1h-1zM22,7h1v1h-1zM24,7h1v1h-1zM0,8h1v1h-1zM2,8h1v1h-1zM3,8h1v1h-1zM5,8h1v1h-1zM6,8h1v1h-1zM7,8h1v1h-1zM11,8h1v1h-1zM12,8h1v1h-1zM14,8h1v1h-1zM15,8h1v1h-1zM17,8h1v1h-1zM18,8h1v1h-1zM21,8h1v1h-1zM23,8h1v1h-1zM24,8h1v1h-1zM26,8h1v1h-1zM29,8h1v1h-1zM31,8h1v1h-1zM32,8h1v1h-1zM1,9h1v1h-1zM2,9h1v1h-1zM3,9h1v1h-1zM4,9h1v1h-1zM8,9h1v1h-1zM9,9h1v1h-1zM10,9h1v1h-1zM11,9h1v1h-1zM12,9h1v1h-1zM13,9h1v1h-1zM14,9h1v1h-1zM16,9h1v1h-1zM17,9h1v1h-1zM19,9h1v1h-1zM20,9h1v1h-1zM23,9h1v1h-1zM26,9h1v1h-1zM27,9h1v1h-1zM29,9h1v1h-1zM30,9h1v1h-1zM31,9h1v1h-1zM1,10h1v1h-1zM6,10h1v1h-1zM9,10h1v1h-1zM10,10h1v1h-1zM13,10h1v1h-1zM16,10h1v1h-1zM18,10h1v1h-1zM20,10h1v1h-1zM21,10h1v1h-1zM22,10h1v1h-1zM23,10h1v1h-1zM24,10h1v1h-1zM26,10h1v1h-1zM27,10h1v1h-1zM28,10h1v1h-1zM29,10h1v1h-1zM31,10h1v1h-1zM32,10h1v1h-1zM0,11h1v1h-1zM2,11h1v1h-1zM3,11h1v1h-1zM4,11h1v1h-1zM8,11h1v1h-1zM9,11h1v1h-1zM11,11h1v1h-1zM12,11h1v1h-1zM16,11h1v1h-1zM17,11h1v1h-1zM20,11h1v1h-1zM21,11h1v1h-1zM22,11h1v1h-1zM24,11h1v1h-1zM26,11h1v1h-1zM27,11h1v1h-1zM29,11h1v1h-1zM0,12h1v1h-1zM2,12h1v1h-1zM6,12h1v1h-1zM10,12h1v1h-1zM12,12h1v1h-1zM14,12h1v1h-1zM16,12h1v1h-1zM19,12h1v1h-1zM20,12h1v1h-1zM21,12h1v1h-1zM22,12h1v1h-1zM24,12h1v1h-1zM25,12h1v1h-1zM27,12h1v1h-1zM28,12h1v1h-1zM29,12h1v1h-1zM31,12h1v1h-1zM32,12h1v1h-1zM1,13h1v1h-1zM2,13h1v1h-1zM3,13h1v1h-1zM4,13h1v1h-1zM7,13h1v1h-1zM10,13h1v1h-1zM11,13h1v1h-1zM13,13h1v1h-1zM14,13h1v1h-1zM17,13h1v1h-1zM20,13h1v1h-1zM21,13h1v1h-1zM23,13h1v1h-1zM27,13h1v1h-1zM30,13h1v1h-1zM31,13h1v1h-1zM2,14h1v1h-1zM4,14h1v1h-1zM6,14h1v1h-1zM11,14h1v1h-1zM13,14h1v1h-1zM14,14h1v1h-1zM19,14h1v1h-1zM20,14h1v1h-1zM22,14h1v1h-1zM26,14h1v1h-1zM29,14h1v1h-1zM30,14h1v1h-1zM0,15h1v1h-1zM1,15h1v1h-1zM3,15h1v1h-1zM5,15h1v1h-1zM8,15h1v1h-1zM14,15h1v1h-1zM15,15h1v1h-1zM18,15h1v1h-1zM21,15h1v1h-1zM23,15h1v1h-1zM24,15h1v1h-1zM25,15h1v1h-1zM26,15h1v1h-1zM27,15h1v1h-1zM29,15h1v1h-1zM30,15h1v1h-1zM0,16h1v1h-1zM1,16h1v1h-1zM2,16h1v1h-1zM3,16h1v1h-1zM6,16h1v1h-1zM8,16h1v1h-1zM11,16h1v1h-1zM12,16h1v1h-1zM13,16h1v1h-1zM14,16h1v1h-1zM20,16h1v1h-1zM21,16h1v1h-1zM22,16h1v1h-1zM23,16h1v1h-1zM25,16h1v1h-1zM26,16h1v1h-1zM28,16h1v1h-1zM30,16h1v1h-1zM1,17h1v1h-1zM2,17h1v1h-1zM8,17h1v1h-1zM13,17h1v1h-1zM15,17h1v1h-1zM22,17h1v1h-1zM23,17h1v1h-1zM24,17h1v1h-1zM25,17h1v1h-1zM26,17h1v1h-1zM28,17h1v1h-1zM29,17h1v1h-1zM31,17h1v1h-1zM32,17h1v1h-1zM0,18h1v1h-1zM2,18h1v1h-1zM3,18h1v1h-1zM6,18h1v1h-1zM10,18h1v1h-1zM11,18h1v1h-1zM13,18h1v1h-1zM14,18h1v1h-1zM15,18h1v1h-1zM18,18h1v1h-1zM20,18h1v1h-1zM21,18h1v1h-1zM24,18h1v1h-1zM25,18h1v1h-1zM27,18h1v1h-1zM28,18h1v1h-1zM30,18h1v1h-1zM31,18h1v1h-1zM1,19h1v1h-1zM2,19h1v1h-1zM7,19h1v1h-1zM13,19h1v1h-1zM16,19h1v1h-1zM17,19h1v1h-1zM18,19h1v1h-1zM20,19h1v1h-1zM22,19h1v1h-1zM24,19h1v1h-1zM25,19h1v1h-1zM26,19h1v1h-1zM28,19h1v1h-1zM32,19h1v1h-1zM2,20h1v1h-1zM3,20h1v1h-1zM6,20h1v1h-1zM7,20h1v1h-1zM8,20h1v1h-1zM11,20h1v1h-1zM12,20h1v1h-1zM13,20h1v1h-1zM16,20h1v1h-1zM19,20h1v1h-1zM22,20h1v1h-1zM23,20h1v1h-1zM24,20h1v1h-1zM25,20h1v1h-1zM27,20h1v1h-1zM29,20h1v1h-1zM30,20h1v1h-1zM0,21h1v1h-1zM1,21h1v1h-1zM4,21h1v1h-1zM8,21h1v1h-1zM10,21h1v1h-1zM11,21h1v1h-1zM12,21h1v1h-1zM14,21h1v1h-1zM15,21h1v1h-1zM16,21h1v1h-1zM17,21h1v1h-1zM20,21h1v1h-1zM21,21h1v1h-1zM22,21h1v1h-1zM23,21h1v1h-1zM25,21h1v1h-1zM26,21h1v1h-1zM30,21h1v1h-1zM32,21h1v1h-1zM3,22h1v1h-1zM5,22h1v1h-1zM6,22h1v1h-1zM7,22h1v1h-1zM8,22h1v1h-1zM9,22h1v1h-1zM10,22h1v1h-1zM12,22h1v1h-1zM14,22h1v1h-1zM15,22h1v1h-1zM18,22h1v1h-1zM19,22h1v1h-1zM20,22h1v1h-1zM23,22h1v1h-1zM24,22h1v1h-1zM25,22h1v1h-1zM27,22h1v1h-1zM30,22h1v1h-1zM31,22h1v1h-1zM32,22h1v1h-1zM1,23h1v1h-1zM2,23h1v1h-1zM4,23h1v1h-1zM5,23h1v1h-1zM7,23h1v1h-1zM8,23h1v1h-1zM9,23h1v1h-1zM10,23h1v1h-1zM13,23h1v1h-1zM14,23h1v1h-1zM15,23h1v1h-1zM18,23h1v1h-1zM20,23h1v1h-1zM27,23h1v1h-1zM28,23h1v1h-1zM29,23h1v1h-1zM32,23h1v1h-1zM0,24h1v1h-1zM3,24h1v1h-1zM4,24h1v1h-1zM6,24h1v1h-1zM7,24h1v1h-1zM8,24h1v1h-1zM9,24h1v1h-1zM10,24h1v1h-1zM11,24h1v1h-1zM12,24h1v1h-1zM17,24h1v1h-1zM19,24h1v1h-1zM22,24h1v1h-1zM24,24h1v1h-1zM25,24h1v1h-1zM26,24h1v1h-1zM27,24h1v1h-1zM28,24h1v1h-1zM32,24h1v1h-1zM8,25h1v1h-1zM14,25h1v1h-1zM15,25h1v1h-1zM16,25h1v1h-1zM19,25h1v1h-1zM21,25h1v1h-1zM23,25h1v1h-1zM24,25h1v1h-1zM28,25h1v1h-1zM29,25h1v1h-1zM31,25h1v1h-1zM0,26h1v1h-1zM1,26h1v1h-1zM2,26h1v1h-1zM3,26h1v1h-1zM4,26h1v1h-1zM5,26h1v1h-1zM6,26h1v1h-1zM8,26h1v1h-1zM9,26h1v1h-1zM10,26h1v1h-1zM12,26h1v1h-1zM16,26h1v1h-1zM17,26h1v1h-1zM18,26h1v1h-1zM19,26h1v1h-1zM20,26h1v1h-1zM21,26h1v1h-1zM23,26h1v1h-1zM24,26h1v1h-1zM26,26h1v1h-1zM28,26h1v1h-1zM0,27h1v1h-1zM6,27h1v1h-1zM8,27h1v1h-1zM9,27h1v1h-1zM10,27h1v1h-1zM11,27h1v1h-1zM12,27h1v1h-1zM16,27h1v1h-1zM17,27h1v1h-1zM18,27h1v1h-1zM19,27h1v1h-1zM23,27h1v1h-1zM24,27h1v1h-1zM28,27h1v1h-1zM29,27h1v1h-1zM30,27h1v1h-1zM31,27h1v1h-1zM0,28h1v1h-1zM2,28h1v1h-1zM3,28h1v1h-1zM4,28h1v1h-1zM6,28h1v1h-1zM9,28h1v1h-1zM12,28h1v1h-1zM13,28h1v1h-1zM14,28h1v1h-1zM15,28h1v1h-1zM16,28h1v1h-1zM17,28h1v1h-1zM18,28h1v1h-1zM19,28h1v1h-1zM22,28h1v1h-1zM23,28h1v1h-1zM24,28h1v1h-1zM25,28h1v1h-1zM26,28h1v1h-1zM27,28h1v1h-1zM28,28h1v1h-1zM30,28h1v1h-1zM31,28h1v1h-1zM32,28h1v1h-1zM0,29h1v1h-1zM2,29h1v1h-1zM3,29h1v1h-1zM4,29h1v1h-1zM6,29h1v1h-1zM8,29h1v1h-1zM10,29h1v1h-1zM12,29h1v1h-1zM14,29h1v1h-1zM16,29h1v1h-1zM17,29h1v1h-1zM19,29h1v1h-1zM21,29h1v1h-1zM22,29h1v1h-1zM23,29h1v1h-1zM27,29h1v1h-1zM29,29h1v1h-1zM30,29h1v1h-1zM31,29h1v1h-1zM32,29h1v1h-1zM0,30h1v1h-1zM2,30h1v1h-1zM3,30h1v1h-1zM4,30h1v1h-1zM6,30h1v1h-1zM8,30h1v1h-1zM9,30h1v1h-1zM10,30h1v1h-1zM13,30h1v1h-1zM14,30h1v1h-1zM15,30h1v1h-1zM16,30h1v1h-1zM18,30h1v1h-1zM20,30h1v1h-1zM21,30h1v1h-1zM22,30h1v1h-1zM24,30h1v1h-1zM26,30h1v1h-1zM27,30h1v1h-1zM29,30h1v1h-1zM0,31h1v1h-1zM6,31h1v1h-1zM11,31h1v1h-1zM12,31h1v1h-1zM13,31h1v1h-1zM14,31h1v1h-1zM17,31h1v1h-1zM18,31h1v1h-1zM20,31h1v1h-1zM24,31h1v1h-1zM25,31h1v1h-1zM27,31h1v1h-1zM28,31h1v1h-1zM32,31h1v1h-1zM0,32h1v1h-1zM1,32h1v1h-1zM2,32h1v1h-1zM3,32h1v1h-1zM4,32h1v1h-1zM5,32h1v1h-1zM6,32h1v1h-1zM8,32h1v1h-1zM12,32h1v1h-1zM16,32h1v1h-1zM17,32h1v1h-1zM18,32h1v1h-1zM19,32h1v1h-1zM21,32h1v1h-1zM23,32h1v1h-1zM28,32h1v1h-1zM29,32h1v1h-1zM30,32h1v1h-1z" fill="currentColor"/></svg></div>
+  <div class="stores">
+    <a class="store-badge" id="iosBtn" href="https://apps.apple.com/app/manevi-halka/id6760654292">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
+          </svg>
+      </svg>
+      <span><span class="small" data-t="get">Download</span><span class="big">App Store</span></span>
+    </a>
+    <a class="store-badge" id="androidBtn" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/>
+        <path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/>
+        <path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/>
+        <path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/>
+      </svg>
+      <span><span class="small" data-t="get">Download</span><span class="big">Google Play</span></span>
+    </a>
+  </div>
+  <p class="note" id="note">Free · No ads · 5 languages</p>
+  <p class="home"><a href="/">manevihalka.app</a></p>
+</main>
+<script>
+  (function () {
+    var S = {
+      en: { title: 'Get Manevi Halka', sub: 'Scan this code with your phone’s camera, or choose your store.', subMobile: 'Tap to open your store.', get: 'Download', note: 'Free · No ads · 5 languages' },
+      tr: { title: 'Manevi Halka’yı indir', sub: 'Telefonunun kamerasıyla bu kodu okut ya da mağazanı seç.', subMobile: 'Mağazayı açmak için dokun.', get: 'İndir', note: 'Ücretsiz · Reklamsız · 5 dilde' },
+      de: { title: 'Manevi Halka herunterladen', sub: 'Scanne den Code mit der Kamera deines Handys oder wähle deinen Store.', subMobile: 'Tippe, um deinen Store zu öffnen.', get: 'Laden', note: 'Kostenlos · Werbefrei · 5 Sprachen' },
+      fr: { title: 'Télécharger Manevi Halka', sub: 'Scanne ce code avec l’appareil photo de ton téléphone ou choisis ta boutique.', subMobile: 'Touche pour ouvrir ta boutique.', get: 'Télécharger', note: 'Gratuit · Sans publicité · 5 langues' },
+      ar: { title: 'حمّل Manevi Halka', sub: 'امسح هذا الرمز بكاميرا هاتفك أو اختر متجرك.', subMobile: 'اضغط لفتح متجرك.', get: 'حمّل', note: 'مجاني · بلا إعلانات · 5 لغات' }
+    };
+    var q = new URLSearchParams(location.search);
+    var lang = (q.get('lang') || navigator.language || 'en').slice(0, 2).toLowerCase();
+    if (!S[lang]) lang = 'en';
+    var T = S[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = T.title;
+    document.getElementById('title').textContent = T.title;
+    // QR yalnız geniş ekranda (CSS 520 px); telefonda "kodu okut" demek anlamsız.
+    var mobile = window.MH_PLATFORM !== 'other' || innerWidth <= 520;
+    document.getElementById('sub').textContent = mobile ? T.subMobile : T.sub;
+    document.getElementById('note').textContent = T.note;
+    [].forEach.call(document.querySelectorAll('[data-t="get"]'), function (el) { el.textContent = T.get; });
+    var st = window.MH_STORE;
+    if (st) { document.getElementById('iosBtn').href = st.ios; document.getElementById('androidBtn').href = st.android; }
+    if (window.MH_PLATFORM === 'ios') document.getElementById('androidBtn').style.display = 'none';
+    if (window.MH_PLATFORM === 'android') document.getElementById('iosBtn').style.display = 'none';
+  })();
+</script>
+</body>
+</html>
