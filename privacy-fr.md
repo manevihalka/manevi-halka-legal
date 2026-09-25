@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 25 septembre 2026
+**Dernière mise à jour :** 26 septembre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -79,6 +79,18 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
   destinataire voient un geste. **Aucune notification push n'est envoyée** au
   destinataire ; le geste apparaît dans la liste des notifications de l'app, au
   plus une fois par jour, avec le nom de l'expéditeur
+- **Objectifs personnels dans les tâches de mémorisation :** l'administrateur
+  d'un cercle peut fixer un objectif de mémorisation personnel (une sourate, par
+  exemple) à une personne qui a rejoint une tâche de mémorisation. Pour cela,
+  l'objectif, qui l'a fixé et quand sont conservés sur nos serveurs ; la
+  personne reçoit une notification dans l'app et une notification push. Seuls
+  cette personne et l'administrateur de la tâche voient l'objectif ; dans les
+  tâches mutuelles, les autres participants ne le voient pas non plus. Pour les
+  objectifs sur lesquels cette personne travaille (objectif personnel ou
+  objectif de la tâche), l'administrateur ne voit qu'un état sommaire de sa
+  progression Cetele (pas commencé, en cours, mémorisé) ; les passages
+  difficiles, le calendrier de révision et le détail des sections restent chez
+  la personne
 
 ### 2.2. Informations collectées automatiquement
 
@@ -189,6 +201,8 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   définitivement par une tâche automatique hebdomadaire. Si tu quittes la tâche
   ou le cercle, les gestes que tu as envoyés et reçus sont supprimés
   immédiatement
+- **Objectifs de mémorisation personnels :** supprimés immédiatement si tu
+  quittes la tâche ou le cercle, et quand l'administrateur retire l'objectif
 - **Compte actif :** les données sont conservées tant que votre compte est actif
 - **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
 - **Cercles ponctuels terminés :** lorsqu'un cercle ponctuel se termine, un résumé (nombre de participants, travail accompli) est archivé ; les détails individuels des tâches sont effacés

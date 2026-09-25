@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 25. September 2026
+**Zuletzt aktualisiert:** 26. September 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -92,6 +92,17 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   nur Absender und Empfänger. An den Empfänger wird **keine
   Push-Benachrichtigung gesendet**; sie erscheint in der Benachrichtigungsliste
   der App, höchstens einmal am Tag, mit dem Namen des Absenders
+- **Eigene Ziele bei Auswendiglern-Aufgaben:** Die Kreisleitung kann einer
+  Person, die einer Auswendiglern-Aufgabe beigetreten ist, ein eigenes
+  Auswendiglern-Ziel geben (zum Beispiel eine Sure). Dafür werden das Ziel, wer
+  es gesetzt hat und wann, auf unseren Servern gespeichert; die Person erhält
+  eine Benachrichtigung in der App und eine Push-Benachrichtigung. Das Ziel
+  sehen nur diese Person und die Leitung der Aufgabe, bei gegenseitigen Aufgaben
+  auch die anderen Teilnehmenden nicht. Für die Ziele, an denen diese Person
+  arbeitet (eigenes Ziel oder Ziel der Aufgabe), sieht die Leitung vom
+  Cetele-Fortschritt nur einen groben Stand (nicht begonnen, wird gelernt,
+  auswendig gelernt); schwierige Stellen, Wiederholungsplan und
+  Abschnittsdetails bleiben bei der Person
 
 ### 2.2. Automatisch erhobene Informationen
 
@@ -220,6 +231,8 @@ Dienstes:
   von einem wöchentlichen automatischen Vorgang endgültig gelöscht. Wenn du die
   Aufgabe oder den Kreis verlässt, werden die von dir gesendeten und empfangenen
   Gesten sofort gelöscht
+- **Eigene Auswendiglern-Ziele:** Werden sofort gelöscht, wenn du die Aufgabe
+  oder den Kreis verlässt, und wenn die Leitung das Ziel entfernt
 - **Aktives Konto:** Daten werden so lange aufbewahrt, wie Ihr Konto aktiv ist
 - **Kontolöschung:** Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können Ihr Konto innerhalb von **30 Tagen** wiederherstellen, indem Sie sich erneut anmelden. Nach Ablauf der 30 Tage löscht ein automatisierter Cron-Auftrag (pg_cron) Ihre sämtlichen personenbezogenen Daten **endgültig**. Wenn Sie eine sofortige endgültige Löschung wünschen, können Sie uns per E-Mail kontaktieren. Lediglich Buchhaltungs- bzw. Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können (anonymisiert) erhalten bleiben
 - **Abgeschlossene einmalige Kreise:** Wenn ein einmaliger Kreis endet, wird eine

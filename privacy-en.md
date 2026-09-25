@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** September 25, 2026
+**Last updated:** September 26, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -85,6 +85,16 @@ rights you have.
   written. Only the sender and the recipient see a gesture. **No push
   notification is sent** to the recipient; it appears in the in-app notification
   list, at most once a day, with the sender's name
+- **Personal targets in memorization tasks:** A circle's admin can give someone
+  who has joined a memorization task a personal memorization target (a surah,
+  for example). For this, the target, who set it and when are stored on our
+  servers; the person receives an in-app notification and a push notification.
+  Only that person and the task's admin see the target; in mutual tasks the
+  other participants cannot see it either. For the targets that person is
+  working on (a personal target or the task's own), the admin sees only a coarse
+  state of their Cetele progress (not started, learning, memorized); the places
+  they struggle with, the review schedule and section details stay with the
+  person
 
 ### 2.2. Automatically collected information
 
@@ -197,6 +207,8 @@ We use the following third-party services to provide our service:
 - **Gestures between participants:** Gestures older than 30 days are permanently
   deleted by a weekly automated job. If you leave the task or the circle, the
   gestures you sent and received are deleted immediately
+- **Personal memorization targets:** Deleted immediately when you leave the task
+  or the circle, and when the admin removes the target
 - **Active account:** Data is retained as long as your account is active
 - **Account deletion:** Your account is first marked as **soft-deleted**. You can **restore your account within 30 days** by signing in again. After 30 days, an automated cron job (pg_cron) **permanently deletes** all your personal data. If you want immediate permanent deletion, contact us by email. Only accounting/subscription records that must legally be retained may be kept (anonymized)
 - **Completed one-time circles:** When a one-time circle ends, a summary

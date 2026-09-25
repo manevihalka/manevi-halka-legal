@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 25 Eylül 2026
+**Son güncelleme:** 26 Eylül 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -83,6 +83,14 @@ haklarınızın neler olduğunu açıklar.
   ve alıcı görür. Alıcıya **push bildirimi gönderilmez**; uygulama içindeki
   bildirim listesinde, günde en fazla bir kayıt olarak, gönderenin adıyla
   görünür
+- **Ezber görevlerinde kişiye özel hedef:** Halka yöneticisi, bir ezber görevine
+  katılmış kişiye kendine özel ezber hedefi verebilir (örneğin bir sure). Bunun
+  için hedef, kimin verdiği ve ne zaman verildiği sunucularımızda saklanır;
+  kişiye uygulama içi bildirim ve push bildirimi gider. Hedefi yalnız o kişi ve
+  görevin yöneticisi görür, Karşılıklı modda da diğer katılımcılar göremez.
+  Yönetici, o kişinin çalıştığı hedefler için (özel hedef ya da görevin hedefi)
+  Cetele ilerlemesinden yalnız kaba durumu görür (başlamadı, çalışıyor,
+  ezberledi); takılınan yerler, tekrar takvimi ve bölüm ayrıntıları kişide kalır
 
 ### 2.2. Otomatik toplanan bilgiler
 
@@ -195,6 +203,8 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 - **Kardeşler arası jestler:** 30 günden eski jestler haftalık otomatik bir
   görevle kalıcı olarak silinir. Görevden ya da halkadan ayrıldığında
   gönderdiğin ve aldığın jestler anında silinir
+- **Kişiye özel ezber hedefleri:** Görevden ya da halkadan ayrıldığında anında
+  silinir; yönetici hedefi kaldırdığında da silinir
 - **Aktif hesap:** Hesabınız aktif olduğu sürece verileriniz saklanır
 - **Hesap silindiğinde:** Hesabınız önce **soft-delete** olarak işaretlenir. **30 gün** içinde uygulamaya tekrar giriş yaparak hesabınızı geri yükleyebilirsiniz. 30 gün sonra otomatik bir cron görevi (pg_cron) tüm kişisel verilerinizi **kalıcı olarak siler**. Anında kalıcı silme isterseniz e-posta ile başvurabilirsiniz. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik kayıtları (anonim hale getirilmiş) tutulabilir
 - **Tamamlanan tek seferlik halkalar:** Halka bittiğinde özeti (katılımcı sayısı,
