@@ -65,8 +65,15 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   gemeinsamen Praxis eines Kreises teilnimmst (Gebetsverfolgung, Auswendiglernen
   bzw. Wiederholung, Bittgebet), werden der Tag und die Einheit, die du
   markierst (zum Beispiel „Maghrib, 22. August"), auf unseren Servern
-  gespeichert. Nur **die Leitung dieses Kreises** sieht diesen Eintrag; andere
-  Mitglieder des Kreises und andere Nutzer sehen ihn nicht. Die Teilnahme ist
+  gespeichert. Standardmäßig ist eine Aufgabe im Modus **„nur Kreisleitung“**:
+  Nur **die Leitung dieses Kreises** sieht diesen Eintrag; andere Mitglieder des
+  Kreises und andere Nutzer sehen ihn nicht. Hat die Kreisleitung beim Erstellen
+  **„Gegenseitig“** gewählt, sehen alle, die der Aufgabe beitreten, die
+  Markierungen der anderen **tageweise** (die Kreisleitung ebenfalls, aber nur,
+  wenn sie selbst beitritt); Mitglieder, die nicht beigetreten sind, sehen sie
+  weiterhin nicht. Welcher Modus gilt, steht vor dem Beitritt auf dem
+  Aufgabenbildschirm. Eine gegenseitige Aufgabe kann später auf „nur
+  Kreisleitung“ umgestellt werden, umgekehrt nicht. Die Teilnahme ist
   eine eigene, ausdrückliche Handlung: Mitglied eines Kreises zu sein schließt
   dich NICHT in eine gemeinsame Praxis ein, du musst der Aufgabe zusätzlich
   beitreten. Wenn du die Aufgabe oder den Kreis verlässt, werden diese Einträge
@@ -77,6 +84,14 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   markieren markiert nicht die Kreisaufgabe, und niemand, auch nicht die
   Leitung, kann deinen persönlichen Eintrag sehen (siehe den Punkt
   „Geräteübergreifende Sicherung" oben)
+- **Gesten zwischen Teilnehmenden bei gegenseitigen Aufgaben:** Bei einer
+  gegenseitigen Aufgabe kannst du zu einem markierten Tag einer anderen Person
+  „Möge Allah es annehmen“ sagen oder ihr „Ich habe für dich gebetet“ senden.
+  Dafür werden Absender, Empfänger, Art der Geste und der betreffende Tag auf
+  unseren Servern gespeichert; freier Text ist nicht möglich. Eine Geste sehen
+  nur Absender und Empfänger. An den Empfänger wird **keine
+  Push-Benachrichtigung gesendet**; sie erscheint in der Benachrichtigungsliste
+  der App, höchstens einmal am Tag, mit dem Namen des Absenders
 
 ### 2.2. Automatisch erhobene Informationen
 
@@ -201,6 +216,10 @@ Dienstes:
   danach von einem täglichen automatischen Vorgang endgültig gelöscht. Wenn du
   die Aufgabe oder den Kreis verlässt, werden deine Einträge sofort gelöscht,
   ohne diese Frist abzuwarten
+- **Gesten zwischen Teilnehmenden:** Gesten, die älter als 30 Tage sind, werden
+  von einem wöchentlichen automatischen Vorgang endgültig gelöscht. Wenn du die
+  Aufgabe oder den Kreis verlässt, werden die von dir gesendeten und empfangenen
+  Gesten sofort gelöscht
 - **Aktives Konto:** Daten werden so lange aufbewahrt, wie Ihr Konto aktiv ist
 - **Kontolöschung:** Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können Ihr Konto innerhalb von **30 Tagen** wiederherstellen, indem Sie sich erneut anmelden. Nach Ablauf der 30 Tage löscht ein automatisierter Cron-Auftrag (pg_cron) Ihre sämtlichen personenbezogenen Daten **endgültig**. Wenn Sie eine sofortige endgültige Löschung wünschen, können Sie uns per E-Mail kontaktieren. Lediglich Buchhaltungs- bzw. Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können (anonymisiert) erhalten bleiben
 - **Abgeschlossene einmalige Kreise:** Wenn ein einmaliger Kreis endet, wird eine

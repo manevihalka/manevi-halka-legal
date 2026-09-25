@@ -60,16 +60,29 @@ haklarınızın neler olduğunu açıklar.
 
 - **Ortak amel görev beyanları:** Bir halkanın ortak ameline (namaz takibi,
   ezber/müracaa, dua) **kendi isteğinle** katılırsan, işaretlediğin gün ve birim
-  (örneğin "akşam, 22 Ağustos") sunucularımızda saklanır. Bu kaydı **yalnız o
-  halkanın yöneticisi** görür; halkadaki diğer üyeler ve başka kullanıcılar
-  göremez. Katılım ayrı ve açık bir eylemdir: halkaya üye olmak seni bir ortak
-  amele dahil ETMEZ, göreve ayrıca katılman gerekir. Görevden ayrıldığında ya da
-  halkadan çıktığında bu beyanların **anında silinir**.
+  (örneğin "akşam, 22 Ağustos") sunucularımızda saklanır. Görev varsayılan
+  olarak **"yalnız yönetici"** modundadır: bu kaydı **yalnız o halkanın
+  yöneticisi** görür; halkadaki diğer üyeler ve başka kullanıcılar göremez.
+  Görevi kuran yönetici **"Karşılıklı"** modu seçtiyse, göreve katılan herkes
+  birbirinin işaretlerini **gün düzeyinde** görür (yönetici de ancak göreve
+  katılırsa görür); göreve katılmayan üyeler yine göremez. Hangi modun geçerli
+  olduğu, katılmadan önce görev ekranında yazar. Karşılıklı bir görev sonradan
+  yalnız yöneticiye çevrilebilir, tersi yapılamaz. Katılım ayrı ve açık bir
+  eylemdir: halkaya üye olmak seni bir ortak amele dahil ETMEZ, göreve ayrıca
+  katılman gerekir. Görevden ayrıldığında ya da halkadan çıktığında bu
+  beyanların **anında silinir**.
   **Ana ekrandaki kişisel namaz takibin bundan tamamen ayrıdır ve buraya
   hiçbir şekilde aktarılmaz.** İki işaretleme birbirinden bağımsızdır: kişisel
   kartında bir vakti işaretlemen halka görevini işaretlemez, kişisel kaydını
   yönetici dahil hiç kimse göremez (yukarıdaki "Cihazlar arası yedekleme"
   maddesine bak)
+- **Karşılıklı görevlerde kardeşler arası jestler:** Karşılıklı bir görevde bir
+  kardeşinin işaretli gününe "Allah kabul etsin" diyebilir ya da ona "Seni dua
+  ile andım" gönderebilirsin. Bunun için gönderen, alıcı, jestin türü ve ilgili
+  gün sunucularımızda saklanır; serbest metin yazılamaz. Jesti yalnız gönderen
+  ve alıcı görür. Alıcıya **push bildirimi gönderilmez**; uygulama içindeki
+  bildirim listesinde, günde en fazla bir kayıt olarak, gönderenin adıyla
+  görünür
 
 ### 2.2. Otomatik toplanan bilgiler
 
@@ -179,6 +192,9 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 - **Ortak amel görev beyanları:** İşaretlemeler **180 gün** saklanır, sonra
   günlük otomatik bir görevle kalıcı olarak silinir. Görevden ya da halkadan
   ayrıldığında beyanların bu süreyi beklemeden anında silinir
+- **Kardeşler arası jestler:** 30 günden eski jestler haftalık otomatik bir
+  görevle kalıcı olarak silinir. Görevden ya da halkadan ayrıldığında
+  gönderdiğin ve aldığın jestler anında silinir
 - **Aktif hesap:** Hesabınız aktif olduğu sürece verileriniz saklanır
 - **Hesap silindiğinde:** Hesabınız önce **soft-delete** olarak işaretlenir. **30 gün** içinde uygulamaya tekrar giriş yaparak hesabınızı geri yükleyebilirsiniz. 30 gün sonra otomatik bir cron görevi (pg_cron) tüm kişisel verilerinizi **kalıcı olarak siler**. Anında kalıcı silme isterseniz e-posta ile başvurabilirsiniz. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik kayıtları (anonim hale getirilmiş) tutulabilir
 - **Tamamlanan tek seferlik halkalar:** Halka bittiğinde özeti (katılımcı sayısı,

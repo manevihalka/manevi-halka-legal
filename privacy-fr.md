@@ -52,10 +52,17 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 - **Marques des pratiques communes :** si tu rejoins **de ton propre gré** la
   pratique commune d'un cercle (suivi des prières, mémorisation/révision,
-  invocation), le jour et l'unité que tu marques (par exemple « maghrib,
-  22 août ») sont conservés sur nos serveurs. Seul **l'administrateur de ce
-  cercle** voit cet enregistrement ; les autres membres du cercle et les autres
-  utilisateurs ne le voient pas. Rejoindre est un acte distinct et explicite :
+  invocation), le jour et l'unité que tu marques (par exemple « maghrib, 22 août
+  ») sont conservés sur nos serveurs. Par défaut, une tâche est en mode **«
+  administrateur seulement »** : seul
+  **l'administrateur de ce cercle** voit cet enregistrement ; les autres membres
+  du cercle et les autres utilisateurs ne le voient pas. Si l'administrateur qui
+  a créé la tâche a choisi **« Mutuel »**, tous ceux qui rejoignent la tâche
+  voient les marques des autres **jour par jour** (l'administrateur aussi, mais
+  seulement s'il rejoint la tâche) ; les membres qui ne l'ont pas rejointe ne
+  les voient toujours pas. Le mode applicable est indiqué sur l'écran de la
+  tâche avant que tu la rejoignes. Une tâche mutuelle peut ensuite être réservée
+  à l'administrateur, l'inverse n'est pas possible. Rejoindre est un acte distinct et explicite :
   être membre d'un cercle ne t'inscrit PAS à une pratique commune, tu dois aussi
   rejoindre la tâche. Lorsque tu quittes la tâche ou le cercle, ces marques sont
   **supprimées immédiatement**.
@@ -64,6 +71,14 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
   marquer une prière sur ta carte personnelle ne marque pas la tâche du cercle,
   et personne, pas même l'administrateur, ne peut voir ton enregistrement
   personnel (voir le point « Sauvegarde entre appareils » ci-dessus)
+- **Gestes entre participants dans les tâches mutuelles :** dans une tâche
+  mutuelle, tu peux dire « Qu'Allah l'accepte » sur un jour marqué d'un autre
+  participant, ou lui envoyer « J'ai prié pour toi ». Pour cela, l'expéditeur,
+  le destinataire, le type de geste et le jour concerné sont conservés sur nos
+  serveurs ; aucun texte libre ne peut être écrit. Seuls l'expéditeur et le
+  destinataire voient un geste. **Aucune notification push n'est envoyée** au
+  destinataire ; le geste apparaît dans la liste des notifications de l'app, au
+  plus une fois par jour, avec le nom de l'expéditeur
 
 ### 2.2. Informations collectées automatiquement
 
@@ -170,6 +185,10 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   puis supprimées définitivement par une tâche automatique quotidienne. Si tu
   quittes la tâche ou le cercle, tes marques sont supprimées immédiatement, sans
   attendre ce délai
+- **Gestes entre participants :** les gestes de plus de 30 jours sont supprimés
+  définitivement par une tâche automatique hebdomadaire. Si tu quittes la tâche
+  ou le cercle, les gestes que tu as envoyés et reçus sont supprimés
+  immédiatement
 - **Compte actif :** les données sont conservées tant que votre compte est actif
 - **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
 - **Cercles ponctuels terminés :** lorsqu'un cercle ponctuel se termine, un résumé (nombre de participants, travail accompli) est archivé ; les détails individuels des tâches sont effacés

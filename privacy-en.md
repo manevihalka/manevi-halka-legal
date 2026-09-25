@@ -62,16 +62,29 @@ rights you have.
 - **Shared practice check-ins:** If you join a circle's shared practice (prayer
   tracking, memorisation/review, supplication) **of your own accord**, the day
   and unit you mark (for example "maghrib, 22 August") is stored on our servers.
-  Only **that circle's admin** can see this record; other members of the circle
-  and other users cannot. Joining is a separate, explicit act: being a member of
-  a circle does NOT enrol you in a shared practice, you have to join the task as
-  well. When you leave the task or leave the circle, these check-ins are
+  By default a task is in **"admin only"** mode: only **that circle's admin**
+  can see this record; other members of the circle and other users cannot. If
+  the admin who created the task chose **"Mutual"**, everyone who joins the task
+  sees each other's check-ins **by day** (the admin too, but only after joining
+  the task); members who have not joined still cannot. The mode that applies is
+  shown on the task screen before you join. A mutual task can later be switched
+  to admin only, not the other way round. Joining is a separate, explicit act:
+  being a member of a circle does NOT enrol you in a shared practice, you have
+  to join the task as well. When you leave the task or leave the circle, these
+  check-ins are
   **deleted immediately**.
   **Your personal prayer tracking on the home screen is entirely separate and
   is never transferred here.** The two markings are independent: marking a
   prayer on your personal card does not mark the circle task, and nobody,
   including the admin, can see your personal record (see the "Cross-device
   backup" item above)
+- **Gestures between participants in mutual tasks:** In a mutual task you can
+  say "May Allah accept it" on another participant's checked day, or send them
+  "I remembered you in my dua". For this, the sender, the recipient, the type of
+  gesture and the day concerned are stored on our servers; no free text can be
+  written. Only the sender and the recipient see a gesture. **No push
+  notification is sent** to the recipient; it appears in the in-app notification
+  list, at most once a day, with the sender's name
 
 ### 2.2. Automatically collected information
 
@@ -181,6 +194,9 @@ We use the following third-party services to provide our service:
 - **Shared practice check-ins:** Check-ins are kept for **180 days**, then
   permanently deleted by a daily automated job. If you leave the task or the
   circle, your check-ins are deleted immediately, without waiting for that period
+- **Gestures between participants:** Gestures older than 30 days are permanently
+  deleted by a weekly automated job. If you leave the task or the circle, the
+  gestures you sent and received are deleted immediately
 - **Active account:** Data is retained as long as your account is active
 - **Account deletion:** Your account is first marked as **soft-deleted**. You can **restore your account within 30 days** by signing in again. After 30 days, an automated cron job (pg_cron) **permanently deletes** all your personal data. If you want immediate permanent deletion, contact us by email. Only accounting/subscription records that must legally be retained may be kept (anonymized)
 - **Completed one-time circles:** When a one-time circle ends, a summary
