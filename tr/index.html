@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: index.html
      Uretici: node _gen/build-locale-pages.mjs
-     mh-build src=sha256:79be48523666117486b7505402201e984a307e4dba81830ade482f87aa5f70a3 locale=tr -->
+     mh-build src=sha256:b7c930319925acd39b572508d4b8635f5f75db6cd45c5202a4e327e0d7b7c6e5 locale=tr -->
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -1009,8 +1009,13 @@
     scroll-snap-type: x mandatory;
     /* Hizalama "start": "center" olsaydi tarayici acilista ilk karti ortalamak
        icin galeriyi kaydirip kartin solunu kirpiyordu (olculdu: scrollLeft 322). */
-    scroll-padding-inline-start: 20px;
-    padding: 26px 20px 30px;
+    /* Geniş ekranda ilk kart içerik sütununun (.container, 1080 - 2x20) sol
+       kenarıyla hizalanır; eskiden ekranın en soluna yapışıp aşağıdaki kenar
+       solmasının (mask 6%) altında kalıyordu. Dar ekranda yine 20 px. */
+    --shots-gutter: max(20px, calc((100% - 1040px) / 2));
+    scroll-padding-inline-start: var(--shots-gutter);
+    padding: 26px 0 30px;
+    padding-inline: var(--shots-gutter);
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     scrollbar-width: none;

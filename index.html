@@ -992,8 +992,13 @@
     scroll-snap-type: x mandatory;
     /* Hizalama "start": "center" olsaydi tarayici acilista ilk karti ortalamak
        icin galeriyi kaydirip kartin solunu kirpiyordu (olculdu: scrollLeft 322). */
-    scroll-padding-inline-start: 20px;
-    padding: 26px 20px 30px;
+    /* Geniş ekranda ilk kart içerik sütununun (.container, 1080 - 2x20) sol
+       kenarıyla hizalanır; eskiden ekranın en soluna yapışıp aşağıdaki kenar
+       solmasının (mask 6%) altında kalıyordu. Dar ekranda yine 20 px. */
+    --shots-gutter: max(20px, calc((100% - 1040px) / 2));
+    scroll-padding-inline-start: var(--shots-gutter);
+    padding: 26px 0 30px;
+    padding-inline: var(--shots-gutter);
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     scrollbar-width: none;
