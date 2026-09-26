@@ -225,6 +225,9 @@ function dilSayfasi(dil) {
   // 7b. dil dugmesinin etiketi JS'siz de dogru dili gostersin
   s = reDegistir(s, /(<span id="langBtnLabel"[^>]*>)[^<]*(<\/span>)/,
     `$1${kacirMetin(DIL_ADI[dil])}$2`, "langBtnLabel");
+  // dar ekranda adın yerine görünen dil kodu da (TR, DE…)
+  s = reDegistir(s, /(<span class="lang-code" id="langBtnCode"[^>]*>)[^<]*(<\/span>)/,
+    `$1${dil.toUpperCase()}$2`, "langBtnCode");
 
   // 8. dil listesi (isaretli bolge)
   s = bolgeYaz(s, "LANGLIST", dilListesi("            "));

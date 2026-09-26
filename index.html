@@ -191,6 +191,8 @@
     font-weight: 700;
     font-size: 16px;
     letter-spacing: -0.2px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .brand img {
@@ -277,6 +279,10 @@
 
   .lang-list li:hover,
   .lang-list li.active { background: var(--mint-bg); color: var(--green); }
+
+  /* /tr/ ve / satırları gerçek bağlantı (arama motoru dil sayfalarını bulsun
+     diye); tarayıcının mavi/mor altı çizili bağlantı görünümü panele sızmasın. */
+  .lang-list li a { color: inherit; text-decoration: none; flex: 1; }
 
   .lang-list li:focus-visible {
     outline: 2px solid var(--mint);
@@ -1440,9 +1446,50 @@
     white-space: nowrap; }
   .header-nav svg { width: 15px; height: 15px; fill: none; stroke: currentColor;
     stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-  @media (max-width: 430px) {
-    .header-nav { margin-inline-end: 6px; }
-    .header-nav a { padding: 7px 9px; font-size: 12px; }
+  .header-tools { flex-shrink: 0; }
+
+  /* Dil düğmesinin dar ekran hâli: küre + dil kodu. Geniş ekranda gizli. */
+  .lang-btn .globe, .lang-btn .lang-code { display: none; }
+  .lang-btn .globe { width: 16px; height: 16px; fill: none; stroke: currentColor;
+    stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .lang-code { font-size: 13px; font-weight: 700; letter-spacing: 0.3px; }
+
+  /* ⚠️ BAŞLIK DAR EKRANDA ÜÇ KADEMEDE SIKIŞIR (26 Eyl 2026, ölçüldü).
+     Tam hâl (logo + ad + "Ortak Okuma" + tema + dil adı) en uzun dilde
+     (DE "Gemeinsames Lesen") ~555 px ister; eskiden 430 px altında yalnız yazı
+     küçülüyordu ve 375-414 px telefonlarda dil seçici ekranın dışına taşıp
+     .wrap'in clip'iyle KESİLİYORDU (dokunulamaz hâldeydi).
+     Kademe sırası bilinçli: önce dil adı koda iner (liste açılınca tam adlar
+     görünür), sonra logonun yanındaki ad gizlenir (hemen altındaki hero'nun
+     h1'i zaten "Manevi Halka"), en son "Ortak Okuma" yazısı. O bağlantı
+     sitenin tek etkileşimli hedefi, yazısı yalnız 360 px altında gider.
+     Eşikler DE'ye göre ölçüldü; dil eklenirse en uzun etiketle yeniden ölç. */
+  @media (max-width: 640px) {
+    .header-inner { padding: 10px 16px; gap: 8px; }
+    .header-nav { margin-inline-end: 0; }
+    .header-nav a { height: 36px; box-sizing: border-box; padding: 0 10px;
+      gap: 6px; font-size: 12.5px; }
+    .header-tools { gap: 6px; }
+    .lang-btn { height: 36px; box-sizing: border-box; padding: 0 9px; gap: 5px; }
+    #langBtnLabel, .lang-picker .chev { display: none; }
+    .lang-btn .globe, .lang-btn .lang-code { display: inline-block; }
+  }
+
+  /* Aşağıdaki iki gizleme görsel, display:none DEĞİL: o, logo bağlantısının ve
+     ikon-yalnız "Ortak Okuma"nın erişilebilir adını da silerdi. */
+  @media (max-width: 480px) {
+    .brand span { position: absolute; width: 1px; height: 1px; padding: 0;
+      margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+      white-space: nowrap; border: 0; }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; }
+  }
+
+  @media (max-width: 359px) {
+    .header-nav a { width: 36px; padding: 0; justify-content: center; }
+    .header-nav a span { position: absolute; width: 1px; height: 1px; padding: 0;
+      margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+      white-space: nowrap; border: 0; }
+    .header-nav svg { width: 17px; height: 17px; }
   }
 
   .theme-toggle {
@@ -1502,15 +1549,15 @@
 
   .islamic-chip svg { width: 13px; height: 13px; }
 
-  .today-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .today-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
 
   @media (min-width: 680px) {
-    .today-grid { grid-template-columns: 1fr 1fr; }
+    .today-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .prayer-card { grid-column: 1 / -1; }
   }
 
   @media (min-width: 1000px) {
-    .today-grid { grid-template-columns: 1.12fr 1fr 1fr; }
+    .today-grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr) minmax(0, 1fr); }
     .prayer-card { grid-column: auto; }
   }
 
@@ -1552,7 +1599,19 @@
   }
 
   .pc-title svg { width: 18px; height: 18px; color: var(--green); }
-  .pc-actions { display: inline-flex; gap: 6px; }
+  /* Başlık, eylemlerden ARTAN yeri alır (taban 0): yer daralınca önce başlık
+     alt satıra geçer, şehir adı ancak başlık en uzun kelimesine dayandıktan
+     sonra kısalır. Orantılı küçülmede (iki taraf shrink 1) şehir adı 360 px'te
+     bile "Berli…" oluyordu. */
+  .pc-title { flex: 1 1 0%; }
+  .pc-actions { display: inline-flex; gap: 6px; min-width: 0; }
+  /* 360 px altında başlık saati ve şehir okunu düşer: tek kelimelik başlıkta
+     (DE "Gebetszeiten") yer yalnız şehir adından alınabiliyordu, ad sıfıra
+     iniyordu. Şehir adı süsten önemli. */
+  @media (max-width: 359px) {
+    .pc-title svg, .pc-city > svg:last-child { display: none; }
+    .pc-head { gap: 6px; }
+  }
 
   .pc-city {
     display: inline-flex;
@@ -1568,6 +1627,7 @@
     padding: 5px 10px;
     cursor: pointer;
     max-width: 160px;
+    min-width: 0;
     transition: border-color 0.2s ease;
   }
 
@@ -1576,6 +1636,7 @@
   .pc-city svg { width: 14px; height: 14px; }
 
   .pc-gps {
+    flex-shrink: 0;
     width: 30px;
     height: 30px;
     border-radius: 999px;
@@ -2008,7 +2069,9 @@
         <div class="lang-picker" id="langPicker">
           <button type="button" class="lang-btn" id="langBtn"
                   aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+            <svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9M12 3c-2.5 2.6-3.8 5.6-3.8 9s1.3 6.4 3.8 9"/></svg>
             <span id="langBtnLabel">English</span>
+            <span class="lang-code" id="langBtnCode" aria-hidden="true">EN</span>
             <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
           </button>
           <ul class="lang-list" id="langList" role="listbox" aria-label="Language" tabindex="-1" hidden>
@@ -2769,6 +2832,8 @@
         opts[o].setAttribute("aria-selected", isCur ? "true" : "false");
         if (isCur) llabel.textContent = opts[o].textContent;
       }
+      var lcode = document.getElementById("langBtnCode");
+      if (lcode) lcode.textContent = String(loc).toUpperCase();
     }
 
     // Dinamik moduller (js/mh-dynamic.js) dil degisimini buradan duyar
