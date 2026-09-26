@@ -9,21 +9,18 @@
         /privacy-en.html → base=privacy, lang=en
         /account-delete-ar.html → base=account-delete, lang=ar
     {%- endcomment -%}
+    {%- comment -%}
+      ⚠️ Dil sayfanın front matter'ındaki `lang`tan okunur, URL'de "-de"
+      aranmaz: "account-delete" adresi "-de" İÇERDİĞİ için TR/EN/DE hesap
+      silme sayfaları Almanca sanılıyor, taban ad bozuluyor ve dil menüsü
+      hiç çizilmiyordu. Taban ad = URL'nin sonundaki "-<dil>" kesilmiş hâli.
+    {%- endcomment -%}
     {%- assign url = page.url | remove_first: "/" | remove: ".html" -%}
-    {%- assign current_lang = "tr" -%}
+    {%- assign current_lang = page.lang | default: "tr" -%}
     {%- assign current_base = url -%}
-    {%- if url contains "-ar" -%}
-      {%- assign current_lang = "ar" -%}
-      {%- assign current_base = url | remove: "-ar" -%}
-    {%- elsif url contains "-fr" -%}
-      {%- assign current_lang = "fr" -%}
-      {%- assign current_base = url | remove: "-fr" -%}
-    {%- elsif url contains "-de" -%}
-      {%- assign current_lang = "de" -%}
-      {%- assign current_base = url | remove: "-de" -%}
-    {%- elsif url contains "-en" -%}
-      {%- assign current_lang = "en" -%}
-      {%- assign current_base = url | remove: "-en" -%}
+    {%- if current_lang != "tr" -%}
+      {%- assign base_len = url.size | minus: current_lang.size | minus: 1 -%}
+      {%- assign current_base = url | slice: 0, base_len -%}
     {%- endif -%}
 
     {%- comment -%} Only render language nav for known policy pages {%- endcomment -%}
@@ -97,6 +94,9 @@
 
   /* Uzun URL ya da bileşik kelime sayfayı yana genişletmesin. */
   .page-content { overflow-wrap: break-word; }
+  /* minima liste girintisini fiziksel margin-left ile veriyor; Arapçada girinti
+     yanlış (sol) tarafta kalıyor, madde işaretleri sağda ekran dışına taşıyordu. */
+  .page-content ul, .page-content ol { margin-left: 0; margin-inline-start: 30px; }
   .page-content table { text-align: start; }
 
   /* ⚠️ TABLOLAR DAR EKRANDA KART OLUR (26 Eyl 2026). Üç sütunlu hizmet tablosu
