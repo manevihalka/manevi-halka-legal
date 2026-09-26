@@ -51,6 +51,9 @@
     padding-top: 14px !important;
     padding-bottom: 14px !important;
   }
+  /* minima'nın .wrapper:after clearfix'i flex içinde ÜÇÜNCÜ öğe sayılıyor:
+     space-between dil bağlantılarını sağ kenara değil ortaya itiyordu. */
+  .site-header-inner::after { display: none !important; }
   .site-title {
     color: #1e4d35 !important;
     font-weight: 700 !important;
