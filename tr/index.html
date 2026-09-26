@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: index.html
      Uretici: node _gen/build-locale-pages.mjs
-     mh-build src=sha256:51f80f2731b9264a79228772a66d1b1041e0d85970a53abd78c759a890b81732 locale=tr -->
+     mh-build src=sha256:616acc322c490c7923bc223f3ab17595ee3c454a0179f3dfbcadccf86fada842 locale=tr -->
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -1182,6 +1182,14 @@
   }
 
   .footer-links a:hover { text-decoration: underline; }
+
+  /* Itani meali CC BY-ND 4.0: atıf ZORUNLU (yazar, kaynak, lisans). Sitede
+     İngilizce Günün Ayeti bu mealden geliyor; ayet kartının altındaki kaynak
+     satırı kullanıcı kararıyla kaldırıldığı için atıf burada duruyor.
+     Kaldırma. Lisans iddiası YALNIZ bu meal için yazılır (19 Ağu 2026 kararı). */
+  .credit { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .credit > span[dir] { white-space: nowrap; } /* kaynak + lisans tek parça kalsın */
 
   .copyright { font-size: 12px; color: var(--muted); }
 
@@ -2494,6 +2502,10 @@
         <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete.html" data-i18n="deleteAcc">Hesap Silme</a>
         <a href="mailto:support@manevihalka.app" data-i18n="contact">İletişim</a>
       </div>
+      <p class="credit">
+        <span data-i18n="itaniCredit">İngilizce meal: Talal Itani,</span>
+        <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span>
+      </p>
       <p class="copyright">© 2026 Manevi Halka</p>
     </footer>
 
@@ -2587,6 +2599,7 @@
       "terms": "Kullanım Koşulları",
       "deleteAcc": "Hesap Silme",
       "contact": "İletişim",
+      "itaniCredit": "İngilizce meal: Talal Itani,",
       "cap_dashboard": "Ana ekran: görevlerin ve namazların tek bakışta",
       "cap_flow-detail": "Halkan: üyeler, okumalar ve ilerleme",
       "cap_prayer": "Namaz ve nafile takibi, haftalık tablo",

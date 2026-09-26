@@ -1166,6 +1166,14 @@
 
   .footer-links a:hover { text-decoration: underline; }
 
+  /* Itani meali CC BY-ND 4.0: atıf ZORUNLU (yazar, kaynak, lisans). Sitede
+     İngilizce Günün Ayeti bu mealden geliyor; ayet kartının altındaki kaynak
+     satırı kullanıcı kararıyla kaldırıldığı için atıf burada duruyor.
+     Kaldırma. Lisans iddiası YALNIZ bu meal için yazılır (19 Ağu 2026 kararı). */
+  .credit { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .credit > span[dir] { white-space: nowrap; } /* kaynak + lisans tek parça kalsın */
+
   .copyright { font-size: 12px; color: var(--muted); }
 
   /* ─────────── Canlanan hero ikonu ─────────── */
@@ -2477,6 +2485,10 @@
         <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete-en.html" data-i18n="deleteAcc">Account Deletion</a>
         <a href="mailto:support@manevihalka.app" data-i18n="contact">Contact</a>
       </div>
+      <p class="credit">
+        <span data-i18n="itaniCredit">English translation: Talal Itani,</span>
+        <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span>
+      </p>
       <p class="copyright">© 2026 Manevi Halka</p>
     </footer>
 
@@ -2568,6 +2580,7 @@
       langsLabel: "5 dilde kullanılabilir",
       privacy: "Gizlilik Politikası", terms: "Kullanım Koşulları",
       deleteAcc: "Hesap Silme", contact: "İletişim",
+      itaniCredit: "İngilizce meal: Talal Itani,",
       "cap_dashboard": "Ana ekran: görevlerin ve namazların tek bakışta",
       "cap_flow-detail": "Halkan: üyeler, okumalar ve ilerleme",
       "cap_prayer": "Namaz ve nafile takibi, haftalık tablo",
@@ -2612,6 +2625,7 @@
       langsLabel: "Available in 5 languages",
       privacy: "Privacy Policy", terms: "Terms of Service",
       deleteAcc: "Account Deletion", contact: "Contact",
+      itaniCredit: "English translation: Talal Itani,",
       "cap_dashboard": "Home: your tasks and prayers at a glance",
       "cap_flow-detail": "Your circle: members, readings and progress",
       "cap_prayer": "Prayer and nafl tracking with a weekly view",
@@ -2656,6 +2670,7 @@
       langsLabel: "In 5 Sprachen verfügbar",
       privacy: "Datenschutzerklärung", terms: "Nutzungsbedingungen",
       deleteAcc: "Kontolöschung", contact: "Kontakt",
+      itaniCredit: "Englische Übersetzung: Talal Itani,",
       "cap_dashboard": "Startseite: Aufgaben und Gebete auf einen Blick",
       "cap_flow-detail": "Dein Kreis: Mitglieder, Lesungen und Fortschritt",
       "cap_prayer": "Gebets- und Nafl-Tracking mit Wochenübersicht",
@@ -2700,6 +2715,7 @@
       langsLabel: "Disponible en 5 langues",
       privacy: "Politique de confidentialité", terms: "Conditions d'utilisation",
       deleteAcc: "Suppression du compte", contact: "Contact",
+      itaniCredit: "Traduction anglaise : Talal Itani,",
       "cap_dashboard": "Accueil : tes tâches et prières en un coup d'œil",
       "cap_flow-detail": "Ton cercle : membres, lectures et progression",
       "cap_prayer": "Suivi des prières et des nafl, vue hebdomadaire",
@@ -2744,6 +2760,7 @@
       langsLabel: "متوفّر بـ 5 لغات",
       privacy: "سياسة الخصوصية", terms: "شروط الاستخدام",
       deleteAcc: "حذف الحساب", contact: "تواصل معنا",
+      itaniCredit: "الترجمة الإنجليزية: طلال إيتاني،",
       "cap_dashboard": "الرئيسية: مهامك وصلواتك في لمحة",
       "cap_flow-detail": "حلقتك: الأعضاء والقراءات والتقدّم",
       "cap_prayer": "متابعة الفرائض والنوافل مع جدول أسبوعي",
