@@ -673,10 +673,12 @@
   }
 
   /** AR ayet metni mushaf imlasinda — sistem fontunda eksik isaretler var
-   *  (U+08D2 vb.), font subset'i yalniz AR dilinde ve gerekince yuklenir. */
+   *  (U+08D2 vb.), font yalniz AR dilinde ve gerekince yuklenir.
+   *  Font OLDUGU GIBI servis edilir (subset/woff YOK): Amasya fontunun lisansi
+   *  degistirmeye yazili izin istiyor, 11 Eyl 2026'da subset kaldirildi. */
   function ensureArabicFont() {
     if (fontLoaded || !window.FontFace) return Promise.resolve();
-    var face = new FontFace("MushafSubset", "url(/fonts/mushaf-ar-subset.woff)");
+    var face = new FontFace("MushafAr", "url(/fonts/mushaf-ar.ttf)");
     return face.load().then(function (f) {
       document.fonts.add(f);
       fontLoaded = true;
