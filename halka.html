@@ -322,6 +322,77 @@
     .hero { padding:48px 18px 34px; }
     .cell .n { font-size:34px; }
   }
+
+  /* ── Okuma görünümü (26 Eyl 2026) ───────────────────────────────────────
+     Kullanıcı kararı: misafir ALDIĞI sayfaları burada okuyabilsin (eskiden
+     "web'de mushaf okuyucu yok" kararı vardı, WEB_HATIM_KATILIMI.md 8. bölüm).
+     Kapsam BİLEREK dar: yalnız kendi bölümü; serbest gezinme, arama, ses, yer
+     imi YOK. Metin uygulamanın mushafı (data/mushaf, build-mushaf-web.mjs).
+     ⚠️ Tarayıcıya HİÇBİR ŞEY yazılmaz (yazı boyutu, meal seçimi oturumluk):
+     gizlilik metni 10. bölüm "yerel depoda tek değer" diyor. */
+  @font-face { font-family:"MushafAr"; src:url(/fonts/mushaf-ar.ttf) format("truetype"); font-display:swap; }
+  .readbtn { display:flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--soft-green); color:var(--primary-dark); border:1px solid var(--line-strong);
+    font-weight:650; }
+  .readbtn svg { width:18px; height:18px; flex:0 0 auto; }
+  .primary.readbtn { background:var(--primary); color:#fff; border:none; margin-top:12px; }
+  .mine-row .readbtn { width:auto; display:inline-flex; margin:9px auto 0; padding:8px 18px; font-size:13.5px; }
+  .reader { position:fixed; inset:0; z-index:60; background:var(--bg); display:flex; flex-direction:column;
+    --rd-scale:1; }
+  .reader.hidden { display:none; }
+  .rd-bar { display:flex; align-items:center; gap:10px; background:var(--card);
+    border-bottom:1px solid var(--line); padding:10px 12px;
+    padding-top:calc(10px + env(safe-area-inset-top, 0px)); }
+  .rd-bar .t { flex:1; min-width:0; text-align:center; }
+  .rd-bar .t b { display:block; font-size:15.5px; color:var(--primary-dark); }
+  .rd-bar .t span { display:block; font-size:12px; color:var(--muted); margin-top:1px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rd-ic { width:42px; height:42px; flex:0 0 auto; margin:0; padding:0; border-radius:12px;
+    background:transparent; border:1px solid var(--line-strong); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; cursor:pointer; }
+  .rd-ic svg { width:20px; height:20px; }
+  .rd-tools { display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap;
+    padding:9px 12px; border-bottom:1px solid var(--line); background:var(--card); }
+  .rd-tools .lbl { font-size:12.5px; color:var(--muted); }
+  .rd-seg { display:flex; gap:4px; background:var(--bg); border:1px solid var(--line); border-radius:11px; padding:3px; }
+  .rd-seg button { width:auto; margin:0; padding:6px 12px; font-size:13px; border-radius:8px;
+    background:transparent; color:var(--sub); border:none; font-weight:600; }
+  .rd-seg button.on { background:var(--card); color:var(--primary-dark); box-shadow:var(--shadow); }
+  .rd-size { display:flex; gap:6px; }
+  .rd-size .rd-ic { width:38px; height:34px; font-size:13px; }
+  .rd-body { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:16px 14px 44px;
+    padding-bottom:calc(44px + env(safe-area-inset-bottom, 0px)); }
+  .rd-page { max-width:720px; margin:0 auto 12px; background:var(--card); border:1px solid var(--line);
+    border-radius:18px; box-shadow:var(--shadow); padding:16px 16px 18px; }
+  .rd-pno { text-align:center; font-size:11.5px; letter-spacing:.14em; color:var(--muted); margin-bottom:8px; }
+  .rd-ar { font-family:"MushafAr", "Scheherazade New", "Noto Naskh Arabic", "Geeza Pro", serif;
+    direction:rtl; text-align:right; color:var(--ink);
+    font-size:calc(26px * var(--rd-scale)); line-height:2.15; word-spacing:.04em; }
+  .rd-aya { display:inline-block; min-width:1.75em; height:1.75em; line-height:1.62em; padding:0 .2em;
+    margin:0 .12em; border:1.5px solid var(--gold); border-radius:999px; text-align:center;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+    font-size:.5em; color:var(--primary-dark); vertical-align:.35em; }
+  .rd-sura { text-align:center; margin:12px 0 6px; padding:10px 8px; border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line); }
+  .rd-sura:first-child { margin-top:0; }
+  .rd-sura .n { font-family:"MushafAr", "Scheherazade New", serif; direction:rtl;
+    font-size:calc(22px * var(--rd-scale)); color:var(--primary-dark); line-height:1.8; }
+  .rd-sura .l { font-size:12px; color:var(--muted); letter-spacing:.06em; }
+  .rd-bsm { text-align:center; font-family:"MushafAr", "Scheherazade New", serif; direction:rtl;
+    font-size:calc(22px * var(--rd-scale)); line-height:2; color:var(--ink); margin:4px 0 2px; }
+  .rd-verse { padding:10px 0 12px; border-top:1px solid var(--line); }
+  .rd-verse:first-child, .rd-sura + .rd-verse, .rd-bsm + .rd-verse { border-top:none; }
+  .rd-m { font-size:calc(15px * var(--rd-scale)); line-height:1.65; color:var(--sub); margin-top:6px;
+    text-align:start; }
+  .rd-m .k { font-size:.8em; color:var(--muted); margin-inline-end:6px; font-weight:650; }
+  .rd-end { max-width:720px; margin:18px auto 0; text-align:center; }
+  .rd-end .q { font-size:15px; color:var(--primary-dark); font-weight:600; margin-bottom:10px; }
+  .rd-end .tick { font-size:14px; font-weight:650; color:var(--primary); margin-bottom:10px; }
+  .rd-end .apphint { font-size:12.5px; color:var(--muted); margin-top:18px; line-height:1.5; }
+  .rd-end .apphint a { color:var(--primary); font-weight:650; text-decoration:none; }
+  .rd-src { font-size:11.5px; color:var(--muted); margin-top:16px; line-height:1.55; }
+  .rd-state { text-align:center; color:var(--muted); font-size:14px; padding:48px 16px; }
+  .rd-state button { width:auto; margin:14px auto 0; padding:10px 20px; }
 </style>
 </head>
 <body>
@@ -467,6 +538,35 @@
       keepLink:'.احفظ هذا الرابط للعودة إلى جزئك لاحقًا', copy:'انسخ الرابط', copied:'تم النسخ',
  zHead:'أذكار هذه الحلقة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}', zAdd:'شارك في العدّ', zMemberOnly:'لأعضاء الحلقة', zTargetOnly:'{n} لكل شخص', zSession:'ما عددته في هذه الجلسة', zSubmit:'أضف عدّي', zNone:'.لا يوجد ذكر مشترك في هذه الحلقة بعد', zDone:'.تمت إضافة مشاركتك', zReached:'.تم بلوغ الهدف', zZero:'.عُدّ أولاً ثم أضف', bNext:'الجزء المتاح التالي', bHowMany:'كم بابًا ستقرأ؟', bAllTaken:'.كل باب له قارئ في الوقت الحالي', dHead:'أجزاء لم تُنجَز', dLead:'.بقيت هذه الأجزاء دون إتمام. خذ واحدًا منها فتكتمل الختمة', dTake:'أتكفّل بهذا', dWait:'.وُزّعت الأجزاء. وما لم يُنجَز يُفتَح هنا في {d}', dNone:'.كل جزء له قارئ في الوقت الحالي', dBab:'الباب {a}-{b}', dBabCount:'{p} بابًا', ebCevsen:'نية هذا الجوشن', ongoingCevsen:'.الجوشن قيد القراءة', nAsk:'أتحبّ أن تكتب اسمك؟', nWhy:'.ليرى أهل الحلقة من تكفّل بهذا. ولك أن تتركه، فلا يتغيّر شيء', nPh:'(اسمك (اختياري', nSave:'حفظ', nSkip:'تخطٍّ', nEdit:'الاسم', nClear:'إزالة الاسم', nSaved:'.تم الحفظ', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
   };
+  // ── Okuma görünümü metinleri (26 Eyl 2026) ─────────────────────────────
+  // Mushaf/meal atıfları uygulamadaki `quranPrefs.mushafSource` / meal
+  // künyesiyle aynı; LİSANS İDDİASI YAZILMAZ (Itani'nin CC BY-ND künyesi hariç,
+  // o atıf zorunlu ve lisansın kendi adıdır).
+  var RD = {
+    tr: { read:'Sayfaları oku', readNow:'Şimdi oku', page:'Sayfa {p}', meal:'Meal', mealOff:'Kapalı', mealTr:'Türkçe', mealEn:'İngilizce',
+          close:'Kapat', smaller:'Yazıyı küçült', larger:'Yazıyı büyüt', finishQ:'Okumayı bitirdin mi?', loadErr:'Metin yüklenemedi. Bağlantını kontrol edip tekrar dene.', retry:'Tekrar dene',
+          srcMushaf:'Mushaf metni: Diyanet İşleri Başkanlığı (kuran.diyanet.gov.tr)', srcTr:'Meal: Elmalılı Hamdi Yazır', srcEn:'Meal: Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
+          appHint:'Sesli dinlemek ve kaldığın yerden devam etmek için', appLink:'uygulamada aç', surah:'{n} Suresi' },
+    en: { read:'Read your pages', readNow:'Read now', page:'Page {p}', meal:'Translation', mealOff:'Off', mealTr:'Turkish', mealEn:'English',
+          close:'Close', smaller:'Smaller text', larger:'Larger text', finishQ:'Finished reading?', loadErr:'Couldn’t load the text. Check your connection and try again.', retry:'Try again',
+          srcMushaf:'Mushaf text: Diyanet İşleri Başkanlığı, Turkey (kuran.diyanet.gov.tr)', srcTr:'Translation: Elmalılı Hamdi Yazır', srcEn:'Translation by Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
+          appHint:'To listen to the recitation and pick up where you left off,', appLink:'open the app', surah:'Surah {n}' },
+    de: { read:'Deine Seiten lesen', readNow:'Jetzt lesen', page:'Seite {p}', meal:'Übersetzung', mealOff:'Aus', mealTr:'Türkisch', mealEn:'Englisch',
+          close:'Schließen', smaller:'Kleinere Schrift', larger:'Größere Schrift', finishQ:'Fertig gelesen?', loadErr:'Der Text konnte nicht geladen werden. Prüfe deine Verbindung und versuche es erneut.', retry:'Erneut versuchen',
+          srcMushaf:'Mushaf-Text: Diyanet İşleri Başkanlığı, Türkei (kuran.diyanet.gov.tr)', srcTr:'Übersetzung: Elmalılı Hamdi Yazır', srcEn:'Übersetzung von Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
+          appHint:'Um die Rezitation zu hören und dort weiterzumachen, wo du aufgehört hast,', appLink:'öffne die App', surah:'Sure {n}' },
+    fr: { read:'Lire tes pages', readNow:'Lire maintenant', page:'Page {p}', meal:'Traduction', mealOff:'Aucune', mealTr:'Turc', mealEn:'Anglais',
+          close:'Fermer', smaller:'Texte plus petit', larger:'Texte plus grand', finishQ:'Lecture terminée ?', loadErr:'Le texte n’a pas pu être chargé. Vérifie ta connexion et réessaie.', retry:'Réessayer',
+          srcMushaf:'Texte du mushaf : Diyanet İşleri Başkanlığı, Turquie (kuran.diyanet.gov.tr)', srcTr:'Traduction : Elmalılı Hamdi Yazır', srcEn:'Traduction de Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
+          appHint:'Pour écouter la récitation et reprendre là où tu t’es arrêté,', appLink:'ouvre l’application', surah:'Sourate {n}' },
+    ar: { read:'اقرأ صفحاتك', readNow:'اقرأ الآن', page:'الصفحة {p}', meal:'الترجمة', mealOff:'بدون', mealTr:'التركية', mealEn:'الإنجليزية',
+          close:'إغلاق', smaller:'تصغير الخط', larger:'تكبير الخط', finishQ:'هل أتممت القراءة؟', loadErr:'تعذّر تحميل النص. تحقّق من اتصالك ثم أعد المحاولة', retry:'إعادة المحاولة',
+          srcMushaf:'نص المصحف: رئاسة الشؤون الدينية التركية (kuran.diyanet.gov.tr)', srcTr:'الترجمة: إلمالِلي حمدي يازِر', srcEn:'ترجمة طلال إيتاني، ClearQuran.com (CC BY-ND 4.0)',
+          appHint:'للاستماع إلى التلاوة ومتابعة القراءة من حيث توقفت', appLink:'افتح التطبيق', surah:'سورة {n}' }
+  };
+  // Meal varsayılanı: yalnız telifi temiz iki meal (TR Elmalılı, EN Itani).
+  // DE/FR mealleri izin bekliyor → o dillerde varsayılan kapalı, istenirse TR/EN seçilir.
+  var RD_MEAL_DEFAULT = { tr:'tr', en:'en', de:null, fr:null, ar:null };
   var POLICY_SUFFIX = { en:'-en', tr:'', de:'-de', fr:'-fr', ar:'-ar' };
   var NAME_IDX = { tr:0, en:1, de:1, fr:1, ar:2 };
   var LOCALE_TAG = { tr:'tr-TR', en:'en-US', de:'de-DE', fr:'fr-FR', ar:'ar' };
@@ -746,6 +846,8 @@
       if (board.type !== 'cevsen') {
         var r = refLabel(m.start_page, m.end_page);
         if (r) row.appendChild(el('div', 'r', '(' + r + ')'));
+        // Kendi sayfalarını burada oku (26 Eyl 2026). Cevşen'de metin yok (bab tablosu yok).
+        if (board.type === 'quran') row.appendChild(readButton(m, false));
       }
 
       if (m.confirmed) {
@@ -1340,10 +1442,17 @@
       if (r) st.appendChild(el('div', 'ref', '(' + r + ')'));
     }
     st.appendChild(el('div', 'msg', T.mayAccept));
+    // Hemen okumak isteyene: aldığı sayfalar burada açılır (26 Eyl 2026).
+    // Asıl sonraki adım okumak; "başka bölüm al" o zaman ikincil düğme olur.
+    var canRead = !isBab && board && board.type === 'quran' && !!claim.unit_id;
+    if (canRead) {
+      st.appendChild(readButton({ unit_id: claim.unit_id, start_page: claim.start_page,
+        end_page: claim.end_page, confirmed: false }, true));
+    }
 
     if (claim.quota_left > 0) {
       st.appendChild(el('div', 'msg', T.another));
-      var b = el('button', 'primary', T.takeAnother);
+      var b = el('button', canRead ? 'ghost' : 'primary', T.takeAnother);
       b.onclick = function () { goBoard(); };
       st.appendChild(b);
     }
@@ -1358,6 +1467,266 @@
     };
     rec.appendChild(cp); st.appendChild(rec);
     showAppCta();
+  }
+
+  // ── Okuma görünümü (26 Eyl 2026) ─────────────────────────────────────────
+  // Misafirin ALDIĞI sayfalar, uygulamanın mushaf metniyle. Sayfa GÖRÜNEN
+  // numara (1-604, event_units ile aynı). Veri 20'şerli depolama bloklarında
+  // (data/mushaf/<ar|tr|en>/NN.json); blok cüz DEĞİL, yalnız dosya bölümü.
+  // ⚠️ "Tamamladım" burada da yalnız kişinin kendi dokunuşu: okuma ekranı
+  // açmak/kaydırmak hiçbir şeyi tamamlamaz (uygulamadaki "Okudum" kuralı).
+  var RT = RD[lang] || RD.en;
+  var rdMeal = RD_MEAL_DEFAULT[lang] || null;
+  var rdScale = 1;
+  var rdUnit = null;          // açık bölüm {unit_id, start_page, end_page, confirmed}
+  var rdPushed = false;       // geri tuşu okuma ekranını kapatsın diye tarih kaydı
+  var rdCache = {};           // url → Promise<json>
+  var ICON_BOOK = 'M12 6.5S9.5 4.5 5 4.5v13c4.5 0 7 2 7 2s2.5-2 7-2v-13c-4.5 0-7 2-7 2zM12 6.5v13';
+  var ICON_CLOSE = 'M6 6l12 12M18 6L6 18';
+
+  function rdJson(url) {
+    if (!rdCache[url]) {
+      rdCache[url] = fetch(url).then(function (r) {
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      });
+      rdCache[url].catch(function () { delete rdCache[url]; });
+    }
+    return rdCache[url];
+  }
+  function rdBlockUrl(kind, v) {
+    return '/data/mushaf/' + kind + '/' + ('0' + Math.floor((v - 1) / 20)).slice(-2) + '.json';
+  }
+  /** [a..b] sayfalarının ayetleri: { "<v>": [[key, text], …] }. */
+  function rdPages(kind, a, b) {
+    var urls = [];
+    for (var v = a; v <= b; v++) { var u = rdBlockUrl(kind, v); if (urls.indexOf(u) < 0) urls.push(u); }
+    return Promise.all(urls.map(rdJson)).then(function (list) {
+      var out = {};
+      list.forEach(function (j) { for (var k in j.p) out[k] = j.p[k]; });
+      return out;
+    });
+  }
+  function toArDigits(n) {
+    return String(n).replace(/\d/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'[+d]; });
+  }
+  function rdIconBtn(pathD, label) {
+    var b = el('button', 'rd-ic');
+    b.type = 'button';
+    b.setAttribute('aria-label', label);
+    b.appendChild(icon(pathD));
+    return b;
+  }
+
+  /** Bölüm satırındaki / sonuç ekranındaki "oku" düğmesi (yalnız Kur'an). */
+  function readButton(unit, primary) {
+    var b = el('button', primary ? 'primary readbtn' : 'readbtn');
+    b.type = 'button';
+    b.appendChild(icon(ICON_BOOK));
+    b.appendChild(el('span', null, primary ? RT.readNow : RT.read));
+    b.onclick = function () { openReader(unit); };
+    return b;
+  }
+
+  function ensureReaderDom() {
+    var root = $('reader');
+    if (root) return root;
+    root = el('div', 'reader hidden');
+    root.id = 'reader';
+    root.setAttribute('role', 'dialog');
+    root.setAttribute('aria-modal', 'true');
+    var bar = el('div', 'rd-bar');
+    var close = rdIconBtn(ICON_CLOSE, RT.close);
+    close.onclick = function () { closeReader(true); };
+    var t = el('div', 't');
+    t.appendChild(el('b')); t.appendChild(el('span'));
+    var spacer = el('div'); spacer.style.width = '42px'; spacer.style.flex = '0 0 auto';
+    bar.appendChild(close); bar.appendChild(t); bar.appendChild(spacer);
+    var tools = el('div', 'rd-tools');
+    var body = el('div', 'rd-body');
+    body.id = 'rdBody';
+    root.appendChild(bar); root.appendChild(tools); root.appendChild(body);
+    document.body.appendChild(root);
+    window.addEventListener('popstate', function () {
+      if (!root.classList.contains('hidden')) { rdPushed = false; closeReader(false); }
+    });
+    return root;
+  }
+
+  function renderReaderTools() {
+    var root = ensureReaderDom();
+    var tools = root.querySelector('.rd-tools');
+    tools.innerHTML = '';
+    tools.appendChild(el('span', 'lbl', RT.meal));
+    var seg = el('div', 'rd-seg');
+    [[null, RT.mealOff], ['tr', RT.mealTr], ['en', RT.mealEn]].forEach(function (o) {
+      var b = el('button', rdMeal === o[0] ? 'on' : '', o[1]);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', rdMeal === o[0] ? 'true' : 'false');
+      b.onclick = function () { if (rdMeal === o[0]) return; rdMeal = o[0]; renderReaderTools(); loadReaderBody(); };
+      seg.appendChild(b);
+    });
+    tools.appendChild(seg);
+    var size = el('div', 'rd-size');
+    var minus = el('button', 'rd-ic', 'A−'); minus.type = 'button'; minus.setAttribute('aria-label', RT.smaller);
+    var plus = el('button', 'rd-ic', 'A+'); plus.type = 'button'; plus.setAttribute('aria-label', RT.larger);
+    minus.onclick = function () { rdSetScale(rdScale - 0.1); };
+    plus.onclick = function () { rdSetScale(rdScale + 0.1); };
+    size.appendChild(minus); size.appendChild(plus);
+    tools.appendChild(size);
+  }
+  function rdSetScale(v) {
+    rdScale = Math.max(0.8, Math.min(1.7, Math.round(v * 10) / 10));
+    $('reader').style.setProperty('--rd-scale', String(rdScale));
+  }
+
+  function openReader(unit) {
+    if (!unit || !(unit.start_page > 0) || !(unit.end_page >= unit.start_page)) return;
+    rdUnit = unit;
+    var root = ensureReaderDom();
+    var t = root.querySelector('.rd-bar .t');
+    t.firstChild.textContent = unitLabel(unit.start_page, unit.end_page);
+    var r = refLabel(unit.start_page, unit.end_page);
+    t.lastChild.textContent = r;
+    root.setAttribute('aria-label', unitLabel(unit.start_page, unit.end_page));
+    root.style.setProperty('--rd-scale', String(rdScale));
+    renderReaderTools();
+    root.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    if (!rdPushed) { try { history.pushState({ rd: 1 }, ''); rdPushed = true; } catch (e) {} }
+    loadReaderBody();
+    setTimeout(function () { var c = root.querySelector('.rd-bar .rd-ic'); if (c) c.focus(); }, 30);
+  }
+
+  function closeReader(viaButton) {
+    var root = $('reader');
+    if (!root) return;
+    root.classList.add('hidden');
+    document.body.style.overflow = '';
+    rdUnit = null;
+    if (viaButton && rdPushed) { rdPushed = false; try { history.back(); } catch (e) {} }
+  }
+
+  function loadReaderBody() {
+    var unit = rdUnit;
+    if (!unit) return;
+    var body = $('rdBody');
+    body.innerHTML = '';
+    body.appendChild(el('div', 'rd-state', T.loading));
+    var a = unit.start_page, b = unit.end_page, meal = rdMeal;
+    Promise.all([
+      rdJson('/data/mushaf/meta.json'),
+      rdPages('ar', a, b),
+      meal ? rdPages(meal, a, b) : Promise.resolve(null)
+    ]).then(function (res) {
+      if (rdUnit !== unit || rdMeal !== meal) return; // bu arada değişti
+      renderReaderBody(unit, res[0], res[1], res[2]);
+      body.scrollTop = 0;
+    }).catch(function () {
+      if (rdUnit !== unit) return;
+      body.innerHTML = '';
+      var st = el('div', 'rd-state', RT.loadErr);
+      var rb = el('button', 'ghost', RT.retry);
+      rb.type = 'button';
+      rb.onclick = loadReaderBody;
+      st.appendChild(rb);
+      body.appendChild(st);
+    });
+  }
+
+  function rdSuraHeader(meta, n) {
+    var h = el('div', 'rd-sura');
+    var ar = (meta.names && meta.names[n]) || '';
+    h.appendChild(el('div', 'n', ar ? 'سُورَةُ ' + ar : ''));
+    var loc = surahName(n);
+    if (loc && lang !== 'ar') h.appendChild(el('div', 'l', fmt(RT.surah, { n: loc })));
+    return h;
+  }
+
+  function renderReaderBody(unit, meta, arPages, mealPages) {
+    var body = $('rdBody');
+    body.innerHTML = '';
+    for (var v = unit.start_page; v <= unit.end_page; v++) {
+      var verses = arPages[v] || [];
+      var card = el('section', 'rd-page');
+      card.setAttribute('aria-label', fmt(RT.page, { p: v }));
+      card.appendChild(el('div', 'rd-pno', fmt(RT.page, { p: v })));
+      var mealMap = null;
+      if (mealPages && mealPages[v]) { mealMap = {}; mealPages[v].forEach(function (x) { mealMap[x[0]] = x[1]; }); }
+      var flow = null;
+      verses.forEach(function (x) {
+        var key = x[0], parts = key.split(':'), s = +parts[0], ay = +parts[1];
+        if (ay === 1) {
+          flow = null;
+          card.appendChild(rdSuraHeader(meta, s));
+          // Fâtiha'da besmele 1. ayettir; Tevbe'de besmele yoktur.
+          if (s !== 1 && s !== 9 && meta.basmala) card.appendChild(el('div', 'rd-bsm', meta.basmala));
+        }
+        var marker = el('span', 'rd-aya', toArDigits(ay));
+        marker.setAttribute('aria-label', String(ay));
+        if (mealMap) {
+          // Meal açık: ayet ayet blok (Arapça + meal).
+          var vb = el('div', 'rd-verse');
+          var arEl = el('div', 'rd-ar');
+          arEl.appendChild(document.createTextNode(x[1] + ' '));
+          arEl.appendChild(marker);
+          vb.appendChild(arEl);
+          var m = el('div', 'rd-m');
+          m.setAttribute('dir', 'ltr');
+          m.setAttribute('lang', rdMeal);
+          m.appendChild(el('span', 'k', s + ':' + ay));
+          m.appendChild(document.createTextNode(mealMap[key] || ''));
+          vb.appendChild(m);
+          card.appendChild(vb);
+        } else {
+          // Meal kapalı: mushaf gibi akan metin.
+          if (!flow) { flow = el('div', 'rd-ar'); card.appendChild(flow); }
+          flow.appendChild(document.createTextNode(x[1] + ' '));
+          flow.appendChild(marker);
+          flow.appendChild(document.createTextNode(' '));
+        }
+      });
+      body.appendChild(card);
+    }
+
+    var end = el('div', 'rd-end');
+    if (unit.confirmed) {
+      end.appendChild(el('div', 'tick', '✓ ' + T.doneMark));
+    } else if (unit.unit_id) {
+      end.appendChild(el('div', 'q', RT.finishQ));
+      var done = el('button', 'primary', T.markDone);
+      done.type = 'button';
+      done.onclick = function () {
+        var id = unit.unit_id;
+        closeReader(true);
+        confirmClaim(id);
+      };
+      end.appendChild(done);
+    }
+    var back = el('button', 'ghost', RT.close);
+    back.type = 'button';
+    back.style.marginTop = '10px';
+    back.onclick = function () { closeReader(true); };
+    end.appendChild(back);
+
+    // Uygulamaya hafif bir yönlendirme: sesli dinleme ve kaldığın yerden devam.
+    // ⚠️ Otomatik açma YOK (tarayıcılar engelliyor); yalnız dokunuşla. Davet
+    // kodu varsa uygulamayı açan derin bağlantı (showAppCta ile aynı kural),
+    // yoksa cihazın mağazası.
+    var hint = el('div', 'apphint');
+    hint.appendChild(document.createTextNode(RT.appHint + ' '));
+    var link = el('a', null, RT.appLink);
+    link.href = joinCode ? 'manevisosyal://join/' + joinCode
+                         : (/Android/i.test(navigator.userAgent || '') ? STORE_PLAY : STORE_IOS);
+    hint.appendChild(link);
+    end.appendChild(hint);
+
+    var src = el('div', 'rd-src');
+    src.appendChild(el('div', null, RT.srcMushaf));
+    if (rdMeal === 'tr') src.appendChild(el('div', null, RT.srcTr));
+    if (rdMeal === 'en') src.appendChild(el('div', null, RT.srcEn));
+    end.appendChild(src);
+    body.appendChild(end);
   }
 
   // ── Akış ──────────────────────────────────────────────────────────────────
