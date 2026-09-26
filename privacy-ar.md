@@ -5,7 +5,7 @@ lang: ar
 dir: rtl
 ---
 
-<div dir="rtl" style="text-align:right;font-family:'Geeza Pro','Segoe UI Arabic',Arial,sans-serif;line-height:1.85">
+<div markdown="1" dir="rtl" style="text-align:right;font-family:'Geeza Pro','Segoe UI Arabic',Arial,sans-serif;line-height:1.85">
 
 # سياسة الخصوصية
 
