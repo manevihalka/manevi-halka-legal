@@ -196,6 +196,7 @@ We use the following third-party services to provide our service:
 | **Google Sign In** | OAuth login | Google ID, email, name |
 | **Sentry** ([privacy](https://sentry.io/privacy/)) | Error reporting, crash tracking | Anonymous error logs, stack traces, device/OS info |
 | **PostHog** ([privacy](https://posthog.com/privacy)) | Product analytics (opt-out available) | Anonymous usage events (no PII), hosted on EU servers |
+| **Quran Foundation** ([privacy](https://quran.com/privacy)) | Recitation audio (reciter list and verse audio files) | Audio files download directly to your device from Quran Foundation and quranicaudio.com servers; these servers see your IP address and the requested file. No account information is sent; the reciter list is fetched anonymously through our server |
 
 ---
 
@@ -300,6 +301,7 @@ data is stored locally on your device:
 - Cached data (for offline use)
 - Notification counters
 - Widget data (UserDefaults / SharedPreferences)
+- Recitation files you download (offline listening) and temporary copies of recently played verses. Under the provider's terms they are kept for at most 6 days and refreshed whenever you are online; you can delete downloads in the app
 
 Deleting your account or uninstalling the app removes this data.
 

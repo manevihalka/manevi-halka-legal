@@ -188,6 +188,7 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 | **Google Sign In** | Connexion OAuth | Google ID, e-mail, nom |
 | **Sentry** ([confidentialité](https://sentry.io/privacy/)) | Rapports d'erreurs, suivi des plantages | Journaux d'erreurs anonymes, traces d'appels, informations appareil/système |
 | **PostHog** ([confidentialité](https://posthog.com/privacy)) | Analyses produit (désinscription possible) | Événements d'utilisation anonymes (aucune PII), hébergés sur des serveurs UE |
+| **Quran Foundation** ([confidentialité](https://quran.com/privacy)) | Récitations audio (liste des récitateurs et fichiers audio des versets) | Les fichiers audio sont téléchargés directement sur ton appareil depuis les serveurs de Quran Foundation et de quranicaudio.com ; ces serveurs voient ton adresse IP et le fichier demandé. Aucune donnée de compte n'est envoyée ; la liste des récitateurs est obtenue anonymement via notre serveur |
 
 ---
 
@@ -286,6 +287,7 @@ L'Application est une application mobile et n'utilise pas de cookies web. Toutef
 - Données mises en cache (pour une utilisation hors ligne)
 - Compteurs de notifications
 - Données de widget (UserDefaults / SharedPreferences)
+- Récitations téléchargées (écoute hors ligne) et copies temporaires des versets écoutés récemment. Selon les conditions du fournisseur, elles sont conservées au plus 6 jours et renouvelées dès que tu es en ligne ; tu peux supprimer les téléchargements dans l'application
 
 La suppression de votre compte ou la désinstallation de l'application supprime ces données.
 

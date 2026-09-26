@@ -192,6 +192,7 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 | **Google Sign In** | OAuth giriş | Google ID, e-posta, ad |
 | **Sentry** ([gizlilik](https://sentry.io/privacy/)) | Hata raporlama, crash takibi | Anonim hata kayıtları, stack trace, cihaz/OS bilgisi |
 | **PostHog** ([gizlilik](https://posthog.com/privacy)) | Ürün analitiği (opt-out var) | Anonim kullanım olayları (PII yok), EU sunucularda barındırılır |
+| **Quran Foundation** ([gizlilik](https://quran.com/privacy)) | Sesli tilavet (kârî listesi ve ayet ses dosyaları) | Ses dosyaları Quran Foundation ve quranicaudio.com sunucularından doğrudan cihazına iner; bu sunucular IP adresini ve istenen dosyayı görür. Hesap bilgisi gönderilmez; kârî listesi sunucumuz üzerinden kimliksiz alınır |
 
 ---
 
@@ -295,6 +296,7 @@ yerel veriler cihazınızda saklanır:
 - Önbelleğe alınmış veriler (offline kullanım için)
 - Bildirim sayaçları
 - Widget verisi (UserDefaults / SharedPreferences)
+- İndirdiğin tilavet dosyaları (çevrimdışı dinleme) ve son dinlenen ayetlerin geçici kopyaları. Kaynağın şartları gereği en fazla 6 gün saklanır ve internete bağlandıkça yenilenir; indirmeleri uygulama içinden silebilirsin
 
 Hesabınızı silerseniz veya uygulamayı kaldırırsanız bu veriler de silinir.
 

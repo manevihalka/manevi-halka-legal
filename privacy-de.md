@@ -218,6 +218,7 @@ Dienstes:
 | **Google Sign In** | OAuth-Anmeldung | Google-ID, E-Mail, Name |
 | **Sentry** ([Datenschutz](https://sentry.io/privacy/)) | Fehlerberichte, Absturz-Tracking | Anonyme Fehlerprotokolle, Stack Traces, Geräte-/Betriebssystem-Informationen |
 | **PostHog** ([Datenschutz](https://posthog.com/privacy)) | Produktanalyse (Opt-out verfügbar) | Anonyme Nutzungsereignisse (keine personenbezogenen Daten), gehostet auf EU-Servern |
+| **Quran Foundation** ([Datenschutz](https://quran.com/privacy)) | Rezitationen (Rezitatorenliste und Audiodateien der Verse) | Audiodateien werden direkt von Servern der Quran Foundation und von quranicaudio.com auf dein Gerät geladen; diese Server sehen deine IP-Adresse und die angefragte Datei. Es werden keine Kontodaten übermittelt; die Rezitatorenliste wird anonym über unseren Server abgerufen |
 
 ---
 
@@ -335,6 +336,7 @@ Gerät gespeichert:
 - Zwischengespeicherte Daten (zur Offline-Nutzung)
 - Benachrichtigungszähler
 - Widget-Daten (UserDefaults / SharedPreferences)
+- Heruntergeladene Rezitationen (Offline hören) und temporäre Kopien zuletzt gehörter Verse. Nach den Bedingungen des Anbieters werden sie höchstens 6 Tage gespeichert und erneuert, sobald du online bist; Downloads kannst du in der App löschen
 
 Durch das Löschen Ihres Kontos oder die Deinstallation der App werden
 diese Daten entfernt.
