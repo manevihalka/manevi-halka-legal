@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 26 Eylül 2026
+**Son güncelleme:** 28 Eylül 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -142,8 +142,19 @@ Okuma** sayfasına girmek (davet gerekmez). İkisinde de toplananlar
 
 **Toplanmayanlar:** e-posta, telefon, hesap, konum. Ad yalnızca siz
 yazarsanız alınır. Sayfada reklam,
-ölçümleme ya da izleme aracı **yoktur**; sayfa hiçbir üçüncü tarafa istek atmaz
-(kullandığı bütün dosyalar kendi sunucumuzdan gelir).
+ölçümleme ya da izleme aracı **yoktur**. Sayfaya bakarken ya da okurken hiçbir
+üçüncü tarafa istek gitmez (kullandığı bütün dosyalar kendi sunucumuzdan gelir).
+
+**Bot doğrulaması (Cloudflare Turnstile):** Yalnız katkı verdiğiniz anda (bölüm
+üstlenmek, tamamladı olarak işaretlemek, ortak zikre sayı eklemek ya da ad
+yazmak) sayfa, otomatik programları gerçek kişilerden ayırmak için Cloudflare'in
+doğrulama hizmetini çalıştırır. Bu sırada tarayıcınız Cloudflare'e bağlanır;
+Cloudflare IP adresinizi, tarayıcı bilgilerinizi (User-Agent gibi) ve
+doğrulamanın hangi sitede yapıldığını işler. Çoğu zaman hiçbir şey görmezsiniz;
+şüphe durumunda bir onay kutusu çıkabilir. Cloudflare bu amaçla kendi alan
+adında zorunlu teknik veriler saklayabilir ve bu sinyalleri bot tespitini
+geliştirmek için kendi sorumluluğunda da kullanır. Ayrıntı:
+[Cloudflare Turnstile gizlilik eki](https://www.cloudflare.com/turnstile-privacy-policy/).
 
 Halkanın yöneticisi ve üyeleri, ad yazmadıysanız kim olduğunuzu **göremez**;
 yalnızca o bölümün üstlenildiğini ya da sayıya katkı geldiğini görürler. Ad
@@ -193,6 +204,7 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 | **Sentry** ([gizlilik](https://sentry.io/privacy/)) | Hata raporlama, crash takibi | Anonim hata kayıtları, stack trace, cihaz/OS bilgisi |
 | **PostHog** ([gizlilik](https://posthog.com/privacy)) | Ürün analitiği (opt-out var) | Anonim kullanım olayları (PII yok), EU sunucularda barındırılır |
 | **Quran Foundation** ([gizlilik](https://quran.com/privacy)) | Sesli tilavet (kârî listesi ve ayet ses dosyaları) | Ses dosyaları Quran Foundation ve quranicaudio.com sunucularından doğrudan cihazına iner; bu sunucular IP adresini ve istenen dosyayı görür. Hesap bilgisi gönderilmez; kârî listesi sunucumuz üzerinden kimliksiz alınır |
+| **Cloudflare Turnstile** ([gizlilik](https://www.cloudflare.com/turnstile-privacy-policy/)) | manevihalka.app üzerinde katkı verirken bot doğrulaması | IP adresi, tarayıcı bilgisi (User-Agent, TLS parmak izi), sitenin adı; yalnız web sayfasından katkı verildiği anda |
 
 ---
 
@@ -304,6 +316,9 @@ Hesabınızı silerseniz veya uygulamayı kaldırırsanız bu veriler de silinir
 ancak tarayıcının yerel deposunda **tek bir değer** saklar: yukarıda anlatılan
 rastgele tanıtıcı (bölüm 2.4). Ölçümleme ya da reklam amaçlı hiçbir değer
 yazılmaz. Tarayıcınızın site verilerini temizlemek bu değeri de siler.
+Katkı verdiğiniz anda çalışan Cloudflare doğrulaması ise kendi alan adında
+(challenges.cloudflare.com) bot tespiti için zorunlu teknik veriler saklayabilir
+(bölüm 2.4).
 
 ---
 

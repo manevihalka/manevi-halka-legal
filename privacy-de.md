@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 26. September 2026
+**Zuletzt aktualisiert:** 28. September 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -161,9 +161,21 @@ Fällen erheben wir **ausschließlich** Folgendes:
 
 **Nicht erhoben werden:** E-Mail-Adresse, Telefonnummer, Konto, Standort. Ein
 Name wird nur erfasst, wenn Sie selbst einen eingeben.
-Die Seite enthält **keine** Werbe-, Analyse- oder Tracking-Werkzeuge und sendet
-keine Anfrage an Dritte (sämtliche verwendeten Dateien stammen von unseren
-eigenen Servern).
+Die Seite enthält **keine** Werbe-, Analyse- oder Tracking-Werkzeuge. Solange Sie
+die Seite ansehen oder lesen, geht keine Anfrage an Dritte (sämtliche verwendeten
+Dateien stammen von unseren eigenen Servern).
+
+**Bot-Prüfung (Cloudflare Turnstile):** Nur in dem Moment, in dem Sie etwas
+beitragen (einen Abschnitt übernehmen, als erledigt markieren, zu einem
+gemeinsamen Dhikr beitragen oder einen Namen eingeben), startet die Seite den
+Prüfdienst von Cloudflare, um automatisierte Programme von echten Menschen zu
+unterscheiden. Ihr Browser verbindet sich dabei mit Cloudflare; Cloudflare
+verarbeitet Ihre IP-Adresse, Browserinformationen (etwa den User-Agent) und die
+Website, auf der die Prüfung läuft. Meist sehen Sie davon nichts; bei Verdacht
+kann ein Kontrollkästchen erscheinen. Cloudflare kann dafür unbedingt
+erforderliche technische Daten auf der eigenen Domain speichern und nutzt diese
+Signale in eigener Verantwortung auch zur Verbesserung seiner Bot-Erkennung.
+Einzelheiten: [Datenschutzzusatz zu Cloudflare Turnstile](https://www.cloudflare.com/turnstile-privacy-policy/).
 
 Haben Sie keinen Namen angegeben, **können die Verwaltung und die Mitglieder des
 Kreises nicht sehen, wer Sie sind**; sie sehen lediglich, dass der Abschnitt
@@ -219,6 +231,7 @@ Dienstes:
 | **Sentry** ([Datenschutz](https://sentry.io/privacy/)) | Fehlerberichte, Absturz-Tracking | Anonyme Fehlerprotokolle, Stack Traces, Geräte-/Betriebssystem-Informationen |
 | **PostHog** ([Datenschutz](https://posthog.com/privacy)) | Produktanalyse (Opt-out verfügbar) | Anonyme Nutzungsereignisse (keine personenbezogenen Daten), gehostet auf EU-Servern |
 | **Quran Foundation** ([Datenschutz](https://quran.com/privacy)) | Rezitationen (Rezitatorenliste und Audiodateien der Verse) | Audiodateien werden direkt von Servern der Quran Foundation und von quranicaudio.com auf dein Gerät geladen; diese Server sehen deine IP-Adresse und die angefragte Datei. Es werden keine Kontodaten übermittelt; die Rezitatorenliste wird anonym über unseren Server abgerufen |
+| **Cloudflare Turnstile** ([Datenschutz](https://www.cloudflare.com/turnstile-privacy-policy/)) | Bot-Prüfung bei Beiträgen auf manevihalka.app | IP-Adresse, Browserinformationen (User-Agent, TLS-Fingerabdruck), Name der Website; nur im Moment eines Beitrags auf der Website |
 
 ---
 
@@ -345,7 +358,9 @@ diese Daten entfernt.
 keine Cookies, legt jedoch **einen einzigen Wert** im lokalen Speicher Ihres
 Browsers ab: die oben beschriebene Zufallskennung (Abschnitt 2.4). Für Analyse-
 oder Werbezwecke wird nichts gespeichert. Das Löschen der Websitedaten Ihres
-Browsers entfernt auch diesen Wert.
+Browsers entfernt auch diesen Wert. Die Cloudflare-Prüfung, die beim Beitragen
+läuft, kann auf ihrer eigenen Domain (challenges.cloudflare.com) für die
+Bot-Erkennung unbedingt erforderliche technische Daten speichern (Abschnitt 2.4).
 
 ---
 

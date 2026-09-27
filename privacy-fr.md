@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 26 septembre 2026
+**Dernière mise à jour :** 28 septembre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -137,8 +137,21 @@ cas, nous collectons **uniquement** ce qui suit :
 
 **Ne sont pas collectés :** adresse e-mail, numéro de téléphone, compte,
 localisation. Un nom n'est recueilli que si vous en saisissez un. La page ne contient **aucun** outil publicitaire, de mesure
-d'audience ou de suivi, et n'adresse aucune requête à un tiers (tous les fichiers
-qu'elle utilise proviennent de nos propres serveurs).
+d'audience ou de suivi. Tant que vous la consultez ou la lisez, aucune requête
+n'est adressée à un tiers (tous les fichiers qu'elle utilise proviennent de nos
+propres serveurs).
+
+**Vérification anti-robots (Cloudflare Turnstile) :** uniquement au moment où
+vous contribuez (prendre une portion, la marquer comme terminée, ajouter à un
+dhikr commun ou saisir un nom), la page lance le service de vérification de
+Cloudflare afin de distinguer les programmes automatisés des personnes réelles.
+Votre navigateur se connecte alors à Cloudflare, qui traite votre adresse IP,
+des informations sur votre navigateur (comme le User-Agent) et le site sur
+lequel la vérification a lieu. Le plus souvent, vous ne voyez rien ; en cas de
+doute, une case à cocher peut apparaître. À cette fin, Cloudflare peut stocker
+des données techniques strictement nécessaires sur son propre domaine et utilise
+aussi ces signaux, sous sa propre responsabilité, pour améliorer sa détection
+des robots. Détails : [avenant de confidentialité de Cloudflare Turnstile](https://www.cloudflare.com/turnstile-privacy-policy/).
 
 Si vous n'avez pas donné de nom, l'administrateur et les membres du cercle **ne
 peuvent pas savoir qui vous êtes** ; ils voient seulement que la portion a été
@@ -189,6 +202,7 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 | **Sentry** ([confidentialité](https://sentry.io/privacy/)) | Rapports d'erreurs, suivi des plantages | Journaux d'erreurs anonymes, traces d'appels, informations appareil/système |
 | **PostHog** ([confidentialité](https://posthog.com/privacy)) | Analyses produit (désinscription possible) | Événements d'utilisation anonymes (aucune PII), hébergés sur des serveurs UE |
 | **Quran Foundation** ([confidentialité](https://quran.com/privacy)) | Récitations audio (liste des récitateurs et fichiers audio des versets) | Les fichiers audio sont téléchargés directement sur ton appareil depuis les serveurs de Quran Foundation et de quranicaudio.com ; ces serveurs voient ton adresse IP et le fichier demandé. Aucune donnée de compte n'est envoyée ; la liste des récitateurs est obtenue anonymement via notre serveur |
+| **Cloudflare Turnstile** ([confidentialité](https://www.cloudflare.com/turnstile-privacy-policy/)) | Vérification anti-robots lors des contributions sur manevihalka.app | Adresse IP, informations sur le navigateur (User-Agent, empreinte TLS), nom du site ; uniquement au moment d'une contribution sur le site |
 
 ---
 
@@ -295,7 +309,10 @@ La suppression de votre compte ou la désinstallation de l'application supprime 
 pas de cookies, mais conserve **une seule valeur** dans le stockage local de
 votre navigateur : l'identifiant aléatoire décrit plus haut (section 2.4). Rien
 n'est écrit à des fins de mesure d'audience ou de publicité. Effacer les données
-de site de votre navigateur supprime également cette valeur.
+de site de votre navigateur supprime également cette valeur. La vérification
+Cloudflare lancée lorsque vous contribuez peut stocker, sur son propre domaine
+(challenges.cloudflare.com), des données techniques strictement nécessaires à la
+détection des robots (section 2.4).
 
 ---
 

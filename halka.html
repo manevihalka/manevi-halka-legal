@@ -436,6 +436,7 @@
      atıyor ve o ad Ruby geleneğine ait. Canlı senkronu böyle bir
      belirsizliğe bağlamıyoruz; assets/ minima'nın kanonik statik dizini. -->
 <script src="/assets/vendor/supabase-js-2.112.4.js"></script>
+<script src="/js/mh-turnstile.js"></script>
 <script>
 (function () {
   var SUPA_URL = 'https://ohmescuwjyaitykemuub.supabase.co';
@@ -465,7 +466,7 @@
       none:'There is no portion available right now.', closed:'This recitation is closed.',
       quota:'You have 40 pages open right now. Mark them as finished to take more.',
       taken:'That portion was just taken. Let us give you another one.',
-      amountLbl:'How much will you read?', heroEyebrow:'Intention of this recitation', ebZikir:'Intention of this dhikr', ebDua:'Intention of this supplication', myLbl:'Your portions', markDone:'I finished it', dropIt:'Remove', sure:'Sure?', doneMark:'Finished', gone:'This recitation is no longer available.', slow:'Too many attempts. Please wait a moment and try again.', error:'Something went wrong. Please try again.', notFound:'Invitation link is not valid.',
+      amountLbl:'How much will you read?', heroEyebrow:'Intention of this recitation', ebZikir:'Intention of this dhikr', ebDua:'Intention of this supplication', myLbl:'Your portions', markDone:'I finished it', dropIt:'Remove', sure:'Sure?', doneMark:'Finished', gone:'This recitation is no longer available.', slow:'Too many attempts. Please wait a moment and try again.', verify:'The security check could not be completed. Reload the page and try again.', error:'Something went wrong. Please try again.', notFound:'Invitation link is not valid.',
       openApp:'Open in the app', getApp:'Install the app', until:'Until {d}',
       keepLink:'Save this link to return to your portion later.', copy:'Copy link', copied:'Copied',
  zHead:'Recitations in this circle', zOf:'{a} of {b}', zMine:'Your contribution: {n}', zAdd:'Add to the count', zMemberOnly:'For circle members', zTargetOnly:'Target {n} each', zSession:'Counted in this session', zSubmit:'Add my count', zNone:'This circle has no shared recitation yet.', zDone:'Your count has been added.', zReached:'Target reached.', zZero:'Count first, then add it.', bNext:'Next open portion', bHowMany:'How many chapters will you read?', bAllTaken:'Every chapter has an owner right now.', dHead:'Portions not finished in time', dLead:'These portions were left unfinished. Take one and the recitation is completed.', dTake:'Take this on', dWait:'The portions have been shared out. Whatever is left unfinished opens up here on {d}.', dNone:'Every portion has an owner right now.', dBab:'Chapter {a}-{b}', dBabCount:'{p} chapters', ebCevsen:'Intention of this Jawshan', ongoingCevsen:'The Jawshan is being recited.', nAsk:'Add your name?', nWhy:'The circle will see who took this on. You can skip this — it changes nothing.', nPh:'Your name (optional)', nSave:'Save', nSkip:'Skip', nEdit:'Name', nClear:'Remove name', nSaved:'Saved.', privacy:'Privacy', terms:'Terms', arrow:'→' },
@@ -482,7 +483,7 @@
       none:'Şu anda alınabilecek bölüm yok.', closed:'Bu hatim kapandı.',
       quota:'Şu an 40 sayfan açık. Aldıklarını tamamladıkça yenilerini alabilirsin.',
       taken:'Bu bölüm az önce alındı, sana başka bir bölüm verelim.',
-      amountLbl:'Ne kadar okuyacaksın?', heroEyebrow:'Hatim niyeti', ebZikir:'Zikir niyeti', ebDua:'Dua niyeti', myLbl:'Aldığın bölümler', markDone:'Tamamladım', dropIt:'Kaldır', sure:'Emin misin?', doneMark:'Tamamlandı', gone:'Bu hatim artık mevcut değil.', slow:'Çok fazla deneme oldu. Biraz bekleyip tekrar dene.', error:'Bir şeyler ters gitti. Tekrar dener misin?', notFound:'Davet bağlantısı geçerli değil.',
+      amountLbl:'Ne kadar okuyacaksın?', heroEyebrow:'Hatim niyeti', ebZikir:'Zikir niyeti', ebDua:'Dua niyeti', myLbl:'Aldığın bölümler', markDone:'Tamamladım', dropIt:'Kaldır', sure:'Emin misin?', doneMark:'Tamamlandı', gone:'Bu hatim artık mevcut değil.', slow:'Çok fazla deneme oldu. Biraz bekleyip tekrar dene.', verify:'Güvenlik doğrulaması tamamlanamadı. Sayfayı yenileyip tekrar dene.', error:'Bir şeyler ters gitti. Tekrar dener misin?', notFound:'Davet bağlantısı geçerli değil.',
       openApp:'Uygulamada aç', getApp:'Uygulamayı indir', until:'{d} tarihine kadar',
       keepLink:'Bölümüne sonra dönmek için bu bağlantıyı kaydet.', copy:'Bağlantıyı kopyala', copied:'Kopyalandı',
  zHead:'Halkadaki zikirler', zOf:'{b} hedefin {a} tanesi', zMine:'Senin katkın: {n}', zAdd:'Sayıma katıl', zMemberOnly:'Halka üyeleri için', zTargetOnly:'Kişi başı {n}', zSession:'Bu oturumda saydığın', zSubmit:'Katkımı ekle', zNone:'Bu halkada henüz ortak zikir yok.', zDone:'Katkın eklendi.', zReached:'Hedefe ulaşıldı.', zZero:'Önce say, sonra ekle.', bNext:'Sıradaki boş bölüm', bHowMany:'Kaç bab okuyacaksın?', bAllTaken:'Şu anda bütün babların sahibi var.', dHead:'Yetişmeyen paylar', dLead:'Bu paylar yarım kaldı. Birini üstlenirsen hatim tamamlanır.', dTake:'Bunu üstlen', dWait:'Paylar dağıtıldı. Yetişmeyenler {d} tarihinde burada açılır.', dNone:'Şu anda bütün payların sahibi var.', dBab:'{a}-{b}. Bab', dBabCount:'{p} bab', ebCevsen:'Cevşen niyeti', ongoingCevsen:'Cevşen okunuyor.', nAsk:'Adını yazmak ister misin?', nWhy:'Halkadakiler bunu kimin üstlendiğini görsün diye. Boş bırakabilirsin, hiçbir şey değişmez.', nPh:'Adın (isteğe bağlı)', nSave:'Kaydet', nSkip:'Geç', nEdit:'Ad', nClear:'Adı kaldır', nSaved:'Kaydedildi.', privacy:'Gizlilik', terms:'Şartlar', arrow:'→' },
@@ -499,7 +500,7 @@
       none:'Zurzeit ist kein Abschnitt verfügbar.', closed:'Diese Chatma ist beendet.',
       quota:'Du hast gerade 40 Seiten offen. Markiere sie als gelesen, um weitere zu nehmen.',
       taken:'Dieser Abschnitt wurde gerade vergeben. Wir geben dir einen anderen.',
-      amountLbl:'Wie viel wirst du lesen?', heroEyebrow:'Absicht dieser Chatma', ebZikir:'Absicht dieses Dhikr', ebDua:'Absicht dieses Gebets', myLbl:'Deine Abschnitte', markDone:'Ich habe ihn gelesen', dropIt:'Entfernen', sure:'Sicher?', doneMark:'Gelesen', gone:'Diese Chatma ist nicht mehr verfügbar.', slow:'Zu viele Versuche. Warte kurz und versuche es erneut.', error:'Etwas ist schiefgelaufen. Bitte versuche es erneut.', notFound:'Einladungslink ist ungültig.',
+      amountLbl:'Wie viel wirst du lesen?', heroEyebrow:'Absicht dieser Chatma', ebZikir:'Absicht dieses Dhikr', ebDua:'Absicht dieses Gebets', myLbl:'Deine Abschnitte', markDone:'Ich habe ihn gelesen', dropIt:'Entfernen', sure:'Sicher?', doneMark:'Gelesen', gone:'Diese Chatma ist nicht mehr verfügbar.', slow:'Zu viele Versuche. Warte kurz und versuche es erneut.', verify:'Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Lade die Seite neu und versuche es erneut.', error:'Etwas ist schiefgelaufen. Bitte versuche es erneut.', notFound:'Einladungslink ist ungültig.',
       openApp:'In der App öffnen', getApp:'App installieren', until:'Bis {d}',
       keepLink:'Speichere diesen Link, um später zu deinem Abschnitt zurückzukehren.', copy:'Link kopieren', copied:'Kopiert',
  zHead:'Gebete in diesem Kreis', zOf:'{a} von {b}', zMine:'Dein Beitrag: {n}', zAdd:'Mitzählen', zMemberOnly:'Für Kreismitglieder', zTargetOnly:'Je {n} pro Person', zSession:'In dieser Sitzung gezählt', zSubmit:'Beitrag hinzufügen', zNone:'Dieser Kreis hat noch kein gemeinsames Gebet.', zDone:'Dein Beitrag wurde hinzugefügt.', zReached:'Ziel erreicht.', zZero:'Zähle zuerst, dann füge hinzu.', bNext:'Nächster freier Abschnitt', bHowMany:'Wie viele Kapitel wirst du lesen?', bAllTaken:'Zurzeit hat jedes Kapitel einen Leser.', dHead:'Nicht rechtzeitig gelesene Abschnitte', dLead:'Diese Abschnitte blieben offen. Übernimm einen, dann wird die Chatma vollendet.', dTake:'Übernehmen', dWait:'Die Abschnitte sind verteilt. Was offen bleibt, wird am {d} hier freigegeben.', dNone:'Zurzeit hat jeder Abschnitt einen Leser.', dBab:'Kapitel {a}-{b}', dBabCount:'{p} Kapitel', ebCevsen:'Absicht dieses Dschauschan', ongoingCevsen:'Das Dschauschan wird gelesen.', nAsk:'Möchtest du deinen Namen angeben?', nWhy:'Damit der Kreis sieht, wer das übernommen hat. Du kannst es auch lassen — es ändert nichts.', nPh:'Dein Name (optional)', nSave:'Speichern', nSkip:'Überspringen', nEdit:'Name', nClear:'Namen entfernen', nSaved:'Gespeichert.', privacy:'Datenschutz', terms:'Nutzungsbedingungen', arrow:'→' },
@@ -516,7 +517,7 @@
       none:'Aucune portion disponible pour le moment.', closed:'Cette khatma est terminée.',
       quota:'Tu as 40 pages en cours. Marque-les comme terminées pour en prendre d’autres.',
       taken:'Cette portion vient d’être prise. Nous t’en donnons une autre.',
-      amountLbl:'Combien vas-tu lire ?', heroEyebrow:'Intention de cette khatma', ebZikir:'Intention de ce dhikr', ebDua:'Intention de cette invocation', myLbl:'Tes portions', markDone:'Je l’ai terminée', dropIt:'Retirer', sure:'Sûr ?', doneMark:'Terminée', gone:'Cette khatma n’est plus disponible.', slow:'Trop de tentatives. Patiente un instant et réessaie.', error:'Une erreur est survenue. Réessaie.', notFound:'Le lien d’invitation n’est pas valide.',
+      amountLbl:'Combien vas-tu lire ?', heroEyebrow:'Intention de cette khatma', ebZikir:'Intention de ce dhikr', ebDua:'Intention de cette invocation', myLbl:'Tes portions', markDone:'Je l’ai terminée', dropIt:'Retirer', sure:'Sûr ?', doneMark:'Terminée', gone:'Cette khatma n’est plus disponible.', slow:'Trop de tentatives. Patiente un instant et réessaie.', verify:'La vérification de sécurité n’a pas pu aboutir. Recharge la page et réessaie.', error:'Une erreur est survenue. Réessaie.', notFound:'Le lien d’invitation n’est pas valide.',
       openApp:'Ouvrir dans l’application', getApp:'Installer l’application', until:'Jusqu’au {d}',
       keepLink:'Enregistre ce lien pour revenir à ta portion plus tard.', copy:'Copier le lien', copied:'Copié',
  zHead:'Invocations de ce cercle', zOf:'{a} sur {b}', zMine:'Ta contribution : {n}', zAdd:'Participer au décompte', zMemberOnly:'Pour les membres du cercle', zTargetOnly:'{n} par personne', zSession:'Compté dans cette session', zSubmit:'Ajouter mon décompte', zNone:'Ce cercle n’a pas encore d’invocation commune.', zDone:'Ta contribution a été ajoutée.', zReached:'Objectif atteint.', zZero:'Compte d’abord, puis ajoute.', bNext:'Prochaine portion libre', bHowMany:'Combien de chapitres vas-tu lire ?', bAllTaken:'Chaque chapitre a un lecteur pour le moment.', dHead:'Portions restées inachevées', dLead:'Ces portions sont restées en suspens. Prends-en une et la khatma s’achève.', dTake:'Prendre celle-ci', dWait:'Les portions sont réparties. Ce qui reste inachevé s’ouvrira ici le {d}.', dNone:'Chaque portion a un lecteur pour le moment.', dBab:'Chapitre {a}-{b}', dBabCount:'{p} chapitres', ebCevsen:'Intention de ce Jawshan', ongoingCevsen:'Le Jawshan est en cours de lecture.', nAsk:'Veux-tu indiquer ton nom ?', nWhy:'Pour que le cercle voie qui s’en est chargé. Tu peux passer — cela ne change rien.', nPh:'Ton nom (facultatif)', nSave:'Enregistrer', nSkip:'Passer', nEdit:'Nom', nClear:'Retirer le nom', nSaved:'Enregistré.', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
@@ -533,7 +534,7 @@
       none:'.لا يوجد جزء متاح الآن', closed:'.انتهت هذه الختمة',
       quota:'.لديك 40 صفحة مفتوحة الآن. أتمّها لتأخذ المزيد',
       taken:'.أُخذ هذا الجزء للتو، سنعطيك جزءًا آخر',
-      amountLbl:'كم ستقرأ؟', heroEyebrow:'نية هذه الختمة', ebZikir:'نية هذا الذكر', ebDua:'نية هذا الدعاء', myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟', doneMark:'تم', gone:'.لم تعد هذه الختمة متاحة', slow:'.محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة', error:'.حدث خطأ ما. حاول مرة أخرى', notFound:'.رابط الدعوة غير صالح',
+      amountLbl:'كم ستقرأ؟', heroEyebrow:'نية هذه الختمة', ebZikir:'نية هذا الذكر', ebDua:'نية هذا الدعاء', myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟', doneMark:'تم', gone:'.لم تعد هذه الختمة متاحة', slow:'.محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة', verify:'.تعذّر إكمال التحقق الأمني. أعد تحميل الصفحة ثم حاول مرة أخرى', error:'.حدث خطأ ما. حاول مرة أخرى', notFound:'.رابط الدعوة غير صالح',
       openApp:'افتح في التطبيق', getApp:'ثبّت التطبيق', until:'حتى {d}',
       keepLink:'.احفظ هذا الرابط للعودة إلى جزئك لاحقًا', copy:'انسخ الرابط', copied:'تم النسخ',
  zHead:'أذكار هذه الحلقة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}', zAdd:'شارك في العدّ', zMemberOnly:'لأعضاء الحلقة', zTargetOnly:'{n} لكل شخص', zSession:'ما عددته في هذه الجلسة', zSubmit:'أضف عدّي', zNone:'.لا يوجد ذكر مشترك في هذه الحلقة بعد', zDone:'.تمت إضافة مشاركتك', zReached:'.تم بلوغ الهدف', zZero:'.عُدّ أولاً ثم أضف', bNext:'الجزء المتاح التالي', bHowMany:'كم بابًا ستقرأ؟', bAllTaken:'.كل باب له قارئ في الوقت الحالي', dHead:'أجزاء لم تُنجَز', dLead:'.بقيت هذه الأجزاء دون إتمام. خذ واحدًا منها فتكتمل الختمة', dTake:'أتكفّل بهذا', dWait:'.وُزّعت الأجزاء. وما لم يُنجَز يُفتَح هنا في {d}', dNone:'.كل جزء له قارئ في الوقت الحالي', dBab:'الباب {a}-{b}', dBabCount:'{p} بابًا', ebCevsen:'نية هذا الجوشن', ongoingCevsen:'.الجوشن قيد القراءة', nAsk:'أتحبّ أن تكتب اسمك؟', nWhy:'.ليرى أهل الحلقة من تكفّل بهذا. ولك أن تتركه، فلا يتغيّر شيء', nPh:'(اسمك (اختياري', nSave:'حفظ', nSkip:'تخطٍّ', nEdit:'الاسم', nClear:'إزالة الاسم', nSaved:'.تم الحفظ', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
@@ -643,16 +644,34 @@
   }
 
   // ── Sunucu ────────────────────────────────────────────────────────────────
-  function call(action, extra) {
+  // Bot doğrulaması (js/mh-turnstile.js) YALNIZ bu eylemlerde istenir.
+  // ⚠️ Liste sunucudakiyle AYNI olmalı: supabase/functions/guest-event/index.ts
+  // `isWrite`. Burada eksik kalan bir eylem, secret açılınca 403 alır.
+  var WRITE_ACTIONS = { lease:1, commit:1, zikir_contribute:1, claim_unit:1, set_name:1 };
+
+  function call(action, extra, retried) {
     var body = Object.assign({ action: action, web_token: webToken }, extra || {});
     if (guestToken) body.guest_token = guestToken;
-    return fetch(FN, {
-      method: 'POST',
-      headers: { 'Content-Type':'application/json', 'apikey':SUPA_ANON,
-                 'Authorization':'Bearer ' + SUPA_ANON },
-      body: JSON.stringify(body)
+    var ts = window.MHTurnstile;
+    var needs = !!(WRITE_ACTIONS[action] && ts && ts.enabled());
+    return (needs ? ts.token() : Promise.resolve(undefined)).then(function (tk) {
+      if (tk) body.turnstile = tk;
+      return fetch(FN, {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json', 'apikey':SUPA_ANON,
+                   'Authorization':'Bearer ' + SUPA_ANON },
+        body: JSON.stringify(body)
+      });
     }).then(function (r) {
       return r.json().then(function (j) { return { status:r.status, body:j }; });
+    }).then(function (res) {
+      // Jeton süresi dolmuş ya da ağda gecikmiş olabilir: taze jetonla BİR kez
+      // daha dene. İkincisi de düşerse kullanıcıya `verify` metni gösterilir.
+      if (needs && !retried && res.status === 403 && res.body &&
+          res.body.error === 'verification_failed') {
+        return call(action, extra, true);
+      }
+      return res;
     });
   }
 
@@ -670,6 +689,7 @@
     if (code === 'closed')        return [T.closed, false];
     if (code === 'not_found')     return [T.gone, false];
     if (code === 'rate_limited')  return [T.slow, false];
+    if (code === 'verification_failed') return [T.verify, false];
     return [T.error, false];
   }
 

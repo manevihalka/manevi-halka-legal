@@ -60,7 +60,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'How much will you read?',
       myLbl:'Your portions', markDone:'I finished it', dropIt:'Remove', sure:'Sure?',
       doneMark:'Finished', pastCycle:'From an earlier recitation',
-      gone:'This is not available right now.', slow:'Too many attempts. Please wait a moment and try again.',
+      gone:'This is not available right now.', slow:'Too many attempts. Please wait a moment and try again.', verify:'The security check could not be completed. Reload the page and try again.',
       error:'Something went wrong. Please try again.',
       getApp:'Get the app', until:'Until {d}',
       keepLink:'Save this link to return to your portions later.', copy:'Copy link', copied:'Copied',
@@ -92,7 +92,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'Ne kadar okuyacaksın?',
       myLbl:'Aldığın bölümler', markDone:'Tamamladım', dropIt:'Kaldır', sure:'Emin misin?',
       doneMark:'Tamamlandı', pastCycle:'Önceki hatimden',
-      gone:'Bu şu anda mevcut değil.', slow:'Çok fazla deneme oldu. Biraz bekleyip tekrar dene.',
+      gone:'Bu şu anda mevcut değil.', slow:'Çok fazla deneme oldu. Biraz bekleyip tekrar dene.', verify:'Güvenlik doğrulaması tamamlanamadı. Sayfayı yenileyip tekrar dene.',
       error:'Bir şeyler ters gitti. Tekrar dener misin?',
       getApp:'Uygulamayı indir', until:'{d} tarihine kadar',
       keepLink:'Bölümlerine sonra dönmek için bu bağlantıyı kaydet.', copy:'Bağlantıyı kopyala', copied:'Kopyalandı',
@@ -124,7 +124,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'Wie viel wirst du lesen?',
       myLbl:'Deine Abschnitte', markDone:'Ich habe ihn gelesen', dropIt:'Entfernen', sure:'Sicher?',
       doneMark:'Gelesen', pastCycle:'Aus einer früheren Chatma',
-      gone:'Das ist zurzeit nicht verfügbar.', slow:'Zu viele Versuche. Warte kurz und versuche es erneut.',
+      gone:'Das ist zurzeit nicht verfügbar.', slow:'Zu viele Versuche. Warte kurz und versuche es erneut.', verify:'Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Lade die Seite neu und versuche es erneut.',
       error:'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
       getApp:'App installieren', until:'Bis {d}',
       keepLink:'Speichere diesen Link, um später zu deinen Abschnitten zurückzukehren.', copy:'Link kopieren', copied:'Kopiert',
@@ -156,7 +156,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'Combien vas-tu lire ?',
       myLbl:'Tes portions', markDone:'Je l’ai terminée', dropIt:'Retirer', sure:'Sûr ?',
       doneMark:'Terminée', pastCycle:'D’une khatma précédente',
-      gone:'Ceci n’est pas disponible pour le moment.', slow:'Trop de tentatives. Patiente un instant et réessaie.',
+      gone:'Ceci n’est pas disponible pour le moment.', slow:'Trop de tentatives. Patiente un instant et réessaie.', verify:'La vérification de sécurité n’a pas pu aboutir. Recharge la page et réessaie.',
       error:'Une erreur est survenue. Réessaie.',
       getApp:'Installer l’application', until:'Jusqu’au {d}',
       keepLink:'Enregistre ce lien pour revenir à tes portions plus tard.', copy:'Copier le lien', copied:'Copié',
@@ -188,7 +188,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'كم ستقرأ؟',
       myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟',
       doneMark:'تم', pastCycle:'من ختمة سابقة',
-      gone:'.غير متاح حاليًا', slow:'.محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة',
+      gone:'.غير متاح حاليًا', slow:'.محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة', verify:'.تعذّر إكمال التحقق الأمني. أعد تحميل الصفحة ثم حاول مرة أخرى',
       error:'.حدث خطأ ما. حاول مرة أخرى',
       getApp:'ثبّت التطبيق', until:'حتى {d}',
       keepLink:'.احفظ هذا الرابط للعودة إلى أجزائك لاحقًا', copy:'انسخ الرابط', copied:'تم النسخ',
@@ -321,16 +321,33 @@ window.MHOrtakHatim = (function () {
 
   // ── Sunucu ────────────────────────────────────────────────────────────────
   // ⚠️ halka.html'den fark: burada `web_token` YOK. Kaynağı `type` seçer.
-  function call(action, extra) {
+  // Bot doğrulaması (js/mh-turnstile.js) YALNIZ bu eylemlerde istenir.
+  // ⚠️ Liste sunucudakiyle AYNI olmalı: supabase/functions/guest-global/index.ts
+  // `WRITE_ACTIONS`. Burada eksik kalan bir eylem, secret açılınca 403 alır.
+  var WRITE_ACTIONS = { commit:1, confirm:1, drop:1, dhikr_contribute:1 };
+
+  function call(action, extra, retried) {
     var body = Object.assign({ action: action }, extra || {});
     if (guestToken) body.guest_token = guestToken;
-    return fetch(FN, {
-      method: 'POST',
-      headers: { 'Content-Type':'application/json', 'apikey':SUPA_ANON,
-                 'Authorization':'Bearer ' + SUPA_ANON },
-      body: JSON.stringify(body)
+    var ts = window.MHTurnstile;
+    var needs = !!(WRITE_ACTIONS[action] && ts && ts.enabled());
+    return (needs ? ts.token() : Promise.resolve(undefined)).then(function (tk) {
+      if (tk) body.turnstile = tk;
+      return fetch(FN, {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json', 'apikey':SUPA_ANON,
+                   'Authorization':'Bearer ' + SUPA_ANON },
+        body: JSON.stringify(body)
+      });
     }).then(function (r) {
       return r.json().then(function (j) { return { status:r.status, body:j }; });
+    }).then(function (res) {
+      // Jeton süresi dolmuş olabilir: taze jetonla BİR kez daha dene.
+      if (needs && !retried && res.status === 403 && res.body &&
+          res.body.error === 'verification_failed') {
+        return call(action, extra, true);
+      }
+      return res;
     });
   }
 
@@ -347,6 +364,7 @@ window.MHOrtakHatim = (function () {
     if (code === 'not_found')     return [T.gone, false];
     if (code === 'claim_gone')    return [T.gone, true];
     if (code === 'rate_limited')  return [T.slow, false];
+    if (code === 'verification_failed') return [T.verify, false];
     return [T.error, false];
   }
 

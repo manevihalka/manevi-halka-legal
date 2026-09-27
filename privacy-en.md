@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** September 26, 2026
+**Last updated:** September 28, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -145,8 +145,20 @@ following:
 
 **Not collected:** email, phone number, account, location. A name is taken only
 if you type one. The page carries
-**no** advertising, analytics or tracking tools, and makes no request to any third
-party (every file it uses is served from our own servers).
+**no** advertising, analytics or tracking tools. While you view or read the page,
+no request goes to any third party (every file it uses is served from our own
+servers).
+
+**Bot check (Cloudflare Turnstile):** Only at the moment you contribute (taking on
+a portion, marking it complete, adding to a shared dhikr count or entering a
+name) does the page run Cloudflare's verification service to tell automated
+programs apart from real people. Your browser then connects to Cloudflare, which
+processes your IP address, browser information (such as the User-Agent) and the
+site on which the check runs. Usually you see nothing; if something looks
+suspicious, a checkbox may appear. For this purpose Cloudflare may store strictly
+necessary technical data on its own domain, and it also uses these signals, under
+its own responsibility, to improve its bot detection. Details:
+[Cloudflare Turnstile privacy addendum](https://www.cloudflare.com/turnstile-privacy-policy/).
 
 If you gave no name, the circle's administrator and members **cannot see who you
 are**; they only see that the portion was taken on, or that a contribution was
@@ -197,6 +209,7 @@ We use the following third-party services to provide our service:
 | **Sentry** ([privacy](https://sentry.io/privacy/)) | Error reporting, crash tracking | Anonymous error logs, stack traces, device/OS info |
 | **PostHog** ([privacy](https://posthog.com/privacy)) | Product analytics (opt-out available) | Anonymous usage events (no PII), hosted on EU servers |
 | **Quran Foundation** ([privacy](https://quran.com/privacy)) | Recitation audio (reciter list and verse audio files) | Audio files download directly to your device from Quran Foundation and quranicaudio.com servers; these servers see your IP address and the requested file. No account information is sent; the reciter list is fetched anonymously through our server |
+| **Cloudflare Turnstile** ([privacy](https://www.cloudflare.com/turnstile-privacy-policy/)) | Bot check when contributing on manevihalka.app | IP address, browser information (User-Agent, TLS fingerprint), site name; only at the moment you contribute on the website |
 
 ---
 
@@ -309,6 +322,9 @@ Deleting your account or uninstalling the app removes this data.
 cookies, but stores **a single value** in your browser's local storage: the random
 identifier described above (section 2.4). Nothing is written for analytics or
 advertising. Clearing your browser's site data also removes this value.
+The Cloudflare check that runs when you contribute may store strictly necessary
+technical data on its own domain (challenges.cloudflare.com) for bot detection
+(section 2.4).
 
 ---
 
