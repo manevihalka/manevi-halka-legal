@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1e4d35">
+<meta name="description" content="Manevi Halka: app, website and social accounts in one place.">
+<meta property="og:title" content="Manevi Halka">
+<meta property="og:description" content="App, website and social accounts in one place.">
+<meta property="og:image" content="https://manevihalka.app/og-cover.jpg">
+<meta property="og:url" content="https://manevihalka.app/links">
+<title>Manevi Halka</title>
+<link rel="icon" type="image/png" href="/icon.png">
+<script>
+  /* Bağlantı sayfası (manevihalka.app/links): uygulama, site ve sosyal hesaplar tek yerde.
+     Sosyal medyada ya da mesajla paylaşmak için. /indir'den farkı: kimseyi mağazaya
+     OTOMATİK götürmez, her şeyi gösterir. Takip, çerez, üçüncü taraf betik YOK.
+     ?utm_source=... Google Play kurulum kaynağına aktarılır (varsayılan "links"). */
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var clean = function (v, d) { return ((v || d) + '').replace(/[^A-Za-z0-9._-]/g, '').slice(0, 40) || d; };
+    var src = clean(q.get('utm_source'), 'links');
+    window.MH_STORE = {
+      ios: 'https://apps.apple.com/app/manevi-halka/id6760654292',
+      android: 'https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=' +
+        encodeURIComponent('utm_source=' + src + '&utm_medium=links&utm_campaign=links')
+    };
+    var ua = navigator.userAgent || '';
+    var ios = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    window.MH_PLATFORM = ios ? 'ios' : (/Android/.test(ua) ? 'android' : 'other');
+  })();
+</script>
+<style>
+  :root { --bg:#f2f6f3; --card:#ffffff; --text:#1f2937; --muted:#5b6b63; --green:#1e4d35; --pill:#1e4d35;
+    --row:#f5f9f6; --row-hover:#eaf2ec; --edge:#dfe9e2; --ic:#1e4d35; --ic-bg:#e3efe7; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0f1714; --card:#17221d; --text:#e6f0ea; --muted:#9fb3a9; --green:#8fd1ae; --pill:#2e7a52;
+      --row:#1c2923; --row-hover:#22332b; --edge:#24342d; --ic:#8fd1ae; --ic-bg:#223a2e; }
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { min-height:100vh; display:flex; justify-content:center; padding:32px 16px;
+    background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  .card { width:100%; max-width:440px; height:max-content; background:var(--card); border:1px solid var(--edge);
+    border-radius:24px; padding:36px 24px 24px; text-align:center; box-shadow:0 20px 60px rgba(30,77,53,.12); }
+  .icon { width:84px; height:84px; margin:0 auto 16px; display:block; border-radius:20px; }
+  h1 { font-size:26px; font-weight:800; color:var(--green); letter-spacing:-.3px; margin-bottom:8px; }
+  .tag { font-size:15px; line-height:1.55; color:var(--muted); margin:0 auto 26px; max-width:340px; }
+  .label { font-size:12px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted);
+    margin:26px 0 10px; text-align:start; }
+  .label:first-of-type { margin-top:0; }
+  .stores { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .store { display:flex; align-items:center; gap:10px; padding:12px 14px; background:var(--pill); color:#fff;
+    border-radius:14px; text-decoration:none; text-align:start; }
+  .store svg { width:24px; height:24px; flex-shrink:0; fill:currentColor; }
+  .store .small { display:block; font-size:11px; opacity:.85; }
+  .store .big { display:block; font-size:16px; font-weight:700; line-height:1.2; }
+  .list { display:flex; flex-direction:column; gap:8px; }
+  .row { display:flex; align-items:center; gap:14px; padding:12px 14px; background:var(--row); border-radius:14px;
+    color:var(--text); text-decoration:none; text-align:start; transition:background .15s; }
+  .row:hover { background:var(--row-hover); }
+  .row .ic { width:38px; height:38px; border-radius:11px; background:var(--ic-bg); color:var(--ic);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .row .ic svg { width:19px; height:19px; }
+  .row .name { font-size:15px; font-weight:650; }
+  .row .sub { display:block; font-size:13px; color:var(--muted); margin-top:1px; direction:ltr; unicode-bidi:isolate; }
+  .row .chev { margin-inline-start:auto; color:var(--muted); width:16px; height:16px; flex-shrink:0; }
+  [dir="rtl"] .row .chev { transform:scaleX(-1); }
+  .store:focus-visible, .row:focus-visible { outline:2px solid var(--green); outline-offset:3px; }
+  .note { margin-top:22px; font-size:13px; color:var(--muted); }
+  /* Telefonda iki düğme yan yana sığmıyor ve kartı genişletiyordu: alt alta. */
+  @media (max-width:440px) { .stores { grid-template-columns:1fr; } .store { justify-content:center; } }
+  /* Harf aralığı Arapça harf bağlarını koparır. */
+  [dir="rtl"] .label { letter-spacing:0; }
+</style>
+</head>
+<body>
+<main class="card">
+  <img class="icon" src="/email/icon.png" width="84" height="84" alt="Manevi Halka">
+  <h1>Manevi Halka</h1>
+  <p class="tag" id="tag">Circles that come together in the Qur’an, du’a, dhikr and good deeds.</p>
+
+  <p class="label" id="lApp">Get the app</p>
+  <div class="stores" id="stores">
+    <a class="store" id="iosBtn" href="https://apps.apple.com/app/manevi-halka/id6760654292">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg>
+      <span><span class="small" data-t="get">Download</span><span class="big">App Store</span></span>
+    </a>
+    <a class="store" id="androidBtn" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg>
+      <span><span class="small" data-t="get">Download</span><span class="big">Google Play</span></span>
+    </a>
+  </div>
+
+  <p class="label" id="lFollow">Follow us</p>
+  <div class="list">
+    <a class="row" href="https://www.instagram.com/manevihalkaapp">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+      <span><span class="name">Instagram</span><span class="sub">@manevihalkaapp</span></span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="row" href="https://www.tiktok.com/@manevihalkaapp">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.3 6.3 0 1 0 5.3 6.2V8.6a7.6 7.6 0 0 0 4.4 1.4V6.7A4.4 4.4 0 0 1 16.6 2z"/></svg></span>
+      <span><span class="name">TikTok</span><span class="sub">@manevihalkaapp</span></span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="row" href="https://www.youtube.com/@manevihalkaapp">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></span>
+      <span><span class="name">YouTube</span><span class="sub">@manevihalkaapp</span></span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="row" href="https://x.com/ManeviHalkaApp">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.2h3.7l-8 9.2 9.4 12.5h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9 6.1-6.9zm-1.3 19.5h2L6.5 3.2H4.3l13.3 17.5z"/></svg></span>
+      <span><span class="name">X</span><span class="sub">@ManeviHalkaApp</span></span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="row" href="https://www.facebook.com/manevihalkaapp">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg></span>
+      <span><span class="name">Facebook</span><span class="sub">manevihalkaapp</span></span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <p class="label" id="lMore">More</p>
+  <div class="list">
+    <a class="row" href="/">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></span>
+      <span><span class="name" id="nSite">Website</span><span class="sub">manevihalka.app</span></span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="row" href="mailto:support@manevihalka.app">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></span>
+      <span><span class="name" id="nMail">Contact</span><span class="sub">support@manevihalka.app</span></span>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <p class="note" id="note">Free · No ads · 5 languages</p>
+</main>
+<script>
+  (function () {
+    var S = {
+      en: { tag: 'Circles that come together in the Qur’an, du’a, dhikr and good deeds.', app: 'Get the app', follow: 'Follow us', more: 'More', site: 'Website', mail: 'Contact', get: 'Download', note: 'Free · No ads · 5 languages' },
+      tr: { tag: 'Kur’an’da, duada, zikirde ve güzel amellerde buluşan halkalar.', app: 'Uygulamayı indir', follow: 'Bizi takip et', more: 'Diğer', site: 'Web sitesi', mail: 'İletişim', get: 'İndir', note: 'Ücretsiz · Reklamsız · 5 dilde' },
+      de: { tag: 'Kreise, die in Koran, Dua, Dhikr und guten Taten zusammenkommen.', app: 'App herunterladen', follow: 'Folge uns', more: 'Mehr', site: 'Website', mail: 'Kontakt', get: 'Laden', note: 'Kostenlos · Werbefrei · 5 Sprachen' },
+      fr: { tag: 'Des cercles réunis autour du Coran, des invocations, du dhikr et des bonnes actions.', app: 'Télécharger l’app', follow: 'Suis-nous', more: 'Plus', site: 'Site web', mail: 'Contact', get: 'Télécharger', note: 'Gratuit · Sans publicité · 5 langues' },
+      ar: { tag: 'حلقات تجتمع على القرآن والدعاء والذكر والعمل الصالح.', app: 'حمّل التطبيق', follow: 'تابعنا', more: 'المزيد', site: 'الموقع', mail: 'تواصل معنا', get: 'حمّل', note: 'مجاني · بلا إعلانات · 5 لغات' }
+    };
+    var q = new URLSearchParams(location.search);
+    var lang = (q.get('lang') || navigator.language || 'en').slice(0, 2).toLowerCase();
+    if (!S[lang]) lang = 'en';
+    var T = S[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    var set = function (id, v) { document.getElementById(id).textContent = v; };
+    set('tag', T.tag); set('lApp', T.app); set('lFollow', T.follow); set('lMore', T.more);
+    set('nSite', T.site); set('nMail', T.mail); set('note', T.note);
+    [].forEach.call(document.querySelectorAll('[data-t="get"]'), function (el) { el.textContent = T.get; });
+    var st = window.MH_STORE;
+    document.getElementById('iosBtn').href = st.ios;
+    document.getElementById('androidBtn').href = st.android;
+    // Telefonda kişinin kendi mağazası solda/önde; öteki de görünür kalır (paylaşılan sayfa).
+    if (window.MH_PLATFORM === 'android') {
+      var s = document.getElementById('stores');
+      s.insertBefore(document.getElementById('androidBtn'), document.getElementById('iosBtn'));
+    }
+  })();
+</script>
+</body>
+</html>
