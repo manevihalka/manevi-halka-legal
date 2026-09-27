@@ -276,7 +276,13 @@ window.MHOrtakHatim = (function () {
   // sunucu tarafında hiçbir şey gerekmiyor.
   var PAGE_URL = '/ortak-okuma.html';
   var TABS = ['zikir', 'hatim'];
+  // ⚠️ SEKME ADI SUNUCU TÜRÜ DEĞİLDİR. Sunucu yalnız 'quran' | 'cevsen' kabul eder
+  // (web_global_offer/commit). 9 Eyl 2026'da sekme 'quran' -> 'hatim' adını aldı,
+  // offer/commit ise `type: tab` göndermeye devam etti ve her bölüm alma
+  // 'invalid range' ile düştü (28 Eyl 2026'da bulundu). Tür yalnız buradan okunur.
+  var HATIM_TYPE = 'quran';
   var tab = params.get('t');
+  if (tab === 'quran') tab = 'hatim';   // 9 Eyl öncesi paylaşılmış bağlantılar
   if (TABS.indexOf(tab) < 0) tab = 'zikir';
 
   var REFS = null, NAMES = null;
@@ -863,7 +869,7 @@ window.MHOrtakHatim = (function () {
    */
   function loadBoard() {
     return Promise.all([
-      call('board', { type: 'quran' }),
+      call('board', { type: HATIM_TYPE }),
       call('dhikr_list', {})
     ]).then(function (rs) {
       var b = rs[0], d = rs[1];
@@ -884,7 +890,7 @@ window.MHOrtakHatim = (function () {
   function pickGroup(g) {
     if (busy) return;
     busy = true;
-    call('offer', { type: tab, group: g }).then(function (r) {
+    call('offer', { type: HATIM_TYPE, group: g }).then(function (r) {
       busy = false;
       if (r.status === 200 && r.body.ok && r.body.offer) {
         offer = r.body.offer; chosenLen = null; renderConfirm();
@@ -901,7 +907,7 @@ window.MHOrtakHatim = (function () {
     busy = true;
     ensureGuest();
     var endU = offer.start + (chosenLen || (offer.end - offer.start + 1)) - 1;
-    call('commit', { type: tab, start: offer.start, end: endU, locale: lang })
+    call('commit', { type: HATIM_TYPE, start: offer.start, end: endU, locale: lang })
       .then(function (r) {
         busy = false;
         if (r.status === 200 && r.body.ok) { renderDone(r.body.claim); loadBoard(); return; }
