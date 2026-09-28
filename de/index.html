@@ -1,31 +1,114 @@
 <!DOCTYPE html>
-<html lang="{{lang}}" dir="{{dir}}">
+<!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: _gen/home.src.html + _gen/site-i18n.js
+     Uretici: node _gen/build-home.mjs · dil=de -->
+<html lang="de" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<!-- ⚠️ BU DOSYA URETILIR, ELLE DUZENLEME. Kaynak _gen/app.src.html, uretici
-     `node _gen/build-app.mjs` (5 dil: /app/ Ingilizce taban, /tr/app/, /de/app/,
-     /fr/app/, /ar/app/). Metinler uretecin sozlugunden; magaza ve politika
-     baglantilari ortak sozlukten (_gen/site-i18n.js) sokulur.
-     Ana sayfadan ("Uygulamayi yakindan tani" + altbilgi) baglanir, site
-     haritasinda. Ekranlar bir sonraki surumun arayuzunden (28 Eyl 2026 karari:
-     site bir sonraki surum yayindaymis gibi hazirlanir). -->
-<title>{{title}}</title>
-<meta name="description" content="{{desc}}">
-<link rel="canonical" href="{{canonical}}">
-{{hreflangHtml}}
-<meta property="og:title" content="{{title}}">
-<meta property="og:description" content="{{desc}}">
-<meta property="og:image" content="https://manevihalka.app/og-cover-{{lang}}.jpg">
+<!-- KAYNAK SABLON: ana sayfa, 5 dil (adresler _gen/site-urls.mjs EV: /, /tr/, /de/, /fr/, /ar/).
+     Uretici: `node _gen/build-home.mjs`. Metinler ureticinin sozlugunden; magaza ve
+     politika baglantilari ortak sozlukten (_gen/site-i18n.js) sokulur.
+     28 Eyl 2026 (kullanici karari): ana sayfa uygulama tanitimi; namaz vakitleri
+     kendi sayfasinda (_gen/build-vakit.mjs), burada yalniz en ustte canli bir serit.
+     Baslik, aciklama, canonical, hreflang, OG, Bing ve yapisal veri uretici yazar
+     (asagidaki yer tutucu). Agustos 2026 marka aramasi dususunun dersi: marka adi
+     baslikta ve h1'de kalir, statik metin bos birakilmaz. -->
+<title>Manevi Halka: Chatma, Dhikr und Gebetszeiten</title>
+<meta name="description" id="metaDesc" content="Teile die Dschus in deinem Kreis, lest reihum und vollendet die Chatma gemeinsam. Gebetszeiten nach dem Diyanet-Kalender, Qibla, Dhikr-Zähler und Bittgebete in einer App.">
+<link rel="canonical" href="https://manevihalka.app/de/">
+<link rel="alternate" hreflang="tr" href="https://manevihalka.app/tr/">
+<link rel="alternate" hreflang="en" href="https://manevihalka.app/">
+<link rel="alternate" hreflang="de" href="https://manevihalka.app/de/">
+<link rel="alternate" hreflang="fr" href="https://manevihalka.app/fr/">
+<link rel="alternate" hreflang="ar" href="https://manevihalka.app/ar/">
+<link rel="alternate" hreflang="x-default" href="https://manevihalka.app/">
+<!-- Bing Webmaster Tools dogrulamasi (ayni jeton /BingSiteAuth.xml'de). Silme. -->
+<meta name="msvalidate.01" content="421BAE343948124460D5A58C05177ED3">
+<!-- iOS Safari'nin kendi kurulum seridi: uygulama kuruluysa "Ac" der. -->
+<meta name="apple-itunes-app" content="app-id=6760654292">
+<meta name="theme-color" content="#1e4d35">
+<!-- Seritteki vakitler bu alan adindan cekiliyor: el sikismayi erken baslat -->
+<link rel="preconnect" href="https://ezanvakti.emushaf.net" crossorigin>
+<link rel="dns-prefetch" href="https://ezanvakti.emushaf.net">
+<meta property="og:title" content="Manevi Halka: Chatma, Dhikr und Gebetszeiten">
+<meta property="og:description" content="Teile die Dschus in deinem Kreis, lest reihum und vollendet die Chatma gemeinsam. Gebetszeiten nach dem Diyanet-Kalender, Qibla, Dhikr-Zähler und Bittgebete in einer App.">
+<meta property="og:url" content="https://manevihalka.app/de/">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta property="og:image" content="https://manevihalka.app/og-cover-de.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="{{canonical}}">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="{{ogLocale}}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1e4d35">
 <link rel="icon" type="image/png" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://manevihalka.app/de/#page",
+      "url": "https://manevihalka.app/de/",
+      "name": "Manevi Halka: Chatma, Dhikr und Gebetszeiten",
+      "description": "Teile die Dschus in deinem Kreis, lest reihum und vollendet die Chatma gemeinsam. Gebetszeiten nach dem Diyanet-Kalender, Qibla, Dhikr-Zähler und Bittgebete in einer App.",
+      "inLanguage": "de",
+      "isPartOf": {
+        "@id": "https://manevihalka.app/#site"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://manevihalka.app/#org",
+      "name": "Manevi Halka",
+      "url": "https://manevihalka.app/",
+      "logo": "https://manevihalka.app/icon.png",
+      "email": "support@manevihalka.app"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://manevihalka.app/#site",
+      "url": "https://manevihalka.app/",
+      "name": "Manevi Halka",
+      "publisher": {
+        "@id": "https://manevihalka.app/#org"
+      },
+      "inLanguage": [
+        "tr",
+        "en",
+        "de",
+        "fr",
+        "ar"
+      ]
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://manevihalka.app/#app",
+      "name": "Manevi Halka",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "LifestyleApplication",
+      "url": "https://manevihalka.app/",
+      "image": "https://manevihalka.app/icon.png",
+      "description": "Shared Qur'an khatm and dhikr circles, with prayer times, qibla and a dhikr counter.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "publisher": {
+        "@id": "https://manevihalka.app/#org"
+      },
+      "sameAs": [
+        "https://apps.apple.com/app/manevi-halka/id6760654292",
+        "https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle"
+      ]
+    }
+  ]
+}
+</script>
 <script>
 (function () {
   var t = null;
@@ -384,50 +467,168 @@
   :root[dir="rtl"] .nav svg { transform: scaleX(-1); }
   :root[lang="ar"] .eyebrow, :root[lang="ar"] .verse .ref, :root[lang="ar"] .part span, :root[lang="ar"] .more-in small { letter-spacing: 0; }
   :root[lang="ar"] .hero h1 { line-height: 1.25; }
+  /* ── canli vakit seridi (en ustte, kaydirinca gider; vakit motoru js/mh-dynamic.js) ── */
+  /* Renkler SABIT: tema degiskeni --green koyu temada acik naneye doner, serit okunmaz olurdu */
+  .vstrip { display: block; background: #1e4d35; color: #f7f4ec; text-decoration: none; font-size: 13.5px; }
+  :root[data-theme="dark"] .vstrip { background: #173a2a; }
+  .vstrip .wrap { display: flex; align-items: center; gap: 10px; height: 38px; }
+  .vs-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #d2b273; box-shadow: 0 0 0 3px rgba(210, 178, 115, .25); }
+  .vs-city { font-weight: 700; white-space: nowrap; }
+  .vs-sep { opacity: .5; }
+  .vs-date, .vs-left { opacity: .85; white-space: nowrap; }
+  .vs-now { font-weight: 600; white-space: nowrap; margin-inline-start: auto; }
+  .vs-left { font-variant-numeric: tabular-nums; }
+  .vs-go { display: inline-flex; align-items: center; gap: 3px; margin-inline-start: 18px; color: #9fe3bf; font-weight: 700; white-space: nowrap; }
+  .vs-go svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  html[dir="rtl"] .vs-go svg { transform: scaleX(-1); }
+  .vs-go .short { display: none; }
+  .vstrip:hover .vs-go { text-decoration: underline; }
+  .vs-city { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  @media (max-width: 760px) {
+    .vstrip { font-size: 13px; }
+    .vstrip .wrap { gap: 7px; }
+    .vs-date, #vsSep2, .vs-now .t, .vs-left .l { display: none; }
+    .vs-now { margin-inline-start: 0; }
+    .vs-go { margin-inline-start: auto; padding-inline-start: 6px; }
+    .vs-go .long { display: none; }
+    .vs-go .short { display: inline; }
+  }
+  @media (max-width: 340px) { .vs-left, #vsSep3 { display: none; } }
+
+  /* ── marka satiri h1'in icinde (arama gorunurlugu: marka h1'de kalir) ── */
+  .hero h1 { margin-top: 0; }
+  .hero h1 .h1-brand { display: flex; width: fit-content; margin-bottom: 18px; font-family: var(--sans); line-height: 1.2; }
+  .hero h1 .h1-main { display: block; }
+  .ticks + .qlink { display: inline-block; margin-top: 16px; font-weight: 700; font-size: 14.5px; color: var(--green); text-decoration: none; }
+  .ticks + .qlink:hover { text-decoration: underline; }
+
+  /* ── altbilgi: takip blogu (sebep once, sonra ikonlar) ── */
+  footer .social { flex-basis: 100%; display: grid; justify-items: center; gap: 4px; padding-block: 8px 22px; text-align: center; border-bottom: 1px solid var(--line); margin-bottom: 6px; }
+  .social-title { font-family: var(--display); font-size: 22px; color: var(--ink); }
+  :root[lang="ar"] .social-title { font-family: inherit; font-weight: 700; }
+  .social-text { color: var(--body); font-size: 14.5px; }
+  .social-icons { display: flex; gap: 10px; margin-top: 10px; }
+  .social-icons a { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--green); background: var(--mint); border: 1px solid var(--line); transition: background .15s ease, color .15s ease; }
+  .social-icons a:hover { background: var(--green); color: var(--page); }
+  .social-icons svg { width: 19px; height: 19px; }
+
+  /* ── yuzen gezinme (28 Eyl 2026, kullanici onayi) ──
+     Masaustu: baslik kaybolunca ustte ince cubuk (menu + Indir; sayfa sonunda
+     Indir yerine "Basa don"). Telefon: ilk ekran gecilince altta cam hap
+     (bulunulan bolum + Indir), sayfa SONUNA KADAR kalir; magaza dugmeleri
+     gorununce Indir yerine "Basa don". Dokununca bolum listesi + iki ayri sayfa
+     (Namaz vakitleri, Ortak Okuma). Kenar paneli YOK (iOS/Android geri hareketi). */
+  .get-btn { display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--green); color: var(--page);
+    font: inherit; font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; cursor: pointer; }
+  .get-btn.soft { background: var(--mint); color: var(--green); }
+  .get-btn svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .get-btn[hidden] { display: none; }
+  .dock-top { position: fixed; top: 0; left: 0; right: 0; z-index: 60; transform: translateY(-110%); transition: transform .28s ease; color: var(--ink);
+    background: color-mix(in srgb, var(--page) 86%, transparent); -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
+    border-bottom: 1px solid var(--line); }
+  .dock-top.show { transform: none; }
+  .dock-top .wrap { display: flex; align-items: center; gap: 10px; height: 60px; }
+  .dock-top .brand { font-size: 19px; }
+  .dock-top .brand img { width: 28px; height: 28px; }
+  .dock-nav { display: flex; align-items: center; gap: 2px; margin-inline-start: auto; }
+  .dock-nav a { position: relative; padding: 8px 12px; border-radius: 999px; font-size: 14.5px; font-weight: 600; text-decoration: none; opacity: .8; }
+  .dock-nav a:hover { opacity: 1; background: var(--mint); }
+  .dock-nav a[aria-current="true"] { opacity: 1; }
+  .dock-nav a[aria-current="true"]::after { content: ""; position: absolute; inset-inline: 12px; bottom: 3px; height: 2px; border-radius: 2px; background: var(--gold); }
+  .dock-top .get-btn { margin-inline-start: 8px; }
+  @media (max-width: 979px) { .dock-top { display: none; } }
+  .dock-pill { position: fixed; z-index: 60; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 160%); transition: transform .3s ease;
+    display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: 999px; max-width: calc(100vw - 32px); color: var(--ink);
+    background: color-mix(in srgb, var(--paper) 88%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2);
+    border: 1px solid var(--line); box-shadow: 0 18px 40px -18px rgba(10, 30, 20, .5); }
+  .dock-pill.show { transform: translate(-50%, 0); }
+  .dp-sec { display: inline-flex; align-items: center; gap: 7px; height: 42px; min-width: 0; max-width: 52vw; padding: 0 12px 0 14px; border: 0; border-radius: 999px;
+    background: transparent; color: inherit; font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; }
+  .dp-sec span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dp-sec svg { width: 14px; height: 14px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .dock-pill .get-btn { height: 42px; }
+  @media (min-width: 980px) { .dock-pill { display: none; } }
+  .sec-sheet { position: fixed; inset: 0; z-index: 70; display: flex; align-items: flex-end; justify-content: center; background: rgba(6, 14, 11, .45);
+    opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease; }
+  .sec-sheet.open { opacity: 1; visibility: visible; }
+  .ss-panel { width: min(480px, calc(100% - 24px)); box-sizing: border-box; margin: 0 auto calc(12px + env(safe-area-inset-bottom, 0px)); padding: 10px; border-radius: 24px; background: var(--paper); color: var(--ink);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .4); transform: translateY(24px); transition: transform .25s ease; }
+  .sec-sheet.open .ss-panel { transform: none; }
+  .ss-title { padding: 8px 14px 6px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+  :root[lang="ar"] .ss-title { letter-spacing: 0; text-transform: none; font-size: 13.5px; }
+  .ss-panel > a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 50px; padding: 0 14px; border-radius: 14px;
+    font-size: 16.5px; font-weight: 600; color: inherit; text-decoration: none; }
+  .ss-panel > a[aria-current="true"] { background: var(--mint); }
+  .ss-panel > a small { margin-inline-start: 8px; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .ss-panel svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; opacity: .5; }
+  :root[dir="rtl"] .ss-panel > a > svg, :root[dir="rtl"] .ss-go svg { transform: scaleX(-1); }
+  .ss-rule { height: 1px; background: var(--line); margin: 8px 6px; }
+  .ss-panel a.ss-page { justify-content: flex-start; min-height: 60px; color: var(--green); }
+  .ss-ic { width: 36px; height: 36px; flex: none; border-radius: 11px; background: var(--mint); display: grid; place-items: center; }
+  .ss-ic svg { opacity: 1; width: 18px; height: 18px; }
+  .ss-txt { display: grid; gap: 1px; flex: 1 1 auto; }
+  .ss-txt b { font-size: 16px; }
+  .ss-txt span { font-size: 12.5px; font-weight: 500; color: var(--muted); }
+  #solo, #together, #faq, #download, #top { scroll-margin-top: 76px; }
+  @media (prefers-reduced-motion: reduce) { .dock-top, .dock-pill, .sec-sheet, .ss-panel { transition: none; } }
 </style>
 </head>
 <body>
+<a class="vstrip" id="vstrip" href="/de/gebetszeiten/">
+  <span class="wrap">
+    <span class="vs-dot" aria-hidden="true"></span>
+    <span class="vs-city" id="vsCity">Gebetszeiten</span>
+    <span class="vs-sep" id="vsSep1" aria-hidden="true" hidden>·</span>
+    <span class="vs-date" id="vsDate"></span>
+    <span class="vs-sep" id="vsSep2" aria-hidden="true" hidden>·</span>
+    <span class="vs-now" id="vsNow"></span>
+    <span class="vs-sep" id="vsSep3" aria-hidden="true" hidden>·</span>
+    <span class="vs-left" id="vsLeft"></span>
+    <span class="vs-go"><span class="long">Alle Gebetszeiten und der 30-Tage-Kalender</span><span class="short">Gebetszeiten</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+  </span>
+</a>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="{{homeHref}}"><img src="/icon.png" alt="" width="32" height="32"><span>Manevi Halka</span></a>
-    <nav aria-label="{{navAria}}">
-      <a href="#solo">{{navSolo}}</a>
-      <a href="#together">{{navTogether}}</a>
-      <a href="#faq">{{navFaq}}</a>
+    <a class="brand" href="/de/"><img src="/icon.png" alt="" width="32" height="32"><span>Manevi Halka</span></a>
+    <nav aria-label="Bereiche">
+      <a href="#solo">Allein</a>
+      <a href="#together">Gemeinsam</a>
+      <a href="/de/gebetszeiten/">Gebetszeiten</a>
+      <a href="/ortak-okuma.html">Gemeinsames Lesen</a>
+      <a href="#faq">Häufige Fragen</a>
     </nav>
-    <button type="button" class="theme-btn" id="themeBtn" aria-label="{{themeToDark}}">
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Zum dunklen Design wechseln">
       <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8 8 0 1 1 9.8 4a6.4 6.4 0 0 0 10.2 10.2z"/></svg>
       <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
     </button>
-    <a class="get" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">{{getApp}}</span><span class="gs">{{get}}</span></a>
+    <a class="get" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">App laden</span><span class="gs">Laden</span></a>
   </header>
 
   <!-- GIRIS -->
   <div class="hero" id="top">
     <div>
-      <span class="eyebrow"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>{{eyebrow}}</span>
-      <h1>{{h1a}} <em>{{h1b}}</em></h1>
-      <p class="lead">{{lead}}</p>
+      <h1><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">Allein <em>und gemeinsam.</em></span></h1>
+      <p class="lead">Bleib im Alltag bei Koran, Gebet, Dhikr, Auswendiglernen und Lesen. Und wenn du möchtest, gründe mit deinen Liebsten einen Kreis und kommt in guten Taten zusammen.</p>
       <div class="stores">
-        <a class="store" target="_blank" rel="noopener" data-store="ios" href="{{iosHref}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>{{get}}</small><b>App Store</b></span></a>
-        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="{{androidHero}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>{{get}}</small><b>Google Play</b></span></a>
+        <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>Laden</small><b>App Store</b></span></a>
+        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dhero-de"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>Laden</small><b>Google Play</b></span></a>
       </div>
       <ul class="trust">
-        <li><b>{{trust1b}}</b>{{trust1t}}</li>
-        <li><b>{{trust2b}}</b>{{trust2t}}</li>
-        <li><b>{{trust3b}}</b>{{trust3t}}</li>
-        <li><b>{{trust4b}}</b>{{trust4t}}</li>
+        <li><b>Keine Werbung</b>Dein Fokus bleibt beim Gebet</li>
+        <li><b>Anbetung ist kostenlos</b>Die Anbetung selbst, immer</li>
+        <li><b>Keine Vergleiche</b>Keine Ranglisten, Punkte oder Abzeichen</li>
+        <li><b>iPhone und Android</b>In 5 Sprachen</li>
       </ul>
     </div>
 
     <div class="showcase">
       <div class="stage" id="stage">
-        <button type="button" class="nav prev" id="prev" aria-label="{{prevAria}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button type="button" class="nav next" id="next" aria-label="{{nextAria}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        <button type="button" class="nav prev" id="prev" aria-label="Vorheriger Bildschirm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="nav next" id="next" aria-label="Nächster Bildschirm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
-      <div class="tabs" id="tabs" role="tablist" aria-label="{{tabsAria}}"></div>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Bildschirme"></div>
       <p class="scap" id="scap" aria-live="polite"></p>
-      <noscript><p class="scap">{{noscript}}</p></noscript>
+      <noscript><p class="scap">Aktiviere JavaScript, um die Bildschirme der App zu sehen.</p></noscript>
     </div>
   </div>
 
@@ -435,72 +636,73 @@
   <div class="verse">
     <svg class="vmark" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 5.24"/><circle cx="14" cy="14" r="6.2" fill="none" stroke="currentColor" stroke-width="1" opacity=".6"/></svg>
     <p class="ar" lang="ar">وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوٰى وَلَا تَعَاوَنُوا عَلَى الْاِثْمِ وَالْعُدْوَانِ</p>
-    <p class="meal">{{verseMeal}}</p>
-    <p class="ref">{{verseRef}}</p>
-    <p class="purpose">{{purpose}}</p>
+    <p class="meal">Der Koran ruft dazu auf, einander in Güte und Gottesfurcht beizustehen und einander nicht in Sünde und Feindschaft zu helfen.</p>
+    <p class="ref">Sure al-Ma'ida 5:2, sinngemäß</p>
+    <p class="purpose">Manevi Halka wurde geschaffen, um diese gegenseitige Hilfe leichter zu machen.</p>
   </div>
 
   <!-- TEK BASINA -->
   <section id="solo">
     <div class="sec-head">
-      <span class="eyebrow">{{soloKicker}}</span>
-      <h2>{{soloTitle}}</h2>
-      <p>{{soloText}}</p>
+      <span class="eyebrow">Allein</span>
+      <h2>Begleitet deine tägliche Andacht</h2>
+      <p>Manevi Halka ist nicht nur für gemeinsames Lesen da, sondern begleitet dich auch in der Andacht jedes Tages.</p>
     </div>
     <ul class="areas">
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-1.6-1.4-4-2-7-2v13c3 0 5.4.6 7 2 1.6-1.4 4-2 7-2v-13c-3 0-5.4.6-7 2z"/><path d="M12 6.5v13"/></svg></span><div><b>{{area1t}}</b><span>{{area1d}}</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>{{area2t}}</b><span>{{area2d}}</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><div><b>{{area3t}}</b><span>{{area3d}}</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/><path d="M9.5 10l2 2 3.5-3.5"/></svg></span><div><b>{{area4t}}</b><span>{{area4d}}</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4z"/><path d="M15.5 5.5l3.6-1 3.2 14.6-3.6 1z"/></svg></span><div><b>{{area5t}}</b><span>{{area5d}}</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c2-6 4-9 7-9s5-3 7-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="4" r="1.6"/></svg></span><div><b>{{area6t}}</b><span>{{area6d}}</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-1.6-1.4-4-2-7-2v13c3 0 5.4.6 7 2 1.6-1.4 4-2 7-2v-13c-3 0-5.4.6-7 2z"/><path d="M12 6.5v13"/></svg></span><div><b>Koran</b><span>Der Mushaf, Übersetzung und Rezitation von drei Rezitatoren.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Gebet</b><span>Gebetszeiten, Benachrichtigungen, Widgets, Qibla und religiöse Tage.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><div><b>Dhikr und Bittgebet</b><span>Dhikr-Zähler, Tasbihat, Awrad und prophetische Bittgebete.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/><path d="M9.5 10l2 2 3.5-3.5"/></svg></span><div><b>Auswendiglernen</b><span>Suren und Verse lernen, mit Wiederholung in Abständen.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4z"/><path d="M15.5 5.5l3.6-1 3.2 14.6-3.6 1z"/></svg></span><div><b>Bücherregal</b><span>Deine eigenen PDF- und EPUB-Bücher und Notizen.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c2-6 4-9 7-9s5-3 7-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="4" r="1.6"/></svg></span><div><b>Mein Weg</b><span>Blick auf deinen eigenen Weg zurück, ohne Vergleich.</span></div></li>
     </ul>
 
     <div class="rows">
       <div class="row">
         <div>
-          <span class="eyebrow">{{qKicker}}</span>
-          <h3>{{qTitle}}</h3>
-          <p>{{qText}}</p>
-          <ul class="ticks"><li>{{qT1}}</li><li>{{qT2}}</li><li>{{qT3}}</li></ul>
+          <span class="eyebrow">Koran</span>
+          <h3>Lesen, hören, lernen.</h3>
+          <p>Lies den Koran in deinem eigenen Rhythmus. Beim Zuhören wird jedes Wort markiert.</p>
+          <ul class="ticks"><li>Rezitation von drei Rezitatoren, Wort für Wort mitverfolgt</li><li>Lernmodus, Notizen und Lesezeichen</li><li>Suren oder Dschuz herunterladen und offline hören</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="{{imgBase}}quran.webp" alt="{{altQuran}}" width="640" height="1391" loading="lazy"></figure>
-          <div class="note"><b>Mishary Alafasy</b>{{qNote}}</div></div>
+        <div class="row-visual"><figure class="phone"><img src="/img/app/de/quran.webp" alt="Koran-Leser, Sure Al-Mulk, Rezitation läuft" width="640" height="1391" loading="lazy"></figure>
+          <div class="note"><b>Mishary Alafasy</b>Al-Mulk · Vers 2 läuft</div></div>
       </div>
       <div class="row">
         <div>
-          <span class="eyebrow">{{pKicker}}</span>
-          <h3>{{pTitle}}</h3>
-          <p>{{pText}}</p>
-          <ul class="ticks"><li>{{pT1}}</li><li>{{pT2}}</li><li>{{pT3}}</li></ul>
+          <span class="eyebrow">Gebet</span>
+          <h3>Mitten in deinem Tag.</h3>
+          <p>Gebetszeiten und Qibla in 106 Ländern. Du erfährst, wann jede Gebetszeit beginnt.</p>
+          <ul class="ticks"><li>Benachrichtigung zu Beginn jeder Gebetszeit und vor ihrem Ende</li><li>Widgets für Start- und Sperrbildschirm</li><li>Markiere deine Gebete und freiwilligen Gebete, nur für dich</li></ul>
+          <a class="qlink" href="/de/gebetszeiten/">Die heutigen Gebetszeiten</a>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="{{imgBase}}vakit.webp" alt="{{altVakit}}" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual"><figure class="phone"><img src="/img/app/de/vakit.webp" alt="Gebetszeiten, Berlin" width="640" height="1391" loading="lazy"></figure></div>
       </div>
     </div>
   </section>
 
   <!-- BIRLIKTE -->
   <section id="together">
-    <div class="part"><span>{{togKicker}}</span></div>
+    <div class="part"><span>Gemeinsam</span></div>
     <div class="sec-head center">
-      <h2>{{togTitle}}</h2>
-      <p>{{togText}}</p>
+      <h2>Gründe einen Kreis</h2>
+      <p>Koran-, Dhikr- und Buchkreise mit Familie, Freunden oder Gemeinde. Das Aufteilen und den Überblick übernimmt Manevi Halka.</p>
     </div>
     <ol class="steps">
-      <li><span class="bead">1</span><h3>{{st1t}}</h3><p>{{st1d}}</p></li>
-      <li><span class="bead">2</span><h3>{{st2t}}</h3><p>{{st2d}}</p></li>
-      <li><span class="bead">3</span><h3>{{st3t}}</h3><p>{{st3d}}</p></li>
+      <li><span class="bead">1</span><h3>Kreis anlegen</h3><p>Wähle, was gelesen wird und wie viele Tage eine Runde dauert.</p></li>
+      <li><span class="bead">2</span><h3>Link teilen</h3><p>Schick den Einladungslink, wer darauf tippt, ist im Kreis.</p></li>
+      <li><span class="bead">3</span><h3>Gemeinsam lesen</h3><p>Die Abschnitte werden verteilt, wer dran ist, wird benachrichtigt. Wer nicht hinterherkommt, kann um Hilfe bitten.</p></li>
     </ol>
 
     <div class="rows">
       <div class="row">
         <div>
-          <span class="eyebrow">{{hKicker}}</span>
-          <h3>{{hTitle}}</h3>
-          <p>{{hText}}</p>
-          <ul class="ticks"><li>{{hT1}}</li><li>{{hT2}}</li><li>{{hT3}}</li></ul>
+          <span class="eyebrow">Gemeinsame Chatma</span>
+          <h3>Die Verteilung übernimmt die App.</h3>
+          <p>Die Runden laufen regelmäßig weiter, und du siehst auf einen Blick, wer welchen Dschuz liest.</p>
+          <ul class="ticks"><li>Die Abschnitte werden jede Runde automatisch verteilt</li><li>Wer nicht hinterherkommt, kann seinen Teil in den Pool geben</li><li>Mentor-Modus: Wer den Kreis gründet, kann einfach begleiten</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="{{imgBase}}halka.webp" alt="{{altHalka}}" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual"><figure class="phone"><img src="/img/app/de/halka.webp" alt="Familien-Chatma, Kreis-Ansicht: vier Mitglieder und ihre Dschuz" width="640" height="1391" loading="lazy"></figure></div>
       </div>
     </div>
   </section>
@@ -508,22 +710,22 @@
   <section id="vesile">
     <div class="band">
       <div>
-        <span class="eyebrow">{{vKicker}}</span>
-        <h2>{{vTitle}}</h2>
-        <p>{{vText}}</p>
+        <span class="eyebrow">Einmaliger Kreis</span>
+        <h2>Kommt zu einem Anlass zusammen.</h2>
+        <p>Gründe einen einmaligen Kreis für eine gesegnete Nacht, für einen Verstorbenen oder mit der Absicht der Heilung. Wer den Einladungslink bekommt, kann auch ohne App im Browser einen Teil übernehmen.</p>
         <ul class="ticks">
-          <li>{{vT1}}</li>
-          <li>{{vT2}}</li>
-          <li>{{vT3}}</li>
+          <li>Mitmachen im Browser, ohne Konto</li>
+          <li>Jeder nimmt sich den Dschuz, den er möchte</li>
+          <li>Live sehen, wie viele gerade lesen</li>
         </ul>
       </div>
       <div class="band-visual">
-        <figure class="phone"><img src="{{imgBase}}vesile.webp" alt="{{altVesile}}" width="640" height="1391"></figure>
+        <figure class="phone"><img src="/img/app/de/vesile.webp" alt="Einmaliger Kreis: Chatma zur gesegneten Nacht, gemeinsamer Fortschritt und Dschuz-Pool" width="640" height="1391"></figure>
         <div class="webcard" aria-hidden="true">
           <span class="url"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>manevihalka.app/halka</span>
-          <b>{{wcTitle}}</b>
-          <div class="row"><span>{{wcJuz}}</span><span class="go">{{wcRead}}</span></div>
-          <small>{{wcNote}}</small>
+          <b>Chatma zur gesegneten Nacht</b>
+          <div class="row"><span>Dschuz 7</span><span class="go">Lesen</span></div>
+          <small>Keine App nötig</small>
         </div>
       </div>
     </div>
@@ -533,25 +735,25 @@
     <div class="rows" style="margin-top:0">
       <div class="row">
         <div>
-          <span class="eyebrow">{{aKicker}}</span>
-          <h3>{{aTitle}}</h3>
-          <p>{{aText}}</p>
-          <ul class="ticks"><li>{{aT1}}</li><li>{{aT2}}</li><li>{{aT3}}</li></ul>
+          <span class="eyebrow">Gemeinsame Praxis</span>
+          <h3>Ermutigung statt Vergleich.</h3>
+          <p>Halte die fünf Gebete, das Auswendiglernen oder ein Bittgebet gemeinsam mit deinem Kreis durch. Jeder markiert seinen eigenen Tag.</p>
+          <ul class="ticks"><li>Keine Ranglisten, Punkte oder Abzeichen</li><li>Sichtbarkeit von Anfang an klar: nur die Leitung oder gegenseitig</li><li>Erinnerungen nach deinem Zeitplan</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="{{imgBase}}amel.webp" alt="{{altAmel}}" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual"><figure class="phone"><img src="/img/app/de/amel.webp" alt="Gemeinsame Praxis: alle 5 Gebete, Fadschr und Dhuhr markiert" width="640" height="1391" loading="lazy"></figure></div>
       </div>
     </div>
     <div class="quiet">
       <article>
-        <span class="eyebrow">{{gKicker}}</span>
-        <h3>{{gTitle}}</h3>
-        <p>{{gText}}</p>
-        <a class="qlink" href="/ortak-okuma.html">{{gLink}}</a>
+        <span class="eyebrow">Gemeinsames Lesen</span>
+        <h3>Von verschiedenen Orten, mit einer Absicht.</h3>
+        <p>Mach bei der laufenden gemeinsamen Chatma und beim gemeinsamen Dhikr mit Lesenden aus aller Welt mit.</p>
+        <a class="qlink" href="/ortak-okuma.html">Im Browser mitmachen</a>
       </article>
       <article>
-        <span class="eyebrow">{{jKicker}}</span>
-        <h3>{{jTitle}}</h3>
-        <p>{{jText}}</p>
+        <span class="eyebrow">Mein Weg</span>
+        <h3>Was dir gehört, bleibt bei dir.</h3>
+        <p>Sieh für dich, was du gelesen hast, und die Erinnerungen deines spirituellen Weges. Es geht nicht um Vergleich, sondern darum, dich an deinen eigenen Weg zu erinnern.</p>
       </article>
     </div>
   </section>
@@ -560,16 +762,16 @@
   <section id="faq">
     <div class="faq">
       <div class="sec-head">
-        <span class="eyebrow">{{faqKicker}}</span>
-        <h2>{{faqTitle}}</h2>
-        <p>{{faqText}}</p>
+        <span class="eyebrow">Häufige Fragen</span>
+        <h2>Bevor du anfängst</h2>
+        <p>Noch eine Frage? Schreib an support@manevihalka.app.</p>
       </div>
       <div>
-        <details open><summary>{{q1}}</summary><p>{{a1}}</p></details>
-        <details><summary>{{q2}}</summary><p>{{a2}}</p></details>
-        <details><summary>{{q3}}</summary><p>{{a3}}</p></details>
-        <details><summary>{{q4}}</summary><p>{{a4}}</p></details>
-        <details><summary>{{q5}}</summary><p>{{a5}}</p></details>
+        <details open><summary>Ist es kostenlos?</summary><p>Ja. Die Anbetung selbst ist immer kostenlos: Koran, Gebetszeiten, Dhikr, Bittgebete und das Mitmachen in Kreisen. Einige zusätzliche Annehmlichkeiten sind optional.</p></details>
+        <details><summary>Brauche ich ein Konto?</summary><p>Nein. Öffne die App und leg sofort los. Wenn du möchtest, sicherst du dein Konto später mit Apple, Google oder E-Mail.</p></details>
+        <details><summary>Kann jemand ohne App mitmachen?</summary><p>In einmaligen Kreisen ja. Wer auf den Einladungslink tippt, kann im Browser einen Dschuz übernehmen und lesen.</p></details>
+        <details><summary>Welcher Mushaf wird verwendet?</summary><p>Der Mushaf des türkischen Präsidiums für Religionsangelegenheiten (Diyanet), mit Übersetzung und Rezitation von drei Rezitatoren.</p></details>
+        <details><summary>Läuft es auf iPhone und Android?</summary><p>Auf beiden. Die App gibt es auf Türkisch, Englisch, Deutsch, Französisch und Arabisch.</p></details>
       </div>
     </div>
   </section>
@@ -578,26 +780,71 @@
   <section id="download">
     <div class="closing">
       <svg class="ring-close" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 19.27"/></svg>
-      <p class="meal">{{closeLine}}</p>
-      <p class="purpose">{{closeSub}}</p>
+      <p class="meal">Fang allein an oder gründe einen Kreis mit deinen Liebsten.</p>
+      <p class="purpose">Lade Manevi Halka kostenlos herunter.</p>
       <div class="stores">
-        <a class="store" target="_blank" rel="noopener" data-store="ios" href="{{iosHref}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>{{get}}</small><b>App Store</b></span></a>
-        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="{{androidClose}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>{{get}}</small><b>Google Play</b></span></a>
+        <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>Laden</small><b>App Store</b></span></a>
+        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dclose-de"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>Laden</small><b>Google Play</b></span></a>
       </div>
     </div>
   </section>
 
   <footer>
+    <div class="social">
+      <p class="social-title">Bleib mit dem Kreis verbunden</p>
+      <p class="social-text">Jeden Morgen der Vers des Tages, Erinnerungen in den gesegneten Nächten.</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/manevihalkaapp" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.youtube.com/@manevihalkaapp" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+        <a href="https://x.com/ManeviHalkaApp" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.2h3.7l-8 9.2 9.4 12.5h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9 6.1-6.9zm-1.3 19.5h2L6.5 3.2H4.3l13.3 17.5z"/></svg></a>
+        <a href="https://www.facebook.com/manevihalkaapp" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg></a>
+        <a href="https://whatsapp.com/channel/0029VbDM2z67IUYTITv3yY2V" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      </div>
+    </div>
     <span>© 2026 Manevi Halka</span>
-    <nav><a href="{{privacyHref}}">{{privacy}}</a><a href="{{termsHref}}">{{terms}}</a><a href="{{deleteHref}}">{{deleteAcc}}</a><a href="mailto:support@manevihalka.app">{{contact}}</a></nav>
-    <nav class="langs" aria-label="{{langAria}}">{{langsHtml}}</nav>
-    <p class="credit">{{creditHtml}}</p>
+    <nav><a href="/de/gebetszeiten/">Gebetszeiten</a><a href="/ortak-okuma.html">Gemeinsames Lesen</a><a href="/privacy-de.html">Datenschutzerklärung</a><a href="/terms-de.html">Nutzungsbedingungen</a><a href="/account-delete-de.html">Kontolöschung</a><a href="mailto:support@manevihalka.app">Kontakt</a></nav>
+    <nav class="langs" aria-label="Sprache"><a href="/tr/" hreflang="tr" lang="tr">Türkçe</a><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de" aria-current="page">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
+    <p class="credit"></p>
   </footer>
 </div>
 
+<div class="dock-top" id="dockTop" aria-hidden="true" inert>
+  <div class="wrap">
+    <a class="brand" href="#top" data-sec="top" tabindex="-1"><img src="/icon.png" alt="" width="28" height="28"><span>Manevi Halka</span></a>
+    <nav class="dock-nav" aria-label="Bereiche">
+      <a href="#solo" data-sec="solo">Allein</a>
+      <a href="#together" data-sec="together">Gemeinsam</a>
+      <a href="/de/gebetszeiten/">Gebetszeiten</a>
+      <a href="/ortak-okuma.html">Gemeinsames Lesen</a>
+      <a href="#faq" data-sec="faq">Häufige Fragen</a>
+    </nav>
+    <a class="get-btn" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>Laden</span></a>
+    <a class="get-btn soft" href="#top" data-sec="top" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span>Nach oben</span></a>
+  </div>
+</div>
+
+<div class="dock-pill" id="dockPill" aria-hidden="true" inert>
+  <button type="button" class="get-btn soft" id="dpTop" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span>Nach oben</span></button>
+  <button type="button" class="dp-sec" id="dpSec" aria-haspopup="dialog" aria-controls="secSheet"><span id="dpLabel">Allein</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+  <a class="get-btn" id="dpGet" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>Laden</span></a>
+</div>
+
+<div class="sec-sheet" id="secSheet" role="dialog" aria-modal="true" aria-label="Auf dieser Seite" inert>
+  <div class="ss-panel">
+    <div class="ss-title">Auf dieser Seite</div>
+    <a href="#top" data-sec="top"><span>Anfang<small>ganz oben</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#solo" data-sec="solo"><span>Allein</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#together" data-sec="together"><span>Gemeinsam</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#faq" data-sec="faq"><span>Häufige Fragen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#download" data-sec="download"><span>Laden</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <div class="ss-rule"></div>
+    <a class="ss-page" href="/de/gebetszeiten/"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><span class="ss-txt"><b>Gebetszeiten</b><span>Heute und der 30-Tage-Kalender</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
+    <a class="ss-page" href="/ortak-okuma.html"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg></span><span class="ss-txt"><b>Gemeinsames Lesen</b><span>Gemeinsame Chatma und Dhikr mit Lesenden weltweit</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
+  </div>
+</div>
 
 <script>
-  var D = /*__DATA__*/null;
+  var D = {"lang":"de","rtl":false,"imgBase":"/img/app/de/","screens":[{"t":"Gebet","d":"Gebetszeiten über deinen Tag. Markiere für dich, was du gebetet hast.","img":"vakit.webp","alt":"Gebetszeiten, Berlin","ring":"day","rd":{"now":13.05,"pr":[{"n":"Fadschr","h":5.116666666666666,"done":1},{"sun":1,"h":6.916666666666667},{"n":"Dhuhr","h":13.033333333333333},{"n":"Asr","h":16.183333333333334},{"n":"Maghrib","h":19},{"n":"Ischa","h":20.566666666666666}]},"chips":[[13,76,"","Fadschr","verrichtet"],[18,12,"g","Asr","16:11"]]},{"t":"Koran","d":"Lesen, hören, lernen. Jedes Wort wird beim Vortrag markiert.","img":"quran.webp","alt":"Koran-Leser, Sure Al-Mulk, Rezitation läuft","ring":"verse","rd":{"label":"Al-Mulk · 30 Verse"},"chips":[[85,22,"g","Mishary Alafasy","läuft gerade"],[14,74,"","Al-Mulk","Vers 2"]]},{"t":"Kreis","d":"Eine Chatma mit deiner Familie. Wer welchen Dschuz liest, auf einen Blick.","img":"halka.webp","alt":"Familien-Chatma, Kreis-Ansicht: vier Mitglieder und ihre Dschuz","ring":"juz","rd":{},"chips":[[80,6,"g","Yusuf","liest Dschuz 3"],[16,90,"","4 Mitglieder:innen","1. Runde"]]},{"t":"Gemeinsame Praxis","d":"Die fünf Gebete mit deinem Kreis. Jeder markiert seinen eigenen Tag, ohne Vergleiche.","img":"amel.webp","alt":"Gemeinsame Praxis: alle 5 Gebete, Fadschr und Dhuhr markiert","ring":"week","rd":{"label":"Heute"},"chips":[[87,74,"","Heute","2 / 5"],[14,28,"g","Letzte 7 Tage","keine Ranglisten"]]},{"t":"Einmalig","d":"Eine Chatma für eine gesegnete Nacht: Jeder nimmt sich einen Dschuz, auch im Browser.","img":"vesile.webp","alt":"Einmaliger Kreis: Chatma zur gesegneten Nacht, gemeinsamer Fortschritt und Dschuz-Pool","ring":"pages","rd":{"label":"7 %"},"chips":[[86,20,"g","80 Seiten","in Arbeit"],[14,80,"","Ohne App","im Browser"]]},{"t":"Bücherregal","d":"Deine eigenen Bücher, deine Notizen und wo du stehen geblieben bist.","img":"kitaplik.webp","alt":"Bücherregal: deine eigenen Bücher","ring":"books","rd":{},"chips":[[86,78,"","PDF und EPUB",""],[14,24,"g","Notizen","im Buch"]]},{"t":"Mehr","d":"Vom Dhikr bis zur Qibla, vom Auswendiglernen bis zu Widgets. Alles weiter unten.","ring":"beads","chips":[],"more":{"small":"In Manevi Halka","title":"und vieles mehr","link":"Alle ansehen","list":["Dhikr-Zähler","Tasbihat","Gebetsprotokoll","Asma ul-Husna","Awrad, Bittgebete","Qibla","Religiöse Tage","Hifz","Widgets","Mein Weg"]}}],"aria":{"toDark":"Zum dunklen Design wechseln","toLight":"Zum hellen Design wechseln"},"links":{"ios":"https://apps.apple.com/app/manevi-halka/id6760654292","androidDock":"https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Ddock-de"},"strip":{"label":"Gebetszeiten"},"secName":{"top":"Anfang","solo":"Allein","together":"Gemeinsam","faq":"Häufige Fragen","download":"Laden"},"sections":"Bereiche"};
 
   // ── Tema: yeni tema dugmeden buyuyen bir daire olarak yayilir ──────────────
   (function () {
@@ -635,6 +882,126 @@
       if (ios) { a.href = D.links.ios; a.target = "_blank"; a.rel = "noopener"; }
       else if (android) { a.href = D.links.androidDock; a.target = "_blank"; a.rel = "noopener"; }
     });
+  })();
+
+
+  // ── Dil: altbilgideki dil baglantisi tercihi kaydeder (kok, tercihe gore yonlendirir) ──
+  [].forEach.call(document.querySelectorAll(".langs a[hreflang]"), function (a) {
+    a.addEventListener("click", function () { try { localStorage.setItem("mh_lang", a.getAttribute("hreflang")); } catch (e) { /* gizli mod */ } });
+  });
+
+  // ── Canli vakit seridi: js/mh-dynamic.js (MHPrayer) okunur, ikinci motor yok ──
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    function fmt(ms) {
+      var s = Math.max(0, Math.floor(ms / 1000)), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60;
+      return h + ":" + (m < 10 ? "0" : "") + m + ":" + (x < 10 ? "0" : "") + x;
+    }
+    function show(id, on) { $(id).hidden = !on; }
+    // "Yatsi 20:34" / "Vaktin cikmasina 7:40:08": ikinci parca telefonda gizlenebilsin diye ayri
+    function setParts(id, a, b) {
+      var el = $(id);
+      if (el.childElementCount !== 2) el.innerHTML = '<span class="n"></span> <span class="t"></span>';
+      if (id === "vsLeft") { el.firstElementChild.className = "l"; el.lastElementChild.className = "c"; }
+      el.firstElementChild.textContent = a;
+      el.lastElementChild.textContent = b;
+    }
+    function paint() {
+      if (!window.MHPrayer) return;
+      var s = window.MHPrayer.snapshot();
+      var ready = s.state === "ready" && !!s.headName;
+      $("vsCity").textContent = s.city || (s.state === "nocity" ? window.MHPrayer.text("chooseCity") : D.strip.label);
+      $("vsDate").textContent = D.strip.date || "";
+      if (!ready) {
+        $("vsNow").innerHTML = ""; $("vsLeft").innerHTML = "";
+        show("vsSep1", false); show("vsSep2", false); show("vsSep3", false);
+        return;
+      }
+      var row = null;
+      for (var i = 0; i < s.rows.length; i++) if (s.rows[i].key === s.headKey) row = s.rows[i];
+      setParts("vsNow", s.headName, row ? row.time : "");
+      if (s.targetAt != null) setParts("vsLeft", s.label || "", fmt(s.targetAt - Date.now()));
+      else $("vsLeft").textContent = "";
+      show("vsSep1", !!D.strip.date); show("vsSep2", !!D.strip.date); show("vsSep3", s.targetAt != null);
+    }
+    // Tarih: tarayicinin dilinde degil SAYFANIN dilinde
+    try {
+      D.strip.date = new Intl.DateTimeFormat(D.lang === "tr" ? "tr-TR" : D.lang, { day: "numeric", month: "long", weekday: "long" }).format(new Date());
+    } catch (e) { D.strip.date = ""; }
+    document.addEventListener("mh:prayer", paint);
+    setInterval(paint, 1000);
+    paint();
+  })();
+
+  // ── Yuzen gezinme: bolum casusu, masaustu cubugu, telefon hapi, bolum listesi ──
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var SECS = ["top", "solo", "together", "faq", "download"];
+    var secCur = "", tickQueued = false, sheetOpen = false, sheetReturn = null;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function setShown(el, on) {
+      if (el.classList.contains("show") === on) return;
+      el.classList.toggle("show", on);
+      el.setAttribute("aria-hidden", on ? "false" : "true");
+      if (on) el.removeAttribute("inert"); else el.setAttribute("inert", "");
+    }
+    function paintNav() {
+      [].forEach.call(document.querySelectorAll("[data-sec]"), function (a) {
+        if (a.closest(".dock-nav") || a.closest(".ss-panel")) a.setAttribute("aria-current", a.getAttribute("data-sec") === secCur ? "true" : "false");
+      });
+      $("dpLabel").textContent = D.secName[secCur] || D.secName.solo;
+    }
+    function spy() {
+      tickQueued = false;
+      var line = window.innerHeight * 0.35, c = "top";
+      for (var i = 0; i < SECS.length; i++) { var el = $(SECS[i]); if (el && el.getBoundingClientRect().top <= line) c = SECS[i]; }
+      if (c !== secCur) { secCur = c; paintNav(); }
+      var dl = $("download").getBoundingClientRect();
+      var atEnd = dl.top < window.innerHeight - 40;
+      var top = $("dockTop"), gets = top.querySelectorAll(".get-btn");
+      setShown(top, document.querySelector(".top").getBoundingClientRect().bottom < 0);
+      gets[0].hidden = atEnd; gets[1].hidden = !atEnd;
+      $("dpGet").hidden = atEnd; $("dpTop").hidden = !atEnd;
+      $("dpLabel").textContent = atEnd ? D.sections : (D.secName[secCur] || D.secName.solo);
+      setShown($("dockPill"), $("top").getBoundingClientRect().bottom < 40 && !sheetOpen);
+    }
+    function onScroll() { if (!tickQueued) { tickQueued = true; requestAnimationFrame(spy); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    function goSec(id) {
+      var el = $(id);
+      if (!el) return;
+      if (id === "top") window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      else el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    }
+    var sheet = $("secSheet");
+    function openSheet() {
+      sheetOpen = true; sheetReturn = document.activeElement;
+      sheet.classList.add("open"); sheet.removeAttribute("inert");
+      setShown($("dockPill"), false);
+      var first = sheet.querySelector('a[aria-current="true"]') || sheet.querySelector("a");
+      if (first) first.focus({ preventScroll: true });
+    }
+    function closeSheet() {
+      if (!sheetOpen) return;
+      sheetOpen = false;
+      sheet.classList.remove("open"); sheet.setAttribute("inert", "");
+      onScroll();
+      if (sheetReturn && sheetReturn.focus) sheetReturn.focus({ preventScroll: true });
+    }
+    $("dpSec").addEventListener("click", openSheet);
+    $("dpTop").addEventListener("click", function () { goSec("top"); });
+    sheet.addEventListener("click", function (e) { if (e.target === sheet) closeSheet(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("a[data-sec]");
+      if (!a) return;
+      e.preventDefault();
+      closeSheet();
+      goSec(a.getAttribute("data-sec"));
+    });
+    [].forEach.call(sheet.querySelectorAll("a.ss-page"), function (a) { a.addEventListener("click", closeSheet); });
+    spy();
   })();
 
   // ── Halkali ekran vitrini ────────────────────────────────────────────────
@@ -812,5 +1179,6 @@
     if (!reduce) raf = requestAnimationFrame(tick);
   })();
 </script>
+<script src="/js/mh-dynamic.js" defer></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: _gen/home.src.html + _gen/site-i18n.js
-     Uretici: node _gen/build-home.mjs · dil=en -->
-<html lang="en" dir="ltr">
+     Uretici: node _gen/build-home.mjs · dil=fr -->
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -13,18 +13,9 @@
      Baslik, aciklama, canonical, hreflang, OG, Bing ve yapisal veri uretici yazar
      (asagidaki yer tutucu). Agustos 2026 marka aramasi dususunun dersi: marka adi
      baslikta ve h1'de kalir, statik metin bos birakilmaz. -->
-<script>
-(function () {
-  var M = {"tr":"/tr/","de":"/de/","fr":"/fr/","ar":"/ar/"};
-  var l = null;
-  try { l = localStorage.getItem("mh_lang"); } catch (e) { /* gizli mod */ }
-  if (!l) { var n = (navigator.languages && navigator.languages[0]) || navigator.language || ""; l = String(n).slice(0, 2).toLowerCase(); }
-  if (M[l]) location.replace(M[l] + location.search + location.hash);
-})();
-</script>
-<title>Manevi Halka: shared Qur'an khatm, dhikr and prayer times</title>
-<meta name="description" id="metaDesc" content="Share the juz with your circle, read in turns and complete the khatm together. Prayer times from the Diyanet calendar, qibla, dhikr counter and duas, in one app for iPhone and Android.">
-<link rel="canonical" href="https://manevihalka.app/">
+<title>Manevi Halka : khatma, dhikr et heures de prière</title>
+<meta name="description" id="metaDesc" content="Répartis les juz dans ton cercle, lisez à tour de rôle et terminez la khatma ensemble. Heures de prière selon le calendrier de la Diyanet, qibla, compteur de dhikr et invocations dans une seule application.">
+<link rel="canonical" href="https://manevihalka.app/fr/">
 <link rel="alternate" hreflang="tr" href="https://manevihalka.app/tr/">
 <link rel="alternate" hreflang="en" href="https://manevihalka.app/">
 <link rel="alternate" hreflang="de" href="https://manevihalka.app/de/">
@@ -39,10 +30,15 @@
 <!-- Seritteki vakitler bu alan adindan cekiliyor: el sikismayi erken baslat -->
 <link rel="preconnect" href="https://ezanvakti.emushaf.net" crossorigin>
 <link rel="dns-prefetch" href="https://ezanvakti.emushaf.net">
-<meta property="og:title" content="Manevi Halka">
-<meta property="og:description" content="Build khatm and dhikr circles together. Prayer times, qibla and dhikr counter in one app.">
-<meta property="og:url" content="https://manevihalka.app">
-<meta property="og:image" content="https://manevihalka.app/og-cover-en.jpg">
+<meta property="og:title" content="Manevi Halka : khatma, dhikr et heures de prière">
+<meta property="og:description" content="Répartis les juz dans ton cercle, lisez à tour de rôle et terminez la khatma ensemble. Heures de prière selon le calendrier de la Diyanet, qibla, compteur de dhikr et invocations dans une seule application.">
+<meta property="og:url" content="https://manevihalka.app/fr/">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta property="og:image" content="https://manevihalka.app/og-cover-fr.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
@@ -53,6 +49,17 @@
 {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://manevihalka.app/fr/#page",
+      "url": "https://manevihalka.app/fr/",
+      "name": "Manevi Halka : khatma, dhikr et heures de prière",
+      "description": "Répartis les juz dans ton cercle, lisez à tour de rôle et terminez la khatma ensemble. Heures de prière selon le calendrier de la Diyanet, qibla, compteur de dhikr et invocations dans une seule application.",
+      "inLanguage": "fr",
+      "isPartOf": {
+        "@id": "https://manevihalka.app/#site"
+      }
+    },
     {
       "@type": "Organization",
       "@id": "https://manevihalka.app/#org",
@@ -567,61 +574,61 @@
 </style>
 </head>
 <body>
-<a class="vstrip" id="vstrip" href="/prayer-times/">
+<a class="vstrip" id="vstrip" href="/fr/horaires-de-priere/">
   <span class="wrap">
     <span class="vs-dot" aria-hidden="true"></span>
-    <span class="vs-city" id="vsCity">Prayer times</span>
+    <span class="vs-city" id="vsCity">Horaires de prière</span>
     <span class="vs-sep" id="vsSep1" aria-hidden="true" hidden>·</span>
     <span class="vs-date" id="vsDate"></span>
     <span class="vs-sep" id="vsSep2" aria-hidden="true" hidden>·</span>
     <span class="vs-now" id="vsNow"></span>
     <span class="vs-sep" id="vsSep3" aria-hidden="true" hidden>·</span>
     <span class="vs-left" id="vsLeft"></span>
-    <span class="vs-go"><span class="long">All prayer times and the 30-day calendar</span><span class="short">Prayer times</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+    <span class="vs-go"><span class="long">Tous les horaires et le calendrier de 30 jours</span><span class="short">Horaires</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
   </span>
 </a>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="/"><img src="/icon.png" alt="" width="32" height="32"><span>Manevi Halka</span></a>
+    <a class="brand" href="/fr/"><img src="/icon.png" alt="" width="32" height="32"><span>Manevi Halka</span></a>
     <nav aria-label="Sections">
-      <a href="#solo">On your own</a>
-      <a href="#together">Together</a>
-      <a href="/prayer-times/">Prayer times</a>
-      <a href="/ortak-okuma.html">Shared Reading</a>
-      <a href="#faq">FAQ</a>
+      <a href="#solo">Seul</a>
+      <a href="#together">Ensemble</a>
+      <a href="/fr/horaires-de-priere/">Horaires</a>
+      <a href="/ortak-okuma.html">Lecture commune</a>
+      <a href="#faq">Questions fréquentes</a>
     </nav>
-    <button type="button" class="theme-btn" id="themeBtn" aria-label="Switch to dark theme">
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Passer au thème sombre">
       <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8 8 0 1 1 9.8 4a6.4 6.4 0 0 0 10.2 10.2z"/></svg>
       <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
     </button>
-    <a class="get" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">Get the app</span><span class="gs">Download</span></a>
+    <a class="get" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">Télécharger</span><span class="gs">Télécharger</span></a>
   </header>
 
   <!-- GIRIS -->
   <div class="hero" id="top">
     <div>
-      <h1><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">On your own, <em>and together.</em></span></h1>
-      <p class="lead">Keep up your Quran, prayers, dhikr, memorisation and reading in daily life. And if you like, start a circle with your loved ones and meet in good deeds.</p>
+      <h1><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">Seul, <em>et ensemble.</em></span></h1>
+      <p class="lead">Garde au quotidien le Coran, la prière, le dhikr, la mémorisation et la lecture. Et si tu veux, crée un cercle avec tes proches pour vous retrouver dans les bonnes œuvres.</p>
       <div class="stores">
-        <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>Download</small><b>App Store</b></span></a>
-        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dhero-en"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>Download</small><b>Google Play</b></span></a>
+        <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>Télécharger</small><b>App Store</b></span></a>
+        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dhero-fr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>Télécharger</small><b>Google Play</b></span></a>
       </div>
       <ul class="trust">
-        <li><b>No ads</b>Your attention stays on worship</li>
-        <li><b>Worship is free</b>Worship itself, always</li>
-        <li><b>No comparisons</b>No rankings, points or badges</li>
-        <li><b>iPhone and Android</b>In 5 languages</li>
+        <li><b>Sans publicité</b>Ton attention reste sur l'adoration</li>
+        <li><b>L'adoration est gratuite</b>L'adoration elle-même, toujours</li>
+        <li><b>Aucune comparaison</b>Ni classement, ni points, ni badges</li>
+        <li><b>iPhone et Android</b>En 5 langues</li>
       </ul>
     </div>
 
     <div class="showcase">
       <div class="stage" id="stage">
-        <button type="button" class="nav prev" id="prev" aria-label="Previous screen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button type="button" class="nav next" id="next" aria-label="Next screen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        <button type="button" class="nav prev" id="prev" aria-label="Écran précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="nav next" id="next" aria-label="Écran suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
-      <div class="tabs" id="tabs" role="tablist" aria-label="Screens"></div>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Écrans"></div>
       <p class="scap" id="scap" aria-live="polite"></p>
-      <noscript><p class="scap">Turn on JavaScript to see the app's screens.</p></noscript>
+      <noscript><p class="scap">Active JavaScript pour voir les écrans de l'appli.</p></noscript>
     </div>
   </div>
 
@@ -629,73 +636,73 @@
   <div class="verse">
     <svg class="vmark" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 5.24"/><circle cx="14" cy="14" r="6.2" fill="none" stroke="currentColor" stroke-width="1" opacity=".6"/></svg>
     <p class="ar" lang="ar">وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوٰى وَلَا تَعَاوَنُوا عَلَى الْاِثْمِ وَالْعُدْوَانِ</p>
-    <p class="meal">And cooperate with one another in virtuous conduct and conscience, and do not cooperate with one another in sin and hostility.</p>
-    <p class="ref">Al-Ma'idah 5:2 (excerpt)</p>
-    <p class="purpose">Manevi Halka was built to make this cooperation easier.</p>
+    <p class="meal">Le Coran appelle à s'entraider dans le bien et la piété, et à ne pas s'entraider dans le péché et l'hostilité.</p>
+    <p class="ref">Sourate al-Ma'ida 5:2, en substance</p>
+    <p class="purpose">Manevi Halka a été créé pour faciliter cette entraide.</p>
   </div>
 
   <!-- TEK BASINA -->
   <section id="solo">
     <div class="sec-head">
-      <span class="eyebrow">On your own</span>
-      <h2>A companion to your daily worship</h2>
-      <p>Manevi Halka is not only for reading together; it is with you in each day's worship.</p>
+      <span class="eyebrow">Seul</span>
+      <h2>Accompagne ta pratique quotidienne</h2>
+      <p>Manevi Halka n'est pas seulement pour lire ensemble : il t'accompagne aussi dans l'adoration de chaque jour.</p>
     </div>
     <ul class="areas">
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-1.6-1.4-4-2-7-2v13c3 0 5.4.6 7 2 1.6-1.4 4-2 7-2v-13c-3 0-5.4.6-7 2z"/><path d="M12 6.5v13"/></svg></span><div><b>Quran</b><span>The Mushaf, translation and recitation by three reciters.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Prayer</b><span>Prayer times, notifications, widgets, qibla and religious days.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><div><b>Dhikr and dua</b><span>Dhikr counter, tasbihat, awrad and prophetic duas.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/><path d="M9.5 10l2 2 3.5-3.5"/></svg></span><div><b>Memorisation</b><span>Memorise surahs and verses with spaced review.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4z"/><path d="M15.5 5.5l3.6-1 3.2 14.6-3.6 1z"/></svg></span><div><b>Bookshelf</b><span>Your own PDF and EPUB books and notes.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c2-6 4-9 7-9s5-3 7-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="4" r="1.6"/></svg></span><div><b>My Journey</b><span>Look back on your own path, without comparison.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-1.6-1.4-4-2-7-2v13c3 0 5.4.6 7 2 1.6-1.4 4-2 7-2v-13c-3 0-5.4.6-7 2z"/><path d="M12 6.5v13"/></svg></span><div><b>Coran</b><span>Le Mushaf, la traduction et la récitation de trois récitateurs.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Prière</b><span>Horaires, notifications, widgets, qibla et jours religieux.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><div><b>Dhikr et invocation</b><span>Compteur de dhikr, tasbihat, awrad et invocations prophétiques.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/><path d="M9.5 10l2 2 3.5-3.5"/></svg></span><div><b>Mémorisation</b><span>Mémorise sourates et versets avec des révisions espacées.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4z"/><path d="M15.5 5.5l3.6-1 3.2 14.6-3.6 1z"/></svg></span><div><b>Bibliothèque de lecture</b><span>Tes propres livres PDF et EPUB, et tes notes.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c2-6 4-9 7-9s5-3 7-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="4" r="1.6"/></svg></span><div><b>Mon parcours</b><span>Revois ton propre chemin, sans comparaison.</span></div></li>
     </ul>
 
     <div class="rows">
       <div class="row">
         <div>
-          <span class="eyebrow">Quran</span>
-          <h3>Read, listen, memorise.</h3>
-          <p>Keep up your Quran reading at your own pace. As you listen, each word is highlighted.</p>
-          <ul class="ticks"><li>Recitation by three reciters, followed word by word</li><li>A memorisation mode, notes and bookmarks</li><li>Download a surah or juz to listen offline</li></ul>
+          <span class="eyebrow">Coran</span>
+          <h3>Lis, écoute, mémorise.</h3>
+          <p>Lis le Coran à ton propre rythme. Pendant l'écoute, chaque mot est surligné.</p>
+          <ul class="ticks"><li>Récitation par trois récitateurs, suivie mot à mot</li><li>Un mode mémorisation, des notes et des signets</li><li>Télécharge une sourate ou un juz pour écouter hors ligne</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/en/quran.webp" alt="Quran reader, Surah Al-Mulk, with recitation playing" width="640" height="1391" loading="lazy"></figure>
-          <div class="note"><b>Mishary Alafasy</b>Al-Mulk · verse 2 playing</div></div>
+        <div class="row-visual"><figure class="phone"><img src="/img/app/fr/quran.webp" alt="Lecteur du Coran, sourate Al-Mulk, récitation en cours" width="640" height="1391" loading="lazy"></figure>
+          <div class="note"><b>Mishary Alafasy</b>Al-Mulk · verset 2 en cours</div></div>
       </div>
       <div class="row">
         <div>
-          <span class="eyebrow">Prayer</span>
-          <h3>Woven into your day.</h3>
-          <p>Prayer times and qibla in 106 countries. You'll know when each time begins.</p>
-          <ul class="ticks"><li>A notification when each time begins and before it ends</li><li>Home screen and lock screen widgets</li><li>Mark your prayers and voluntary prayers, just for yourself</li></ul>
-          <a class="qlink" href="/prayer-times/">Today's prayer times</a>
+          <span class="eyebrow">Prière</span>
+          <h3>Au fil de ta journée.</h3>
+          <p>Horaires de prière et qibla dans 106 pays. Tu sais quand chaque prière commence.</p>
+          <ul class="ticks"><li>Une notification au début de chaque prière et avant sa fin</li><li>Widgets pour l'écran d'accueil et l'écran verrouillé</li><li>Coche tes prières et prières surérogatoires, pour toi seul</li></ul>
+          <a class="qlink" href="/fr/horaires-de-priere/">Les horaires du jour</a>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/en/vakit.webp" alt="Prayer times screen, London" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual"><figure class="phone"><img src="/img/app/fr/vakit.webp" alt="Écran des horaires de prière, Paris" width="640" height="1391" loading="lazy"></figure></div>
       </div>
     </div>
   </section>
 
   <!-- BIRLIKTE -->
   <section id="together">
-    <div class="part"><span>Together</span></div>
+    <div class="part"><span>Ensemble</span></div>
     <div class="sec-head center">
-      <h2>Start a circle</h2>
-      <p>Quran, dhikr and book circles with your family, friends or community. Let Manevi Halka take care of sharing and keeping track.</p>
+      <h2>Crée un cercle</h2>
+      <p>Des cercles de Coran, de dhikr et de lecture avec ta famille, tes amis ou ta communauté. Manevi Halka s'occupe du partage et du suivi.</p>
     </div>
     <ol class="steps">
-      <li><span class="bead">1</span><h3>Set up your circle</h3><p>Choose what to read and how many days a round lasts.</p></li>
-      <li><span class="bead">2</span><h3>Share the link</h3><p>Send the invite link; whoever taps it joins the circle.</p></li>
-      <li><span class="bead">3</span><h3>Read together</h3><p>Portions are handed out and everyone is notified when it's their turn. Anyone who falls behind can ask for help.</p></li>
+      <li><span class="bead">1</span><h3>Crée ton cercle</h3><p>Choisis ce qui sera lu et combien de jours dure un tour.</p></li>
+      <li><span class="bead">2</span><h3>Partage le lien</h3><p>Envoie le lien d'invitation ; qui le touche rejoint le cercle.</p></li>
+      <li><span class="bead">3</span><h3>Lisez ensemble</h3><p>Les portions sont réparties, chacun est prévenu quand vient son tour. Qui prend du retard peut demander de l'aide.</p></li>
     </ol>
 
     <div class="rows">
       <div class="row">
         <div>
-          <span class="eyebrow">Shared khatm</span>
-          <h3>Let the app handle the sharing.</h3>
-          <p>Rounds move along steadily, and you can see at a glance who is reading which juz.</p>
-          <ul class="ticks"><li>Portions are handed out automatically each round</li><li>Anyone who falls behind can return their part to the pool</li><li>Mentor Mode: the organiser can simply oversee</li></ul>
+          <span class="eyebrow">Khatma commune</span>
+          <h3>L'appli se charge de la répartition.</h3>
+          <p>Les tours avancent régulièrement, et tu vois d'un coup d'œil qui lit quel juz.</p>
+          <ul class="ticks"><li>Les portions sont réparties automatiquement à chaque tour</li><li>Qui prend du retard peut remettre sa part dans le pool</li><li>Mode Mentor : l'organisateur peut simplement suivre</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/en/halka.webp" alt="Family Khatm, circle tab: four members and their juz" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual"><figure class="phone"><img src="/img/app/fr/halka.webp" alt="Khatma familiale, onglet Cercle : quatre membres et leurs juz" width="640" height="1391" loading="lazy"></figure></div>
       </div>
     </div>
   </section>
@@ -703,22 +710,22 @@
   <section id="vesile">
     <div class="band">
       <div>
-        <span class="eyebrow">One-Time Circle</span>
-        <h2>Come together for an occasion.</h2>
-        <p>Set up a one-time circle for a blessed night, for someone who passed away or with an intention of healing. Whoever gets the invite link can take a share in the browser, without installing the app.</p>
+        <span class="eyebrow">Cercle ponctuel</span>
+        <h2>Rassemblez-vous pour une occasion.</h2>
+        <p>Crée un cercle ponctuel pour une nuit bénie, pour un défunt ou avec une intention de guérison. Qui reçoit le lien d'invitation peut prendre une part dans le navigateur, sans installer l'appli.</p>
         <ul class="ticks">
-          <li>Join from the browser, no account needed</li>
-          <li>Everyone takes the juz they choose</li>
-          <li>See live how many people are reading</li>
+          <li>Participation depuis le navigateur, sans compte</li>
+          <li>Chacun prend le juz qu'il souhaite</li>
+          <li>Vois en direct combien de personnes lisent</li>
         </ul>
       </div>
       <div class="band-visual">
-        <figure class="phone"><img src="/img/app/en/vesile.webp" alt="One-time circle: Blessed Night Khatm, shared progress and juz pool" width="640" height="1391"></figure>
+        <figure class="phone"><img src="/img/app/fr/vesile.webp" alt="Cercle ponctuel : Khatma de la nuit bénie, progression commune et pool de juz" width="640" height="1391"></figure>
         <div class="webcard" aria-hidden="true">
           <span class="url"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>manevihalka.app/halka</span>
-          <b>Blessed Night Khatm</b>
-          <div class="row"><span>Juz 7</span><span class="go">Read</span></div>
-          <small>No app needed</small>
+          <b>Khatma de la nuit bénie</b>
+          <div class="row"><span>Juz 7</span><span class="go">Lire</span></div>
+          <small>Pas besoin de l'appli</small>
         </div>
       </div>
     </div>
@@ -728,25 +735,25 @@
     <div class="rows" style="margin-top:0">
       <div class="row">
         <div>
-          <span class="eyebrow">Shared practices</span>
-          <h3>Encouragement, not comparison.</h3>
-          <p>Keep up the five prayers, memorisation or a dua together with your circle. Everyone marks their own day.</p>
-          <ul class="ticks"><li>No rankings, points or badges</li><li>Visibility is set from the start: organiser only, or mutual</li><li>Reminders fit your own schedule</li></ul>
+          <span class="eyebrow">Pratiques communes</span>
+          <h3>L'encouragement, pas la comparaison.</h3>
+          <p>Maintiens les cinq prières, la mémorisation ou une invocation avec ton cercle. Chacun coche sa propre journée.</p>
+          <ul class="ticks"><li>Ni classement, ni points, ni badges</li><li>Visibilité définie dès le départ : administrateur seul, ou mutuelle</li><li>Des rappels à ton rythme</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/en/amel.webp" alt="Shared practice: all 5 prayers, Fajr and Dhuhr marked" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual"><figure class="phone"><img src="/img/app/fr/amel.webp" alt="Pratique commune : les 5 prières, Fajr et Dhohr cochées" width="640" height="1391" loading="lazy"></figure></div>
       </div>
     </div>
     <div class="quiet">
       <article>
-        <span class="eyebrow">Shared Reading</span>
-        <h3>From different places, with one intention.</h3>
-        <p>Join the ongoing shared khatm and dhikr with readers around the world.</p>
-        <a class="qlink" href="/ortak-okuma.html">Join on the web</a>
+        <span class="eyebrow">Lecture commune</span>
+        <h3>De lieux différents, avec une même intention.</h3>
+        <p>Rejoins la khatma et le dhikr communs en cours avec des lecteurs du monde entier.</p>
+        <a class="qlink" href="/ortak-okuma.html">Participer sur le web</a>
       </article>
       <article>
-        <span class="eyebrow">My Journey</span>
-        <h3>What's yours stays with you.</h3>
-        <p>See what you've read and the memories of your spiritual journey, for yourself. The point isn't comparison, it's remembering your own path.</p>
+        <span class="eyebrow">Mon parcours</span>
+        <h3>Ce qui t'appartient reste à toi.</h3>
+        <p>Revois pour toi ce que tu as lu et les souvenirs de ton parcours spirituel. Le but n'est pas la comparaison, mais de te souvenir de ton propre chemin.</p>
       </article>
     </div>
   </section>
@@ -755,16 +762,16 @@
   <section id="faq">
     <div class="faq">
       <div class="sec-head">
-        <span class="eyebrow">FAQ</span>
-        <h2>Before you start</h2>
-        <p>Any other question? Write to support@manevihalka.app.</p>
+        <span class="eyebrow">Questions fréquentes</span>
+        <h2>Avant de commencer</h2>
+        <p>Une autre question ? Écris à support@manevihalka.app.</p>
       </div>
       <div>
-        <details open><summary>Is it free?</summary><p>Yes. Worship itself is always free: the Quran, prayer times, dhikr, duas and joining circles. Some extra conveniences are optional.</p></details>
-        <details><summary>Do I need an account?</summary><p>No. Open the app and start right away. If you like, you can secure your account later with Apple, Google or email.</p></details>
-        <details><summary>Can someone without the app join?</summary><p>In one-time circles, yes. Whoever taps the invite link can take a juz and read it in the browser.</p></details>
-        <details><summary>Which Mushaf is used?</summary><p>The Mushaf of Türkiye's Presidency of Religious Affairs (Diyanet), with translation and recitation by three reciters.</p></details>
-        <details><summary>Does it work on iPhone and Android?</summary><p>On both. The app is available in Turkish, English, German, French and Arabic.</p></details>
+        <details open><summary>Est-ce gratuit ?</summary><p>Oui. L'adoration elle-même est toujours gratuite : le Coran, les horaires de prière, le dhikr, les invocations et la participation aux cercles. Quelques options de confort sont facultatives.</p></details>
+        <details><summary>Dois-je créer un compte ?</summary><p>Non. Ouvre l'appli et commence tout de suite. Si tu veux, tu sécurises ton compte plus tard avec Apple, Google ou un e-mail.</p></details>
+        <details><summary>Quelqu'un sans l'appli peut-il participer ?</summary><p>Dans les cercles ponctuels, oui. Celui qui touche le lien d'invitation peut prendre un juz et le lire dans le navigateur.</p></details>
+        <details><summary>Quel Mushaf est utilisé ?</summary><p>Le Mushaf de la Présidence des affaires religieuses de Turquie (Diyanet), avec traduction et récitation par trois récitateurs.</p></details>
+        <details><summary>Ça marche sur iPhone et Android ?</summary><p>Sur les deux. L'appli est disponible en turc, anglais, allemand, français et arabe.</p></details>
       </div>
     </div>
   </section>
@@ -773,19 +780,19 @@
   <section id="download">
     <div class="closing">
       <svg class="ring-close" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 19.27"/></svg>
-      <p class="meal">Start on your own, or start a circle with your loved ones.</p>
-      <p class="purpose">Download Manevi Halka for free.</p>
+      <p class="meal">Commence seul ou crée un cercle avec tes proches.</p>
+      <p class="purpose">Télécharge Manevi Halka gratuitement.</p>
       <div class="stores">
-        <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>Download</small><b>App Store</b></span></a>
-        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dclose-en"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>Download</small><b>Google Play</b></span></a>
+        <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>Télécharger</small><b>App Store</b></span></a>
+        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dclose-fr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>Télécharger</small><b>Google Play</b></span></a>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="social">
-      <p class="social-title">Stay close to the circle</p>
-      <p class="social-text">The verse of the day every morning, reminders on the blessed nights.</p>
+      <p class="social-title">Reste lié au cercle</p>
+      <p class="social-text">Le verset du jour chaque matin, des rappels lors des nuits bénies.</p>
       <div class="social-icons">
         <a href="https://www.instagram.com/manevihalkaapp" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
         <a href="https://www.youtube.com/@manevihalkaapp" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
@@ -795,9 +802,9 @@
       </div>
     </div>
     <span>© 2026 Manevi Halka</span>
-    <nav><a href="/prayer-times/">Prayer times</a><a href="/ortak-okuma.html">Shared Reading</a><a href="/privacy-en.html">Privacy Policy</a><a href="/terms-en.html">Terms of Service</a><a href="/account-delete-en.html">Account Deletion</a><a href="mailto:support@manevihalka.app">Contact</a></nav>
-    <nav class="langs" aria-label="Language"><a href="/tr/" hreflang="tr" lang="tr">Türkçe</a><a href="/" hreflang="en" lang="en" aria-current="page">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
-    <p class="credit">English translation: Talal Itani, <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span></p>
+    <nav><a href="/fr/horaires-de-priere/">Horaires</a><a href="/ortak-okuma.html">Lecture commune</a><a href="/privacy-fr.html">Politique de confidentialité</a><a href="/terms-fr.html">Conditions d'utilisation</a><a href="/account-delete-fr.html">Suppression du compte</a><a href="mailto:support@manevihalka.app">Contact</a></nav>
+    <nav class="langs" aria-label="Langue"><a href="/tr/" hreflang="tr" lang="tr">Türkçe</a><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr" aria-current="page">Français</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
+    <p class="credit"></p>
   </footer>
 </div>
 
@@ -805,39 +812,39 @@
   <div class="wrap">
     <a class="brand" href="#top" data-sec="top" tabindex="-1"><img src="/icon.png" alt="" width="28" height="28"><span>Manevi Halka</span></a>
     <nav class="dock-nav" aria-label="Sections">
-      <a href="#solo" data-sec="solo">On your own</a>
-      <a href="#together" data-sec="together">Together</a>
-      <a href="/prayer-times/">Prayer times</a>
-      <a href="/ortak-okuma.html">Shared Reading</a>
-      <a href="#faq" data-sec="faq">FAQ</a>
+      <a href="#solo" data-sec="solo">Seul</a>
+      <a href="#together" data-sec="together">Ensemble</a>
+      <a href="/fr/horaires-de-priere/">Horaires</a>
+      <a href="/ortak-okuma.html">Lecture commune</a>
+      <a href="#faq" data-sec="faq">Questions fréquentes</a>
     </nav>
-    <a class="get-btn" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>Download</span></a>
-    <a class="get-btn soft" href="#top" data-sec="top" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span>Back to top</span></a>
+    <a class="get-btn" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>Télécharger</span></a>
+    <a class="get-btn soft" href="#top" data-sec="top" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span>Haut de page</span></a>
   </div>
 </div>
 
 <div class="dock-pill" id="dockPill" aria-hidden="true" inert>
-  <button type="button" class="get-btn soft" id="dpTop" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span>Back to top</span></button>
-  <button type="button" class="dp-sec" id="dpSec" aria-haspopup="dialog" aria-controls="secSheet"><span id="dpLabel">On your own</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
-  <a class="get-btn" id="dpGet" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>Download</span></a>
+  <button type="button" class="get-btn soft" id="dpTop" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span>Haut de page</span></button>
+  <button type="button" class="dp-sec" id="dpSec" aria-haspopup="dialog" aria-controls="secSheet"><span id="dpLabel">Seul</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+  <a class="get-btn" id="dpGet" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>Télécharger</span></a>
 </div>
 
-<div class="sec-sheet" id="secSheet" role="dialog" aria-modal="true" aria-label="On this page" inert>
+<div class="sec-sheet" id="secSheet" role="dialog" aria-modal="true" aria-label="Sur cette page" inert>
   <div class="ss-panel">
-    <div class="ss-title">On this page</div>
-    <a href="#top" data-sec="top"><span>Start<small>top of the page</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
-    <a href="#solo" data-sec="solo"><span>On your own</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
-    <a href="#together" data-sec="together"><span>Together</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
-    <a href="#faq" data-sec="faq"><span>FAQ</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
-    <a href="#download" data-sec="download"><span>Download</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <div class="ss-title">Sur cette page</div>
+    <a href="#top" data-sec="top"><span>Début<small>haut de page</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#solo" data-sec="solo"><span>Seul</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#together" data-sec="together"><span>Ensemble</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#faq" data-sec="faq"><span>Questions fréquentes</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#download" data-sec="download"><span>Télécharger</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     <div class="ss-rule"></div>
-    <a class="ss-page" href="/prayer-times/"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><span class="ss-txt"><b>Prayer times</b><span>Today and the 30-day calendar</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
-    <a class="ss-page" href="/ortak-okuma.html"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg></span><span class="ss-txt"><b>Shared Reading</b><span>A shared khatm and dhikr with readers worldwide</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
+    <a class="ss-page" href="/fr/horaires-de-priere/"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><span class="ss-txt"><b>Horaires de prière</b><span>Aujourd'hui et le calendrier de 30 jours</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
+    <a class="ss-page" href="/ortak-okuma.html"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg></span><span class="ss-txt"><b>Lecture commune</b><span>Khatma et dhikr communs avec des lecteurs du monde entier</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
   </div>
 </div>
 
 <script>
-  var D = {"lang":"en","rtl":false,"imgBase":"/img/app/en/","screens":[{"t":"Prayer","d":"Prayer times through your day. Mark what you've prayed, just for yourself.","img":"vakit.webp","alt":"Prayer times screen, London","ring":"day","rd":{"now":12.05,"pr":[{"n":"Fajr","h":5.05,"done":1},{"sun":1,"h":6.816666666666666},{"n":"Dhuhr","h":12.933333333333334},{"n":"Asr","h":16.1},{"n":"Maghrib","h":18.9},{"n":"Isha","h":20.433333333333334}]},"chips":[[13,76,"","Fajr","prayed"],[18,12,"g","Dhuhr","12:56"]]},{"t":"Quran","d":"Read, listen, memorise. Each word is highlighted as it is recited.","img":"quran.webp","alt":"Quran reader, Surah Al-Mulk, with recitation playing","ring":"verse","rd":{"label":"Al-Mulk · 30 verses"},"chips":[[85,22,"g","Mishary Alafasy","now playing"],[14,74,"","Al-Mulk","verse 2"]]},{"t":"Circle","d":"A khatm with your family. Who is reading which juz, at a glance.","img":"halka.webp","alt":"Family Khatm, circle tab: four members and their juz","ring":"juz","rd":{},"chips":[[80,6,"g","Yusuf","reading juz 3"],[16,90,"","4 members","round 1"]]},{"t":"Shared practices","d":"The five prayers with your circle. Everyone marks their own day, no comparisons.","img":"amel.webp","alt":"Shared practice: all 5 prayers, Fajr and Dhuhr marked","ring":"week","rd":{"label":"Today"},"chips":[[87,74,"","Today","2 / 5"],[14,28,"g","Last 7 days","no rankings"]]},{"t":"One-time","d":"A khatm for a blessed night: anyone takes the juz they like, even from the browser.","img":"vesile.webp","alt":"One-time circle: Blessed Night Khatm, shared progress and juz pool","ring":"pages","rd":{"label":"7%"},"chips":[[86,20,"g","80 pages","in progress"],[14,80,"","No app","in the browser"]]},{"t":"Bookshelf","d":"Your own books, your notes and where you left off.","img":"kitaplik.webp","alt":"Bookshelf: your own books","ring":"books","rd":{},"chips":[[86,78,"","PDF and EPUB",""],[14,24,"g","Notes","inside the book"]]},{"t":"More","d":"From dhikr to the qibla, from memorisation to widgets. It's all below.","ring":"beads","chips":[],"more":{"small":"In Manevi Halka","title":"and much more","link":"See all","list":["Dhikr Counter","Tasbihat","Prayer log","Asma ul-Husna","Awrad and duas","Qibla","Religious Days","Hifz","Widgets","My Journey"]}}],"aria":{"toDark":"Switch to dark theme","toLight":"Switch to light theme"},"links":{"ios":"https://apps.apple.com/app/manevi-halka/id6760654292","androidDock":"https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Ddock-en"},"strip":{"label":"Prayer times"},"secName":{"top":"Start","solo":"On your own","together":"Together","faq":"FAQ","download":"Download"},"sections":"Sections"};
+  var D = {"lang":"fr","rtl":false,"imgBase":"/img/app/fr/","screens":[{"t":"Prière","d":"Les horaires au fil de ta journée. Coche pour toi les prières accomplies.","img":"vakit.webp","alt":"Écran des horaires de prière, Paris","ring":"day","rd":{"now":13.066666666666666,"pr":[{"n":"Fajr","h":5.983333333333333,"done":1},{"sun":1,"h":7.633333333333333},{"n":"Dhohr","h":13.766666666666667},{"n":"Asr","h":17},{"n":"Maghrib","h":19.75},{"n":"Icha","h":21.183333333333334}]},"chips":[[13,76,"","Fajr","accomplie"],[18,12,"g","Dhohr","13:46"]]},{"t":"Coran","d":"Lis, écoute, mémorise. Chaque mot est surligné pendant la récitation.","img":"quran.webp","alt":"Lecteur du Coran, sourate Al-Mulk, récitation en cours","ring":"verse","rd":{"label":"Al-Mulk · 30 versets"},"chips":[[85,22,"g","Mishary Alafasy","en écoute"],[14,74,"","Al-Mulk","verset 2"]]},{"t":"Cercle","d":"Une khatma en famille. Qui lit quel juz, en un coup d'œil.","img":"halka.webp","alt":"Khatma familiale, onglet Cercle : quatre membres et leurs juz","ring":"juz","rd":{},"chips":[[80,6,"g","Youssef","lit le juz 3"],[16,90,"","4 membres","tour 1"]]},{"t":"Pratiques communes","d":"Les cinq prières avec ton cercle. Chacun coche sa journée, sans comparaison.","img":"amel.webp","alt":"Pratique commune : les 5 prières, Fajr et Dhohr cochées","ring":"week","rd":{"label":"Aujourd'hui"},"chips":[[87,74,"","Aujourd'hui","2 / 5"],[14,28,"g","7 derniers jours","sans classement"]]},{"t":"Ponctuel","d":"Une khatma pour une nuit bénie : chacun prend le juz qu'il veut, même depuis le navigateur.","img":"vesile.webp","alt":"Cercle ponctuel : Khatma de la nuit bénie, progression commune et pool de juz","ring":"pages","rd":{"label":"7 %"},"chips":[[86,20,"g","80 pages","en cours"],[14,80,"","Sans appli","dans le navigateur"]]},{"t":"Bibliothèque","d":"Tes propres livres, tes notes et là où tu t'es arrêté.","img":"kitaplik.webp","alt":"Bibliothèque de lecture : tes propres livres","ring":"books","rd":{},"chips":[[86,78,"","PDF et EPUB",""],[14,24,"g","Notes","dans le livre"]]},{"t":"Plus","d":"Du dhikr à la qibla, de la mémorisation aux widgets. Tout est plus bas.","ring":"beads","chips":[],"more":{"small":"Dans Manevi Halka","title":"et bien plus","link":"Tout voir","list":["Compteur de dhikr","Tasbihat","Suivi des prières","Asma ul-Husna","Awrad, invocations","Qibla","Jours religieux","Hifz","Widgets","Mon parcours"]}}],"aria":{"toDark":"Passer au thème sombre","toLight":"Passer au thème clair"},"links":{"ios":"https://apps.apple.com/app/manevi-halka/id6760654292","androidDock":"https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Ddock-fr"},"strip":{"label":"Horaires de prière"},"secName":{"top":"Début","solo":"Seul","together":"Ensemble","faq":"Questions fréquentes","download":"Télécharger"},"sections":"Sections"};
 
   // ── Tema: yeni tema dugmeden buyuyen bir daire olarak yayilir ──────────────
   (function () {

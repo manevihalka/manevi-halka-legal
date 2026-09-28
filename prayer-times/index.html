@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: _gen/vakit.src.html + _gen/site-i18n.js
+     Uretici: node _gen/build-vakit.mjs · dil=en -->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- KAYNAK SABLON: namaz vakitleri sayfasi, 5 dil (adresler _gen/site-urls.mjs VAKIT).
+     Uretici: `node _gen/build-vakit.mjs`. Sozluk _gen/site-i18n.js + ureticideki OZEL.
+     28 Eyl 2026'ya kadar bu tasarim ana sayfaydi ("Gunun Halkasi"); ana sayfa
+     uygulama tanitimi olunca vakitler buraya tasindi, ayet/hadis kartlari,
+     "Neler var" tanitimi ve Ortak Okuma karti kaldirildi (kullanici karari).
+     Vakit motoru, sehir secici, ayet/hadis secimi js/mh-dynamic.js'ten
+     (window.MHPrayer / window.MHDaily) okunur; burada IKINCI KOPYA YOK.
+     Baslik, aciklama, canonical, hreflang, OG ve yapisal veri uretici yazar
+     (asagidaki yer tutucu); Agustos 2026'daki marka aramasi dususunun dersi:
+     statik baslik ve metin HIC bos birakilmaz. -->
+<script>
+(function () {
+  var M = {"tr":"/tr/namaz-vakitleri/","de":"/de/gebetszeiten/","fr":"/fr/horaires-de-priere/","ar":"/ar/mawaqit/"};
+  var l = null;
+  try { l = localStorage.getItem("mh_lang"); } catch (e) { /* gizli mod */ }
+  if (!l) { var n = (navigator.languages && navigator.languages[0]) || navigator.language || ""; l = String(n).slice(0, 2).toLowerCase(); }
+  if (M[l]) location.replace(M[l] + location.hash);
+})();
+</script>
+<title>Prayer times · Manevi Halka</title>
+<meta name="description" id="metaDesc" content="Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days.">
+<link rel="canonical" href="https://manevihalka.app/prayer-times/">
+<link rel="alternate" hreflang="tr" href="https://manevihalka.app/tr/namaz-vakitleri/">
+<link rel="alternate" hreflang="en" href="https://manevihalka.app/prayer-times/">
+<link rel="alternate" hreflang="de" href="https://manevihalka.app/de/gebetszeiten/">
+<link rel="alternate" hreflang="fr" href="https://manevihalka.app/fr/horaires-de-priere/">
+<link rel="alternate" hreflang="ar" href="https://manevihalka.app/ar/mawaqit/">
+<link rel="alternate" hreflang="x-default" href="https://manevihalka.app/prayer-times/">
+<meta name="apple-itunes-app" content="app-id=6760654292">
+<meta name="theme-color" content="#1e4d35">
+<link rel="preconnect" href="https://ezanvakti.emushaf.net" crossorigin>
+<link rel="dns-prefetch" href="https://ezanvakti.emushaf.net">
+<meta property="og:title" content="Prayer times · Manevi Halka">
+<meta property="og:description" content="Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days.">
+<meta property="og:url" content="https://manevihalka.app/prayer-times/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://manevihalka.app/og-cover-en.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://manevihalka.app/prayer-times/#page",
+      "url": "https://manevihalka.app/prayer-times/",
+      "name": "Prayer times · Manevi Halka",
+      "description": "Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://manevihalka.app/#site"
+      },
+      "publisher": {
+        "@id": "https://manevihalka.app/#org"
+      }
+    }
+  ]
+}
+</script>
+<script>
+(function () {
+  var t = null;
+  try { t = localStorage.getItem("mh_theme"); } catch (e) { /* gizli mod */ }
+  if (t !== "dark" && t !== "light") {
+    try {
+      t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    } catch (e) { t = "light"; }
+  }
+  document.documentElement.setAttribute("data-theme", t);
+})();
+</script>
+<style>
+  /* Yazi tipleri KENDI SUNUCUMUZDAN (SIL OFL, fonts/OFL-*.txt). Google'dan
+     cekilseydi her ziyaretcinin IP'si ucuncu bir tarafa giderdi ve gizlilik
+     metnine yeni servis eklemek gerekirdi. */
+  @font-face { font-family: "Marcellus"; font-style: normal; font-weight: 400; font-display: swap;
+    src: url(/fonts/marcellus-latin-ext.woff2) format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: "Marcellus"; font-style: normal; font-weight: 400; font-display: swap;
+    src: url(/fonts/marcellus-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Onest"; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url(/fonts/onest-latin-ext.woff2) format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: "Onest"; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url(/fonts/onest-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  /* Mushaf metni: sitenin bugunku Diyanet fontu, OLDUGU GIBI (lisans, subset yok) */
+  @font-face { font-family: "MushafAr"; font-display: swap; src: url(/fonts/mushaf-ar.ttf) format("truetype"); }
+
+  @property --sky-top { syntax: "<color>"; inherits: true; initial-value: #cfe0ea; }
+  @property --sky-mid { syntax: "<color>"; inherits: true; initial-value: #dfe9ee; }
+  @property --sky-hor { syntax: "<color>"; inherits: true; initial-value: #eef3ef; }
+
+  :root {
+    /* Adlar site-chrome.css ile AYNI: ortak-hatim.css, 30 gunluk takvim ve
+       sehir secici bu degiskenleri okuyor. */
+    --green: #1e4d35;
+    --green-soft: #2f6b4a;
+    --mint: #78d8a8;
+    --mint-bg: #e8f2ea;
+    --ink: #14231c;
+    --body: #4b5a52;
+    --muted: #6f7c74;
+    --line: #e2e0d6;
+    --page: #f7f4ec;
+    --card: #ffffff;
+    --pill: #1e4d35;
+    --radius: 16px;
+    --gold: #8a6a22;
+    --paper: #f6efde;
+    --paper-ink: #1b3326;
+    --paper-body: #3a4a40;
+    --rule: #b8914a;
+    --rule2: #c9a24a;
+    --display: "Marcellus", "Iowan Old Style", Georgia, serif;
+    --sans: "Onest", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --arabic: "MushafAr", "Scheherazade New", "Noto Naskh Arabic", serif;
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --green: #8fd3ae;
+    --green-soft: #7ab894;
+    --mint-bg: #1d3227;
+    --ink: #eaf3ee;
+    --body: #b9c8c0;
+    --muted: #839589;
+    --line: #263a2f;
+    --page: #0e1a14;
+    --card: #152720;
+    --pill: #2f6b4a;
+    --gold: #d9b563;
+    --paper: #16231d;
+    --paper-ink: #ede6d3;
+    --paper-body: #c9c2ae;
+    --rule: #8f7440;
+    --rule2: #a8894a;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  html[lang="ar"] body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Arabic", Tahoma, sans-serif; }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; border-radius: 8px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+
+  /* ══════════ GOK ══════════
+     Ton vakti, parlaklik temayi izler (uygulamadaki Vakit Gogu kurali):
+     acik temada gece de pastel, koyu temada ogle de derin. Renkler JS'teki
+     SKY tablosundan CSS degiskenine yazilir. Gecis yalniz sayfa ACIKKEN vakit
+     degisirse animasyonlu (.anim); ilk dogru veri ANINDA uygulanir. */
+  .sky {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--s-ink, #14302a);
+    --s-sub: color-mix(in srgb, var(--s-ink, #14302a) 72%, transparent);
+    --s-line: color-mix(in srgb, var(--s-ink, #14302a) 22%, transparent);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .sky.anim { transition: --sky-top 3s ease, --sky-mid 3s ease, --sky-hor 3s ease, color 2s ease; }
+  .sky-bg { position: absolute; inset: 0; z-index: -3; background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 58%, var(--sky-hor) 100%); }
+  .sky-sun {
+    position: absolute; z-index: -2; width: 620px; height: 620px; margin: -310px 0 0 -310px; border-radius: 50%;
+    left: var(--sun-x, 50%); top: var(--sun-y, 10%);
+    background: radial-gradient(circle, var(--sun-c, #fff7e0) 0%, transparent 62%);
+    opacity: var(--sun, 0); pointer-events: none;
+  }
+  .sky-stars { position: absolute; inset: 0 0 35% 0; z-index: -2; opacity: var(--stars, 0); pointer-events: none; }
+  .sky-stars b { position: absolute; border-radius: 50%; background: #fff8e8; }
+  .sky-moon { position: absolute; z-index: -2; top: 92px; inset-inline-end: 9%; width: 30px; height: 30px; opacity: var(--moon, 0); pointer-events: none; }
+  @media (max-width: 820px) { .sky-moon { top: 72px; inset-inline-end: auto; inset-inline-start: 6%; width: 24px; height: 24px; } }
+  .sky.anim .sky-sun, .sky.anim .sky-stars, .sky.anim .sky-moon { transition: opacity 3s ease, left 3s ease, top 3s ease; }
+  /* Gok ile sayfa arasinda sert cizgi olmasin */
+  /* Gok sayfaya UZUN ve yumusak erir; cizgi, siluet yok (kullanici karari,
+     28 Eyl 2026: cami siluetli gecis begenilmedi). Kartlar bu erimenin
+     ustune oturur, gokun rengi camdan suzulur. */
+  .sky::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 260px; z-index: -1; pointer-events: none;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--page) 0%, transparent) 0%, color-mix(in srgb, var(--page) 55%, transparent) 55%, var(--page) 100%); }
+
+  /* ── ust cubuk ── */
+  .top { display: flex; align-items: center; gap: 10px; padding-block: 14px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-size: 19px; }
+  .brand img { width: 30px; height: 30px; border-radius: 8px; }
+  .top-tools { margin-inline-start: auto; display: flex; align-items: center; gap: 8px; }
+  .tool-btn {
+    display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 12px; border-radius: 999px;
+    border: 1px solid var(--s-line); background: color-mix(in srgb, var(--s-ink, #14302a) 6%, transparent);
+    font-size: 13.5px; font-weight: 600; text-decoration: none; cursor: pointer; color: inherit;
+  }
+  .tool-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .tool-btn.icon { width: 36px; padding: 0; justify-content: center; }
+  .lang { position: relative; }
+  .lang-list {
+    position: absolute; top: 44px; inset-inline-end: 0; z-index: 30; list-style: none; min-width: 150px; padding: 6px;
+    background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(10, 30, 20, .18);
+  }
+  .lang-list button { width: 100%; text-align: start; border: 0; background: transparent; padding: 9px 12px; border-radius: 9px; cursor: pointer; font-size: 14px; }
+  .lang-list button:hover, .lang-list button[aria-selected="true"] { background: var(--mint-bg); }
+
+  /* ── ust menu: Uygulama (ana sayfa) · Vakitler (bu sayfa) · Ortak Okuma ── */
+  .top-nav { display: flex; align-items: center; gap: 2px; margin-inline-start: 14px; }
+  .top-nav a { position: relative; padding: 8px 12px; border-radius: 999px; font-size: 14.5px; font-weight: 600; text-decoration: none; color: inherit; opacity: .8; transition: opacity .2s ease, background .2s ease; }
+  .top-nav a:hover { opacity: 1; background: color-mix(in srgb, currentColor 8%, transparent); }
+  .top-nav a[aria-current="page"] { opacity: 1; }
+  .top-nav a[aria-current="page"]::after { content: ""; position: absolute; inset-inline: 12px; bottom: 3px; height: 2px; border-radius: 2px; background: var(--gold); }
+  @media (max-width: 979px) { .top-nav { display: none; } }
+  #sky, #download { scroll-margin-top: 24px; }
+
+  /* ── hero ── */
+  .hero {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; align-items: center;
+    padding-block: 18px 170px;
+  }
+  .hero-now { order: 2; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .hero-copy { order: 1; }
+  @media (max-width: 820px) {
+    /* ⚠️ Telefonda ilk ekran butcesi (375x812): gok + halka + vakitler + ad +
+       magaza dugmeleri + ortak hatim daveti SIGMALI (kullanici karari: davet
+       ilk ekranda). Bosluk/boyut buyutulurse davet ekranin altina duser. */
+    .hero { grid-template-columns: 1fr; padding-block: 0 110px; gap: 12px; }
+    .hero-now { order: 1; gap: 8px; }
+    .hero-copy { order: 2; text-align: center; }
+    .top { padding-block: 10px; }
+    .hero-copy h1 { font-size: 34px; }
+    .h1-verse { text-align: center; margin-bottom: 6px; font-size: 12.5px; line-height: 1.35; }
+    .h1-sub { margin-top: 6px; font-size: 15px; }
+    .cta { margin-top: 14px; }
+    .invite { margin-top: 12px; }
+    .month-btn { font-size: 12.5px; }
+  }
+
+  .where { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; }
+  .city-chip { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px 0 10px; border-radius: 999px; border: 1px solid var(--s-line); background: color-mix(in srgb, var(--s-ink, #14302a) 6%, transparent); cursor: pointer; font-weight: 600; font-size: 14px; max-width: 70vw; }
+  .city-chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .city-chip svg, .gps-btn svg { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .gps-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--s-line); background: transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+  .dateline { font-size: 13.5px; color: var(--s-sub); text-align: center; font-variant-numeric: tabular-nums; }
+  .dateline .sep { margin: 0 6px; opacity: .6; }
+  .islamic-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 4px 11px; border-radius: 999px; background: color-mix(in srgb, var(--s-accent, #1e4d35) 14%, transparent); color: inherit; }
+  .islamic-chip svg { width: 12px; height: 12px; fill: currentColor; }
+
+  /* halka: SVG cizgiler + ortada HTML (satir kaydirabilsin diye SVG metni degil) */
+  .ring-wrap { position: relative; width: min(100%, 360px); aspect-ratio: 1 / 1; max-width: 100%; }
+  @media (max-width: 820px) { .ring-wrap { width: min(62vw, 234px); } }
+  /* 375 pt ekranda ilk ekran butcesi: Maide 5:2 satiri (EN/DE iki satir) davet
+     kartini ekrandan itmesin diye halka dar ekranda biraz kuculur (olculdu). */
+  @media (max-width: 380px) { .ring-wrap { width: min(58vw, 220px); } }
+  .ring-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .r-track { fill: none; stroke: color-mix(in srgb, var(--s-ink, #14302a) 12%, transparent); stroke-width: 12; }
+  .r-gap { fill: none; stroke: color-mix(in srgb, var(--s-ink, #14302a) 30%, transparent); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
+  .r-arc { fill: none; stroke: color-mix(in srgb, var(--s-arc, #1e4d35) 34%, transparent); stroke-width: 12; stroke-linecap: round; transition: stroke .6s ease, stroke-width .4s ease; }
+  .r-arc.on { stroke: var(--s-accent, #1e4d35); stroke-width: 18; }
+  .r-prog { fill: none; stroke: #e3b341; stroke-width: 5; stroke-linecap: round; }
+  .r-tick { stroke: color-mix(in srgb, var(--s-ink, #14302a) 22%, transparent); stroke-width: 1.5; }
+  .r-hr { fill: var(--s-sub); font: 600 10px var(--sans); letter-spacing: .05em; }
+  .r-glow { fill: #f2c94c; opacity: .3; }
+  .r-dot { fill: #e3b341; stroke: #fff6da; stroke-width: 2.5; }
+  .ring-center { position: absolute; inset: 20%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2px; }
+  .rc-head { font-size: 13px; font-weight: 700; letter-spacing: .14em; color: var(--s-sub); }
+  .rc-count { font-family: var(--sans); font-weight: 600; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.05; font-variant-numeric: tabular-nums; letter-spacing: -.01em; direction: ltr; }
+  .rc-foot { font-size: 13.5px; color: var(--s-sub); }
+  .rc-msg { font-size: 14.5px; line-height: 1.45; color: var(--s-sub); max-width: 22ch; }
+  .rc-action { margin-top: 10px; border: 0; border-radius: 12px; padding: 9px 16px; font-weight: 700; font-size: 14px; cursor: pointer; background: var(--s-btn-bg, #1e4d35); color: var(--s-btn-fg, #fff); }
+  @media (max-width: 820px) {
+    .rc-count { font-size: 30px; } .rc-head { font-size: 12px; } .rc-foot { font-size: 12.5px; }
+    .r-hr { display: none; }   /* dar halkada sayac 06/18 etiketlerine degiyordu */
+  }
+
+  .times { list-style: none; display: grid; grid-template-columns: repeat(6, auto); gap: 4px 16px; justify-content: center; font-size: 13px; color: var(--s-sub); font-variant-numeric: tabular-nums; }
+  .times li { display: flex; flex-direction: column; align-items: center; padding: 3px 8px; border-radius: 10px; }
+  .times li b { font-size: 15px; font-weight: 600; color: var(--s-ink, #14302a); }
+  .times li.sun b { font-weight: 500; opacity: .75; }
+  .times li.on { background: color-mix(in srgb, var(--s-accent, #1e4d35) 16%, transparent); color: var(--s-ink, #14302a); font-weight: 600; }
+  .times li.on b { font-weight: 700; }
+  @media (max-width: 820px) {
+    .times { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 6px; width: min(100%, 340px); font-size: 12px; }
+    .times li { padding: 2px 6px; }
+    .times li b { font-size: 14px; }
+  }
+  .month-btn { display: inline-flex; align-items: center; gap: 7px; border: 0; background: transparent; cursor: pointer; font-size: 13.5px; font-weight: 600; color: var(--s-sub); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--s-line); }
+  .month-btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+  .hero-copy h1 { font-family: var(--display); font-weight: 400; font-size: clamp(40px, 6vw, 68px); line-height: 1.02; letter-spacing: -.01em; }
+  html[lang="ar"] .hero-copy h1 { font-family: var(--display); }
+  .h1-sub { display: block; font-family: var(--sans); font-size: clamp(16px, 2vw, 19px); font-weight: 500; line-height: 1.4; margin-top: 12px; color: var(--s-sub); letter-spacing: 0; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  @media (max-width: 820px) { .cta { justify-content: center; flex-wrap: nowrap; } }
+  @media (max-width: 359px) { .cta { flex-wrap: wrap; } }
+  .store-badge {
+    display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border-radius: 13px; text-decoration: none;
+    background: var(--s-btn-bg, #1e4d35); color: var(--s-btn-fg, #fff); border: 1px solid var(--s-btn-line, transparent);
+    box-shadow: 0 8px 22px -12px rgba(10, 30, 20, .5);
+  }
+  .store-badge.secondary { background: transparent; color: inherit; border-color: var(--s-line); box-shadow: none; }
+  .store-badge svg { width: 22px; height: 22px; flex: none; fill: currentColor; }
+  .store-badge .small { display: block; font-size: 10.5px; font-weight: 500; opacity: .78; line-height: 1.1; text-align: start; }
+  .store-badge .big { display: block; font-size: 15.5px; font-weight: 700; line-height: 1.2; white-space: nowrap; text-align: start; }
+  @media (max-width: 820px) { .cta .store-badge { flex: 1 1 0; min-width: 0; justify-content: center; max-width: 200px; } }
+
+  .invite {
+    display: flex; align-items: center; gap: 12px; max-width: 440px; margin-top: 16px; padding: 10px 10px 10px 16px;
+    border-radius: 16px; text-decoration: none; text-align: start;
+    background: var(--s-card, rgba(255, 255, 255, .7)); border: 1px solid var(--s-line);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  }
+  html[dir="rtl"] .invite { padding: 10px 16px 10px 10px; }
+  @media (max-width: 820px) { .invite { margin-inline: auto; } }
+  .inv-live { flex: none; width: 9px; height: 9px; border-radius: 50%; background: #3fa66b; box-shadow: 0 0 0 4px rgba(63, 166, 107, .2); }
+  .inv-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; line-height: 1.3; }
+  .inv-title { font-size: 14.5px; font-weight: 700; }
+  .inv-sub { font-size: 13px; color: var(--s-sub); font-variant-numeric: tabular-nums; }
+  .inv-go { flex: none; display: inline-flex; align-items: center; gap: 4px; padding: 9px 12px 9px 14px; border-radius: 11px; background: var(--s-btn-bg, #1e4d35); color: var(--s-btn-fg, #fff); font-size: 14px; font-weight: 700; white-space: nowrap; }
+  .inv-go svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  html[dir="rtl"] .inv-go svg { transform: scaleX(-1); }
+
+  /* ══════════ 30 gunluk takvim (js/mh-dynamic.js cizer) ══════════ */
+  .month-wrap { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; margin-bottom: 28px; }
+  .month-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .month-head h3 { color: var(--ink); font-size: 16px; }
+  .month-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .month-scroll { overflow-x: auto; }
+  .month-table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 560px; }
+  .month-table th { font-size: 11.5px; color: var(--muted); letter-spacing: .4px; text-align: end; padding: 8px 10px; border-bottom: 1px solid var(--line); font-weight: 700; }
+  .month-table th:first-child { text-align: start; }
+  .month-table td { padding: 7px 10px; text-align: end; color: var(--ink); font-variant-numeric: tabular-nums; border-bottom: 1px solid var(--line); }
+  .month-table td.mt-date { text-align: start; }
+  .mt-date strong { color: var(--ink); display: block; font-size: 13px; }
+  .mt-date span { font-size: 11px; color: var(--muted); }
+  .month-table tr.today td { background: var(--mint-bg); }
+  .month-table tr.friday td.mt-date strong { color: var(--green); }
+  .month-table tr:last-child td { border-bottom: 0; }
+  .pc-primary { border: 0; border-radius: 10px; padding: 8px 14px; background: var(--pill); color: #fff; font-weight: 700; font-size: 13.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .pc-primary svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+  /* ══════════ sayfanin basligi + Gunun Ayeti satiri ══════════
+     Kartlar, fotograflar ve hadis kaldirildi (kullanici karari, 28 Eyl 2026).
+     Ayet yalniz sade bir satir: TR/EN meal (EN Itani, atif altbilgide), AR
+     Arapca asli. DE/FR meal izni YOK: o dillerde yalniz Arapca ve kunye; Arapca
+     3 satiri asarsa satir o gun hic gorunmez. */
+  .vk-kicker { display: inline-block; margin-bottom: 10px; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--s-sub); }
+  html[lang="ar"] .vk-kicker { letter-spacing: 0; text-transform: none; font-size: 13.5px; }
+  .vk-sub { margin-top: 14px; max-width: 44ch; font-size: 16px; line-height: 1.55; color: var(--s-sub); }
+  .vk-ayah { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--s-line); display: grid; gap: 8px; max-width: 46ch; }
+  .vk-ayah[hidden] { display: none; }
+  .vk-label, .vk-ref { font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--s-accent, var(--gold)); }
+  html[lang="ar"] .vk-label, html[lang="ar"] .vk-ref { letter-spacing: 0; text-transform: none; font-size: 13px; }
+  .vk-meal { font-family: var(--display); font-size: clamp(19px, 2vw, 22px); line-height: 1.4; }
+  .vk-ar { font-family: var(--arabic); font-size: 26px; line-height: 1.9; }
+  @media (max-width: 820px) {
+    .vk-sub { margin-inline: auto; font-size: 14.5px; }
+    .vk-ayah { margin-inline: auto; justify-items: center; margin-top: 20px; }
+    .vk-meal { font-size: 18px; }
+  }
+
+  /* ══════════ uygulamaya kopru ══════════ */
+  .vk-promo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; margin-block: 8px 56px; padding: 26px 30px;
+    border-radius: 24px; background: var(--card); border: 1px solid var(--line); box-shadow: 0 18px 40px -28px rgba(10, 30, 20, .45);
+    --s-btn-bg: var(--pill); --s-btn-fg: #fff; --s-line: var(--line); }
+  .vp-text { flex: 1 1 320px; display: grid; gap: 6px; }
+  .vk-promo h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3vw, 30px); line-height: 1.15; }
+  html[lang="ar"] .vk-promo h2 { font-family: inherit; font-weight: 700; }
+  .vk-promo p { color: var(--body); max-width: 58ch; }
+  .vp-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; font-weight: 700; color: var(--green); text-decoration: none; }
+  .vp-link:hover { text-decoration: underline; }
+  .vp-link svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  html[dir="rtl"] .vp-link svg { transform: scaleX(-1); }
+  .vk-promo .cta { margin-top: 0; }
+  @media (max-width: 820px) { .vk-promo { padding: 22px 18px; text-align: center; justify-content: center; } .vp-text { justify-items: center; } }
+
+  /* ══════════ alt bilgi ══════════ */
+  footer { border-top: 1px solid var(--line); padding-block: 26px 40px; text-align: center; font-size: 13.5px; color: var(--muted); display: grid; gap: 12px; }
+  /* Takip blogu: once SEBEP (ne paylasiliyor), sonra ikonlar. TikTok bilerek
+     yok (28 Eyl 2026: hesap kisitli). ⚠️ Metin hesaplarin gercekten her sabah
+     gunun ayetini paylasmasina dayanir; paylasim durursa metni degistir. */
+  .social { display: grid; justify-items: center; gap: 4px; padding-block: 8px 18px; }
+  .social-title { font-family: var(--display); font-size: 22px; color: var(--ink); }
+  html[lang="ar"] .social-title { font-family: inherit; font-weight: 700; }
+  .social-text { color: var(--body); font-size: 14.5px; }
+  .social-icons { display: flex; gap: 10px; margin-top: 10px; }
+  .social-icons a { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--green); background: var(--mint-bg); border: 1px solid var(--line); transition: background .15s ease, color .15s ease; }
+  .social-icons a:hover { background: var(--green); color: var(--page); }
+  .social-icons svg { width: 19px; height: 19px; }
+  .foot-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; }
+  .foot-links a { color: var(--body); text-decoration: none; }
+  .foot-links a:hover { text-decoration: underline; }
+  footer .credit a { color: var(--body); }
+
+  /* ══════════ sehir secici (js/mh-dynamic.js acar) ══════════ */
+  .cp-overlay { position: fixed; inset: 0; z-index: 120; background: rgba(9, 24, 17, .6); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); display: flex; align-items: flex-end; justify-content: center; opacity: 0; visibility: hidden; transition: opacity .22s ease, visibility .22s ease; }
+  @media (min-width: 640px) { .cp-overlay { align-items: center; padding: 24px; } }
+  .cp-overlay.open { opacity: 1; visibility: visible; }
+  .cp-panel { background: var(--card); color: var(--ink); width: 100%; max-width: 460px; max-height: 82vh; border-radius: 20px 20px 0 0; padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+  @media (min-width: 640px) { .cp-panel { border-radius: 20px; } }
+  .cp-top { display: flex; justify-content: space-between; align-items: center; }
+  .cp-title { font-weight: 800; font-size: 16px; }
+  .cp-close { width: 32px; height: 32px; border-radius: 999px; border: 0; background: var(--mint-bg); color: var(--green); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+  .cp-close svg { width: 16px; height: 16px; fill: currentColor; }
+  .cp-hint { font-size: 12px; color: var(--muted); }
+  .cp-search { font: inherit; font-size: 14px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--page); color: var(--ink); outline: none; }
+  .cp-search:focus { border-color: var(--green); }
+  #cpResults { overflow-y: auto; display: flex; flex-direction: column; gap: 2px; min-height: 140px; }
+  .cp-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px; background: transparent; border: 0; border-radius: 10px; cursor: pointer; font: inherit; text-align: start; }
+  .cp-row:hover { background: var(--mint-bg); }
+  .cp-row strong { color: var(--ink); font-size: 14px; }
+  .cp-row span { color: var(--muted); font-size: 12px; }
+  .cp-gps-row { display: inline-flex; align-items: center; gap: 8px; border: 1px dashed var(--line); background: transparent; color: var(--green); font: inherit; font-size: 13.5px; font-weight: 700; border-radius: 12px; padding: 10px; cursor: pointer; justify-content: center; }
+  .cp-gps-row svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+  .cp-privacy { font-size: 11px; color: var(--muted); text-align: center; }
+  .cp-empty { color: var(--muted); font-size: 13px; text-align: center; padding: 20px 0; }
+
+  @media print {
+    body.print-month .sky, body.print-month .daily, body.print-month .together, body.print-month footer, .cp-overlay { display: none !important; }
+    body.print-month .month-shell { margin: 0; padding: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sky.anim, .sky.anim .sky-sun, .sky.anim .sky-stars, .sky.anim .sky-moon, .r-arc { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<section class="sky" id="sky" aria-label="Manevi Halka">
+  <div class="sky-bg"></div>
+  <div class="sky-sun"></div>
+  <div class="sky-stars" id="skyStars"></div>
+  <svg class="sky-moon" viewBox="0 0 34 34" aria-hidden="true"><path d="M22 4a13 13 0 1 0 8 23A11 11 0 1 1 22 4z" fill="#f6e9c4"/></svg>
+
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="/" data-home-link><img src="/icon.png" alt="" width="30" height="30"><span>Manevi Halka</span></a>
+      <nav class="top-nav" data-t-aria="yNavSections" aria-label="Sections">
+        <a href="/" data-home-link data-t="yNavApp">The app</a>
+        <a href="#sky" aria-current="page" data-t="yNavTimes">Prayer times</a>
+        <a href="/ortak-okuma.html" data-t="ccTitle">Shared Reading</a>
+      </nav>
+      <div class="top-tools">
+        <button type="button" class="tool-btn icon" id="themeToggle" aria-label="Theme">
+          <svg id="iconMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.5A8.3 8.3 0 0 1 9.5 3.8a8.3 8.3 0 1 0 10.7 10.7z"/></svg>
+          <svg id="iconSun" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2.5V5M12 19v2.5M21.5 12H19M5 12H2.5M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8M18.7 18.7l-1.8-1.8M7.1 7.1L5.3 5.3"/></svg>
+        </button>
+        <div class="lang">
+          <button type="button" class="tool-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+            <span id="langCode">EN</span>
+          </button>
+          <ul class="lang-list" id="langList" role="listbox" hidden>
+            <li><button type="button" role="option" data-lang="tr">Türkçe</button></li>
+            <li><button type="button" role="option" data-lang="en">English</button></li>
+            <li><button type="button" role="option" data-lang="de">Deutsch</button></li>
+            <li><button type="button" role="option" data-lang="fr">Français</button></li>
+            <li><button type="button" role="option" data-lang="ar">العربية</button></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="hero-now">
+        <div class="where">
+          <button type="button" class="city-chip" id="cityChip">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.4-6.5-10A6.5 6.5 0 0 1 12 4.5 6.5 6.5 0 0 1 18.5 11c0 4.6-6.5 10-6.5 10z"/><circle cx="12" cy="11" r="2.3"/></svg>
+            <span id="cityName">…</span>
+          </button>
+          <button type="button" class="gps-btn" id="gpsBtn2" aria-label="Location">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/><path d="M12 2.5V6M12 18v3.5M21.5 12H18M6 12H2.5"/></svg>
+          </button>
+        </div>
+        <div class="dateline"><span id="dlGreg"></span><span class="sep">·</span><span id="dlHijri"></span></div>
+        <div class="islamic-chip" id="islamicChip" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>
+          <span id="islamicChipText"></span>
+        </div>
+        <div class="ring-wrap" id="ringWrap">
+          <svg id="ring" viewBox="40 40 360 360" aria-hidden="true"></svg>
+          <div class="ring-center" id="ringCenter" aria-live="polite"></div>
+        </div>
+        <ol class="times" id="times" hidden></ol>
+        <!-- ⚠️ Kimlik "monthBtn" OLAMAZ: mh-dynamic.js eski kartin dugmesini o
+             kimlikle bulup tiklama baglar, tiklama iki kez islenir ve takvim
+             acilip hemen kapanir (28 Eyl 2026). Ayni sebeple cityBtn/gpsBtn de yok. -->
+        <button type="button" class="month-btn" id="monthToggle" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 2.8V6M16 2.8V6"/></svg>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="hero-copy">
+        <span class="vk-kicker">Manevi Halka</span>
+        <h1 data-t="vTitle">Prayer times</h1>
+        <p class="vk-sub" data-t="vSub">Based on the Diyanet calendar. Change your city, and open or print the 30-day calendar below the times.</p>
+        <div class="vk-ayah" id="vkAyah" hidden>
+          <span class="vk-label" id="vkLabel"></span>
+          <p class="vk-ar" id="vkAr" lang="ar" dir="rtl" hidden></p>
+          <p class="vk-meal" id="vkMeal" hidden></p>
+          <span class="vk-ref" id="vkRef"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="wrap month-shell"><div class="month-wrap" id="monthWrap" hidden></div></div>
+
+<main class="wrap">
+  <section class="vk-promo" id="download" aria-labelledby="vpTitle">
+    <div class="vp-text">
+      <h2 id="vpTitle" data-t="vPromoTitle">Know when each prayer time begins</h2>
+      <p data-t="vPromoText">Notifications, home screen widgets and the qibla. The Quran, circles and dhikr are in the same app.</p>
+      <a class="vp-link" href="/" data-home-link><span data-t="vKnowApp">Discover the app</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="cta">
+          <a class="store-badge" data-store="ios" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg>
+            <span><span class="small" data-t="get">Download</span><span class="big">App Store</span></span>
+          </a>
+          <a class="store-badge" data-store="android" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&amp;referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dtimes-en">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg>
+            <span><span class="small" data-t="get">Download</span><span class="big">Google Play</span></span>
+          </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social">
+      <p class="social-title" data-t="ySocialTitle">Stay close to the circle</p>
+      <p class="social-text" data-t="ySocialText">The verse of the day every morning, reminders on the blessed nights.</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/manevihalkaapp" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.youtube.com/@manevihalkaapp" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+        <a href="https://x.com/ManeviHalkaApp" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.2h3.7l-8 9.2 9.4 12.5h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9 6.1-6.9zm-1.3 19.5h2L6.5 3.2H4.3l13.3 17.5z"/></svg></a>
+        <a href="https://www.facebook.com/manevihalkaapp" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg></a>
+        <a href="https://whatsapp.com/channel/0029VbDM2z67IUYTITv3yY2V" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="/" data-home-link data-t="yNavApp">The app</a>
+      <a href="/ortak-okuma.html" data-t="ccTitle">Shared Reading</a>
+      <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy-en.html" data-t="privacy">Privacy Policy</a>
+      <a id="lnkTerms" target="_blank" rel="noopener" href="/terms-en.html" data-t="terms">Terms of Service</a>
+      <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete-en.html" data-t="deleteAcc">Account Deletion</a>
+      <a href="mailto:support@manevihalka.app" data-t="contact">Contact</a>
+    </div>
+    <p class="credit">
+      <span data-t="itaniCredit">English translation: Talal Itani,</span>
+      <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span>
+    </p>
+    <p>© 2026 Manevi Halka</p>
+  </footer>
+</main>
+
+<div class="cp-overlay" id="cityPicker" role="dialog" aria-modal="true">
+  <div class="cp-panel">
+    <div class="cp-top">
+      <span class="cp-title"></span>
+      <button type="button" class="cp-close" id="cpClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg>
+      </button>
+    </div>
+    <p class="cp-hint"></p>
+    <input type="text" class="cp-search" id="cpSearch" autocomplete="off">
+    <button type="button" class="cp-gps-row" id="cpGps">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/><path d="M12 2.5V6M12 18v3.5M21.5 12H18M6 12H2.5"/></svg>
+      <span></span>
+    </button>
+    <div id="cpResults"></div>
+    <p class="cp-privacy"></p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ── Dil ──────────────────────────────────────────────────────────────────
+  // Sozluk URETIMDE yazilir (_gen/build-home.mjs, kaynak _gen/site-i18n.js).
+  // PAGE_LANG: uretilmis dil sayfasinda (/tr/) dil ADRESTEN gelir, kayitli
+  // tercih onu ezemez; kokte null, dil tercih/cihaz diline gore secilir.
+  var T = {"en":{"get":"Download","ccTitle":"Shared Reading","privacy":"Privacy Policy","terms":"Terms of Service","deleteAcc":"Account Deletion","contact":"Contact","itaniCredit":"English translation: Talal Itani,","suffix":"-en","pageTitle":"Prayer times · Manevi Halka","pageDesc":"Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days.","vTitle":"Prayer times","vSub":"Based on the Diyanet calendar. Change your city, and open or print the 30-day calendar below the times.","vPromoTitle":"Know when each prayer time begins","vPromoText":"Notifications, home screen widgets and the qibla. The Quran, circles and dhikr are in the same app.","vKnowApp":"Discover the app","yNavApp":"The app","yNavTimes":"Prayer times","yNavSections":"Sections","ySocialTitle":"Stay close to the circle","ySocialText":"The verse of the day every morning, reminders on the blessed nights.","title":"Prayer times · Manevi Halka","desc":"Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days."}};
+  var PAGE_LANG = "en";
+  var VAKIT_URL = {"en":"/prayer-times/","tr":"/tr/namaz-vakitleri/","de":"/de/gebetszeiten/","fr":"/fr/horaires-de-priere/","ar":"/ar/mawaqit/"};
+  var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
+  var FALLBACK = "en";
+  var reduce = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  function $(id) { return document.getElementById(id); }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* gizli mod */ } }
+
+  function resolveLocale() {
+    if (PAGE_LANG) { lsSet("mh_lang", PAGE_LANG); return PAGE_LANG; }
+    try {
+      var q = new URLSearchParams(location.search).get("lang");
+      if (q && SUPPORTED.indexOf(q) !== -1) return q;
+    } catch (e) { /* eski tarayici */ }
+    var saved = lsGet("mh_lang");
+    if (saved && SUPPORTED.indexOf(saved) !== -1) return saved;
+    var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ""];
+    for (var i = 0; i < list.length; i++) {
+      var code = String(list[i] || "").slice(0, 2).toLowerCase();
+      if (SUPPORTED.indexOf(code) !== -1) return code;
+    }
+    return FALLBACK;
+  }
+
+  var loc = resolveLocale();
+  var t = T[loc] || T[FALLBACK];
+
+  function applyTexts() {
+    var html = document.documentElement;
+    html.setAttribute("lang", loc);
+    html.setAttribute("dir", loc === "ar" ? "rtl" : "ltr");
+    var nodes = document.querySelectorAll("[data-t]");
+    for (var i = 0; i < nodes.length; i++) {
+      var k = nodes[i].getAttribute("data-t");
+      if (t[k] != null) nodes[i].textContent = t[k];
+    }
+    if (t.title) document.title = t.title;
+    var md = $("metaDesc");
+    if (md && t.desc) md.setAttribute("content", t.desc);
+    var arias = document.querySelectorAll("[data-t-aria]");
+    for (var ai = 0; ai < arias.length; ai++) {
+      var ak = arias[ai].getAttribute("data-t-aria");
+      if (t[ak] != null) arias[ai].setAttribute("aria-label", t[ak]);
+    }
+    $("lnkPrivacy").setAttribute("href", "/privacy" + t.suffix + ".html");
+    $("lnkTerms").setAttribute("href", "/terms" + t.suffix + ".html");
+    $("lnkDelete").setAttribute("href", "/account-delete" + t.suffix + ".html");
+    $("langCode").textContent = loc.toUpperCase();
+    var opts = document.querySelectorAll("#langList button");
+    for (var j = 0; j < opts.length; j++) opts[j].setAttribute("aria-selected", opts[j].getAttribute("data-lang") === loc ? "true" : "false");
+  }
+  applyTexts();
+
+  (function langMenu() {
+    var btn = $("langBtn"), list = $("langList");
+    btn.addEventListener("click", function () {
+      var open = list.hidden;
+      list.hidden = !open;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click", function (e) {
+      if (!list.hidden && !btn.contains(e.target) && !list.contains(e.target)) { list.hidden = true; btn.setAttribute("aria-expanded", "false"); }
+    });
+    list.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-lang]");
+      if (!b) return;
+      var next = b.getAttribute("data-lang");
+      list.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+      // Her dilin kendi vakit sayfasi var: secim bir GEZINME.
+      if (next !== loc && VAKIT_URL[next]) { lsSet("mh_lang", next); location.href = VAKIT_URL[next]; }
+    });
+  })();
+
+  // ── Gok ──────────────────────────────────────────────────────────────────
+  // Uygulamadaki Vakit Gogu'nun web karsiligi: alti gok (imsak, kusluk, ogle,
+  // ikindi, aksam, yatsi). Ton vakti, parlaklik temayi izler.
+  var SKY = {
+    light: {
+      imsak:  { top: "#b3b6da", mid: "#dccbe0", hor: "#f5ddd3", ink: "#1d2540", accent: "#1e4d35", sun: .5, sunX: "12%", sunY: "88%", sunC: "#ffd9c7", stars: 0, moon: .55, sil: "#9d98bd", far: "#c3bdd6" },
+      sabah:  { top: "#a8cbe4", mid: "#d6e7f0", hor: "#f6ead7", ink: "#14302a", accent: "#1e4d35", sun: .9, sunX: "18%", sunY: "26%", sunC: "#fff4d8", stars: 0, moon: 0, sil: "#9db7c2", far: "#bfd2d9" },
+      ogle:   { top: "#93c2e5", mid: "#cfe5f2", hor: "#eef6f2", ink: "#12302a", accent: "#1e4d35", sun: .95, sunX: "54%", sunY: "2%", sunC: "#fffbea", stars: 0, moon: 0, sil: "#98b6c1", far: "#bdd3da" },
+      ikindi: { top: "#a9c1d3", mid: "#e9d9ba", hor: "#f5c99b", ink: "#2a2317", accent: "#1e4d35", sun: .85, sunX: "82%", sunY: "36%", sunC: "#ffe7b8", stars: 0, moon: 0, sil: "#b89878", far: "#d6bd9d" },
+      aksam:  { top: "#b8a8ce", mid: "#e7b9b7", hor: "#f3b48f", ink: "#2a1e2e", accent: "#1e4d35", sun: .8, sunX: "88%", sunY: "84%", sunC: "#ffc59a", stars: 0, moon: .35, sil: "#a784a0", far: "#c9a8b8" },
+      yatsi:  { top: "#a3accb", mid: "#c7cee2", hor: "#e4e7f0", ink: "#1b2440", accent: "#1e4d35", sun: 0, sunX: "50%", sunY: "110%", sunC: "#ffffff", stars: 0, moon: .9, sil: "#8e97b8", far: "#b3bad2" }
+    },
+    dark: {
+      imsak:  { top: "#1b2346", mid: "#4a4474", hor: "#8e6a86", ink: "#f4efe6", accent: "#8fd3ae", sun: .35, sunX: "12%", sunY: "96%", sunC: "#f2b7a4", stars: .55, moon: .6, sil: "#141a33", far: "#2b2a4e" },
+      sabah:  { top: "#1e3a55", mid: "#2f5f72", hor: "#6e8f86", ink: "#eef3ef", accent: "#8fd3ae", sun: .45, sunX: "18%", sunY: "26%", sunC: "#ffe9c2", stars: 0, moon: 0, sil: "#15293a", far: "#24404f" },
+      ogle:   { top: "#163e5c", mid: "#276582", hor: "#4e8c8e", ink: "#eef3ef", accent: "#8fd3ae", sun: .4, sunX: "54%", sunY: "2%", sunC: "#fff3d0", stars: 0, moon: 0, sil: "#102c3f", far: "#1e4557" },
+      ikindi: { top: "#23364c", mid: "#5b5446", hor: "#9a6e44", ink: "#f6eee2", accent: "#8fd3ae", sun: .45, sunX: "82%", sunY: "40%", sunC: "#ffd49a", stars: 0, moon: 0, sil: "#1c1d24", far: "#3a3530" },
+      aksam:  { top: "#28244f", mid: "#6a3b5e", hor: "#b4674a", ink: "#fbefe6", accent: "#f0c77e", sun: .6, sunX: "88%", sunY: "86%", sunC: "#ffb27a", stars: .25, moon: .25, sil: "#1d1733", far: "#4a2f4f" },
+      yatsi:  { top: "#060c1c", mid: "#0d1b33", hor: "#1b3150", ink: "#eef1ec", accent: "#e6c47a", sun: 0, sunX: "50%", sunY: "110%", sunC: "#000000", stars: 1, moon: 1, sil: "#050a15", far: "#0f1c30" }
+    }
+  };
+  var sky = $("sky");
+  var skyPhase = null, skyHadData = false;
+
+  (function stars() {
+    var s = 7, html = "";
+    function rnd() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
+    for (var i = 0; i < 60; i++) {
+      var size = rnd() < .2 ? 2.4 : 1.4;
+      html += '<b style="left:' + (rnd() * 100).toFixed(2) + "%;top:" + (rnd() * 100).toFixed(2) + "%;width:" + size + "px;height:" + size + "px;opacity:" + (.35 + rnd() * .65).toFixed(2) + '"></b>';
+    }
+    $("skyStars").innerHTML = html;
+  })();
+
+  function isDark() { return document.documentElement.getAttribute("data-theme") === "dark"; }
+  function clockPhase() {
+    var h = new Date().getHours();
+    return h < 5 ? "yatsi" : h < 7 ? "imsak" : h < 12 ? "sabah" : h < 15 ? "ogle" : h < 18 ? "ikindi" : h < 20 ? "aksam" : "yatsi";
+  }
+  function paintSky(phase, animate) {
+    var p = (isDark() ? SKY.dark : SKY.light)[phase];
+    sky.classList.toggle("anim", !!animate && !reduce);
+    var st = sky.style;
+    st.setProperty("--sky-top", p.top); st.setProperty("--sky-mid", p.mid); st.setProperty("--sky-hor", p.hor);
+    st.setProperty("--s-ink", p.ink);
+    st.setProperty("--s-accent", p.accent);
+    st.setProperty("--s-arc", p.accent);
+    st.setProperty("--sun", p.sun); st.setProperty("--sun-x", p.sunX); st.setProperty("--sun-y", p.sunY); st.setProperty("--sun-c", p.sunC);
+    st.setProperty("--stars", p.stars); st.setProperty("--moon", p.moon);
+    st.setProperty("--sil", p.sil); st.setProperty("--sil-far", p.far);
+    var dark = isDark();
+    st.setProperty("--s-btn-bg", dark ? "rgba(255,255,255,.14)" : "#1e4d35");
+    st.setProperty("--s-btn-fg", dark ? p.ink : "#ffffff");
+    st.setProperty("--s-btn-line", dark ? "rgba(255,255,255,.32)" : "transparent");
+    st.setProperty("--s-card", dark ? "rgba(6,14,11,.38)" : "rgba(255,255,255,.72)");
+    sky.setAttribute("data-phase", phase);
+    skyPhase = phase;
+  }
+  paintSky(clockPhase(), false);
+  // Tema dugmesi (mh-dynamic) data-theme'i degistirir: gok yeni temanin tonuna gecer
+  new MutationObserver(function () { if (skyPhase) paintSky(skyPhase, false); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // ── Halka ────────────────────────────────────────────────────────────────
+  // Gece yarisi altta, ogle ustte, saat yonunde. Zamanin yonu dile gore
+  // AYNALANMAZ (Arapcada da saat yonu).
+  var CX = 220, CY = 220, R = 150;
+  var NS = "http://www.w3.org/2000/svg";
+  var ring = $("ring");
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    (parent || ring).appendChild(e);
+    return e;
+  }
+  function ang(m) { return m / 4 + 180; }
+  function pt(r, deg) { var a = deg * Math.PI / 180; return [CX + r * Math.sin(a), CY - r * Math.cos(a)]; }
+  function arcD(r, d0, d1) {
+    var p0 = pt(r, d0), p1 = pt(r, d1), large = (d1 - d0) > 180 ? 1 : 0;
+    return "M" + p0[0].toFixed(2) + " " + p0[1].toFixed(2) + " A" + r + " " + r + " 0 " + large + " 1 " + p1[0].toFixed(2) + " " + p1[1].toFixed(2);
+  }
+  el("circle", { "class": "r-track", cx: CX, cy: CY, r: R });
+  for (var hI = 0; hI < 24; hI++) {
+    var major = hI % 6 === 0;
+    var a1 = pt(R - 16, hI * 15 + 180), b1 = pt(R - (major ? 26 : 21), hI * 15 + 180);
+    el("line", { "class": "r-tick", x1: a1[0].toFixed(1), y1: a1[1].toFixed(1), x2: b1[0].toFixed(1), y2: b1[1].toFixed(1) });
+  }
+  [[0, "00"], [6, "06"], [12, "12"], [18, "18"]].forEach(function (h) {
+    var p = pt(R - 38, h[0] * 15 + 180);
+    var tx = el("text", { "class": "r-hr", x: p[0].toFixed(1), y: (p[1] + 3.5).toFixed(1), "text-anchor": "middle" });
+    tx.textContent = h[1];
+  });
+  var gapEl = el("path", { "class": "r-gap", d: "" });
+  var ARC_KEYS = ["fajr", "dhuhr", "asr", "maghrib", "isha"];
+  var arcEls = {};
+  ARC_KEYS.forEach(function (k) { arcEls[k] = el("path", { "class": "r-arc", d: "" }); });
+  var progEl = el("path", { "class": "r-prog", d: "" });
+  var glowEl = el("circle", { "class": "r-glow", cx: -99, cy: -99, r: 19 });
+  var dotEl = el("circle", { "class": "r-dot", cx: -99, cy: -99, r: 9 });
+
+  function toMin(hhmm) { var p = String(hhmm).split(":"); return (+p[0]) * 60 + (+p[1]); }
+  var lastRowsKey = null;
+  function layoutArcs(rows) {
+    var key = rows.map(function (r) { return r.time; }).join(",");
+    if (key === lastRowsKey) return;
+    lastRowsKey = key;
+    var m = {};
+    rows.forEach(function (r) { m[r.key] = toMin(r.time); });
+    var win = { fajr: [m.fajr, m.sunrise], dhuhr: [m.dhuhr, m.asr], asr: [m.asr, m.maghrib], maghrib: [m.maghrib, m.isha], isha: [m.isha, m.fajr + 1440] };
+    ARC_KEYS.forEach(function (k) { arcEls[k].setAttribute("d", arcD(R, ang(win[k][0]) + 1.1, ang(win[k][1]) - 1.1)); });
+    gapEl.setAttribute("d", arcD(R, ang(m.sunrise) + 2, ang(m.dhuhr) - 2));
+  }
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function fmtLeft(ms) {
+    var s = Math.max(0, Math.floor(ms / 1000));
+    return pad(Math.floor(s / 3600)) + ":" + pad(Math.floor(s % 3600 / 60)) + ":" + pad(s % 60);
+  }
+  function up(s) { try { return s.toLocaleUpperCase(loc === "tr" ? "tr-TR" : loc); } catch (e) { return s.toUpperCase(); } }
+  function eng(k) { return window.MHPrayer ? window.MHPrayer.text(k) : ""; }
+
+  var center = $("ringCenter");
+  var centerMode = null;
+  function setCenter(mode, build) {
+    if (centerMode !== mode) { center.innerHTML = ""; centerMode = mode; build(); }
+  }
+
+  var PHASE_OF = { fajr: "imsak", dhuhr: "ogle", asr: "ikindi", maghrib: "aksam", isha: "yatsi" };
+
+  function tick() {
+    if (!window.MHPrayer) return;
+    var s = window.MHPrayer.snapshot();
+    $("cityName").textContent = s.city || eng("chooseCity");
+    $("cityChip").setAttribute("aria-label", eng("changeCity"));
+    $("gpsBtn2").setAttribute("aria-label", eng("useLocation"));
+
+    var ready = s.state === "ready" && s.rows.length === 6;
+    $("times").hidden = !ready;
+    $("monthToggle").hidden = !ready;
+
+    if (!ready) {
+      ARC_KEYS.forEach(function (k) { arcEls[k].classList.remove("on"); });
+      progEl.setAttribute("d", ""); dotEl.setAttribute("cx", -99); glowEl.setAttribute("cx", -99);
+      if (s.state === "nocity" || s.state === "error") {
+        setCenter(s.state, function () {
+          var p = document.createElement("p"); p.className = "rc-msg"; center.appendChild(p);
+          var b = document.createElement("button"); b.type = "button"; b.className = "rc-action"; center.appendChild(b);
+          b.addEventListener("click", function () { if (centerMode === "nocity") window.MHPrayer.openPicker(); else window.MHPrayer.retry(); });
+        });
+        center.querySelector(".rc-msg").textContent = eng(s.state === "nocity" ? "emptyCity" : "errorTimes");
+        center.querySelector(".rc-action").textContent = eng(s.state === "nocity" ? "chooseCity" : "retry");
+      } else {
+        setCenter("loading", function () { var p = document.createElement("p"); p.className = "rc-msg"; center.appendChild(p); });
+        center.querySelector(".rc-msg").textContent = eng("loading");
+      }
+      return;
+    }
+
+    // Vakit penceresi ve gok
+    var phase = s.inside ? PHASE_OF[s.headKey] : "sabah";
+    if (phase !== skyPhase) paintSky(phase, skyHadData);   // ilk dogru veri ANINDA, sonraki degisim yavas
+    skyHadData = true;
+
+    layoutArcs(s.rows);
+    ARC_KEYS.forEach(function (k) { arcEls[k].classList.toggle("on", s.inside && k === s.headKey); });
+
+    var now = Date.now();
+    var nowMin = (((now + s.offsetMs) % 86400000) + 86400000) % 86400000 / 60000;
+    var p = pt(R, ang(nowMin));
+    dotEl.setAttribute("cx", p[0].toFixed(2)); dotEl.setAttribute("cy", p[1].toFixed(2));
+    glowEl.setAttribute("cx", p[0].toFixed(2)); glowEl.setAttribute("cy", p[1].toFixed(2));
+    if (s.prevAt != null) {
+      var startMin = (((s.prevAt + s.offsetMs) % 86400000) + 86400000) % 86400000 / 60000;
+      if (startMin > nowMin) startMin -= 1440;
+      progEl.setAttribute("d", nowMin - startMin > 3 ? arcD(R, ang(startMin) + 1.1, ang(nowMin)) : "");
+    } else progEl.setAttribute("d", "");
+
+    setCenter("ready", function () {
+      center.innerHTML = '<div class="rc-head"></div><div class="rc-count"></div><div class="rc-foot"></div>';
+    });
+    center.querySelector(".rc-head").textContent = up(s.headName || "");
+    center.querySelector(".rc-count").textContent = s.targetAt != null ? fmtLeft(s.targetAt - now) : "—";
+    center.querySelector(".rc-foot").textContent = s.label || "";
+
+    // Gunun alti satiri (liste sehrin bugunudur)
+    var list = $("times");
+    if (list.childElementCount !== 6 || list.getAttribute("data-loc") !== loc || list.getAttribute("data-key") !== lastRowsKey) {
+      list.innerHTML = s.rows.map(function (r) {
+        return '<li data-k="' + r.key + '"' + (r.key === "sunrise" ? ' class="sun"' : "") + "><span></span><b>" + r.time + "</b></li>";
+      }).join("");
+      var lis = list.children;
+      for (var i = 0; i < lis.length; i++) lis[i].querySelector("span").textContent = s.rows[i].name;
+      list.setAttribute("data-loc", loc); list.setAttribute("data-key", lastRowsKey);
+    }
+    var items = list.children;
+    for (var j = 0; j < items.length; j++) {
+      items[j].classList.toggle("on", s.inside && items[j].getAttribute("data-k") === s.headKey);
+    }
+    var mb = $("monthToggle").querySelector("span");
+    mb.textContent = eng(window.MHPrayer.isMonthOpen() ? "monthHide" : "monthShow");
+  }
+
+  $("cityChip").addEventListener("click", function () { if (window.MHPrayer) window.MHPrayer.openPicker(); });
+  $("gpsBtn2").addEventListener("click", function () { if (window.MHPrayer) window.MHPrayer.useGps(); });
+  $("monthToggle").addEventListener("click", function () { if (window.MHPrayer) { window.MHPrayer.toggleMonth(); tick(); } });
+  document.addEventListener("mh:prayer", tick);
+  setInterval(tick, 1000);
+
+  // ── Gunun Ayeti: sade satir ──────────────────────────────────────────────
+  // TR/EN meal; AR Arapca asli; DE/FR meal izni yok, yalniz Arapca ve kunye
+  // (Arapca 3 satiri asarsa satir o gun gorunmez).
+  var MAX_AR_LINES = 3;
+  function paintAyah() {
+    if (!window.MHDaily) return;
+    var d = window.MHDaily.today();
+    if (!d || !d.ayah) return;
+    var a = d.ayah, box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
+    var useMeal = (loc === "tr" || loc === "en") && !!a.translation;
+    $("vkLabel").textContent = up(a.specialName || d.ayahLabel || "");
+    $("vkRef").textContent = up(a.reference || "");
+    meal.textContent = useMeal ? a.translation : "";
+    meal.hidden = !useMeal;
+    ar.textContent = useMeal ? "" : (a.arabic || "");
+    ar.hidden = useMeal || !a.arabic;
+    box.hidden = !(useMeal || a.arabic);
+    if (!useMeal && a.arabic && loc !== "ar") {
+      var fit = function () {
+        var lh = parseFloat(getComputedStyle(ar).lineHeight) || 48;
+        if (Math.round(ar.getBoundingClientRect().height / lh) > MAX_AR_LINES) box.hidden = true;
+      };
+      if (document.fonts && document.fonts.load) document.fonts.load('26px "MushafAr"').then(fit, fit);
+      else fit();
+    }
+  }
+  document.addEventListener("mh:daily", paintAyah);
+  paintAyah();
+})();
+</script>
+<script src="/js/mh-dynamic.js" defer></script>
+</body>
+</html>

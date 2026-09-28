@@ -21,12 +21,34 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Uygulama tanıtım sayfası, 5 dil (_gen/build-app.mjs). Ana sayfadan bağlanır. -->
-  <url><loc>https://manevihalka.app/app/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://manevihalka.app/tr/app/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://manevihalka.app/de/app/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://manevihalka.app/fr/app/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://manevihalka.app/ar/app/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Namaz vakitleri sayfası, 5 dil. ⚠️ İçi _gen/build-vakit.mjs tarafından yazılır. -->
+  <!-- MH:VAKIT:BASLA -->
+  <url>
+    <loc>https://manevihalka.app/tr/namaz-vakitleri/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/prayer-times/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/de/gebetszeiten/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/fr/horaires-de-priere/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/ar/mawaqit/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <!-- MH:VAKIT:BITIS -->
 
   <!-- Ortak Okuma: canlı katılım sayfası. join.html'in aksine noindex DEĞİL;
        bu bir davet sayfası değil varış sayfası.
@@ -56,11 +78,23 @@
   <url><loc>https://manevihalka.app/account-delete-fr.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://manevihalka.app/account-delete-ar.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
 
-  <!-- Dil sayfaları. ⚠️ İçi _gen/build-home.mjs tarafından yazılır. -->
+  <!-- Ana sayfanın dil sürümleri (/tr/, /de/, /fr/, /ar/). ⚠️ İçi _gen/build-home.mjs tarafından yazılır. -->
   <!-- MH:LOCALES:BASLA -->
   <url>
     <loc>https://manevihalka.app/tr/</loc>
     <lastmod>2026-09-28</lastmod>
   </url>
-<!-- MH:LOCALES:BITIS -->
+  <url>
+    <loc>https://manevihalka.app/de/</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/fr/</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/ar/</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <!-- MH:LOCALES:BITIS -->
 </urlset>

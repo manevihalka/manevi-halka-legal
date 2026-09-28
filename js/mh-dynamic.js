@@ -640,7 +640,8 @@
     if (!v) return null;
     return {
       arabic: v.ar,
-      translation: locale === "ar" ? null : (v.t[locale] || v.t.en),
+      // Meali olmayan dilde (AR; DE/FR izin yok, daily.json'da yazilmiyor) baska dile DUSULMEZ
+      translation: (v.t && v.t[locale]) || null,
       reference: v.ref[locale] || v.ref.en,
       specialName: specialName,
       bgIndex: bgIndex != null ? bgIndex : fallbackIndex % BG_COUNT,
@@ -1570,9 +1571,9 @@
   }
 
   // ── Dis okuma arayuzu ────────────────────────────────────────────────────
-  // /yeni/ (yeni tasarim onizlemesi) vakit motorunu, sehir seciciyi ve
-  // ayet/hadis secimini IKINCI BIR KOPYA YAZMADAN kullanir. Salt okunur:
-  // bugunku sayfanin davranisini DEGISTIRMEZ (index.html bunu kullanmiyor).
+  // Vakit sayfasi (_gen/vakit.src.html: halka, Gunun Ayeti satiri) ve ana
+  // sayfanin ustundeki canli serit (_gen/home.src.html) vakit motorunu, sehir
+  // seciciyi ve ayet secimini IKINCI BIR KOPYA YAZMADAN buradan okur. Salt okunur.
   // Durum degisince "mh:prayer", gunluk veri gelince/degisince "mh:daily".
   function emit(name) {
     try { document.dispatchEvent(new CustomEvent(name)); } catch (e) { /* eski tarayici */ }
