@@ -1084,6 +1084,7 @@
     var cb = $("cityBtn"), gb = $("gpsBtn");
     if (cb) cb.addEventListener("click", openPicker);
     if (gb) gb.addEventListener("click", function () { useGps(); });
+    emit("mh:prayer");
   }
 
   function renderPrayerLoading(msg) {
@@ -1199,7 +1200,8 @@
     }
     if (!next) {
       // Takvim penceresi tukendi (son gunun yatsisi da gecti)
-      return { rows: rows, headKey: "isha", inside: true, label: ps().endsIn, targetAt: null };
+      return { rows: rows, headKey: "isha", inside: true, label: ps().endsIn, targetAt: null,
+               prevAt: chain.length ? chain[chain.length - 1].at : null, nextKey: null, offsetMs: entryOffsetMs(today) };
     }
     var inside = prev ? prev.key !== "sunrise" : true; // veri bugun basliyorsa imsak oncesi = yatsi içi
     var headKey = inside ? (prev ? prev.key : "isha") : next.key;
@@ -1209,6 +1211,9 @@
       inside: inside,
       label: inside ? ps().endsIn : ps().until[next.key],
       targetAt: next.at,
+      prevAt: prev ? prev.at : null,
+      nextKey: next.key,
+      offsetMs: entryOffsetMs(today),
     };
   }
 
@@ -1557,11 +1562,62 @@
     renderedDayNum = localDayNumber(new Date());
     renderDateLine();
     renderCards();
+    emit("mh:daily");
     if (prayerState === "ready") { renderPrayerReady(); renderMonthIfOpen(); }
     else if (prayerState === "nocity") renderPrayerEmpty();
     else if (prayerState === "error") renderPrayerError();
     syncThemeUi();
   }
+
+  // ── Dis okuma arayuzu ────────────────────────────────────────────────────
+  // /yeni/ (yeni tasarim onizlemesi) vakit motorunu, sehir seciciyi ve
+  // ayet/hadis secimini IKINCI BIR KOPYA YAZMADAN kullanir. Salt okunur:
+  // bugunku sayfanin davranisini DEGISTIRMEZ (index.html bunu kullanmiyor).
+  // Durum degisince "mh:prayer", gunluk veri gelince/degisince "mh:daily".
+  function emit(name) {
+    try { document.dispatchEvent(new CustomEvent(name)); } catch (e) { /* eski tarayici */ }
+  }
+  window.MHPrayer = {
+    /** Anlik durum. state: loading | nocity | error | ready. Saatler SEHRIN yerel saatidir. */
+    snapshot: function () {
+      var info = prayerState === "ready" ? computeNow() : null;
+      return {
+        state: prayerState,
+        city: savedCity ? cityDisplayName(savedCity) : null,
+        rows: info ? info.rows.map(function (r) {
+          return { key: r.key, name: ps().names[r.key], time: r.time };
+        }) : [],
+        headKey: info ? info.headKey : null,
+        headName: info ? ps().names[info.headKey] : null,
+        inside: info ? info.inside : false,
+        label: info ? info.label : null,
+        targetAt: info ? info.targetAt : null,
+        prevAt: info ? info.prevAt : null,
+        nextKey: info ? info.nextKey : null,
+        offsetMs: info ? info.offsetMs : 0,
+      };
+    },
+    text: function (key) { return t(key); },
+    openPicker: function () { openPicker(); },
+    useGps: function () { useGps(); },
+    retry: function () { startPrayerFlow(true); },
+    toggleMonth: function () { if (prayerState === "ready") toggleMonth(); },
+    isMonthOpen: function () { return monthOpen; },
+  };
+  window.MHDaily = {
+    /** Bugunun ayeti ve hadisi (kandil/Ramazan kurallari dahil) + kart etiketleri. */
+    today: function () {
+      if (!dailyData) return null;
+      var now = new Date();
+      return {
+        ayah: pickAyah(dailyData, now),
+        hadith: pickHadith(dailyData, now),
+        ayahLabel: pickLoc(dailyData.labels.ayah, locale),
+        hadithLabel: pickLoc(dailyData.labels.hadith, locale),
+      };
+    },
+    upper: function (s) { return upperLoc(s, locale); },
+  };
 
   function init() {
     locale = document.documentElement.getAttribute("lang") || "en";
@@ -1574,6 +1630,7 @@
     loadDaily().then(function () {
       renderDateLine();
       renderCards();
+      emit("mh:daily");
     }).catch(function () { /* kartlar bos kalir, sayfa calismaya devam eder */ });
 
     initialPrayerFlow();
