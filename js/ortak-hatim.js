@@ -1044,6 +1044,13 @@ window.MHOrtakHatim = (function () {
       (sum.hatim || []).forEach(function (x) { if (x.type === 'quran') q = x; });
       if (!q || !q.total) return;
 
+      // Hero'daki davet karti ayni sayiyi gosterir (index.html); ikinci istek
+      // atmasin diye burada yayinlanir.
+      try {
+        window.MHHatimSummary = { open: q.open, openText: nf(q.open), done: q.done, claimed: q.claimed, total: q.total };
+        document.dispatchEvent(new CustomEvent('mh:hatim-summary', { detail: window.MHHatimSummary }));
+      } catch (e) { /* eski tarayici: davet statik kalir */ }
+
       wrap.appendChild(sumRow(T.tabHatim,
         fmt(T.freeIn, { p: unitCount(nf(q.open)) }),
         q.done / q.total, q.claimed / q.total));

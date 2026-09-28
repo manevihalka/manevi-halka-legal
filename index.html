@@ -976,6 +976,79 @@
     line-height: 1.25;
   }
 
+  /* ─────────── Hero'daki ortak hatim daveti ─────────── */
+  /* ⚠️ Surekli nabiz/yanip sonme YOK: canli nokta duragan. Kart hero'yu
+     uzatir; telefonda bunu magaza dugmelerini yan yana alarak telafi
+     ediyoruz (asagidaki 560px blogu), vakit karti ilk ekranda kalmali. */
+  .hero-invite {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 440px;
+    margin: 18px auto 0;
+    padding: 10px 10px 10px 16px;
+    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 18px rgba(30, 77, 53, 0.08);
+    color: var(--ink);
+    text-decoration: none;
+    text-align: start;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  html[dir="rtl"] .hero-invite { padding: 10px 16px 10px 10px; }
+  .hero-invite:hover,
+  .hero-invite:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--green-soft);
+    box-shadow: 0 10px 24px rgba(30, 77, 53, 0.14);
+  }
+  .hero-invite:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+  .hi-live {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #3fa66b;
+    box-shadow: 0 0 0 4px rgba(63, 166, 107, 0.18);
+  }
+  .hi-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px; line-height: 1.3; }
+  .hi-title, .hi-sub { text-wrap: pretty; }
+  .hi-title { font-size: 14.5px; font-weight: 700; color: var(--green); }
+  .hi-sub { font-size: 13px; color: var(--body); font-variant-numeric: tabular-nums; }
+  .hi-go {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 9px 12px 9px 14px;
+    border-radius: 11px;
+    background: var(--pill);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .hi-go svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  html[dir="rtl"] .hi-go { padding: 9px 14px 9px 12px; }
+  html[dir="rtl"] .hi-go svg { transform: scaleX(-1); }
+
+  /* Telefonda magaza dugmeleri YAN YANA: alt alta 140px tutuyorlardi, davet
+     kartina yer acilsin ve vakit karti ilk ekrandan asagi kaymasin. 360px
+     altinda sigmadigi icin yine alt alta. */
+  @media (max-width: 560px) {
+    .hero .cta-buttons { flex-wrap: nowrap; }
+    .hero .store-badge { flex: 1 1 0; min-width: 0; justify-content: center; padding: 10px 12px; gap: 9px; }
+    .hero .store-badge svg { width: 22px; height: 22px; }
+    .hero .store-badge .big { font-size: 15px; white-space: nowrap; }
+    .hero-invite { margin-top: 14px; }
+  }
+  @media (max-width: 359px) {
+    .hero .cta-buttons { flex-wrap: wrap; }
+    .hero .store-badge { flex: 1 1 100%; }
+  }
+
   /* ─────────── Tanitim girisi (vakitlerin altinda) ─────────── */
   .intro { padding: 18px 0 4px; text-align: center; }
 
@@ -2269,6 +2342,21 @@
           </span>
         </a>
       </div>
+
+      <!-- Ortak hatim daveti (kullanici karari, 28 Eyl 2026): katilma yolu
+           ilk ekranda olsun. Eskiden tek yol vakitlerin ve ayet kartlarinin
+           altindaki bolumdu, telefonda ucuncu ekrana dusuyordu. Dogrudan
+           Hatim sekmesini acar; Ortak Okuma sayfasinin VARSAYILANI yine
+           Zikir (ayri kullanici karari). Sayi mh:hatim-summary olayindan
+           gelir, veri yoksa statik satir kalir. -->
+      <a class="hero-invite" id="heroInvite" href="/ortak-okuma.html?t=hatim">
+        <span class="hi-live" aria-hidden="true"></span>
+        <span class="hi-text">
+          <span class="hi-title" data-i18n="heroInviteTitle">Shared khatm in progress</span>
+          <span class="hi-sub" id="heroInviteSub" data-i18n="heroInviteSub">No account needed</span>
+        </span>
+        <span class="hi-go"><span data-i18n="heroInviteGo">Join</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span>
+      </a>
     </section>
   </div>
 
@@ -2581,6 +2669,11 @@
       ccTitle: "Ortak Okuma",
       ccLead: "Dünyanın her yerinden okuyanlarla süregiden ortak bir hatim. Bir bölüm üstlen, ya da ortak zikre katıl.",
       ccNote: "Hesap gerekmiyor",
+      heroInviteTitle: "Ortak hatim sürüyor",
+      heroInviteSub: "Hesap gerekmez",
+      heroInviteGo: "Katıl",
+      heroInviteCount: "{n} sayfa seni bekliyor",
+      heroInviteCount1: "{n} sayfa seni bekliyor",
       get: "İndir",
       shotsHint: "Kaydırarak uygulamayı gez",
       featuresTitle: "Neler var",
@@ -2626,6 +2719,11 @@
       ccTitle: "Shared Reading",
       ccLead: "An ongoing khatm shared with readers all over the world. Take a portion, or join the shared dhikr.",
       ccNote: "No account needed",
+      heroInviteTitle: "Shared khatm in progress",
+      heroInviteSub: "No account needed",
+      heroInviteGo: "Join",
+      heroInviteCount: "{n} pages waiting for you",
+      heroInviteCount1: "{n} page waiting for you",
       get: "Download",
       shotsHint: "Swipe to explore the app",
       featuresTitle: "What's inside",
@@ -2671,6 +2769,11 @@
       ccTitle: "Gemeinsames Lesen",
       ccLead: "Eine fortlaufende Chatma mit Lesern aus aller Welt. Übernimm einen Abschnitt oder mach beim gemeinsamen Dhikr mit.",
       ccNote: "Kein Konto nötig",
+      heroInviteTitle: "Gemeinsame Chatma läuft",
+      heroInviteSub: "Kein Konto nötig",
+      heroInviteGo: "Mitlesen",
+      heroInviteCount: "{n} Seiten warten auf dich",
+      heroInviteCount1: "{n} Seite wartet auf dich",
       get: "Laden",
       shotsHint: "Wische, um die App zu entdecken",
       featuresTitle: "Was drinsteckt",
@@ -2716,6 +2819,11 @@
       ccTitle: "Lecture commune",
       ccLead: "Une khatma continue partagée avec des lecteurs du monde entier. Prends une portion, ou rejoins le dhikr commun.",
       ccNote: "Sans compte",
+      heroInviteTitle: "Khatma commune en cours",
+      heroInviteSub: "Sans compte",
+      heroInviteGo: "Rejoindre",
+      heroInviteCount: "{n} pages t'attendent",
+      heroInviteCount1: "{n} page t'attend",
       get: "Télécharger",
       shotsHint: "Fais glisser pour découvrir l'appli",
       featuresTitle: "Ce que tu y trouves",
@@ -2761,6 +2869,11 @@
       ccTitle: "القراءة المشتركة",
       ccLead: ".ختمة مستمرة مع قارئين من كل أنحاء العالم. تكفّل بجزء أو شارك في الذكر المشترك",
       ccNote: "لا حاجة إلى حساب",
+      heroInviteTitle: "ختمة مشتركة جارية",
+      heroInviteSub: "لا حاجة إلى حساب",
+      heroInviteGo: "شارك",
+      heroInviteCount: "{n} صفحة بانتظارك",
+      heroInviteCount1: "صفحة واحدة بانتظارك",
       get: "حمّل",
       shotsHint: "اسحب لاستكشاف التطبيق",
       featuresTitle: "ماذا يقدّم",
@@ -2888,6 +3001,25 @@
   }
 
   applyLocale(resolveLocale());
+
+  // ── Hero'daki ortak hatim daveti: canli sayi ──
+  // Sayi, ana sayfa kartinin zaten yaptigi 'summary' cagrisindan gelir
+  // (js/ortak-hatim.js mh:hatim-summary olayini basar); ikinci istek YOK.
+  // Veri gelmezse ya da musait sayfa kalmazsa statik satir kalir. Dil
+  // degisince applyLocale statik satiri geri yazar, burada yeniden cizilir.
+  (function () {
+    var sub = document.getElementById("heroInviteSub");
+    if (!sub) return;
+    var last = null;
+    function paint() {
+      if (!last || !currentT || !(last.open > 0)) return;
+      var tpl = last.open === 1 ? currentT.heroInviteCount1 : currentT.heroInviteCount;
+      if (tpl) sub.textContent = tpl.replace("{n}", last.openText || String(last.open));
+    }
+    document.addEventListener("mh:hatim-summary", function (e) { last = e.detail; paint(); });
+    document.addEventListener("mh:locale", paint);
+    if (window.MHHatimSummary) { last = window.MHHatimSummary; paint(); }
+  })();
 
   // ── Dil secici (kendi panelimiz) ──
   // Yerlesik <select> yerine yazildi: acilis yonu tarayiciya birakilamiyordu.
