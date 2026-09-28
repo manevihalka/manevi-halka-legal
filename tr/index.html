@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: index.html
      Uretici: node _gen/build-locale-pages.mjs
-     mh-build src=sha256:616acc322c490c7923bc223f3ab17595ee3c454a0179f3dfbcadccf86fada842 locale=tr -->
+     mh-build src=sha256:5ddaa33aafff1a48a6d2acd5296271f6caf3438236bf774ae8df00078d1d0b03 locale=tr -->
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -20,6 +20,13 @@
     } catch (e) { t = "light"; }
   }
   document.documentElement.setAttribute("data-theme", t);
+  // Kaydirmayla belirme: gizli baslangic yalniz bu sinif varken. Kaydirma kodu
+  // 2,5 sn icinde kurulmazsa (betik hatasi, cok yavas cihaz) sinif kalkar ve
+  // her sey gorunur olur; bos sayfa kalmaz.
+  document.documentElement.classList.add("mh-reveal");
+  setTimeout(function () {
+    if (!window.__mhRevealReady) document.documentElement.classList.remove("mh-reveal");
+  }, 2500);
   // Tarayici cercevesi (adres cubugu tonu) da ilk andan dogru temada olsun
   var meta = document.querySelector('meta[name="theme-color"]');
   if (meta && t === "dark") meta.setAttribute("content", "#10231b");
@@ -1414,7 +1421,11 @@
   }
 
   /* ─────────── Kaydirmayla beliren ogeler ─────────── */
-  .reveal {
+  /* ⚠️ Gizli baslangic YALNIZ html.mh-reveal varken: sinifi head betigi ekler,
+     asagidaki kaydirma kodu calismazsa 2,5 sn sonra bekci geri alir. Boylece
+     betik gecikse ya da hata verse bile sayfa bos kalmaz. Ilk ekrandaki
+     (ikon, ad, magaza dugmeleri) ogeler BILEREK .reveal tasimiyor. */
+  html.mh-reveal .reveal {
     opacity: 0;
     transform: translateY(18px);
     transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
@@ -1422,12 +1433,12 @@
     will-change: opacity, transform;
   }
 
-  .reveal.in { opacity: 1; transform: none; }
+  html.mh-reveal .reveal.in { opacity: 1; transform: none; }
 
   /* "Hareketi azalt" tercihine SAYGI: tum animasyon kapanir */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .reveal { opacity: 1; transform: none; transition: none; }
+    html.mh-reveal .reveal { opacity: 1; transform: none; transition: none; }
     .card:hover, .shot:hover, .store-badge:hover { transform: none; }
     .store-badge:hover svg, .store-badge:focus-visible svg { transform: none; }
     .pc-spinner { animation: none; }
@@ -2236,7 +2247,7 @@
           <svg class="lamp" viewBox="0 0 24 34"><use href="#kandilLamp"/></svg>
         </span>
       </span>
-      <div class="logo-wrap reveal" id="logoWrap">
+      <div class="logo-wrap" id="logoWrap">
         <img src="/icon-anim-still.png" alt="Manevi Halka" class="logo-still">
         <!-- ⚠️ src YOK, data-src VAR: 215 KB'lik gif ilk boyamayi bekletmesin.
              js/mh-dynamic.js sayfa yuklendikten sonra bos bir anda indiriyor. -->
@@ -2250,9 +2261,9 @@
            karari, 13 Agu 2026): vakitler icin kaydirmak gerekirse ziyaretci
            "burada namaz vakti yokmus" deyip cikiyor. Buraya paragraf EKLEME;
            uygulamanin tanitimi vakitlerin ALTINDAKI bolumde. -->
-      <h1 class="reveal">Manevi Halka<span class="h1-sub" data-i18n="h1sub">Birlikte hatim, Cevşen ve zikir halkaları</span></h1>
+      <h1>Manevi Halka<span class="h1-sub" data-i18n="h1sub">Birlikte hatim, Cevşen ve zikir halkaları</span></h1>
 
-      <div class="cta-buttons reveal" id="ctaHero">
+      <div class="cta-buttons" id="ctaHero">
         <a class="store-badge" data-store="ios" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/>
@@ -2381,7 +2392,7 @@
         <div class="card reveal">
           <div class="card-icon"><span class="cicon cicon-cevsen"></span></div>
           <h3 data-i18n="f2t">Cevşen-i Kebir</h3>
-          <p data-i18n="f2d">101 bab, paylaşımlı ya da kendi başına. Her gün bir bab okursun, nerede kaldığını uygulama hatırlar, tamamladığında sertifikan hazır olur.</p>
+          <p data-i18n="f2d">101 bab, paylaşımlı ya da kendi başına. Her gün bir bab okursun, nerede kaldığını uygulama hatırlar.</p>
         </div>
 
         <div class="card reveal">
@@ -2594,7 +2605,7 @@
       "f1t": "Kur'an Hatmi",
       "f1d": "Cüzler halkandaki herkese dağılır, sıra sana gelince haberin olur. Tek başına aylar süren bir hatim, birlikte haftalara iner.",
       "f2t": "Cevşen-i Kebir",
-      "f2d": "101 bab, paylaşımlı ya da kendi başına. Her gün bir bab okursun, nerede kaldığını uygulama hatırlar, tamamladığında sertifikan hazır olur.",
+      "f2d": "101 bab, paylaşımlı ya da kendi başına. Her gün bir bab okursun, nerede kaldığını uygulama hatırlar.",
       "f3t": "Zikir ve Tesbihat",
       "f3d": "Esmaül Hüsna, salavat ve tesbihat elinin altında. Kendi zikir listeni kurar, sırasını belirler, dilediğinde tek bağlantıyla paylaşırsın.",
       "f4t": "Namaz Vakitleri",
@@ -2957,8 +2968,29 @@
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
-    for (var m = 0; m < targets.length; m++) io.observe(targets[m]);
+    // Ilk ekranda zaten gorunen ogeler beklemeden, animasyonsuz gelir; yalniz
+    // asagida kalanlar kaydirinca belirir. Gizli (hidden) kartlarin olcusu 0
+    // olur, onlar gozlemciye birakilir: acildiklarinda normal belirirler.
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var instant = [];
+    for (var m = 0; m < targets.length; m++) {
+      var el = targets[m], rect = el.getBoundingClientRect();
+      if (rect.height > 0 && rect.top < vh) {
+        el.style.transition = "none";
+        el.classList.add("in");
+        instant.push(el);
+      } else {
+        io.observe(el);
+      }
+    }
+    // Gecisi geri ver: hover gibi sonraki etkilesimler etkilenmesin
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        for (var n = 0; n < instant.length; n++) instant[n].style.transition = "";
+      });
+    });
   }
+  window.__mhRevealReady = true;
 
   // ── Kaydirinca baslik cizgisi ──
   var header = document.getElementById("siteHeader");
