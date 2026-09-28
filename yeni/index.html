@@ -360,53 +360,134 @@
   .dc-share svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .skeleton .dc-share { display: none; }
 
-  /* ══════════ UYGULAMA TANITIMI ══════════ */
+  /* ══════════ NELER VAR ══════════
+     28 Eyl 2026 dorduncu tur (kullanici: "yeterli buluyor musun, en kritik
+     ozellikleri vurguluyor muyuz?"). Eski hali alti esit karttan olusan bir
+     envanterdi: en guclu sey (halka) alti karttan biriydi, guncel surumun
+     yarisi (sesli Kur'an, tek seferlik halka, ortak ameller, Kitaplik) yoktu,
+     yazi ile ekran goruntuleri birbirinden kopuktu. Yeni yapi uc kat:
+       1) Halka sahnesi (30 cuzluk halka canlandirmasi + gercek Halka ekrani)
+          ve Tek Seferlik Halka (web'den hesapsiz katilim),
+       2) "Her gun": dort ozellik listesi + yaninda o ozelligin gercek ekrani;
+          uzerine gelince ya da dokununca telefon o ekrana gecer,
+       3) "Ve daha fazlasi": tek satirlik kisa liste.
+     Ekranlar yeni arayuzden, 5 dilde: img/app/<dil>/<ad>.webp.
+     ⚠️ Tiklanmayan ogeye buyume efekti VERME: tiklanabilir sanilir, dokunmatik
+     ekranda da karsiligi yoktur. Etkilesim yalniz listede (secim = ekran). */
   .intro { padding-block: 8px 72px; }
   .sec-head { text-align: center; max-width: 720px; margin: 0 auto 28px; }
   .sec-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4vw, 42px); line-height: 1.15; text-wrap: balance; }
   html[lang="ar"] .sec-head h2 { font-family: inherit; font-weight: 700; }
   .sec-head p { color: var(--body); margin-top: 10px; }
-  .sec-head.small h3 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3vw, 30px); }
+  .sec-head.small h3 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 3.4vw, 38px); line-height: 1.15; }
   html[lang="ar"] .sec-head.small h3 { font-family: inherit; font-weight: 700; }
-  .sec-head.small { margin-bottom: 22px; }
-  /* Tanitim videosu: store-assets/ads (4 Eyl 2026), sessiz, magazadaki surumun
-     arayuzu. Yazilari YALNIZ TURKCE oldugu icin yalniz Turkce sayfada gosterilir;
-     oteki dillerde bolum 5 dilli ekran goruntuleriyle anlatir. */
-  .video-box { position: relative; margin: 0 auto 48px; max-width: 960px; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; background: #1e4d35; box-shadow: 0 30px 60px -34px rgba(10, 30, 20, .6); }
-  .video-box.tall { max-width: 300px; aspect-ratio: 9 / 16; }
-  .video-box video { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .video-toggle { position: absolute; bottom: 12px; inset-inline-end: 12px; width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; color: #fff; background: rgba(6, 16, 12, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-  .video-toggle svg { width: 16px; height: 16px; fill: currentColor; }
-  .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 34px; margin: 0 auto 48px; }
-  @media (max-width: 860px) { .features { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 560px) { .features { grid-template-columns: 1fr; gap: 20px; } }
-  .feat { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start; }
-  .feat-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--mint-bg); display: grid; place-items: center; }
-  .feat-icon svg { width: 22px; height: 22px; fill: none; stroke: var(--green); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .sec-head.small { margin-bottom: 30px; }
+  .kicker { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  html[lang="ar"] .kicker { letter-spacing: 0; text-transform: none; font-size: 14px; }
   .cicon { display: block; width: 24px; height: 24px; background-color: var(--green); -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; }
   .cicon-quran { -webkit-mask-image: url(/icons/quran.png); mask-image: url(/icons/quran.png); }
   .cicon-cevsen { -webkit-mask-image: url(/icons/cevsen.png); mask-image: url(/icons/cevsen.png); }
   .cicon-zikir { -webkit-mask-image: url(/icons/zikir.png); mask-image: url(/icons/zikir.png); }
   .cicon-book { -webkit-mask-image: url(/icons/book.png); mask-image: url(/icons/book.png); }
-  .feat h4 { font-size: 16px; font-weight: 700; margin: 2px 0 4px; }
-  .feat p { font-size: 14.5px; line-height: 1.55; color: var(--body); }
-  .gallery { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 4px; padding: 4px 4px 18px; scrollbar-width: none; }
-  .gallery::-webkit-scrollbar { display: none; }
-  .shot { flex: none; width: 216px; scroll-snap-align: start; border: 0; padding: 0; background: none; cursor: zoom-in; border-radius: 22px; overflow: hidden; box-shadow: 0 18px 36px -24px rgba(10, 30, 20, .55); }
-  .shot img { display: block; width: 100%; height: auto; aspect-ratio: 311 / 620; background: var(--mint-bg); }
-  @media (max-width: 560px) { .shot { width: 58vw; } }
-  .gal-nav { display: flex; justify-content: center; gap: 10px; }
-  .gal-nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
-  .gal-nav svg, .lb-nav svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  html[dir="rtl"] .gal-nav svg, html[dir="rtl"] .lb-nav svg { transform: scaleX(-1); }
-  .lb { position: fixed; inset: 0; z-index: 130; display: flex; align-items: center; justify-content: center; background: rgba(6, 14, 11, .88); opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease; }
-  .lb.open { opacity: 1; visibility: visible; }
-  .lb img { max-height: 88vh; max-width: 88vw; border-radius: 26px; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); }
-  .lb-close, .lb-nav { position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; color: #fff; background: rgba(255, 255, 255, .14); }
-  .lb-close { top: calc(16px + env(safe-area-inset-top, 0px)); inset-inline-end: 16px; }
-  .lb-close svg { width: 18px; height: 18px; fill: currentColor; }
-  .lb-prev { inset-inline-start: 16px; top: 50%; margin-top: -22px; }
-  .lb-next { inset-inline-end: 16px; top: 50%; margin-top: -22px; }
+
+  /* Telefon cercevesi: gercek ekran goruntusu (640x1391) ince bir kasanin icinde */
+  .phone { --pw: 270px; position: relative; flex: none; margin: 0; width: var(--pw); aspect-ratio: 640 / 1391; padding: calc(var(--pw) * .028);
+    border-radius: calc(var(--pw) * .15); background: #101a16; box-shadow: 0 44px 80px -46px rgba(10, 30, 20, .7), inset 0 0 0 1px rgba(255, 255, 255, .07); }
+  :root[data-theme="dark"] .phone { background: #050b08; box-shadow: 0 44px 80px -40px rgba(0, 0, 0, .8), inset 0 0 0 1px rgba(255, 255, 255, .12); }
+  .phone img { position: absolute; inset: calc(var(--pw) * .028); display: block; width: calc(100% - var(--pw) * .056); height: calc(100% - var(--pw) * .056);
+    border-radius: calc(var(--pw) * .125); object-fit: cover; background: var(--mint-bg); }
+
+  .stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; max-width: 1040px; margin: 0 auto 96px; }
+  .stage h3 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 3.4vw, 38px); line-height: 1.15; text-wrap: balance; }
+  html[lang="ar"] .stage h3 { font-family: inherit; font-weight: 700; }
+  .stage-copy p { color: var(--body); font-size: 17px; line-height: 1.65; margin-top: 14px; max-width: 46ch; }
+  .ticks { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
+  .ticks li { position: relative; padding-inline-start: 32px; color: var(--ink); font-size: 15.5px; line-height: 1.5; }
+  .ticks li::before { content: ""; position: absolute; inset-inline-start: 0; top: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--mint-bg); }
+  .ticks li::after { content: ""; position: absolute; inset-inline-start: 7px; top: 6px; width: 5px; height: 9px; border: solid var(--green); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .text-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 22px; font-weight: 700; color: var(--green); text-decoration: none; }
+  .text-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .text-link svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  html[dir="rtl"] .text-link svg { transform: scaleX(-1); }
+
+  /* Halka sahnesi: 30 cuz bir halka; on kisiye ucer cuz dagilir, okundukca dolar */
+  .halka-visual { position: relative; height: 560px; }
+  .juz-ring { position: absolute; top: 30px; inset-inline-start: 0; width: 310px; height: 310px; --jr-track: color-mix(in srgb, var(--ink) 9%, transparent); }
+  .juz-ring svg { display: block; width: 100%; height: 100%; transform: rotate(-90deg); }
+  .jr-arc { fill: none; stroke: var(--jr-track); stroke-width: 15; transition: stroke .5s ease, opacity .5s ease; }
+  .jr-arc.on { stroke: var(--c); opacity: .3; }
+  .jr-arc.done { opacity: 1; }
+  .jr-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .jr-center b { font-family: var(--display); font-weight: 400; font-size: 64px; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .jr-center span { margin-top: 4px; font-size: 16px; font-weight: 600; color: var(--ink); }
+  .jr-center small { margin-top: 6px; font-size: 13px; color: var(--body); transition: opacity .4s ease; }
+  .halka-visual .phone { --pw: 224px; position: absolute; bottom: 0; inset-inline-end: 0; }
+  .vesile-visual { display: flex; justify-content: center; }
+  .stage-vesile .stage-visual { order: -1; }
+
+  /* "Her gun": liste + gercek ekran */
+  .spot { max-width: 1040px; margin: 0 auto 96px; }
+  .spot .sec-head { text-align: center; }
+  .spot-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 64px; align-items: center; }
+  .spot-list { display: grid; gap: 8px; }
+  .spot-item { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start; width: 100%; padding: 16px 18px 18px;
+    border: 1px solid transparent; border-radius: 20px; background: transparent; color: inherit; font: inherit; text-align: start; cursor: pointer;
+    transition: background .25s ease, border-color .25s ease, box-shadow .25s ease; -webkit-tap-highlight-color: transparent; }
+  .spot-item:hover { background: color-mix(in srgb, var(--card) 55%, transparent); }
+  .spot-item[aria-selected="true"] { background: var(--card); border-color: color-mix(in srgb, var(--ink) 7%, transparent); box-shadow: 0 22px 44px -34px rgba(10, 30, 20, .5); }
+  .spot-item:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+  .si-icon { width: 44px; height: 44px; border-radius: 13px; background: var(--mint-bg); display: grid; place-items: center; }
+  .si-icon svg { width: 22px; height: 22px; fill: none; stroke: var(--green); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .si-text b { display: block; font-size: 17px; font-weight: 700; color: var(--ink); margin-top: 10px; }
+  .si-desc { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+  .si-desc > span { overflow: hidden; font-size: 15px; line-height: 1.6; color: var(--body); }
+  .spot-item[aria-selected="true"] .si-desc { grid-template-rows: 1fr; }
+  .spot-item[aria-selected="true"] .si-desc > span { padding-top: 6px; }
+  .si-bar { position: absolute; inset-inline: 18px; bottom: 7px; height: 2px; border-radius: 2px; overflow: hidden; opacity: 0; }
+  .si-bar i { display: block; width: 100%; height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left center; }
+  html[dir="rtl"] .si-bar i { transform-origin: right center; }
+  .spot-list.auto .spot-item[aria-selected="true"] .si-bar { opacity: .55; }
+  .spot-list.auto .spot-item[aria-selected="true"] .si-bar i { animation: spotbar var(--spot-ms, 6000ms) linear forwards; }
+  @keyframes spotbar { to { transform: scaleX(1); } }
+  .spot-phone .phone { --pw: 290px; }
+  .spot-phone .phone img { transition: opacity .4s ease; }
+  .spot-phone .phone img.back { opacity: 0; }
+
+  /* "Ve daha fazlasi" */
+  .also { max-width: 1040px; margin: 0 auto; text-align: center; }
+  .also h3 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3vw, 30px); margin-bottom: 22px; }
+  html[lang="ar"] .also h3 { font-family: inherit; font-weight: 700; }
+  .also-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; text-align: start; }
+  .also-grid li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; font-size: 14.5px; font-weight: 600; line-height: 1.3; color: var(--ink);
+    background: color-mix(in srgb, var(--card) 65%, transparent); border: 1px solid color-mix(in srgb, var(--ink) 6%, transparent); }
+  .ai { flex: none; width: 34px; height: 34px; border-radius: 11px; background: var(--mint-bg); display: grid; place-items: center; color: var(--green); }
+  .ai svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ai .cicon { width: 20px; height: 20px; }
+  .free-line { margin-top: 24px; color: var(--green-soft); font-weight: 600; }
+
+  @media (max-width: 860px) {
+    .stage { grid-template-columns: 1fr; gap: 28px; margin-bottom: 72px; }
+    .stage-vesile .stage-visual { order: 0; }
+    .spot-grid { grid-template-columns: 1fr; gap: 28px; }
+    .spot-phone { display: flex; justify-content: center; }
+    .also-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .halka-visual { height: 420px; }
+    .juz-ring { top: 16px; width: 236px; height: 236px; }
+    .jr-center b { font-size: 46px; }
+    .jr-center span { font-size: 14px; }
+    .jr-center small { font-size: 11.5px; }
+    .halka-visual .phone { --pw: 184px; }
+    .vesile-visual .phone, .spot-phone .phone { --pw: 236px; }
+    .stage-copy p { font-size: 16px; }
+    .spot-item { padding: 14px 14px 16px; }
+    .also-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .also-grid li { font-size: 13.5px; padding: 11px 12px; gap: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .jr-arc, .si-desc, .spot-phone .phone img, .spot-item { transition: none; }
+  }
 
   /* ══════════ KAPANIS ══════════ */
   .closing { text-align: center; padding-block: 24px 64px; --s-btn-bg: var(--pill); --s-btn-fg: #fff; --s-line: var(--line); }
@@ -602,29 +683,90 @@
       <h2 id="introTitle" data-t="introTitle">What is the Manevi Halka app</h2>
       <p data-t="taglineSub">Share the juz with your circle, read in turns, complete the khatm together.</p>
     </div>
-    <div class="video-box" id="videoBox" hidden>
-      <video id="promoVideo" muted loop playsinline preload="none" data-t-aria="yVideo" aria-label="Manevi Halka"></video>
-      <button type="button" class="video-toggle" id="videoToggle" aria-label="Play">
-        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>
-        <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/></svg>
-      </button>
+
+    <div class="stage stage-halka">
+      <div class="stage-copy">
+        <span class="kicker" data-t="yHalkaKicker">Circles</span>
+        <h3 data-t="yHalkaTitle">One khatm, ten people, one week</h3>
+        <p data-t="yHalkaText"></p>
+        <ul class="ticks">
+          <li data-t="yHalkaP1"></li>
+          <li data-t="yHalkaP2"></li>
+          <li data-t="yHalkaP3"></li>
+        </ul>
+      </div>
+      <div class="stage-visual halka-visual">
+        <div class="juz-ring" id="juzRing" aria-hidden="true">
+          <svg viewBox="0 0 200 200" id="jrSvg"></svg>
+          <div class="jr-center"><b id="jrCount">30</b><span data-t="yRingUnit">juz</span><small id="jrSub" data-t="yRingSub">10 people · 7 days</small></div>
+        </div>
+        <figure class="phone"><img data-shot="halka" data-alt="yHalkaTitle" src="/img/app/en/halka.webp" alt="" width="640" height="1391" loading="lazy" decoding="async"></figure>
+      </div>
     </div>
-    <div class="sec-head small">
-      <h3 data-t="featuresTitle">What's inside</h3>
-      <p data-t="featuresSub">Worship itself is always free</p>
+
+    <div class="stage stage-vesile">
+      <div class="stage-copy">
+        <span class="kicker" data-t="yVesileKicker">One-Time Circle</span>
+        <h3 data-t="yVesileTitle"></h3>
+        <p data-t="yVesileText"></p>
+        <a class="text-link" href="/ortak-okuma.html"><span data-t="yVesileCta">See how it looks on the web</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="stage-visual vesile-visual">
+        <figure class="phone"><img data-shot="vesile" data-alt="yVesileKicker" src="/img/app/en/vesile.webp" alt="" width="640" height="1391" loading="lazy" decoding="async"></figure>
+      </div>
     </div>
-    <div class="features">
-      <div class="feat"><div class="feat-icon"><span class="cicon cicon-quran"></span></div><div><h4 data-t="f1t"></h4><p data-t="f1d"></p></div></div>
-      <div class="feat"><div class="feat-icon"><span class="cicon cicon-cevsen"></span></div><div><h4 data-t="f2t"></h4><p data-t="f2d"></p></div></div>
-      <div class="feat"><div class="feat-icon"><span class="cicon cicon-zikir"></span></div><div><h4 data-t="f3t"></h4><p data-t="f3d"></p></div></div>
-      <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h4 data-t="f4t"></h4><p data-t="f4d"></p></div></div>
-      <div class="feat"><div class="feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 4v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V7z"/><path d="M9.5 12.4l1.8 1.8 3.4-3.6"/></svg></div><div><h4 data-t="f5t"></h4><p data-t="f5d"></p></div></div>
-      <div class="feat"><div class="feat-icon"><span class="cicon cicon-book"></span></div><div><h4 data-t="f6t"></h4><p data-t="f6d"></p></div></div>
+
+    <div class="spot" id="spot">
+      <div class="sec-head small">
+        <span class="kicker" data-t="ySpotKicker">Every day</span>
+        <h3 data-t="ySpotTitle">With you every day</h3>
+      </div>
+      <div class="spot-grid">
+        <div class="spot-list" id="spotList" role="tablist" aria-orientation="vertical">
+        <button type="button" class="spot-item" role="tab" id="spotTab0" data-shot="quran" aria-controls="spotPanel" aria-selected="true" tabindex="0">
+          <span class="si-icon"><span class="cicon cicon-quran"></span></span>
+          <span class="si-text"><b data-t="s1t"></b><span class="si-desc"><span data-t="s1d"></span></span></span>
+          <span class="si-bar" aria-hidden="true"><i></i></span>
+        </button>
+        <button type="button" class="spot-item" role="tab" id="spotTab1" data-shot="vakit" aria-controls="spotPanel" aria-selected="false" tabindex="-1">
+          <span class="si-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span class="si-text"><b data-t="s2t"></b><span class="si-desc"><span data-t="s2d"></span></span></span>
+          <span class="si-bar" aria-hidden="true"><i></i></span>
+        </button>
+        <button type="button" class="spot-item" role="tab" id="spotTab2" data-shot="amel" aria-controls="spotPanel" aria-selected="false" tabindex="-1">
+          <span class="si-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9.5" r="2.4"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><path d="M15.5 14.4c2.3.1 4.2 1.6 4.8 4.6"/></svg></span>
+          <span class="si-text"><b data-t="s3t"></b><span class="si-desc"><span data-t="s3d"></span></span></span>
+          <span class="si-bar" aria-hidden="true"><i></i></span>
+        </button>
+        <button type="button" class="spot-item" role="tab" id="spotTab3" data-shot="kitaplik" aria-controls="spotPanel" aria-selected="false" tabindex="-1">
+          <span class="si-icon"><span class="cicon cicon-book"></span></span>
+          <span class="si-text"><b data-t="s4t"></b><span class="si-desc"><span data-t="s4d"></span></span></span>
+          <span class="si-bar" aria-hidden="true"><i></i></span>
+        </button>
+        </div>
+        <div class="spot-phone" id="spotPanel" role="tabpanel" aria-labelledby="spotTab0">
+          <figure class="phone"><img id="spotA" src="/img/app/en/quran.webp" alt="" width="640" height="1391" loading="lazy" decoding="async"><img id="spotB" class="back" src="" alt="" width="640" height="1391" decoding="async" aria-hidden="true"></figure>
+        </div>
+      </div>
     </div>
-    <div class="gallery" id="gallery"></div>
-    <div class="gal-nav">
-      <button type="button" id="galPrev" data-t-aria="yPrev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button type="button" id="galNext" data-t-aria="yNext" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+
+    <div class="also">
+      <h3 data-t="yAlsoTitle">And more</h3>
+      <ul class="also-grid">
+        <li><span class="ai"><span class="cicon cicon-cevsen"></span></span><span data-t="a1"></span></li>
+        <li><span class="ai"><span class="cicon cicon-zikir"></span></span><span data-t="a2"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><span data-t="a3"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2M5.6 5.6 7 7M3 12h2M19 12h2M17 7l1.4-1.4"/><path d="M7.5 15a4.5 4.5 0 0 1 9 0"/><path d="M4 19h16"/></svg></span><span data-t="a4"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-1.6-1.4-4-2-7-2v13c3 0 5.4.6 7 2 1.6-1.4 4-2 7-2v-13c-3 0-5.4.6-7 2z"/><path d="M12 6.5v13"/></svg></span><span data-t="a5"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.7 2.7h3.8v3.8l2.7 2.7-2.7 2.7v3.8h-3.8L12 21.2l-2.7-2.7H5.5v-3.8L2.8 12l2.7-2.7V5.5h3.8z"/><circle cx="12" cy="12" r="3.2"/></svg></span><span data-t="a6"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5 13.4 13.4 8.5 15.5 10.6 10.6z"/></svg></span><span data-t="a7"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M4 10h16"/><path d="M12 12.6l.9 1.9 2 .3-1.5 1.4.4 2-1.8-1-1.8 1 .4-2-1.5-1.4 2-.3z"/></svg></span><span data-t="a8"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/><path d="M9.5 10l2 2 3.5-3.5"/></svg></span><span data-t="a9"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.4 2.4 4.6-4.9"/></svg></span><span data-t="a10"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c2-6 4-9 7-9s5-3 7-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="4" r="1.6"/></svg></span><span data-t="a11"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg></span><span data-t="a12"></span></li>
+      </ul>
+      <p class="free-line" data-t="yFreeLine"></p>
     </div>
   </section>
 
@@ -682,13 +824,6 @@
   </footer>
 </main>
 
-<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Manevi Halka">
-  <img id="lbImg" src="" alt="">
-  <button type="button" class="lb-close" id="lbClose" data-t-aria="yClose" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg></button>
-  <button type="button" class="lb-nav lb-prev" id="lbPrev" data-t-aria="yPrev" aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-  <button type="button" class="lb-nav lb-next" id="lbNext" data-t-aria="yNext" aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-</div>
-
 <div class="cp-overlay" id="cityPicker" role="dialog" aria-modal="true">
   <div class="cp-panel">
     <div class="cp-top">
@@ -716,7 +851,7 @@
   // ── Dil ──────────────────────────────────────────────────────────────────
   // Sozluk index.html I18N'inden URETIMDE sokulur (_gen/build-yeni.mjs);
   // yalniz yPreview bu sayfaya ozgu. Kalici hali index.html'e tasininca kalkar.
-  var T = {"tr":{"h1sub":"Birlikte hatim, Cevşen ve zikir halkaları","get":"İndir","ccTitle":"Ortak Okuma","ccLead":"Dünyanın her yerinden okuyanlarla süregiden ortak bir hatim. Bir bölüm üstlen, ya da ortak zikre katıl.","ccNote":"Hesap gerekmiyor","heroInviteTitle":"Ortak hatme sen de katıl","heroInviteSub":"Birkaç sayfayla, dünyanın dört bir yanından okuyanlarla","heroInviteGo":"Başla","heroInviteSmall":"Birkaç sayfayla, dünyanın dört bir yanından okuyanlarla","heroInviteCycle":"{c}. hatim dünyanın dört bir yanında okunuyor","heroInviteNear":"Hatmin bitmesine {n} sayfa kaldı","heroInviteNear1":"Hatmin bitmesine 1 sayfa kaldı","privacy":"Gizlilik Politikası","terms":"Kullanım Koşulları","deleteAcc":"Hesap Silme","contact":"İletişim","itaniCredit":"İngilizce meal: Talal Itani,","suffix":"","introTitle":"Manevi Halka uygulaması nedir","taglineSub":"Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Namaz vakitleri, kıble ve zikir sayacı da aynı uygulamada.","featuresTitle":"Neler var","featuresSub":"İbadetin kendisi her zaman ücretsiz","f1t":"Kur'an Hatmi","f1d":"Cüzler halkandaki herkese dağılır, sıra sana gelince haberin olur. Tek başına aylar süren bir hatim, birlikte haftalara iner.","f2t":"Cevşen-i Kebir","f2d":"101 bab, paylaşımlı ya da kendi başına. Her gün bir bab okursun, nerede kaldığını uygulama hatırlar.","f3t":"Zikir ve Tesbihat","f3d":"Esmaül Hüsna, salavat ve tesbihat elinin altında. Kendi zikir listeni kurar, sırasını belirler, dilediğinde tek bağlantıyla paylaşırsın.","f4t":"Namaz Vakitleri","f4d":"Vakit yaklaşınca ana ekranındaki widget haber verir. Seyahat ettiğinde şehrin kendiliğinden güncellenir, 106 ülkede doğru vakit.","f5t":"Kıble ve Günlük Takip","f5d":"Nerede olursan ol kıbleyi bulursun. Namazını, nafileni ve ezberini kayıt altına alır, virdlerini ve dini günleri kaçırmazsın.","f6t":"Kitap Okuma Halkaları","f6d":"Bir kitabı halkanla birlikte okursun. Kaldığın sayfa seninle kalır, haftalık ilerlemeyi hep beraber görürsünüz.","closeTitle":"Halkanı bugün kur","closeText":"Ailenle, dostlarınla ya da tek başına.","closeWish":"İbadetin kabul olsun, halkan daim olsun.","quoteText":"Gönül birliği, dil birliğinden üstündür.","quoteSource":"Mevlânâ, Mesnevî","cap_dashboard":"Ana ekran: görevlerin ve namazların tek bakışta","cap_flow-detail":"Halkan: üyeler, okumalar ve ilerleme","cap_prayer":"Namaz ve nafile takibi, haftalık tablo","cap_quran-reader":"Kur'an okuma ekranı, kişisel ayarlar","cap_event":"Özel günler için tek seferlik hatim halkaları","cap_zikir":"Günlük zikirler ve kendi listelerin","cap_qibla-explore":"Kıble bulucu, nerede olursan ol","cap_lifestyle":"Manevi yolculuğun hep yanında","yPreview":"Önizleme","yVideo":"Manevi Halka tanıtım videosu","yPlay":"Oynat","yPause":"Duraklat","yPrev":"Önceki","yNext":"Sonraki","yClose":"Kapat","yShare":"Paylaş","ySaved":"Görsel kaydedildi","ySocialTitle":"Halkayla bağlantıda kal","ySocialText":"Günün ayeti her sabah, kandil gecelerinde hatırlatma."},"en":{"h1sub":"Shared khatm, Jawshan and dhikr circles","get":"Download","ccTitle":"Shared Reading","ccLead":"An ongoing khatm shared with readers all over the world. Take a portion, or join the shared dhikr.","ccNote":"No account needed","heroInviteTitle":"Join the shared khatm","heroInviteSub":"A few pages, alongside readers around the world","heroInviteGo":"Start","heroInviteSmall":"A few pages, alongside readers around the world","heroInviteCycle":"Khatm no. {c} is being read around the world","heroInviteNear":"{n} pages left to complete the khatm","heroInviteNear1":"One page left to complete the khatm","privacy":"Privacy Policy","terms":"Terms of Service","deleteAcc":"Account Deletion","contact":"Contact","itaniCredit":"English translation: Talal Itani,","suffix":"-en","introTitle":"What is the Manevi Halka app","taglineSub":"Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.","featuresTitle":"What's inside","featuresSub":"Worship itself is always free","f1t":"Qur'an Khatm","f1d":"The juz are shared across your circle, and you know when your turn comes. A khatm that takes months alone is done in weeks together.","f2t":"Jawshan al-Kabir","f2d":"101 chapters, shared or on your own. Read one a day and the app remembers where you stopped.","f3t":"Dhikr and Tasbih","f3d":"Asma ul-Husna, salawat and tasbihat within reach. Build your own dhikr list, set its order, and share it with a single link.","f4t":"Prayer Times","f4d":"The home screen widget tells you when a prayer time is near. Your city updates itself when you travel, with accurate times in 106 countries.","f5t":"Qibla and Daily Tracking","f5d":"Find the qibla wherever you are. Keep a record of your prayers, nafl and memorization, and never miss your awrad or the religious days.","f6t":"Book Reading Circles","f6d":"Read a book together with your circle. Your page stays with you, and you follow the weekly progress as one.","closeTitle":"Start your circle today","closeText":"With your family, your friends, or on your own.","closeWish":"May your worship be accepted, and your circle endure.","quoteText":"Unity of heart surpasses unity of language.","quoteSource":"Rumi, Masnavi","cap_dashboard":"Home: your tasks and prayers at a glance","cap_flow-detail":"Your circle: members, readings and progress","cap_prayer":"Prayer and nafl tracking with a weekly view","cap_quran-reader":"Qur'an reading screen with personal settings","cap_event":"One-time khatm circles for special days","cap_zikir":"Daily dhikr and your own lists","cap_qibla-explore":"Qibla finder, wherever you are","cap_lifestyle":"Your journey, always with you","yPreview":"Preview","yVideo":"Manevi Halka promo video","yPlay":"Play","yPause":"Pause","yPrev":"Previous","yNext":"Next","yClose":"Close","yShare":"Share","ySaved":"Image saved","ySocialTitle":"Stay close to the circle","ySocialText":"The verse of the day every morning, reminders on the blessed nights."},"de":{"h1sub":"Chatma, Dschauschan und Dhikr gemeinsam","get":"Laden","ccTitle":"Gemeinsames Lesen","ccLead":"Eine fortlaufende Chatma mit Lesern aus aller Welt. Übernimm einen Abschnitt oder mach beim gemeinsamen Dhikr mit.","ccNote":"Kein Konto nötig","heroInviteTitle":"Lies mit bei der Chatma","heroInviteSub":"Ein paar Seiten, gemeinsam mit Lesenden weltweit","heroInviteGo":"Loslegen","heroInviteSmall":"Ein paar Seiten, gemeinsam mit Lesenden weltweit","heroInviteCycle":"Die {c}. Chatma wird weltweit gelesen","heroInviteNear":"Noch {n} Seiten bis zum Abschluss der Chatma","heroInviteNear1":"Noch eine Seite bis zum Abschluss der Chatma","privacy":"Datenschutzerklärung","terms":"Nutzungsbedingungen","deleteAcc":"Kontolöschung","contact":"Kontakt","itaniCredit":"Englische Übersetzung: Talal Itani,","suffix":"-de","introTitle":"Was ist die Manevi-Halka-App","taglineSub":"Teile die Dschus in deinem Kreis, lest reihum, vollendet die Chatma gemeinsam. Gebetszeiten, Qibla und Dhikr-Zähler sind in derselben App.","featuresTitle":"Was drinsteckt","featuresSub":"Die Andacht selbst bleibt immer kostenlos","f1t":"Koran-Chatma","f1d":"Die Dschus werden in deinem Kreis verteilt, und du erfährst, wann du an der Reihe bist. Eine Chatma, die allein Monate dauert, gelingt gemeinsam in Wochen.","f2t":"Dschauschan al-Kabir","f2d":"101 Abschnitte, gemeinsam oder für dich allein. Einer pro Tag, und die App merkt sich, wo du aufgehört hast.","f3t":"Dhikr und Tasbih","f3d":"Asma ul-Husna, Salawat und Tasbihat in Reichweite. Stelle deine eigene Dhikr-Liste zusammen, ordne sie und teile sie mit einem einzigen Link.","f4t":"Gebetszeiten","f4d":"Das Widget auf dem Startbildschirm sagt dir Bescheid, wenn eine Gebetszeit naht. Auf Reisen aktualisiert sich deine Stadt von selbst, mit genauen Zeiten in 106 Ländern.","f5t":"Qibla und tägliche Verfolgung","f5d":"Finde die Qibla, wo immer du bist. Halte Gebete, Nafl und Auswendiglernen fest und verpasse weder deine Awrad noch die religiösen Tage.","f6t":"Buchlesekreise","f6d":"Lies ein Buch gemeinsam mit deinem Kreis. Deine Seite bleibt bei dir, und den wöchentlichen Fortschritt seht ihr zusammen.","closeTitle":"Gründe deinen Kreis noch heute","closeText":"Mit deiner Familie, deinen Freunden oder allein.","closeWish":"Mögen deine Taten angenommen werden und dein Kreis bestehen.","quoteText":"Einheit der Herzen wiegt mehr als Einheit der Sprache.","quoteSource":"Rumi, Masnawi","cap_dashboard":"Startseite: Aufgaben und Gebete auf einen Blick","cap_flow-detail":"Dein Kreis: Mitglieder, Lesungen und Fortschritt","cap_prayer":"Gebets- und Nafl-Tracking mit Wochenübersicht","cap_quran-reader":"Koran-Lesebildschirm mit persönlichen Einstellungen","cap_event":"Einmalige Chatma-Kreise für besondere Tage","cap_zikir":"Tägliche Dhikr und eigene Listen","cap_qibla-explore":"Qibla-Kompass, wo immer du bist","cap_lifestyle":"Dein Weg, immer dabei","yPreview":"Vorschau","yVideo":"Manevi Halka Vorstellungsvideo","yPlay":"Abspielen","yPause":"Pausieren","yPrev":"Zurück","yNext":"Weiter","yClose":"Schließen","yShare":"Teilen","ySaved":"Bild gespeichert","ySocialTitle":"Bleib mit dem Kreis verbunden","ySocialText":"Jeden Morgen der Vers des Tages, Erinnerungen in den gesegneten Nächten."},"fr":{"h1sub":"Khatma, Jawshan et dhikr, ensemble","get":"Télécharger","ccTitle":"Lecture commune","ccLead":"Une khatma continue partagée avec des lecteurs du monde entier. Prends une portion, ou rejoins le dhikr commun.","ccNote":"Sans compte","heroInviteTitle":"Rejoins la khatma commune","heroInviteSub":"Quelques pages, avec des lecteurs du monde entier","heroInviteGo":"Commencer","heroInviteSmall":"Quelques pages, avec des lecteurs du monde entier","heroInviteCycle":"La {c}e khatma est lue à travers le monde","heroInviteNear":"Plus que {n} pages pour terminer la khatma","heroInviteNear1":"Plus qu'une page pour terminer la khatma","privacy":"Politique de confidentialité","terms":"Conditions d'utilisation","deleteAcc":"Suppression du compte","contact":"Contact","itaniCredit":"Traduction anglaise : Talal Itani,","suffix":"-fr","introTitle":"Qu'est-ce que l'application Manevi Halka","taglineSub":"Répartis les juz dans ton cercle, lisez à tour de rôle, terminez la khatma ensemble. Les heures de prière, la qibla et un compteur de dhikr sont dans la même application.","featuresTitle":"Ce que tu y trouves","featuresSub":"La dévotion elle-même reste toujours gratuite","f1t":"Khatma du Coran","f1d":"Les juz se répartissent dans ton cercle et tu sais quand vient ton tour. Une khatma qui prend des mois seul se termine en quelques semaines à plusieurs.","f2t":"Jawshan al-Kabir","f2d":"101 sections, en commun ou pour toi seul. Une par jour, et l'application retient où tu t'es arrêté.","f3t":"Dhikr et tasbih","f3d":"Asma ul-Husna, salawat et tasbihat à portée de main. Compose ta propre liste de dhikr, ordonne-la et partage-la d'un simple lien.","f4t":"Heures de prière","f4d":"Le widget de l'écran d'accueil te prévient quand une prière approche. En voyage, ta ville se met à jour toute seule, avec des horaires justes dans 106 pays.","f5t":"Qibla et suivi quotidien","f5d":"Trouve la qibla où que tu sois. Garde une trace de tes prières, de tes nafl et de ta mémorisation, sans manquer tes awrad ni les jours religieux.","f6t":"Cercles de lecture","f6d":"Lis un livre avec ton cercle. Ta page reste avec toi, et vous suivez ensemble la progression de la semaine.","closeTitle":"Crée ton cercle dès aujourd'hui","closeText":"Avec ta famille, tes amis, ou seul.","closeWish":"Que tes adorations soient acceptées et que ton cercle perdure.","quoteText":"L'union des cœurs vaut mieux que l'union des langues.","quoteSource":"Rûmî, Masnavî","cap_dashboard":"Accueil : tes tâches et prières en un coup d'œil","cap_flow-detail":"Ton cercle : membres, lectures et progression","cap_prayer":"Suivi des prières et des nafl, vue hebdomadaire","cap_quran-reader":"Écran de lecture du Coran, réglages personnels","cap_event":"Cercles de khatma ponctuels pour les jours particuliers","cap_zikir":"Dhikr quotidiens et tes propres listes","cap_qibla-explore":"Boussole qibla, où que tu sois","cap_lifestyle":"Ton chemin, toujours avec toi","yPreview":"Aperçu","yVideo":"Vidéo de présentation de Manevi Halka","yPlay":"Lire","yPause":"Pause","yPrev":"Précédent","yNext":"Suivant","yClose":"Fermer","yShare":"Partager","ySaved":"Image enregistrée","ySocialTitle":"Reste lié au cercle","ySocialText":"Le verset du jour chaque matin, des rappels lors des nuits bénies."},"ar":{"h1sub":"حلقات ختم القرآن والجوشن والذكر معًا","get":"حمّل","ccTitle":"القراءة المشتركة","ccLead":".ختمة مستمرة مع قارئين من كل أنحاء العالم. تكفّل بجزء أو شارك في الذكر المشترك","ccNote":"لا حاجة إلى حساب","heroInviteTitle":"شارك في الختمة المشتركة","heroInviteSub":"ببضع صفحات، مع قرّاء من أنحاء العالم","heroInviteGo":"ابدأ","heroInviteSmall":"ببضع صفحات، مع قرّاء من أنحاء العالم","heroInviteCycle":"الختمة رقم {c} تُقرأ في أنحاء العالم","heroInviteNear":"بقيت {n} صفحة لإتمام الختمة","heroInviteNear1":"بقيت صفحة واحدة لإتمام الختمة","privacy":"سياسة الخصوصية","terms":"شروط الاستخدام","deleteAcc":"حذف الحساب","contact":"تواصل معنا","itaniCredit":"الترجمة الإنجليزية: طلال إيتاني،","suffix":"-ar","introTitle":"ما هو تطبيق Manevi Halka","taglineSub":"وزّع الأجزاء على حلقتك، واقرأوا بالتناوب، وأتمّوا الختمة معًا. مواقيت الصلاة والقبلة وعدّاد الذكر في التطبيق نفسه.","featuresTitle":"ماذا يقدّم","featuresSub":"العبادة نفسها مجانية دائمًا","f1t":"ختم القرآن","f1d":"تُوزَّع الأجزاء على أفراد حلقتك، وتعرف متى يأتي دورك. ختمة تستغرق شهورًا وحدك تكتمل في أسابيع معًا.","f2t":"الجوشن الكبير","f2d":"101 باب، مشتركة أو لك وحدك. باب كل يوم، والتطبيق يتذكر أين توقفت.","f3t":"الذكر والتسبيح","f3d":"أسماء الله الحسنى والصلوات والتسبيحات في متناول يدك. أنشئ قائمة أذكارك، ورتّبها، وشاركها برابط واحد.","f4t":"مواقيت الصلاة","f4d":"تُنبّهك أداة الشاشة الرئيسية عند اقتراب الوقت. وعند السفر تتحدّث مدينتك تلقائيًا، بمواقيت دقيقة في 106 دول.","f5t":"القبلة والمتابعة اليومية","f5d":"اعرف القبلة أينما كنت. سجّل صلواتك ونوافلك وحفظك، ولا تفوّت أورادك ولا الأيام المباركة.","f6t":"حلقات قراءة الكتب","f6d":"اقرأ كتابًا مع حلقتك. صفحتك تبقى معك، وتتابعون التقدّم الأسبوعي معًا.","closeTitle":"ابدأ حلقتك اليوم","closeText":"مع عائلتك أو أصدقائك أو وحدك.","closeWish":"تقبّل الله عبادتك، وأدام حلقتك على الخير.","quoteText":"وحدة القلوب خيرٌ من وحدة الألسنة.","quoteSource":"جلال الدين الرومي، المثنوي","cap_dashboard":"الرئيسية: مهامك وصلواتك في لمحة","cap_flow-detail":"حلقتك: الأعضاء والقراءات والتقدّم","cap_prayer":"متابعة الفرائض والنوافل مع جدول أسبوعي","cap_quran-reader":"شاشة قراءة القرآن بإعداداتك الشخصية","cap_event":"حلقات ختم لمرة واحدة للأيام الخاصة","cap_zikir":"أذكار يومية وقوائمك الخاصة","cap_qibla-explore":"بوصلة القبلة أينما كنت","cap_lifestyle":"رحلتك معك دائمًا","yPreview":"معاينة","yVideo":"فيديو تعريفي بـ Manevi Halka","yPlay":"تشغيل","yPause":"إيقاف مؤقت","yPrev":"السابق","yNext":"التالي","yClose":"إغلاق","yShare":"مشاركة","ySaved":"تم حفظ الصورة","ySocialTitle":"ابقَ على صلة بالحلقة","ySocialText":"آية اليوم كل صباح، وتذكير في الليالي المباركة."}};
+  var T = {"tr":{"h1sub":"Birlikte hatim, Cevşen ve zikir halkaları","get":"İndir","ccTitle":"Ortak Okuma","ccLead":"Dünyanın her yerinden okuyanlarla süregiden ortak bir hatim. Bir bölüm üstlen, ya da ortak zikre katıl.","ccNote":"Hesap gerekmiyor","heroInviteTitle":"Ortak hatme sen de katıl","heroInviteSub":"Birkaç sayfayla, dünyanın dört bir yanından okuyanlarla","heroInviteGo":"Başla","heroInviteSmall":"Birkaç sayfayla, dünyanın dört bir yanından okuyanlarla","heroInviteCycle":"{c}. hatim dünyanın dört bir yanında okunuyor","heroInviteNear":"Hatmin bitmesine {n} sayfa kaldı","heroInviteNear1":"Hatmin bitmesine 1 sayfa kaldı","privacy":"Gizlilik Politikası","terms":"Kullanım Koşulları","deleteAcc":"Hesap Silme","contact":"İletişim","itaniCredit":"İngilizce meal: Talal Itani,","suffix":"","introTitle":"Manevi Halka uygulaması nedir","taglineSub":"Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Namaz vakitleri, kıble ve zikir sayacı da aynı uygulamada.","closeTitle":"Halkanı bugün kur","closeText":"Ailenle, dostlarınla ya da tek başına.","closeWish":"İbadetin kabul olsun, halkan daim olsun.","quoteText":"Gönül birliği, dil birliğinden üstündür.","quoteSource":"Mevlânâ, Mesnevî","yPreview":"Önizleme","yHalkaKicker":"Halka","yHalkaTitle":"Bir hatim, on kişi, bir hafta","yHalkaText":"Hatmi halkana böl: herkes kendi cüzünü alır, sırası gelince haber alır. Tek başına aylar süren bir hatim, birlikte bir haftada tamamlanır.","yHalkaP1":"Cüzler kendiliğinden dağıtılır, her tur yenisi başlar","yHalkaP2":"Yetişemeyen yardım ister ya da payını havuza bırakır","yHalkaP3":"Kur'an'ın yanında Cevşen, zikir ve kitap halkaları","yRingUnit":"cüz","yRingSub":"10 kişi · 7 gün","yRingDone":"Hatim tamam","yVesileKicker":"Tek Seferlik Halka","yVesileTitle":"Kandil gecesi bir link paylaş, herkes katılsın","yVesileText":"Kandil, bir vefat ya da şifa niyeti için tek seferlik hatim kur. Linke dokunan, uygulaması olmasa bile tarayıcıdan cüz alıp okur.","yVesileCta":"Web'de nasıl göründüğünü gör","ySpotKicker":"Her gün","ySpotTitle":"Her gün elinin altında","s1t":"Kur'an ve sesli Kur'an","s1d":"Türkiye mushafı ve meal. Üç kâriden dinlerken okunan kelime işaretlenir; ezber tekrarı yapar, sure ya da cüz indirip çevrimdışı dinlersin.","s2t":"Namaz vakitleri","s2d":"106 ülkede vakitler, vakit girince bildirim, ana ekranda widget. Seyahat ettiğinde şehrin kendiliğinden güncellenir.","s3t":"Ortak Ameller","s3d":"Halkanla beş vakit namazı, ezberi ya da bir duayı birlikte sürdür. Herkes kendi gününü işaretler; sıralama yok, kıyas yok.","s4t":"Kitaplık","s4d":"Kendi PDF ve EPUB kitaplarını oku, altını çiz, not al. Kitap halkasındaysan okuduğun sayfaları halkana kaydedersin.","yAlsoTitle":"Ve daha fazlası","a1":"Cevşen-ül Kebir","a2":"Zikirmatik ve zikir listeleri","a3":"Namaz tesbihatı","a4":"Sabah ve akşam virdleri","a5":"Peygamber duaları","a6":"Esmaül Hüsna","a7":"Kıble pusulası ve uydu görünümü","a8":"Dini günler ve kandiller","a9":"Ezber takibi","a10":"Namaz takibi, kuşluk ve teheccüd","a11":"Yolculuğum","a12":"5 dil, 10 tema","yFreeLine":"İbadetin kendisi her zaman ücretsiz, reklam yok.","yShare":"Paylaş","ySaved":"Görsel kaydedildi","ySocialTitle":"Halkayla bağlantıda kal","ySocialText":"Günün ayeti her sabah, kandil gecelerinde hatırlatma."},"en":{"h1sub":"Shared khatm, Jawshan and dhikr circles","get":"Download","ccTitle":"Shared Reading","ccLead":"An ongoing khatm shared with readers all over the world. Take a portion, or join the shared dhikr.","ccNote":"No account needed","heroInviteTitle":"Join the shared khatm","heroInviteSub":"A few pages, alongside readers around the world","heroInviteGo":"Start","heroInviteSmall":"A few pages, alongside readers around the world","heroInviteCycle":"Khatm no. {c} is being read around the world","heroInviteNear":"{n} pages left to complete the khatm","heroInviteNear1":"One page left to complete the khatm","privacy":"Privacy Policy","terms":"Terms of Service","deleteAcc":"Account Deletion","contact":"Contact","itaniCredit":"English translation: Talal Itani,","suffix":"-en","introTitle":"What is the Manevi Halka app","taglineSub":"Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.","closeTitle":"Start your circle today","closeText":"With your family, your friends, or on your own.","closeWish":"May your worship be accepted, and your circle endure.","quoteText":"Unity of heart surpasses unity of language.","quoteSource":"Rumi, Masnavi","yPreview":"Preview","yHalkaKicker":"Circles","yHalkaTitle":"One khatm, ten people, one week","yHalkaText":"Share the khatm with your circle: everyone takes their own juz and is notified when their turn comes. A khatm that would take months alone is finished together in a week.","yHalkaP1":"Portions are handed out automatically, and each round starts by itself","yHalkaP2":"Anyone who falls behind can ask for help or return their part to the pool","yHalkaP3":"Besides the Quran: Jawshan, dhikr and book circles","yRingUnit":"juz","yRingSub":"10 people · 7 days","yRingDone":"Khatm complete","yVesileKicker":"One-Time Circle","yVesileTitle":"Share one link on a blessed night, and everyone can join","yVesileText":"Set up a one-time khatm for a blessed night, for someone who passed away or with an intention of healing. Whoever taps the link can take a juz and read it in the browser, even without the app.","yVesileCta":"See how it looks on the web","ySpotKicker":"Every day","ySpotTitle":"With you every day","s1t":"Quran and recitation","s1d":"The Mushaf with translation. Listen to three reciters while each word is highlighted, repeat verses to memorise them, and download a surah or juz to listen offline.","s2t":"Prayer times","s2d":"Prayer times in 106 countries, a notification when each time begins and widgets for your home screen. When you travel, your city updates by itself.","s3t":"Shared practices","s3d":"Keep up the five daily prayers, memorisation or a dua together with your circle. Everyone marks their own day; no rankings, no comparisons.","s4t":"Bookshelf","s4d":"Read your own PDF and EPUB books, highlight and take notes. In a book circle, you can log the pages you read for your circle.","yAlsoTitle":"And more","a1":"Jawshan al-Kabir","a2":"Dhikr counter and lists","a3":"Tasbihat after prayer","a4":"Morning and evening adhkar","a5":"Prophetic duas","a6":"The 99 Names of Allah","a7":"Qibla compass and satellite view","a8":"Religious days","a9":"Hifz tracker","a10":"Prayer log, Duha and Tahajjud","a11":"My Journey","a12":"5 languages, 10 themes","yFreeLine":"Worship itself is always free, and there are no ads.","yShare":"Share","ySaved":"Image saved","ySocialTitle":"Stay close to the circle","ySocialText":"The verse of the day every morning, reminders on the blessed nights."},"de":{"h1sub":"Chatma, Dschauschan und Dhikr gemeinsam","get":"Laden","ccTitle":"Gemeinsames Lesen","ccLead":"Eine fortlaufende Chatma mit Lesern aus aller Welt. Übernimm einen Abschnitt oder mach beim gemeinsamen Dhikr mit.","ccNote":"Kein Konto nötig","heroInviteTitle":"Lies mit bei der Chatma","heroInviteSub":"Ein paar Seiten, gemeinsam mit Lesenden weltweit","heroInviteGo":"Loslegen","heroInviteSmall":"Ein paar Seiten, gemeinsam mit Lesenden weltweit","heroInviteCycle":"Die {c}. Chatma wird weltweit gelesen","heroInviteNear":"Noch {n} Seiten bis zum Abschluss der Chatma","heroInviteNear1":"Noch eine Seite bis zum Abschluss der Chatma","privacy":"Datenschutzerklärung","terms":"Nutzungsbedingungen","deleteAcc":"Kontolöschung","contact":"Kontakt","itaniCredit":"Englische Übersetzung: Talal Itani,","suffix":"-de","introTitle":"Was ist die Manevi-Halka-App","taglineSub":"Teile die Dschus in deinem Kreis, lest reihum, vollendet die Chatma gemeinsam. Gebetszeiten, Qibla und Dhikr-Zähler sind in derselben App.","closeTitle":"Gründe deinen Kreis noch heute","closeText":"Mit deiner Familie, deinen Freunden oder allein.","closeWish":"Mögen deine Taten angenommen werden und dein Kreis bestehen.","quoteText":"Einheit der Herzen wiegt mehr als Einheit der Sprache.","quoteSource":"Rumi, Masnawi","yPreview":"Vorschau","yHalkaKicker":"Kreise","yHalkaTitle":"Eine Chatma, zehn Menschen, eine Woche","yHalkaText":"Teile die Chatma mit deinem Kreis: Alle übernehmen ihren eigenen Dschuz und werden benachrichtigt, wenn sie an der Reihe sind. Was allein Monate dauert, ist gemeinsam in einer Woche geschafft.","yHalkaP1":"Die Abschnitte werden automatisch verteilt, jede Runde beginnt von selbst","yHalkaP2":"Wer nicht hinterherkommt, bittet um Hilfe oder gibt seinen Teil in den Pool","yHalkaP3":"Neben dem Koran auch Dschauschan-, Dhikr- und Buchkreise","yRingUnit":"Dschuz","yRingSub":"10 Personen · 7 Tage","yRingDone":"Chatma vollendet","yVesileKicker":"Einmaliger Kreis","yVesileTitle":"Teile in einer gesegneten Nacht einen Link, und alle können mitmachen","yVesileText":"Starte eine einmalige Chatma für eine gesegnete Nacht, für einen Verstorbenen oder mit der Absicht der Heilung. Wer auf den Link tippt, übernimmt auch ohne App einen Dschuz und liest ihn im Browser.","yVesileCta":"So sieht es im Browser aus","ySpotKicker":"Jeden Tag","ySpotTitle":"Jeden Tag an deiner Seite","s1t":"Koran und Rezitation","s1d":"Der Mushaf mit Übersetzung. Höre drei Rezitatoren, während jedes Wort markiert wird, wiederhole Verse zum Auswendiglernen und lade Suren oder Dschuz zum Offline-Hören herunter.","s2t":"Gebetszeiten","s2d":"Gebetszeiten in 106 Ländern, eine Benachrichtigung zu jeder Gebetszeit und Widgets für den Startbildschirm. Auf Reisen aktualisiert sich deine Stadt von selbst.","s3t":"Gemeinsame Praxis","s3d":"Halte die fünf täglichen Gebete, das Auswendiglernen oder ein Bittgebet gemeinsam mit deinem Kreis durch. Jeder markiert seinen eigenen Tag, ohne Ranglisten und ohne Vergleiche.","s4t":"Bücherregal","s4d":"Lies deine eigenen PDF- und EPUB-Bücher, markiere und mach dir Notizen. In einem Buchkreis trägst du deine gelesenen Seiten für den Kreis ein.","yAlsoTitle":"Und noch mehr","a1":"Dschauschan al-Kabir","a2":"Dhikr-Zähler und Listen","a3":"Tasbihat nach dem Gebet","a4":"Morgen- und Abend-Adhkar","a5":"Prophetische Bittgebete","a6":"Die 99 Namen Allahs","a7":"Qibla-Kompass und Satellitenansicht","a8":"Religiöse Tage","a9":"Hifz-Begleiter","a10":"Gebetsprotokoll, Duha und Tahajjud","a11":"Mein Weg","a12":"5 Sprachen, 10 Themen","yFreeLine":"Die Anbetung selbst ist immer kostenlos, und es gibt keine Werbung.","yShare":"Teilen","ySaved":"Bild gespeichert","ySocialTitle":"Bleib mit dem Kreis verbunden","ySocialText":"Jeden Morgen der Vers des Tages, Erinnerungen in den gesegneten Nächten."},"fr":{"h1sub":"Khatma, Jawshan et dhikr, ensemble","get":"Télécharger","ccTitle":"Lecture commune","ccLead":"Une khatma continue partagée avec des lecteurs du monde entier. Prends une portion, ou rejoins le dhikr commun.","ccNote":"Sans compte","heroInviteTitle":"Rejoins la khatma commune","heroInviteSub":"Quelques pages, avec des lecteurs du monde entier","heroInviteGo":"Commencer","heroInviteSmall":"Quelques pages, avec des lecteurs du monde entier","heroInviteCycle":"La {c}e khatma est lue à travers le monde","heroInviteNear":"Plus que {n} pages pour terminer la khatma","heroInviteNear1":"Plus qu'une page pour terminer la khatma","privacy":"Politique de confidentialité","terms":"Conditions d'utilisation","deleteAcc":"Suppression du compte","contact":"Contact","itaniCredit":"Traduction anglaise : Talal Itani,","suffix":"-fr","introTitle":"Qu'est-ce que l'application Manevi Halka","taglineSub":"Répartis les juz dans ton cercle, lisez à tour de rôle, terminez la khatma ensemble. Les heures de prière, la qibla et un compteur de dhikr sont dans la même application.","closeTitle":"Crée ton cercle dès aujourd'hui","closeText":"Avec ta famille, tes amis, ou seul.","closeWish":"Que tes adorations soient acceptées et que ton cercle perdure.","quoteText":"L'union des cœurs vaut mieux que l'union des langues.","quoteSource":"Rûmî, Masnavî","yPreview":"Aperçu","yHalkaKicker":"Cercles","yHalkaTitle":"Une khatma, dix personnes, une semaine","yHalkaText":"Partage la khatma avec ton cercle : chacun prend son juz et reçoit un rappel quand vient son tour. Une khatma qui prendrait des mois seul se termine ensemble en une semaine.","yHalkaP1":"Les portions sont réparties automatiquement, chaque tour démarre tout seul","yHalkaP2":"Qui prend du retard demande de l'aide ou remet sa part dans le pool","yHalkaP3":"Outre le Coran : cercles de Jawshan, de dhikr et de lecture","yRingUnit":"juz","yRingSub":"10 personnes · 7 jours","yRingDone":"Khatma achevée","yVesileKicker":"Cercle ponctuel","yVesileTitle":"Partage un lien lors d'une nuit bénie, et chacun peut participer","yVesileText":"Lance une khatma ponctuelle pour une nuit bénie, pour un défunt ou avec une intention de guérison. Celui qui touche le lien prend un juz et le lit dans le navigateur, même sans l'application.","yVesileCta":"Voir à quoi cela ressemble sur le web","ySpotKicker":"Chaque jour","ySpotTitle":"À tes côtés chaque jour","s1t":"Coran et récitation","s1d":"Le Mushaf avec traduction. Écoute trois récitateurs pendant que chaque mot est surligné, répète des versets pour les mémoriser et télécharge une sourate ou un juz pour l'écoute hors ligne.","s2t":"Horaires de prière","s2d":"Les horaires dans 106 pays, une notification à chaque prière et des widgets pour l'écran d'accueil. En voyage, ta ville se met à jour toute seule.","s3t":"Pratiques communes","s3d":"Maintiens les cinq prières, la mémorisation ou une invocation avec ton cercle. Chacun coche sa propre journée, sans classement ni comparaison.","s4t":"Bibliothèque de lecture","s4d":"Lis tes propres livres PDF et EPUB, surligne et prends des notes. Dans un cercle de lecture, tu enregistres tes pages lues pour le cercle.","yAlsoTitle":"Et bien plus","a1":"Jawshan al-Kabir","a2":"Compteur et listes de dhikr","a3":"Tasbihat après la prière","a4":"Adhkar du matin et du soir","a5":"Invocations prophétiques","a6":"Les 99 noms d'Allah","a7":"Boussole Qibla et vue satellite","a8":"Jours religieux","a9":"Suivi du hifz","a10":"Suivi des prières, Douha et Tahajjud","a11":"Mon parcours","a12":"5 langues, 10 thèmes","yFreeLine":"L'adoration elle-même est toujours gratuite, et il n'y a pas de publicité.","yShare":"Partager","ySaved":"Image enregistrée","ySocialTitle":"Reste lié au cercle","ySocialText":"Le verset du jour chaque matin, des rappels lors des nuits bénies."},"ar":{"h1sub":"حلقات ختم القرآن والجوشن والذكر معًا","get":"حمّل","ccTitle":"القراءة المشتركة","ccLead":".ختمة مستمرة مع قارئين من كل أنحاء العالم. تكفّل بجزء أو شارك في الذكر المشترك","ccNote":"لا حاجة إلى حساب","heroInviteTitle":"شارك في الختمة المشتركة","heroInviteSub":"ببضع صفحات، مع قرّاء من أنحاء العالم","heroInviteGo":"ابدأ","heroInviteSmall":"ببضع صفحات، مع قرّاء من أنحاء العالم","heroInviteCycle":"الختمة رقم {c} تُقرأ في أنحاء العالم","heroInviteNear":"بقيت {n} صفحة لإتمام الختمة","heroInviteNear1":"بقيت صفحة واحدة لإتمام الختمة","privacy":"سياسة الخصوصية","terms":"شروط الاستخدام","deleteAcc":"حذف الحساب","contact":"تواصل معنا","itaniCredit":"الترجمة الإنجليزية: طلال إيتاني،","suffix":"-ar","introTitle":"ما هو تطبيق Manevi Halka","taglineSub":"وزّع الأجزاء على حلقتك، واقرأوا بالتناوب، وأتمّوا الختمة معًا. مواقيت الصلاة والقبلة وعدّاد الذكر في التطبيق نفسه.","closeTitle":"ابدأ حلقتك اليوم","closeText":"مع عائلتك أو أصدقائك أو وحدك.","closeWish":"تقبّل الله عبادتك، وأدام حلقتك على الخير.","quoteText":"وحدة القلوب خيرٌ من وحدة الألسنة.","quoteSource":"جلال الدين الرومي، المثنوي","yPreview":"معاينة","yHalkaKicker":"الحلقات","yHalkaTitle":"ختمة واحدة، عشرة أشخاص، أسبوع واحد","yHalkaText":"قسِّم الختمة على حلقتك: يأخذ كلٌّ جزءه ويصله تنبيه حين يحين دوره. ختمة تستغرق أشهرًا وحدك تُتَمّ معًا في أسبوع.","yHalkaP1":"تُوزَّع الأجزاء تلقائيًا، وتبدأ كل جولة من تلقاء نفسها","yHalkaP2":"من تأخّر يطلب المساعدة أو يعيد نصيبه إلى المجمع","yHalkaP3":"إلى جانب القرآن: حلقات الجوشن والذكر والكتب","yRingUnit":"جزءًا","yRingSub":"10 أشخاص · 7 أيام","yRingDone":"تمّت الختمة","yVesileKicker":"حلقة لمرة واحدة","yVesileTitle":"شارك رابطًا واحدًا في ليلة مباركة، ليشارك الجميع","yVesileText":"أنشئ ختمة لمرة واحدة لليلة مباركة أو لفقيد أو بنية الشفاء. ومن يضغط على الرابط يأخذ جزءًا ويقرؤه في المتصفح، حتى دون التطبيق.","yVesileCta":"شاهد كيف يبدو على الويب","ySpotKicker":"كل يوم","ySpotTitle":"معك كل يوم","s1t":"القرآن والتلاوة","s1d":"مصحف واضح القراءة. استمع إلى ثلاثة قرّاء مع تظليل كل كلمة، وكرّر الآيات لتحفظها، ونزّل سورة أو جزءًا للاستماع دون اتصال.","s2t":"مواقيت الصلاة","s2d":"مواقيت في 106 دول، وتنبيه عند دخول كل وقت، وأدوات للشاشة الرئيسية. وحين تسافر تتحدّث مدينتك تلقائيًا.","s3t":"أعمال مشتركة","s3d":"داوم مع حلقتك على الصلوات الخمس أو الحفظ أو دعاء. يعلّم كلٌّ يومه بنفسه، بلا ترتيب ولا مقارنة.","s4t":"رف الكتب","s4d":"اقرأ كتبك بصيغة PDF وEPUB، وظلّل ودوّن ملاحظاتك. وفي حلقة الكتاب تسجّل الصفحات التي قرأتها لحلقتك.","yAlsoTitle":"والمزيد","a1":"جوشن الكبير","a2":"عداد الذكر وقوائمه","a3":"تسبيحات بعد الصلاة","a4":"أذكار الصباح والمساء","a5":"الأدعية النبوية","a6":"أسماء الله الحسنى","a7":"بوصلة القبلة وصورة القمر الصناعي","a8":"الأيام الدينية","a9":"متابعة الحفظ","a10":"سجل الصلاة والضحى والتهجد","a11":"رحلتي","a12":"5 لغات و10 سمات","yFreeLine":"العبادة نفسها مجانية دائمًا، ولا إعلانات.","yShare":"مشاركة","ySaved":"تم حفظ الصورة","ySocialTitle":"ابقَ على صلة بالحلقة","ySocialText":"آية اليوم كل صباح، وتذكير في الليالي المباركة."}};
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
   var FALLBACK = "en";
   var reduce = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -784,8 +919,8 @@
       list.hidden = true;
       btn.setAttribute("aria-expanded", "false");
       applyTexts();
-      renderGallery();
-      syncVideo();
+      paintShots();
+      if (!jrLive) jrFinal();
       shareCache = {};
       // Motor (mh-dynamic) ve Ortak Okuma karti bu olayla kendini yeniden kurar
       document.dispatchEvent(new CustomEvent("mh:locale", { detail: loc }));
@@ -1249,90 +1384,157 @@
   var fitTimer = null;
   window.addEventListener("resize", function () { clearTimeout(fitTimer); fitTimer = setTimeout(fitArabic, 150); });
 
-  // ── Ekran goruntuleri: bugunku sitenin 5 dilli seti (/shots/<dil>/) ──────
-  // Magazadaki surumun arayuzu. Yeni surum yayinlaninca set yenilenmeli.
-  var SHOTS = ["dashboard", "flow-detail", "prayer", "quran-reader", "event", "zikir", "qibla-explore", "lifestyle"];
-  var gallery = $("gallery");
-  function renderGallery() {
-    gallery.innerHTML = SHOTS.map(function (n, i) {
-      var cap = t["cap_" + n] || "Manevi Halka";
-      return '<button type="button" class="shot" data-i="' + i + '" aria-label="' + esc(cap) + '">' +
-        '<img src="/shots/' + loc + "/" + n + '.jpg" alt="' + esc(cap) + '" width="311" height="620" loading="lazy"></button>';
-    }).join("");
+  // ── "Neler var": gercek ekranlar (img/app/<dil>/<ad>.webp) ───────────────
+  function shotSrc(n) { return "/img/app/" + loc + "/" + n + ".webp"; }
+  function paintShots() {
+    var imgs = document.querySelectorAll("img[data-shot]");
+    for (var i = 0; i < imgs.length; i++) {
+      imgs[i].src = shotSrc(imgs[i].getAttribute("data-shot"));
+      imgs[i].alt = t[imgs[i].getAttribute("data-alt")] || "Manevi Halka";
+    }
+    spotShow(spotIdx, true);
   }
-  renderGallery();
-  function galStep(dir) {
-    var one = gallery.querySelector(".shot");
-    var w = one ? one.getBoundingClientRect().width + 16 : 240;
-    var sign = document.documentElement.dir === "rtl" ? -1 : 1;
-    gallery.scrollBy({ left: dir * sign * w * 2, behavior: reduce ? "auto" : "smooth" });
-  }
-  $("galPrev").addEventListener("click", function () { galStep(-1); });
-  $("galNext").addEventListener("click", function () { galStep(1); });
 
-  var lb = $("lightbox"), lbImg = $("lbImg"), lbIndex = -1, lbReturn = null;
-  function lbShow(i) {
-    lbIndex = (i + SHOTS.length) % SHOTS.length;
-    var n = SHOTS[lbIndex];
-    lbImg.src = "/shots/" + loc + "/" + n + "@lg.jpg";
-    lbImg.alt = t["cap_" + n] || "Manevi Halka";
+  // Halka canlandirmasi: 30 cuz, on kisiye ucer. Once paylar dagilir (soluk),
+  // sonra herkes kendi payini okur (dolar), sayi 30'a varinca "Hatim tamam".
+  // Yalniz gorunurken oynar; hareketi azalt tercihinde son hali durur.
+  var JR_COLORS = ["#1e6b4a", "#b3935a", "#3f8f6c", "#d2b273", "#2b7a58", "#9d7f45", "#5aa883", "#c4a15f", "#357f62", "#86c6a4"];
+  var jrSvg = $("jrSvg"), jrArcs = [], jrTimers = [], jrLive = false;
+  (function buildRing() {
+    var ns = "http://www.w3.org/2000/svg", R = 86, C = 100;
+    for (var k = 0; k < 30; k++) {
+      var a0 = (k * 12 + 1.1) * Math.PI / 180, a1 = (k * 12 + 10.9) * Math.PI / 180;
+      var p = document.createElementNS(ns, "path");
+      p.setAttribute("d", "M" + (C + R * Math.cos(a0)).toFixed(2) + " " + (C + R * Math.sin(a0)).toFixed(2) +
+        " A" + R + " " + R + " 0 0 1 " + (C + R * Math.cos(a1)).toFixed(2) + " " + (C + R * Math.sin(a1)).toFixed(2));
+      p.setAttribute("class", "jr-arc");
+      p.style.setProperty("--c", JR_COLORS[Math.floor(k / 3)]);
+      jrSvg.appendChild(p);
+      jrArcs.push(p);
+    }
+  })();
+  function jrClear() { for (var i = 0; i < jrTimers.length; i++) clearTimeout(jrTimers[i]); jrTimers = []; }
+  function jrAt(ms, fn) { jrTimers.push(setTimeout(fn, ms)); }
+  function jrFinal() {
+    jrClear();
+    for (var i = 0; i < 30; i++) jrArcs[i].setAttribute("class", "jr-arc on done");
+    $("jrCount").textContent = "30";
+    $("jrSub").textContent = t.yRingSub;
   }
-  function lbOpen(i) { lbReturn = document.activeElement; lbShow(i); lb.classList.add("open"); document.body.style.overflow = "hidden"; $("lbClose").focus(); }
-  function lbCloseFn() { lb.classList.remove("open"); document.body.style.overflow = ""; lbIndex = -1; if (lbReturn && lbReturn.focus) lbReturn.focus(); }
-  gallery.addEventListener("click", function (e) { var b = e.target.closest(".shot"); if (b) lbOpen(+b.getAttribute("data-i")); });
-  $("lbClose").addEventListener("click", lbCloseFn);
-  $("lbPrev").addEventListener("click", function () { lbShow(lbIndex - 1); });
-  $("lbNext").addEventListener("click", function () { lbShow(lbIndex + 1); });
-  lb.addEventListener("click", function (e) { if (e.target === lb) lbCloseFn(); });
-  document.addEventListener("keydown", function (e) {
-    if (lbIndex < 0) return;
-    var rtl = document.documentElement.dir === "rtl";
-    if (e.key === "Escape") lbCloseFn();
-    else if (e.key === "ArrowRight") lbShow(lbIndex + (rtl ? -1 : 1));
-    else if (e.key === "ArrowLeft") lbShow(lbIndex + (rtl ? 1 : -1));
+  function jrRun() {
+    jrClear();
+    var count = 0;
+    for (var i = 0; i < 30; i++) jrArcs[i].setAttribute("class", "jr-arc");
+    $("jrCount").textContent = "0";
+    $("jrSub").textContent = t.yRingSub;
+    for (var k = 0; k < 30; k++) (function (k) { jrAt(300 + k * 34, function () { jrArcs[k].setAttribute("class", "jr-arc on"); }); })(k);
+    // herkes ayni anda okur ama kendi hizinda: kisi basina rastgele bir tempo
+    var order = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].sort(function () { return Math.random() - 0.5; });
+    order.forEach(function (person, rank) {
+      var start = 1800 + rank * 260 + Math.random() * 300, step = 420 + Math.random() * 380;
+      for (var j = 0; j < 3; j++) (function (k, when) {
+        jrAt(when, function () {
+          jrArcs[k].setAttribute("class", "jr-arc on done");
+          count++;
+          $("jrCount").textContent = String(count);
+          if (count === 30) $("jrSub").textContent = t.yRingDone;
+        });
+      })(person * 3 + j, start + j * step);
+    });
+    jrAt(9800, function () { if (jrLive) jrRun(); });
+  }
+  if (reduce || !("IntersectionObserver" in window)) jrFinal();
+  else {
+    new IntersectionObserver(function (entries) {
+      var vis = entries[0].isIntersecting;
+      if (vis && !jrLive) { jrLive = true; jrRun(); }
+      else if (!vis && jrLive) { jrLive = false; jrFinal(); }
+    }, { threshold: 0.35 }).observe($("juzRing"));
+  }
+
+  // "Her gun": liste + telefon. Bolum gorunurken 6 sn'de bir kendiliginden
+  // ilerler (altindaki ince cizgi bunu gosterir); kullanici bir ogeye dokunur
+  // ya da fareyle gelirse kendiliginden ilerleme BIRAKILIR, secim ondadir.
+  var spotList = $("spotList"), spotItems = spotList.querySelectorAll(".spot-item");
+  var spotIdx = 0, spotAuto = !reduce, spotInView = false, spotTimer = null, hoverTimer = null;
+  var SPOT_MS = 6000;
+  var spotFront = $("spotA"), spotBack = $("spotB");
+  function spotShow(i, instant) {
+    var n = spotItems[i].getAttribute("data-shot"), src = shotSrc(n), alt = t[spotItems[i].querySelector("b").getAttribute("data-t")] || "";
+    if (instant || reduce) {
+      spotFront.src = src; spotFront.alt = alt;
+      spotBack.classList.add("back"); spotFront.classList.remove("back");
+      return;
+    }
+    if (spotFront.getAttribute("src") === src) return;
+    var incoming = spotBack, outgoing = spotFront;
+    var go = function () {
+      incoming.classList.remove("back"); outgoing.classList.add("back");
+      incoming.removeAttribute("aria-hidden"); outgoing.setAttribute("aria-hidden", "true");
+      spotFront = incoming; spotBack = outgoing;
+    };
+    incoming.alt = alt;
+    incoming.onload = go;
+    incoming.src = src;
+    if (incoming.complete && incoming.naturalWidth) { incoming.onload = null; go(); }
+  }
+  function spotSelect(i, byUser) {
+    spotIdx = i;
+    for (var k = 0; k < spotItems.length; k++) {
+      var on = k === i;
+      spotItems[k].setAttribute("aria-selected", on ? "true" : "false");
+      spotItems[k].tabIndex = on ? 0 : -1;
+    }
+    $("spotPanel").setAttribute("aria-labelledby", spotItems[i].id);
+    spotShow(i, false);
+    if (byUser) { spotAuto = false; }
+    spotSchedule();
+  }
+  function spotSchedule() {
+    clearTimeout(spotTimer);
+    var run = spotAuto && spotInView;
+    spotList.classList.toggle("auto", false);
+    if (!run) return;
+    void spotList.offsetWidth;   // cizgi animasyonu bastan baslasin
+    spotList.style.setProperty("--spot-ms", SPOT_MS + "ms");
+    spotList.classList.add("auto");
+    spotTimer = setTimeout(function () { spotSelect((spotIdx + 1) % spotItems.length, false); }, SPOT_MS);
+  }
+  spotList.addEventListener("click", function (e) {
+    var b = e.target.closest(".spot-item");
+    if (b) spotSelect([].indexOf.call(spotItems, b), true);
   });
-
-  // ── Tanitim videosu (yalniz Turkce: yazilari Turkce) ─────────────────────
-  // Sessiz; gorunur olunca kendiliginden oynar, gorunmeyince durur. Hareketi
-  // azalt tercihinde kendiliginden oynamaz. Duraklat dugmesi her zaman var.
-  var vbox = $("videoBox"), vid = $("promoVideo"), vtog = $("videoToggle");
-  var narrowMq = window.matchMedia("(max-width: 700px)");
-  var userPaused = reduce, inView = false;
-  function pickVideo() {
-    var tall = narrowMq.matches;
-    var src = tall ? "/media/tanitim-9x16.mp4" : "/media/tanitim-16x9.mp4";
-    vbox.classList.toggle("tall", tall);
-    if (vid.getAttribute("data-src") === src) return;
-    vid.setAttribute("data-src", src);
-    vid.poster = tall ? "/media/tanitim-9x16.jpg" : "/media/tanitim-16x9.jpg";
-    vid.src = src;
+  var finePointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (finePointer) {
+    spotList.addEventListener("mouseover", function (e) {
+      var b = e.target.closest(".spot-item");
+      if (!b) return;
+      var i = [].indexOf.call(spotItems, b);
+      clearTimeout(hoverTimer);
+      if (i !== spotIdx) hoverTimer = setTimeout(function () { spotSelect(i, true); }, 120);
+      else if (spotAuto) { spotAuto = false; spotSchedule(); }
+    });
+    spotList.addEventListener("mouseleave", function () { clearTimeout(hoverTimer); });
   }
-  function paintToggle() {
-    var playing = !vid.paused;
-    // SVG: .hidden ozelligi yok, ozniteligi degistir (gul simgesiyle ayni tuzak)
-    vtog.querySelector(".i-play").toggleAttribute("hidden", playing);
-    vtog.querySelector(".i-pause").toggleAttribute("hidden", !playing);
-    vtog.setAttribute("aria-label", playing ? t.yPause : t.yPlay);
-  }
-  function syncVideo() {
-    vbox.hidden = loc !== "tr";
-    if (vbox.hidden) { if (!vid.paused) vid.pause(); return; }
-    pickVideo();
-    if (inView && !userPaused) { vid.muted = true; var pr = vid.play(); if (pr && pr.catch) pr.catch(function () {}); }
-    else if (!vid.paused) vid.pause();
-  }
-  vid.addEventListener("play", paintToggle);
-  vid.addEventListener("pause", paintToggle);
-  vtog.addEventListener("click", function () {
-    if (vid.paused) { userPaused = false; vid.muted = true; var pr = vid.play(); if (pr && pr.catch) pr.catch(function () {}); }
-    else { userPaused = true; vid.pause(); }
+  spotList.addEventListener("keydown", function (e) {
+    var d = (e.key === "ArrowDown" || e.key === "ArrowRight") ? 1 : (e.key === "ArrowUp" || e.key === "ArrowLeft") ? -1 : 0;
+    if (!d) return;
+    e.preventDefault();
+    var i = (spotIdx + d + spotItems.length) % spotItems.length;
+    spotSelect(i, true);
+    spotItems[i].focus();
   });
   if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (entries) { inView = entries[0].isIntersecting; syncVideo(); }, { threshold: 0.35 }).observe(vbox);
+    new IntersectionObserver(function (entries) {
+      spotInView = entries[0].isIntersecting;
+      if (spotInView) {
+        // diger ekranlari onceden indir: gecis beklemesiz olsun
+        for (var k = 0; k < spotItems.length; k++) { var im = new Image(); im.src = shotSrc(spotItems[k].getAttribute("data-shot")); }
+      }
+      spotSchedule();
+    }, { threshold: 0.4 }).observe($("spot"));
   }
-  if (narrowMq.addEventListener) narrowMq.addEventListener("change", syncVideo);
-  syncVideo();
-  paintToggle();
+  paintShots();
 
   // ── Ortak hatim daveti + kart ────────────────────────────────────────────
   var lastSummary = null;
