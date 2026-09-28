@@ -20,10 +20,30 @@ import vm from "node:vm";
 const KOK = dirname(dirname(fileURLToPath(import.meta.url)));
 const DILLER = ["tr", "en", "de", "fr", "ar"];
 const ANAHTARLAR = ["h1sub", "get", "ccTitle", "ccLead", "ccNote", "heroInviteTitle", "heroInviteSub",
-  "heroInviteGo", "heroInviteCount", "heroInviteCount1", "privacy", "terms", "deleteAcc", "contact",
-  "itaniCredit", "suffix"];
+  "heroInviteGo", "heroInviteSmall", "heroInviteCycle", "heroInviteNear", "heroInviteNear1", "privacy", "terms", "deleteAcc", "contact",
+  "itaniCredit", "suffix", "introTitle", "taglineSub", "featuresTitle", "featuresSub",
+  "f1t", "f1d", "f2t", "f2d", "f3t", "f3d", "f4t", "f4d", "f5t", "f5d", "f6t", "f6d",
+  "closeTitle", "closeText", "closeWish", "quoteText", "quoteSource",
+  "cap_dashboard", "cap_flow-detail", "cap_prayer", "cap_quran-reader", "cap_event", "cap_zikir",
+  "cap_qibla-explore", "cap_lifestyle"];
 const OZEL = {
   yPreview: { tr: "Önizleme", en: "Preview", de: "Vorschau", fr: "Aperçu", ar: "معاينة" },
+  yVideo: { tr: "Manevi Halka tanıtım videosu", en: "Manevi Halka promo video", de: "Manevi Halka Vorstellungsvideo",
+    fr: "Vidéo de présentation de Manevi Halka", ar: "فيديو تعريفي بـ Manevi Halka" },
+  yPlay: { tr: "Oynat", en: "Play", de: "Abspielen", fr: "Lire", ar: "تشغيل" },
+  yPause: { tr: "Duraklat", en: "Pause", de: "Pausieren", fr: "Pause", ar: "إيقاف مؤقت" },
+  yPrev: { tr: "Önceki", en: "Previous", de: "Zurück", fr: "Précédent", ar: "السابق" },
+  yNext: { tr: "Sonraki", en: "Next", de: "Weiter", fr: "Suivant", ar: "التالي" },
+  yClose: { tr: "Kapat", en: "Close", de: "Schließen", fr: "Fermer", ar: "إغلاق" },
+  yShare: { tr: "Paylaş", en: "Share", de: "Teilen", fr: "Partager", ar: "مشاركة" },
+  ySaved: { tr: "Görsel kaydedildi", en: "Image saved", de: "Bild gespeichert", fr: "Image enregistrée", ar: "تم حفظ الصورة" },
+  ySocialTitle: { tr: "Halkayla bağlantıda kal", en: "Stay close to the circle", de: "Bleib mit dem Kreis verbunden",
+    fr: "Reste lié au cercle", ar: "ابقَ على صلة بالحلقة" },
+  ySocialText: { tr: "Günün ayeti her sabah, kandil gecelerinde hatırlatma.",
+    en: "The verse of the day every morning, reminders on the blessed nights.",
+    de: "Jeden Morgen der Vers des Tages, Erinnerungen in den gesegneten Nächten.",
+    fr: "Le verset du jour chaque matin, des rappels lors des nuits bénies.",
+    ar: "آية اليوم كل صباح، وتذكير في الليالي المباركة." },
 };
 
 function hata(m) { console.error("HATA: " + m); process.exit(1); }

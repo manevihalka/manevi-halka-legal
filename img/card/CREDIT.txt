@@ -1,0 +1,25 @@
+Ayet / hadis kartlari fotograflari (yeni tasarim, /yeni/) - lisans kaydi
+=====================================================================
+
+Hepsi TICARI kullanima acik, ATIF GEREKTIRMEYEN lisanslar. Atif zorunlu
+degildir; bu kayit yalniz izlenebilirlik icindir. Dosyalar 16:10 kirpildi
+ve WebP'ye cevrildi (degistirme lisansta serbest).
+
+01.webp - Kubbetu's-Sahra (Kudus), altin kubbe, mavi gok
+  Kaynak: Pexels - Pexels License
+  https://www.pexels.com/photo/golden-dome-of-the-rock-in-jerusalem-in-israel-19838213/
+  (uygulamadaki assets/daily-ayah/01.jpg ile ayni fotograf)
+
+02..06 - uygulamanin namaz sekmesi fotograflarindan (Unsplash License).
+  Kaynak baglantilari ve dogrulama notlari uygulama reposunda:
+  docs/atmospheric-background-licenses.md
+  02.webp  Mescid-i Nebevi yesil kubbe (Medine), djonk creative
+           https://unsplash.com/photos/a-domed-building-with-a-green-dome-YpMYTuKTglA
+  03.webp  Mescid-i Aksa (Kibli Mescid) mavi saat (Kudus), ekrem osmanoglu
+           https://unsplash.com/photos/yellow-and-green-dome-building-under-blue-sky-during-daytime-TskCiKn_S5A
+  04.webp  Cift minareli cami avlusu (Sanliurfa), ekrem osmanoglu
+           https://unsplash.com/photos/a-mosque-with-two-tall-minarets-at-dusk-Fp-tlzqHSFI
+
+Bilincli olarak ALINMAYANLAR: aksam/gece tonlu fotograflar (Medine minaresi
+bulutlu, avlu kemerleri, Suleymaniye gece vb.). Kullanici istegi "gokyuzunun
+acik mavi gorundugu" fotograflar (28 Eyl 2026).

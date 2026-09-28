@@ -64,6 +64,7 @@ window.MHOrtakHatim = (function () {
       error:'Something went wrong. Please try again.',
       getApp:'Get the app', until:'Until {d}',
       keepLink:'Save this link to return to your portions later.', copy:'Copy link', copied:'Copied',
+      shareQ:'Would you like to bring one more person into this circle?', shareBtn:'Share', shareText:'We\'re reading a khatm together. Will you take a portion too?', followLine:'Follow us for reminders on the blessed nights and in Ramadan:',
       zHead:'Shared dhikr and supplications', zOf:'{a} of {b}', zMine:'Your contribution: {n}',
       zRounds:'{n} rounds completed', zAdd:'Join the count', zSession:'Counted in this session',
       zSubmit:'Add my count', zNone:'There is no shared dhikr right now.', zZero:'Count first, then add it.',
@@ -96,6 +97,7 @@ window.MHOrtakHatim = (function () {
       error:'Bir şeyler ters gitti. Tekrar dener misin?',
       getApp:'Uygulamayı indir', until:'{d} tarihine kadar',
       keepLink:'Bölümlerine sonra dönmek için bu bağlantıyı kaydet.', copy:'Bağlantıyı kopyala', copied:'Kopyalandı',
+      shareQ:'Bu halkaya bir kişi daha katmak ister misin?', shareBtn:'Paylaş', shareText:'Birlikte hatim okuyoruz, sen de bir bölüm alır mısın?', followLine:'Kandil ve Ramazan hatırlatmaları için bizi takip et:',
       zHead:'Ortak zikir ve dualar', zOf:'{b} hedefin {a} tanesi', zMine:'Senin katkın: {n}',
       zRounds:'{n} tur tamamlandı', zAdd:'Sayıma katıl', zSession:'Bu oturumda saydığın',
       zSubmit:'Katkımı ekle', zNone:'Şu anda ortak zikir yok.', zZero:'Önce say, sonra ekle.',
@@ -128,6 +130,7 @@ window.MHOrtakHatim = (function () {
       error:'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
       getApp:'App installieren', until:'Bis {d}',
       keepLink:'Speichere diesen Link, um später zu deinen Abschnitten zurückzukehren.', copy:'Link kopieren', copied:'Kopiert',
+      shareQ:'Möchtest du noch jemanden in diesen Kreis holen?', shareBtn:'Teilen', shareText:'Wir lesen gemeinsam eine Chatma. Übernimmst du auch einen Teil?', followLine:'Folge uns für Erinnerungen in den gesegneten Nächten und im Ramadan:',
       zHead:'Gemeinsame Dhikr und Gebete', zOf:'{a} von {b}', zMine:'Dein Beitrag: {n}',
       zRounds:'{n} Runden abgeschlossen', zAdd:'Mitzählen', zSession:'In dieser Sitzung gezählt',
       zSubmit:'Beitrag hinzufügen', zNone:'Zurzeit gibt es kein gemeinsames Dhikr.', zZero:'Zähle zuerst, dann füge hinzu.',
@@ -160,6 +163,7 @@ window.MHOrtakHatim = (function () {
       error:'Une erreur est survenue. Réessaie.',
       getApp:'Installer l’application', until:'Jusqu’au {d}',
       keepLink:'Enregistre ce lien pour revenir à tes portions plus tard.', copy:'Copier le lien', copied:'Copié',
+      shareQ:'Veux-tu faire venir une personne de plus dans ce cercle ?', shareBtn:'Partager', shareText:'Nous lisons une khatma ensemble. Prendras-tu une part toi aussi ?', followLine:'Suis-nous pour les rappels des nuits bénies et du Ramadan :',
       zHead:'Dhikr et invocations communes', zOf:'{a} sur {b}', zMine:'Ta contribution : {n}',
       zRounds:'{n} tours terminés', zAdd:'Participer au décompte', zSession:'Compté dans cette session',
       zSubmit:'Ajouter mon décompte', zNone:'Aucune invocation commune pour le moment.', zZero:'Compte d’abord, puis ajoute.',
@@ -192,6 +196,7 @@ window.MHOrtakHatim = (function () {
       error:'.حدث خطأ ما. حاول مرة أخرى',
       getApp:'ثبّت التطبيق', until:'حتى {d}',
       keepLink:'.احفظ هذا الرابط للعودة إلى أجزائك لاحقًا', copy:'انسخ الرابط', copied:'تم النسخ',
+      shareQ:'هل تودّ أن تضمّ شخصًا آخر إلى هذه الحلقة؟', shareBtn:'مشاركة', shareText:'نقرأ ختمة معًا، هل تأخذ جزءًا أنت أيضًا؟', followLine:'تابعنا لتصلك التذكيرات في الليالي المباركة ورمضان:',
       zHead:'الأذكار والأدعية المشتركة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}',
       zRounds:'اكتملت {n} جولة', zAdd:'شارك في العدّ', zSession:'ما عددته في هذه الجلسة',
       zSubmit:'أضف عدّي', zNone:'.لا يوجد ذكر مشترك حاليًا', zZero:'.عُدّ أولاً ثم أضف',
@@ -847,6 +852,7 @@ window.MHOrtakHatim = (function () {
       b.onclick = function () { goBoard(); };
       st.appendChild(b);
     }
+    st.appendChild(shareBox());
     // Kurtarma bağlantısı: jeton tarayıcıda; başka cihazda da açabilsin.
     var rec = el('div', 'recovery');
     rec.appendChild(el('div', null, T.keepLink));
@@ -859,6 +865,50 @@ window.MHOrtakHatim = (function () {
     };
     rec.appendChild(cp); st.appendChild(rec);
     showAppCta();
+  }
+
+  // ── Paylaş kutusu (teşekkür ekranı, 28 Eyl 2026) ─────────────────────────
+  // Bölüm alındığı an ziyaretçinin en iyi anı: bir kişi daha getirmek bir
+  // takipçiden değerli, bu yüzden önce PAYLAŞ, altında küçük takip satırı.
+  // ⚠️ Paylaşılan adres HERKESE AÇIK hatim sayfasıdır; kurtarma bağlantısındaki
+  // misafir jetonu (&g=) ASLA paylaşılmaz. TikTok bilerek yok (hesap kısıtlı).
+  var SOCIAL = [
+    ['Instagram', 'https://www.instagram.com/manevihalkaapp', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>'],
+    ['YouTube', 'https://www.youtube.com/@manevihalkaapp', '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>'],
+    ['X', 'https://x.com/ManeviHalkaApp', '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.2h3.7l-8 9.2 9.4 12.5h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9 6.1-6.9zm-1.3 19.5h2L6.5 3.2H4.3l13.3 17.5z"/></svg>'],
+    ['Facebook', 'https://www.facebook.com/manevihalkaapp', '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg>'],
+    ['WhatsApp', 'https://whatsapp.com/channel/0029VbDM2z67IUYTITv3yY2V', '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>']
+  ];
+  function shareBox() {
+    var box = el('div', 'share-box');
+    box.appendChild(el('div', 'share-q', T.shareQ));
+    var btn = el('button', 'primary share-btn', T.shareBtn);
+    btn.type = 'button';
+    var url = location.origin + location.pathname + '?t=' + tab;
+    btn.onclick = function () {
+      if (navigator.share) {
+        navigator.share({ title: 'Manevi Halka', text: T.shareText, url: url }).catch(function () {});
+        return;
+      }
+      var full = T.shareText + ' ' + url;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(full).then(function () { btn.textContent = T.copied; }, function () {});
+      }
+    };
+    box.appendChild(btn);
+    var f = el('div', 'follow');
+    f.appendChild(el('span', null, T.followLine));
+    var row = el('span', 'soc');
+    SOCIAL.forEach(function (sc) {
+      var a = document.createElement('a');
+      a.href = sc[1]; a.target = '_blank'; a.rel = 'noopener';
+      a.setAttribute('aria-label', sc[0]);
+      a.innerHTML = sc[2];
+      row.appendChild(a);
+    });
+    f.appendChild(row);
+    box.appendChild(f);
+    return box;
   }
 
   // ── Akış ──────────────────────────────────────────────────────────────────
@@ -1047,7 +1097,7 @@ window.MHOrtakHatim = (function () {
       // Hero'daki davet karti ayni sayiyi gosterir (index.html); ikinci istek
       // atmasin diye burada yayinlanir.
       try {
-        window.MHHatimSummary = { open: q.open, openText: nf(q.open), done: q.done, claimed: q.claimed, total: q.total };
+        window.MHHatimSummary = { open: q.open, openText: nf(q.open), done: q.done, claimed: q.claimed, total: q.total, cycle: q.cycle || 1 };
         document.dispatchEvent(new CustomEvent('mh:hatim-summary', { detail: window.MHHatimSummary }));
       } catch (e) { /* eski tarayici: davet statik kalir */ }
 

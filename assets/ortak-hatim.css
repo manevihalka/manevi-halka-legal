@@ -190,6 +190,14 @@
 .mhh .err { color:#b91c1c; }
 .mhh .ok-title { text-align:center; font-size:19px; font-weight:700;
   color:var(--p-dark); line-height:1.4; }
+/* Paylaş kutusu (teşekkür ekranı): önce paylaş, altında küçük takip satırı. */
+.mhh .share-box { margin-top:18px; padding:16px 16px 14px; border-radius:16px; background:var(--soft); text-align:center; }
+.mhh .share-q { font-size:15px; font-weight:600; color:var(--ink2); line-height:1.5; }
+.mhh .share-btn { margin-top:10px; }
+.mhh .follow { margin-top:12px; font-size:12.5px; color:var(--sub2); display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:6px 10px; }
+.mhh .soc { display:inline-flex; gap:8px; }
+.mhh .soc a { width:32px; height:32px; border-radius:50%; display:grid; place-items:center; color:var(--p-dark); background:var(--card2); border:1px solid var(--line3); }
+.mhh .soc svg { width:15px; height:15px; }
 .mhh .recovery { margin-top:16px; font-size:12px; color:var(--muted2); text-align:center; }
 .mhh .recovery button { width:auto; padding:6px 13px; font-size:12px; margin-top:7px; }
 
