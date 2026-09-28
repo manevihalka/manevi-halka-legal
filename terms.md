@@ -7,7 +7,7 @@ lang: tr
 # Kullanım Koşulları
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 6 Eylül 2026
+**Son güncelleme:** 28 Eylül 2026
 
 Manevi Halka mobil uygulamasını ("Uygulama") kullanarak bu Kullanım
 Koşullarını kabul etmiş olursunuz. Lütfen dikkatlice okuyun.
@@ -134,6 +134,16 @@ Eğer ücretsiz deneme süresi sunulursa:
 - Apple iade için: https://reportaproblem.apple.com
 - Google iade için: https://play.google.com/store/account
 - Biz doğrudan iade işlemi yapmıyoruz — Apple ve Google tüm ödemeleri yönetir
+
+### 4.7. Tek seferlik destek ödemeleri
+
+- Uygulama içinden isteğe bağlı, tek seferlik bir destek ödemesi yapabilirsiniz
+- Destek ödemesi Manevi Halka'nın geliştirilmesine gider; bağış değildir ve bir
+  hayır kurumuna aktarılmaz
+- Abonelik değildir, yenilenmez ve karşılığında herhangi bir özellik ya da içerik
+  açılmaz
+- Ödeme Apple ID veya Google hesabınızdan alınır; iade 4.6'daki mağaza
+  kurallarına tabidir
 
 ---
 

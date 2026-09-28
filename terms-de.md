@@ -7,7 +7,7 @@ lang: de
 # Nutzungsbedingungen
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 6. September 2026
+**Zuletzt aktualisiert:** 28. September 2026
 
 Mit der Nutzung der mobilen Anwendung Manevi Halka („die App") akzeptieren
 Sie diese Nutzungsbedingungen. Bitte lesen Sie sie sorgfältig.
@@ -144,6 +144,17 @@ Wird eine kostenlose Testphase angeboten:
 - Google-Erstattungen: https://play.google.com/store/account
 - Wir wickeln Erstattungen nicht direkt ab – Apple und Google verwalten
   sämtliche Zahlungen
+
+### 4.7. Einmalige Unterstützungszahlungen
+
+- In der App können Sie eine freiwillige, einmalige Unterstützungszahlung leisten
+- Unterstützungszahlungen fließen in die Entwicklung von Manevi Halka; es handelt
+  sich nicht um Spenden, und sie werden nicht an gemeinnützige Organisationen
+  weitergegeben
+- Es handelt sich um kein Abonnement: Die Zahlungen verlängern sich nicht und
+  schalten keine Funktionen oder Inhalte frei
+- Die Zahlung erfolgt über Ihre Apple-ID oder Ihr Google-Konto; für Erstattungen
+  gelten die Store-Regeln aus 4.6
 
 ---
 

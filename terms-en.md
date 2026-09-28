@@ -7,7 +7,7 @@ lang: en
 # Terms of Service
 
 **Effective date:** May 3, 2026
-**Last updated:** September 6, 2026
+**Last updated:** September 28, 2026
 
 By using the Manevi Halka mobile application ("the App") you accept these
 Terms of Service. Please read carefully.
@@ -130,6 +130,16 @@ If a free trial is offered:
 - Apple refunds: https://reportaproblem.apple.com
 - Google refunds: https://play.google.com/store/account
 - We do not process refunds directly — Apple and Google manage all payments
+
+### 4.7. One-time support payments
+
+- You may make an optional one-time support payment from within the app
+- Support payments go toward developing Manevi Halka; they are not donations and
+  are not passed on to a charity
+- They are not subscriptions, do not renew, and do not unlock any features or
+  content
+- Payment is charged to your Apple ID or Google account; refunds follow the
+  store rules in 4.6
 
 ---
 
