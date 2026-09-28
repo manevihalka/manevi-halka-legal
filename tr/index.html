@@ -219,7 +219,9 @@
   .lang-list a[aria-current="page"] { font-weight: 700; background: var(--mint); }
   @media (max-width: 480px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; } }
   /* dar ekranda baslik tek satirda kalsin: uzun "Uygulamayi indir" yerine magaza dugmesindeki kisa soz */
-  @media (max-width: 480px) { .brand { font-size: 18px; } .get { padding: 0 14px; } .get .gl { display: none; } .get .gs { display: inline; } }
+  /* Telefonda indirme dugmesi yalniz simge: dil menusuyle birlikte kisa etiket bile (EN "Download", FR "Telecharger")
+     390 px'te satiri tasiriyordu (olculdu). Etiketli magaza rozetleri hemen altta, hero'da duruyor. */
+  @media (max-width: 480px) { .brand { font-size: 18px; } .get { width: 40px; padding: 0; justify-content: center; } .get .gl, .get .gs { display: none; } .get svg { width: 18px; height: 18px; } }
 
   /* ── giris ── */
   .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 36px 72px; }
@@ -393,13 +395,47 @@
   .row-visual { position: relative; display: flex; justify-content: center; padding-block: 16px; }
   .row-visual::before { content: ""; position: absolute; inset: 0 8%; border-radius: 40px; background: var(--mint); z-index: -1; }
   .row-visual .phone { position: relative; inset: auto; width: 250px; aspect-ratio: 640 / 1391; cursor: default; }
-  .row-visual .note { position: absolute; bottom: 36px; inset-inline-end: 4%; max-width: 190px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; font-size: 13px; line-height: 1.4; box-shadow: 0 16px 34px -22px rgba(10, 30, 20, .5); }
-  .row-visual .note b { display: block; color: var(--green); font-size: 13.5px; }
+  /* ── Yakin plan kirpintilari (gercek uygulama ekranlarindan, dile gore). Telefonun
+     etrafina yuzer; konumlar mantiksal (inset-inline) oldugu icin Arapcada kendiliginden aynalanir.
+     fx-w: kendi koseleri saydam parca (yalniz golge) · fx-card: beyaz kart icinde kirpinti. */
+  .fx-host .phone { z-index: 1; }
+  .fx { position: absolute; z-index: 2; height: auto; display: block; pointer-events: none; user-select: none; }
+  .fx-w { filter: drop-shadow(0 18px 24px rgba(10, 30, 20, .22)) drop-shadow(0 2px 4px rgba(10, 30, 20, .10)); }
+  .fx-card { background: #fff; border-radius: 18px; box-shadow: 0 22px 44px -18px rgba(10, 30, 20, .38), 0 0 0 1px rgba(20, 35, 28, .06); }
+  :root[data-theme="dark"] .fx-w { filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .5)); }
+  :root[data-theme="dark"] .fx-card { box-shadow: 0 24px 46px -16px rgba(0, 0, 0, .65), 0 0 0 1px rgba(255, 255, 255, .06); }
+  /* Kur'an: meal (ya da kelime takibi) ustte, dinleme cubugu altta */
+  .p-qa { width: 64%; top: 8%; inset-inline-start: -6%; }
+  .p-qb { width: 66%; bottom: 9%; inset-inline-end: -5%; }
+  /* Namaz: orta boy widget ustte, gece halkasi yanda, kilit ekrani altta */
+  .p-va { width: 58%; top: 7%; inset-inline-start: -5%; }
+  .p-vb { width: 27%; top: 44%; inset-inline-end: -1%; }
+  .p-vc { width: 50%; bottom: 7%; inset-inline-start: -2%; }
+  .p-vs { width: 27%; top: 12%; inset-inline-start: 2%; }
+  /* Hatim: tur geri sayimi telefondaki kartin ustunde (buyutec gibi), cuz havuzu altta */
+  .p-ha { width: 66%; top: 24%; inset-inline-start: 4%; }
+  .p-hb { width: 62%; bottom: 8%; inset-inline-end: -5%; }
+  /* Ortak Ameller: bugunun isaretleri telefondaki listenin ustunde (buyutec), hadis altta */
+  .p-aa { width: 60%; top: 33%; inset-inline-end: 12%; }
+  .p-ab { width: 66%; bottom: 5%; inset-inline-start: -3%; }
   @media (max-width: 860px) {
     .row { grid-template-columns: 1fr; gap: 24px; }
     .row:nth-child(even) .row-visual { order: 0; }
     .row-visual .phone { width: 220px; }
     .rows { gap: 64px; }
+    /* Dar ekranda parcalar kabin icinde kalir (yana tasma yok), biraz kuculur */
+    .p-qa, .p-va, .p-ab, .p-vc { inset-inline-start: 0; }
+    .p-qb, .p-hb, .p-vb { inset-inline-end: 0; }
+    .p-aa { inset-inline-end: 4%; }
+    .p-qa { width: 82%; top: 6%; }
+    .p-qb { width: 84%; }
+    .p-va { width: 76%; top: 5%; }
+    .p-vc { width: 64%; }
+    .p-vb, .p-vs { width: 34%; }
+    .p-ha, .p-hb { width: 76%; }
+    .p-ha { inset-inline-start: 2%; }
+    .p-aa { width: 72%; }
+    .p-ab { width: 80%; }
   }
 
   /* ── ve daha fazlasi ── */
@@ -619,13 +655,13 @@
       <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8 8 0 1 1 9.8 4a6.4 6.4 0 0 0 10.2 10.2z"/></svg>
       <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
     </button>
-    <a class="get" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">İndir</span><span class="gs">İndir</span></a>
+    <a class="get" href="#download" data-get aria-label="İndir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">İndir</span><span class="gs">İndir</span></a>
   </header>
 
   <!-- GIRIS -->
   <div class="hero" id="top">
     <div>
-      <h1><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">Tek başına da, <em>birlikte de.</em></span></h1>
+      <h1><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">Bir niyet, bir halka, <em>nice ameller.</em></span></h1>
       <p class="lead">Kur'an, namaz, zikir, ezber ve okumalarını günlük hayatında sürdür. Dilersen sevdiklerinle bir halka kurup güzel amellerde buluş.</p>
       <div class="stores">
         <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>İndir</small><b>App Store</b></span></a>
@@ -683,8 +719,7 @@
           <p>Kur'an okumalarını kendi düzeninde sürdür. Dinlerken okunan kelime işaretlenir.</p>
           <ul class="ticks"><li>Üç kâriden kelime takipli sesli tilavet</li><li>Ezber çalışma kipi, notlar ve yer imleri</li><li>Sure ya da cüz indirip çevrimdışı dinleme</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/tr/quran.webp" alt="Kur'an okuyucu, Mülk suresi, sesli tilavet açık" width="640" height="1391" loading="lazy"></figure>
-          <div class="note"><b>Mishary Alafasy</b>Mülk · 2. ayet okunuyor</div></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/quran.webp" alt="Kur'an okuyucu, Mülk suresi, sesli tilavet açık" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-qa" src="/img/app/tr/fx-q-meal.webp" alt="" width="720" height="345" loading="lazy" decoding="async"><img class="fx fx-w p-qb" src="/img/app/tr/fx-q-bar.webp" alt="" width="720" height="101" loading="lazy" decoding="async"></div>
       </div>
       <div class="row">
         <div>
@@ -694,7 +729,7 @@
           <ul class="ticks"><li>Vakit girişinde ve çıkmadan önce bildirim</li><li>Ana ekran ve kilit ekranı widget'ları</li><li>Kıldığın vakitleri ve nafileleri kendin için işaretle</li></ul>
           <a class="qlink" href="/tr/namaz-vakitleri/">Bugünün vakitleri</a>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/tr/vakit.webp" alt="Namaz vakitleri ekranı, İstanbul" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/vakit.webp" alt="Namaz vakitleri ekranı, İstanbul" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w p-va" src="/img/app/tr/fx-w-med.webp" alt="" width="720" height="339" loading="lazy" decoding="async"><img class="fx fx-w fx-sq p-vb" src="/img/app/tr/fx-w-ring.webp" alt="" width="400" height="400" loading="lazy" decoding="async"><img class="fx fx-w p-vc" src="/img/app/tr/fx-w-lock.webp" alt="" width="720" height="261" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -720,7 +755,7 @@
           <p>Turlar düzenli ilerler, kimin hangi cüzü okuduğu tek bakışta görünür.</p>
           <ul class="ticks"><li>Cüzler her tur kendiliğinden dağıtılır</li><li>Yetişemeyen payını havuza bırakabilir</li><li>Rehber Modu: halkayı kuran yalnız izleyebilir</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/tr/halka.webp" alt="Aile Hatmi, halka sekmesi: dört kişi ve cüzleri" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/halka.webp" alt="Aile Hatmi, halka sekmesi: dört kişi ve cüzleri" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w p-ha" src="/img/app/tr/fx-h-tur.webp" alt="" width="720" height="137" loading="lazy" decoding="async"><img class="fx fx-card p-hb" src="/img/app/tr/fx-h-pool.webp" alt="" width="720" height="316" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -758,7 +793,7 @@
           <p>Beş vakti, ezberi ya da bir duayı halkanla birlikte sürdür. Herkes kendi gününü işaretler.</p>
           <ul class="ticks"><li>Sıralama, puan ve rozet yok</li><li>Görünürlük baştan belli: yalnız yönetici ya da karşılıklı</li><li>Hatırlatmalar senin vaktine göre</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/tr/amel.webp" alt="Ortak amel: 5 vakit, sabah ve öğle işaretli" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/amel.webp" alt="Ortak amel: 5 vakit, sabah ve öğle işaretli" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-aa" src="/img/app/tr/fx-a-today.webp" alt="" width="720" height="390" loading="lazy" decoding="async"><img class="fx fx-w p-ab" src="/img/app/tr/fx-a-hadis.webp" alt="" width="720" height="313" loading="lazy" decoding="async"></div>
       </div>
     </div>
     <div class="quiet">

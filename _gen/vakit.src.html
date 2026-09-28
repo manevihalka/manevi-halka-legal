@@ -830,24 +830,27 @@
   document.addEventListener("mh:prayer", tick);
   setInterval(tick, 1000);
 
-  // ── Gunun Ayeti: sade satir ──────────────────────────────────────────────
-  // TR/EN meal; AR Arapca asli; DE/FR meal izni yok, yalniz Arapca ve kunye
-  // (Arapca 3 satiri asarsa satir o gun gorunmez).
+  // ── Namaz ayeti: sade satir ─────────────────────────────────────────────
+  // 28 Eyl 2026: genel "Gunun Ayeti" yerine NAMAZ uzerine ayetlerden biri (liste ve metin
+  // kaynagi _gen/build-vakit.mjs NAMAZ_AYETLERI; metinler uygulamanin mushafindan).
+  // Her yerel gun bir sonraki ayet. TR/EN meal; AR Arapca asli; DE/FR meal izni yok,
+  // yalniz Arapca ve kunye (Arapca 3 satiri asarsa satir o gun gorunmez).
+  var NAMAZ = /*__NAMAZ_AYET__*/null;
   var MAX_AR_LINES = 3;
   function paintAyah() {
-    if (!window.MHDaily) return;
-    var d = window.MHDaily.today();
-    if (!d || !d.ayah) return;
-    var a = d.ayah, box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
-    var useMeal = (loc === "tr" || loc === "en") && !!a.translation;
-    $("vkLabel").textContent = up(a.specialName || d.ayahLabel || "");
-    $("vkRef").textContent = up(a.reference || "");
-    meal.textContent = useMeal ? a.translation : "";
+    if (!NAMAZ || !NAMAZ.length) return;
+    var now = new Date();
+    var gun = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 864e5);
+    var a = NAMAZ[gun % NAMAZ.length], box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
+    var useMeal = !!a.meal;
+    $("vkLabel").textContent = up(t.vAyahLabel || "");
+    $("vkRef").textContent = up(a.ref);
+    meal.textContent = useMeal ? a.meal : "";
     meal.hidden = !useMeal;
-    ar.textContent = useMeal ? "" : (a.arabic || "");
-    ar.hidden = useMeal || !a.arabic;
-    box.hidden = !(useMeal || a.arabic);
-    if (!useMeal && a.arabic && loc !== "ar") {
+    ar.textContent = useMeal ? "" : a.ar;
+    ar.hidden = useMeal;
+    box.hidden = false;
+    if (!useMeal && loc !== "ar") {
       var fit = function () {
         var lh = parseFloat(getComputedStyle(ar).lineHeight) || 48;
         if (Math.round(ar.getBoundingClientRect().height / lh) > MAX_AR_LINES) box.hidden = true;
@@ -856,7 +859,6 @@
       else fit();
     }
   }
-  document.addEventListener("mh:daily", paintAyah);
   paintAyah();
 })();
 </script>

@@ -592,7 +592,7 @@
   // Sozluk URETIMDE yazilir (_gen/build-home.mjs, kaynak _gen/site-i18n.js).
   // PAGE_LANG: uretilmis dil sayfasinda (/tr/) dil ADRESTEN gelir, kayitli
   // tercih onu ezemez; kokte null, dil tercih/cihaz diline gore secilir.
-  var T = {"tr":{"get":"İndir","ccTitle":"Ortak Okuma","privacy":"Gizlilik Politikası","terms":"Kullanım Koşulları","deleteAcc":"Hesap Silme","contact":"İletişim","itaniCredit":"İngilizce meal: Talal Itani,","suffix":"","pageTitle":"Namaz vakitleri · Manevi Halka","pageDesc":"Bulunduğun şehir için bugünün namaz vakitleri ve 30 günlük takvim, Diyanet takvimine göre. Hicri tarih ve dini günler de burada.","vTitle":"Namaz vakitleri","vSub":"Diyanet takvimine göre. Şehrini değiştirebilir, 30 günlük takvimi vakitlerin altından açıp yazdırabilirsin.","vPromoTitle":"Vakit girince haber al","vPromoText":"Bildirim, ana ekranda widget ve kıble. Kur'an, halkalar ve zikir de aynı uygulamada.","vKnowApp":"Uygulamayı tanı","yNavApp":"Uygulama","yNavTimes":"Vakitler","yNavSections":"Bölümler","ySocialTitle":"Halkayla bağlantıda kal","ySocialText":"Günün ayeti her sabah, kandil gecelerinde hatırlatma.","title":"Namaz vakitleri · Manevi Halka","desc":"Bulunduğun şehir için bugünün namaz vakitleri ve 30 günlük takvim, Diyanet takvimine göre. Hicri tarih ve dini günler de burada."}};
+  var T = {"tr":{"get":"İndir","ccTitle":"Ortak Okuma","privacy":"Gizlilik Politikası","terms":"Kullanım Koşulları","deleteAcc":"Hesap Silme","contact":"İletişim","itaniCredit":"İngilizce meal: Talal Itani,","suffix":"","pageTitle":"Namaz vakitleri · Manevi Halka","pageDesc":"Bulunduğun şehir için bugünün namaz vakitleri ve 30 günlük takvim, Diyanet takvimine göre. Hicri tarih ve dini günler de burada.","vTitle":"Namaz vakitleri","vAyahLabel":"Âyet-i kerîme","vSub":"Diyanet takvimine göre. Şehrini değiştirebilir, 30 günlük takvimi vakitlerin altından açıp yazdırabilirsin.","vPromoTitle":"Vakit girince haber al","vPromoText":"Bildirim, ana ekranda widget ve kıble. Kur'an, halkalar ve zikir de aynı uygulamada.","vKnowApp":"Uygulamayı tanı","yNavApp":"Uygulama","yNavTimes":"Vakitler","yNavSections":"Bölümler","ySocialTitle":"Halkayla bağlantıda kal","ySocialText":"Günün ayeti her sabah, kandil gecelerinde hatırlatma.","title":"Namaz vakitleri · Manevi Halka","desc":"Bulunduğun şehir için bugünün namaz vakitleri ve 30 günlük takvim, Diyanet takvimine göre. Hicri tarih ve dini günler de burada."}};
   var PAGE_LANG = "tr";
   var VAKIT_URL = {"en":"/prayer-times/","tr":"/tr/namaz-vakitleri/","de":"/de/gebetszeiten/","fr":"/fr/horaires-de-priere/","ar":"/ar/mawaqit/"};
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
@@ -876,24 +876,27 @@
   document.addEventListener("mh:prayer", tick);
   setInterval(tick, 1000);
 
-  // ── Gunun Ayeti: sade satir ──────────────────────────────────────────────
-  // TR/EN meal; AR Arapca asli; DE/FR meal izni yok, yalniz Arapca ve kunye
-  // (Arapca 3 satiri asarsa satir o gun gorunmez).
+  // ── Namaz ayeti: sade satir ─────────────────────────────────────────────
+  // 28 Eyl 2026: genel "Gunun Ayeti" yerine NAMAZ uzerine ayetlerden biri (liste ve metin
+  // kaynagi _gen/build-vakit.mjs NAMAZ_AYETLERI; metinler uygulamanin mushafindan).
+  // Her yerel gun bir sonraki ayet. TR/EN meal; AR Arapca asli; DE/FR meal izni yok,
+  // yalniz Arapca ve kunye (Arapca 3 satiri asarsa satir o gun gorunmez).
+  var NAMAZ = [{"ar":"اِنَّ الصَّلٰوةَ كَانَتْ عَلَى الْمُؤْمِنٖینَ كِتَابًا مَوْقُوتًا","ref":"Nisâ 4:103 (bir bölümü)","meal":"Çünkü namaz müminlere belirli vakitlerde yazılı bir farzdır."},{"ar":"اَقِمِ الصَّلٰوةَ لِدُلُوكِ الشَّمْسِ اِلٰى غَسَقِ الَّیْلِ وَقُرْاٰنَ الْفَجْرِؕ اِنَّ قُرْاٰنَ الْفَجْرِ كَانَ مَشْهُودًا","ref":"İsrâ 17:78","meal":"Güneşin batıya kaymasından, gecenin karanlığına kadar (belirli vakitlerde) gereği üzere namazı kıl, bir de sabah namazını kıl. Çünkü sabah namazında, gece ve gündüz melekleri hazır bulunur."},{"ar":"حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلٰوةِ الْوُسْطٰى وَقُومُوا لِلّٰهِ قَانِتٖینَ","ref":"Bakara 2:238","meal":"Namazlara ve orta namaza devam edin ve Allah için boyun eğerek kalkıp namaza durun."},{"ar":"وَاَقِمِ الصَّلٰوةَ طَرَفَیِ النَّهَارِ وَزُلَفًا مِنَ الَّیْلِؕ","ref":"Hûd 11:114 (bir bölümü)","meal":"Gündüzün her iki tarafında ve gecenin saçaklarında (gündüze yakın olan saatlerinde) namaz kıl!"},{"ar":"اِنَّ الصَّلٰوةَ تَنْهٰى عَنِ الْفَحْشَٓاءِ وَالْمُنْكَرِؕ","ref":"Ankebût 29:45 (bir bölümü)","meal":"Muhakkak ki namaz hayasızlıktan ve kötülükten alıkoyar."},{"ar":"وَاسْتَعٖینُوا بِالصَّبْرِ وَالصَّلٰوةِؕ وَاِنَّهَا لَكَبٖیرَةٌ اِلَّا عَلَى الْخَاشِعٖینَۙ","ref":"Bakara 2:45","meal":"Bir de sabırla, namazla yardım isteyin. Şüphesiz bu, (Allah'a) saygılı olanlardan başkasına ağır gelir."},{"ar":"وَاَقٖیمُوا الصَّلٰوةَ وَاٰتُوا الزَّكٰوةَ وَارْكَعُوا مَعَ الرَّاكِعٖینَ","ref":"Bakara 2:43","meal":"Hem namazı dosdoğru kılın, zekatı verin, rükû edenlerle birlikte siz de rükû edin."}];
   var MAX_AR_LINES = 3;
   function paintAyah() {
-    if (!window.MHDaily) return;
-    var d = window.MHDaily.today();
-    if (!d || !d.ayah) return;
-    var a = d.ayah, box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
-    var useMeal = (loc === "tr" || loc === "en") && !!a.translation;
-    $("vkLabel").textContent = up(a.specialName || d.ayahLabel || "");
-    $("vkRef").textContent = up(a.reference || "");
-    meal.textContent = useMeal ? a.translation : "";
+    if (!NAMAZ || !NAMAZ.length) return;
+    var now = new Date();
+    var gun = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 864e5);
+    var a = NAMAZ[gun % NAMAZ.length], box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
+    var useMeal = !!a.meal;
+    $("vkLabel").textContent = up(t.vAyahLabel || "");
+    $("vkRef").textContent = up(a.ref);
+    meal.textContent = useMeal ? a.meal : "";
     meal.hidden = !useMeal;
-    ar.textContent = useMeal ? "" : (a.arabic || "");
-    ar.hidden = useMeal || !a.arabic;
-    box.hidden = !(useMeal || a.arabic);
-    if (!useMeal && a.arabic && loc !== "ar") {
+    ar.textContent = useMeal ? "" : a.ar;
+    ar.hidden = useMeal;
+    box.hidden = false;
+    if (!useMeal && loc !== "ar") {
       var fit = function () {
         var lh = parseFloat(getComputedStyle(ar).lineHeight) || 48;
         if (Math.round(ar.getBoundingClientRect().height / lh) > MAX_AR_LINES) box.hidden = true;
@@ -902,7 +905,6 @@
       else fit();
     }
   }
-  document.addEventListener("mh:daily", paintAyah);
   paintAyah();
 })();
 </script>

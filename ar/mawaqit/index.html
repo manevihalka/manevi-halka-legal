@@ -592,7 +592,7 @@
   // Sozluk URETIMDE yazilir (_gen/build-home.mjs, kaynak _gen/site-i18n.js).
   // PAGE_LANG: uretilmis dil sayfasinda (/tr/) dil ADRESTEN gelir, kayitli
   // tercih onu ezemez; kokte null, dil tercih/cihaz diline gore secilir.
-  var T = {"ar":{"get":"حمّل","ccTitle":"القراءة المشتركة","privacy":"سياسة الخصوصية","terms":"شروط الاستخدام","deleteAcc":"حذف الحساب","contact":"تواصل معنا","itaniCredit":"الترجمة الإنجليزية: طلال إيتاني،","suffix":"-ar","pageTitle":"مواقيت الصلاة · Manevi Halka","pageDesc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية.","vTitle":"مواقيت الصلاة","vSub":"وفق تقويم ديانت. يمكنك تغيير مدينتك، وفتح تقويم 30 يومًا أسفل المواقيت أو طباعته.","vPromoTitle":"اعرف متى يدخل كل وقت","vPromoText":"تنبيهات وأدوات للشاشة الرئيسية والقبلة. والقرآن والحلقات والذكر في التطبيق نفسه.","vKnowApp":"تعرّف على التطبيق","yNavApp":"التطبيق","yNavTimes":"المواقيت","yNavSections":"الأقسام","ySocialTitle":"ابقَ على صلة بالحلقة","ySocialText":"آية اليوم كل صباح، وتذكير في الليالي المباركة.","title":"مواقيت الصلاة · Manevi Halka","desc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية."}};
+  var T = {"ar":{"get":"حمّل","ccTitle":"القراءة المشتركة","privacy":"سياسة الخصوصية","terms":"شروط الاستخدام","deleteAcc":"حذف الحساب","contact":"تواصل معنا","itaniCredit":"الترجمة الإنجليزية: طلال إيتاني،","suffix":"-ar","pageTitle":"مواقيت الصلاة · Manevi Halka","pageDesc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية.","vTitle":"مواقيت الصلاة","vAyahLabel":"آية كريمة","vSub":"وفق تقويم ديانت. يمكنك تغيير مدينتك، وفتح تقويم 30 يومًا أسفل المواقيت أو طباعته.","vPromoTitle":"اعرف متى يدخل كل وقت","vPromoText":"تنبيهات وأدوات للشاشة الرئيسية والقبلة. والقرآن والحلقات والذكر في التطبيق نفسه.","vKnowApp":"تعرّف على التطبيق","yNavApp":"التطبيق","yNavTimes":"المواقيت","yNavSections":"الأقسام","ySocialTitle":"ابقَ على صلة بالحلقة","ySocialText":"آية اليوم كل صباح، وتذكير في الليالي المباركة.","title":"مواقيت الصلاة · Manevi Halka","desc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية."}};
   var PAGE_LANG = "ar";
   var VAKIT_URL = {"en":"/prayer-times/","tr":"/tr/namaz-vakitleri/","de":"/de/gebetszeiten/","fr":"/fr/horaires-de-priere/","ar":"/ar/mawaqit/"};
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
@@ -876,24 +876,27 @@
   document.addEventListener("mh:prayer", tick);
   setInterval(tick, 1000);
 
-  // ── Gunun Ayeti: sade satir ──────────────────────────────────────────────
-  // TR/EN meal; AR Arapca asli; DE/FR meal izni yok, yalniz Arapca ve kunye
-  // (Arapca 3 satiri asarsa satir o gun gorunmez).
+  // ── Namaz ayeti: sade satir ─────────────────────────────────────────────
+  // 28 Eyl 2026: genel "Gunun Ayeti" yerine NAMAZ uzerine ayetlerden biri (liste ve metin
+  // kaynagi _gen/build-vakit.mjs NAMAZ_AYETLERI; metinler uygulamanin mushafindan).
+  // Her yerel gun bir sonraki ayet. TR/EN meal; AR Arapca asli; DE/FR meal izni yok,
+  // yalniz Arapca ve kunye (Arapca 3 satiri asarsa satir o gun gorunmez).
+  var NAMAZ = [{"ar":"اِنَّ الصَّلٰوةَ كَانَتْ عَلَى الْمُؤْمِنٖینَ كِتَابًا مَوْقُوتًا","ref":"النساء 4:103 (جزء من الآية)"},{"ar":"اَقِمِ الصَّلٰوةَ لِدُلُوكِ الشَّمْسِ اِلٰى غَسَقِ الَّیْلِ وَقُرْاٰنَ الْفَجْرِؕ اِنَّ قُرْاٰنَ الْفَجْرِ كَانَ مَشْهُودًا","ref":"الإسراء 17:78"},{"ar":"حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلٰوةِ الْوُسْطٰى وَقُومُوا لِلّٰهِ قَانِتٖینَ","ref":"البقرة 2:238"},{"ar":"وَاَقِمِ الصَّلٰوةَ طَرَفَیِ النَّهَارِ وَزُلَفًا مِنَ الَّیْلِؕ","ref":"هود 11:114 (جزء من الآية)"},{"ar":"اِنَّ الصَّلٰوةَ تَنْهٰى عَنِ الْفَحْشَٓاءِ وَالْمُنْكَرِؕ","ref":"العنكبوت 29:45 (جزء من الآية)"},{"ar":"وَاسْتَعٖینُوا بِالصَّبْرِ وَالصَّلٰوةِؕ وَاِنَّهَا لَكَبٖیرَةٌ اِلَّا عَلَى الْخَاشِعٖینَۙ","ref":"البقرة 2:45"},{"ar":"وَاَقٖیمُوا الصَّلٰوةَ وَاٰتُوا الزَّكٰوةَ وَارْكَعُوا مَعَ الرَّاكِعٖینَ","ref":"البقرة 2:43"}];
   var MAX_AR_LINES = 3;
   function paintAyah() {
-    if (!window.MHDaily) return;
-    var d = window.MHDaily.today();
-    if (!d || !d.ayah) return;
-    var a = d.ayah, box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
-    var useMeal = (loc === "tr" || loc === "en") && !!a.translation;
-    $("vkLabel").textContent = up(a.specialName || d.ayahLabel || "");
-    $("vkRef").textContent = up(a.reference || "");
-    meal.textContent = useMeal ? a.translation : "";
+    if (!NAMAZ || !NAMAZ.length) return;
+    var now = new Date();
+    var gun = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 864e5);
+    var a = NAMAZ[gun % NAMAZ.length], box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
+    var useMeal = !!a.meal;
+    $("vkLabel").textContent = up(t.vAyahLabel || "");
+    $("vkRef").textContent = up(a.ref);
+    meal.textContent = useMeal ? a.meal : "";
     meal.hidden = !useMeal;
-    ar.textContent = useMeal ? "" : (a.arabic || "");
-    ar.hidden = useMeal || !a.arabic;
-    box.hidden = !(useMeal || a.arabic);
-    if (!useMeal && a.arabic && loc !== "ar") {
+    ar.textContent = useMeal ? "" : a.ar;
+    ar.hidden = useMeal;
+    box.hidden = false;
+    if (!useMeal && loc !== "ar") {
       var fit = function () {
         var lh = parseFloat(getComputedStyle(ar).lineHeight) || 48;
         if (Math.round(ar.getBoundingClientRect().height / lh) > MAX_AR_LINES) box.hidden = true;
@@ -902,7 +905,6 @@
       else fit();
     }
   }
-  document.addEventListener("mh:daily", paintAyah);
   paintAyah();
 })();
 </script>

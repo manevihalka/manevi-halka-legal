@@ -601,7 +601,7 @@
   // Sozluk URETIMDE yazilir (_gen/build-home.mjs, kaynak _gen/site-i18n.js).
   // PAGE_LANG: uretilmis dil sayfasinda (/tr/) dil ADRESTEN gelir, kayitli
   // tercih onu ezemez; kokte null, dil tercih/cihaz diline gore secilir.
-  var T = {"en":{"get":"Download","ccTitle":"Shared Reading","privacy":"Privacy Policy","terms":"Terms of Service","deleteAcc":"Account Deletion","contact":"Contact","itaniCredit":"English translation: Talal Itani,","suffix":"-en","pageTitle":"Prayer times · Manevi Halka","pageDesc":"Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days.","vTitle":"Prayer times","vSub":"Based on the Diyanet calendar. Change your city, and open or print the 30-day calendar below the times.","vPromoTitle":"Know when each prayer time begins","vPromoText":"Notifications, home screen widgets and the qibla. The Quran, circles and dhikr are in the same app.","vKnowApp":"Discover the app","yNavApp":"The app","yNavTimes":"Prayer times","yNavSections":"Sections","ySocialTitle":"Stay close to the circle","ySocialText":"The verse of the day every morning, reminders on the blessed nights.","title":"Prayer times · Manevi Halka","desc":"Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days."}};
+  var T = {"en":{"get":"Download","ccTitle":"Shared Reading","privacy":"Privacy Policy","terms":"Terms of Service","deleteAcc":"Account Deletion","contact":"Contact","itaniCredit":"English translation: Talal Itani,","suffix":"-en","pageTitle":"Prayer times · Manevi Halka","pageDesc":"Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days.","vTitle":"Prayer times","vAyahLabel":"Qur'anic verse","vSub":"Based on the Diyanet calendar. Change your city, and open or print the 30-day calendar below the times.","vPromoTitle":"Know when each prayer time begins","vPromoText":"Notifications, home screen widgets and the qibla. The Quran, circles and dhikr are in the same app.","vKnowApp":"Discover the app","yNavApp":"The app","yNavTimes":"Prayer times","yNavSections":"Sections","ySocialTitle":"Stay close to the circle","ySocialText":"The verse of the day every morning, reminders on the blessed nights.","title":"Prayer times · Manevi Halka","desc":"Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days."}};
   var PAGE_LANG = "en";
   var VAKIT_URL = {"en":"/prayer-times/","tr":"/tr/namaz-vakitleri/","de":"/de/gebetszeiten/","fr":"/fr/horaires-de-priere/","ar":"/ar/mawaqit/"};
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
@@ -885,24 +885,27 @@
   document.addEventListener("mh:prayer", tick);
   setInterval(tick, 1000);
 
-  // ── Gunun Ayeti: sade satir ──────────────────────────────────────────────
-  // TR/EN meal; AR Arapca asli; DE/FR meal izni yok, yalniz Arapca ve kunye
-  // (Arapca 3 satiri asarsa satir o gun gorunmez).
+  // ── Namaz ayeti: sade satir ─────────────────────────────────────────────
+  // 28 Eyl 2026: genel "Gunun Ayeti" yerine NAMAZ uzerine ayetlerden biri (liste ve metin
+  // kaynagi _gen/build-vakit.mjs NAMAZ_AYETLERI; metinler uygulamanin mushafindan).
+  // Her yerel gun bir sonraki ayet. TR/EN meal; AR Arapca asli; DE/FR meal izni yok,
+  // yalniz Arapca ve kunye (Arapca 3 satiri asarsa satir o gun gorunmez).
+  var NAMAZ = [{"ar":"اِنَّ الصَّلٰوةَ كَانَتْ عَلَى الْمُؤْمِنٖینَ كِتَابًا مَوْقُوتًا","ref":"An-Nisa' 4:103 (excerpt)","meal":"The prayer is obligatory for believers at specific times."},{"ar":"اَقِمِ الصَّلٰوةَ لِدُلُوكِ الشَّمْسِ اِلٰى غَسَقِ الَّیْلِ وَقُرْاٰنَ الْفَجْرِؕ اِنَّ قُرْاٰنَ الْفَجْرِ كَانَ مَشْهُودًا","ref":"Al-Isra' 17:78","meal":"Perform the prayer at the decline of the sun, until the darkness of the night; and the Quran at dawn. The Quran at dawn is witnessed."},{"ar":"حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلٰوةِ الْوُسْطٰى وَقُومُوا لِلّٰهِ قَانِتٖینَ","ref":"Al-Baqarah 2:238","meal":"Guard your prayers, and the middle prayer, and stand before God in devotion."},{"ar":"وَاَقِمِ الصَّلٰوةَ طَرَفَیِ النَّهَارِ وَزُلَفًا مِنَ الَّیْلِؕ","ref":"Hud 11:114 (excerpt)","meal":"Perform the prayer at the borders of the day, and during the approaches of the night."},{"ar":"اِنَّ الصَّلٰوةَ تَنْهٰى عَنِ الْفَحْشَٓاءِ وَالْمُنْكَرِؕ","ref":"Al-'Ankabut 29:45 (excerpt)","meal":"The prayer prevents indecencies and evils."},{"ar":"وَاسْتَعٖینُوا بِالصَّبْرِ وَالصَّلٰوةِؕ وَاِنَّهَا لَكَبٖیرَةٌ اِلَّا عَلَى الْخَاشِعٖینَۙ","ref":"Al-Baqarah 2:45","meal":"And seek help through patience and prayer. But it is difficult, except for the devout."},{"ar":"وَاَقٖیمُوا الصَّلٰوةَ وَاٰتُوا الزَّكٰوةَ وَارْكَعُوا مَعَ الرَّاكِعٖینَ","ref":"Al-Baqarah 2:43","meal":"And attend to your prayers, and practice regular charity, and kneel with those who kneel."}];
   var MAX_AR_LINES = 3;
   function paintAyah() {
-    if (!window.MHDaily) return;
-    var d = window.MHDaily.today();
-    if (!d || !d.ayah) return;
-    var a = d.ayah, box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
-    var useMeal = (loc === "tr" || loc === "en") && !!a.translation;
-    $("vkLabel").textContent = up(a.specialName || d.ayahLabel || "");
-    $("vkRef").textContent = up(a.reference || "");
-    meal.textContent = useMeal ? a.translation : "";
+    if (!NAMAZ || !NAMAZ.length) return;
+    var now = new Date();
+    var gun = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 864e5);
+    var a = NAMAZ[gun % NAMAZ.length], box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
+    var useMeal = !!a.meal;
+    $("vkLabel").textContent = up(t.vAyahLabel || "");
+    $("vkRef").textContent = up(a.ref);
+    meal.textContent = useMeal ? a.meal : "";
     meal.hidden = !useMeal;
-    ar.textContent = useMeal ? "" : (a.arabic || "");
-    ar.hidden = useMeal || !a.arabic;
-    box.hidden = !(useMeal || a.arabic);
-    if (!useMeal && a.arabic && loc !== "ar") {
+    ar.textContent = useMeal ? "" : a.ar;
+    ar.hidden = useMeal;
+    box.hidden = false;
+    if (!useMeal && loc !== "ar") {
       var fit = function () {
         var lh = parseFloat(getComputedStyle(ar).lineHeight) || 48;
         if (Math.round(ar.getBoundingClientRect().height / lh) > MAX_AR_LINES) box.hidden = true;
@@ -911,7 +914,6 @@
       else fit();
     }
   }
-  document.addEventListener("mh:daily", paintAyah);
   paintAyah();
 })();
 </script>

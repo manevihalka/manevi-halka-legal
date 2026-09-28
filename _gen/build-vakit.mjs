@@ -7,8 +7,8 @@
  *
  * Bu tasarim ("Gunun Halkasi") 28 Eyl'de birkac saat ana sayfaydi; ana sayfa
  * uygulama tanitimi olunca (kullanici karari) vakitler kendi sayfasina tasindi.
- * Ayet/hadis kartlari kalkti, yerine sade bir Gunun Ayeti satiri geldi
- * (DE/FR meal izni yok: yalniz Arapca ve kunye).
+ * Ayet/hadis kartlari kalkti, yerine sade bir ayet satiri geldi: 28 Eyl'den beri
+ * NAMAZ uzerine ayetlerden biri (NAMAZ_AYETLERI; DE/FR meal izni yok: yalniz Arapca ve kunye).
  *
  * Kurallar: baslik, aciklama, h1 ve govde metni STATIK yazilir (her data-t
  * dugumu o sayfanin dilinde; JS yalniz dinamik parcalari cizer). Sozluk
@@ -42,6 +42,8 @@ const OZEL = {
     fr: "Les horaires de prière du jour pour ta ville et un calendrier de 30 jours, selon le calendrier de la Diyanet. Avec la date de l'Hégire et les jours religieux.",
     ar: "مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية." },
   vTitle: { tr: "Namaz vakitleri", en: "Prayer times", de: "Gebetszeiten", fr: "Horaires de prière", ar: "مواقيت الصلاة" },
+  // Namaz ayetinin ust etiketi: uygulamadaki tesvik kartlariyla ayni sozcukler (practice.encLabelAyah)
+  vAyahLabel: { tr: "Âyet-i kerîme", en: "Qur'anic verse", de: "Koranvers", fr: "Verset coranique", ar: "آية كريمة" },
   vSub: { tr: "Diyanet takvimine göre. Şehrini değiştirebilir, 30 günlük takvimi vakitlerin altından açıp yazdırabilirsin.",
     en: "Based on the Diyanet calendar. Change your city, and open or print the 30-day calendar below the times.",
     de: "Nach dem Diyanet-Kalender. Du kannst deine Stadt ändern und den 30-Tage-Kalender unter den Gebetszeiten öffnen und drucken.",
@@ -173,11 +175,72 @@ function sayfa(dil) {
   s = degistir(s, "/*__I18N__*/null", JSON.stringify({ [dil]: t }).replace(/</g, "\\u003c"), 1, "sozluk");
   s = degistir(s, "/*__PAGE_LANG__*/null", JSON.stringify(dil), 1, "sayfa dili");
   s = degistir(s, "/*__VAKIT_URL__*/null", JSON.stringify(VAKIT), 1, "vakit adresleri");
+  s = degistir(s, "/*__NAMAZ_AYET__*/null", JSON.stringify(namazAyetleri(dil)).replace(/</g, "\\u003c"), 1, "namaz ayetleri");
 
   if (/__[A-Z_]+__/.test(s.replace(/\/\*__[A-Z_]+__\*\//g, ""))) hata(`${dil}: doldurulmamis yer tutucu kaldi`);
   if (s.startsWith("---")) hata("cikti front matter ile basliyor (Jekyll isler)");
   if (/—/.test(s.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, ""))) hata(`${dil}: uzun tire (ayrac) var`);
   return s;
+}
+
+// ─── Namaz ayetleri ─────────────────────────────────────────────────────────
+// 28 Eyl 2026 kullanici istegi: vakit sayfasinda genel "Gunun Ayeti" degil, NAMAZ uzerine
+// bir ayet olmali. Her gun listeden biri (yerel gun sirasi, 7 ayet). Metinler ELLE YAZILMAZ:
+// data/mushaf'tan (uygulamanin mushafi + Elmalili + Itani, build-mushaf-web.mjs) okunur.
+// Kesit alinan ayette baslangic/bitis isaretleri tam metnin icinde BIREBIR aranir, bulunamazsa
+// uretim durur (sessizce yanlis metin basilmaz). Kesit kunyede "(bir bolumu)" diye belirtilir.
+// DE/FR meal YOK (telif, izin yok), AR'de meal yok: o dillerde Arapca asli + kunye.
+// ⚠️ Taha 20:14 bilerek YOK: Itani cevirisi "I—I am God" uzun tire tasiyor (ND lisansli, degistirilemez).
+const NAMAZ_AYETLERI = [
+  { k: "4:103", kesit: { ar: ["اِنَّ الصَّلٰوةَ"], tr: ["Çünkü namaz"], en: ["The prayer is obligatory"] } },
+  { k: "17:78" },
+  { k: "2:238" },
+  { k: "11:114", kesit: { ar: ["", "اِنَّ الْحَسَنَاتِ"], tr: ["", "Muhakkak ki, iyilik"], en: ["", "The good deeds"] } },
+  { k: "29:45", kesit: { ar: ["اِنَّ الصَّلٰوةَ", "وَلَذِكْرُ"], tr: ["Muhakkak ki namaz", "Allah'ı anmak"], en: ["The prayer prevents", "And the remembrance"] } },
+  { k: "2:45" },
+  { k: "2:43" },
+];
+const SURE_ADI = {
+  2: { tr: "Bakara", lat: "Al-Baqarah", ar: "البقرة" },
+  4: { tr: "Nisâ", lat: "An-Nisa'", ar: "النساء" },
+  11: { tr: "Hûd", lat: "Hud", ar: "هود" },
+  17: { tr: "İsrâ", lat: "Al-Isra'", ar: "الإسراء" },
+  29: { tr: "Ankebût", lat: "Al-'Ankabut", ar: "العنكبوت" },
+};
+const BOLUM = { tr: " (bir bölümü)", en: " (excerpt)", de: " (Auszug)", fr: " (extrait)", ar: " (جزء من الآية)" };
+let MUSHAF = null;
+function mushafMetni(anahtar, dil) {
+  if (!MUSHAF) {
+    MUSHAF = { ar: {}, tr: {}, en: {} };
+    for (const d of Object.keys(MUSHAF)) {
+      for (let i = 0; i < 31; i++) {
+        const yol = join(KOK, "data", "mushaf", d, String(i).padStart(2, "0") + ".json");
+        if (!existsSync(yol)) continue;
+        for (const ayetler of Object.values(JSON.parse(readFileSync(yol, "utf8")).p)) for (const [k, t] of ayetler) MUSHAF[d][k] = t;
+      }
+    }
+  }
+  const t = MUSHAF[dil][anahtar];
+  if (!t) hata(`mushaf verisinde ${dil} ${anahtar} yok`);
+  return t;
+}
+function kes(metin, isaret, ne) {
+  if (!isaret) return metin;
+  const [bas, son] = isaret;
+  let i = 0, j = metin.length;
+  if (bas) { i = metin.indexOf(bas); if (i < 0) hata(`${ne}: baslangic isareti bulunamadi`); }
+  if (son) { j = metin.indexOf(son, i); if (j < 0) hata(`${ne}: bitis isareti bulunamadi`); }
+  return metin.slice(i, j).trim();
+}
+function namazAyetleri(dil) {
+  return NAMAZ_AYETLERI.map(({ k, kesit }) => {
+    const [sure] = k.split(":").map(Number);
+    const ad = SURE_ADI[sure] || hata(`SURE_ADI ${sure} yok`);
+    const adi = dil === "tr" ? ad.tr : dil === "ar" ? ad.ar : ad.lat;
+    const o = { ar: kes(mushafMetni(k, "ar"), kesit && kesit.ar, k + " ar"), ref: `${adi} ${k}${kesit ? BOLUM[dil] : ""}` };
+    if (dil === "tr" || dil === "en") o.meal = kes(mushafMetni(k, dil), kesit && kesit[dil], k + " " + dil);
+    return o;
+  });
 }
 
 // ─── uret ───────────────────────────────────────────────────────────────────

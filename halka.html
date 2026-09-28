@@ -31,286 +31,332 @@
   ⚠️ Anlık senkron sinyali VERİ DEĞİL. Kanal public, sahte mesaj gönderilebilir
   (üretimde denendi). Sinyal gelince payload OKUNMAZ, sunucudan yeniden okunur.
 -->
+<script>
+(function () {
+  // Tema ILK BOYAMADAN once: sitenin ortak tercihi (mh_theme), yoksa sistem.
+  // Tercih yoksa sistem degisimi canli izlenir. Tema DUGMESI bilerek yok (paletin notuna bak).
+  var root = document.documentElement, saved = null, mq = null;
+  try { saved = localStorage.getItem("mh_theme"); } catch (e) { /* gizli mod */ }
+  try { mq = window.matchMedia("(prefers-color-scheme: dark)"); } catch (e) {}
+  function apply() {
+    root.setAttribute("data-theme", (saved === "dark" || saved === "light") ? saved : (mq && mq.matches ? "dark" : "light"));
+  }
+  apply();
+  if (saved !== "dark" && saved !== "light" && mq && mq.addEventListener) mq.addEventListener("change", apply);
+})();
+</script>
 <style>
+  /* Yazi tipleri KENDI SUNUCUMUZDAN (SIL OFL, fonts/OFL-*.txt); ucuncu tarafa istek yok. */
+  @font-face { font-family:"Marcellus"; font-style:normal; font-weight:400; font-display:swap;
+    src:url(/fonts/marcellus-latin-ext.woff2) format("woff2");
+    unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family:"Marcellus"; font-style:normal; font-weight:400; font-display:swap;
+    src:url(/fonts/marcellus-latin.woff2) format("woff2");
+    unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family:"Onest"; font-style:normal; font-weight:400 700; font-display:swap;
+    src:url(/fonts/onest-latin-ext.woff2) format("woff2");
+    unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family:"Onest"; font-style:normal; font-weight:400 700; font-display:swap;
+    src:url(/fonts/onest-latin.woff2) format("woff2");
+    unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
   /* ── Palet ──────────────────────────────────────────────────────────────
-     Ana siteden (manevihalka.app) BİREBİR alındı. Tutarlılık üç şeyle kuruluyor:
-     bu palet, girih filigranı ve kart dili (18-20px köşe, hafif gölge, ince
-     sıcak kenarlık).
+     28 Eyl 2026'dan beri sitenin YENİ tasarımından (ana sayfa, vakit sayfası,
+     /ortak-okuma.html): aynı renkler, Marcellus başlık, Onest metin. Eski
+     girih filigranı ve "Manevi Halka" şeridi kalktı.
+     ⚠️ Değişken ADLARI eski kaldı (--bg, --card, --primary...): sayfanın
+     JS'i lejantta var(--done) gibi adları doğrudan yazıyor.
      ⚠️ ALTIN (--gold) BİR DURUM RENGİ DEĞİLDİR. İlerleme çubuğuna koyulursa
      "üstlenildi = ödül/başarı" çağrışımı doğuyor ve ekran üç renkli bir
      gösterge paneline dönüyor. Altın yalnız atmosfer aksanı: hero ayracı,
-     ithaf kartının üst çizgisi, öneri kartının vurgusu, seçili cüzün halkası. */
+     öneri kartının üst çizgisi, küçük etiketler, seçili cüzün halkası.
+     ⚠️ RAKAM Marcellus ile YAZILMAZ: o yazı tipinde sıfır "O" harfi gibi
+     ("540" "54O" okunuyor). Sayı taşıyan her şey Onest 600 (vakit sayfasının
+     geri sayımı da öyle); Marcellus yalnız sözcüklerde.
+     ⚠️ Tema: sitenin ortak tercihi (mh_theme), yoksa sistem. v1 kararı
+     korunuyor: 30 saniyelik misafir işlemine tema DÜĞMESİ konmuyor. */
   :root {
-    --bg:#f8f5ef; --card:#ffffff; --ink:#1f2937;
-    --primary-dark:#1e4d35; --primary:#2f6b4a; --soft-green:#eef5f0;
-    --gold:#d9b970; --soft-gold:#f1e4be;
-    --muted:#6f806f; --sub:#59665d;
-    --line:rgba(30,77,53,.10); --line-strong:rgba(30,77,53,.18);
-    --done:#2f6b4a; --held:#8bad98; --free:#e7e8e3;
-    --full-bg:#f3f2ed;
-    --shadow:0 3px 14px rgba(30,50,35,.045);
+    --bg:#f7f4ec; --card:#fffdf8; --ink:#14231c;
+    --primary-dark:#1e4d35;              /* vurgulu metin */
+    --primary:#1e4d35;                   /* beyaz yazılı dolu zemin */
+    --soft-green:#e8f2ea;
+    --gold:#c9a55a; --gold-ink:#8a6a22;  /* süs çizgisi / küçük etiket yazısı */
+    --muted:#7a867f; --sub:#4b5a52;
+    --line:color-mix(in srgb, #14231c 10%, transparent);
+    --line-strong:color-mix(in srgb, #14231c 16%, transparent);
+    --done:#2f6b4a; --held:color-mix(in srgb, #2f6b4a 42%, #fffdf8);
+    --free:color-mix(in srgb, #14231c 8%, #fffdf8);
+    --full-bg:color-mix(in srgb, #14231c 4%, #f7f4ec);
+    --err:#a8322b;
+    --shadow:0 18px 40px -30px rgba(10,30,20,.45);
+    --display:"Marcellus", "Iowan Old Style", Georgia, serif;
+    --sans:"Onest", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --arabic:"MushafAr", "Scheherazade New", "Noto Naskh Arabic", "Geeza Pro", serif;
   }
-  /* Koyu tema SİSTEMİ izler. ⚠️ v1'de manuel tema düğmesi YOK: ana sitenin
-     iki temalı kimliği korunsun ama 30 saniyelik misafir işlemine tema
-     seçici koymak gereksiz arayüz olur. */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg:#0e1512; --card:#16211c; --ink:#e8eae6;
-      --primary-dark:#cfe6d8; --primary:#4f9b74; --soft-green:#18241e;
-      --gold:#c9a961; --soft-gold:#2a2418;
-      --muted:#8ea394; --sub:#9db0a3;
-      --line:rgba(207,230,216,.10); --line-strong:rgba(207,230,216,.18);
-      --done:#4f9b74; --held:#31624a; --free:#22302a;
-      --full-bg:#131c17;
-      --shadow:0 3px 14px rgba(0,0,0,.25);
-    }
+  :root[data-theme="dark"] {
+    color-scheme:dark;
+    --bg:#0e1a14; --card:#152720; --ink:#eaf3ee;
+    --primary-dark:#8fd3ae; --primary:#2f6b4a; --soft-green:#1d3227;
+    --gold:#d9b563; --gold-ink:#d9b563;
+    --muted:#8fa298; --sub:#b9c8c0;
+    --line:color-mix(in srgb, #eaf3ee 12%, transparent);
+    --line-strong:color-mix(in srgb, #eaf3ee 18%, transparent);
+    --done:#7ab894; --held:color-mix(in srgb, #7ab894 40%, #152720);
+    --free:color-mix(in srgb, #eaf3ee 9%, #152720);
+    --full-bg:#122019;
+    --err:#f0a198;
+    --shadow:0 18px 40px -26px rgba(0,0,0,.6);
   }
 
   * { box-sizing:border-box; margin:0; padding:0; }
   body {
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family:var(--sans); font-size:16px; line-height:1.5;
     background:var(--bg); color:var(--ink); min-height:100vh;
-    padding:0 0 48px; -webkit-font-smoothing:antialiased;
+    padding:0 0 48px; overflow-x:clip; -webkit-font-smoothing:antialiased;
   }
   .shell { max-width:960px; margin:0 auto; padding:0 16px; }
   .narrow { max-width:720px; margin:0 auto; }
-  .mid    { max-width:800px; margin:0 auto; }
+  .mid    { max-width:760px; margin:0 auto; }
+  :focus-visible { outline:2px solid var(--gold); outline-offset:3px; border-radius:6px; }
+
+  /* ── Üst şerit: yalnız marka. Menü YOK: davet linkinden gelen kişinin tek işi
+     burada; ana sayfaya giden yol marka ve alttaki bağlantılar. */
+  .top { max-width:1160px; margin:0 auto; padding:0 20px; height:68px; display:flex; align-items:center; }
+  .brand { display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink);
+    font-family:var(--display); font-size:19px; white-space:nowrap; }
+  .brand img { width:30px; height:30px; border-radius:8px; }
 
   /* ── Hero ───────────────────────────────────────────────────────────────
-     Ana sitenin atmosferi yalnız BURAYA taşınıyor, bütün sayfaya değil.
-     Animasyon yok, kubbe silueti yok, kandil yok: davet linkinden gelen kişi
-     30 saniyelik bir iş yapıyor, atmosfer onu yavaşlatmamalı. */
-  .hero {
-    position:relative; overflow:hidden; text-align:center;
-    padding:34px 18px 26px; border-bottom:1px solid var(--line);
-  }
-  .hero::before {
-    content:""; position:absolute; inset:0; opacity:.045; pointer-events:none;
-    /* ⚠️ SVG data URI içinde CSS değişkeni ÇÖZÜLMEZ (dış kaynak olarak
-       ayrıştırılır). Renk gömülü yazılır, koyu tema ayrı kuralla ezer. */
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%231e4d35' stroke-width='1.1'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E");
-    background-size:64px 64px;
-  }
-  .hero > * { position:relative; }
-  .hero-mark { width:30px; height:30px; margin:0 auto 12px; display:block;
-    color:var(--primary); opacity:.85; }
-  .eyebrow { font-size:11px; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--muted); margin-bottom:8px; }
-  h1 { font-size:22px; font-weight:600; line-height:1.3; color:var(--primary-dark); }
-  .hero-rule { width:44px; height:1px; background:var(--gold); margin:14px auto; opacity:.8; }
-  .hero-sub { font-size:14px; color:var(--sub); }
-  .hero-date { font-size:12px; color:var(--muted); margin-top:5px; }
-
-  .brandbar { text-align:center; padding:14px 0 0; font-size:11px;
-    letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+     Atmosfer yalnız tipografide: Marcellus başlık, altın küçük etiket, ince
+     altın ayraç. Animasyon yok, desen yok: davet linkinden gelen kişi 30
+     saniyelik bir iş yapıyor, atmosfer onu yavaşlatmamalı. */
+  .hero { text-align:center; padding:18px 18px 10px; }
+  .hero-mark { width:30px; height:30px; margin:0 auto 12px; display:block; color:var(--gold); }
+  .eyebrow { font-size:11.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--gold-ink); margin-bottom:10px; }
+  :root[lang="ar"] .eyebrow { letter-spacing:0; text-transform:none; font-size:13.5px; }
+  h1 { font-family:var(--display); font-weight:400; font-size:clamp(30px, 5.4vw, 46px); line-height:1.12;
+    color:var(--ink); text-wrap:balance; max-width:20ch; margin:0 auto; overflow-wrap:anywhere; }
+  :root[lang="ar"] h1 { font-family:inherit; font-weight:700; line-height:1.35; }
+  .hero-rule { width:44px; height:1px; background:var(--gold); margin:16px auto 12px; opacity:.9; }
+  .hero-sub { font-size:16px; color:var(--sub); }
+  .hero-date { font-size:13px; color:var(--muted); margin-top:6px; }
 
   /* ── Kart dili ──────────────────────────────────────────────────────── */
   .panel { background:var(--card); border:1px solid var(--line);
-    border-radius:18px; box-shadow:var(--shadow); padding:18px 16px; margin-top:16px; }
-  .panel-head { display:flex; align-items:center; justify-content:center; gap:7px;
-    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--muted); margin-bottom:12px; }
-  .panel-head svg { width:14px; height:14px; }
+    border-radius:24px; box-shadow:var(--shadow); padding:22px 20px; margin-top:16px; }
+  .panel-head { display:flex; align-items:center; justify-content:center; gap:8px;
+    font-size:11.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--gold-ink); margin-bottom:14px; }
+  .panel-head svg { width:15px; height:15px; }
+  :root[lang="ar"] .panel-head { letter-spacing:0; text-transform:none; font-size:13.5px; }
 
   /* Üç durumlu ilerleme. Altın YOK, üstlenildi açık yeşil. */
-  .bar { height:9px; border-radius:6px; background:var(--free); overflow:hidden; display:flex; }
+  .bar { height:8px; border-radius:999px; background:var(--free); overflow:hidden; display:flex; }
   .bar > .done { background:var(--done); }
   .bar > .held { background:var(--held); }
-  .legend { font-size:12.5px; color:var(--sub); text-align:center; margin-top:10px; line-height:1.55; }
-  .legend .k { display:inline-flex; align-items:center; gap:5px; margin:0 5px; white-space:nowrap; }
+  .legend { font-size:12.5px; color:var(--sub); text-align:center; margin-top:12px; line-height:1.6; }
+  .legend .k { display:inline-flex; align-items:center; gap:6px; margin:0 6px; white-space:nowrap; }
   .legend .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
 
-  /* İthaf kartının üst çizgisi altın: atmosfer aksanı. */
-  .suggest { position:relative; margin-top:16px; padding:18px 16px; border-radius:18px;
-    background:var(--soft-green); border:1px solid var(--line);
-    text-align:center; overflow:hidden; }
-  .suggest::after { content:""; position:absolute; top:0; left:0; right:0; height:2px;
-    background:linear-gradient(90deg, transparent, var(--gold), transparent); opacity:.7; }
-  .suggest .cuz { font-size:20px; font-weight:700; color:var(--primary-dark); margin-top:2px; }
-  .suggest .sub { font-size:13.5px; color:var(--sub); margin-top:3px; }
+  /* Öneri kartı: yumuşak yeşil yüzey, üstte ince altın süs çizgisi. */
+  .suggest { position:relative; margin-top:16px; padding:22px 18px; border-radius:22px;
+    background:var(--soft-green); text-align:center; overflow:hidden; }
+  .suggest::after { content:""; position:absolute; top:0; left:18%; right:18%; height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent); opacity:.8; }
+  .suggest .cuz { font-size:24px; font-weight:600; letter-spacing:-.01em; color:var(--primary-dark); margin-top:2px; line-height:1.2; }
+  .suggest .sub { font-size:13.5px; color:var(--sub); margin-top:4px; }
 
   /* Çoklu hatim serisi bilgisi. Seri SEÇTİRİLMİYOR (kilitli tasarım): tek
      görev alan misafire çip barı gereksiz bilişsel yük. Ama hangi hatimde
-     olduğunu SÖYLEMEK şart, yoksa hatim yarılanmışken "01 Cüz müsait"
+     olduğunu SÖYLEMEK şart, yoksa hatim yarılanmışken "1. Cüz müsait"
      görüp sebebini anlayamıyor. */
   .series-note { text-align:center; font-size:12.5px; color:var(--muted);
-    margin-top:22px; display:flex; align-items:center; justify-content:center; gap:6px; }
+    margin-top:26px; display:flex; align-items:center; justify-content:center; gap:6px; }
   .series-note svg { width:13px; height:13px; }
 
   /* ── Ortak zikir/dua ─────────────────────────────────────────────────────
      Cüz ızgarasından farklı olarak burada KART DEĞİL SATIR var: kalemler az
      (2-5 tane) ve her birinin adı uzun; kare hücrelere sığmaz. */
-  .zrow { padding:16px 16px 14px; border-bottom:1px solid var(--line); }
-  .zrow:last-child { border-bottom:0; }
-  .zname { font-size:16px; font-weight:600; color:var(--primary-dark); line-height:1.3; }
-  .zar { font-size:19px; color:var(--sub); margin-top:5px; line-height:1.7;
+  .zrow { padding:18px 4px 16px; border-bottom:1px solid var(--line); }
+  .panel-head + .zrow { padding-top:4px; }
+  .zrow:last-child { border-bottom:0; padding-bottom:4px; }
+  .zname { font-family:var(--display); font-size:21px; color:var(--primary-dark); line-height:1.25; }
+  :root[lang="ar"] .zname { font-family:inherit; font-weight:700; font-size:18px; }
+  .zar { font-family:var(--arabic); font-size:23px; color:var(--ink); margin-top:10px; line-height:1.9;
          direction:rtl; text-align:right; }
-  /* Arapça satırının kutusu punto x 1.7 kadar yüksek; çubuk hemen ardına
+  /* Arapça satırının kutusu punto x 1.9 kadar yüksek; çubuk hemen ardına
      gelince göz "bitişik" okuyor. Ayrımı boşlukla veriyoruz. */
   .zrow .bar { margin-top:12px; }
   .znums { display:flex; justify-content:space-between; align-items:baseline;
-           gap:10px; margin-top:11px; font-size:12.5px; color:var(--muted); }
-  .znums b { font-size:15px; font-weight:600; color:var(--ink); }
-  .zmine { font-size:12.5px; color:var(--primary); margin-top:7px; }
+           gap:10px; margin-top:10px; font-size:12.5px; color:var(--muted); }
+  .znums b { font-size:15px; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums; }
+  .zmine { font-size:12.5px; color:var(--primary-dark); margin-top:8px; }
   .zlocked { font-size:12.5px; color:var(--muted); margin-top:9px;
              display:flex; align-items:center; gap:6px; }
   .zlocked svg { width:13px; height:13px; }
+  /* Satırdaki "Sayıma katıl" açık renk: kalemler alt alta dizildiğinde koyu
+     tam genişlik haplar listeyi düğme duvarına çeviriyordu. Genişte düğme
+     sayının yanına oturur (yerleşim yalnız CSS'te, DOM sırası değişmedi). */
+  .zrow > .primary { background:var(--soft-green); color:var(--primary-dark); }
+  .zrow > .primary:hover { filter:none; background:color-mix(in srgb, var(--primary-dark) 16%, var(--card)); }
+  @media (min-width:560px) {
+    .zrow { display:grid; grid-template-columns:minmax(0, 1fr) auto; grid-auto-flow:row dense; column-gap:18px; }
+    .zrow > * { grid-column:1 / -1; }
+    .zrow > .znums { grid-column:1; align-self:center; }
+    .zrow > .primary { grid-column:2; align-self:center; width:auto; min-width:164px; margin-top:10px;
+      padding:10px 22px; font-size:14.5px; }
+  }
 
   /* Sayaç ekranı: tek kalem var, ortalı okunur. Satır listesinde ise kalemler
-     alt alta diziliyor ve sola dayalı kalması gerekiyor — bu yüzden ortalama
+     alt alta diziliyor ve sola dayalı kalması gerekiyor. Bu yüzden ortalama
      .zcount'a bağlı, .zname/.zar'a değil. */
   .zcount { text-align:center; }
-  .zcount .zar { text-align:center; margin-top:8px; }
+  .zcount .zar { text-align:center; margin-top:10px; }
 
   /* ── Yetişmeyen paylar (pool_divide havuz anı) ───────────────────────────
      Cüz ızgarası DEĞİL: paylar hazır boyutta ve az sayıda (kadro kadar).
      Seçilecek bir aralık yok, üstlenilecek bir satır var. */
   .dlead { text-align:center; font-size:14px; color:var(--sub);
-           line-height:1.55; margin:0 0 4px; }
-  .drow { padding:15px 16px; border-bottom:1px solid var(--line);
+           line-height:1.55; margin:0 0 6px; }
+  .drow { padding:16px 4px; border-bottom:1px solid var(--line);
           display:flex; align-items:center; gap:14px; }
-  .drow:last-child { border-bottom:0; }
+  .drow:last-child { border-bottom:0; padding-bottom:4px; }
   .drow .info { flex:1 1 auto; min-width:0; }
-  .drow .rng { font-size:17px; font-weight:650; color:var(--primary-dark);
-               font-variant-numeric:tabular-nums; }
+  .rng { font-size:19px; font-weight:600; letter-spacing:-.01em; color:var(--primary-dark); line-height:1.3; }
+  .panel > .rng { text-align:center; font-size:24px; }
   .drow .sub { font-size:12.5px; color:var(--muted); margin-top:3px; }
-  .drow button { width:auto; flex:0 0 auto; margin:0; padding:10px 18px;
-                 font-size:14px; border-radius:11px; }
+  .drow button { width:auto; flex:0 0 auto; margin:0; padding:10px 20px; font-size:14px; }
 
   /* ── İsteğe bağlı ad ─────────────────────────────────────────────────────
      Ad hiçbir yerde ön koşul değil. Bu yüzden kutu sayfanın ana akışını
      kesmiyor: sessiz bir panel, "Geç" birinci sınıf bir seçenek. */
-  .namebox { padding:16px; text-align:center; }
-  .namebox .q { font-size:15px; font-weight:600; color:var(--primary-dark); }
-  .namebox .w { font-size:12.5px; color:var(--muted); line-height:1.5;
-                margin:6px auto 12px; max-width:340px; }
-  .namebox input { width:100%; max-width:320px; padding:12px 14px; font-size:15px;
-    font-family:inherit; color:var(--ink); background:var(--card);
-    border:1px solid var(--line-strong); border-radius:12px; text-align:center;
-    box-sizing:border-box; }
-  .namebox input:focus { outline:none; border-color:var(--primary); }
+  .namebox { padding:18px 16px; text-align:center; }
+  .namebox .q { font-family:var(--display); font-size:21px; color:var(--primary-dark); }
+  :root[lang="ar"] .namebox .q { font-family:inherit; font-weight:700; font-size:17px; }
+  .namebox .w { font-size:13px; color:var(--muted); line-height:1.5;
+                margin:6px auto 14px; max-width:360px; }
+  .namebox input { width:100%; max-width:320px; padding:12px 18px; font-size:15px;
+    font-family:inherit; color:var(--ink); background:var(--bg);
+    border:1px solid var(--line-strong); border-radius:999px; text-align:center; }
+  .namebox input:focus { outline:none; border-color:var(--primary-dark); }
   .namebox .row { display:flex; gap:10px; justify-content:center; margin-top:12px; }
-  .namebox .row button { width:auto; flex:0 0 auto; margin:0; padding:11px 22px;
-                         font-size:14px; border-radius:11px; }
+  .namebox .row button { width:auto; flex:0 0 auto; margin:0; padding:11px 24px; font-size:14px; }
   .namerow { display:flex; align-items:center; justify-content:center; gap:10px;
              padding:13px 16px; font-size:13.5px; color:var(--sub); flex-wrap:wrap; }
-  .namerow b { color:var(--primary-dark); font-weight:650; }
-  .namerow button { width:auto; margin:0; padding:7px 14px; font-size:12.5px;
-                    border-radius:9px; }
+  .namerow b { color:var(--primary-dark); font-weight:700; }
+  .namerow button { width:auto; margin:0; padding:7px 15px; font-size:12.5px; }
 
   /* Sayaç: halka ŞEKLİ değil DOKUNMA ALANI. Parmak nereye düşerse düşsün
      sayması için bütün daire tıklanabilir; iç metin seçilemez olmalı ki
-     hızlı dokunuşta metin seçimi tetiklenmesin. */
-  .zdial { width:190px; height:190px; margin:22px auto 0; border-radius:50%;
-           border:2px solid var(--line-strong); background:var(--soft-green);
-           display:flex; flex-direction:column; align-items:center;
+     hızlı dokunuşta metin seçimi tetiklenmesin. Dış çizgi noktalı: tesbih
+     boncuğu, ana sayfadaki halka motifiyle aynı. */
+  .zdial { position:relative; width:200px; height:200px; margin:24px auto 0; border-radius:50%;
+           background:var(--soft-green); display:flex; flex-direction:column; align-items:center;
            justify-content:center; cursor:pointer; user-select:none;
            -webkit-user-select:none; -webkit-tap-highlight-color:transparent;
-           transition:transform .08s ease; }
+           touch-action:manipulation; transition:transform .08s ease; }
+  .zdial::before { content:""; position:absolute; inset:-9px; border-radius:50%;
+           border:3px dotted var(--gold); opacity:.75; pointer-events:none; }
   .zdial:active { transform:scale(.97); }
-  .zdial .v { font-size:52px; font-weight:650; line-height:1;
+  .zdial .v { font-size:52px; font-weight:600; letter-spacing:-.02em; line-height:1;
               color:var(--primary-dark); font-variant-numeric:tabular-nums; }
   .zdial .l { font-size:11.5px; color:var(--muted); margin-top:8px;
               max-width:130px; text-align:center; line-height:1.35; }
-  .zchips { display:flex; gap:10px; justify-content:center; margin-top:16px; }
-  .zchips button { flex:0 0 auto; width:auto; min-width:96px; padding:11px 16px;
-                   margin:0;
+  .zchips { display:flex; gap:10px; justify-content:center; margin-top:20px; }
+  .zchips button { flex:0 0 auto; width:auto; min-width:96px; padding:10px 18px; margin:0;
                    border-radius:999px; border:1px solid var(--line-strong);
                    background:var(--card); color:var(--primary-dark);
-                   font-size:14px; font-weight:600; cursor:pointer;
-                   font-family:inherit; }
+                   font-size:14px; font-weight:700; touch-action:manipulation; }
 
-  .tabs { display:flex; gap:8px; justify-content:center; margin:22px 0 12px; }
-  .tabs button { flex:0 0 auto; width:auto; padding:8px 20px; border-radius:11px;
-    border:1px solid var(--line-strong); background:var(--card); color:var(--muted);
-    font-size:13px; font-weight:650; margin:0; }
-  .tabs button.on { background:var(--primary); border-color:var(--primary); color:#fff; }
+  .tabs { display:flex; gap:8px; justify-content:center; margin:26px 0 14px; flex-wrap:wrap; }
+  .tabs button { flex:0 0 auto; width:auto; padding:8px 18px; border-radius:999px;
+    border:1px solid var(--line-strong); background:transparent; color:var(--sub);
+    font-size:13.5px; font-weight:600; margin:0; }
+  .tabs button:hover { background:var(--soft-green); }
+  .tabs button.on { background:var(--soft-green); border-color:transparent; color:var(--primary-dark); }
 
   /* ── Cüz ızgarası ────────────────────────────────────────────────────
-     Zenginlik numaranın tipografisinden ve ince çerçeveden geliyor, desenden
-     değil. Kartın tamamını desenle kaplamıyoruz: sağ üstte tek küçük parça. */
+     Zenginlik numaranın tipografisinden geliyor, desenden değil. */
   .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
-  .cell { position:relative; overflow:hidden; padding:14px 12px 12px;
-    background:var(--card); border:1px solid var(--line); border-radius:16px;
-    box-shadow:var(--shadow); cursor:pointer; text-align:center; }
-  .cell::before {
-    content:""; position:absolute; top:-14px; right:-14px; width:52px; height:52px;
-    opacity:.05; pointer-events:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%231e4d35' stroke-width='1.4'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E");
-    background-size:52px 52px;
-  }
-  .cell > * { position:relative; }
-  .cell .n { font-size:31px; font-weight:650; line-height:1; color:var(--primary-dark);
-    font-variant-numeric:tabular-nums; }
-  .cell .u { font-size:12px; color:var(--muted); margin-top:3px; }
-  .cell .s { font-size:13px; color:var(--sub); margin-top:9px; }
-  .cell .b { height:3px; border-radius:2px; background:var(--free); margin-top:8px; overflow:hidden; }
+  .cell { position:relative; overflow:hidden; padding:16px 12px 13px;
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    cursor:pointer; text-align:center; transition:border-color .15s ease, transform .15s ease; }
+  .cell:hover { border-color:var(--line-strong); transform:translateY(-1px); }
+  .cell .n { font-size:30px; font-weight:600; letter-spacing:-.02em; line-height:1; color:var(--primary-dark); }
+  .cell .u { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold-ink); margin-top:6px; }
+  :root[lang="ar"] .cell .u { letter-spacing:0; text-transform:none; font-size:12.5px; }
+  .cell .s { font-size:13px; color:var(--sub); margin-top:8px; }
+  .cell .b { height:3px; border-radius:2px; background:var(--free); margin-top:9px; overflow:hidden; }
   .cell .b > i { display:block; height:100%; background:var(--held); }
   /* Dolu kart soluk ama NUMARA OKUNUR kalır. */
-  .cell.full { background:var(--full-bg); opacity:.58; cursor:default; box-shadow:none; }
-  /* Seçili: kalın yeşil çerçeve değil, sakin halka. */
-  .cell.sel { border:1.5px solid var(--primary); box-shadow:0 0 0 3px rgba(47,107,74,.08); }
+  .cell.full { background:var(--full-bg); opacity:.6; cursor:default; }
+  .cell.full:hover { transform:none; border-color:var(--line); }
+  /* Seçili: kalın yeşil çerçeve değil, sakin altın halka. */
+  .cell.sel { border-color:var(--gold); box-shadow:0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent); }
 
-  button { width:100%; padding:14px 18px; border-radius:13px; border:none;
-    font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:12px; }
+  /* ── Düğmeler: sitenin geri kalanı gibi hap ───────────────────────────── */
+  button { width:100%; padding:14px 20px; border-radius:999px; border:none;
+    font-size:15.5px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:12px; color:inherit; }
   .primary { background:var(--primary); color:#fff; }
-  .ghost { background:var(--card); color:var(--sub); border:1px solid var(--line-strong); }
+  .primary:hover { filter:brightness(1.08); }
+  .ghost { background:transparent; color:var(--sub); border:1px solid var(--line-strong); }
+  .ghost:hover { background:var(--soft-green); }
 
-  .block { margin:18px 0; padding:20px 14px; border-radius:18px;
-    background:var(--soft-green); border:1px solid var(--line); text-align:center; }
-  .pages { font-size:23px; font-weight:700; color:var(--primary-dark); line-height:1.3;
-    font-variant-numeric:tabular-nums; }
-  .ref { font-size:13px; color:var(--sub); margin-top:5px; text-align:center; }
+  .block { margin:18px 0; padding:24px 16px; border-radius:22px;
+    background:var(--soft-green); text-align:center; }
+  .pages { font-size:24px; font-weight:600; letter-spacing:-.01em; color:var(--primary-dark); line-height:1.3; }
+  .ref { font-size:13px; color:var(--sub); margin-top:6px; text-align:center; }
   .count { font-size:12px; color:var(--muted); margin-top:4px; }
 
-  .amt { margin-top:16px; }
-  .amt .lbl { font-size:12.5px; color:var(--sub); text-align:center; margin-bottom:9px; }
-  .amt .row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
-  .amt button { width:auto; flex:0 0 auto; padding:9px 19px; font-size:15px; margin-top:0;
-    border:1px solid var(--line-strong); background:var(--card); color:var(--sub); }
+  /* Miktar seçici. ".chips" Cevşen tahtasında aynı işi görüyor; 30 Ağu'dan
+     28 Eyl'e kadar hiç stili yoktu ve seçenekler tam genişlik düğme olarak
+     alt alta diziliyordu. */
+  .amt { margin-top:18px; }
+  .amt .lbl { font-size:12.5px; color:var(--sub); text-align:center; margin-bottom:10px; }
+  .amt .row, .amt .chips { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+  .amt button { width:auto; flex:0 0 auto; padding:9px 20px; font-size:15px; margin-top:0;
+    border:1px solid var(--line-strong); background:transparent; color:var(--sub); }
+  .amt button:hover { background:var(--soft-green); }
   .amt button.on { background:var(--primary); border-color:var(--primary); color:#fff; }
 
-  .mine-row { padding:12px 0; border-top:1px solid var(--line); text-align:center; }
+  .mine-row { padding:14px 0; border-top:1px solid var(--line); text-align:center; }
   .mine-row:first-of-type { border-top:none; }
-  .mine-row .p { font-size:16px; font-weight:700; color:var(--primary-dark);
-    font-variant-numeric:tabular-nums; }
-  .mine-row .r { font-size:12.5px; color:var(--muted); margin-top:2px; }
-  .mine-row .acts { display:flex; gap:8px; justify-content:center; margin-top:9px; }
-  .mine-row .acts button { width:auto; flex:0 0 auto; padding:7px 15px; font-size:13px; margin-top:0; }
-  .mine-row .tick { font-size:13px; font-weight:650; color:var(--primary); margin-top:7px; }
+  .mine-row .p { font-size:17px; font-weight:600; color:var(--primary-dark); }
+  .mine-row .r { font-size:12.5px; color:var(--muted); margin-top:3px; }
+  .mine-row .acts { display:flex; gap:8px; justify-content:center; margin-top:10px; }
+  .mine-row .acts button { width:auto; flex:0 0 auto; padding:8px 16px; font-size:13.5px; margin-top:0; }
+  .mine-row .tick { font-size:13px; font-weight:700; color:var(--primary-dark); margin-top:8px; }
 
   .msg { text-align:center; font-size:15px; color:var(--sub); line-height:1.6; padding:12px 0; }
-  .err { color:#b91c1c; }
-  .ok-title { text-align:center; font-size:19px; font-weight:700; color:var(--primary-dark); line-height:1.4; }
-  .cta { display:block; text-align:center; margin-top:18px; padding:13px; border-radius:13px;
-    border:1px solid var(--line); background:var(--soft-green); color:var(--primary-dark);
-    text-decoration:none; font-size:14px; font-weight:650; }
+  .err { color:var(--err); }
+  .ok-title { text-align:center; font-size:21px; font-weight:600; color:var(--primary-dark);
+    line-height:1.4; text-wrap:balance; }
+  /* Uygulamada aç: sayfanın TEK kurtarma yolu (showAppCta'daki nota bak).
+     Açık renk hap: sayfanın asıl eylemleriyle (Bunu al, Sayıma katıl)
+     yarışmasın; mağaza bağlantısı altında ikincil. */
+  .cta { display:block; width:fit-content; min-width:240px; max-width:100%; margin:26px auto 0;
+    padding:13px 26px; border-radius:999px; background:var(--soft-green); color:var(--primary-dark);
+    text-decoration:none; font-size:15px; font-weight:700; text-align:center; }
+  .cta:hover { background:color-mix(in srgb, var(--primary-dark) 16%, var(--card)); }
   /* Cevşen bab haritası: SALT OKUNUR. Hücre sayısı korpusa göre değişir
      (kısmi Cevşen halkası olabilir), o yüzden sabit sütun sayısı YOK. */
-  .babmap { display:flex; flex-wrap:wrap; gap:4px; margin-top:12px; }
-  .babcell { width:16px; height:16px; border-radius:4px;
+  .babmap { display:flex; flex-wrap:wrap; gap:4px; margin-top:14px; justify-content:center; }
+  .babcell { width:16px; height:16px; border-radius:5px;
     background:var(--free); border:1px solid var(--line); }
   .babcell.held { background:var(--held); border-color:transparent; }
   .babcell.done { background:var(--done); border-color:transparent; }
-  .cta-sub { display:block; text-align:center; margin-top:9px; font-size:12.5px;
+  .cta-sub { display:block; text-align:center; margin-top:10px; font-size:13px;
     color:var(--muted); text-decoration:none; }
+  .cta-sub:hover { text-decoration:underline; }
   .recovery { margin-top:16px; font-size:12px; color:var(--muted); text-align:center; }
-  .recovery button { width:auto; padding:6px 13px; font-size:12px; margin-top:7px; }
-  .links { margin-top:26px; text-align:center; font-size:12px; }
-  .links a { color:var(--muted); text-decoration:none; margin:0 9px; }
-  .hidden { display:none; }
-
-  /* Koyu temada girih rengi açık yeşile döner (data URI'de değişken çalışmaz). */
-  @media (prefers-color-scheme: dark) {
-    .hero::before {
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23cfe6d8' stroke-width='1.1'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E");
-      opacity:.06;
-    }
-    .cell::before {
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23cfe6d8' stroke-width='1.4'%3E%3Crect x='16' y='16' width='32' height='32'/%3E%3Crect x='16' y='16' width='32' height='32' transform='rotate(45 32 32)'/%3E%3C/g%3E%3C/svg%3E");
-      opacity:.07;
-    }
-  }
+  .recovery button { width:auto; padding:6px 14px; font-size:12px; margin-top:8px; }
+  .links { margin-top:44px; padding-top:22px; border-top:1px solid var(--line); text-align:center; font-size:13px;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; }
+  .links a { color:var(--sub); text-decoration:none; }
+  .links a:hover { text-decoration:underline; }
+  .hidden { display:none !important; }
 
   /* ── Geniş ekran ─────────────────────────────────────────────────────
      Boşluk sorunu DEKORLA değil bilgi yoğunluğuyla çözülüyor: ızgara
@@ -318,11 +364,11 @@
   @media (min-width:640px) { .grid { grid-template-columns:repeat(3, 1fr); } }
   @media (min-width:900px) {
     .grid { grid-template-columns:repeat(4, 1fr); }
-    h1 { font-size:26px; }
-    .hero { padding:48px 18px 34px; }
-    .cell .n { font-size:34px; }
+    .hero { padding:30px 18px 16px; }
+    .cell .n { font-size:33px; }
   }
-
+  @media (max-width:420px) { .panel { padding:18px 14px; border-radius:22px; } }
+  @media (prefers-reduced-motion:reduce) { .cell, .zdial { transition:none; } .cell:hover { transform:none; } }
   /* ── Okuma görünümü (26 Eyl 2026) ───────────────────────────────────────
      Kullanıcı kararı: misafir ALDIĞI sayfaları burada okuyabilsin (eskiden
      "web'de mushaf okuyucu yok" kararı vardı, WEB_HATIM_KATILIMI.md 8. bölüm).
@@ -344,33 +390,33 @@
     border-bottom:1px solid var(--line); padding:10px 12px;
     padding-top:calc(10px + env(safe-area-inset-top, 0px)); }
   .rd-bar .t { flex:1; min-width:0; text-align:center; }
-  .rd-bar .t b { display:block; font-size:15.5px; color:var(--primary-dark); }
+  .rd-bar .t b { display:block; font-size:15.5px; font-weight:600; color:var(--primary-dark); }
   .rd-bar .t span { display:block; font-size:12px; color:var(--muted); margin-top:1px;
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .rd-ic { width:42px; height:42px; flex:0 0 auto; margin:0; padding:0; border-radius:12px;
+  .rd-ic { width:42px; height:42px; flex:0 0 auto; margin:0; padding:0; border-radius:999px;
     background:transparent; border:1px solid var(--line-strong); color:var(--ink);
     display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; cursor:pointer; }
   .rd-ic svg { width:20px; height:20px; }
   .rd-tools { display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap;
     padding:9px 12px; border-bottom:1px solid var(--line); background:var(--card); }
   .rd-tools .lbl { font-size:12.5px; color:var(--muted); }
-  .rd-seg { display:flex; gap:4px; background:var(--bg); border:1px solid var(--line); border-radius:11px; padding:3px; }
-  .rd-seg button { width:auto; margin:0; padding:6px 12px; font-size:13px; border-radius:8px;
+  .rd-seg { display:flex; gap:4px; background:var(--bg); border:1px solid var(--line); border-radius:999px; padding:3px; }
+  .rd-seg button { width:auto; margin:0; padding:6px 14px; font-size:13px; border-radius:999px;
     background:transparent; color:var(--sub); border:none; font-weight:600; }
   .rd-seg button.on { background:var(--card); color:var(--primary-dark); box-shadow:var(--shadow); }
   .rd-size { display:flex; gap:6px; }
-  .rd-size .rd-ic { width:38px; height:34px; font-size:13px; }
+  .rd-size .rd-ic { width:38px; height:34px; font-size:13px; border-radius:999px; }
   .rd-body { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:16px 14px 44px;
     padding-bottom:calc(44px + env(safe-area-inset-bottom, 0px)); }
   .rd-page { max-width:720px; margin:0 auto 12px; background:var(--card); border:1px solid var(--line);
-    border-radius:18px; box-shadow:var(--shadow); padding:16px 16px 18px; }
-  .rd-pno { text-align:center; font-size:11.5px; letter-spacing:.14em; color:var(--muted); margin-bottom:8px; }
-  .rd-ar { font-family:"MushafAr", "Scheherazade New", "Noto Naskh Arabic", "Geeza Pro", serif;
+    border-radius:22px; box-shadow:var(--shadow); padding:18px 18px 20px; }
+  .rd-pno { text-align:center; font-size:11.5px; font-weight:700; letter-spacing:.14em; color:var(--gold-ink); margin-bottom:8px; }
+  .rd-ar { font-family:var(--arabic);
     direction:rtl; text-align:right; color:var(--ink);
     font-size:calc(26px * var(--rd-scale)); line-height:2.15; word-spacing:.04em; }
   .rd-aya { display:inline-block; min-width:1.75em; height:1.75em; line-height:1.62em; padding:0 .2em;
     margin:0 .12em; border:1.5px solid var(--gold); border-radius:999px; text-align:center;
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+    font-family:var(--sans);
     font-size:.5em; color:var(--primary-dark); vertical-align:.35em; }
   .rd-sura { text-align:center; margin:12px 0 6px; padding:10px 8px; border-top:1px solid var(--line);
     border-bottom:1px solid var(--line); }
@@ -386,7 +432,7 @@
     text-align:start; }
   .rd-m .k { font-size:.8em; color:var(--muted); margin-inline-end:6px; font-weight:650; }
   .rd-end { max-width:720px; margin:18px auto 0; text-align:center; }
-  .rd-end .q { font-size:15px; color:var(--primary-dark); font-weight:600; margin-bottom:10px; }
+  .rd-end .q { font-family:var(--display); font-size:21px; color:var(--primary-dark); margin-bottom:12px; }
   .rd-end .tick { font-size:14px; font-weight:650; color:var(--primary); margin-bottom:10px; }
   .rd-end .apphint { font-size:12.5px; color:var(--muted); margin-top:18px; line-height:1.5; }
   .rd-end .apphint a { color:var(--primary); font-weight:650; text-decoration:none; }
@@ -396,7 +442,7 @@
 </style>
 </head>
 <body>
-<div class="brandbar">Manevi Halka</div>
+<div class="top"><a class="brand" id="brandLink" href="/"><img src="/icon.png" alt="" width="30" height="30"><span>Manevi Halka</span></a></div>
 
 <header class="hero" id="hero">
   <svg class="hero-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -453,7 +499,7 @@
   // ⚠️ Türkçede "Cüz 7'nin" gibi ek gerekmesin diye cüz adı ile açıklama AYRI
   // satırda tutuluyor; sayının son sesine göre değişen ek üretilemez.
   var S = {
-    en: { loading:'Loading…', ongoing:'The recitation is in progress.',
+    en: { loading:'Loading…', ongoing:'The recitation is in progress',
       legend:'{done} completed · {held} undertaken · {free} available',
       lgDone:'completed', lgHeld:'undertaken', lgFree:'available', cuzWord:'Juz', seriesNote:'Recitation {n} is in progress; the earlier ones are complete.', seriesNoteOpen:'This circle holds {t} recitations; the first is in progress.', nextLbl:'Next portion', cuzN:'Juz {n}', closesIn:'{p} pages left to finish it',
       freeIn:'{p} pages available', takeThis:'Take this',
@@ -469,8 +515,8 @@
       amountLbl:'How much will you read?', heroEyebrow:'Intention of this recitation', ebZikir:'Intention of this dhikr', ebDua:'Intention of this supplication', myLbl:'Your portions', markDone:'I finished it', dropIt:'Remove', sure:'Sure?', doneMark:'Finished', gone:'This recitation is no longer available.', slow:'Too many attempts. Please wait a moment and try again.', verify:'The security check could not be completed. Reload the page and try again.', error:'Something went wrong. Please try again.', notFound:'Invitation link is not valid.',
       openApp:'Open in the app', getApp:'Install the app', until:'Until {d}',
       keepLink:'Save this link to return to your portion later.', copy:'Copy link', copied:'Copied',
- zHead:'Recitations in this circle', zOf:'{a} of {b}', zMine:'Your contribution: {n}', zAdd:'Add to the count', zMemberOnly:'For circle members', zTargetOnly:'Target {n} each', zSession:'Counted in this session', zSubmit:'Add my count', zNone:'This circle has no shared recitation yet.', zDone:'Your count has been added.', zReached:'Target reached.', zZero:'Count first, then add it.', bNext:'Next open portion', bHowMany:'How many chapters will you read?', bAllTaken:'Every chapter has an owner right now.', dHead:'Portions not finished in time', dLead:'These portions were left unfinished. Take one and the recitation is completed.', dTake:'Take this on', dWait:'The portions have been shared out. Whatever is left unfinished opens up here on {d}.', dNone:'Every portion has an owner right now.', dBab:'Chapter {a}-{b}', dBabCount:'{p} chapters', ebCevsen:'Intention of this Jawshan', ongoingCevsen:'The Jawshan is being recited.', nAsk:'Add your name?', nWhy:'The circle will see who took this on. You can skip this — it changes nothing.', nPh:'Your name (optional)', nSave:'Save', nSkip:'Skip', nEdit:'Name', nClear:'Remove name', nSaved:'Saved.', privacy:'Privacy', terms:'Terms', arrow:'→' },
-    tr: { loading:'Yükleniyor…', ongoing:'Hatim devam ediyor.',
+ zHead:'Recitations in this circle', zOf:'{a} of {b}', zMine:'Your contribution: {n}', zAdd:'Add to the count', zMemberOnly:'For circle members', zTargetOnly:'Target {n} each', zSession:'Counted in this session', zSubmit:'Add my count', zNone:'This circle has no shared recitation yet.', zDone:'Your count has been added.', zReached:'Target reached.', zZero:'Count first, then add it.', bNext:'Next open portion', bHowMany:'How many chapters will you read?', bAllTaken:'Every chapter has an owner right now.', dHead:'Portions not finished in time', dLead:'These portions were left unfinished. Take one and the recitation is completed.', dTake:'Take this on', dWait:'The portions have been shared out. Whatever is left unfinished opens up here on {d}.', dNone:'Every portion has an owner right now.', dBab:'Chapter {a}-{b}', dBabCount:'{p} chapters', ebCevsen:'Intention of this Jawshan', ongoingCevsen:'The Jawshan is being recited', nAsk:'Add your name?', nWhy:'The circle will see who took this on. You can skip this. It changes nothing.', nPh:'Your name (optional)', nSave:'Save', nSkip:'Skip', nEdit:'Name', nClear:'Remove name', nSaved:'Saved.', privacy:'Privacy', terms:'Terms', arrow:'→' },
+    tr: { loading:'Yükleniyor…', ongoing:'Hatim devam ediyor',
       legend:'{done} tamamlandı · {held} üstlenildi · {free} müsait',
       lgDone:'tamamlandı', lgHeld:'üstlenildi', lgFree:'müsait', cuzWord:'Cüz', seriesNote:'{n}. hatim okunuyor, öncekiler tamamlandı.', seriesNoteOpen:'Halkada {t} hatim var, birincisi okunuyor.', nextLbl:'Sıradaki bölüm', cuzN:'{n}. Cüz', closesIn:'Bitmesine {p} sayfa kaldı',
       freeIn:'{p} sayfa müsait', takeThis:'Bunu al',
@@ -486,8 +532,8 @@
       amountLbl:'Ne kadar okuyacaksın?', heroEyebrow:'Hatim niyeti', ebZikir:'Zikir niyeti', ebDua:'Dua niyeti', myLbl:'Aldığın bölümler', markDone:'Tamamladım', dropIt:'Kaldır', sure:'Emin misin?', doneMark:'Tamamlandı', gone:'Bu hatim artık mevcut değil.', slow:'Çok fazla deneme oldu. Biraz bekleyip tekrar dene.', verify:'Güvenlik doğrulaması tamamlanamadı. Sayfayı yenileyip tekrar dene.', error:'Bir şeyler ters gitti. Tekrar dener misin?', notFound:'Davet bağlantısı geçerli değil.',
       openApp:'Uygulamada aç', getApp:'Uygulamayı indir', until:'{d} tarihine kadar',
       keepLink:'Bölümüne sonra dönmek için bu bağlantıyı kaydet.', copy:'Bağlantıyı kopyala', copied:'Kopyalandı',
- zHead:'Halkadaki zikirler', zOf:'{b} hedefin {a} tanesi', zMine:'Senin katkın: {n}', zAdd:'Sayıma katıl', zMemberOnly:'Halka üyeleri için', zTargetOnly:'Kişi başı {n}', zSession:'Bu oturumda saydığın', zSubmit:'Katkımı ekle', zNone:'Bu halkada henüz ortak zikir yok.', zDone:'Katkın eklendi.', zReached:'Hedefe ulaşıldı.', zZero:'Önce say, sonra ekle.', bNext:'Sıradaki boş bölüm', bHowMany:'Kaç bab okuyacaksın?', bAllTaken:'Şu anda bütün babların sahibi var.', dHead:'Yetişmeyen paylar', dLead:'Bu paylar yarım kaldı. Birini üstlenirsen hatim tamamlanır.', dTake:'Bunu üstlen', dWait:'Paylar dağıtıldı. Yetişmeyenler {d} tarihinde burada açılır.', dNone:'Şu anda bütün payların sahibi var.', dBab:'{a}-{b}. Bab', dBabCount:'{p} bab', ebCevsen:'Cevşen niyeti', ongoingCevsen:'Cevşen okunuyor.', nAsk:'Adını yazmak ister misin?', nWhy:'Halkadakiler bunu kimin üstlendiğini görsün diye. Boş bırakabilirsin, hiçbir şey değişmez.', nPh:'Adın (isteğe bağlı)', nSave:'Kaydet', nSkip:'Geç', nEdit:'Ad', nClear:'Adı kaldır', nSaved:'Kaydedildi.', privacy:'Gizlilik', terms:'Şartlar', arrow:'→' },
-    de: { loading:'Wird geladen…', ongoing:'Die Chatma läuft.',
+ zHead:'Halkadaki zikirler', zOf:'{b} hedefin {a} tanesi', zMine:'Senin katkın: {n}', zAdd:'Sayıma katıl', zMemberOnly:'Halka üyeleri için', zTargetOnly:'Kişi başı {n}', zSession:'Bu oturumda saydığın', zSubmit:'Katkımı ekle', zNone:'Bu halkada henüz ortak zikir yok.', zDone:'Katkın eklendi.', zReached:'Hedefe ulaşıldı.', zZero:'Önce say, sonra ekle.', bNext:'Sıradaki boş bölüm', bHowMany:'Kaç bab okuyacaksın?', bAllTaken:'Şu anda bütün babların sahibi var.', dHead:'Yetişmeyen paylar', dLead:'Bu paylar yarım kaldı. Birini üstlenirsen hatim tamamlanır.', dTake:'Bunu üstlen', dWait:'Paylar dağıtıldı. Yetişmeyenler {d} tarihinde burada açılır.', dNone:'Şu anda bütün payların sahibi var.', dBab:'{a}-{b}. Bab', dBabCount:'{p} bab', ebCevsen:'Cevşen niyeti', ongoingCevsen:'Cevşen okunuyor', nAsk:'Adını yazmak ister misin?', nWhy:'Halkadakiler bunu kimin üstlendiğini görsün diye. Boş bırakabilirsin, hiçbir şey değişmez.', nPh:'Adın (isteğe bağlı)', nSave:'Kaydet', nSkip:'Geç', nEdit:'Ad', nClear:'Adı kaldır', nSaved:'Kaydedildi.', privacy:'Gizlilik', terms:'Şartlar', arrow:'→' },
+    de: { loading:'Wird geladen…', ongoing:'Die Chatma läuft',
       legend:'{done} abgeschlossen · {held} übernommen · {free} verfügbar',
       lgDone:'abgeschlossen', lgHeld:'übernommen', lgFree:'verfügbar', cuzWord:'Dschus', seriesNote:'Chatma {n} läuft, die vorherigen sind abgeschlossen.', seriesNoteOpen:'Dieser Kreis umfasst {t} Chatmas, die erste läuft.', nextLbl:'Nächster Abschnitt', cuzN:'Dschus {n}', closesIn:'Noch {p} Seiten bis zum Abschluss',
       freeIn:'{p} Seiten verfügbar', takeThis:'Diesen nehmen',
@@ -503,8 +549,8 @@
       amountLbl:'Wie viel wirst du lesen?', heroEyebrow:'Absicht dieser Chatma', ebZikir:'Absicht dieses Dhikr', ebDua:'Absicht dieses Gebets', myLbl:'Deine Abschnitte', markDone:'Ich habe ihn gelesen', dropIt:'Entfernen', sure:'Sicher?', doneMark:'Gelesen', gone:'Diese Chatma ist nicht mehr verfügbar.', slow:'Zu viele Versuche. Warte kurz und versuche es erneut.', verify:'Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Lade die Seite neu und versuche es erneut.', error:'Etwas ist schiefgelaufen. Bitte versuche es erneut.', notFound:'Einladungslink ist ungültig.',
       openApp:'In der App öffnen', getApp:'App installieren', until:'Bis {d}',
       keepLink:'Speichere diesen Link, um später zu deinem Abschnitt zurückzukehren.', copy:'Link kopieren', copied:'Kopiert',
- zHead:'Gebete in diesem Kreis', zOf:'{a} von {b}', zMine:'Dein Beitrag: {n}', zAdd:'Mitzählen', zMemberOnly:'Für Kreismitglieder', zTargetOnly:'Je {n} pro Person', zSession:'In dieser Sitzung gezählt', zSubmit:'Beitrag hinzufügen', zNone:'Dieser Kreis hat noch kein gemeinsames Gebet.', zDone:'Dein Beitrag wurde hinzugefügt.', zReached:'Ziel erreicht.', zZero:'Zähle zuerst, dann füge hinzu.', bNext:'Nächster freier Abschnitt', bHowMany:'Wie viele Kapitel wirst du lesen?', bAllTaken:'Zurzeit hat jedes Kapitel einen Leser.', dHead:'Nicht rechtzeitig gelesene Abschnitte', dLead:'Diese Abschnitte blieben offen. Übernimm einen, dann wird die Chatma vollendet.', dTake:'Übernehmen', dWait:'Die Abschnitte sind verteilt. Was offen bleibt, wird am {d} hier freigegeben.', dNone:'Zurzeit hat jeder Abschnitt einen Leser.', dBab:'Kapitel {a}-{b}', dBabCount:'{p} Kapitel', ebCevsen:'Absicht dieses Dschauschan', ongoingCevsen:'Das Dschauschan wird gelesen.', nAsk:'Möchtest du deinen Namen angeben?', nWhy:'Damit der Kreis sieht, wer das übernommen hat. Du kannst es auch lassen — es ändert nichts.', nPh:'Dein Name (optional)', nSave:'Speichern', nSkip:'Überspringen', nEdit:'Name', nClear:'Namen entfernen', nSaved:'Gespeichert.', privacy:'Datenschutz', terms:'Nutzungsbedingungen', arrow:'→' },
-    fr: { loading:'Chargement…', ongoing:'La khatma est en cours.',
+ zHead:'Gebete in diesem Kreis', zOf:'{a} von {b}', zMine:'Dein Beitrag: {n}', zAdd:'Mitzählen', zMemberOnly:'Für Kreismitglieder', zTargetOnly:'Je {n} pro Person', zSession:'In dieser Sitzung gezählt', zSubmit:'Beitrag hinzufügen', zNone:'Dieser Kreis hat noch kein gemeinsames Gebet.', zDone:'Dein Beitrag wurde hinzugefügt.', zReached:'Ziel erreicht.', zZero:'Zähle zuerst, dann füge hinzu.', bNext:'Nächster freier Abschnitt', bHowMany:'Wie viele Kapitel wirst du lesen?', bAllTaken:'Zurzeit hat jedes Kapitel einen Leser.', dHead:'Nicht rechtzeitig gelesene Abschnitte', dLead:'Diese Abschnitte blieben offen. Übernimm einen, dann wird die Chatma vollendet.', dTake:'Übernehmen', dWait:'Die Abschnitte sind verteilt. Was offen bleibt, wird am {d} hier freigegeben.', dNone:'Zurzeit hat jeder Abschnitt einen Leser.', dBab:'Kapitel {a}-{b}', dBabCount:'{p} Kapitel', ebCevsen:'Absicht dieses Dschauschan', ongoingCevsen:'Das Dschauschan wird gelesen', nAsk:'Möchtest du deinen Namen angeben?', nWhy:'Damit der Kreis sieht, wer das übernommen hat. Du kannst es auch lassen, es ändert nichts.', nPh:'Dein Name (optional)', nSave:'Speichern', nSkip:'Überspringen', nEdit:'Name', nClear:'Namen entfernen', nSaved:'Gespeichert.', privacy:'Datenschutz', terms:'Nutzungsbedingungen', arrow:'→' },
+    fr: { loading:'Chargement…', ongoing:'La khatma est en cours',
       legend:'{done} terminées · {held} prises en charge · {free} disponibles',
       lgDone:'terminées', lgHeld:'prises', lgFree:'disponibles', cuzWord:'Juz', seriesNote:'La khatma {n} est en cours, les précédentes sont terminées.', seriesNoteOpen:'Ce cercle compte {t} khatmas, la première est en cours.', nextLbl:'Portion suivante', cuzN:'Juz {n}', closesIn:'Encore {p} pages pour la terminer',
       freeIn:'{p} pages disponibles', takeThis:'Prendre celle-ci',
@@ -520,24 +566,24 @@
       amountLbl:'Combien vas-tu lire ?', heroEyebrow:'Intention de cette khatma', ebZikir:'Intention de ce dhikr', ebDua:'Intention de cette invocation', myLbl:'Tes portions', markDone:'Je l’ai terminée', dropIt:'Retirer', sure:'Sûr ?', doneMark:'Terminée', gone:'Cette khatma n’est plus disponible.', slow:'Trop de tentatives. Patiente un instant et réessaie.', verify:'La vérification de sécurité n’a pas pu aboutir. Recharge la page et réessaie.', error:'Une erreur est survenue. Réessaie.', notFound:'Le lien d’invitation n’est pas valide.',
       openApp:'Ouvrir dans l’application', getApp:'Installer l’application', until:'Jusqu’au {d}',
       keepLink:'Enregistre ce lien pour revenir à ta portion plus tard.', copy:'Copier le lien', copied:'Copié',
- zHead:'Invocations de ce cercle', zOf:'{a} sur {b}', zMine:'Ta contribution : {n}', zAdd:'Participer au décompte', zMemberOnly:'Pour les membres du cercle', zTargetOnly:'{n} par personne', zSession:'Compté dans cette session', zSubmit:'Ajouter mon décompte', zNone:'Ce cercle n’a pas encore d’invocation commune.', zDone:'Ta contribution a été ajoutée.', zReached:'Objectif atteint.', zZero:'Compte d’abord, puis ajoute.', bNext:'Prochaine portion libre', bHowMany:'Combien de chapitres vas-tu lire ?', bAllTaken:'Chaque chapitre a un lecteur pour le moment.', dHead:'Portions restées inachevées', dLead:'Ces portions sont restées en suspens. Prends-en une et la khatma s’achève.', dTake:'Prendre celle-ci', dWait:'Les portions sont réparties. Ce qui reste inachevé s’ouvrira ici le {d}.', dNone:'Chaque portion a un lecteur pour le moment.', dBab:'Chapitre {a}-{b}', dBabCount:'{p} chapitres', ebCevsen:'Intention de ce Jawshan', ongoingCevsen:'Le Jawshan est en cours de lecture.', nAsk:'Veux-tu indiquer ton nom ?', nWhy:'Pour que le cercle voie qui s’en est chargé. Tu peux passer — cela ne change rien.', nPh:'Ton nom (facultatif)', nSave:'Enregistrer', nSkip:'Passer', nEdit:'Nom', nClear:'Retirer le nom', nSaved:'Enregistré.', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
-    ar: { loading:'…جارٍ التحميل', ongoing:'.الختمة جارية',
+ zHead:'Invocations de ce cercle', zOf:'{a} sur {b}', zMine:'Ta contribution : {n}', zAdd:'Participer au décompte', zMemberOnly:'Pour les membres du cercle', zTargetOnly:'{n} par personne', zSession:'Compté dans cette session', zSubmit:'Ajouter mon décompte', zNone:'Ce cercle n’a pas encore d’invocation commune.', zDone:'Ta contribution a été ajoutée.', zReached:'Objectif atteint.', zZero:'Compte d’abord, puis ajoute.', bNext:'Prochaine portion libre', bHowMany:'Combien de chapitres vas-tu lire ?', bAllTaken:'Chaque chapitre a un lecteur pour le moment.', dHead:'Portions restées inachevées', dLead:'Ces portions sont restées en suspens. Prends-en une et la khatma s’achève.', dTake:'Prendre celle-ci', dWait:'Les portions sont réparties. Ce qui reste inachevé s’ouvrira ici le {d}.', dNone:'Chaque portion a un lecteur pour le moment.', dBab:'Chapitre {a}-{b}', dBabCount:'{p} chapitres', ebCevsen:'Intention de ce Jawshan', ongoingCevsen:'Le Jawshan est en cours de lecture', nAsk:'Veux-tu indiquer ton nom ?', nWhy:'Pour que le cercle voie qui s’en est chargé. Tu peux passer, cela ne change rien.', nPh:'Ton nom (facultatif)', nSave:'Enregistrer', nSkip:'Passer', nEdit:'Nom', nClear:'Retirer le nom', nSaved:'Enregistré.', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
+    ar: { loading:'…جارٍ التحميل', ongoing:'الختمة جارية',
       legend:'{done} مكتملة · {held} متعهَّد بها · {free} متاحة',
-      lgDone:'مكتملة', lgHeld:'متعهَّد بها', lgFree:'متاحة', cuzWord:'جزء', seriesNote:'.الختمة {n} جارية، وسابقاتها اكتملت', seriesNoteOpen:'.عدد الختمات في هذه الحلقة: {t}، والأولى جارية', nextLbl:'الجزء التالي', cuzN:'الجزء {n}', closesIn:'بقيت {p} صفحة لإتمامه',
+      lgDone:'مكتملة', lgHeld:'متعهَّد بها', lgFree:'متاحة', cuzWord:'جزء', seriesNote:'الختمة {n} جارية، وسابقاتها اكتملت.', seriesNoteOpen:'عدد الختمات في هذه الحلقة: {t}، والأولى جارية.', nextLbl:'الجزء التالي', cuzN:'الجزء {n}', closesIn:'بقيت {p} صفحة لإتمامه',
       freeIn:'{p} صفحة متاحة', takeThis:'خذ هذا',
       avail:'المتاح', all:'الكل', full:'مأخوذ',
       pagesRange:'الصفحات {a}-{b}', pageCount:'{p} صفحة',
       confirmQ:'هل تؤكد أنك ستقرأ هذا الجزء؟',
       confirm:'أؤكد، سآخذه', cancel:'إلغاء',
-      entrusted:'.الصفحات {a}-{b} أمانة لديك', entrustedBab:'.الأبواب {a}-{b} أمانة لديك', mayAccept:'.تقبّل الله',
+      entrusted:'الصفحات {a}-{b} أمانة لديك.', entrustedBab:'الأبواب {a}-{b} أمانة لديك.', mayAccept:'تقبّل الله.',
       another:'هل تريد أخذ جزء آخر؟', takeAnother:'خذ جزءًا آخر',
-      none:'.لا يوجد جزء متاح الآن', closed:'.انتهت هذه الختمة',
-      quota:'.لديك 40 صفحة مفتوحة الآن. أتمّها لتأخذ المزيد',
-      taken:'.أُخذ هذا الجزء للتو، سنعطيك جزءًا آخر',
-      amountLbl:'كم ستقرأ؟', heroEyebrow:'نية هذه الختمة', ebZikir:'نية هذا الذكر', ebDua:'نية هذا الدعاء', myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟', doneMark:'تم', gone:'.لم تعد هذه الختمة متاحة', slow:'.محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة', verify:'.تعذّر إكمال التحقق الأمني. أعد تحميل الصفحة ثم حاول مرة أخرى', error:'.حدث خطأ ما. حاول مرة أخرى', notFound:'.رابط الدعوة غير صالح',
+      none:'لا يوجد جزء متاح الآن.', closed:'انتهت هذه الختمة.',
+      quota:'لديك 40 صفحة مفتوحة الآن. أتمّها لتأخذ المزيد.',
+      taken:'أُخذ هذا الجزء للتو، سنعطيك جزءًا آخر.',
+      amountLbl:'كم ستقرأ؟', heroEyebrow:'نية هذه الختمة', ebZikir:'نية هذا الذكر', ebDua:'نية هذا الدعاء', myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟', doneMark:'تم', gone:'لم تعد هذه الختمة متاحة.', slow:'محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة.', verify:'تعذّر إكمال التحقق الأمني. أعد تحميل الصفحة ثم حاول مرة أخرى.', error:'حدث خطأ ما. حاول مرة أخرى.', notFound:'رابط الدعوة غير صالح.',
       openApp:'افتح في التطبيق', getApp:'ثبّت التطبيق', until:'حتى {d}',
-      keepLink:'.احفظ هذا الرابط للعودة إلى جزئك لاحقًا', copy:'انسخ الرابط', copied:'تم النسخ',
- zHead:'أذكار هذه الحلقة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}', zAdd:'شارك في العدّ', zMemberOnly:'لأعضاء الحلقة', zTargetOnly:'{n} لكل شخص', zSession:'ما عددته في هذه الجلسة', zSubmit:'أضف عدّي', zNone:'.لا يوجد ذكر مشترك في هذه الحلقة بعد', zDone:'.تمت إضافة مشاركتك', zReached:'.تم بلوغ الهدف', zZero:'.عُدّ أولاً ثم أضف', bNext:'الجزء المتاح التالي', bHowMany:'كم بابًا ستقرأ؟', bAllTaken:'.كل باب له قارئ في الوقت الحالي', dHead:'أجزاء لم تُنجَز', dLead:'.بقيت هذه الأجزاء دون إتمام. خذ واحدًا منها فتكتمل الختمة', dTake:'أتكفّل بهذا', dWait:'.وُزّعت الأجزاء. وما لم يُنجَز يُفتَح هنا في {d}', dNone:'.كل جزء له قارئ في الوقت الحالي', dBab:'الباب {a}-{b}', dBabCount:'{p} بابًا', ebCevsen:'نية هذا الجوشن', ongoingCevsen:'.الجوشن قيد القراءة', nAsk:'أتحبّ أن تكتب اسمك؟', nWhy:'.ليرى أهل الحلقة من تكفّل بهذا. ولك أن تتركه، فلا يتغيّر شيء', nPh:'(اسمك (اختياري', nSave:'حفظ', nSkip:'تخطٍّ', nEdit:'الاسم', nClear:'إزالة الاسم', nSaved:'.تم الحفظ', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
+      keepLink:'احفظ هذا الرابط للعودة إلى جزئك لاحقًا.', copy:'انسخ الرابط', copied:'تم النسخ',
+ zHead:'أذكار هذه الحلقة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}', zAdd:'شارك في العدّ', zMemberOnly:'لأعضاء الحلقة', zTargetOnly:'{n} لكل شخص', zSession:'ما عددته في هذه الجلسة', zSubmit:'أضف عدّي', zNone:'لا يوجد ذكر مشترك في هذه الحلقة بعد.', zDone:'تمت إضافة مشاركتك.', zReached:'تم بلوغ الهدف.', zZero:'عُدّ أولاً ثم أضف.', bNext:'الجزء المتاح التالي', bHowMany:'كم بابًا ستقرأ؟', bAllTaken:'كل باب له قارئ في الوقت الحالي.', dHead:'أجزاء لم تُنجَز', dLead:'بقيت هذه الأجزاء دون إتمام. خذ واحدًا منها فتكتمل الختمة.', dTake:'أتكفّل بهذا', dWait:'وُزّعت الأجزاء. وما لم يُنجَز يُفتَح هنا في {d}.', dNone:'كل جزء له قارئ في الوقت الحالي.', dBab:'الباب {a}-{b}', dBabCount:'{p} بابًا', ebCevsen:'نية هذا الجوشن', ongoingCevsen:'الجوشن قيد القراءة', nAsk:'أتحبّ أن تكتب اسمك؟', nWhy:'ليرى أهل الحلقة من تكفّل بهذا. ولك أن تتركه، فلا يتغيّر شيء.', nPh:'(اسمك (اختياري', nSave:'حفظ', nSkip:'تخطٍّ', nEdit:'الاسم', nClear:'إزالة الاسم', nSaved:'تم الحفظ.', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
   };
   // ── Okuma görünümü metinleri (26 Eyl 2026) ─────────────────────────────
   // Mushaf/meal atıfları uygulamadaki `quranPrefs.mushafSource` / meal
@@ -573,7 +619,10 @@
   var LOCALE_TAG = { tr:'tr-TR', en:'en-US', de:'de-DE', fr:'fr-FR', ar:'ar' };
 
   var forced = (new URLSearchParams(location.search).get('lang') || '').slice(0,2).toLowerCase();
-  var lang = forced || (navigator.language || 'en').slice(0,2).toLowerCase();
+  // Dil sirasi: ?lang > sitede secilen dil (mh_lang, ortak anahtar) > tarayici > en.
+  var storedLang = '';
+  try { storedLang = (localStorage.getItem('mh_lang') || '').slice(0,2); } catch (e) {}
+  var lang = forced || (S[storedLang] ? storedLang : '') || (navigator.language || 'en').slice(0,2).toLowerCase();
   if (!S[lang]) lang = 'en';
   var T = S[lang];
   document.documentElement.lang = lang;
@@ -588,6 +637,8 @@
     return d;
   }
 
+  // Marka ana sayfaya, sayfanin dilindeki ana sayfaya gider (_gen/site-urls.mjs EV ile ayni).
+  $('brandLink').href = ({ en:'/', tr:'/tr/', de:'/de/', fr:'/fr/', ar:'/ar/' })[lang] || '/';
   $('privacyLink').textContent = T.privacy;
   $('privacyLink').href = '/privacy' + POLICY_SUFFIX[lang] + '.html';
   $('termsLink').textContent = T.terms;
@@ -939,9 +990,9 @@
       if (filter === 'avail' && c.free === 0) return;
       var full = c.free === 0;
       var cell = el('div', 'cell' + (full ? ' full' : ''));
-      // Zenginlik numaranın tipografisinden geliyor: sıfır dolgulu iki hane
-      // bölüm işareti gibi okunuyor ve ızgaraya ritim veriyor.
-      cell.appendChild(el('div', 'n', ('0' + c.n).slice(-2)));
+      // Zenginlik numaranın tipografisinden geliyor. ⚠️ Sıfır dolgusu YOK
+      // (28 Eyl 2026): Marcellus'ta sıfır "O" harfi gibi, "01" "O1" okunuyordu.
+      cell.appendChild(el('div', 'n', String(c.n)));
       cell.appendChild(el('div', 'u', T.cuzWord));
       cell.appendChild(el('div', 's',
         full ? T.full : fmt(T.freeIn, { p:c.free })));

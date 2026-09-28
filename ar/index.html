@@ -219,7 +219,9 @@
   .lang-list a[aria-current="page"] { font-weight: 700; background: var(--mint); }
   @media (max-width: 480px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; } }
   /* dar ekranda baslik tek satirda kalsin: uzun "Uygulamayi indir" yerine magaza dugmesindeki kisa soz */
-  @media (max-width: 480px) { .brand { font-size: 18px; } .get { padding: 0 14px; } .get .gl { display: none; } .get .gs { display: inline; } }
+  /* Telefonda indirme dugmesi yalniz simge: dil menusuyle birlikte kisa etiket bile (EN "Download", FR "Telecharger")
+     390 px'te satiri tasiriyordu (olculdu). Etiketli magaza rozetleri hemen altta, hero'da duruyor. */
+  @media (max-width: 480px) { .brand { font-size: 18px; } .get { width: 40px; padding: 0; justify-content: center; } .get .gl, .get .gs { display: none; } .get svg { width: 18px; height: 18px; } }
 
   /* ── giris ── */
   .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 36px 72px; }
@@ -393,13 +395,47 @@
   .row-visual { position: relative; display: flex; justify-content: center; padding-block: 16px; }
   .row-visual::before { content: ""; position: absolute; inset: 0 8%; border-radius: 40px; background: var(--mint); z-index: -1; }
   .row-visual .phone { position: relative; inset: auto; width: 250px; aspect-ratio: 640 / 1391; cursor: default; }
-  .row-visual .note { position: absolute; bottom: 36px; inset-inline-end: 4%; max-width: 190px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; font-size: 13px; line-height: 1.4; box-shadow: 0 16px 34px -22px rgba(10, 30, 20, .5); }
-  .row-visual .note b { display: block; color: var(--green); font-size: 13.5px; }
+  /* ── Yakin plan kirpintilari (gercek uygulama ekranlarindan, dile gore). Telefonun
+     etrafina yuzer; konumlar mantiksal (inset-inline) oldugu icin Arapcada kendiliginden aynalanir.
+     fx-w: kendi koseleri saydam parca (yalniz golge) · fx-card: beyaz kart icinde kirpinti. */
+  .fx-host .phone { z-index: 1; }
+  .fx { position: absolute; z-index: 2; height: auto; display: block; pointer-events: none; user-select: none; }
+  .fx-w { filter: drop-shadow(0 18px 24px rgba(10, 30, 20, .22)) drop-shadow(0 2px 4px rgba(10, 30, 20, .10)); }
+  .fx-card { background: #fff; border-radius: 18px; box-shadow: 0 22px 44px -18px rgba(10, 30, 20, .38), 0 0 0 1px rgba(20, 35, 28, .06); }
+  :root[data-theme="dark"] .fx-w { filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .5)); }
+  :root[data-theme="dark"] .fx-card { box-shadow: 0 24px 46px -16px rgba(0, 0, 0, .65), 0 0 0 1px rgba(255, 255, 255, .06); }
+  /* Kur'an: meal (ya da kelime takibi) ustte, dinleme cubugu altta */
+  .p-qa { width: 64%; top: 8%; inset-inline-start: -6%; }
+  .p-qb { width: 66%; bottom: 9%; inset-inline-end: -5%; }
+  /* Namaz: orta boy widget ustte, gece halkasi yanda, kilit ekrani altta */
+  .p-va { width: 58%; top: 7%; inset-inline-start: -5%; }
+  .p-vb { width: 27%; top: 44%; inset-inline-end: -1%; }
+  .p-vc { width: 50%; bottom: 7%; inset-inline-start: -2%; }
+  .p-vs { width: 27%; top: 12%; inset-inline-start: 2%; }
+  /* Hatim: tur geri sayimi telefondaki kartin ustunde (buyutec gibi), cuz havuzu altta */
+  .p-ha { width: 66%; top: 24%; inset-inline-start: 4%; }
+  .p-hb { width: 62%; bottom: 8%; inset-inline-end: -5%; }
+  /* Ortak Ameller: bugunun isaretleri telefondaki listenin ustunde (buyutec), hadis altta */
+  .p-aa { width: 60%; top: 33%; inset-inline-end: 12%; }
+  .p-ab { width: 66%; bottom: 5%; inset-inline-start: -3%; }
   @media (max-width: 860px) {
     .row { grid-template-columns: 1fr; gap: 24px; }
     .row:nth-child(even) .row-visual { order: 0; }
     .row-visual .phone { width: 220px; }
     .rows { gap: 64px; }
+    /* Dar ekranda parcalar kabin icinde kalir (yana tasma yok), biraz kuculur */
+    .p-qa, .p-va, .p-ab, .p-vc { inset-inline-start: 0; }
+    .p-qb, .p-hb, .p-vb { inset-inline-end: 0; }
+    .p-aa { inset-inline-end: 4%; }
+    .p-qa { width: 82%; top: 6%; }
+    .p-qb { width: 84%; }
+    .p-va { width: 76%; top: 5%; }
+    .p-vc { width: 64%; }
+    .p-vb, .p-vs { width: 34%; }
+    .p-ha, .p-hb { width: 76%; }
+    .p-ha { inset-inline-start: 2%; }
+    .p-aa { width: 72%; }
+    .p-ab { width: 80%; }
   }
 
   /* ── ve daha fazlasi ── */
@@ -619,13 +655,13 @@
       <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8 8 0 1 1 9.8 4a6.4 6.4 0 0 0 10.2 10.2z"/></svg>
       <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
     </button>
-    <a class="get" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">حمّل التطبيق</span><span class="gs">حمّل</span></a>
+    <a class="get" href="#download" data-get aria-label="حمّل التطبيق"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">حمّل التطبيق</span><span class="gs">حمّل</span></a>
   </header>
 
   <!-- GIRIS -->
   <div class="hero" id="top">
     <div>
-      <h1><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">بمفردك، <em>ومعًا أيضًا.</em></span></h1>
+      <h1><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">نيّة واحدة، حلقة واحدة، <em>وأعمال صالحة كثيرة.</em></span></h1>
       <p class="lead">حافظ في يومك على القرآن والصلاة والذكر والحفظ والقراءة. وإن شئت، أنشئ حلقة مع أحبّتك لتجتمعوا على الأعمال الصالحة.</p>
       <div class="stores">
         <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>حمّل</small><b>App Store</b></span></a>
@@ -683,8 +719,7 @@
           <p>داوم على قراءة القرآن بإيقاعك. وأثناء الاستماع تُظلَّل كل كلمة.</p>
           <ul class="ticks"><li>تلاوة بأصوات ثلاثة قرّاء مع تتبّع الكلمات</li><li>وضع للحفظ وملاحظات وعلامات</li><li>نزّل سورة أو جزءًا واستمع دون اتصال</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/ar/quran.webp" alt="قارئ القرآن، سورة الملك، والتلاوة قيد التشغيل" width="640" height="1391" loading="lazy"></figure>
-          <div class="note"><b>Mishary Alafasy</b>الملك · الآية 2 قيد التلاوة</div></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/quran.webp" alt="قارئ القرآن، سورة الملك، والتلاوة قيد التشغيل" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-qa" src="/img/app/fx-q-line.webp" alt="" width="720" height="232" loading="lazy" decoding="async"><img class="fx fx-w p-qb" src="/img/app/ar/fx-q-bar.webp" alt="" width="720" height="101" loading="lazy" decoding="async"></div>
       </div>
       <div class="row">
         <div>
@@ -694,7 +729,7 @@
           <ul class="ticks"><li>تنبيه عند دخول كل وقت وقبل خروجه</li><li>أدوات للشاشة الرئيسية وشاشة القفل</li><li>علّم صلواتك ونوافلك لنفسك</li></ul>
           <a class="qlink" href="/ar/mawaqit/">مواقيت اليوم</a>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/ar/vakit.webp" alt="شاشة مواقيت الصلاة، مكة المكرمة" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/vakit.webp" alt="شاشة مواقيت الصلاة، مكة المكرمة" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w fx-sq p-vs" src="/img/app/ar/fx-w-small.webp" alt="" width="400" height="400" loading="lazy" decoding="async"><img class="fx fx-w fx-sq p-vb" src="/img/app/ar/fx-w-ring.webp" alt="" width="400" height="400" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -720,7 +755,7 @@
           <p>تسير الجولات بانتظام، وترى بنظرة واحدة من يقرأ أي جزء.</p>
           <ul class="ticks"><li>تُوزَّع الأجزاء تلقائيًا في كل جولة</li><li>من تأخّر يمكنه إعادة نصيبه إلى المجمع</li><li>وضع المرشد: يمكن لمنشئ الحلقة أن يكتفي بالمتابعة</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/ar/halka.webp" alt="ختمة العائلة، تبويب الحلقة: أربعة أعضاء وأجزاؤهم" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/halka.webp" alt="ختمة العائلة، تبويب الحلقة: أربعة أعضاء وأجزاؤهم" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w p-ha" src="/img/app/ar/fx-h-tur.webp" alt="" width="720" height="139" loading="lazy" decoding="async"><img class="fx fx-card p-hb" src="/img/app/ar/fx-h-pool.webp" alt="" width="720" height="316" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -758,7 +793,7 @@
           <p>داوم مع حلقتك على الصلوات الخمس أو الحفظ أو دعاء. يعلّم كلٌّ يومه بنفسه.</p>
           <ul class="ticks"><li>لا ترتيب ولا نقاط ولا شارات</li><li>الرؤية محددة من البداية: المسؤول فقط أو متبادلة</li><li>تذكيرات وفق أوقاتك</li></ul>
         </div>
-        <div class="row-visual"><figure class="phone"><img src="/img/app/ar/amel.webp" alt="عمل مشترك: الصلوات الخمس، والفجر والظهر معلَّمتان" width="640" height="1391" loading="lazy"></figure></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/amel.webp" alt="عمل مشترك: الصلوات الخمس، والفجر والظهر معلَّمتان" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-aa" src="/img/app/ar/fx-a-today.webp" alt="" width="720" height="390" loading="lazy" decoding="async"><img class="fx fx-w p-ab" src="/img/app/ar/fx-a-hadis.webp" alt="" width="720" height="217" loading="lazy" decoding="async"></div>
       </div>
     </div>
     <div class="quiet">

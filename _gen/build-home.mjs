@@ -80,8 +80,9 @@ const T = {
     fr: "Le verset du jour chaque matin, des rappels lors des nuits bénies.",
     ar: "آية اليوم كل صباح، وتذكير في الليالي المباركة." },
 
-  title: { tr: "Manevi Halka: tek başına da, birlikte de", en: "Manevi Halka: on your own, and together", de: "Manevi Halka: allein und gemeinsam",
-    fr: "Manevi Halka : seul et ensemble", ar: "Manevi Halka: بمفردك ومعًا" },
+  title: { tr: "Manevi Halka: bir niyet, bir halka, nice ameller", en: "Manevi Halka: one intention, one circle, many good deeds",
+    de: "Manevi Halka: eine Absicht, ein Kreis, viele gute Taten", fr: "Manevi Halka : une intention, un cercle, tant de bonnes œuvres",
+    ar: "Manevi Halka: نيّة واحدة، حلقة واحدة، وأعمال صالحة كثيرة" },
   desc: { tr: "Kur'an, namaz vakitleri, zikir, ezber ve kitaplarını tek uygulamada sürdür. Dilersen sevdiklerinle hatim ve zikir halkası kur. Reklamsız, 5 dilde.",
     en: "Keep up your Quran, prayer times, dhikr, memorisation and reading in one app. And if you like, start a khatm or dhikr circle with your loved ones. Ad-free, in 5 languages.",
     de: "Koran, Gebetszeiten, Dhikr, Auswendiglernen und Lesen in einer App. Und wenn du möchtest, gründe mit deinen Liebsten einen Chatma- oder Dhikr-Kreis. Werbefrei, in 5 Sprachen.",
@@ -103,8 +104,10 @@ const T = {
 
   eyebrow: { tr: "Günlük ibadetlerin için bir yol arkadaşı", en: "A companion for your daily worship", de: "Ein Begleiter für deine tägliche Andacht",
     fr: "Un compagnon pour ta pratique quotidienne", ar: "رفيق لعباداتك اليومية" },
-  h1a: { tr: "Tek başına da,", en: "On your own,", de: "Allein", fr: "Seul,", ar: "بمفردك،" },
-  h1b: { tr: "birlikte de.", en: "and together.", de: "und gemeinsam.", fr: "et ensemble.", ar: "ومعًا أيضًا." },
+  // 28 Eyl 2026 kullanıcı isteği: "Tek başına da, birlikte de" yerine. Vurgulu (yeşil) kısım h1b.
+  h1a: { tr: "Bir niyet, bir halka,", en: "One intention, one circle,", de: "Eine Absicht, ein Kreis,", fr: "Une intention, un cercle,",
+    ar: "نيّة واحدة، حلقة واحدة،" },
+  h1b: { tr: "nice ameller.", en: "many good deeds.", de: "viele gute Taten.", fr: "tant de bonnes œuvres.", ar: "وأعمال صالحة كثيرة." },
   lead: { tr: "Kur'an, namaz, zikir, ezber ve okumalarını günlük hayatında sürdür. Dilersen sevdiklerinle bir halka kurup güzel amellerde buluş.",
     en: "Keep up your Quran, prayers, dhikr, memorisation and reading in daily life. And if you like, start a circle with your loved ones and meet in good deeds.",
     de: "Bleib im Alltag bei Koran, Gebet, Dhikr, Auswendiglernen und Lesen. Und wenn du möchtest, gründe mit deinen Liebsten einen Kreis und kommt in guten Taten zusammen.",
@@ -179,8 +182,6 @@ const T = {
   qT3: { tr: "Sure ya da cüz indirip çevrimdışı dinleme", en: "Download a surah or juz to listen offline",
     de: "Suren oder Dschuz herunterladen und offline hören", fr: "Télécharge une sourate ou un juz pour écouter hors ligne",
     ar: "نزّل سورة أو جزءًا واستمع دون اتصال" },
-  qNote: { tr: "Mülk · 2. ayet okunuyor", en: "Al-Mulk · verse 2 playing", de: "Al-Mulk · Vers 2 läuft", fr: "Al-Mulk · verset 2 en cours",
-    ar: "الملك · الآية 2 قيد التلاوة" },
   pKicker: { tr: "Namaz", en: "Prayer", de: "Gebet", fr: "Prière", ar: "الصلاة" },
   pTitle: { tr: "Gününün içinde.", en: "Woven into your day.", de: "Mitten in deinem Tag.", fr: "Au fil de ta journée.", ar: "في قلب يومك." },
   pText: { tr: "106 ülkede namaz vakitleri ve kıble. Vakit girince haberin olur.",
@@ -551,6 +552,49 @@ ${jsonLd(dil)}
 </script>`;
 }
 
+/** WebP boyutu (VP8X / VP8 / VP8L): width/height yazilsin ki gorsel yuklenirken sayfa kaymasin. */
+function webpBoyut(yol) {
+  const b = readFileSync(yol);
+  if (b.toString("ascii", 0, 4) !== "RIFF" || b.toString("ascii", 8, 12) !== "WEBP") hata(`WebP degil: ${yol}`);
+  const t = b.toString("ascii", 12, 16);
+  if (t === "VP8X") return [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+  if (t === "VP8 ") return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+  if (t === "VP8L") { const v = b.readUInt32LE(21); return [1 + (v & 0x3fff), 1 + ((v >> 14) & 0x3fff)]; }
+  hata(`WebP turu tanınmadı: ${yol}`);
+}
+
+/**
+ * Satir gorsellerinin etrafindaki yakin plan kirpintilari (28 Eyl 2026, kullanici istegi:
+ * "tek ekran resmi cok sade kalmis"). HEPSI uygulamanin GERCEK ekranlarindan, o dilde
+ * cekildi; yeniden cizim, yapay ceviri yok. Metinsiz olan (Arapca satir) ortak.
+ *  - fx-w: kendi koseleri saydam kesilmis parca (widget, dinleme cubugu), yalniz golge.
+ *  - fx-card: dikdortgen kirpinti, beyaz kart icinde.
+ * ⚠️ Meal kartı YALNIZ tr/en: DE/FR meali telifli (izin yok), Arapcada meal yok.
+ * ⚠️ Arapcada orta boy ve kilit ekrani widget onizlemesi KULLANILMAZ: uygulamadaki
+ *    onizlemede vakit adi ile saat bitisik ciziliyor (RTL hatasi); yerine kucuk widget.
+ * Kaynak kareler: oturum cizimi (simulator MH-Promo-Reklam), kirpma betigi mkcrops.py.
+ */
+function fxParcalari(dil) {
+  const parca = (dosya, sinif) => {
+    const src = dosya.startsWith("/") ? dosya : `/img/app/${dil}/${dosya}`;
+    const yol = join(KOK, src.slice(1));
+    if (!existsSync(yol)) hata(`${dil}: kirpinti yok: ${src}`);
+    const [w, h] = webpBoyut(yol);
+    return `<img class="fx ${sinif}" src="${src}" alt="" width="${w}" height="${h}" loading="lazy" decoding="async">`;
+  };
+  const mealli = dil === "tr" || dil === "en";
+  const ar = dil === "ar";
+  return {
+    fxQuran: (mealli ? parca("fx-q-meal.webp", "fx-card p-qa") : parca("/img/app/fx-q-line.webp", "fx-card p-qa"))
+      + parca("fx-q-bar.webp", "fx-w p-qb"),
+    fxVakit: ar
+      ? parca("fx-w-small.webp", "fx-w fx-sq p-vs") + parca("fx-w-ring.webp", "fx-w fx-sq p-vb")
+      : parca("fx-w-med.webp", "fx-w p-va") + parca("fx-w-ring.webp", "fx-w fx-sq p-vb") + parca("fx-w-lock.webp", "fx-w p-vc"),
+    fxHalka: parca("fx-h-tur.webp", "fx-w p-ha") + parca("fx-h-pool.webp", "fx-card p-hb"),
+    fxAmel: parca("fx-a-today.webp", "fx-card p-aa") + parca("fx-a-hadis.webp", "fx-w p-ab"),
+  };
+}
+
 const sablon = readFileSync(join(KOK, "_gen", "home.src.html"), "utf8");
 const VERI_ISARETI = "/*__DATA__*/null";
 if (sablon.split(VERI_ISARETI).length !== 2) hata("sablonda veri isareti tek olmali");
@@ -566,6 +610,7 @@ function sayfa(dil) {
     langsHtml: DILLER.map((d) => `<a href="${EV[d]}" hreflang="${d}" lang="${d}"${d === dil ? ' aria-current="page"' : ""}>${DIL_ADI[d]}</a>`).join(""),
     langMenuHtml: DILLER.map((d) => `<a href="${EV[d]}" hreflang="${d}" lang="${d}"${d === dil ? ' aria-current="page"' : ""}>${DIL_ADI[d]}</a>`).join(""),
     langCode: dil.toUpperCase(),
+    ...fxParcalari(dil),
     creditHtml: dil === "en" ? `${kacis(s.itaniCredit)} <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span>` : "",
   };
   const eksik = new Set();
