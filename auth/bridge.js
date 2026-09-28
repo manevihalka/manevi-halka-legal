@@ -136,7 +136,9 @@
 
   var qs = new URLSearchParams(window.location.search);
   var forced = (qs.get('lang') || '').toLowerCase();
-  var lang = S[forced] ? forced : (navigator.language || 'en').slice(0, 2).toLowerCase();
+  // Dil sirasi: ?lang > sitede secilen dil (mh_lang, ortak anahtar) > tarayici > en.
+  var saved = ''; try { saved = (localStorage.getItem('mh_lang') || '').slice(0, 2); } catch (e) {}
+  var lang = S[forced] ? forced : (S[saved] ? saved : (navigator.language || 'en').slice(0, 2).toLowerCase());
   if (!S[lang]) lang = 'en';
   var T = S[lang];
   document.documentElement.lang = lang;
