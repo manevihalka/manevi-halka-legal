@@ -30,15 +30,19 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 - **Kontodaten:** E-Mail-Adresse, vollständiger Name, Profilbild (optional)
 - **Authentifizierung:** Bei Nutzung von „Mit Apple anmelden" oder „Mit Google
   anmelden" das Identitäts-Token des jeweiligen Dienstes
-- **Einstellungen:** App-Sprache, Design, Benachrichtigungseinstellungen
+- **Einstellungen:** App-Sprache, Design, Benachrichtigungseinstellungen und die Kreise,
+  die Sie in Ihrer Kreisliste ausblenden (nur Sie sehen diese Angabe; sie wird gelöscht,
+  wenn Sie den Kreis verlassen)
 - **Geräteübergreifende Sicherung:** Die persönlichen Andachtsaufzeichnungen und
   Leseeinstellungen, die Sie in Ihrem Konto führen, werden auf unseren Servern
   gesichert, damit sie bei einem Gerätewechsel nicht verloren gehen. Diese Sicherung
   umfasst: **Ihre Aufzeichnungen zum Gebets- und Nafl-Tracking**, Ihre Einstellungen
-  für Gebetsverfolgung und Erinnerungen, Ihre Koran-Lesezeichen, Ihre zuletzt
+  für die Gebetsverfolgung, Ihre Koran-Lesezeichen, Ihre zuletzt
   gelesene Position in Koran und Dschauschan, Ihre Lesereinstellungen (zweite
-  Übersetzungssprache, Mushaf-Schriftstil) sowie Ihre laufenden Dhikr-Zählungen.
-  **Nur Sie können auf diese Sicherung zugreifen**; Mitglieder Ihrer Kreise,
+  Übersetzungssprache, Mushaf-Schriftstil). Nutzen Sie dasselbe Konto auf mehreren
+  Geräten, werden diese Aufzeichnungen zwischen ihnen abgeglichen; Benachrichtigungs- und
+  Erinnerungseinstellungen gehören nicht zu dieser Sicherung und gelten für jedes Gerät
+  einzeln. **Nur Sie können auf diese Sicherung zugreifen**; Mitglieder Ihrer Kreise,
   Kreis-Administratoren und andere Nutzende können sie nicht einsehen (geschützt
   durch zeilenbasierte Zugriffsregeln in der Datenbank). Mit der Löschung Ihres
   Kontos wird auch die Sicherung gelöscht. **Ihre Standortkoordinaten sind in dieser
@@ -110,6 +114,15 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   Hatim-Zählung, Dhikr-Zähler, Cevshen-Knoten-Abschlüsse, Ihr Cetele-Fortschritt (Auswendiglernen) und Wiederholungsplan
 - **Benachrichtigungs-Token:** Geräte-Token für Push-Benachrichtigungen
   (Apple APNs / Google FCM)
+- **Angemeldete Geräte:** Für jedes Gerät, auf dem Ihr Konto angemeldet ist, speichern
+  wir das Gerätemodell (zum Beispiel iPhone 15 Pro), die Betriebssystem- und
+  App-Version, das Benachrichtigungs-Token dieses Geräts und den Zeitpunkt der letzten
+  Aktivität. Dies dient ausschließlich der Kontosicherheit: Unter Konto & Sicherheit >
+  Meine Geräte sehen Sie, wo Ihr Konto angemeldet ist, und können jedes Gerät abmelden;
+  wird Ihr Konto auf einem neuen Gerät angemeldet, werden Ihre anderen Geräte
+  benachrichtigt. Der Name, den Sie dem Gerät gegeben haben, Ihre IP-Adresse und Ihr
+  Standort sind **nicht** Teil dieses Eintrags. Bei der Nutzung als Gast (bevor das
+  Konto gesichert ist) wird er nicht angelegt
 - **Standort:** Ausschließlich der aktuelle Standort Ihres Geräts, zur
   Berechnung der Gebetszeiten und der Qibla-Richtung. **Standortdaten werden weder an unsere
   Server übertragen noch dort gespeichert** – sie werden nur lokal auf
@@ -247,6 +260,11 @@ Dienstes:
   Gesten sofort gelöscht
 - **Eigene Auswendiglern-Ziele:** Werden sofort gelöscht, wenn du die Aufgabe
   oder den Kreis verlässt, und wenn die Leitung das Ziel entfernt
+- **Angemeldete Geräte:** Wenn Sie sich auf einem Gerät abmelden oder es unter Meine
+  Geräte entfernen, werden sein Eintrag und sein Benachrichtigungs-Token sofort
+  gelöscht. Einträge von Geräten, deren Sitzung beendet ist und die seit 30 Tagen nicht
+  gesehen wurden, oder die seit 180 Tagen nicht genutzt wurden, löscht eine wöchentliche
+  automatische Aufgabe
 - **Aktives Konto:** Daten werden so lange aufbewahrt, wie Ihr Konto aktiv ist
 - **Kontolöschung:** Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können Ihr Konto innerhalb von **30 Tagen** wiederherstellen, indem Sie sich erneut anmelden. Nach Ablauf der 30 Tage löscht ein automatisierter Cron-Auftrag (pg_cron) Ihre sämtlichen personenbezogenen Daten **endgültig**. Wenn Sie eine sofortige endgültige Löschung wünschen, können Sie uns per E-Mail kontaktieren. Lediglich Buchhaltungs- bzw. Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können (anonymisiert) erhalten bleiben
 - **Abgeschlossene einmalige Kreise:** Wenn ein einmaliger Kreis endet, wird eine

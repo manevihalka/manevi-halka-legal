@@ -30,13 +30,17 @@ haklarınızın neler olduğunu açıklar.
 - **Hesap bilgileri:** E-posta adresi, ad-soyad, profil fotoğrafı (opsiyonel)
 - **Kimlik doğrulama:** Apple ile Giriş veya Google ile Giriş kullanırsanız ilgili
   servisten alınan kimlik tokeni
-- **Tercihler:** Uygulama dili, tema, bildirim tercihleri
+- **Tercihler:** Uygulama dili, tema, bildirim tercihleri ve Halkalar listenizden
+  gizlediğiniz halkalar (bu bilgiyi yalnızca siz görürsünüz; halkadan ayrıldığınızda
+  silinir)
 - **Cihazlar arası yedekleme:** Hesabınıza bağlı olarak tuttuğunuz kişisel ibadet
   kayıtları ve okuma tercihleriniz, cihaz değiştirdiğinizde kaybolmasın diye
   sunucularımızda yedeklenir. Bu yedek şunları içerir: **namaz ve nafile takibi
-  kayıtlarınız**, namaz takibi ve hatırlatma tercihleriniz, Kuran yer imleriniz,
+  kayıtlarınız**, namaz takibi tercihleriniz, Kuran yer imleriniz,
   Kuran ve Cevşen'de kaldığınız son okuma konumu, okuyucu tercihleriniz (ikincil
-  meal dili, mushaf yazı stili) ve devam eden zikir sayımlarınız. **Bu yedeğe
+  meal dili, mushaf yazı stili). Aynı hesabı birden fazla cihazda kullanıyorsanız bu
+  kayıtlar cihazlarınız arasında eşitlenir; bildirim ve hatırlatma ayarları bu yedeğe
+  girmez, her cihazda ayrı tutulur. **Bu yedeğe
   yalnızca siz erişebilirsiniz**; halkanızdaki üyeler, halka yöneticileri ve diğer
   kullanıcılar göremez (veritabanı düzeyinde satır bazlı erişim kuralıyla korunur).
   Hesabınızı sildiğinizde bu yedek de silinir. **Konum koordinatlarınız bu yedeğe
@@ -97,6 +101,13 @@ haklarınızın neler olduğunu açıklar.
 - **İlerleme verisi:** Kuran sayfa ilerlemesi, tamamlanan görevler, hatim sayısı,
   zikir sayaçları, cevsen ukde tamamlamaları, Cetele (ezber) ilerlemeniz ve tekrar takvimi
 - **Bildirim tokeni:** Push bildirim göndermek için cihaz tokeni (Apple APNs / Google FCM)
+- **Oturum açık cihazlar:** Hesabınızın açık olduğu her cihaz için cihaz modeli (örneğin
+  iPhone 15 Pro), işletim sistemi ve uygulama sürümü, o cihazın bildirim tokeni ve son
+  etkinlik zamanı saklanır. Amaç yalnızca hesap güvenliğidir: Hesap & Güvenlik > Cihazlarım
+  ekranında hesabınızın açık olduğu cihazları görebilir, istediğinizi hesaptan
+  çıkarabilirsiniz; hesabınıza yeni bir cihazdan giriş yapıldığında diğer cihazlarınıza
+  bildirim gönderilir. Cihaza verdiğiniz ad, IP adresiniz ve konumunuz bu kayda **dahil
+  değildir**. Misafir kullanımda (hesap güvenceye alınmadan önce) bu kayıt tutulmaz
 - **Konum:** Sadece namaz vakitlerini ve kıble yönünü hesaplamak için cihazınızın anlık konumu.
   **Konum verisi sunucularımıza gönderilmez ve kaydedilmez** — yalnızca cihazda
   hesap için kullanılır. Şehir değiştirdiğinizi fark edip vakitleri yeni şehrinize
@@ -218,6 +229,10 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
   gönderdiğin ve aldığın jestler anında silinir
 - **Kişiye özel ezber hedefleri:** Görevden ya da halkadan ayrıldığında anında
   silinir; yönetici hedefi kaldırdığında da silinir
+- **Oturum açık cihazlar:** Bir cihazdan çıkış yaptığınızda ya da cihazı Cihazlarım
+  ekranından çıkardığınızda o cihazın kaydı ve bildirim tokeni hemen silinir. Oturumu
+  kapanmış ve 30 gündür görülmeyen ya da 180 gündür hiç kullanılmayan cihazların kaydı
+  haftalık otomatik bir görevle silinir
 - **Aktif hesap:** Hesabınız aktif olduğu sürece verileriniz saklanır
 - **Hesap silindiğinde:** Hesabınız önce **soft-delete** olarak işaretlenir. **30 gün** içinde uygulamaya tekrar giriş yaparak hesabınızı geri yükleyebilirsiniz. 30 gün sonra otomatik bir cron görevi (pg_cron) tüm kişisel verilerinizi **kalıcı olarak siler**. Anında kalıcı silme isterseniz e-posta ile başvurabilirsiniz. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik kayıtları (anonim hale getirilmiş) tutulabilir
 - **Tamamlanan tek seferlik halkalar:** Halka bittiğinde özeti (katılımcı sayısı,

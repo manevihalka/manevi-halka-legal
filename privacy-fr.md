@@ -27,15 +27,19 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 - **Informations de compte :** adresse e-mail, nom complet, photo de profil (facultative)
 - **Authentification :** si vous utilisez la connexion avec Apple ou Google, le jeton d'identité du service concerné
-- **Préférences :** langue de l'application, thème, préférences de notification
+- **Préférences :** langue de l'application, thème, préférences de notification et les
+  cercles que vous masquez de votre liste de cercles (vous seul voyez cette information ;
+  elle est supprimée lorsque vous quittez le cercle)
 - **Sauvegarde multi-appareils :** les enregistrements de dévotion personnels et les
   préférences de lecture que vous conservez dans votre compte sont sauvegardés sur
   nos serveurs afin de ne pas être perdus lors d'un changement d'appareil. Cette
   sauvegarde comprend : **vos enregistrements de suivi des prières et des prières
-  surérogatoires (nafl)**, vos préférences de suivi et de rappel des prières, vos
+  surérogatoires (nafl)**, vos préférences de suivi des prières, vos
   signets du Coran, votre dernière position de lecture dans le Coran et le Jawshan,
   vos préférences de lecture (langue de la traduction secondaire, style de police du
-  mushaf) ainsi que vos comptages de dhikr en cours. **Vous seul pouvez accéder à
+  mushaf). Si vous utilisez le même compte sur plusieurs appareils, ces enregistrements
+  sont synchronisés entre eux ; les réglages de notification et de rappel ne font pas
+  partie de cette sauvegarde et restent propres à chaque appareil. **Vous seul pouvez accéder à
   cette sauvegarde** ; les membres de vos cercles, les administrateurs de cercle et
   les autres utilisateurs ne peuvent pas la consulter (protection par règles d'accès
   au niveau des lignes dans la base de données). La sauvegarde est supprimée lorsque
@@ -96,6 +100,7 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 - **Données de progression :** progression des pages du Coran, tâches accomplies, nombre de khatm, compteurs de dhikr, achèvements des nœuds du Cevshen, votre progression Cetele (mémorisation) et votre calendrier de révision
 - **Jeton de notification :** jeton de l'appareil pour les notifications push (Apple APNs / Google FCM)
+- **Appareils connectés :** pour chaque appareil sur lequel votre compte est connecté, nous conservons le modèle de l'appareil (par exemple iPhone 15 Pro), les versions du système et de l'application, le jeton de notification de cet appareil et l'heure de sa dernière activité. Cela sert uniquement à la sécurité du compte : dans Compte & Sécurité > Mes appareils, vous voyez où votre compte est connecté et pouvez déconnecter n'importe quel appareil ; lorsque votre compte est connecté sur un nouvel appareil, vos autres appareils en sont avertis. Le nom que vous avez donné à l'appareil, votre adresse IP et votre localisation **ne font pas partie** de cet enregistrement. Il n'est pas créé pour l'utilisation en invité (avant que le compte soit sécurisé)
 - **Localisation :** uniquement la position actuelle de votre appareil, utilisée pour calculer les heures de prière et la direction de la qibla. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul. Afin que l'application puisse remarquer un changement de lieu et vous proposer les horaires de votre nouvelle ville, la dernière coordonnée connue est conservée **uniquement sur votre appareil** ; elle est supprimée lorsque vous effacez les données de votre compte.
 - **Informations d'abonnement :** si vous avez un abonnement Premium : durée, type de formule, boutique (App Store / Play Store), statut de l'abonnement
 
@@ -218,6 +223,7 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   immédiatement
 - **Objectifs de mémorisation personnels :** supprimés immédiatement si tu
   quittes la tâche ou le cercle, et quand l'administrateur retire l'objectif
+- **Appareils connectés :** lorsque vous vous déconnectez d'un appareil ou le retirez dans Mes appareils, son enregistrement et son jeton de notification sont supprimés immédiatement. Les enregistrements des appareils dont la session est terminée et qui n'ont pas été vus depuis 30 jours, ou qui n'ont pas été utilisés depuis 180 jours, sont supprimés par une tâche automatique hebdomadaire
 - **Compte actif :** les données sont conservées tant que votre compte est actif
 - **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
 - **Cercles ponctuels terminés :** lorsqu'un cercle ponctuel se termine, un résumé (nombre de participants, travail accompli) est archivé ; les détails individuels des tâches sont effacés

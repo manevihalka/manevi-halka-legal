@@ -30,14 +30,18 @@ rights you have.
 - **Account info:** Email address, full name, profile picture (optional)
 - **Authentication:** If you use Sign in with Apple or Google, the identity
   token from the respective service
-- **Preferences:** App language, theme, notification preferences
+- **Preferences:** App language, theme, notification preferences and the circles you
+  hide from your Circles list (only you can see this; it is deleted when you leave the
+  circle)
 - **Cross-device backup:** The personal worship records and reading preferences you
   keep while signed in are backed up on our servers so they are not lost when you
   change devices. This backup includes: **your prayer and supererogatory (nafl)
-  tracking records**, your prayer tracking and reminder preferences, your Qur'an
+  tracking records**, your prayer tracking preferences, your Qur'an
   bookmarks, your last reading position in the Qur'an and Jawshan, your reader
-  preferences (secondary translation language, mushaf font style) and your
-  in-progress dhikr counts. **Only you can access this backup**; members of your
+  preferences (secondary translation language, mushaf font style). If you use the
+  same account on more than one device, these records are kept in sync between them;
+  notification and reminder settings are not part of this backup and stay separate on
+  each device. **Only you can access this backup**; members of your
   circles, circle admins and other users cannot see it (protected by row-level
   access rules in the database). The backup is deleted when you delete your account.
   **Your location coordinates are NOT included in this backup** and remain only on
@@ -102,6 +106,14 @@ rights you have.
   dhikr counters, Cevshen knot completions, your Cetele (memorization) progress and review schedule
 - **Notification token:** Device token for push notifications (Apple APNs /
   Google FCM)
+- **Signed-in devices:** For each device your account is signed in on, we keep the
+  device model (for example iPhone 15 Pro), the operating system and app version, that
+  device's notification token and the time of its last activity. This is used only for
+  account security: under Account & Security > My devices you can see where your
+  account is signed in and sign out any device, and when your account is signed in on a
+  new device, your other devices are notified. The name you gave the device, your IP
+  address and your location are **not** part of this record. It is not kept for guest
+  use (before the account is secured)
 - **Location:** Only your device's current location, used to compute prayer
   times and the qibla direction. **Location data is not sent to or stored on our servers** — used
   only on-device for calculation. So that the app can notice you have moved and offer
@@ -223,6 +235,10 @@ We use the following third-party services to provide our service:
   gestures you sent and received are deleted immediately
 - **Personal memorization targets:** Deleted immediately when you leave the task
   or the circle, and when the admin removes the target
+- **Signed-in devices:** When you sign out of a device or remove it under My devices,
+  its record and notification token are deleted immediately. Records of devices whose
+  session has ended and that have not been seen for 30 days, or that have not been used
+  for 180 days, are deleted by a weekly automated job
 - **Active account:** Data is retained as long as your account is active
 - **Account deletion:** Your account is first marked as **soft-deleted**. You can **restore your account within 30 days** by signing in again. After 30 days, an automated cron job (pg_cron) **permanently deletes** all your personal data. If you want immediate permanent deletion, contact us by email. Only accounting/subscription records that must legally be retained may be kept (anonymized)
 - **Completed one-time circles:** When a one-time circle ends, a summary
