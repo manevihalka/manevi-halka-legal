@@ -654,6 +654,26 @@ for (const d of DILLER) ciktilar.set(join(KOK, dosyaYolu(EV[d])), sayfa(d));
 for (const d of DILLER) ciktilar.set(join(KOK, dosyaYolu(ESKI_APP[d])), kabuk(EV[d], "/app/ 28 Eyl 2026'da birkac saat uygulama tanitim sayfasiydi; tanitim ana sayfa oldu."));
 ciktilar.set(join(KOK, "yeni", "index.html"), kabuk("/", "/yeni/ 28 Eyl 2026'da yeni tasarimin onizleme adresiydi."));
 
+// Politika sayfalarinin Jekyll duzeni (_layouts/default.html) icin ortak kabuk metinleri.
+// Tek kaynak bu dosyanin sozlukleri + site-i18n.js; duzen Liquid ile site.data.chrome'dan okur.
+// ⚠️ _data/chrome.json ELLE DUZENLENMEZ.
+{
+  const APP = { tr: "Uygulama", en: "The app", de: "Die App", fr: "L'application", ar: "التطبيق" };
+  const veri = {};
+  for (const d of DILLER) {
+    const k = kutu.I18N[d];
+    veri[d] = {
+      dir: d === "ar" ? "rtl" : "ltr", home: EV[d], times: VAKIT[d],
+      app: APP[d], navTimes: T.navTimes[d], reading: k.ccTitle, sections: T.navAria[d], language: T.langAria[d],
+      toDark: T.themeToDark[d], toLight: T.themeToLight[d],
+      socialTitle: T.socialTitle[d], socialText: T.socialText[d],
+      privacy: k.privacy, terms: k.terms, deleteAcc: k.deleteAcc, contact: k.contact,
+    };
+    for (const [ad, deger] of Object.entries(veri[d])) if (deger == null) hata(`chrome.${d}.${ad} yok`);
+  }
+  ciktilar.set(join(KOK, "_data", "chrome.json"), JSON.stringify(veri, null, 2) + "\n");
+}
+
 const HARITA = join(KOK, "sitemap.xml");
 const lastmodsuz = (x) => x.replace(/\s*<lastmod>[^<]*<\/lastmod>/g, "");
 {
