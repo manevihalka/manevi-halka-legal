@@ -39,7 +39,7 @@ window.MHOrtakHatim = (function () {
     en: { loading:'Loading…',
       pageTitle:'Shared Reading', pageSub:'Read together with people all over the world: the shared khatm and the shared dhikr. No account needed.',
       tabHatim:'Khatm', tabZikir:'Dhikr',
-      ongoing:'The recitation is in progress.',
+      ongoing:'The recitation is in progress',
       cycleN:'Recitation {n} is in progress', cycleFirst:'The first recitation is in progress',
       lgDone:'completed', lgHeld:'undertaken', lgFree:'available',
       cuzWord:'Juz',
@@ -72,7 +72,7 @@ window.MHOrtakHatim = (function () {
     tr: { loading:'Yükleniyor…',
       pageTitle:'Ortak Okuma', pageSub:'Dünyanın her yerinden okuyanlarla aynı hatimde ve zikirde buluş. Hesap gerekmiyor.',
       tabHatim:'Hatim', tabZikir:'Zikir',
-      ongoing:'Hatim devam ediyor.',
+      ongoing:'Hatim devam ediyor',
       cycleN:'{n}. hatim okunuyor', cycleFirst:'İlk hatim okunuyor',
       lgDone:'tamamlandı', lgHeld:'üstlenildi', lgFree:'müsait',
       cuzWord:'Cüz',
@@ -105,7 +105,7 @@ window.MHOrtakHatim = (function () {
     de: { loading:'Wird geladen…',
       pageTitle:'Gemeinsames Lesen', pageSub:'Lies gemeinsam mit Menschen aus aller Welt: dieselbe Chatma und dasselbe Dhikr. Ohne Konto.',
       tabHatim:'Chatma', tabZikir:'Dhikr',
-      ongoing:'Die Chatma läuft.',
+      ongoing:'Die Chatma läuft',
       cycleN:'Chatma {n} läuft', cycleFirst:'Die erste Chatma läuft',
       lgDone:'abgeschlossen', lgHeld:'übernommen', lgFree:'verfügbar',
       cuzWord:'Dschus',
@@ -138,7 +138,7 @@ window.MHOrtakHatim = (function () {
     fr: { loading:'Chargement…',
       pageTitle:'Lecture commune', pageSub:'Lis avec des gens du monde entier : la même khatma et le même dhikr. Sans compte.',
       tabHatim:'Khatma', tabZikir:'Dhikr',
-      ongoing:'La khatma est en cours.',
+      ongoing:'La khatma est en cours',
       cycleN:'La khatma {n} est en cours', cycleFirst:'La première khatma est en cours',
       lgDone:'terminées', lgHeld:'prises', lgFree:'disponibles',
       cuzWord:'Juz',
@@ -169,9 +169,9 @@ window.MHOrtakHatim = (function () {
       zSubmit:'Ajouter mon décompte', zNone:'Aucune invocation commune pour le moment.', zZero:'Compte d’abord, puis ajoute.',
       home:'Accueil', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
     ar: { loading:'…جارٍ التحميل',
-      pageTitle:'القراءة المشتركة', pageSub:'.اقرأ مع أناس من كل أنحاء العالم: الختمة نفسها والذكر نفسه، دون حساب',
+      pageTitle:'القراءة المشتركة', pageSub:'اقرأ مع أناس من كل أنحاء العالم: الختمة نفسها والذكر نفسه، دون حساب.',
       tabHatim:'الختمة', tabZikir:'الذكر',
-      ongoing:'.الختمة جارية',
+      ongoing:'الختمة جارية',
       cycleN:'الختمة {n} جارية', cycleFirst:'الختمة الأولى جارية',
       lgDone:'مكتملة', lgHeld:'متعهَّد بها', lgFree:'متاحة',
       cuzWord:'جزء',
@@ -183,23 +183,23 @@ window.MHOrtakHatim = (function () {
       pageCount:'{p} صفحة',
       confirmQ:'هل تؤكد أنك ستقرأ هذا الجزء؟',
       confirm:'أؤكد، سآخذه', cancel:'إلغاء',
-      entrustedU:'.{u} أمانة لديك',
-      mayAccept:'.تقبّل الله',
+      entrustedU:'{u} أمانة لديك.',
+      mayAccept:'تقبّل الله.',
       another:'هل تريد أخذ جزء آخر؟', takeAnother:'خذ جزءًا آخر',
-      none:'.لا يوجد جزء متاح الآن', closed:'.هذه الختمة مغلقة حاليًا',
-      quota:'.بلغت حدّ الأجزاء المفتوحة. أتمّها لتأخذ المزيد',
-      taken:'.أُخذ هذا الجزء للتو، سنعطيك جزءًا آخر',
+      none:'لا يوجد جزء متاح الآن.', closed:'هذه الختمة مغلقة حاليًا.',
+      quota:'بلغت حدّ الأجزاء المفتوحة. أتمّها لتأخذ المزيد.',
+      taken:'أُخذ هذا الجزء للتو، سنعطيك جزءًا آخر.',
       amountLbl:'كم ستقرأ؟',
       myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟',
       doneMark:'تم', pastCycle:'من ختمة سابقة',
-      gone:'.غير متاح حاليًا', slow:'.محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة', verify:'.تعذّر إكمال التحقق الأمني. أعد تحميل الصفحة ثم حاول مرة أخرى',
-      error:'.حدث خطأ ما. حاول مرة أخرى',
+      gone:'غير متاح حاليًا.', slow:'محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة.', verify:'تعذّر إكمال التحقق الأمني. أعد تحميل الصفحة ثم حاول مرة أخرى.',
+      error:'حدث خطأ ما. حاول مرة أخرى.',
       getApp:'ثبّت التطبيق', until:'حتى {d}',
-      keepLink:'.احفظ هذا الرابط للعودة إلى أجزائك لاحقًا', copy:'انسخ الرابط', copied:'تم النسخ',
+      keepLink:'احفظ هذا الرابط للعودة إلى أجزائك لاحقًا.', copy:'انسخ الرابط', copied:'تم النسخ',
       shareQ:'هل تودّ أن تضمّ شخصًا آخر إلى هذه الحلقة؟', shareBtn:'مشاركة', shareText:'نقرأ ختمة معًا، هل تأخذ جزءًا أنت أيضًا؟', followLine:'تابعنا لتصلك التذكيرات في الليالي المباركة ورمضان:',
       zHead:'الأذكار والأدعية المشتركة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}',
       zRounds:'اكتملت {n} جولة', zAdd:'شارك في العدّ', zSession:'ما عددته في هذه الجلسة',
-      zSubmit:'أضف عدّي', zNone:'.لا يوجد ذكر مشترك حاليًا', zZero:'.عُدّ أولاً ثم أضف',
+      zSubmit:'أضف عدّي', zNone:'لا يوجد ذكر مشترك حاليًا.', zZero:'عُدّ أولاً ثم أضف.',
       home:'الرئيسية', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
   };
 
@@ -536,7 +536,7 @@ window.MHOrtakHatim = (function () {
   var ICON_MAP = 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z';
 
   function gridNode() {
-    var wrap = el('div');
+    var wrap = el('div', 'map');
     wrap.appendChild(panelHead(T.mapHead, ICON_MAP));
     var tabs = el('div', 'tabs');
     [['avail', T.avail], ['all', T.all]].forEach(function (p) {
@@ -554,7 +554,7 @@ window.MHOrtakHatim = (function () {
       if (filter === 'avail' && c.free === 0) return;
       var full = c.free === 0;
       var cell = el('div', 'cell' + (full ? ' full' : ''));
-      cell.appendChild(el('div', 'n', ('0' + c.g).slice(-2)));
+      cell.appendChild(el('div', 'n', String(c.g)));
       cell.appendChild(el('div', 'u', T.cuzWord));
       cell.appendChild(el('div', 's',
         full ? T.full : fmt(T.freeIn, { p: unitCount(c.free) })));
