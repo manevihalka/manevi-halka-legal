@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="__LANG__" dir="__DIR__">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<!-- ⚠️ YENI TASARIM ONIZLEMESI (28 Eyl 2026, "Gunun Halkasi").
-     Arama motorlarina KAPALI: noindex, site haritasinda yok, siteden baglanti
-     verilmiyor. Kalici hali index.html'e tasinacak; o gun baslik, h1, aciklama,
-     statik metin ve adresler korunur (Agustos'taki marka aramasi dususu dersi).
+<!-- KAYNAK SABLON: ana sayfa (index.html, Ingilizce taban) ve tr/index.html
+     bundan uretilir: `node _gen/build-home.mjs`. Sozluk _gen/site-i18n.js.
      Vakit motoru, sehir secici, ayet/hadis secimi js/mh-dynamic.js'ten
      (window.MHPrayer / window.MHDaily) okunur; burada IKINCI KOPYA YOK.
-     ⚠️ BU DOSYA URETILIR, ELLE DUZENLEME: kaynak _gen/yeni.src.html,
-     uretici `node _gen/build-yeni.mjs` (sozlugu index.html I18N'inden sokar). -->
-<meta name="robots" content="noindex, nofollow">
-<title>Manevi Halka · Preview</title>
-<meta name="theme-color" content="#1e4d35">
-<link rel="icon" type="image/png" href="/icon.png">
+     Baslik, aciklama, canonical, hreflang, OG ve yapisal veri uretici yazar
+     (asagidaki yer tutucu); Agustos 2026'daki marka aramasi dususunun dersi:
+     statik baslik ve metin HIC bos birakilmaz. -->
+<!--__HEAD__-->
 <script>
 (function () {
   var t = null;
@@ -152,7 +148,6 @@
   .top { display: flex; align-items: center; gap: 10px; padding-block: 14px; }
   .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-size: 19px; }
   .brand img { width: 30px; height: 30px; border-radius: 8px; }
-  .badge-preview { font-size: 11px; font-weight: 600; letter-spacing: .06em; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--s-line); color: var(--s-sub); }
   .top-tools { margin-inline-start: auto; display: flex; align-items: center; gap: 8px; }
   .tool-btn {
     display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 12px; border-radius: 999px;
@@ -169,7 +164,67 @@
   }
   .lang-list button { width: 100%; text-align: start; border: 0; background: transparent; padding: 9px 12px; border-radius: 9px; cursor: pointer; font-size: 14px; }
   .lang-list button:hover, .lang-list button[aria-selected="true"] { background: var(--mint-bg); }
-  @media (max-width: 560px) { .nav-read span { display: none; } .nav-read { width: 36px; padding: 0; justify-content: center; } .badge-preview { display: none; } }
+
+  /* ── bolum menusu ──
+     28 Eyl 2026 (kullanici): basliktan bolumlere dogrudan gecis. Masaustunde
+     ust menu IKONSUZ yazi (ikonlu menu ucuz durur; eski kitap ikonu da
+     "amatorce" bulundu) + kaydirinca ustte beliren ince cubuk (bulunulan bolum
+     isaretli + Indir). Telefonda ilk ekran DEGISMEZ (davet karti ilk ekranda
+     kalmali); ilk ekran gecilince altta tek bir cam hap belirir: solda bulunulan
+     bolum (dokununca bolum listesi), sagda Indir. Kenar paneli REDDEDILDI: sol
+     kenar iOS Safari'de, iki kenar Android hareket gezinmesinde "geri" hareketi. */
+  .top-nav { display: flex; align-items: center; gap: 2px; margin-inline-start: 14px; }
+  .top-nav a, .dock-nav a { position: relative; padding: 8px 12px; border-radius: 999px; font-size: 14.5px; font-weight: 600; text-decoration: none; color: inherit; opacity: .8; transition: opacity .2s ease, background .2s ease; }
+  .top-nav a:hover, .dock-nav a:hover { opacity: 1; background: color-mix(in srgb, currentColor 8%, transparent); }
+  .dock-nav a[aria-current="true"] { opacity: 1; }
+  .dock-nav a[aria-current="true"]::after { content: ""; position: absolute; inset-inline: 12px; bottom: 3px; height: 2px; border-radius: 2px; background: var(--gold); }
+  @media (max-width: 979px) { .top-nav { display: none; } }
+  .get-btn { display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--pill); color: #fff;
+    font: inherit; font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; cursor: pointer; }
+  .get-btn svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .dock-top { position: fixed; top: 0; left: 0; right: 0; z-index: 60; transform: translateY(-110%); transition: transform .28s ease; color: var(--ink);
+    background: color-mix(in srgb, var(--page) 84%, transparent); -webkit-backdrop-filter: blur(16px) saturate(1.2); backdrop-filter: blur(16px) saturate(1.2);
+    border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent); }
+  .dock-top.show { transform: none; }
+  .dock-top .wrap { display: flex; align-items: center; gap: 10px; height: 60px; }
+  .dock-nav { display: flex; align-items: center; gap: 2px; margin-inline-start: 14px; }
+  .dock-top .get-btn { margin-inline-start: auto; }
+  @media (max-width: 979px) { .dock-top { display: none; } }
+  .dock-pill { position: fixed; z-index: 60; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 160%); transition: transform .3s ease;
+    display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: 999px; max-width: calc(100vw - 32px); color: var(--ink);
+    background: color-mix(in srgb, var(--card) 86%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2);
+    border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); box-shadow: 0 18px 40px -18px rgba(10, 30, 20, .5); }
+  .dock-pill.show { transform: translate(-50%, 0); }
+  .dp-sec { display: inline-flex; align-items: center; gap: 7px; height: 42px; min-width: 0; max-width: 52vw; padding: 0 12px 0 14px; border: 0; border-radius: 999px;
+    background: transparent; color: inherit; font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; }
+  .dp-sec span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .dp-sec svg { width: 14px; height: 14px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .dock-pill .get-btn { height: 42px; }
+  @media (min-width: 980px) { .dock-pill { display: none; } }
+  .sec-sheet { position: fixed; inset: 0; z-index: 70; display: flex; align-items: flex-end; justify-content: center; background: rgba(6, 14, 11, .45);
+    opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease; }
+  .sec-sheet.open { opacity: 1; visibility: visible; }
+  .ss-panel { width: 100%; max-width: 480px; margin: 0 12px calc(12px + env(safe-area-inset-bottom, 0px)); padding: 10px; border-radius: 24px; background: var(--card); color: var(--ink);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .4); transform: translateY(24px); transition: transform .25s ease; }
+  .sec-sheet.open .ss-panel { transform: none; }
+  .ss-title { padding: 8px 14px 6px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+  html[lang="ar"] .ss-title { letter-spacing: 0; text-transform: none; font-size: 13.5px; }
+  .ss-panel a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 0 14px; border-radius: 14px;
+    font-size: 16.5px; font-weight: 600; color: inherit; text-decoration: none; }
+  .ss-panel a[aria-current="true"] { background: var(--mint-bg); }
+  .ss-panel a svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; opacity: .5; }
+  html[dir="rtl"] .ss-panel a svg { transform: scaleX(-1); }
+  #sky, #daily, #app, #reading, #download { scroll-margin-top: 72px; }
+  @media (prefers-reduced-motion: reduce) { .dock-top, .dock-pill, .sec-sheet, .ss-panel { transition: none; } }
+
+  /* ── Mâide 5:2: ilk ekranda adin ustunde tek satir; tam cumlesi tanitimin basinda ── */
+  /* Satir ici akar (esnek kutu degil): uzun mealde (EN Itani harfi harfine)
+     kunye ayri satira dusup ilk ekrani uzatmasin. */
+  .h1-verse { margin: 0 0 14px; font-size: 14.5px; font-weight: 600; line-height: 1.4; color: var(--s-sub); text-wrap: balance; }
+  .h1-verse .hv-mark { display: inline-block; width: 13px; height: 13px; margin-inline-end: 7px; vertical-align: -1px; color: #c9a55a; }
+  .h1-verse .hv-ref { font-weight: 500; opacity: .85; white-space: nowrap; }
+  .h1-verse .hv-ref::before { content: "·"; margin: 0 7px; opacity: .7; }
+  html[lang="ar"] .h1-verse .hv-text { font-family: var(--arabic); font-size: 20px; font-weight: 400; line-height: 1.6; }
 
   /* ── hero ── */
   .hero {
@@ -187,6 +242,7 @@
     .hero-copy { order: 2; text-align: center; }
     .top { padding-block: 10px; }
     .hero-copy h1 { font-size: 34px; }
+    .h1-verse { text-align: center; margin-bottom: 6px; font-size: 12.5px; line-height: 1.35; }
     .h1-sub { margin-top: 6px; font-size: 15px; }
     .cta { margin-top: 14px; }
     .invite { margin-top: 12px; }
@@ -205,7 +261,10 @@
 
   /* halka: SVG cizgiler + ortada HTML (satir kaydirabilsin diye SVG metni degil) */
   .ring-wrap { position: relative; width: min(100%, 360px); aspect-ratio: 1 / 1; max-width: 100%; }
-  @media (max-width: 820px) { .ring-wrap { width: min(66vw, 250px); } }
+  @media (max-width: 820px) { .ring-wrap { width: min(62vw, 234px); } }
+  /* 375 pt ekranda ilk ekran butcesi: Maide 5:2 satiri (EN/DE iki satir) davet
+     kartini ekrandan itmesin diye halka dar ekranda biraz kuculur (olculdu). */
+  @media (max-width: 380px) { .ring-wrap { width: min(58vw, 220px); } }
   .ring-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
   .r-track { fill: none; stroke: color-mix(in srgb, var(--s-ink, #14302a) 12%, transparent); stroke-width: 12; }
   .r-gap { fill: none; stroke: color-mix(in srgb, var(--s-ink, #14302a) 30%, transparent); stroke-width: 2; stroke-dasharray: 2 7; stroke-linecap: round; }
@@ -375,6 +434,17 @@
      ⚠️ Tiklanmayan ogeye buyume efekti VERME: tiklanabilir sanilir, dokunmatik
      ekranda da karsiligi yoktur. Etkilesim yalniz listede (secim = ekran). */
   .intro { padding-block: 8px 72px; }
+  .verse-block { max-width: 820px; margin: 16px auto 88px; text-align: center; }
+  .vb-mark { display: block; width: 28px; height: 28px; margin: 0 auto 16px; color: var(--gold); }
+  .vb-ar { font-family: var(--arabic); font-size: clamp(26px, 3.6vw, 36px); line-height: 2.05; color: var(--ink); direction: rtl; text-wrap: balance; }
+  .vb-meal { font-family: var(--display); font-weight: 400; font-size: clamp(21px, 2.6vw, 27px); line-height: 1.45; color: var(--ink); max-width: 36ch; margin: 8px auto 0; text-wrap: balance; }
+  /* DE/FR: meal izni yok, bu satir bizim anlam cumlemiz; alinti gibi gorunmesin */
+  html[lang="de"] .vb-meal, html[lang="fr"] .vb-meal { font-family: var(--sans); font-size: clamp(17px, 2vw, 19px); line-height: 1.6; color: var(--body); max-width: 46ch; }
+  html[lang="ar"] .vb-meal { display: none; }
+  .vb-ref { margin-top: 14px; font-size: 12.5px; font-weight: 600; letter-spacing: .12em; color: var(--gold); }
+  html[lang="ar"] .vb-ref { letter-spacing: 0; font-size: 14px; }
+  .vb-purpose { margin: 30px auto 0; max-width: 40ch; font-size: clamp(17px, 2vw, 19px); font-weight: 600; line-height: 1.5; color: var(--green-soft); }
+  .vb-purpose::before { content: ""; display: block; width: 44px; height: 1px; margin: 0 auto 24px; background: color-mix(in srgb, var(--gold) 60%, transparent); }
   .sec-head { text-align: center; max-width: 720px; margin: 0 auto 28px; }
   .sec-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4vw, 42px); line-height: 1.15; text-wrap: balance; }
   html[lang="ar"] .sec-head h2 { font-family: inherit; font-weight: 700; }
@@ -386,7 +456,6 @@
   html[lang="ar"] .kicker { letter-spacing: 0; text-transform: none; font-size: 14px; }
   .cicon { display: block; width: 24px; height: 24px; background-color: var(--green); -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; }
   .cicon-quran { -webkit-mask-image: url(/icons/quran.png); mask-image: url(/icons/quran.png); }
-  .cicon-cevsen { -webkit-mask-image: url(/icons/cevsen.png); mask-image: url(/icons/cevsen.png); }
   .cicon-zikir { -webkit-mask-image: url(/icons/zikir.png); mask-image: url(/icons/zikir.png); }
   .cicon-book { -webkit-mask-image: url(/icons/book.png); mask-image: url(/icons/book.png); }
 
@@ -570,12 +639,13 @@
   <div class="wrap">
     <header class="top">
       <a class="brand" href="/"><img src="/icon.png" alt="" width="30" height="30"><span>Manevi Halka</span></a>
-      <span class="badge-preview" data-t="yPreview">Preview</span>
+      <nav class="top-nav" data-t-aria="yNavSections" aria-label="Sections">
+        <a href="#sky" data-sec="sky" data-t="yNavTimes">Prayer times</a>
+        <a href="#daily" data-sec="daily" data-t="yNavDaily">Verse of the day</a>
+        <a href="#app" data-sec="app" data-t="yNavApp">The app</a>
+        <a href="#reading" data-sec="reading" data-t="ccTitle">Shared Reading</a>
+      </nav>
       <div class="top-tools">
-        <a class="tool-btn nav-read" href="/ortak-okuma.html">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10.3 5.2 8 4.5 4.5 4.5v13c3.5 0 5.8.7 7.5 2 1.7-1.3 4-2 7.5-2v-13c-3.5 0-5.8.7-7.5 2zM12 6.5v13"/></svg>
-          <span data-t="ccTitle">Shared Reading</span>
-        </a>
         <button type="button" class="tool-btn icon" id="themeToggle" aria-label="Theme">
           <svg id="iconMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.5A8.3 8.3 0 0 1 9.5 3.8a8.3 8.3 0 1 0 10.7 10.7z"/></svg>
           <svg id="iconSun" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2.5V5M12 19v2.5M21.5 12H19M5 12H2.5M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8M18.7 18.7l-1.8-1.8M7.1 7.1L5.3 5.3"/></svg>
@@ -627,13 +697,14 @@
       </div>
 
       <div class="hero-copy">
+        <p class="h1-verse"><svg class="hv-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg><span class="hv-text" data-t="yVerseShort">And cooperate with one another in virtuous conduct and conscience</span><span class="hv-ref" data-t="yVerseRef">Al-Ma'idah 5:2</span></p>
         <h1>Manevi Halka<span class="h1-sub" data-t="h1sub">Shared khatm, Jawshan and dhikr circles</span></h1>
         <div class="cta">
           <a class="store-badge" data-store="ios" target="_blank" rel="noopener" href="https://apps.apple.com/app/manevi-halka/id6760654292">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg>
             <span><span class="small" data-t="get">Download</span><span class="big">App Store</span></span>
           </a>
-          <a class="store-badge" data-store="android" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&amp;referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dpreview">
+          <a class="store-badge" data-store="android" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&amp;referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dhero">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg>
             <span><span class="small" data-t="get">Download</span><span class="big">Google Play</span></span>
           </a>
@@ -655,7 +726,7 @@
 <div class="wrap month-shell"><div class="month-wrap" id="monthWrap" hidden></div></div>
 
 <main class="wrap">
-  <section class="daily" aria-label="Manevi Halka">
+  <section class="daily" id="daily" aria-label="Manevi Halka">
     <article class="dcard skeleton" id="dAyah">
       <div class="dc-photo" id="dAyahPhoto" aria-hidden="true"></div>
       <div class="dc-body">
@@ -678,7 +749,14 @@
     </article>
   </section>
 
-  <section class="intro" aria-labelledby="introTitle">
+  <section class="intro" id="app" aria-labelledby="introTitle">
+    <figure class="verse-block">
+      <svg class="vb-mark" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 5.24"/><circle cx="14" cy="14" r="6.2" fill="none" stroke="currentColor" stroke-width="1" opacity=".6"/></svg>
+      <p class="vb-ar" lang="ar" dir="rtl">وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوٰىࣕ وَلَا تَعَاوَنُوا عَلَى الْاِثْمِ وَالْعُدْوَانِ</p>
+      <blockquote class="vb-meal" data-t="yVerseFull"></blockquote>
+      <figcaption class="vb-ref" data-t="yVerseCap"></figcaption>
+      <p class="vb-purpose" data-t="yPurpose"></p>
+    </figure>
     <div class="sec-head">
       <h2 id="introTitle" data-t="introTitle">What is the Manevi Halka app</h2>
       <p data-t="taglineSub">Share the juz with your circle, read in turns, complete the khatm together.</p>
@@ -753,7 +831,7 @@
     <div class="also">
       <h3 data-t="yAlsoTitle">And more</h3>
       <ul class="also-grid">
-        <li><span class="ai"><span class="cicon cicon-cevsen"></span></span><span data-t="a1"></span></li>
+        <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg></span><span data-t="a1"></span></li>
         <li><span class="ai"><span class="cicon cicon-zikir"></span></span><span data-t="a2"></span></li>
         <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><span data-t="a3"></span></li>
         <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2M5.6 5.6 7 7M3 12h2M19 12h2M17 7l1.4-1.4"/><path d="M7.5 15a4.5 4.5 0 0 1 9 0"/><path d="M4 19h16"/></svg></span><span data-t="a4"></span></li>
@@ -767,17 +845,18 @@
         <li><span class="ai"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></svg></span><span data-t="a12"></span></li>
       </ul>
       <p class="free-line" data-t="yFreeLine"></p>
+      <a class="text-link app-more" href="/app/" data-app-link><span data-t="yAppMore">Get to know the app</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     </div>
   </section>
 
-  <section class="together" aria-labelledby="ccTitle">
+  <section class="together" id="reading" aria-labelledby="ccTitle">
     <h2 id="ccTitle" data-t="ccTitle">Shared Reading</h2>
     <p class="lead" data-t="ccLead">An ongoing khatm shared with readers all over the world. Take a portion, or join the shared dhikr.</p>
     <div id="ccMount"></div>
     <p class="note" data-t="ccNote">No account needed</p>
   </section>
 
-  <section class="closing" aria-labelledby="closeTitle">
+  <section class="closing" id="download" aria-labelledby="closeTitle">
     <h2 id="closeTitle" data-t="closeTitle">Start your circle today</h2>
     <p class="close-text" data-t="closeText">With your family, your friends, or on your own.</p>
     <figure class="quote">
@@ -790,7 +869,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg>
         <span><span class="small" data-t="get">Download</span><span class="big">App Store</span></span>
       </a>
-      <a class="store-badge" data-store="android" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&amp;referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dpreview-close">
+      <a class="store-badge" data-store="android" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&amp;referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dclose">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg>
         <span><span class="small" data-t="get">Download</span><span class="big">Google Play</span></span>
       </a>
@@ -810,6 +889,7 @@
       </div>
     </div>
     <div class="foot-links">
+      <a href="/app/" data-app-link data-t="yNavApp">The app</a>
       <a href="/ortak-okuma.html" data-t="ccTitle">Shared Reading</a>
       <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy-en.html" data-t="privacy">Privacy Policy</a>
       <a id="lnkTerms" target="_blank" rel="noopener" href="/terms-en.html" data-t="terms">Terms of Service</a>
@@ -823,6 +903,34 @@
     <p>© 2026 Manevi Halka</p>
   </footer>
 </main>
+
+<div class="dock-top" id="dockTop" aria-hidden="true" inert>
+  <div class="wrap">
+    <a class="brand" href="#sky" data-sec="sky" tabindex="-1"><img src="/icon.png" alt="" width="30" height="30"><span>Manevi Halka</span></a>
+    <nav class="dock-nav" data-t-aria="yNavSections" aria-label="Sections">
+      <a href="#sky" data-sec="sky" data-t="yNavTimes">Prayer times</a>
+      <a href="#daily" data-sec="daily" data-t="yNavDaily">Verse of the day</a>
+      <a href="#app" data-sec="app" data-t="yNavApp">The app</a>
+      <a href="#reading" data-sec="reading" data-t="ccTitle">Shared Reading</a>
+    </nav>
+    <a class="get-btn" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span data-t="yGetApp">Get the app</span></a>
+  </div>
+</div>
+
+<div class="dock-pill" id="dockPill" aria-hidden="true" inert>
+  <button type="button" class="dp-sec" id="dpSec" aria-haspopup="dialog" aria-controls="secSheet"><span id="dpLabel">Prayer times</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+  <a class="get-btn" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span data-t="yGetApp">Get the app</span></a>
+</div>
+
+<div class="sec-sheet" id="secSheet" role="dialog" aria-modal="true" data-t-aria="yNavSections" aria-label="Sections" inert>
+  <div class="ss-panel">
+    <div class="ss-title" data-t="yNavSections">Sections</div>
+    <a href="#sky" data-sec="sky"><span data-t="yNavTimes">Prayer times</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#daily" data-sec="daily"><span data-t="yNavDaily">Verse of the day</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#app" data-sec="app"><span data-t="yNavApp">The app</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#reading" data-sec="reading"><span data-t="ccTitle">Shared Reading</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+  </div>
+</div>
 
 <div class="cp-overlay" id="cityPicker" role="dialog" aria-modal="true">
   <div class="cp-panel">
@@ -849,9 +957,11 @@
   "use strict";
 
   // ── Dil ──────────────────────────────────────────────────────────────────
-  // Sozluk index.html I18N'inden URETIMDE sokulur (_gen/build-yeni.mjs);
-  // yalniz yPreview bu sayfaya ozgu. Kalici hali index.html'e tasininca kalkar.
+  // Sozluk URETIMDE yazilir (_gen/build-home.mjs, kaynak _gen/site-i18n.js).
+  // PAGE_LANG: uretilmis dil sayfasinda (/tr/) dil ADRESTEN gelir, kayitli
+  // tercih onu ezemez; kokte null, dil tercih/cihaz diline gore secilir.
   var T = /*__I18N__*/null;
+  var PAGE_LANG = /*__PAGE_LANG__*/null;
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
   var FALLBACK = "en";
   var reduce = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -860,6 +970,7 @@
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* gizli mod */ } }
 
   function resolveLocale() {
+    if (PAGE_LANG) { lsSet("mh_lang", PAGE_LANG); return PAGE_LANG; }
     try {
       var q = new URLSearchParams(location.search).get("lang");
       if (q && SUPPORTED.indexOf(q) !== -1) return q;
@@ -886,6 +997,9 @@
       var k = nodes[i].getAttribute("data-t");
       if (t[k] != null) nodes[i].textContent = t[k];
     }
+    if (t.title) document.title = t.title;
+    var md = $("metaDesc");
+    if (md && t.desc) md.setAttribute("content", t.desc);
     var arias = document.querySelectorAll("[data-t-aria]");
     for (var ai = 0; ai < arias.length; ai++) {
       var ak = arias[ai].getAttribute("data-t-aria");
@@ -895,6 +1009,8 @@
     $("lnkTerms").setAttribute("href", "/terms" + t.suffix + ".html");
     $("lnkDelete").setAttribute("href", "/account-delete" + t.suffix + ".html");
     $("langCode").textContent = loc.toUpperCase();
+    var al = document.querySelectorAll("[data-app-link]");
+    for (var ali = 0; ali < al.length; ali++) al[ali].setAttribute("href", loc === "en" ? "/app/" : "/" + loc + "/app/");
     var opts = document.querySelectorAll("#langList button");
     for (var j = 0; j < opts.length; j++) opts[j].setAttribute("aria-selected", opts[j].getAttribute("data-lang") === loc ? "true" : "false");
   }
@@ -913,13 +1029,20 @@
     list.addEventListener("click", function (e) {
       var b = e.target.closest("button[data-lang]");
       if (!b) return;
-      loc = b.getAttribute("data-lang");
+      var next = b.getAttribute("data-lang");
+      // Turkcenin kendi adresi var: dil secimi orada bir GEZINME. /tr/'den
+      // baska dile gecen koke doner, kok tercihi (mh_lang) okuyup o dilde acar.
+      var target = next === "tr" ? "/tr/" : "/";
+      var here = PAGE_LANG === "tr" ? "/tr/" : "/";
+      if (target !== here) { lsSet("mh_lang", next); location.href = target + location.hash; return; }
+      loc = next;
       t = T[loc] || T[FALLBACK];
       lsSet("mh_lang", loc);
       list.hidden = true;
       btn.setAttribute("aria-expanded", "false");
       applyTexts();
       paintShots();
+      paintNav();
       if (!jrLive) jrFinal();
       shareCache = {};
       // Motor (mh-dynamic) ve Ortak Okuma karti bu olayla kendini yeniden kurar
@@ -1535,6 +1658,87 @@
     }, { threshold: 0.4 }).observe($("spot"));
   }
   paintShots();
+
+  // ── Bolum menusu: ust menu, masaustu ust cubugu, telefon hapi ───────────
+  // Bulunulan bolum ekranin ust %35'ini gecen son bolumdur. Ust cubuk ust
+  // basligin disina cikinca; hap ilk ekran gecilince belirir, sayfanin sonundaki
+  // magaza dugmeleri gorununce kaybolur (ayni sey iki kez gorunmesin).
+  // "Indir": iPhone/iPad'de App Store, Android'de Google Play, masaustunde
+  // sayfanin sonundaki iki dugmeye kaydirir.
+  var SECS = ["sky", "daily", "app", "reading"];
+  var SEC_KEY = { sky: "yNavTimes", daily: "yNavDaily", app: "yNavApp", reading: "ccTitle" };
+  var secCur = "", secTick = false;
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/i.test(ua);
+  (function wireGet() {
+    var store = isIOS ? "https://apps.apple.com/app/manevi-halka/id6760654292"
+      : isAndroid ? "https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Ddock"
+      : null;
+    var gets = document.querySelectorAll("[data-get]");
+    for (var i = 0; i < gets.length; i++) {
+      if (store) { gets[i].href = store; gets[i].target = "_blank"; gets[i].rel = "noopener"; }
+      else gets[i].setAttribute("data-sec", "download");
+    }
+  })();
+  function goSec(id) {
+    var el = $(id);
+    if (!el) return;
+    var y = id === "sky" ? 0 : el.getBoundingClientRect().top + window.pageYOffset - 64;
+    window.scrollTo({ top: Math.max(0, y), behavior: reduce ? "auto" : "smooth" });
+  }
+  function setShown(el, on) {
+    if (el.classList.contains("show") === on) return;
+    el.classList.toggle("show", on);
+    el.setAttribute("aria-hidden", on ? "false" : "true");
+    if (on) el.removeAttribute("inert"); else el.setAttribute("inert", "");
+  }
+  function paintNav() {
+    var links = document.querySelectorAll("a[data-sec]");
+    for (var i = 0; i < links.length; i++) links[i].setAttribute("aria-current", links[i].getAttribute("data-sec") === secCur ? "true" : "false");
+    $("dpLabel").textContent = t[SEC_KEY[secCur] || "yNavTimes"];
+  }
+  function spy() {
+    secTick = false;
+    var line = window.innerHeight * 0.35, c = "sky";
+    for (var i = 0; i < SECS.length; i++) { var el = $(SECS[i]); if (el && el.getBoundingClientRect().top <= line) c = SECS[i]; }
+    if (c !== secCur) { secCur = c; paintNav(); }
+    setShown($("dockTop"), document.querySelector(".top").getBoundingClientRect().bottom < 0);
+    var cta = document.querySelector(".closing .cta").getBoundingClientRect();
+    var ctaSeen = cta.top < window.innerHeight - 40 && cta.bottom > 0;
+    setShown($("dockPill"), $("sky").getBoundingClientRect().bottom < 40 && !ctaSeen && !sheetOpen);
+  }
+  function onScroll() { if (!secTick) { secTick = true; requestAnimationFrame(spy); } }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+
+  var sheet = $("secSheet"), sheetOpen = false, sheetReturn = null;
+  function openSheet() {
+    sheetOpen = true; sheetReturn = document.activeElement;
+    sheet.classList.add("open"); sheet.removeAttribute("inert");
+    setShown($("dockPill"), false);
+    var first = sheet.querySelector('a[aria-current="true"]') || sheet.querySelector("a");
+    if (first) first.focus({ preventScroll: true });
+  }
+  function closeSheet() {
+    if (!sheetOpen) return;
+    sheetOpen = false;
+    sheet.classList.remove("open"); sheet.setAttribute("inert", "");
+    onScroll();
+    if (sheetReturn && sheetReturn.focus) sheetReturn.focus({ preventScroll: true });
+  }
+  $("dpSec").addEventListener("click", openSheet);
+  sheet.addEventListener("click", function (e) { if (e.target === sheet) closeSheet(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[data-sec]");
+    if (!a) return;
+    e.preventDefault();
+    var id = a.getAttribute("data-sec");
+    closeSheet();
+    goSec(id);
+  });
+  spy();
 
   // ── Ortak hatim daveti + kart ────────────────────────────────────────────
   var lastSummary = null;

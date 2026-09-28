@@ -2,7 +2,7 @@ window.MHOrtakHatim = (function () {
   /**
    * Ortak Hatim bileşeni. AYNI KOD iki yerde çalışır: ana sayfadaki kart ve
    * /hatim.html. ⛔ İkinci bir kopya YAZMA; biri güncellenip öteki bayatlar
-   * (bu repoda tam olarak bu yaşandı, _gen/build-locale-pages.mjs notuna bak).
+   * (bu repoda tam olarak bu yaşandı: statik metin sözlükten aylarca geride kalmıştı).
    *
    * mount(host, { chrome: true })  -> /hatim.html: sayfa başlığı, politika
    *                                   bağlantıları, mağaza düğmesi, canlı
