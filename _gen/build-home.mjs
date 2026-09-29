@@ -348,6 +348,14 @@ const T = {
     de: "Einmaliger Kreis: Chatma zur gesegneten Nacht, gemeinsamer Fortschritt und Dschuz-Pool",
     fr: "Cercle ponctuel : Khatma de la nuit bénie, progression commune et pool de juz",
     ar: "حلقة لمرة واحدة: ختمة الليلة المباركة، التقدم الجماعي ومجمع الأجزاء" },
+  // Vesile bandinda arkadaki egik telefon: ayni halkanin bittigi hal (Halka Neticesi)
+  vDone: { tr: "Halka tamamlanınca", en: "When the circle completes", de: "Wenn der Kreis vollendet ist",
+    fr: "Quand le cercle est achevé", ar: "عند اكتمال الحلقة" },
+  altVesileDone: { tr: "Halka Neticesi: hatim tamamlandı, 30 cüz, 4 kişi, 6 gün ve senin katkın",
+    en: "Circle Result: khatm complete, 30 juz, 4 people, 6 days and your contribution",
+    de: "Ergebnis des Kreises: Chatma abgeschlossen, 30 Dschuz, 4 Personen, 6 Tage und dein Beitrag",
+    fr: "Résultat du cercle : khatma achevée, 30 juz, 4 personnes, 6 jours et ta contribution",
+    ar: "نتيجة الحلقة: اكتملت الختمة، 30 جزءًا، 4 أشخاص، 6 أيام ومساهمتك" },
   altKitap: { tr: "Kitaplık: kendi kitapların", en: "Bookshelf: your own books", de: "Bücherregal: deine eigenen Bücher",
     fr: "Bibliothèque de lecture : tes propres livres", ar: "رف الكتب: كتبك الخاصة" },
 };
@@ -400,28 +408,28 @@ const CAPS = {
 const CHIPS = {
   tr: [[["Sabah ve öğle", "kılındı"], ["İkindi", "16:20"]], [["Mishary Alafasy", "dinleniyor"], ["Mülk", "2. ayet"]],
     [["Yusuf", "Cüz 3 okunuyor"], ["4 kardeş", "1. tur"]], [["Bugün", "2 / 5"], ["Son 7 gün", "sıralama yok"]],
-    [["80 sayfa", "okunuyor"], ["Uygulamasız", "tarayıcıdan"]], [["PDF ve EPUB", ""], ["Notlar", "kitabın içinde"]]],
+    [["114 sayfa", "okunuyor"], ["Uygulamasız", "tarayıcıdan"]], [["PDF ve EPUB", ""], ["Notlar", "kitabın içinde"]]],
   en: [[["Fajr", "prayed"], ["Dhuhr", "12:56"]], [["Mishary Alafasy", "now playing"], ["Al-Mulk", "verse 2"]],
     [["Yusuf", "reading juz 3"], ["4 members", "round 1"]], [["Today", "2 / 5"], ["Last 7 days", "no rankings"]],
-    [["80 pages", "in progress"], ["No app", "in the browser"]], [["PDF and EPUB", ""], ["Notes", "inside the book"]]],
+    [["114 pages", "in progress"], ["No app", "in the browser"]], [["PDF and EPUB", ""], ["Notes", "inside the book"]]],
   de: [[["Fadschr", "verrichtet"], ["Asr", "16:11"]], [["Mishary Alafasy", "läuft gerade"], ["Al-Mulk", "Vers 2"]],
     [["Yusuf", "liest Dschuz 3"], ["4 Mitglieder:innen", "1. Runde"]], [["Heute", "2 / 5"], ["Letzte 7 Tage", "keine Ranglisten"]],
-    [["80 Seiten", "in Arbeit"], ["Ohne App", "im Browser"]], [["PDF und EPUB", ""], ["Notizen", "im Buch"]]],
+    [["114 Seiten", "in Arbeit"], ["Ohne App", "im Browser"]], [["PDF und EPUB", ""], ["Notizen", "im Buch"]]],
   fr: [[["Fajr", "accomplie"], ["Dhohr", "13:46"]], [["Mishary Alafasy", "en écoute"], ["Al-Mulk", "verset 2"]],
     [["Youssef", "lit le juz 3"], ["4 membres", "tour 1"]], [["Aujourd'hui", "2 / 5"], ["7 derniers jours", "sans classement"]],
-    [["80 pages", "en cours"], ["Sans appli", "dans le navigateur"]], [["PDF et EPUB", ""], ["Notes", "dans le livre"]]],
+    [["114 pages", "en cours"], ["Sans appli", "dans le navigateur"]], [["PDF et EPUB", ""], ["Notes", "dans le livre"]]],
   ar: [[["الفجر والظهر", "أُدّيتا"], ["العصر", "15:40"]], [["مشاري العفاسي", "قيد الاستماع"], ["الملك", "الآية 2"]],
     [["يوسف", "يقرأ الجزء 3"], ["4 أعضاء", "الجولة 1"]], [["اليوم", "2 / 5"], ["آخر 7 أيام", "بلا ترتيب"]],
-    [["80 صفحة", "قيد القراءة"], ["دون تطبيق", "من المتصفح"]], [["PDF وEPUB", ""], ["الملاحظات", "داخل الكتاب"]]],
+    [["114 صفحة", "قيد القراءة"], ["دون تطبيق", "من المتصفح"]], [["PDF وEPUB", ""], ["الملاحظات", "داخل الكتاب"]]],
 };
 // Namaz halkasinda ikinci kutucuk sol ustte: 06:00-12:00 ceyreginde hicbir dilde etiket yok
 // (sag alt yatsi etiketinin yeri, yatsi dile gore 19:22 ile 21:11 arasinda kayiyor).
 const CHIP_POS = [[[13, 76, ""], [18, 12, "g"]], [[85, 22, "g"], [14, 74, ""]], [[80, 6, "g"], [16, 90, ""]],
-  [[87, 74, ""], [14, 28, "g"]], [[86, 20, "g"], [14, 80, ""]], [[86, 78, ""], [14, 24, "g"]]];
+  [[87, 74, ""], [14, 28, "g"]], [[86, 20, "g"], [14, 86, ""]], [[86, 78, ""], [14, 24, "g"]]];
 const RING_LABEL = {
   verse: { tr: "Mülk · 30 ayet", en: "Al-Mulk · 30 verses", de: "Al-Mulk · 30 Verse", fr: "Al-Mulk · 30 versets", ar: "الملك · 30 آية" },
   week: { tr: "Bugün", en: "Today", de: "Heute", fr: "Aujourd'hui", ar: "اليوم" },
-  pages: { tr: "%7", en: "7%", de: "7 %", fr: "7 %", ar: "7%" },
+  pages: { tr: "%33", en: "33%", de: "33 %", fr: "33 %", ar: "33%" },
 };
 const MORE = {
   small: { tr: "Manevi Halka'da", en: "In Manevi Halka", de: "In Manevi Halka", fr: "Dans Manevi Halka", ar: "في Manevi Halka" },
@@ -590,7 +598,7 @@ function fxParcalari(dil) {
     fxVakit: ar
       ? parca("fx-w-small.webp", "fx-w fx-sq p-vs") + parca("fx-w-ring.webp", "fx-w fx-sq p-vb")
       : parca("fx-w-med.webp", "fx-w p-va") + parca("fx-w-ring.webp", "fx-w fx-sq p-vb") + parca("fx-w-lock.webp", "fx-w p-vc"),
-    fxHalka: parca("fx-h-tur.webp", "fx-w p-ha") + parca("fx-h-pool.webp", "fx-card p-hb"),
+    fxHalka: parca("fx-h-tur.webp", "fx-w p-ha") + parca("fx-h-task.webp", "fx-w p-hb"),
     fxAmel: parca("fx-a-today.webp", "fx-card p-aa") + parca("fx-a-hadis.webp", "fx-w p-ab"),
   };
 }

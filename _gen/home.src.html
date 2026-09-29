@@ -267,9 +267,18 @@
   .band .eyebrow { color: #d9b563; }
   .band h2 { font-size: clamp(30px, 3.8vw, 44px); line-height: 1.12; margin-top: 12px; color: #f6f1e4; }
   .band p { margin-top: 16px; color: var(--band-sub); font-size: 17px; max-width: 36em; }
-  .band-visual { position: relative; width: 250px; }
-  .band-visual .phone { position: relative; inset: auto; width: 250px; aspect-ratio: 640 / 1391; cursor: default; }
-  .webcard { position: absolute; inset-inline-start: -120px; bottom: 44px; width: 220px; padding: 14px; border-radius: 16px; background: #fffdf8; color: #14231c; box-shadow: 0 24px 50px -20px rgba(0, 0, 0, .55); font-size: 13px; line-height: 1.4; }
+  /* Iki telefon: onde halkanin bugunu (%33), arkada egik duran ayni halkanin bittigi hal
+     (Halka Neticesi). Arkadaki ekran katki kartinin hemen altindan kesildi: alttaki ayet
+     alintisi DE/FR'de telifli meal, sitede gosterilmez. Alt kenari web kartinin altinda kalir. */
+  .band-visual { position: relative; width: 420px; }
+  .band-visual .phone { position: relative; inset: auto; width: 236px; aspect-ratio: 640 / 1391; cursor: default; }
+  .band-visual .ves-now { z-index: 2; margin-inline-start: auto; }
+  .band-visual .ves-done { position: absolute; z-index: 1; top: 30px; inset-inline-start: 0; width: 214px; aspect-ratio: 640 / 1053; transform: rotate(-6deg); transform-origin: 50% 60%; -webkit-mask-image: linear-gradient(to bottom, #000 94%, transparent); mask-image: linear-gradient(to bottom, #000 94%, transparent); }
+  [dir="rtl"] .band-visual .ves-done { transform: rotate(6deg); }
+  .ves-tag { position: absolute; z-index: 4; top: -4px; inset-inline-start: -14px; display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #fffdf8; color: #14231c; font-size: 13.5px; font-weight: 600; line-height: 1.2; white-space: nowrap; box-shadow: 0 14px 30px -12px rgba(0, 0, 0, .55); }
+  .ves-tag i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: #c9a55a; }
+  /* Web karti ustten sabit: yuksekligi dile gore degisir (DE'de baslik iki satir), alttan sabitlense arkadaki katki satirini orterdi */
+  .webcard { position: absolute; z-index: 3; inset-inline-start: 30px; top: 374px; width: 220px; padding: 14px; border-radius: 16px; background: #fffdf8; color: #14231c; box-shadow: 0 24px 50px -20px rgba(0, 0, 0, .55); font-size: 13px; line-height: 1.4; }
   .webcard .url { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #6b766f; background: #f1eee6; border-radius: 8px; padding: 5px 8px; }
   .webcard .url svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; }
   .webcard b { display: block; margin-top: 10px; font-size: 14px; }
@@ -283,9 +292,18 @@
   .band .ticks { color: #dfe9e2; }
   @media (max-width: 860px) {
     .band { grid-template-columns: 1fr; }
-    .band-visual { margin: 8px auto 0; width: 210px; }
-    .band-visual .phone { width: 210px; }
-    .webcard { inset-inline-start: -70px; width: 190px; bottom: 24px; }
+    /* Kolondan biraz genis, bandin ic boslugunda esit tasar: arkadaki ekranin katki satiri acikta kalsin */
+    .band-visual { margin: 18px calc(50% - 162px) 0; width: 324px; }
+    .band-visual .phone { width: 188px; }
+    .band-visual .ves-done { width: 172px; top: 26px; }
+    .ves-tag { top: -8px; inset-inline-start: -4px; font-size: 12px; padding: 7px 12px; }
+    .webcard { inset-inline-start: 8px; width: 188px; top: 300px; }
+  }
+  @media (max-width: 380px) {
+    .band-visual { margin-inline: calc(50% - 153px); width: 306px; }
+    .band-visual .phone { width: 172px; }
+    .band-visual .ves-done { width: 158px; }
+    .webcard { top: 276px; width: 176px; }
   }
 
   /* ── her gun: sagli sollu satirlar ── */
@@ -315,9 +333,9 @@
   .p-vb { width: 27%; top: 44%; inset-inline-end: -1%; }
   .p-vc { width: 50%; bottom: 7%; inset-inline-start: -2%; }
   .p-vs { width: 27%; top: 12%; inset-inline-start: 2%; }
-  /* Hatim: tur geri sayimi telefondaki kartin ustunde (buyutec gibi), cuz havuzu altta */
+  /* Hatim: tur geri sayimi telefondaki kartin ustunde (buyutec gibi), uygulamanin dagittigi gorev karti altta */
   .p-ha { width: 66%; top: 24%; inset-inline-start: 4%; }
-  .p-hb { width: 62%; bottom: 8%; inset-inline-end: -5%; }
+  .p-hb { width: 46%; bottom: 4%; inset-inline-end: -2%; }
   /* Ortak Ameller: bugunun isaretleri telefondaki listenin ustunde (buyutec), hadis altta */
   .p-aa { width: 60%; top: 33%; inset-inline-end: 12%; }
   .p-ab { width: 66%; bottom: 5%; inset-inline-start: -3%; }
@@ -335,7 +353,8 @@
     .p-va { width: 76%; top: 5%; }
     .p-vc { width: 64%; }
     .p-vb, .p-vs { width: 34%; }
-    .p-ha, .p-hb { width: 76%; }
+    .p-ha { width: 76%; }
+    .p-hb { width: 58%; bottom: 2%; }
     .p-ha { inset-inline-start: 2%; }
     .p-aa { width: 72%; }
     .p-ab { width: 80%; }
@@ -676,7 +695,9 @@
         </ul>
       </div>
       <div class="band-visual">
-        <figure class="phone"><img src="{{imgBase}}vesile.webp" alt="{{altVesile}}" width="640" height="1391"></figure>
+        <figure class="phone ves-done"><img src="{{imgBase}}vesile-done.webp" alt="{{altVesileDone}}" width="640" height="1053" loading="lazy"></figure>
+        <figure class="phone ves-now"><img src="{{imgBase}}vesile.webp" alt="{{altVesile}}" width="640" height="1391"></figure>
+        <span class="ves-tag" aria-hidden="true"><i></i>{{vDone}}</span>
         <div class="webcard" aria-hidden="true">
           <span class="url"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>manevihalka.app/halka</span>
           <b>{{wcTitle}}</b>
@@ -1044,14 +1065,15 @@
         }
         label(g, 0, r.label, true);
       },
-      // Tek seferlik hatim: 604 sayfa; 40 okundu, 80 okunuyor, 484 bosta
+      // Tek seferlik hatim: 604 sayfa; 200 okundu, 114 okunuyor, 290 bosta (vesile.webp ile birebir)
       pages: function (g, r) {
         el("circle", { cx: C, cy: C, r: R, "class": "seg thin open" }, g);
-        var d1 = 40 / 604 * 360, d2 = 120 / 604 * 360;
+        var d1 = 200 / 604 * 360, d2 = 314 / 604 * 360;
         el("path", { d: arc(0, d1, R), "class": "seg thin done" }, g);
         el("path", { d: arc(d1, d2, R), "class": "seg thin prog" }, g);
         for (var i = 0; i < 30; i++) { var a = pt(i * 12, R - 6), b = pt(i * 12, R + 6); el("line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1], "class": "tick" }, g); }
-        label(g, d2 / 2, r.label, true);
+        // Etiket okunan yayin bittigi yerde (yan ortadaki ok dugmesine denk gelmesin)
+        label(g, d1, r.label, true);
       },
       // Kitapligim: alti kitap, her yay bir kitabin ilerlemesi
       books: function (g) {
