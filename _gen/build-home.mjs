@@ -132,9 +132,9 @@ const T = {
     ar: "" },
   verseRef: { tr: "Mâide 5:2 (bir bölümü)", en: "Al-Ma'idah 5:2 (excerpt)", de: "Sure al-Ma'ida 5:2, sinngemäß",
     fr: "Sourate al-Ma'ida 5:2, en substance", ar: "المائدة 5:2 (جزء من الآية)" },
-  purpose: { tr: "Manevi Halka, bu yardımlaşmayı kolaylaştırmak için kuruldu.", en: "Manevi Halka was built to make this cooperation easier.",
-    de: "Manevi Halka wurde geschaffen, um diese gegenseitige Hilfe leichter zu machen.", fr: "Manevi Halka a été créé pour faciliter cette entraide.",
-    ar: "أُسِّس Manevi Halka لتيسير هذا التعاون." },
+  purpose: { tr: "Manevi Halka, inşallah bu yardımlaşmayı kolaylaştırmak için kuruldu.", en: "Manevi Halka was built to make this cooperation easier, inshallah.",
+    de: "Manevi Halka wurde geschaffen, um diese gegenseitige Hilfe, so Allah will, leichter zu machen.", fr: "Manevi Halka a été créé pour faciliter, si Allah le veut, cette entraide.",
+    ar: "أُسِّس Manevi Halka لتيسير هذا التعاون إن\u00a0شاء\u00a0الله." },
 
   soloKicker: { tr: "Tek başına", en: "On your own", de: "Allein", fr: "Seul", ar: "بمفردك" },
   soloTitle: { tr: "Günlük ibadetlerine eşlik eder", en: "A companion to your daily worship", de: "Begleitet deine tägliche Andacht",
@@ -582,13 +582,21 @@ function webpBoyut(yol) {
  *    onizlemede vakit adi ile saat bitisik ciziliyor (RTL hatasi); yerine kucuk widget.
  * Kaynak kareler: oturum cizimi (simulator MH-Promo-Reklam), kirpma betigi mkcrops.py.
  */
+// Kirpintinin telefon goruntusundeki yeri (yuzde: x, y, genislik, yukseklik). Ana sayfadaki
+// "ekrandan kalkan yakin plan" hareketi kirpintiyi tam bu yerden kaldirir; kaydi olmayan
+// (widget, gorev karti, meal: ekranda karsiligi yok) telefonun ortasindan acilir.
+// Olcum: `python3 _gen/fx-src.py` (kirpinti ya da ekran goruntusu degisince yeniden calistir).
+const FX_SRC = JSON.parse(readFileSync(join(KOK, "_gen", "fx-src.json"), "utf8"));
+
 function fxParcalari(dil) {
   const parca = (dosya, sinif) => {
     const src = dosya.startsWith("/") ? dosya : `/img/app/${dil}/${dosya}`;
     const yol = join(KOK, src.slice(1));
     if (!existsSync(yol)) hata(`${dil}: kirpinti yok: ${src}`);
     const [w, h] = webpBoyut(yol);
-    return `<img class="fx ${sinif}" src="${src}" alt="" width="${w}" height="${h}" loading="lazy" decoding="async">`;
+    const yer = (FX_SRC[dil] || {})[src.split("/").pop()];
+    const veri = yer ? ` data-src="${yer.join(",")}"` : "";
+    return `<img class="fx ${sinif}" src="${src}" alt="" width="${w}" height="${h}"${veri} loading="lazy" decoding="async">`;
   };
   const mealli = dil === "tr" || dil === "en";
   const ar = dil === "ar";

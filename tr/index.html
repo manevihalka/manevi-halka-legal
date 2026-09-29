@@ -417,11 +417,14 @@
      etrafina yuzer; konumlar mantiksal (inset-inline) oldugu icin Arapcada kendiliginden aynalanir.
      fx-w: kendi koseleri saydam parca (yalniz golge) · fx-card: beyaz kart icinde kirpinti. */
   .fx-host .phone { z-index: 1; }
-  .fx { position: absolute; z-index: 2; height: auto; display: block; pointer-events: none; user-select: none; }
-  .fx-w { filter: drop-shadow(0 18px 24px rgba(10, 30, 20, .22)) drop-shadow(0 2px 4px rgba(10, 30, 20, .10)); }
-  .fx-card { background: #fff; border-radius: 18px; box-shadow: 0 22px 44px -18px rgba(10, 30, 20, .38), 0 0 0 1px rgba(20, 35, 28, .06); }
-  :root[data-theme="dark"] .fx-w { filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .5)); }
-  :root[data-theme="dark"] .fx-card { box-shadow: 0 24px 46px -16px rgba(0, 0, 0, .65), 0 0 0 1px rgba(255, 255, 255, .06); }
+  /* --sh: golge gucu (0-1). Kirpinti ekrandaki yerine inerken golgesi kaybolur, ekrandaki
+     kismin ustune dikissiz oturur. calc'li satir desteklenmezse ustteki duz golge kalir. */
+  .fx { position: absolute; z-index: 2; height: auto; display: block; pointer-events: none; user-select: none; transform-origin: 50% 50%; --sh: 1; }
+  .fx-move .fx { will-change: transform, opacity; }
+  .fx-w { filter: drop-shadow(0 18px 24px rgba(10, 30, 20, .22)) drop-shadow(0 2px 4px rgba(10, 30, 20, .10)); filter: drop-shadow(0 18px 24px rgba(10, 30, 20, calc(.22 * var(--sh)))) drop-shadow(0 2px 4px rgba(10, 30, 20, calc(.10 * var(--sh)))); }
+  .fx-card { background: #fff; border-radius: 18px; box-shadow: 0 22px 44px -18px rgba(10, 30, 20, .38), 0 0 0 1px rgba(20, 35, 28, .06); box-shadow: 0 22px 44px -18px rgba(10, 30, 20, calc(.38 * var(--sh))), 0 0 0 1px rgba(20, 35, 28, calc(.06 * var(--sh))); }
+  :root[data-theme="dark"] .fx-w { filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .5)); filter: drop-shadow(0 18px 26px rgba(0, 0, 0, calc(.5 * var(--sh)))); }
+  :root[data-theme="dark"] .fx-card { box-shadow: 0 24px 46px -16px rgba(0, 0, 0, .65), 0 0 0 1px rgba(255, 255, 255, .06); box-shadow: 0 24px 46px -16px rgba(0, 0, 0, calc(.65 * var(--sh))), 0 0 0 1px rgba(255, 255, 255, calc(.06 * var(--sh))); }
   /* Kur'an: meal (ya da kelime takibi) ustte, dinleme cubugu altta */
   .p-qa { width: 64%; top: 8%; inset-inline-start: -6%; }
   .p-qb { width: 66%; bottom: 9%; inset-inline-end: -5%; }
@@ -711,7 +714,7 @@
     <p class="ar" lang="ar">وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوٰى وَلَا تَعَاوَنُوا عَلَى الْاِثْمِ وَالْعُدْوَانِ</p>
     <p class="meal">İyilik ve takva üzerinde yardımlaşın, günah ve düşmanlık üzerinde yardımlaşmayın.</p>
     <p class="ref">Mâide 5:2 (bir bölümü)</p>
-    <p class="purpose">Manevi Halka, bu yardımlaşmayı kolaylaştırmak için kuruldu.</p>
+    <p class="purpose">Manevi Halka, inşallah bu yardımlaşmayı kolaylaştırmak için kuruldu.</p>
   </div>
 
   <!-- TEK BASINA -->
@@ -738,7 +741,7 @@
           <p>Kur'an okumalarını kendi düzeninde sürdür. Dinlerken okunan kelime işaretlenir.</p>
           <ul class="ticks"><li>Üç kâriden kelime takipli sesli tilavet</li><li>Ezber çalışma kipi, notlar ve yer imleri</li><li>Sure ya da cüz indirip çevrimdışı dinleme</li></ul>
         </div>
-        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/quran.webp" alt="Kur'an okuyucu, Mülk suresi, sesli tilavet açık" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-qa" src="/img/app/tr/fx-q-meal.webp" alt="" width="720" height="345" loading="lazy" decoding="async"><img class="fx fx-w p-qb" src="/img/app/tr/fx-q-bar.webp" alt="" width="720" height="101" loading="lazy" decoding="async"></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/quran.webp" alt="Kur'an okuyucu, Mülk suresi, sesli tilavet açık" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-qa" src="/img/app/tr/fx-q-meal.webp" alt="" width="720" height="345" loading="lazy" decoding="async"><img class="fx fx-w p-qb" src="/img/app/tr/fx-q-bar.webp" alt="" width="720" height="101" data-src="3.12,83.25,94.38,6.04" loading="lazy" decoding="async"></div>
       </div>
       <div class="row">
         <div>
@@ -774,7 +777,7 @@
           <p>Turlar düzenli ilerler, kimin hangi cüzü okuduğu tek bakışta görünür.</p>
           <ul class="ticks"><li>Cüzler her tur kendiliğinden dağıtılır</li><li>Yetişemeyen payını havuza bırakabilir</li><li>Rehber Modu: halkayı kuran yalnız izleyebilir</li></ul>
         </div>
-        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/halka.webp" alt="Aile Hatmi, halka sekmesi: dört kişi ve cüzleri" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w p-ha" src="/img/app/tr/fx-h-tur.webp" alt="" width="720" height="137" loading="lazy" decoding="async"><img class="fx fx-w p-hb" src="/img/app/tr/fx-h-task.webp" alt="" width="720" height="859" loading="lazy" decoding="async"></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/halka.webp" alt="Aile Hatmi, halka sekmesi: dört kişi ve cüzleri" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w p-ha" src="/img/app/tr/fx-h-tur.webp" alt="" width="720" height="137" data-src="8.12,25.45,83.44,7.19" loading="lazy" decoding="async"><img class="fx fx-w p-hb" src="/img/app/tr/fx-h-task.webp" alt="" width="720" height="859" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -814,7 +817,7 @@
           <p>Beş vakti, ezberi ya da bir duayı halkanla birlikte sürdür. Herkes kendi gününü işaretler.</p>
           <ul class="ticks"><li>Sıralama, puan ve rozet yok</li><li>Görünürlük baştan belli: yalnız yönetici ya da karşılıklı</li><li>Hatırlatmalar senin vaktine göre</li></ul>
         </div>
-        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/amel.webp" alt="Ortak amel: 5 vakit, sabah ve öğle işaretli" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-aa" src="/img/app/tr/fx-a-today.webp" alt="" width="720" height="390" loading="lazy" decoding="async"><img class="fx fx-w p-ab" src="/img/app/tr/fx-a-hadis.webp" alt="" width="720" height="313" loading="lazy" decoding="async"></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/tr/amel.webp" alt="Ortak amel: 5 vakit, sabah ve öğle işaretli" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-aa" src="/img/app/tr/fx-a-today.webp" alt="" width="720" height="390" data-src="4.69,32.78,90.62,22.57" loading="lazy" decoding="async"><img class="fx fx-w p-ab" src="/img/app/tr/fx-a-hadis.webp" alt="" width="720" height="313" data-src="3.44,73.47,93.12,18.55" loading="lazy" decoding="async"></div>
       </div>
     </div>
     <div class="quiet">
@@ -1259,6 +1262,76 @@
     function stop() { if (raf) cancelAnimationFrame(raf); raf = null; tbtn.forEach(function (b) { b.querySelector(".fill").style.width = "0"; }); }
     paint();
     if (!reduce) raf = requestAnimationFrame(tick);
+  })();
+
+  // ── Yakin plan kirpintilari: ekrandan kalkan yakin plan ──
+  // Ekranda karsiligi olan kirpinti (data-src: telefon goruntusundeki yeri, yuzde; _gen/fx-src.py
+  // olcer) satir ekranin ortasina yaklasirken tam o yerden kalkip buyuyerek yerine konur,
+  // uzaklasinca yerine geri iner. Karsiligi olmayan (widget, gorev karti, meal) telefonun
+  // ortasindan acilir. Hareket zamana degil kaydirmaya bagli; satir ortadayken son hal CSS'teki
+  // yerlesimin aynisi. Kirpinti hicbir anda ekranin disina tasmaz: son yeri kenara tasiyorsa
+  // iceri kaydirilir (PAD), hareket de telefon ile son yer arasinda kalir.
+  (function () {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var PAD = 10;
+    var hosts = [].slice.call(document.querySelectorAll(".fx-host")).map(function (h) {
+      return { el: h, fig: h.querySelector(".phone"), crops: [].slice.call(h.querySelectorAll(".fx")).map(function (c) {
+        var s = c.getAttribute("data-src");
+        return { el: c, src: s ? s.split(",").map(Number) : null };
+      }) };
+    }).filter(function (h) { return h.fig && h.crops.length; });
+    if (!hosts.length) return;
+    document.documentElement.classList.add("fx-move");
+    var raf = 0;
+
+    function measure() {
+      var vw = document.documentElement.clientWidth;
+      hosts.forEach(function (h) {
+        var img = h.fig.querySelector("img");
+        h.scr = { x: h.fig.offsetLeft + img.offsetLeft, y: h.fig.offsetTop + img.offsetTop, w: img.offsetWidth, h: img.offsetHeight };
+        var left = h.el.getBoundingClientRect().left;
+        h.crops.forEach(function (c) {
+          c.f = { x: c.el.offsetLeft, y: c.el.offsetTop, w: c.el.offsetWidth, h: c.el.offsetHeight };
+          var l = left + c.f.x, r = l + c.f.w;
+          c.gx = l < PAD ? PAD - l : r > vw - PAD ? vw - PAD - r : 0;
+        });
+      });
+    }
+
+    function frame() {
+      raf = 0;
+      var vh = window.innerHeight, R = vh * 0.6;
+      hosts.forEach(function (h) {
+        var b = h.el.getBoundingClientRect();
+        if (b.bottom < -vh * 0.5 || b.top > vh * 1.5) return;
+        var d = b.top + b.height / 2 - vh / 2;
+        // Ortaya yakin genis bir bantta tam oturur, bant disinda yumusakca ekrana doner
+        var t = Math.max(0, Math.min(1, (1 - Math.abs(d) / R) / 0.7));
+        var p = t * t * (3 - 2 * t), k = 1 - p;
+        var S = h.scr;
+        h.crops.forEach(function (c) {
+          var f = c.f, cx = f.x + f.w / 2, cy = f.y + f.h / 2, tx, ty, s, op = 1, sh = 1;
+          if (c.src) {
+            var rw = c.src[2] / 100 * S.w, rh = c.src[3] / 100 * S.h;
+            var rx = S.x + c.src[0] / 100 * S.w + rw / 2, ry = S.y + c.src[1] / 100 * S.h + rh / 2;
+            s = 1 + (rw / f.w - 1) * k; tx = c.gx * p + (rx - cx) * k; ty = (ry - cy) * k; sh = p;
+          } else {
+            s = 1 - 0.55 * k; tx = c.gx * p + (S.x + S.w / 2 - cx) * k; ty = (S.y + S.h / 2 - cy) * k;
+            op = Math.min(1, p * 1.5);
+          }
+          c.el.style.transform = "translate(" + tx.toFixed(1) + "px," + ty.toFixed(1) + "px) scale(" + s.toFixed(3) + ")";
+          c.el.style.opacity = op.toFixed(3);
+          c.el.style.setProperty("--sh", sh.toFixed(3));
+        });
+      });
+    }
+
+    function ask() { if (!raf) raf = requestAnimationFrame(frame); }
+    function relayout() { measure(); ask(); }
+    relayout();
+    window.addEventListener("scroll", ask, { passive: true });
+    window.addEventListener("resize", relayout);
+    window.addEventListener("load", relayout);
   })();
 </script>
 <script src="/js/mh-dynamic.js" defer></script>
