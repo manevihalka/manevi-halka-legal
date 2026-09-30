@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 28 Eylül 2026
+**Son güncelleme:** 29 Eylül 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -95,6 +95,20 @@ haklarınızın neler olduğunu açıklar.
   Yönetici, o kişinin çalıştığı hedefler için (özel hedef ya da görevin hedefi)
   Cetele ilerlemesinden yalnız kaba durumu görür (başlamadı, çalışıyor,
   ezberledi); takılınan yerler, tekrar takvimi ve bölüm ayrıntıları kişide kalır
+- **Uygulaması olmayan misafir üyeler:** Halka yöneticisi, uygulamayı kullanmayan
+  bir yakınını halkaya misafir üye olarak ekleyebilir. Bunun için yalnızca
+  yöneticinin girdiği ad saklanır (soyadı gerekmez); misafirin telefon numarası,
+  e-posta adresi ya da başka bir iletişim bilgisi **alınmaz**. Misafirin şifresi ve
+  giriş yolu yoktur, uygulamayı kendisi kullanmaz. Misafire düşen okuma görevlerini
+  halkadaki bir üye (sorumlusu) takip eder; görevi sorumlu ya da yönetici okundu
+  olarak işaretler ve bunu kimin yaptığı kaydedilir. Misafirin adı ve görev durumu
+  halkanın üyelerine görünür. Sorumlu, misafirin ileriki okumalarını gösteren bir
+  planı PDF ya da görsel olarak paylaşabilir; bu belge **cihazda üretilir ve
+  sunucularımıza yüklenmez**. Halkada bir değişiklik olduğunda sorumluyu ve
+  yöneticiyi uyarabilmek için yalnızca planın kısa bir özeti (tur, okunacak
+  bölümün numarası ve tarih) saklanır. Bir yakınınızı misafir olarak eklerken bunu
+  onun bilgisiyle yapmanız gerekir; eklediğiniz kişiye ait bilgilerden siz
+  sorumlusunuz
 
 ### 2.2. Otomatik toplanan bilgiler
 
@@ -249,6 +263,10 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 - **Paylaşılan zikir listeleri:** Bir zikir listesi paylaştığınızda oluşan anlık görüntü,
   hesabınızı silseniz bile onu kütüphanesine ekleyenler için saklanmaya devam eder; ancak
   paylaşan olarak adınız hesabınız silinince anonim hale getirilir
+- **Misafir üyeler:** Misafir halkadan çıkarıldığında adı ve paylaşılan plan
+  özetleri hemen silinir. Okuduğu görevlerin isimsiz kaydı, yukarıdaki
+  "kullanılmayan misafir hesaplar" kuralıyla kalıcı olarak silinir. Halkada
+  misafirlerden başka üye kalmazsa misafirler de halkadan çıkarılır
 - **Bildirim logları:** 30 gün sonra otomatik silinir
 - **Audit logları:** Güvenlik ve uyumluluk için 12 ay saklanır
 

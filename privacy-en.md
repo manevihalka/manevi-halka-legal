@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** September 28, 2026
+**Last updated:** September 29, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -99,6 +99,21 @@ rights you have.
   state of their Cetele progress (not started, learning, memorized); the places
   they struggle with, the review schedule and section details stay with the
   person
+- **Guest members without the app:** A circle's admin can add someone close to
+  them who does not use the app to the circle as a guest member. For this, only
+  the name the admin enters is stored (no surname needed); the guest's phone
+  number, email address or any other contact detail is **not collected**. A guest
+  has no password or way to sign in and does not use the app themselves. A member
+  of the circle (the person looking after the guest) keeps track of the guest's
+  reading tasks; that member or the admin marks a task as read, and who did so is
+  recorded. The guest's name and task status are visible to the circle's members.
+  The member looking after the guest can share a plan of the guest's upcoming
+  readings as a PDF or an image; this document is **created on the device and not
+  uploaded to our servers**. To alert that member and the admin when something
+  changes in the circle, only a short summary of the plan (round, number of the
+  section to read and date) is stored. When you add someone close to you as a
+  guest, do so with their knowledge; you are responsible for the information you
+  enter about them
 
 ### 2.2. Automatically collected information
 
@@ -255,6 +270,10 @@ We use the following third-party services to provide our service:
 - **Shared dhikr lists:** A snapshot created when you share a dhikr list continues to be
   kept for those who added it to their library, even if you delete your account; however,
   your name as the sharer is anonymized when your account is deleted
+- **Guest members:** When a guest is removed from a circle, their name and the
+  shared plan summaries are deleted immediately. The anonymous record of the tasks
+  they read is permanently deleted under the "Unused guest accounts" rule above.
+  If no members other than guests remain in a circle, the guests are removed too
 - **Notification logs:** Auto-deleted after 30 days
 - **Audit logs:** Retained for 12 months for security and compliance
 

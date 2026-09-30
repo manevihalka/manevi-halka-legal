@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 28 septembre 2026
+**Dernière mise à jour :** 29 septembre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -95,6 +95,22 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
   progression Cetele (pas commencé, en cours, mémorisé) ; les passages
   difficiles, le calendrier de révision et le détail des sections restent chez
   la personne
+- **Membres invités sans l'application :** l'administrateur d'un cercle peut y
+  ajouter comme membre invité un proche qui n'utilise pas l'application. Pour cela,
+  seul le nom saisi par l'administrateur est conservé (pas besoin de nom de
+  famille) ; le numéro de téléphone, l'adresse e-mail ou toute autre coordonnée de
+  l'invité **ne sont pas collectés**. Un invité n'a ni mot de passe ni moyen de se
+  connecter et n'utilise pas l'application lui-même. Un membre du cercle (la
+  personne qui suit l'invité) s'occupe de ses tâches de lecture ; ce membre ou
+  l'administrateur marque une tâche comme lue, et l'auteur de ce marquage est
+  enregistré. Le nom de l'invité et l'état de ses tâches sont visibles par les
+  membres du cercle. La personne qui suit l'invité peut partager un plan de ses
+  prochaines lectures en PDF ou en image ; ce document est **créé sur l'appareil et
+  n'est pas envoyé sur nos serveurs**. Pour prévenir cette personne et
+  l'administrateur en cas de changement dans le cercle, seul un court résumé du
+  plan est conservé (tour, numéro de la partie à lire et date). Si tu ajoutes un
+  proche comme invité, fais-le avec son accord ; tu es responsable des
+  informations que tu saisis à son sujet
 
 ### 2.2. Informations collectées automatiquement
 
@@ -240,6 +256,11 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   dhikr continue d'être conservé pour ceux qui l'ont ajoutée à leur bibliothèque, même si
   vous supprimez votre compte ; toutefois, votre nom en tant que personne ayant partagé est
   anonymisé lors de la suppression de votre compte
+- **Membres invités :** lorsqu'un invité est retiré d'un cercle, son nom et les
+  résumés de plan partagés sont supprimés immédiatement. L'enregistrement anonyme
+  des tâches qu'il a lues est supprimé définitivement selon la règle des comptes
+  invités inutilisés ci-dessus. S'il ne reste dans un cercle que des invités, ils
+  en sont retirés eux aussi
 - **Journaux de notifications :** supprimés automatiquement après 30 jours
 - **Journaux d'audit :** conservés pendant 12 mois pour des raisons de sécurité et de conformité
 

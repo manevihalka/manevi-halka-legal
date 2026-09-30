@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 28. September 2026
+**Zuletzt aktualisiert:** 29. September 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -107,6 +107,22 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   Cetele-Fortschritt nur einen groben Stand (nicht begonnen, wird gelernt,
   auswendig gelernt); schwierige Stellen, Wiederholungsplan und
   Abschnittsdetails bleiben bei der Person
+- **Gastmitglieder ohne die App:** Die Leitung eines Kreises kann jemanden aus
+  ihrem Umfeld, der die App nicht nutzt, als Gastmitglied in den Kreis aufnehmen.
+  Dafür wird nur der Name gespeichert, den die Leitung eingibt (ein Nachname ist
+  nicht nötig); Telefonnummer, E-Mail-Adresse oder andere Kontaktdaten des Gastes
+  werden **nicht erhoben**. Ein Gast hat kein Passwort und keinen Zugang, er nutzt
+  die App nicht selbst. Ein Mitglied des Kreises (die Betreuung des Gastes) behält
+  die Leseaufgaben des Gastes im Blick; dieses Mitglied oder die Leitung markiert
+  eine Aufgabe als gelesen, und es wird gespeichert, wer das getan hat. Name und
+  Aufgabenstand des Gastes sind für die Mitglieder des Kreises sichtbar. Die
+  Betreuung kann einen Plan der kommenden Lesungen des Gastes als PDF oder Bild
+  teilen; dieses Dokument wird **auf dem Gerät erstellt und nicht auf unsere Server
+  hochgeladen**. Damit die Betreuung und die Leitung bei Änderungen im Kreis
+  benachrichtigt werden können, wird nur eine kurze Zusammenfassung des Plans
+  gespeichert (Runde, Nummer des zu lesenden Abschnitts und Datum). Wenn du
+  jemanden als Gast hinzufügst, tu das mit dessen Wissen; für die Angaben, die du
+  über die Person machst, bist du verantwortlich
 
 ### 2.2. Automatisch erhobene Informationen
 
@@ -284,6 +300,11 @@ Dienstes:
   bleibt für diejenigen erhalten, die sie zu ihrer Bibliothek hinzugefügt haben, auch wenn
   Sie Ihr Konto löschen; Ihr Name als teilende Person wird jedoch bei der Kontolöschung
   anonymisiert
+- **Gastmitglieder:** Wird ein Gast aus einem Kreis entfernt, werden sein Name und
+  die geteilten Planzusammenfassungen sofort gelöscht. Der anonyme Eintrag der von
+  ihm gelesenen Aufgaben wird nach der obigen Regel für ungenutzte Gastkonten
+  endgültig gelöscht. Bleiben in einem Kreis außer Gästen keine Mitglieder, werden
+  auch die Gäste entfernt
 - **Benachrichtigungsprotokolle:** Automatische Löschung nach 30 Tagen
 - **Audit-Protokolle:** Aufbewahrung 12 Monate zu Sicherheits- und
   Compliance-Zwecken
