@@ -685,6 +685,18 @@
     }).join('');
   }
 
+  // Yazan her eylemden ÖNCE çağrılır: jeton yoksa üretir VE saklar. Saklanmazsa
+  // sayfa yenilenince misafir kimliği kaybolur ("benim payım" listesi boşalır,
+  // tamamladım/iade düğmeleri gider). claim_unit bunu hiç çağırmıyordu ve
+  // jetonsuz istek sunucuda bad_token ile düşüyordu (2 Eki 2026).
+  function ensureGuestToken() {
+    if (!guestToken) {
+      guestToken = newGuestToken();
+      try { localStorage.setItem(guestKey, guestToken); } catch (e) {}
+    }
+    return guestToken;
+  }
+
   // ── Sûre + âyet ───────────────────────────────────────────────────────────
   // ⚠️ Sayfa numarası ÖNDE ve ÇIPLAK, sûre parantezde altta (kullanıcı kararı,
   // üç kez teyit edildi). "Uygulamada sayfa" gibi etiket EKLEME.
@@ -1294,6 +1306,7 @@
   function claimUnit(unitId) {
     if (busy) return;
     busy = true;
+    ensureGuestToken();
     stageMessage(T.loading, false);
     call('claim_unit', { unit_id: unitId }).then(function (r) {
       busy = false;
@@ -1415,7 +1428,7 @@
 
   function onContribute() {
     if (zSession <= 0) { return; }
-    if (!guestToken) { guestToken = newGuestToken(); }
+    ensureGuestToken();
     // MUTLAK gönderiyoruz (sunucudaki katkı + bu oturum). Aynı istek iki kez
     // giderse sunucu GREATEST uyguladığı için ikinci gidiş hiçbir şey değiştirmez.
     var absolute = (zItem.mine || 0) + zSession;
@@ -1883,10 +1896,7 @@
   function takeBlock(g) {
     if (busy) return;
     busy = true;
-    if (!guestToken) {
-      guestToken = newGuestToken();
-      try { localStorage.setItem(guestKey, guestToken); } catch (e) {}
-    }
+    ensureGuestToken();
     call('lease', { series: g.series, start_page: g.start_page, end_page: g.end_page })
       .then(function (r) {
         busy = false;
