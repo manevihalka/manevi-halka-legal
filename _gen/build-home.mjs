@@ -541,6 +541,9 @@ function basBilgisi(dil) {
 ${hreflang}
 <!-- Bing Webmaster Tools dogrulamasi (ayni jeton /BingSiteAuth.xml'de). Silme. -->
 <meta name="msvalidate.01" content="421BAE343948124460D5A58C05177ED3">
+<!-- Pinterest alan adi dogrulamasi (1 Eki 2026, hesap manevihalkaapp). Silme.
+     Yalniz dogrulama etiketi; Pinterest izleme etiketi (Tag) EKLENMEZ, gizlilik metni. -->
+<meta name="p:domain_verify" content="8e716e9c0ae402635c20b8ea3783ebc8"/>
 <!-- iOS Safari'nin kendi kurulum seridi: uygulama kuruluysa "Ac" der. -->
 <meta name="apple-itunes-app" content="app-id=6760654292">
 <meta name="theme-color" content="#1e4d35">
