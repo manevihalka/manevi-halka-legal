@@ -283,6 +283,11 @@
     background:var(--card); border:1px solid var(--line); border-radius:18px;
     cursor:pointer; text-align:center; transition:border-color .15s ease, transform .15s ease; }
   .cell:hover { border-color:var(--line-strong); transform:translateY(-1px); }
+  /* Tıklanabilir div'ler: Android Chrome "Dokun ve Ara" div üstündeki metne dokunuşu
+     kelime aramasına çeviriyor, cüz kartı açılmıyordu (2 Eki 2026, telefonda görüldü).
+     Metin seçilemez + düğme rolü (JS'te). */
+  .cell, .zdial { -webkit-user-select:none; user-select:none; -webkit-touch-callout:none;
+    -webkit-tap-highlight-color:transparent; }
   .cell .n { font-size:30px; font-weight:600; letter-spacing:-.02em; line-height:1; color:var(--primary-dark); }
   .cell .u { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
     color:var(--gold-ink); margin-top:6px; }
@@ -678,6 +683,15 @@
   // ilerleme çubuğu HİÇ güncellenmiyordu.
   var mode = 'loading';                 // loading | board | confirm | done | message
 
+  // Tıklanabilir div'i ekran okuyucu ve klavye için düğme yapar (Enter/Boşluk).
+  function asButton(node) {
+    node.setAttribute('role', 'button');
+    node.tabIndex = 0;
+    node.onkeydown = function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); node.click(); }
+    };
+  }
+
   function newGuestToken() {
     var a = new Uint8Array(32); crypto.getRandomValues(a);
     return Array.prototype.map.call(a, function (b) {
@@ -1038,7 +1052,10 @@
         var bi = el('i'); bi.style.width = ((c.total - c.free) / c.total * 100) + '%';
         b.appendChild(bi); cell.appendChild(b);
       }
-      if (!full) cell.onclick = function () { pickCuz(c.n); };
+      if (!full) {
+        cell.onclick = function () { pickCuz(c.n); };
+        asButton(cell);
+      }
       grid.appendChild(cell);
     });
     wrap.appendChild(grid);
@@ -1412,6 +1429,7 @@
     dial.appendChild(el('div', 'v', nf(zSession)));
     dial.appendChild(el('div', 'l', T.zSession));
     dial.onclick = function () { zSession += 1; renderCounter(); };
+    asButton(dial);
     st.appendChild(dial);
 
     var chips = el('div', 'zchips');

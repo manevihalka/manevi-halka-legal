@@ -564,7 +564,15 @@ window.MHOrtakHatim = (function () {
         var bi = el('i'); bi.style.width = ((c.total - c.free) / c.total * 100) + '%';
         b.appendChild(bi); cell.appendChild(b);
       }
-      if (!full) cell.onclick = function () { pickGroup(c.g); };
+      if (!full) {
+        cell.onclick = function () { pickGroup(c.g); };
+        // Ekran okuyucu ve klavye için düğme (Enter/Boşluk).
+        cell.setAttribute('role', 'button');
+        cell.tabIndex = 0;
+        cell.onkeydown = function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cell.click(); }
+        };
+      }
       grid.appendChild(cell);
     });
     wrap.appendChild(grid);
