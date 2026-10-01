@@ -60,7 +60,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'How much will you read?',
       myLbl:'Your portions', markDone:'I finished it', dropIt:'Remove', sure:'Sure?',
       doneMark:'Finished', pastCycle:'From an earlier recitation',
-      gone:'This is not available right now.', slow:'Too many attempts. Please wait a moment and try again.', verify:'The security check could not be completed. Reload the page and try again.',
+      gone:'This is not available right now.', slow:'Too many attempts. Please wait a moment and try again.', verify:'The security check could not be completed. Wait a moment and try again.',
       error:'Something went wrong. Please try again.',
       getApp:'Get the app', until:'Until {d}',
       keepLink:'Save this link to return to your portions later.', copy:'Copy link', copied:'Copied',
@@ -93,7 +93,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'Ne kadar okuyacaksın?',
       myLbl:'Aldığın bölümler', markDone:'Tamamladım', dropIt:'Kaldır', sure:'Emin misin?',
       doneMark:'Tamamlandı', pastCycle:'Önceki hatimden',
-      gone:'Bu şu anda mevcut değil.', slow:'Çok fazla deneme oldu. Biraz bekleyip tekrar dene.', verify:'Güvenlik doğrulaması tamamlanamadı. Sayfayı yenileyip tekrar dene.',
+      gone:'Bu şu anda mevcut değil.', slow:'Çok fazla deneme oldu. Biraz bekleyip tekrar dene.', verify:'Güvenlik doğrulaması tamamlanamadı. Biraz bekleyip tekrar dener misin?',
       error:'Bir şeyler ters gitti. Tekrar dener misin?',
       getApp:'Uygulamayı indir', until:'{d} tarihine kadar',
       keepLink:'Bölümlerine sonra dönmek için bu bağlantıyı kaydet.', copy:'Bağlantıyı kopyala', copied:'Kopyalandı',
@@ -126,7 +126,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'Wie viel wirst du lesen?',
       myLbl:'Deine Abschnitte', markDone:'Ich habe ihn gelesen', dropIt:'Entfernen', sure:'Sicher?',
       doneMark:'Gelesen', pastCycle:'Aus einer früheren Chatma',
-      gone:'Das ist zurzeit nicht verfügbar.', slow:'Zu viele Versuche. Warte kurz und versuche es erneut.', verify:'Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Lade die Seite neu und versuche es erneut.',
+      gone:'Das ist zurzeit nicht verfügbar.', slow:'Zu viele Versuche. Warte kurz und versuche es erneut.', verify:'Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Warte kurz und versuche es erneut.',
       error:'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
       getApp:'App installieren', until:'Bis {d}',
       keepLink:'Speichere diesen Link, um später zu deinen Abschnitten zurückzukehren.', copy:'Link kopieren', copied:'Kopiert',
@@ -159,7 +159,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'Combien vas-tu lire ?',
       myLbl:'Tes portions', markDone:'Je l’ai terminée', dropIt:'Retirer', sure:'Sûr ?',
       doneMark:'Terminée', pastCycle:'D’une khatma précédente',
-      gone:'Ceci n’est pas disponible pour le moment.', slow:'Trop de tentatives. Patiente un instant et réessaie.', verify:'La vérification de sécurité n’a pas pu aboutir. Recharge la page et réessaie.',
+      gone:'Ceci n’est pas disponible pour le moment.', slow:'Trop de tentatives. Patiente un instant et réessaie.', verify:'La vérification de sécurité n’a pas pu aboutir. Patiente un instant et réessaie.',
       error:'Une erreur est survenue. Réessaie.',
       getApp:'Installer l’application', until:'Jusqu’au {d}',
       keepLink:'Enregistre ce lien pour revenir à tes portions plus tard.', copy:'Copier le lien', copied:'Copié',
@@ -192,7 +192,7 @@ window.MHOrtakHatim = (function () {
       amountLbl:'كم ستقرأ؟',
       myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟',
       doneMark:'تم', pastCycle:'من ختمة سابقة',
-      gone:'غير متاح حاليًا.', slow:'محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة.', verify:'تعذّر إكمال التحقق الأمني. أعد تحميل الصفحة ثم حاول مرة أخرى.',
+      gone:'غير متاح حاليًا.', slow:'محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة.', verify:'تعذّر إكمال التحقق الأمني. انتظر قليلًا ثم حاول مرة أخرى.',
       error:'حدث خطأ ما. حاول مرة أخرى.',
       getApp:'ثبّت التطبيق', until:'حتى {d}',
       keepLink:'احفظ هذا الرابط للعودة إلى أجزائك لاحقًا.', copy:'انسخ الرابط', copied:'تم النسخ',
@@ -698,11 +698,14 @@ window.MHOrtakHatim = (function () {
    * anlamsızlaşır. Yalnız dokunma ve iki çip (+33/+100); adımlar tesbih
    * turlarına karşılık geliyor (uygulamadaki kararın aynısı).
    */
-  function renderCounter() {
+  // errMsg: gönderim düştüyse sayaç SAYIYLA BİRLİKTE geri gelir, üstünde not
+  // (halka.html ile aynı; eskiden hata ekranı saydığı sayıyı ekrandan siliyordu).
+  function renderCounter(errMsg) {
     mode = 'count';
     hideAppCta();
     var host = stageEl; host.innerHTML = '';
     var st = el('div', 'narrow'); host.appendChild(st);
+    if (errMsg) st.appendChild(el('div', 'msg err', errMsg));
     var txt = dhikrText(zItem.slug);
 
     var card = el('div', 'block zcount');
@@ -746,13 +749,13 @@ window.MHOrtakHatim = (function () {
         busy = false;
         if (r.status !== 200 || !r.body.ok) {
           var m = errText(r.body && r.body.error);
-          stageMessage(m[0], m[0] === T.error);
+          renderCounter(m[0]);
           return;
         }
         zItem = null; zSession = 0;
         return goBoard();
       })
-      .catch(function () { busy = false; stageMessage(T.error, true); });
+      .catch(function () { busy = false; renderCounter(T.error); });
   }
 
   // ── Kur'an / Cevşen tahtası ───────────────────────────────────────────────
