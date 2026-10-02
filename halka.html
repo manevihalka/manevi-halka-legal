@@ -824,8 +824,10 @@
       sc.href = store; sc.textContent = T.getApp;
       sc.classList.remove('hidden');
     } else {
+      // Kod yoksa uygulamada açılacak yer yok: düğme mağazaya gider, adı da
+      // öyle olmalı ("Uygulamada aç" yazıp mağazayı açıyordu).
       a.href = store;
-      a.textContent = T.openApp;
+      a.textContent = T.getApp;
     }
     a.classList.remove('hidden');
   }
@@ -1502,6 +1504,10 @@
     var sg = suggestNode();
     if (sg) { var w = el('div', 'mid'); w.appendChild(sg); st.appendChild(w); }
     st.appendChild(gridNode());
+    // Uygulaması olan kişi pay ALMADAN önce uygulamaya geçebilmeli: düğme
+    // yalnız aldıktan sonra çıkıyordu, o ana kadar katkı misafir olarak
+    // yazılmış oluyordu (2 Eki 2026). Izgaranın altında, ikincil.
+    if (joinCode) showAppCta();
   }
 
   /**
