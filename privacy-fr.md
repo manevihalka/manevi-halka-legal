@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026
-**Dernière mise à jour :** 29 septembre 2026
+**Dernière mise à jour :** 2 octobre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -118,6 +118,7 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 - **Jeton de notification :** jeton de l'appareil pour les notifications push (Apple APNs / Google FCM)
 - **Appareils connectés :** pour chaque appareil sur lequel votre compte est connecté, nous conservons le modèle de l'appareil (par exemple iPhone 15 Pro), les versions du système et de l'application, le jeton de notification de cet appareil et l'heure de sa dernière activité. Cela sert uniquement à la sécurité du compte : dans Compte & Sécurité > Mes appareils, vous voyez où votre compte est connecté et pouvez déconnecter n'importe quel appareil ; lorsque votre compte est connecté sur un nouvel appareil, vos autres appareils en sont avertis. Le nom que vous avez donné à l'appareil, votre adresse IP et votre localisation **ne font pas partie** de cet enregistrement. Il n'est pas créé pour l'utilisation en invité (avant que le compte soit sécurisé)
 - **Localisation :** uniquement la position actuelle de votre appareil, utilisée pour calculer les heures de prière et la direction de la qibla. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul. Afin que l'application puisse remarquer un changement de lieu et vous proposer les horaires de votre nouvelle ville, la dernière coordonnée connue est conservée **uniquement sur votre appareil** ; elle est supprimée lorsque vous effacez les données de votre compte.
+- **Serveurs d'horaires de prière :** les horaires de prière sont obtenus auprès de serveurs externes. Avec la méthode de calcul Diyanet, seuls les numéros du pays, de la ville et du district sont envoyés au serveur d'horaires de la Diyanet (ezanvakti.emushaf.net). Lorsque les données de la Diyanet ne peuvent pas être obtenues, ou si une autre méthode de calcul est utilisée, les coordonnées de la ville, la méthode et la date sont envoyées à Aladhan ; si la localisation automatique est activée, ces coordonnées sont celles de votre appareil. Dans les pays qui comptent plusieurs fuseaux horaires (comme les États-Unis, le Canada ou la Russie), Aladhan est aussi interrogé une fois pour connaître le fuseau horaire de la ville. Pour trouver le nom de la ville, le système d'exploitation de votre appareil interroge le service de localisation d'Apple ou de Google. Ces serveurs voient votre adresse IP ; aucune donnée de compte n'est envoyée.
 - **Informations d'abonnement :** si vous avez un abonnement Premium : durée, type de formule, boutique (App Store / Play Store), statut de l'abonnement
 
 ### 2.3. Informations que nous NE collectons PAS
@@ -223,6 +224,8 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 | **Sentry** ([confidentialité](https://sentry.io/privacy/)) | Rapports d'erreurs, suivi des plantages | Journaux d'erreurs anonymes, traces d'appels, informations appareil/système |
 | **PostHog** ([confidentialité](https://posthog.com/privacy)) | Analyses produit (désinscription possible) | Événements d'utilisation anonymes (aucune PII), hébergés sur des serveurs UE |
 | **Quran Foundation** ([confidentialité](https://quran.com/privacy)) | Récitations audio (liste des récitateurs et fichiers audio des versets) | Les fichiers audio sont téléchargés directement sur ton appareil depuis les serveurs de Quran Foundation et de quranicaudio.com ; ces serveurs voient ton adresse IP et le fichier demandé. Aucune donnée de compte n'est envoyée ; la liste des récitateurs est obtenue anonymement via notre serveur |
+| **Serveur d'horaires de la Diyanet** (ezanvakti.emushaf.net) | Horaires de prière (méthode de calcul Diyanet) | Numéros du pays, de la ville et du district ; le serveur voit l'adresse IP. Aucune coordonnée ni donnée de compte n'est envoyée |
+| **Aladhan** (api.aladhan.com) | Horaires de prière lorsque les données de la Diyanet ne sont pas disponibles et pour les autres méthodes de calcul ; fuseau horaire de la ville dans les pays qui en comptent plusieurs | Coordonnées de la ville (celles de l'appareil si la localisation automatique est activée), méthode de calcul, date ; le serveur voit l'adresse IP. Aucune donnée de compte n'est envoyée |
 | **Cloudflare Turnstile** ([confidentialité](https://www.cloudflare.com/turnstile-privacy-policy/)) | Vérification anti-robots lors des contributions sur manevihalka.app | Adresse IP, informations sur le navigateur (User-Agent, empreinte TLS), nom du site ; uniquement au moment d'une contribution sur le site |
 
 ---
@@ -324,7 +327,7 @@ Supabase et nos autres prestataires de services peuvent héberger des serveurs d
 L'Application est une application mobile et n'utilise pas de cookies web. Toutefois, les données suivantes sont stockées localement sur votre appareil :
 
 - Jeton de session (pour la connexion, dans Keychain/Keystore)
-- Paramètres de préférence (langue, thème)
+- Paramètres de préférence (langue, thème, villes dont vous suivez les horaires de prière)
 - Données mises en cache (pour une utilisation hors ligne)
 - Compteurs de notifications
 - Données de widget (UserDefaults / SharedPreferences)

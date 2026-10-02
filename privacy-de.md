@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 29. September 2026
+**Zuletzt aktualisiert:** 2. Oktober 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -146,6 +146,16 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   Gebetszeiten für Ihre neue Stadt vorschlagen kann, wird die zuletzt bekannte Koordinate
   **ausschließlich auf Ihrem Gerät** gespeichert; sie wird gelöscht, wenn Sie Ihre
   Kontodaten löschen.
+- **Gebetszeit-Server:** Die Gebetszeiten werden von externen Servern abgerufen. Bei der
+  Berechnungsmethode Diyanet werden nur die Kennnummern von Land, Stadt und Bezirk an den
+  Diyanet-Gebetszeitserver (ezanvakti.emushaf.net) gesendet. Wenn keine Diyanet-Daten
+  abgerufen werden können oder eine andere Berechnungsmethode
+  verwendet wird, werden die Koordinaten der Stadt, die Methode und das Datum an Aladhan gesendet; ist der automatische
+  Standort aktiviert, sind dies die Koordinaten Ihres Geräts. In Ländern mit mehreren
+  Zeitzonen (etwa USA, Kanada oder Russland) wird Aladhan außerdem einmalig nach der Zeitzone
+  der Stadt gefragt. Um den Namen der Stadt zu ermitteln, fragt das Betriebssystem Ihres
+  Geräts die Koordinaten beim Ortungsdienst von Apple bzw. Google ab. Diese Server sehen Ihre
+  IP-Adresse; Kontodaten werden nicht übermittelt.
 - **Abonnementdaten:** Bei einem Premium-Abonnement: Laufzeit, Tariftyp,
   Store (App Store / Play Store), Abonnementstatus
 
@@ -260,6 +270,8 @@ Dienstes:
 | **Sentry** ([Datenschutz](https://sentry.io/privacy/)) | Fehlerberichte, Absturz-Tracking | Anonyme Fehlerprotokolle, Stack Traces, Geräte-/Betriebssystem-Informationen |
 | **PostHog** ([Datenschutz](https://posthog.com/privacy)) | Produktanalyse (Opt-out verfügbar) | Anonyme Nutzungsereignisse (keine personenbezogenen Daten), gehostet auf EU-Servern |
 | **Quran Foundation** ([Datenschutz](https://quran.com/privacy)) | Rezitationen (Rezitatorenliste und Audiodateien der Verse) | Audiodateien werden direkt von Servern der Quran Foundation und von quranicaudio.com auf dein Gerät geladen; diese Server sehen deine IP-Adresse und die angefragte Datei. Es werden keine Kontodaten übermittelt; die Rezitatorenliste wird anonym über unseren Server abgerufen |
+| **Diyanet-Gebetszeitserver** (ezanvakti.emushaf.net) | Gebetszeiten (Berechnungsmethode Diyanet) | Kennnummern von Land, Stadt und Bezirk; der Server sieht die IP-Adresse. Es werden keine Koordinaten und keine Kontodaten übermittelt |
+| **Aladhan** (api.aladhan.com) | Gebetszeiten, wenn keine Diyanet-Daten abrufbar sind, und bei anderen Berechnungsmethoden; Zeitzone der Stadt in Ländern mit mehreren Zeitzonen | Koordinaten der Stadt (bei automatischem Standort die des Geräts), Berechnungsmethode, Datum; der Server sieht die IP-Adresse. Es werden keine Kontodaten übermittelt |
 | **Cloudflare Turnstile** ([Datenschutz](https://www.cloudflare.com/turnstile-privacy-policy/)) | Bot-Prüfung bei Beiträgen auf manevihalka.app | IP-Adresse, Browserinformationen (User-Agent, TLS-Fingerabdruck), Name der Website; nur im Moment eines Beitrags auf der Website |
 
 ---
@@ -384,7 +396,7 @@ nicht verwendet. Allerdings werden die folgenden Daten lokal auf Ihrem
 Gerät gespeichert:
 
 - Sitzungs-Token (für die Anmeldung, in Keychain/Keystore)
-- Einstellungen (Sprache, Design)
+- Einstellungen (Sprache, Design, Städte, deren Gebetszeiten Sie verfolgen)
 - Zwischengespeicherte Daten (zur Offline-Nutzung)
 - Benachrichtigungszähler
 - Widget-Daten (UserDefaults / SharedPreferences)

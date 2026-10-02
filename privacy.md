@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 29 Eylül 2026
+**Son güncelleme:** 2 Ekim 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -127,6 +127,14 @@ haklarınızın neler olduğunu açıklar.
   hesap için kullanılır. Şehir değiştirdiğinizi fark edip vakitleri yeni şehrinize
   göre önerebilmek için son bilinen koordinat **yalnızca cihazınızda** saklanır;
   hesap verilerinizi sildiğinizde bu kayıt da silinir.
+- **Namaz vakti sunucuları:** Namaz vakitleri dış sunuculardan alınır. Diyanet hesaplama
+  yönteminde Diyanet vakit sunucusuna (ezanvakti.emushaf.net) yalnızca ülke, şehir ve ilçenin
+  numarası gönderilir. Diyanet verisi alınamadığında ya da Diyanet dışı bir hesaplama
+  yöntemi kullanıldığında Aladhan'a şehrin koordinatı, yöntem ve tarih gönderilir; otomatik konum
+  açıksa bu koordinat cihazınızın konumudur. Birden çok saat dilimi olan ülkelerde (ABD,
+  Kanada, Rusya gibi) şehrin saat dilimini öğrenmek için de Aladhan'a bir kez sorulur.
+  Şehrin adını bulmak için cihazınızın işletim sistemi koordinatı Apple'ın ya da Google'ın
+  konum hizmetine sorar. Bu sunucular IP adresinizi görür; hesap bilgisi gönderilmez.
 - **Abonelik bilgisi:** Premium aboneliğiniz varsa süre, plan tipi, mağaza (App Store /
   Play Store), abonelik durumu
 
@@ -229,6 +237,8 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 | **Sentry** ([gizlilik](https://sentry.io/privacy/)) | Hata raporlama, crash takibi | Anonim hata kayıtları, stack trace, cihaz/OS bilgisi |
 | **PostHog** ([gizlilik](https://posthog.com/privacy)) | Ürün analitiği (opt-out var) | Anonim kullanım olayları (PII yok), EU sunucularda barındırılır |
 | **Quran Foundation** ([gizlilik](https://quran.com/privacy)) | Sesli tilavet (kârî listesi ve ayet ses dosyaları) | Ses dosyaları Quran Foundation ve quranicaudio.com sunucularından doğrudan cihazına iner; bu sunucular IP adresini ve istenen dosyayı görür. Hesap bilgisi gönderilmez; kârî listesi sunucumuz üzerinden kimliksiz alınır |
+| **Diyanet vakit sunucusu** (ezanvakti.emushaf.net) | Namaz vakitleri (Diyanet hesaplama yöntemi) | Ülke, şehir ve ilçe numarası; sunucu IP adresini görür. Konum koordinatı ve hesap bilgisi gönderilmez |
+| **Aladhan** (api.aladhan.com) | Diyanet verisi alınamadığında ve başka hesaplama yöntemlerinde namaz vakitleri; birden çok saat dilimi olan ülkelerde şehrin saat dilimi | Şehrin koordinatı (otomatik konum açıksa cihazın konumu), hesaplama yöntemi, tarih; sunucu IP adresini görür. Hesap bilgisi gönderilmez |
 | **Cloudflare Turnstile** ([gizlilik](https://www.cloudflare.com/turnstile-privacy-policy/)) | manevihalka.app üzerinde katkı verirken bot doğrulaması | IP adresi, tarayıcı bilgisi (User-Agent, TLS parmak izi), sitenin adı; yalnız web sayfasından katkı verildiği anda |
 
 ---
@@ -337,7 +347,7 @@ Uygulama bir mobil app olduğu için web çerezleri kullanmaz. Ancak şu
 yerel veriler cihazınızda saklanır:
 
 - Oturum tokeni (giriş için, Keychain/Keystore'da)
-- Tercih ayarları (dil, tema)
+- Tercih ayarları (dil, tema, namaz vakitlerini takip ettiğiniz şehirler)
 - Önbelleğe alınmış veriler (offline kullanım için)
 - Bildirim sayaçları
 - Widget verisi (UserDefaults / SharedPreferences)
