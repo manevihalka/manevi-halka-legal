@@ -544,11 +544,15 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   /* Bellek: her govde katmani ayri bir cizim katmanidir. Gorunmeyen telefon (gizli) hic cizilmez;
      yakinlastirilmis sayfada (mh-zoom) govde ve 3B kalkar, telefonlar duz durur. Yakinlastirinca
      tarayici her katmani buyutulmus cozunurlukte yeniden cizdigi icin 72 katman telefonda sayfayi
-     cokertiyordu (4 Eki 2026). */
+     cokertiyordu (4 Eki 2026). Yakinlastirmada yalniz govde gizlenir, 3B oldugu gibi kalir. */
   .kis.is-ring .kis-card.gone { visibility: hidden; }
   .kis.is-ring .kis-card.gone .kb { display: none; }
   html.mh-zoom .kis.is-ring .kb { display: none; }
-  html.mh-zoom .kis.is-ring .kis-card, html.mh-zoom .kis.is-ring .kis-card .phone { transform-style: flat; will-change: auto; }
+  /* ⚠️ 3B'yi (transform-style) yakinlastirmada ACIP KAPATMA: iPhone'da (WebKit) geri acilinca
+     katmanlar sayfa sirasiyla cizildi, govdenin arka yuzu ekranin USTUNE cikti (4 Eki 2026,
+     kullanici ekran goruntusu). Ekran goruntusu bu yuzden konumlu ve z-index'li: 3B duzlesse bile
+     govde katmanlarinin ustunde kalir; 3B'de z=0 oldugu icin zaten onde. */
+  .kis.is-ring .kis-card .phone img { position: relative; z-index: 1; }
   .kis.is-ring .kis-cap { display: none; }
   .kis.is-ring .kis-now { display: grid; gap: 6px; justify-items: center; text-align: center; max-width: 30em; min-height: 7.4em; margin: 10px auto 0; transition: opacity .2s ease; }
   .kis-now.swap { opacity: 0; }
@@ -1555,7 +1559,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   // Kullanici iki parmakla yakinlastirinca tarayici her cizim katmanini buyutulmus cozunurlukte
   // yeniden cizer; sergideki 3B telefonlar ve kalici will-change katmanlari telefonda bellegi
   // asip sayfayi cokertiyordu (4 Eki 2026, kullanici bildirimi). Yakinlastirildigi surece
-  // html.mh-zoom: govde katmanlari kalkar, 3B duzlesir, will-change birakilir.
+  // html.mh-zoom: govde katmanlari kalkar, will-change birakilir (3B'ye dokunulmaz, iPhone'da
+  // geri acilinca katman sirasi bozuluyordu).
   (function () {
     var vv = window.visualViewport;
     if (!vv) return;
