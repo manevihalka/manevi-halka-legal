@@ -707,8 +707,8 @@ const KIS = [
       ar: "استخدم العدّاد حلقةً برقم كبير أو مسبحةً بحبّات متحركة." } },
 ];
 
-// Sergide telefonun govdesi: on yuzun arkasinda 8 ince katman (home.src.html .kb).
-const KATMAN = Array.from({ length: 8 }, (_, i) => `<i class="kb" style="--i:${i + 1}"></i>`).join("");
+// Sergide telefonun govdesi: on yuzun arkasinda 4 ince katman (home.src.html .kb). Bellek icin az tutuldu.
+const KATMAN = Array.from({ length: 4 }, (_, i) => `<i class="kb" style="--i:${i + 1}"></i>`).join("");
 
 function kisSeridi(dil) {
   return KIS.map((k) => {

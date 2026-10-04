@@ -426,6 +426,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
      kismin ustune dikissiz oturur. calc'li satir desteklenmezse ustteki duz golge kalir. */
   .fx { position: absolute; z-index: 2; height: auto; display: block; pointer-events: none; user-select: none; transform-origin: 50% 50%; --sh: 1; }
   .fx-move .fx, .fx-move .band-visual .ves-done, .fx-move .ves-tag, .fx-move .webcard { will-change: transform, opacity; }
+  html.mh-zoom .fx, html.mh-zoom .band-visual .ves-done, html.mh-zoom .ves-tag, html.mh-zoom .webcard, html.mh-zoom .card { will-change: auto !important; }
   .fx-w { filter: drop-shadow(0 18px 24px rgba(10, 30, 20, .22)) drop-shadow(0 2px 4px rgba(10, 30, 20, .10)); filter: drop-shadow(0 18px 24px rgba(10, 30, 20, calc(.22 * var(--sh)))) drop-shadow(0 2px 4px rgba(10, 30, 20, calc(.10 * var(--sh)))); }
   .fx-card { background: #fff; border-radius: 18px; box-shadow: 0 22px 44px -18px rgba(10, 30, 20, .38), 0 0 0 1px rgba(20, 35, 28, .06); box-shadow: 0 22px 44px -18px rgba(10, 30, 20, calc(.38 * var(--sh))), 0 0 0 1px rgba(20, 35, 28, calc(.06 * var(--sh))); }
   :root[data-theme="dark"] .fx-w { filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .5)); filter: drop-shadow(0 18px 26px rgba(0, 0, 0, calc(.5 * var(--sh)))); }
@@ -520,7 +521,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .kis.is-ring .kis-strip { display: block; position: relative; height: calc(var(--kw) * 1391 / 640 + 64px); margin: 26px calc(50% - 50vw) 0; padding: 0;
     overflow: hidden; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; perspective: 1500px; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
   .kis.is-ring .kis-strip.drag { cursor: grabbing; }
-  .kis.is-ring .kis-card { position: absolute; top: 18px; left: calc(50% - var(--kw) / 2); width: var(--kw); display: block; will-change: transform;
+  .kis.is-ring .kis-card { position: absolute; top: 18px; left: calc(50% - var(--kw) / 2); width: var(--kw); display: block;
     transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; }
   .kis.is-ring .kis-card[data-d="0"] { cursor: default; }
   /* Telefon izlenimi: on yuzun arkasina ayni kose yuvarlakliginda ince katmanlar dizilir
@@ -534,14 +535,20 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     box-shadow: 0 34px 60px -34px rgba(10, 30, 20, .6), 0 0 0 1px color-mix(in srgb, var(--ink) 16%, transparent), inset 0 0 0 1px rgba(255, 255, 255, .14); }
   .kb { display: none; }
   .kis.is-ring .kb { display: block; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-    background: var(--kbc); transform: translateZ(calc(var(--i) * var(--kt) / -8)); }
-  .kis.is-ring .kb:nth-of-type(1) { --kbc: #1a2420; } .kis.is-ring .kb:nth-of-type(2) { --kbc: #2a3531; }
-  .kis.is-ring .kb:nth-of-type(3) { --kbc: #3b4742; } .kis.is-ring .kb:nth-of-type(4) { --kbc: #4b5852; }
-  .kis.is-ring .kb:nth-of-type(5) { --kbc: #46524c; } .kis.is-ring .kb:nth-of-type(6) { --kbc: #36413c; }
-  .kis.is-ring .kb:nth-of-type(7) { --kbc: #26302c; }
-  .kis.is-ring .kb:nth-of-type(8) { --kbc: linear-gradient(160deg, #2c3833, #18211d 60%, #222c28); }
+    background: var(--kbc); transform: translateZ(calc(var(--i) * var(--kt) / -4)); }
+  .kis.is-ring .kb:nth-of-type(1) { --kbc: #1e2925; } .kis.is-ring .kb:nth-of-type(2) { --kbc: #43504a; }
+  .kis.is-ring .kb:nth-of-type(3) { --kbc: #2f3b36; }
+  .kis.is-ring .kb:nth-of-type(4) { --kbc: linear-gradient(160deg, #2c3833, #18211d 60%, #222c28); }
   .kis.is-ring .kis-card img { transition: filter .5s ease; }
   .kis.is-ring .kis-card.far img { filter: var(--kis-far); }
+  /* Bellek: her govde katmani ayri bir cizim katmanidir. Gorunmeyen telefon (gizli) hic cizilmez;
+     yakinlastirilmis sayfada (mh-zoom) govde ve 3B kalkar, telefonlar duz durur. Yakinlastirinca
+     tarayici her katmani buyutulmus cozunurlukte yeniden cizdigi icin 72 katman telefonda sayfayi
+     cokertiyordu (4 Eki 2026). */
+  .kis.is-ring .kis-card.gone { visibility: hidden; }
+  .kis.is-ring .kis-card.gone .kb { display: none; }
+  html.mh-zoom .kis.is-ring .kb { display: none; }
+  html.mh-zoom .kis.is-ring .kis-card, html.mh-zoom .kis.is-ring .kis-card .phone { transform-style: flat; will-change: auto; }
   .kis.is-ring .kis-cap { display: none; }
   .kis.is-ring .kis-now { display: grid; gap: 6px; justify-items: center; text-align: center; max-width: 30em; min-height: 7.4em; margin: 10px auto 0; transition: opacity .2s ease; }
   .kis-now.swap { opacity: 0; }
@@ -1023,15 +1030,15 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <p>Zeminini, rengini, ana ekranındaki widget'ı sen seç. Her gün baktığın yer sana göre olsun.</p>
     </div>
     <ul class="kis-strip" id="kisStrip" tabindex="0" aria-label="Kişiselleştirme ekranları">
-        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-ufuk.webp" alt="Ufuk" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Zemin</span><b>Ufuk</b><span>Güneş ve ay, şehrinin namaz vakitlerine göre doğar ve batar.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-kandil.webp" alt="Kandiller" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Zemin · Koyu tema</span><b>Kandiller</b><span>Gece okuyanlar için kandil ışığında yumuşak bir karanlık.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-revzen.webp" alt="Revzen" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Zemin · Safran</span><b>Revzen</b><span>Cami penceresinden süzülen ışık, rengi gün boyu güneşi izler.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-ebru.webp" alt="Ebru" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Zemin · Mürdüm</span><b>Ebru</b><span>İnce damarlı ebru kâğıdı, köşelerden sayfaya süzülür.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-gorunum.webp" alt="Görünüm" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Ayarlar</span><b>Görünüm</b><span>Zemin, tema ve renk aynı yerden seçilir, değişiklik anında görünür.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-anaekran.webp" alt="Widget'lar" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Ana ekran</span><b>Widget'lar</b><span>Bugünkü görevin, Hicri gün ve namaz vakti bir arada. Vakit widget'ının sekiz görünümü var.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-kilit.webp" alt="Bir bakışta vakit" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Kilit ekranı</span><b>Bir bakışta vakit</b><span>Telefonu açmadan vaktin çıkmasına kalan süreyi ve sıradaki vakitleri gör.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-sayfa.webp" alt="Sayfa rengi" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Okurken</span><b>Sayfa rengi</b><span>Kur'an'ı beyazdan sepyaya, geceye kadar beş sayfa tonunda oku.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-tesbih.webp" alt="Tesbih" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Zikir</span><b>Tesbih</b><span>Sayacı rakamlı bir halka ya da akan tesbih taneleri olarak kullan.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-ufuk.webp" alt="Ufuk" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i></figure><div class="kis-cap"><span class="kis-tag">Zemin</span><b>Ufuk</b><span>Güneş ve ay, şehrinin namaz vakitlerine göre doğar ve batar.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-kandil.webp" alt="Kandiller" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i></figure><div class="kis-cap"><span class="kis-tag">Zemin · Koyu tema</span><b>Kandiller</b><span>Gece okuyanlar için kandil ışığında yumuşak bir karanlık.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-revzen.webp" alt="Revzen" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i></figure><div class="kis-cap"><span class="kis-tag">Zemin · Safran</span><b>Revzen</b><span>Cami penceresinden süzülen ışık, rengi gün boyu güneşi izler.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-ebru.webp" alt="Ebru" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i></figure><div class="kis-cap"><span class="kis-tag">Zemin · Mürdüm</span><b>Ebru</b><span>İnce damarlı ebru kâğıdı, köşelerden sayfaya süzülür.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-gorunum.webp" alt="Görünüm" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i></figure><div class="kis-cap"><span class="kis-tag">Ayarlar</span><b>Görünüm</b><span>Zemin, tema ve renk aynı yerden seçilir, değişiklik anında görünür.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-anaekran.webp" alt="Widget'lar" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i></figure><div class="kis-cap"><span class="kis-tag">Ana ekran</span><b>Widget'lar</b><span>Bugünkü görevin, Hicri gün ve namaz vakti bir arada. Vakit widget'ının sekiz görünümü var.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-kilit.webp" alt="Bir bakışta vakit" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i></figure><div class="kis-cap"><span class="kis-tag">Kilit ekranı</span><b>Bir bakışta vakit</b><span>Telefonu açmadan vaktin çıkmasına kalan süreyi ve sıradaki vakitleri gör.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-sayfa.webp" alt="Sayfa rengi" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i></figure><div class="kis-cap"><span class="kis-tag">Okurken</span><b>Sayfa rengi</b><span>Kur'an'ı beyazdan sepyaya, geceye kadar beş sayfa tonunda oku.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/tr/kis-tesbih.webp" alt="Tesbih" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i></figure><div class="kis-cap"><span class="kis-tag">Zikir</span><b>Tesbih</b><span>Sayacı rakamlı bir halka ya da akan tesbih taneleri olarak kullan.</span></div></li>
     </ul>
     <div class="kis-now" id="kisNow" aria-live="polite"></div>
     <div class="kis-foot">
@@ -1544,6 +1551,23 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     window.addEventListener("load", relayout);
   })();
 
+  // ── Yakinlastirma: sus katmanlarini birak ──
+  // Kullanici iki parmakla yakinlastirinca tarayici her cizim katmanini buyutulmus cozunurlukte
+  // yeniden cizer; sergideki 3B telefonlar ve kalici will-change katmanlari telefonda bellegi
+  // asip sayfayi cokertiyordu (4 Eki 2026, kullanici bildirimi). Yakinlastirildigi surece
+  // html.mh-zoom: govde katmanlari kalkar, 3B duzlesir, will-change birakilir.
+  (function () {
+    var vv = window.visualViewport;
+    if (!vv) return;
+    var root = document.documentElement, on = false;
+    function check() {
+      var z = vv.scale > 1.03;
+      if (z !== on) { on = z; root.classList.toggle("mh-zoom", z); }
+    }
+    vv.addEventListener("resize", check);
+    check();
+  })();
+
   // ── Kendi zevkine gore: sergi ──
   // Kartlar halka gibi dizilir (n tek sayi: ondekinin iki yaninda esit kart). Yerlesim
   // seridin genisliginden hesaplanir: en distaki kart bile serit icinde kalir. Bolum
@@ -1573,6 +1597,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         c.style.transform = "translateX(" + (X[a] * sg * dir * open).toFixed(1) + "px) rotateY(" + (R[a] * sg * dir * open).toFixed(1) + "deg) scale3d(" + S[a] + "," + S[a] + "," + S[a] + ")";
         c.style.opacity = vis ? "" : "0";
         c.classList.toggle("far", a >= far);
+        c.classList.toggle("gone", !vis);
         c.style.zIndex = String(20 - a);
         c.style.pointerEvents = vis ? "" : "none";
         c.dataset.d = String(d);
