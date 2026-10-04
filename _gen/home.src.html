@@ -377,6 +377,53 @@
   .faq details[open] summary::after { transform: rotate(45deg); }
   .faq details p { margin-top: 10px; color: var(--body); font-size: 15.5px; max-width: 38em; }
   @media (max-width: 860px) { .faq { grid-template-columns: 1fr; gap: 24px; } }
+  /* Kendi zevkine gore: SERGI. Kartlar bir halka gibi dizilir; ondeki buyuk ve okunur,
+     yanlardakiler kuculup arkaya doner. Ok, nokta, yandaki karta dokunma, parmak/fare
+     kaydirmasi ve klavye oku cevirir; Arapcada yon aynali. Bolum ekranin ortasina
+     yaklasirken kartlar ondeki telefonun arkasindan acilir, uzaklasinca toplanir.
+     Butun kartlar seridin icinde kalir, sayfanin disina tasmaz.
+     JS yoksa (is-ring eklenmez) ayni isaretleme yatay seritte, kartin altinda kendi yazisiyla durur. */
+  .kis { --kp: max(20px, calc(50vw - 560px)); --kw: 250px; }
+  .kis-strip { list-style: none; margin: 34px calc(50% - 50vw) 0; padding: 14px var(--kp) 30px; display: flex; gap: 28px;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--kp); scrollbar-width: none; overscroll-behavior-x: contain;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--kp), #000 calc(100% - var(--kp)), transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 var(--kp), #000 calc(100% - var(--kp)), transparent); }
+  .kis-strip::-webkit-scrollbar { display: none; }
+  .kis-strip:focus-visible { outline-offset: -2px; }
+  .kis-card { flex: none; width: 212px; scroll-snap-align: start; display: grid; gap: 16px; align-content: start; }
+  .kis-card .phone { width: 100%; aspect-ratio: 640 / 1391; }
+  .kis-cap { display: grid; gap: 5px; }
+  .kis-cap b { font-family: var(--display); font-weight: 400; font-size: 21px; line-height: 1.2; color: var(--ink); }
+  .kis-cap span:last-child { font-size: 14.5px; line-height: 1.5; color: var(--body); }
+  .kis-tag { font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+  .kis-now, .kis-dots, .kis-ctrl { display: none; }
+  .kis-foot { margin-top: 4px; }
+  .kis-note { margin: 0; font-size: 13.5px; color: var(--muted); }
+  .kis-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; }
+  .kis-btn:hover { background: var(--mint); }
+  .kis-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  :root[dir="rtl"] .kis-btn svg { transform: scaleX(-1); }
+  /* sergi kipi */
+  .kis.is-ring .kis-strip { display: block; position: relative; height: calc(var(--kw) * 1391 / 640 + 64px); margin: 26px calc(50% - 50vw) 0; padding: 0;
+    overflow: hidden; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; perspective: 1500px; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+  .kis.is-ring .kis-strip.drag { cursor: grabbing; }
+  .kis.is-ring .kis-card { position: absolute; top: 18px; left: calc(50% - var(--kw) / 2); width: var(--kw); display: block; will-change: transform, opacity;
+    transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; }
+  .kis.is-ring .kis-card[data-d="0"] { cursor: default; }
+  .kis.is-ring .kis-cap { display: none; }
+  .kis.is-ring .kis-now { display: grid; gap: 6px; justify-items: center; text-align: center; max-width: 30em; min-height: 7.4em; margin: 10px auto 0; transition: opacity .2s ease; }
+  .kis-now.swap { opacity: 0; }
+  .kis-now b { font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.2; color: var(--ink); }
+  .kis-now span:last-child { font-size: 15.5px; line-height: 1.55; color: var(--body); }
+  .kis.is-ring .kis-foot { display: grid; justify-items: center; gap: 16px; margin-top: 14px; text-align: center; }
+  .kis.is-ring .kis-ctrl { display: flex; align-items: center; gap: 10px; }
+  .kis.is-ring .kis-dots { display: flex; align-items: center; }
+  .kis-dots button { width: 22px; height: 30px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+  .kis-dots button::before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 22%, transparent); transition: width .3s ease, background .3s ease; }
+  .kis-dots button[aria-current="true"]::before { width: 18px; background: var(--green); }
+  @media (max-width: 860px) { .kis { --kw: 206px; } .kis-strip { gap: 18px; } .kis-card { width: 176px; } .kis-cap b { font-size: 19px; } .kis-now b { font-size: 23px; } }
+  @media (max-width: 380px) { .kis { --kw: 184px; } .kis-dots button { width: 18px; } }
+  @media (prefers-reduced-motion: reduce) { .kis.is-ring .kis-card, .kis-now, .kis-dots button::before { transition: none; } }
 
   /* ── kapanis ── */
   .closing { text-align: center; background: var(--band); color: var(--band-ink); border-radius: 32px; padding: clamp(40px, 7vw, 88px) clamp(20px, 5vw, 64px); position: relative; overflow: hidden; }
@@ -735,6 +782,27 @@
         <h3>{{jTitle}}</h3>
         <p>{{jText}}</p>
       </article>
+    </div>
+  </section>
+
+  <!-- KISISELLESTIR -->
+  <section id="kisisel" class="kis">
+    <div class="sec-head center">
+      <span class="eyebrow">{{kisKicker}}</span>
+      <h2>{{kisTitle}}</h2>
+      <p>{{kisText}}</p>
+    </div>
+    <ul class="kis-strip" id="kisStrip" tabindex="0" aria-label="{{kisAria}}">
+        {{kisHtml}}
+    </ul>
+    <div class="kis-now" id="kisNow" aria-live="polite"></div>
+    <div class="kis-foot">
+      <div class="kis-ctrl">
+        <button type="button" class="kis-btn" id="kisPrev" aria-label="{{prevAria}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="kis-dots" id="kisDots"></div>
+        <button type="button" class="kis-btn" id="kisNext" aria-label="{{nextAria}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <p class="kis-note">{{kisNote}}</p>
     </div>
   </section>
 
@@ -1236,6 +1304,106 @@
     window.addEventListener("scroll", ask, { passive: true });
     window.addEventListener("resize", relayout);
     window.addEventListener("load", relayout);
+  })();
+
+  // ── Kendi zevkine gore: sergi ──
+  // Kartlar halka gibi dizilir (n tek sayi: ondekinin iki yaninda esit kart). Yerlesim
+  // seridin genisliginden hesaplanir: en distaki kart bile serit icinde kalir. Bolum
+  // ortaya yaklasirken (open 0 -> 1) yandaki kartlar ondeki telefonun arkasindan acilir,
+  // uzaklasinca geri toplanir; "Hareketi azalt"ta acik durur, gecis yok.
+  (function () {
+    var sec = document.getElementById("kisisel"), strip = document.getElementById("kisStrip");
+    if (!sec || !strip) return;
+    var cards = [].slice.call(strip.querySelectorAll(".kis-card")), n = cards.length;
+    if (n < 3) return;
+    var prev = document.getElementById("kisPrev"), next = document.getElementById("kisNext");
+    var now = document.getElementById("kisNow"), dotsBox = document.getElementById("kisDots");
+    var rtl = document.documentElement.dir === "rtl", dir = rtl ? -1 : 1;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    sec.classList.add("is-ring");
+    var act = 0, open = reduce ? 1 : 0, raf = 0, dots = [], lastDrag = 0;
+    var S = [1, .82, .66, .54, .46], R = [0, 24, 34, 40, 44], O = [1, 1, .94, .62, 0];
+
+    function rel(i) { var d = ((i - act) % n + n) % n; if (d > n / 2) d -= n; return d; }
+    function layout() {
+      var W = strip.clientWidth, kw = cards[0].offsetWidth, far = W < 700 ? 2 : 3;
+      var outer = Math.max(0, W / 2 - kw * S[far] / 2 - 12);
+      var X = far === 3 ? [0, outer * .38, outer * .68, outer, outer] : [0, outer * .56, outer, outer, outer];
+      for (var i = 0; i < n; i++) {
+        var d = rel(i), a = Math.min(Math.abs(d), 4), sg = d < 0 ? -1 : 1, c = cards[i];
+        var vis = a <= far ? O[a] : 0;
+        c.style.transform = "translateX(" + (X[a] * sg * dir * open).toFixed(1) + "px) rotateY(" + (R[a] * sg * dir * open).toFixed(1) + "deg) scale(" + S[a] + ")";
+        c.style.opacity = vis;
+        c.style.zIndex = String(20 - a);
+        c.style.pointerEvents = vis ? "" : "none";
+        c.dataset.d = String(d);
+        c.setAttribute("aria-hidden", d ? "true" : "false");
+      }
+    }
+    function caption(anim) {
+      var html = cards[act].querySelector(".kis-cap").innerHTML;
+      if (!anim || reduce) { now.innerHTML = html; return; }
+      now.classList.add("swap");
+      setTimeout(function () { now.innerHTML = html; now.classList.remove("swap"); }, 170);
+    }
+    function go(i, anim) {
+      act = ((i % n) + n) % n;
+      layout();
+      caption(anim !== false);
+      for (var k = 0; k < dots.length; k++) dots[k].setAttribute("aria-current", k === act ? "true" : "false");
+    }
+
+    cards.forEach(function (c, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", c.querySelector(".kis-cap b").textContent);
+      b.addEventListener("click", function () { go(i); });
+      dotsBox.appendChild(b);
+      dots.push(b);
+      c.addEventListener("click", function () { if (Date.now() - lastDrag < 350) return; if (rel(i)) go(i); });
+    });
+    if (prev) prev.addEventListener("click", function () { go(act - 1); });
+    if (next) next.addEventListener("click", function () { go(act + 1); });
+    strip.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); go(act + dir); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); go(act - dir); }
+    });
+
+    // Parmak / fare ile cevirme: yatay hareket 40 px'i gecince bir kart.
+    var sx = 0, sy = 0, down = false, moved = false;
+    strip.addEventListener("pointerdown", function (e) { down = true; moved = false; sx = e.clientX; sy = e.clientY; });
+    strip.addEventListener("pointermove", function (e) {
+      if (down && !moved && Math.abs(e.clientX - sx) > 8 && Math.abs(e.clientX - sx) > Math.abs(e.clientY - sy)) { moved = true; strip.classList.add("drag"); }
+    });
+    function up(e) {
+      if (!down) return;
+      down = false;
+      strip.classList.remove("drag");
+      var dx = e.clientX - sx;
+      if (moved) { lastDrag = Date.now(); if (Math.abs(dx) > 40) go(act + (dx < 0 ? 1 : -1) * dir); }
+      moved = false;
+    }
+    strip.addEventListener("pointerup", up);
+    strip.addEventListener("pointercancel", function () { down = false; moved = false; strip.classList.remove("drag"); });
+
+    function frame() {
+      raf = 0;
+      var vh = window.innerHeight, r = strip.getBoundingClientRect();
+      if (r.bottom < -vh * 0.5 || r.top > vh * 1.5) return;
+      var d = r.top + r.height / 2 - vh / 2;
+      var t = Math.max(0, Math.min(1, (1 - Math.abs(d) / (vh * 0.7)) / 0.6));
+      var p = t * t * (3 - 2 * t);
+      if (Math.abs(p - open) < 0.003) return;
+      open = p;
+      layout();
+    }
+    function ask() { if (!raf) raf = requestAnimationFrame(frame); }
+    go(0, false);
+    if (!reduce) {
+      ask();
+      window.addEventListener("scroll", ask, { passive: true });
+    }
+    window.addEventListener("resize", function () { layout(); ask(); });
   })();
 
   // ── Vesile bandi: on ekran sabit, cevresi kaydirmayla gelir ──

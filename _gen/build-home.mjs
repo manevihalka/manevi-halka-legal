@@ -289,6 +289,19 @@ const T = {
     fr: "Revois pour toi ce que tu as lu et les souvenirs de ton parcours spirituel. Le but n'est pas la comparaison, mais de te souvenir de ton propre chemin.",
     ar: "شاهد لنفسك ما قرأت وذكريات رحلتك الروحية. ليس الهدف المقارنة، بل أن تتذكّر طريقك الخاص." },
 
+  kisKicker: { tr: "Kişiselleştir", en: "Make it yours", de: "Personalisieren", fr: "Personnaliser", ar: "التخصيص" },
+  kisTitle: { tr: "Kendi zevkine göre.", en: "Made to your taste.", de: "Ganz nach deinem Geschmack.", fr: "Selon tes goûts.", ar: "على ذوقك." },
+  kisText: { tr: "Zeminini, rengini, ana ekranındaki widget'ı sen seç. Her gün baktığın yer sana göre olsun.",
+    en: "Choose your backdrop, your color and the widget on your home screen. The place you look at every day should feel like yours.",
+    de: "Wähle deinen Hintergrund, deine Farbe und das Widget auf deinem Startbildschirm. Der Ort, auf den du jeden Tag schaust, soll zu dir passen.",
+    fr: "Choisis ton fond, ta couleur et le widget de ton écran d'accueil. L'endroit que tu regardes chaque jour doit te ressembler.",
+    ar: "اختر خلفيتك ولونك والأداة على شاشتك الرئيسية. ليكن المكان الذي تنظر إليه كل يوم على ذوقك." },
+  kisNote: { tr: "Bazı zeminler ve temalar Premium ile açılır.", en: "Some backdrops and themes unlock with Premium.",
+    de: "Einige Hintergründe und Designs sind mit Premium verfügbar.", fr: "Certains fonds et thèmes se débloquent avec Premium.",
+    ar: "بعض الخلفيات والسمات تُفتح مع بريميوم." },
+  kisAria: { tr: "Kişiselleştirme ekranları", en: "Personalization screens", de: "Bildschirme zur Personalisierung",
+    fr: "Écrans de personnalisation", ar: "شاشات التخصيص" },
+
   faqTitle: { tr: "Başlamadan önce", en: "Before you start", de: "Bevor du anfängst", fr: "Avant de commencer", ar: "قبل أن تبدأ" },
   faqText: { tr: "Başka bir sorun varsa support@manevihalka.app adresine yaz.", en: "Any other question? Write to support@manevihalka.app.",
     de: "Noch eine Frage? Schreib an support@manevihalka.app.", fr: "Une autre question ? Écris à support@manevihalka.app.",
@@ -614,6 +627,97 @@ function fxParcalari(dil) {
   };
 }
 
+// "Kendi zevkine göre" seridi: her dilde uygulamanin o dildeki gercek ekrani
+// (gecici premium deneme hesabiyla cekildi, 4 Eki 2026). Ad ve aciklama
+// uygulamadaki adlarla birebir (backdrop.*, theme.*, counter.modeStrand).
+// Sayfa rengi, widget gorunumleri ve tesbih kipi ucretsiz; Premium notu yalniz
+// zemin ve temalari soyler, bu yuzden dogru kalir.
+const KIS = [
+  { img: "ufuk",
+    tag: { tr: "Zemin", en: "Backdrop", de: "Hintergrund", fr: "Fond", ar: "الخلفية" },
+    ad: { tr: "Ufuk", en: "Horizon", de: "Horizont", fr: "Horizon", ar: "الأفق" },
+    acik: { tr: "Güneş ve ay, şehrinin namaz vakitlerine göre doğar ve batar.",
+      en: "The sun and moon rise and set with your city's prayer times.",
+      de: "Sonne und Mond gehen mit den Gebetszeiten deiner Stadt auf und unter.",
+      fr: "Le soleil et la lune se lèvent et se couchent au rythme des heures de prière de ta ville.",
+      ar: "تشرق الشمس ويطلع القمر ويغيبان مع مواقيت الصلاة في مدينتك." } },
+  { img: "kandil",
+    tag: { tr: "Zemin · Koyu tema", en: "Backdrop · Dark theme", de: "Hintergrund · Dunkles Design", fr: "Fond · Thème sombre", ar: "الخلفية · السمة الداكنة" },
+    ad: { tr: "Kandiller", en: "Lamps", de: "Lampen", fr: "Lampes", ar: "القناديل" },
+    acik: { tr: "Gece okuyanlar için kandil ışığında yumuşak bir karanlık.",
+      en: "A soft darkness lit by lamps, for those who read at night.",
+      de: "Ein sanftes Dunkel im Lampenlicht, für alle, die nachts lesen.",
+      fr: "Une obscurité douce à la lueur des lampes, pour qui lit la nuit.",
+      ar: "عتمة هادئة على ضوء القناديل لمن يقرأ ليلًا." } },
+  { img: "revzen",
+    tag: { tr: "Zemin · Safran", en: "Backdrop · Saffron", de: "Hintergrund · Safran", fr: "Fond · Safran", ar: "الخلفية · زعفراني" },
+    ad: { tr: "Revzen", en: "Window Light", de: "Fensterlicht", fr: "Vitrail", ar: "القمرية" },
+    acik: { tr: "Cami penceresinden süzülen ışık, rengi gün boyu güneşi izler.",
+      en: "Light through a mosque window, its color following the sun all day.",
+      de: "Licht durch ein Moscheefenster, dessen Farbe den ganzen Tag der Sonne folgt.",
+      fr: "La lumière d'une fenêtre de mosquée, dont la couleur suit le soleil toute la journée.",
+      ar: "ضوء يتسلّل من نافذة مسجد، ولونه يتبع الشمس طوال اليوم." } },
+  { img: "ebru",
+    tag: { tr: "Zemin · Mürdüm", en: "Backdrop · Plum", de: "Hintergrund · Pflaume", fr: "Fond · Prune", ar: "الخلفية · برقوقي" },
+    ad: { tr: "Ebru", en: "Marbling", de: "Marmorpapier", fr: "Marbrure", ar: "إبرو" },
+    acik: { tr: "İnce damarlı ebru kâğıdı, köşelerden sayfaya süzülür.",
+      en: "Fine-veined marbled paper, drifting in from the corners.",
+      de: "Fein geädertes Marmorpapier, das von den Ecken hereinfließt.",
+      fr: "Un papier marbré aux fines veines, qui s'invite par les coins.",
+      ar: "ورق إبرو بعروق دقيقة ينساب من الزوايا." } },
+  { img: "gorunum",
+    tag: { tr: "Ayarlar", en: "Settings", de: "Einstellungen", fr: "Réglages", ar: "الإعدادات" },
+    ad: { tr: "Görünüm", en: "Appearance", de: "Erscheinungsbild", fr: "Apparence", ar: "المظهر" },
+    acik: { tr: "Zemin, tema ve renk aynı yerden seçilir, değişiklik anında görünür.",
+      en: "Backdrop, theme and color in one place, and every change shows at once.",
+      de: "Hintergrund, Design und Farbe an einem Ort, jede Änderung siehst du sofort.",
+      fr: "Fond, thème et couleur au même endroit, et chaque changement s'affiche aussitôt.",
+      ar: "الخلفية والسمة واللون في مكان واحد، ويظهر كل تغيير فورًا." } },
+  { img: "anaekran",
+    tag: { tr: "Ana ekran", en: "Home screen", de: "Startbildschirm", fr: "Écran d'accueil", ar: "الشاشة الرئيسية" },
+    ad: { tr: "Widget'lar", en: "Widgets", de: "Widgets", fr: "Widgets", ar: "الأدوات" },
+    acik: { tr: "Bugünkü görevin, Hicri gün ve namaz vakti bir arada. Vakit widget'ının sekiz görünümü var.",
+      en: "Your task for today, the Hijri date and prayer times together. The prayer widget comes in eight looks.",
+      de: "Deine heutige Aufgabe, das Hidschri-Datum und die Gebetszeit beisammen. Das Gebetszeiten-Widget gibt es in acht Ansichten.",
+      fr: "Ta tâche du jour, la date hégirienne et l'heure de prière réunies. Le widget de prière existe en huit apparences.",
+      ar: "مهمتك اليوم والتاريخ الهجري ووقت الصلاة معًا. ولأداة الصلاة ثمانية أشكال." } },
+  { img: "kilit",
+    tag: { tr: "Kilit ekranı", en: "Lock screen", de: "Sperrbildschirm", fr: "Écran verrouillé", ar: "شاشة القفل" },
+    ad: { tr: "Bir bakışta vakit", en: "Prayer time at a glance", de: "Gebetszeit auf einen Blick", fr: "L'heure de prière d'un coup d'œil", ar: "الوقت بنظرة واحدة" },
+    acik: { tr: "Telefonu açmadan vaktin çıkmasına kalan süreyi ve sıradaki vakitleri gör.",
+      en: "See how long the current prayer time has left and what comes next, without unlocking your phone.",
+      de: "Sieh, wie lange die aktuelle Gebetszeit noch dauert und was als Nächstes kommt, ohne das Telefon zu entsperren.",
+      fr: "Vois le temps restant de la prière en cours et les suivantes, sans déverrouiller ton téléphone.",
+      ar: "اعرف ما تبقّى من وقت الصلاة الحالية وما يليها دون فتح هاتفك." } },
+  { img: "sayfa",
+    tag: { tr: "Okurken", en: "While reading", de: "Beim Lesen", fr: "En lisant", ar: "أثناء القراءة" },
+    ad: { tr: "Sayfa rengi", en: "Page color", de: "Seitenfarbe", fr: "Couleur de page", ar: "لون الصفحة" },
+    acik: { tr: "Kur'an'ı beyazdan sepyaya, geceye kadar beş sayfa tonunda oku.",
+      en: "Read the Quran in five page tones, from white through sepia to night.",
+      de: "Lies den Koran in fünf Seitentönen, von Weiß über Sepia bis Nacht.",
+      fr: "Lis le Coran dans cinq tons de page, du blanc au sépia jusqu'à la nuit.",
+      ar: "اقرأ القرآن بخمس درجات للصفحة، من الأبيض إلى البني الفاتح حتى الليلي." } },
+  { img: "tesbih",
+    tag: { tr: "Zikir", en: "Dhikr", de: "Dhikr", fr: "Dhikr", ar: "الذكر" },
+    ad: { tr: "Tesbih", en: "Prayer beads", de: "Gebetskette", fr: "Chapelet", ar: "المسبحة" },
+    acik: { tr: "Sayacı rakamlı bir halka ya da akan tesbih taneleri olarak kullan.",
+      en: "Use the counter as a numbered ring or as flowing prayer beads.",
+      de: "Nutze den Zähler als Ring mit Zahl oder als fließende Gebetskette.",
+      fr: "Utilise le compteur en anneau chiffré ou en chapelet aux grains qui défilent.",
+      ar: "استخدم العدّاد حلقةً برقم كبير أو مسبحةً بحبّات متحركة." } },
+];
+
+function kisSeridi(dil) {
+  return KIS.map((k) => {
+    const yol = join(KOK, "img", "app", dil, `kis-${k.img}.webp`);
+    if (!existsSync(yol)) hata(`${dil}: kisisellestirme gorseli yok: kis-${k.img}.webp`);
+    const [w, h] = webpBoyut(yol);
+    for (const a of ["tag", "ad", "acik"]) if (k[a][dil] == null) hata(`KIS.${k.img}.${a}.${dil} yok`);
+    return `<li class="kis-card"><figure class="phone"><img src="/img/app/${dil}/kis-${k.img}.webp" alt="${kacis(k.ad[dil])}" width="${w}" height="${h}" loading="lazy" decoding="async"></figure>`
+      + `<div class="kis-cap"><span class="kis-tag">${kacis(k.tag[dil])}</span><b>${kacis(k.ad[dil])}</b><span>${kacis(k.acik[dil])}</span></div></li>`;
+  }).join("\n        ");
+}
+
 const sablon = readFileSync(join(KOK, "_gen", "home.src.html"), "utf8");
 const VERI_ISARETI = "/*__DATA__*/null";
 if (sablon.split(VERI_ISARETI).length !== 2) hata("sablonda veri isareti tek olmali");
@@ -630,6 +734,7 @@ function sayfa(dil) {
     langMenuHtml: DILLER.map((d) => `<a href="${EV[d]}" hreflang="${d}" lang="${d}"${d === dil ? ' aria-current="page"' : ""}>${DIL_ADI[d]}</a>`).join(""),
     langCode: dil.toUpperCase(),
     ...fxParcalari(dil),
+    kisHtml: kisSeridi(dil),
     creditHtml: dil === "en" ? `${kacis(s.itaniCredit)} <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span>` : "",
   };
   const eksik = new Set();
