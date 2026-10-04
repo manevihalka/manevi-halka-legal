@@ -703,7 +703,7 @@
       ayahCard.style.backgroundImage = "url(/img/daily/" + ayah.bgIndex + ".webp)";
       ayahCard.innerHTML =
         '<div class="dc-scrim"></div><div class="dc-inner">' +
-        '<img class="dc-appicon" src="/icon.png" alt="" loading="lazy">' +
+        '<img class="dc-appicon" src="/img/brand-icon.webp" alt="" loading="lazy">' +
         '<div class="dc-label">' + (ayah.specialName ? svgSparkle() : "") + esc(ayahLabel) + "</div>" +
         bodyHtml +
         '<div class="dc-ref">' + esc(ayah.reference) + "</div></div>";
@@ -717,7 +717,7 @@
       hadithCard.style.backgroundImage = "url(/img/daily/" + hBg + ".webp)";
       hadithCard.innerHTML =
         '<div class="dc-scrim"></div><div class="dc-inner">' +
-        '<img class="dc-appicon" src="/icon.png" alt="" loading="lazy">' +
+        '<img class="dc-appicon" src="/img/brand-icon.webp" alt="" loading="lazy">' +
         '<div class="dc-label">' + (hadith.specialName ? svgSparkle() : "") + esc(hadithLabel) + "</div>" +
         '<p class="dc-text dc-hadith">' + "“" + esc(hadith.text) + "”</p>" +
         '<div class="dc-ref">' + esc(hadith.source) + "</div></div>";
