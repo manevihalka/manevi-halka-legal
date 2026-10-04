@@ -456,6 +456,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
      doner. Ayrica Safari View Transition'in eski sayfa goruntusune bu katmani CIZMIYOR (bugusuz eski
      sayfa bir an gorunuyordu); varis bu yuzden View Transition'a degil "mh-land" acilisina birakildi.
      Bunlari geri zamanlayiciya, gecikmeye ya da View Transition varisina CEVIRME.
+     Elle yazilan sayfalara (ortak okuma, politika duzeni, davet, baglantilar, giris) ayni parca
+     _gen/inject-nav.mjs ile isaretler arasina yazilir; burayi degistirince onu calistir.
      ⚠️ Ana sayfanin tema dugmesi de View Transition kullanir ve root animasyonunu kapatir; sayfa
      gecisi bu yuzden "mh-page" turuyla ayrilir.
      Hareketi azaltta ucus, erime ve dilim hareketi yok; halka tam ve sabit. -->
@@ -469,7 +471,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
   .nav-load { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; pointer-events: none;
     opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility 0s linear .2s; }
-  .nl-veil { position: absolute; inset: 0; background: color-mix(in srgb, var(--page) 62%, transparent);
+  .nl-veil { position: absolute; inset: 0; background: color-mix(in srgb, var(--page, var(--bg, #f7f4ec)) 62%, transparent);
     -webkit-backdrop-filter: blur(10px) saturate(.9); backdrop-filter: blur(10px) saturate(.9); }
   .nav-load.on, html.mh-land .nav-load { opacity: 1; visibility: visible; pointer-events: auto; transition: none; }
   /* Belirme bugu ve ikonda ayri ayri: kapsayicinin kendisine opaklik animasyonu verilirse Safari
@@ -1034,6 +1036,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       var done = function () { el.style.transition = "none"; root.classList.remove("mh-land"); void el.offsetWidth; el.style.transition = ""; };
       if (!el.animate || reduce) { done(); return; }
       if (to) tile.animate([{ transform: "none" }, { transform: to }], { duration: d, easing: "cubic-bezier(.45, 0, .2, 1)", fill: "forwards" });
+      // Sayfada baslik ikonu yoksa (giris, indirme sayfalari) ikon yerinde hafifce kuculup soner.
+      else tile.animate([{ opacity: 1, transform: "none" }, { opacity: 1, offset: .25 }, { opacity: 0, transform: "scale(.9)" }], { duration: d, easing: "ease", fill: "forwards" });
       // Yalniz bugu cozulur; ikon dolu kalip basliga oturur (ikon katmanin icinde oldugu icin
       // butun katmani soldurmak ikonu da ucarken soluklastiriyordu).
       var veil = el.querySelector(".nl-veil");

@@ -63,10 +63,114 @@
   .home a { color:var(--green); text-decoration:none; font-weight:600; }
   @media (max-width:520px) { .qr-wrap { display:none; } }
 </style>
+<!--NAV:HEAD-->
+<script>/* sayfa gecisi: onceki sayfada isaret gorunurken gelindiyse ilk kare isaretle cizilir (nav-loader.html) */
+try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.removeItem("mh-land");if(L&&L.p===location.pathname&&Date.now()-L.t<15000)document.documentElement.classList.add("mh-land")}catch(e){}</script>
+<!--/NAV:HEAD-->
 </head>
 <body>
+<!--NAV:BODY-->
+<!-- Sayfa gecisi (build-home.mjs ve build-vakit.mjs: bas kismi HEAD, katman BODY basina, betik sona).
+     Kahraman uygulama ikonu. Site ici bir baglantiya basilinca:
+     1. Sayfa bugulanir, basliktaki ikon yerinden kalkip ortaya buyur; icinde tesbih halkasi alttaki
+        imameden iki yana dogru dilim dilim acilir, soner, yeniden acilir (uygulamanin HalkaLoader
+        hareketi; cami ve halka maskeleri o animasyondan, halka 9 aci diliminde).
+     2. Yeni sayfa ISARET GORUNMEDEN geldiyse (hizli gecis) yalniz belgeler arasi View Transition
+        erimesi olur. Isaret gorunduyse gecis atlanir; yeni sayfa ayni bugulu katmanla ve ortadaki
+        ikonla ACILIR (sessionStorage "mh-land" + bastaki betik), sonra bugu cozulur ve ikon ucup
+        yeni sayfanin baslik ikonuna oturur. Iki sayfa arasindaki an fark edilmez; her tarayicida
+        (Firefox dahil) ayni calisir.
+     3. Fare baglantinin ustune gelince belge onceden indirilir (speculation rules, yalniz prefetch:
+        sayfanin betigi calismaz, ucuncu taraf istek gitmez).
+     ⚠️ Safari (iOS 26, 4 Eki 2026 olculdu): gezinme baslar baslamaz sayfayi dondurur (zamanlayici,
+     requestAnimationFrame, gecikmeli gecis ve gecikmeli animasyon durur; tiklama aninda baslamis
+     opaklik/konum animasyonlari surer). Bu yuzden: her sey tiklama aninda GECIKMESIZ baslar, esik
+     animasyonlarin ilk 120 ms'si gorunmez tutularak kurulur, gezinme iki kare ertelenir (yoksa sayfa
+     degisiklik ekrana islenmeden donuyordu) ve halka @property/maske acisi degil dilim opakligiyla
+     doner. Ayrica Safari View Transition'in eski sayfa goruntusune bu katmani CIZMIYOR (bugusuz eski
+     sayfa bir an gorunuyordu); varis bu yuzden View Transition'a degil "mh-land" acilisina birakildi.
+     Bunlari geri zamanlayiciya, gecikmeye ya da View Transition varisina CEVIRME.
+     Elle yazilan sayfalara (ortak okuma, politika duzeni, davet, baglantilar, giris) ayni parca
+     _gen/inject-nav.mjs ile isaretler arasina yazilir; burayi degistirince onu calistir.
+     ⚠️ Ana sayfanin tema dugmesi de View Transition kullanir ve root animasyonunu kapatir; sayfa
+     gecisi bu yuzden "mh-page" turuyla ayrilir.
+     Hareketi azaltta ucus, erime ve dilim hareketi yok; halka tam ve sabit. -->
+<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}]}</script>
+<style>
+  @view-transition { navigation: auto; types: mh-page; }
+  html:active-view-transition-type(mh-page)::view-transition-old(root) { animation: mh-out .28s ease both; }
+  html:active-view-transition-type(mh-page)::view-transition-new(root) { animation: mh-in .4s cubic-bezier(.2, .8, .2, 1) both; }
+  @keyframes mh-out { to { opacity: 0; } }
+  @keyframes mh-in { from { opacity: 0; transform: translateY(8px); } }
+  @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+  .nav-load { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; pointer-events: none;
+    opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility 0s linear .2s; }
+  .nl-veil { position: absolute; inset: 0; background: color-mix(in srgb, var(--page, var(--bg, #f7f4ec)) 62%, transparent);
+    -webkit-backdrop-filter: blur(10px) saturate(.9); backdrop-filter: blur(10px) saturate(.9); }
+  .nav-load.on, html.mh-land .nav-load { opacity: 1; visibility: visible; pointer-events: auto; transition: none; }
+  /* Belirme bugu ve ikonda ayri ayri: kapsayicinin kendisine opaklik animasyonu verilirse Safari
+     bugunun arkasini bulandirmiyor (sayfa yalniz soluklasiyordu). */
+  .nav-load.on .nl-veil, .nav-load.on .nl-tile { animation: nl-in .4s ease both; }
+  @keyframes nl-in { 0%, 30% { opacity: 0; } 100% { opacity: 1; } }
+  html.nl-on [data-vt-brand] { animation: nl-hide .12s steps(1, end) both; }
+  html.mh-land [data-vt-brand] { opacity: 0; }
+  /* Emniyet: varis betigi bir sebeple calismazsa katman 3 sn sonra kendiliginden kalkar, sayfa kilitli kalmaz.
+     ⚠️ Yalniz visibility: katmanin kendisinde saydamlik animasyonu olursa Chrome onu "backdrop root"
+     sayiyor ve bugu arkadaki sayfayi bulandirmiyor (varista sayfa yalniz soluk gorunuyordu, olculdu). */
+  html.mh-land .nav-load { animation: nl-safety 0s 3s forwards; }
+  html.mh-land [data-vt-brand] { animation: nl-safety-b 0s 3s forwards; }
+  @keyframes nl-safety { to { visibility: hidden; } }
+  @keyframes nl-safety-b { to { opacity: 1; } }
+  @keyframes nl-hide { to { opacity: 0; } }
+  .nl-tile { position: relative; width: 104px; height: 104px; border-radius: 29px; color: #88edb2;
+    background: linear-gradient(135deg, #335644, #223c2e);
+    box-shadow: 0 24px 48px -20px rgba(8, 24, 16, .55), inset 0 0 0 1px rgba(255, 255, 255, .06); }
+  .nl-tile i { position: absolute; inset: 0; background: currentColor;
+    -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; }
+  .nl-mosque { --m: url(data:image/webp;base64,UklGRioFAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSKMEAAARf6CgbRs2VABnfxERiKnUfFTH1RCUsP9f2zY/SQ6MlXhUVplbrR6j+7jMYGVcZggcx+5t6GTMC5zGzhgKXoe3asybxrxobIx+B/3/svz7/8cU0f8JgH9+XrK/rDqmyqprsayeapHWJbJ6UVqf2qqcVnk4UU4FRCcio25ExBUS0ss+NyKfLmSeIp9fWFlFOmUW1gRbeot4JnL3C7SkfLJ4q3iDAuVtVSKTg7TiAkW8JaH8jLUgkcFByrYqAaPMGRTA9DKKBGC6tX6mZVnrtQCt2CkFboMSoAMzMnjwPW46QAptGeSR66pBsFYCv/AcjbcKcZIEunlp4BsediriQYFljwkAecSBAJCKiJXjqEFeQrTnxNZ+o4qVD8P00H8xCJd+BNHWgsCrPnecIlYB3bFGCW01kP4lont2A4idx6wGn1QCRn9mgwbC3aFCb0XQ3w7C5/EqBboq0r2MDJohBAOzigRWhBFHR5XTXsRa4XK4KAS9iNgspWcREQeIt4KhBGlFvx0RSo8VMB2LPYT2MRrPKDHwYqF6XeS3cPTPkXuSSB9iwE7OM8h3xwn0Ugg7MKhTK04qyCLGknIg7FSFgQLPrfMZRaxwuzgp3jng/wwrniiMyRvgewgrd2tFWcKbAAApLwTMaoLEeQMBzBKG2iyI6bHceoAchjxBrLQGPRi2UyOSewQs6Q8N2xWB0lrDZ1jFQSLE0e8ep+zAamZVYdIq5KuCp4AuyARIYXVtVVeEyEYgVyWcBLoiwrl6G1Y7q4JOzPQQ3bHwWdVwAIBCK46I7Y1Gf/VaAHRapod4LnRh9R0ViPvG6zkCuL8AdsTsp9AiQKeaQoq2Su8c5WMSeCS9AVCgcQo55/DhHo12cll1FdLMKtTaYS8RN0JtEXxMBOuoTYZfqAyiNgiKVBZRGwBlKs3U6vV+KpcotPpqTY9KRqXlRJagnGxtFRlbo9ZKxiWXohOh1krGiVJbRSbbSKuvJk4mQ8ytMT05ebXQT6UdyJWoNFOrhwKVFQqxQZCnci4QGwI/UZlHy/h2EvT2ET2cFhylgZ44OpG0rBkzkjNjiRmJZNKykpa1fsOGDU0bmixrw/oma8aMGTMaiVFWpEU/NjIWS8wI20paAZOjiT3v9vWhhyTt40l1IWVHpfQzKTyAUonWSkKGR6uTkEksq0pL+w2A/H3B9nmBnH5eJkInzttz6VtB7CteCOJefoMnkDM3Nq3Ic2+ZnfgywJUbRz7HyQpw5SgF2nh3bDymcXqZkzkvMdIoCGNvOAwAciz3vGOioD/I2XpMTIGrOYeSu2ikAgApVmZMVAGIewynaaQKoJdEORv8Rj/jqpEKAOgFxh2zVACAjxkZjY7p+dwFDCgwroiC/2fG7ccovl5WlBD6nfGsPOMshfETo3kE+DvoeYw61i+ME4H5CqOFlWJpYk1gvcy4WAmUjYo1MNglIIhRQS6MFlFMVj0rH8a5FWh0DFYk2ADWi4wVrA5GJyFYftPNd919N2fNnXff/eQttawlN9199857zmIZN+zcuXPnVkoADSOGj1BZoI9oHN4IXD02IjYtygJ92owZM0bBH9a6tP6fJgBWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-r { position: absolute; inset: 0; }
+  .nl-b:nth-child(1) { --m: url(data:image/webp;base64,UklGRnYBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSPAAAAARf6C2bRs25d1OLxER8Oi65XvV+jmgYNt+3vmOuk8+s71kd9u2bS/ZtpqirbRTt2QzWd9Qv1kR/Z8A+Pf/v////f8zp4QsfwZVBUyabFy6WDRdY7GIJDNEbx49OqwXZUBu9YFUqQqxhUGINhMAYtaWHs5wddkNyOTK3EUBwHmZXvx9pryekJB8RDZw7w0AtrOYoKvHpEIyj9ifkngmBmgfKBo+nhBTwZ1FfECUsgBsEBFLhGTEPkxaB/atsQB8pA3O+nwgk5sfwmZIHjgA09kyQKsMAFypA/faCAgemnRcWWNTJBk+wAggWbsghE/TJyNWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-b:nth-child(2) { --m: url(data:image/webp;base64,UklGRpQBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSA4BAAARf6CgbRQ4hYF7gYiIQfPqWes4Adxt244vz/vLm5ttm5ut0bZrsna3tf9aba22+wtc3/7TnX94MyP6PwH07/9////7/+PbQ+elGg56qbYr2AtVPaTzMonr1+1fpGzAzvdF2gGc2Yu0DYTQS5zXASHgJcrG4kmnyUvUC8HGmnGWIlJJjRx6xLmh2EUl2TLBnDePpSpPkQo8JF0mvOVedEuGmHKGuXb0aCjjpl++DhiogB61mGgScZM0NwW4LsUoxR54HCGWcUOe/cACoKXEo3USNJkQxxYy4RTQY0pZDiqEVCviumZgH/BXxmJCjsUo4t2oHVu+pGSydKvE2oQ7osk0a2U8CmwYvYSGRkyZb8pWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-b:nth-child(3) { --m: url(data:image/webp;base64,UklGRpoBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSBQBAAARf6C2bRs25D29JyICbhaTY+6WHwQo2LYde573G+Pv1a/Ptm02b5Fxa162zb5oNCvZ9valGU8aXsQhov8TAP/+//f/f2bthNWvF9VRMhFU96RBUPYL4WLK2PZ0FtMdDujE9PSuGItqWSemIyyShFQ3MxYKIlY9K846MU2hJXCpMqYF5W+efMQHh9GKu3LnQpW0iuaU5Eb9RxqWQH57j6UEAdIHGaFM2SFW0frkRSRhSfWGVYkSG72KBTC9gi2Yz4Tdaz5hS1VwhooRCyt7JsD6A6IJoVeDkYS5I1QGcwktv9dKAsxnvHW+ZkuU5ItlU+Awq2XJFeiq1hR3wgMkdOgplWGyBHwWSpQqsglwKgNlewI/mQNWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-b:nth-child(4) { --m: url(data:image/webp;base64,UklGRmoBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSOMAAAARf6CgbRQ4hYF7gYiI0ePWSaDrEXBsWzv2PM8fd7ZtDMBobScTMGrVGYPt1rY1gHTGW/98uh93/XW+iP5PAGn+1/yvBdV7PhktJh6kR14ZK3pwmTEqvsUDq//qT4dBsxZrvOMBTszKBaTg2s+KjkZ23LCMu4FQMVvx0glANZd7OhBvaww5BOhtkgwQawtUEEKBSDvc0QYjZIt0w+lzCVIvpQxWodwxhm93xhjreYIxqEPEC8rblEY4kVBTDy4oFaJCofRthOpt3g9AGlGBMDTa6Iv0NsQ42NGbHuScvUvYSf27EgBWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-b:nth-child(5) { --m: url(data:image/webp;base64,UklGRloBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSNQAAAARf6CgbRs2VARbb0QEvuS5ImeSgKpt+/rk95tv6bfFJfcNh6ZnQLLECWiDps09u0TYESAn4Mmd+m84fPm93mX+Ef2fAGX73/b//xGD1Y4y1doeoqkOYcyQk2Y8jSlJI81rDvMh+zQfYcy3WA6WLx/mQ45ZzK8HU5IeTdJ258SojS6WgV0NOrI8JHuzCvwj3SSPfSAjskLyXkD9spjvAEi9SS9Hi+VBtexMOClWj10oNXeco3gc1rCLiQaKj0bccoNmMJdeBW/VijEy6MSRmpguU3ZIAVZQOCBgAAAAsAkAnQEqsACwAD5tNplJpCMioSBIAIANiWlu4XYBG0AT2vRVwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VH4AA/v+7EAAAAAAA); }
+  .nl-b:nth-child(6) { --m: url(data:image/webp;base64,UklGRk4BAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSMgAAAARf6C2bRs25N3pNSIC3t7+vLTsMQcUbduOTe9vJKU/2lqB/xX82bYm2va0abMEL8CRfeJUm09+judNw4j+TwD79/+//78DqpFiUaOASkGEs70yKaJyKMW5uzwSU3lU4qQ/54RUHlw4qm4To3rnx7k4FpM5S6H4AFxkdloobYAUnQWUIECSzBoOewUHmdUFAcpgXcup5T4Bn1QfoCCzjtMG8JDZGWCYg9zyfZ7ryJwNCDDYSFlIZiOOwzSMbJeVcVqv4dW//78+A1ZQOCBgAAAAsAkAnQEqsACwAD5tNplJpCMioSBIAIANiWlu4XYBG0AT2vRVwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VH4AA/v+7EAAAAAAA); }
+  .nl-b:nth-child(7) { --m: url(data:image/webp;base64,UklGRlYBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSM8AAAARf6CgbRs2VQLt/omIALPdR7SKjxSgWNu2LPpeHJKtgENyyBwSNJcNOInKIbMC2YE0msNYmjPVdoBuYdze/P7P5Pkj+j8BSve/Xl0v/VUdsxaSPgK4S2ig+thGWMw0cOKdCSD2a5J7ZrYAqA+H3InZjHCKyBW5TwjjgVjsKu1RiMU9SZ05ryCdP2apT34iCPXhkPrivQHjJSz1yiPCuK1I9XZxhTmcCTm3fgNI8YlkJjwgkNjOKLO6uTeCOKcmmXKri6JSBhmny0souv//7wgAVlA4IGAAAACwCQCdASqwALAAPm02mUmkIyKhIEgAgA2JaW7hdgEbQBPa9FXCDIIaqk122i4QZBDVUmu20XCDIIaqk122i4QZBDVUmu20XCDIIaqk122i4QZBDVUfgAD+/7sQAAAAAAA=); }
+  .nl-b:nth-child(8) { --m: url(data:image/webp;base64,UklGRhgBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSJIAAAARf6C4bRs3ln/vyV1EBISZql8w/XBMuKm2bVne7//R7WP2CLC5S40/AE6CvwGMTDAxE8EKEMEjuBV4eGa+iP5PgBj//2GbUKyGaVbuzkNKPwukZLy1SOl3mJRsFqySXz9KCE3ODkh/CufuFMZ1BqffQYwXnpwcVv2lgriM8PTEg5Cat/CkakE01Q+AJmgZ/5uSAlZQOCBgAAAAsAkAnQEqsACwAD5tNplJpCMioSBIAIANiWlu4XYBG0AT2vRVwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VH4AA/v+7EAAAAAAA); }
+  .nl-b:nth-child(9) { --m: url(data:image/webp;base64,UklGRu4AAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSGcAAAARd6CobRs4WADt7u2/iAhExfhfKpYTYFNbW5uPtjOigQkpCMAEBlhZmRijIg6yx0ZPlPQe0f8JwO//d126WJkuVQpkodC7pfKzWiiUtVgo2YSFgp30QqEq6ELJyBcKhizV7//f/ycyAFZQOCBgAAAAsAkAnQEqsACwAD5tNplJpCMioSBIAIANiWlu4XYBG0AT2vRVwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VH4AA/v+7EAAAAAAA); }
+  /* Dongu 1.9 s: dilim k, 120 + k*65 ms'de belirir (imameden yukari, iki yanda birden; Safari icin
+     gecikme yok, her dilimin kendi anahtar kareleri var); butun halka %64-%71'de birlikte soner,
+     yeni turda yeniden acilir. Dilim de %72'de kapanir ki tur basinda ustteki dilimler bir an
+     onceki turdan dolu kalmasin. Varista (mh-land) halka tam ve sabit. */
+  .nav-load.on .nl-b { opacity: 0; animation-duration: 1.9s; animation-timing-function: linear; animation-iteration-count: infinite; animation-fill-mode: both; }
+  .nav-load.on .nl-b:nth-child(1) { animation-name: nl-b0; }
+  .nav-load.on .nl-b:nth-child(2) { animation-name: nl-b1; }
+  .nav-load.on .nl-b:nth-child(3) { animation-name: nl-b2; }
+  .nav-load.on .nl-b:nth-child(4) { animation-name: nl-b3; }
+  .nav-load.on .nl-b:nth-child(5) { animation-name: nl-b4; }
+  .nav-load.on .nl-b:nth-child(6) { animation-name: nl-b5; }
+  .nav-load.on .nl-b:nth-child(7) { animation-name: nl-b6; }
+  .nav-load.on .nl-b:nth-child(8) { animation-name: nl-b7; }
+  .nav-load.on .nl-b:nth-child(9) { animation-name: nl-b8; }
+  .nav-load.on .nl-r { animation: nl-r 1.9s ease infinite both; }
+  @keyframes nl-b0 { 0%, 6.3% { opacity: 0; } 10.3%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b1 { 0%, 9.7% { opacity: 0; } 13.7%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b2 { 0%, 13.2% { opacity: 0; } 17.2%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b3 { 0%, 16.6% { opacity: 0; } 20.6%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b4 { 0%, 20.0% { opacity: 0; } 24.0%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b5 { 0%, 23.4% { opacity: 0; } 27.4%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b6 { 0%, 26.8% { opacity: 0; } 30.8%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b7 { 0%, 30.3% { opacity: 0; } 34.3%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b8 { 0%, 33.7% { opacity: 0; } 37.7%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-r { 0%, 64% { opacity: 1; } 71%, 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-load.on .nl-b, .nav-load.on .nl-r { animation: none; opacity: 1; }
+  }
+</style>
+<div class="nav-load" id="navLoad" aria-hidden="true"><div class="nl-veil"></div><div class="nl-tile"><i class="nl-mosque"></i><div class="nl-r"><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i></div></div></div>
+<!--/NAV:BODY-->
 <main class="card">
-  <img class="icon" src="/email/icon.png" width="72" height="72" alt="Manevi Halka">
+  <img class="icon" src="/email/icon.png" width="72" height="72" alt="Manevi Halka" data-vt-brand>
   <h1 id="title">Get Manevi Halka</h1>
   <p class="sub" id="sub">Scan this code with your phone’s camera, or choose your store.</p>
   <div class="qr-wrap"><svg class="qr" viewBox="0 0 33 33" width="168" height="168" shape-rendering="crispEdges" role="img" aria-label="QR"><path d="M0,0h1v1h-1zM1,0h1v1h-1zM2,0h1v1h-1zM3,0h1v1h-1zM4,0h1v1h-1zM5,0h1v1h-1zM6,0h1v1h-1zM8,0h1v1h-1zM9,0h1v1h-1zM10,0h1v1h-1zM11,0h1v1h-1zM12,0h1v1h-1zM14,0h1v1h-1zM19,0h1v1h-1zM20,0h1v1h-1zM21,0h1v1h-1zM23,0h1v1h-1zM26,0h1v1h-1zM27,0h1v1h-1zM28,0h1v1h-1zM29,0h1v1h-1zM30,0h1v1h-1zM31,0h1v1h-1zM32,0h1v1h-1zM0,1h1v1h-1zM6,1h1v1h-1zM8,1h1v1h-1zM9,1h1v1h-1zM10,1h1v1h-1zM14,1h1v1h-1zM17,1h1v1h-1zM23,1h1v1h-1zM26,1h1v1h-1zM32,1h1v1h-1zM0,2h1v1h-1zM2,2h1v1h-1zM3,2h1v1h-1zM4,2h1v1h-1zM6,2h1v1h-1zM9,2h1v1h-1zM12,2h1v1h-1zM13,2h1v1h-1zM14,2h1v1h-1zM15,2h1v1h-1zM16,2h1v1h-1zM18,2h1v1h-1zM19,2h1v1h-1zM23,2h1v1h-1zM24,2h1v1h-1zM26,2h1v1h-1zM28,2h1v1h-1zM29,2h1v1h-1zM30,2h1v1h-1zM32,2h1v1h-1zM0,3h1v1h-1zM2,3h1v1h-1zM3,3h1v1h-1zM4,3h1v1h-1zM6,3h1v1h-1zM8,3h1v1h-1zM9,3h1v1h-1zM12,3h1v1h-1zM15,3h1v1h-1zM18,3h1v1h-1zM21,3h1v1h-1zM24,3h1v1h-1zM26,3h1v1h-1zM28,3h1v1h-1zM29,3h1v1h-1zM30,3h1v1h-1zM32,3h1v1h-1zM0,4h1v1h-1zM2,4h1v1h-1zM3,4h1v1h-1zM4,4h1v1h-1zM6,4h1v1h-1zM10,4h1v1h-1zM12,4h1v1h-1zM13,4h1v1h-1zM16,4h1v1h-1zM17,4h1v1h-1zM18,4h1v1h-1zM21,4h1v1h-1zM22,4h1v1h-1zM23,4h1v1h-1zM24,4h1v1h-1zM26,4h1v1h-1zM28,4h1v1h-1zM29,4h1v1h-1zM30,4h1v1h-1zM32,4h1v1h-1zM0,5h1v1h-1zM6,5h1v1h-1zM9,5h1v1h-1zM10,5h1v1h-1zM12,5h1v1h-1zM14,5h1v1h-1zM15,5h1v1h-1zM16,5h1v1h-1zM22,5h1v1h-1zM23,5h1v1h-1zM26,5h1v1h-1zM32,5h1v1h-1zM0,6h1v1h-1zM1,6h1v1h-1zM2,6h1v1h-1zM3,6h1v1h-1zM4,6h1v1h-1zM5,6h1v1h-1zM6,6h1v1h-1zM8,6h1v1h-1zM10,6h1v1h-1zM12,6h1v1h-1zM14,6h1v1h-1zM16,6h1v1h-1zM18,6h1v1h-1zM20,6h1v1h-1zM22,6h1v1h-1zM24,6h1v1h-1zM26,6h1v1h-1zM27,6h1v1h-1zM28,6h1v1h-1zM29,6h1v1h-1zM30,6h1v1h-1zM31,6h1v1h-1zM32,6h1v1h-1zM8,7h1v1h-1zM15,7h1v1h-1zM16,7h1v1h-1zM17,7h1v1h-1zM19,7h1v1h-1zM22,7h1v1h-1zM24,7h1v1h-1zM0,8h1v1h-1zM2,8h1v1h-1zM3,8h1v1h-1zM5,8h1v1h-1zM6,8h1v1h-1zM7,8h1v1h-1zM11,8h1v1h-1zM12,8h1v1h-1zM14,8h1v1h-1zM15,8h1v1h-1zM17,8h1v1h-1zM18,8h1v1h-1zM21,8h1v1h-1zM23,8h1v1h-1zM24,8h1v1h-1zM26,8h1v1h-1zM29,8h1v1h-1zM31,8h1v1h-1zM32,8h1v1h-1zM1,9h1v1h-1zM2,9h1v1h-1zM3,9h1v1h-1zM4,9h1v1h-1zM8,9h1v1h-1zM9,9h1v1h-1zM10,9h1v1h-1zM11,9h1v1h-1zM12,9h1v1h-1zM13,9h1v1h-1zM14,9h1v1h-1zM16,9h1v1h-1zM17,9h1v1h-1zM19,9h1v1h-1zM20,9h1v1h-1zM23,9h1v1h-1zM26,9h1v1h-1zM27,9h1v1h-1zM29,9h1v1h-1zM30,9h1v1h-1zM31,9h1v1h-1zM1,10h1v1h-1zM6,10h1v1h-1zM9,10h1v1h-1zM10,10h1v1h-1zM13,10h1v1h-1zM16,10h1v1h-1zM18,10h1v1h-1zM20,10h1v1h-1zM21,10h1v1h-1zM22,10h1v1h-1zM23,10h1v1h-1zM24,10h1v1h-1zM26,10h1v1h-1zM27,10h1v1h-1zM28,10h1v1h-1zM29,10h1v1h-1zM31,10h1v1h-1zM32,10h1v1h-1zM0,11h1v1h-1zM2,11h1v1h-1zM3,11h1v1h-1zM4,11h1v1h-1zM8,11h1v1h-1zM9,11h1v1h-1zM11,11h1v1h-1zM12,11h1v1h-1zM16,11h1v1h-1zM17,11h1v1h-1zM20,11h1v1h-1zM21,11h1v1h-1zM22,11h1v1h-1zM24,11h1v1h-1zM26,11h1v1h-1zM27,11h1v1h-1zM29,11h1v1h-1zM0,12h1v1h-1zM2,12h1v1h-1zM6,12h1v1h-1zM10,12h1v1h-1zM12,12h1v1h-1zM14,12h1v1h-1zM16,12h1v1h-1zM19,12h1v1h-1zM20,12h1v1h-1zM21,12h1v1h-1zM22,12h1v1h-1zM24,12h1v1h-1zM25,12h1v1h-1zM27,12h1v1h-1zM28,12h1v1h-1zM29,12h1v1h-1zM31,12h1v1h-1zM32,12h1v1h-1zM1,13h1v1h-1zM2,13h1v1h-1zM3,13h1v1h-1zM4,13h1v1h-1zM7,13h1v1h-1zM10,13h1v1h-1zM11,13h1v1h-1zM13,13h1v1h-1zM14,13h1v1h-1zM17,13h1v1h-1zM20,13h1v1h-1zM21,13h1v1h-1zM23,13h1v1h-1zM27,13h1v1h-1zM30,13h1v1h-1zM31,13h1v1h-1zM2,14h1v1h-1zM4,14h1v1h-1zM6,14h1v1h-1zM11,14h1v1h-1zM13,14h1v1h-1zM14,14h1v1h-1zM19,14h1v1h-1zM20,14h1v1h-1zM22,14h1v1h-1zM26,14h1v1h-1zM29,14h1v1h-1zM30,14h1v1h-1zM0,15h1v1h-1zM1,15h1v1h-1zM3,15h1v1h-1zM5,15h1v1h-1zM8,15h1v1h-1zM14,15h1v1h-1zM15,15h1v1h-1zM18,15h1v1h-1zM21,15h1v1h-1zM23,15h1v1h-1zM24,15h1v1h-1zM25,15h1v1h-1zM26,15h1v1h-1zM27,15h1v1h-1zM29,15h1v1h-1zM30,15h1v1h-1zM0,16h1v1h-1zM1,16h1v1h-1zM2,16h1v1h-1zM3,16h1v1h-1zM6,16h1v1h-1zM8,16h1v1h-1zM11,16h1v1h-1zM12,16h1v1h-1zM13,16h1v1h-1zM14,16h1v1h-1zM20,16h1v1h-1zM21,16h1v1h-1zM22,16h1v1h-1zM23,16h1v1h-1zM25,16h1v1h-1zM26,16h1v1h-1zM28,16h1v1h-1zM30,16h1v1h-1zM1,17h1v1h-1zM2,17h1v1h-1zM8,17h1v1h-1zM13,17h1v1h-1zM15,17h1v1h-1zM22,17h1v1h-1zM23,17h1v1h-1zM24,17h1v1h-1zM25,17h1v1h-1zM26,17h1v1h-1zM28,17h1v1h-1zM29,17h1v1h-1zM31,17h1v1h-1zM32,17h1v1h-1zM0,18h1v1h-1zM2,18h1v1h-1zM3,18h1v1h-1zM6,18h1v1h-1zM10,18h1v1h-1zM11,18h1v1h-1zM13,18h1v1h-1zM14,18h1v1h-1zM15,18h1v1h-1zM18,18h1v1h-1zM20,18h1v1h-1zM21,18h1v1h-1zM24,18h1v1h-1zM25,18h1v1h-1zM27,18h1v1h-1zM28,18h1v1h-1zM30,18h1v1h-1zM31,18h1v1h-1zM1,19h1v1h-1zM2,19h1v1h-1zM7,19h1v1h-1zM13,19h1v1h-1zM16,19h1v1h-1zM17,19h1v1h-1zM18,19h1v1h-1zM20,19h1v1h-1zM22,19h1v1h-1zM24,19h1v1h-1zM25,19h1v1h-1zM26,19h1v1h-1zM28,19h1v1h-1zM32,19h1v1h-1zM2,20h1v1h-1zM3,20h1v1h-1zM6,20h1v1h-1zM7,20h1v1h-1zM8,20h1v1h-1zM11,20h1v1h-1zM12,20h1v1h-1zM13,20h1v1h-1zM16,20h1v1h-1zM19,20h1v1h-1zM22,20h1v1h-1zM23,20h1v1h-1zM24,20h1v1h-1zM25,20h1v1h-1zM27,20h1v1h-1zM29,20h1v1h-1zM30,20h1v1h-1zM0,21h1v1h-1zM1,21h1v1h-1zM4,21h1v1h-1zM8,21h1v1h-1zM10,21h1v1h-1zM11,21h1v1h-1zM12,21h1v1h-1zM14,21h1v1h-1zM15,21h1v1h-1zM16,21h1v1h-1zM17,21h1v1h-1zM20,21h1v1h-1zM21,21h1v1h-1zM22,21h1v1h-1zM23,21h1v1h-1zM25,21h1v1h-1zM26,21h1v1h-1zM30,21h1v1h-1zM32,21h1v1h-1zM3,22h1v1h-1zM5,22h1v1h-1zM6,22h1v1h-1zM7,22h1v1h-1zM8,22h1v1h-1zM9,22h1v1h-1zM10,22h1v1h-1zM12,22h1v1h-1zM14,22h1v1h-1zM15,22h1v1h-1zM18,22h1v1h-1zM19,22h1v1h-1zM20,22h1v1h-1zM23,22h1v1h-1zM24,22h1v1h-1zM25,22h1v1h-1zM27,22h1v1h-1zM30,22h1v1h-1zM31,22h1v1h-1zM32,22h1v1h-1zM1,23h1v1h-1zM2,23h1v1h-1zM4,23h1v1h-1zM5,23h1v1h-1zM7,23h1v1h-1zM8,23h1v1h-1zM9,23h1v1h-1zM10,23h1v1h-1zM13,23h1v1h-1zM14,23h1v1h-1zM15,23h1v1h-1zM18,23h1v1h-1zM20,23h1v1h-1zM27,23h1v1h-1zM28,23h1v1h-1zM29,23h1v1h-1zM32,23h1v1h-1zM0,24h1v1h-1zM3,24h1v1h-1zM4,24h1v1h-1zM6,24h1v1h-1zM7,24h1v1h-1zM8,24h1v1h-1zM9,24h1v1h-1zM10,24h1v1h-1zM11,24h1v1h-1zM12,24h1v1h-1zM17,24h1v1h-1zM19,24h1v1h-1zM22,24h1v1h-1zM24,24h1v1h-1zM25,24h1v1h-1zM26,24h1v1h-1zM27,24h1v1h-1zM28,24h1v1h-1zM32,24h1v1h-1zM8,25h1v1h-1zM14,25h1v1h-1zM15,25h1v1h-1zM16,25h1v1h-1zM19,25h1v1h-1zM21,25h1v1h-1zM23,25h1v1h-1zM24,25h1v1h-1zM28,25h1v1h-1zM29,25h1v1h-1zM31,25h1v1h-1zM0,26h1v1h-1zM1,26h1v1h-1zM2,26h1v1h-1zM3,26h1v1h-1zM4,26h1v1h-1zM5,26h1v1h-1zM6,26h1v1h-1zM8,26h1v1h-1zM9,26h1v1h-1zM10,26h1v1h-1zM12,26h1v1h-1zM16,26h1v1h-1zM17,26h1v1h-1zM18,26h1v1h-1zM19,26h1v1h-1zM20,26h1v1h-1zM21,26h1v1h-1zM23,26h1v1h-1zM24,26h1v1h-1zM26,26h1v1h-1zM28,26h1v1h-1zM0,27h1v1h-1zM6,27h1v1h-1zM8,27h1v1h-1zM9,27h1v1h-1zM10,27h1v1h-1zM11,27h1v1h-1zM12,27h1v1h-1zM16,27h1v1h-1zM17,27h1v1h-1zM18,27h1v1h-1zM19,27h1v1h-1zM23,27h1v1h-1zM24,27h1v1h-1zM28,27h1v1h-1zM29,27h1v1h-1zM30,27h1v1h-1zM31,27h1v1h-1zM0,28h1v1h-1zM2,28h1v1h-1zM3,28h1v1h-1zM4,28h1v1h-1zM6,28h1v1h-1zM9,28h1v1h-1zM12,28h1v1h-1zM13,28h1v1h-1zM14,28h1v1h-1zM15,28h1v1h-1zM16,28h1v1h-1zM17,28h1v1h-1zM18,28h1v1h-1zM19,28h1v1h-1zM22,28h1v1h-1zM23,28h1v1h-1zM24,28h1v1h-1zM25,28h1v1h-1zM26,28h1v1h-1zM27,28h1v1h-1zM28,28h1v1h-1zM30,28h1v1h-1zM31,28h1v1h-1zM32,28h1v1h-1zM0,29h1v1h-1zM2,29h1v1h-1zM3,29h1v1h-1zM4,29h1v1h-1zM6,29h1v1h-1zM8,29h1v1h-1zM10,29h1v1h-1zM12,29h1v1h-1zM14,29h1v1h-1zM16,29h1v1h-1zM17,29h1v1h-1zM19,29h1v1h-1zM21,29h1v1h-1zM22,29h1v1h-1zM23,29h1v1h-1zM27,29h1v1h-1zM29,29h1v1h-1zM30,29h1v1h-1zM31,29h1v1h-1zM32,29h1v1h-1zM0,30h1v1h-1zM2,30h1v1h-1zM3,30h1v1h-1zM4,30h1v1h-1zM6,30h1v1h-1zM8,30h1v1h-1zM9,30h1v1h-1zM10,30h1v1h-1zM13,30h1v1h-1zM14,30h1v1h-1zM15,30h1v1h-1zM16,30h1v1h-1zM18,30h1v1h-1zM20,30h1v1h-1zM21,30h1v1h-1zM22,30h1v1h-1zM24,30h1v1h-1zM26,30h1v1h-1zM27,30h1v1h-1zM29,30h1v1h-1zM0,31h1v1h-1zM6,31h1v1h-1zM11,31h1v1h-1zM12,31h1v1h-1zM13,31h1v1h-1zM14,31h1v1h-1zM17,31h1v1h-1zM18,31h1v1h-1zM20,31h1v1h-1zM24,31h1v1h-1zM25,31h1v1h-1zM27,31h1v1h-1zM28,31h1v1h-1zM32,31h1v1h-1zM0,32h1v1h-1zM1,32h1v1h-1zM2,32h1v1h-1zM3,32h1v1h-1zM4,32h1v1h-1zM5,32h1v1h-1zM6,32h1v1h-1zM8,32h1v1h-1zM12,32h1v1h-1zM16,32h1v1h-1zM17,32h1v1h-1zM18,32h1v1h-1zM19,32h1v1h-1zM21,32h1v1h-1zM23,32h1v1h-1zM28,32h1v1h-1zM29,32h1v1h-1zM30,32h1v1h-1z" fill="currentColor"/></svg></div>
@@ -120,5 +224,81 @@
     if (window.MH_PLATFORM === 'android') document.getElementById('iosBtn').style.display = 'none';
   })();
 </script>
+<!--NAV:JS-->
+<script>
+(function () {
+  var el = document.getElementById("navLoad");
+  if (!el) return;
+  var root = document.documentElement, tile = el.querySelector(".nl-tile");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var clickAt = 0, target = "", safety = 0;
+  function brandOffset() {
+    // Basliktaki ikonun ortadaki ikona gore yeri ve olcegi (gorunmuyorsa null).
+    var b = document.querySelector("[data-vt-brand]");
+    if (!b) return null;
+    var r = b.getBoundingClientRect(), tr = tile.getBoundingClientRect();
+    if (!(r.bottom > 0 && r.top < innerHeight && r.width)) return null;
+    return "translate(" + (r.left + r.width / 2 - (tr.left + tr.width / 2)) + "px," + (r.top + r.height / 2 - (tr.top + tr.height / 2)) + "px) scale(" + (r.width / tr.width) + ")";
+  }
+  function hide() { clearTimeout(safety); el.classList.remove("on"); root.classList.remove("nl-leaving", "nl-on", "mh-land"); }
+  function shown() { return el.classList.contains("on") && performance.now() - clickAt >= 260; }
+
+  // VARIS: onceki sayfa isaretle ayrildiysa bu sayfa ayni katmanla acildi (mh-land); bugu cozulur,
+  // ikon basliktaki yerine ucar.
+  if (root.classList.contains("mh-land")) {
+    var land = function () {
+      var to = reduce ? null : brandOffset(), d = reduce ? 0 : 620;
+      var done = function () { el.style.transition = "none"; root.classList.remove("mh-land"); void el.offsetWidth; el.style.transition = ""; };
+      if (!el.animate || reduce) { done(); return; }
+      if (to) tile.animate([{ transform: "none" }, { transform: to }], { duration: d, easing: "cubic-bezier(.45, 0, .2, 1)", fill: "forwards" });
+      // Sayfada baslik ikonu yoksa (giris, indirme sayfalari) ikon yerinde hafifce kuculup soner.
+      else tile.animate([{ opacity: 1, transform: "none" }, { opacity: 1, offset: .25 }, { opacity: 0, transform: "scale(.9)" }], { duration: d, easing: "ease", fill: "forwards" });
+      // Yalniz bugu cozulur; ikon dolu kalip basliga oturur (ikon katmanin icinde oldugu icin
+      // butun katmani soldurmak ikonu da ucarken soluklastiriyordu).
+      var veil = el.querySelector(".nl-veil");
+      veil.animate([{ opacity: 1 }, { opacity: 1, offset: .25 }, { opacity: 0 }], { duration: d, easing: "ease", fill: "forwards" }).onfinish = function () {
+        done();
+        veil.getAnimations().concat(tile.getAnimations()).forEach(function (a) { a.cancel(); });
+      };
+    };
+    requestAnimationFrame(function () { requestAnimationFrame(land); });
+  }
+
+  document.addEventListener("click", function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || (a.target && a.target !== "_self") || a.hasAttribute("download")) return;
+    var u;
+    try { u = new URL(a.href, location.href); } catch (_) { return; }
+    if (u.origin !== location.origin) return;
+    if (u.pathname === location.pathname && u.search === location.search) return;
+    // Hepsi SIMDI ve GECIKMESIZ baslar (Safari, yukaridaki not). Ilk 120 ms animasyonlarin icinde
+    // gorunmez tutulur, hizli geciste isaret hic belirmez.
+    clickAt = performance.now();
+    target = u.pathname;
+    root.classList.add("nl-leaving", "nl-on");
+    el.classList.add("on");
+    if (!reduce && tile.animate) {
+      var from = brandOffset() || "scale(.82)";
+      tile.animate([{ transform: from, offset: 0 }, { transform: from, offset: .2, easing: "cubic-bezier(.3, .7, .2, 1)" }, { transform: "none" }], { duration: 600 });
+    }
+    clearTimeout(safety);
+    safety = setTimeout(hide, 12000);
+    // Gezinme iki kare ertelenir: degisiklik ekrana islensin, animasyonlar baslasin (Safari).
+    e.preventDefault();
+    var gone = false, go = function () { if (!gone) { gone = true; location.assign(u.href); } };
+    requestAnimationFrame(function () { requestAnimationFrame(go); });
+    setTimeout(go, 80);
+  });
+  // Ayrilirken: isaret gorunuyorsa gecis atlanir ve yeni sayfaya "isaretle ac" notu birakilir.
+  window.addEventListener("pageswap", function (e) { if (shown() && e.viewTransition) e.viewTransition.skipTransition(); });
+  window.addEventListener("pagehide", function () {
+    if (shown()) { try { sessionStorage.setItem("mh-land", JSON.stringify({ p: target, t: Date.now() })); } catch (_) {} }
+  });
+  // geri tusuyla onbellekten donulunce isaret kalmasin
+  window.addEventListener("pageshow", function (e) { if (e.persisted) hide(); });
+})();
+</script>
+<!--/NAV:JS-->
 </body>
 </html>
