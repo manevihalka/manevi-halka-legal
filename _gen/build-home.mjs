@@ -722,6 +722,14 @@ function kisSeridi(dil) {
 }
 
 const sablon = readFileSync(join(KOK, "_gen", "home.src.html"), "utf8");
+// Sayfa gecisi parcasi (_gen/nav-loader.html) uc bolum: HEAD (ilk kare isareti), BODY (katman, <body> basi), JS (sonda).
+function navParcalari(metin) {
+  const m = metin.match(/<!--@@HEAD-->([\s\S]*?)<!--@@BODY-->([\s\S]*?)<!--@@JS-->([\s\S]*)$/);
+  if (!m) throw new Error("nav-loader.html: @@HEAD/@@BODY/@@JS bolumleri yok");
+  return { HEAD: m[1].trim(), BODY: m[2].trim(), JS: m[3].trim() };
+}
+// Sayfa gecisi, vakit sayfasiyla ortak.
+const NAV = navParcalari(readFileSync(join(KOK, "_gen", "nav-loader.html"), "utf8"));
 const VERI_ISARETI = "/*__DATA__*/null";
 if (sablon.split(VERI_ISARETI).length !== 2) hata("sablonda veri isareti tek olmali");
 if (sablon.split("<!--__HEAD__-->").length !== 2) hata("sablonda bas bilgisi isareti tek olmali");
@@ -749,6 +757,10 @@ function sayfa(dil) {
   if (eksik.size) hata(`${dil}: sablonda karsiligi olmayan anahtar(lar): ${[...eksik].join(", ")}`);
   cikti = cikti.replace(VERI_ISARETI, JSON.stringify(veri(dil)).replace(/</g, "\\u003c"));
   cikti = cikti.replace("<!--__HEAD__-->", basBilgisi(dil));
+  for (const [isaret, parca] of [["<!--__NAVLOAD_HEAD__-->", NAV.HEAD], ["<!--__NAVLOAD_BODY__-->", NAV.BODY], ["<!--__NAVLOAD_JS__-->", NAV.JS]]) {
+    if (cikti.split(isaret).length !== 2) hata(`sablonda ${isaret} tek olmali`);
+    cikti = cikti.replace(isaret, () => parca);
+  }
   cikti = cikti.replace("<!DOCTYPE html>", `<!DOCTYPE html>
 <!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: _gen/home.src.html + _gen/site-i18n.js
      Uretici: node _gen/build-home.mjs · dil=${dil} -->`);

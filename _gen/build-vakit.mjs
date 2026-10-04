@@ -140,6 +140,14 @@ ${JSON.stringify(ld, null, 2).replace(/</g, "\\u003c")}
 }
 
 const sablon = readFileSync(join(KOK, "_gen", "vakit.src.html"), "utf8");
+// Sayfa gecisi parcasi (_gen/nav-loader.html) uc bolum: HEAD (ilk kare isareti), BODY (katman, <body> basi), JS (sonda).
+function navParcalari(metin) {
+  const m = metin.match(/<!--@@HEAD-->([\s\S]*?)<!--@@BODY-->([\s\S]*?)<!--@@JS-->([\s\S]*)$/);
+  if (!m) throw new Error("nav-loader.html: @@HEAD/@@BODY/@@JS bolumleri yok");
+  return { HEAD: m[1].trim(), BODY: m[2].trim(), JS: m[3].trim() };
+}
+// Sayfa gecisi, ana sayfayla ortak.
+const NAV = navParcalari(readFileSync(join(KOK, "_gen", "nav-loader.html"), "utf8"));
 
 function sayfa(dil) {
   const t = sozluk[dil];
@@ -149,6 +157,9 @@ function sayfa(dil) {
      Uretici: node _gen/build-vakit.mjs · dil=${dil} -->`, 1, "damga");
   s = degistir(s, '<html lang="__LANG__" dir="__DIR__">', `<html lang="${dil}" dir="${dil === "ar" ? "rtl" : "ltr"}">`, 1, "html lang");
   s = degistir(s, "<!--__HEAD__-->", basBilgisi(dil), 1, "bas bilgisi");
+  s = degistir(s, "<!--__NAVLOAD_HEAD__-->", NAV.HEAD, 1, "gecis basi");
+  s = degistir(s, "<!--__NAVLOAD_BODY__-->", NAV.BODY, 1, "gecis katmani");
+  s = degistir(s, "<!--__NAVLOAD_JS__-->", NAV.JS, 1, "gecis betigi");
 
   let yazilan = 0;
   s = s.replace(/(<([a-z0-9]+)\b[^>]*\bdata-t="([^"]+)"[^>]*>)([\s\S]*?)(<\/\2>)/g, (tam, ac, etiket, anahtar, icerik, kapa) => {

@@ -12,6 +12,7 @@
      (asagidaki yer tutucu). Agustos 2026 marka aramasi dususunun dersi: marka adi
      baslikta ve h1'de kalir, statik metin bos birakilmaz. -->
 <!--__HEAD__-->
+<!--__NAVLOAD_HEAD__-->
 <script>
 (function () {
   var t = null;
@@ -393,7 +394,16 @@
   .kis-strip::-webkit-scrollbar { display: none; }
   .kis-strip:focus-visible { outline-offset: -2px; }
   .kis-card { flex: none; width: 212px; scroll-snap-align: start; display: grid; gap: 16px; align-content: start; }
-  .kis-card .phone { width: 100%; aspect-ratio: 640 / 1391; }
+  /* Ekran goruntusu KIRPILMAZ: cerceve goruntunun kendi oranindan yukseklik alir. Ortak .phone
+     kurali (aspect-ratio + height:100% + object-fit:cover) Safari'de iki yandan kirpiyordu
+     ("Omer" ve sagdaki kartlar kenara yapisiyordu, iPhone'da gorulen hata). */
+  /* Cerceve ve kose telefon genisligine (--pw) oranli: sabit 8 px kenar ve 40 px kose kucuk
+     telefonda orantisiz kaliyor, telefon tiknaz gorunuyordu. Kenar ~%2,4, kose ~%15,5
+     (gercek iPhone'a yakin); dis oran ~0,47. */
+  .kis-card { --pw: 212px; }
+  .kis.is-ring .kis-card { --pw: var(--kw); }
+  .kis-card .phone { width: 100%; aspect-ratio: auto; padding: calc(var(--pw) * .024); border-radius: calc(var(--pw) * .155); }
+  .kis-card .phone img { width: 100%; height: auto; aspect-ratio: 640 / 1391; object-fit: fill; border-radius: calc(var(--pw) * .132); }
   .kis-cap { display: grid; gap: 5px; }
   .kis-cap b { font-family: var(--display); font-weight: 400; font-size: 21px; line-height: 1.2; color: var(--ink); }
   .kis-cap span:last-child { font-size: 14.5px; line-height: 1.5; color: var(--body); }
@@ -442,7 +452,7 @@
   .kis-dots button { width: 22px; height: 30px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
   .kis-dots button::before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 22%, transparent); transition: width .3s ease, background .3s ease; }
   .kis-dots button[aria-current="true"]::before { width: 18px; background: var(--green); }
-  @media (max-width: 860px) { .kis { --kw: 206px; } .kis-strip { gap: 18px; } .kis-card { width: 176px; } .kis-cap b { font-size: 19px; } .kis-now b { font-size: 23px; } }
+  @media (max-width: 860px) { .kis { --kw: 206px; } .kis-strip { gap: 18px; } .kis-card { width: 176px; --pw: 176px; } .kis-cap b { font-size: 19px; } .kis-now b { font-size: 23px; } }
   @media (max-width: 380px) { .kis { --kw: 184px; } .kis-dots button { width: 18px; } }
   @media (prefers-reduced-motion: reduce) { .kis.is-ring .kis-card, .kis-now, .kis-dots button::before { transition: none; } }
 
@@ -614,6 +624,7 @@
 </style>
 </head>
 <body>
+<!--__NAVLOAD_BODY__-->
 <a class="vstrip" id="vstrip" href="{{vakitHref}}">
   <span class="wrap">
     <span class="vs-dot" aria-hidden="true"></span>
@@ -629,7 +640,7 @@
 </a>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="{{homeHref}}"><img src="/icon.png" alt="" width="32" height="32"><span>Manevi Halka</span></a>
+    <a class="brand" href="{{homeHref}}"><img src="/img/brand-icon.webp" alt="" width="32" height="32" data-vt-brand><span>Manevi Halka</span></a>
     <nav aria-label="{{navAria}}">
       <a href="#solo">{{navSolo}}</a>
       <a href="#together">{{navTogether}}</a>
@@ -1480,5 +1491,6 @@
   })();
 </script>
 <script src="/js/mh-dynamic.js" defer></script>
+<!--__NAVLOAD_JS__-->
 </body>
 </html>
