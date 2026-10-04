@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026
-**Last updated:** October 2, 2026
+**Last updated:** October 3, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -73,10 +73,17 @@ rights you have.
   the task); members who have not joined still cannot. The mode that applies is
   shown on the task screen before you join. A mutual task can later be switched
   to admin only, not the other way round. Joining is a separate, explicit act:
-  being a member of a circle does NOT enrol you in a shared practice, you have
-  to join the task as well. When you leave the task or leave the circle, these
-  check-ins are
+  being a member of a circle does NOT enrol you in a shared practice. A newly
+  started task appears in every member's list, but before your first check-in
+  you read who will see what and confirm; members who have not started are not
+  shown in the tracking at all. You can remove a task you do not want from your
+  list: only which task you removed is stored, and the task no longer appears in
+  your list; if you start the task later, this record is deleted. When you leave
+  the task or leave the circle, these check-ins and records are
   **deleted immediately**.
+  When a new shared practice starts in a circle, members receive an in-app
+  notification (one entry per circle a day) and a push notification, which can
+  be turned off in the notification settings.
   **Your personal prayer tracking on the home screen is entirely separate and
   is never transferred here.** The two markings are independent: marking a
   prayer on your personal card does not mark the circle task, and nobody,
@@ -138,8 +145,8 @@ rights you have.
   calculation method, only the ID numbers of the country, city and district are sent to the
   Diyanet prayer time server (ezanvakti.emushaf.net). When Diyanet data cannot be retrieved,
   or when another calculation method is used, the city's coordinates, the method and the
-  date are sent to Aladhan; if automatic location is on, these coordinates are your device's
-  location. In countries with more than one time zone (such as the US, Canada or Russia),
+  date are sent to Aladhan; if automatic location is on, these are your device's
+  location rounded to about 1 km. In countries with more than one time zone (such as the US, Canada or Russia),
   Aladhan is also asked once for the city's time zone. To find the city's name, your
   device's operating system looks up the coordinates with Apple's or Google's location
   service. These servers see your IP address; no account information is sent.
@@ -246,7 +253,7 @@ We use the following third-party services to provide our service:
 | **PostHog** ([privacy](https://posthog.com/privacy)) | Product analytics (opt-out available) | Anonymous usage events (no PII), hosted on EU servers |
 | **Quran Foundation** ([privacy](https://quran.com/privacy)) | Recitation audio (reciter list and verse audio files) | Audio files download directly to your device from Quran Foundation and quranicaudio.com servers; these servers see your IP address and the requested file. No account information is sent; the reciter list is fetched anonymously through our server |
 | **Diyanet prayer time server** (ezanvakti.emushaf.net) | Prayer times (Diyanet calculation method) | ID numbers of the country, city and district; the server sees the IP address. No coordinates or account information are sent |
-| **Aladhan** (api.aladhan.com) | Prayer times when Diyanet data cannot be retrieved and for other calculation methods; the city's time zone in countries with several time zones | The city's coordinates (the device's location if automatic location is on), calculation method, date; the server sees the IP address. No account information is sent |
+| **Aladhan** (api.aladhan.com) | Prayer times when Diyanet data cannot be retrieved and for other calculation methods; the city's time zone in countries with several time zones | The city's coordinates (the device's location rounded to about 1 km if automatic location is on), calculation method, date; the server sees the IP address. No account information is sent |
 | **Cloudflare Turnstile** ([privacy](https://www.cloudflare.com/turnstile-privacy-policy/)) | Bot check when contributing on manevihalka.app | IP address, browser information (User-Agent, TLS fingerprint), site name; only at the moment you contribute on the website |
 
 ---

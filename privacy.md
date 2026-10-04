@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026
-**Son güncelleme:** 2 Ekim 2026
+**Son güncelleme:** 3 Ekim 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -72,9 +72,16 @@ haklarınızın neler olduğunu açıklar.
   katılırsa görür); göreve katılmayan üyeler yine göremez. Hangi modun geçerli
   olduğu, katılmadan önce görev ekranında yazar. Karşılıklı bir görev sonradan
   yalnız yöneticiye çevrilebilir, tersi yapılamaz. Katılım ayrı ve açık bir
-  eylemdir: halkaya üye olmak seni bir ortak amele dahil ETMEZ, göreve ayrıca
-  katılman gerekir. Görevden ayrıldığında ya da halkadan çıktığında bu
-  beyanların **anında silinir**.
+  eylemdir: halkaya üye olmak seni bir ortak amele dahil ETMEZ. Yeni açılan
+  görev halkadaki herkesin listesinde görünür, ama ilk işaretini koyarken neyin
+  kimlere görüneceğini okuyup onaylaman gerekir; işaretlemeye başlamayan üye
+  takipte hiç görünmez. İstemediğin görevi listenden kaldırabilirsin: bunun için
+  yalnız hangi görevi kaldırdığın saklanır ve görev bir daha listende görünmez;
+  göreve sonradan başlarsan bu kayıt silinir. Görevden ayrıldığında ya da
+  halkadan çıktığında bu beyanların ve kayıtların **anında silinir**.
+  Halkada yeni bir ortak amel açıldığında üyelere uygulama içi bildirim yazılır
+  (günde halka başına tek kayıt) ve push bildirimi gider; push bildirim
+  ayarlarından kapatılabilir.
   **Ana ekrandaki kişisel namaz takibin bundan tamamen ayrıdır ve buraya
   hiçbir şekilde aktarılmaz.** İki işaretleme birbirinden bağımsızdır: kişisel
   kartında bir vakti işaretlemen halka görevini işaretlemez, kişisel kaydını
@@ -131,7 +138,7 @@ haklarınızın neler olduğunu açıklar.
   yönteminde Diyanet vakit sunucusuna (ezanvakti.emushaf.net) yalnızca ülke, şehir ve ilçenin
   numarası gönderilir. Diyanet verisi alınamadığında ya da Diyanet dışı bir hesaplama
   yöntemi kullanıldığında Aladhan'a şehrin koordinatı, yöntem ve tarih gönderilir; otomatik konum
-  açıksa bu koordinat cihazınızın konumudur. Birden çok saat dilimi olan ülkelerde (ABD,
+  açıksa bu koordinat, cihazınızın konumunun yaklaşık 1 km'ye yuvarlanmış hâlidir. Birden çok saat dilimi olan ülkelerde (ABD,
   Kanada, Rusya gibi) şehrin saat dilimini öğrenmek için de Aladhan'a bir kez sorulur.
   Şehrin adını bulmak için cihazınızın işletim sistemi koordinatı Apple'ın ya da Google'ın
   konum hizmetine sorar. Bu sunucular IP adresinizi görür; hesap bilgisi gönderilmez.
@@ -238,7 +245,7 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 | **PostHog** ([gizlilik](https://posthog.com/privacy)) | Ürün analitiği (opt-out var) | Anonim kullanım olayları (PII yok), EU sunucularda barındırılır |
 | **Quran Foundation** ([gizlilik](https://quran.com/privacy)) | Sesli tilavet (kârî listesi ve ayet ses dosyaları) | Ses dosyaları Quran Foundation ve quranicaudio.com sunucularından doğrudan cihazına iner; bu sunucular IP adresini ve istenen dosyayı görür. Hesap bilgisi gönderilmez; kârî listesi sunucumuz üzerinden kimliksiz alınır |
 | **Diyanet vakit sunucusu** (ezanvakti.emushaf.net) | Namaz vakitleri (Diyanet hesaplama yöntemi) | Ülke, şehir ve ilçe numarası; sunucu IP adresini görür. Konum koordinatı ve hesap bilgisi gönderilmez |
-| **Aladhan** (api.aladhan.com) | Diyanet verisi alınamadığında ve başka hesaplama yöntemlerinde namaz vakitleri; birden çok saat dilimi olan ülkelerde şehrin saat dilimi | Şehrin koordinatı (otomatik konum açıksa cihazın konumu), hesaplama yöntemi, tarih; sunucu IP adresini görür. Hesap bilgisi gönderilmez |
+| **Aladhan** (api.aladhan.com) | Diyanet verisi alınamadığında ve başka hesaplama yöntemlerinde namaz vakitleri; birden çok saat dilimi olan ülkelerde şehrin saat dilimi | Şehrin koordinatı (otomatik konum açıksa cihazın konumu, yaklaşık 1 km'ye yuvarlanmış), hesaplama yöntemi, tarih; sunucu IP adresini görür. Hesap bilgisi gönderilmez |
 | **Cloudflare Turnstile** ([gizlilik](https://www.cloudflare.com/turnstile-privacy-policy/)) | manevihalka.app üzerinde katkı verirken bot doğrulaması | IP adresi, tarayıcı bilgisi (User-Agent, TLS parmak izi), sitenin adı; yalnız web sayfasından katkı verildiği anda |
 
 ---

@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026
-**Zuletzt aktualisiert:** 2. Oktober 2026
+**Zuletzt aktualisiert:** 3. Oktober 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -79,9 +79,18 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   Aufgabenbildschirm. Eine gegenseitige Aufgabe kann später auf „nur
   Kreisleitung“ umgestellt werden, umgekehrt nicht. Die Teilnahme ist
   eine eigene, ausdrückliche Handlung: Mitglied eines Kreises zu sein schließt
-  dich NICHT in eine gemeinsame Praxis ein, du musst der Aufgabe zusätzlich
-  beitreten. Wenn du die Aufgabe oder den Kreis verlässt, werden diese Einträge
-  **sofort gelöscht**.
+  dich NICHT in eine gemeinsame Praxis ein. Eine neue Aufgabe erscheint in der
+  Liste aller Mitglieder, aber vor deiner ersten Markierung liest du, wer was
+  sieht, und bestätigst; wer nicht beginnt, erscheint überhaupt nicht in der
+  Übersicht. Eine Aufgabe, die du nicht möchtest, kannst du aus deiner Liste
+  entfernen: Dafür wird nur gespeichert, welche Aufgabe du entfernt hast, und sie
+  erscheint nicht mehr in deiner Liste; beginnst du die Aufgabe später, wird
+  dieser Eintrag gelöscht. Wenn du die Aufgabe oder den Kreis verlässt, werden
+  diese Einträge **sofort gelöscht**.
+  Beginnt in einem Kreis eine neue gemeinsame Aufgabe, erhalten die Mitglieder
+  eine In-App-Benachrichtigung (ein Eintrag pro Kreis und Tag) und eine
+  Push-Benachrichtigung, die sich in den Benachrichtigungseinstellungen
+  abschalten lässt.
   **Deine persönliche Gebetsverfolgung auf dem Startbildschirm ist davon
   vollständig getrennt und wird niemals hierher übertragen.** Die beiden
   Markierungen sind unabhängig: Ein Gebet auf deiner persönlichen Karte zu
@@ -151,7 +160,7 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   Diyanet-Gebetszeitserver (ezanvakti.emushaf.net) gesendet. Wenn keine Diyanet-Daten
   abgerufen werden können oder eine andere Berechnungsmethode
   verwendet wird, werden die Koordinaten der Stadt, die Methode und das Datum an Aladhan gesendet; ist der automatische
-  Standort aktiviert, sind dies die Koordinaten Ihres Geräts. In Ländern mit mehreren
+  Standort aktiviert, sind dies die auf etwa 1 km gerundeten Koordinaten Ihres Geräts. In Ländern mit mehreren
   Zeitzonen (etwa USA, Kanada oder Russland) wird Aladhan außerdem einmalig nach der Zeitzone
   der Stadt gefragt. Um den Namen der Stadt zu ermitteln, fragt das Betriebssystem Ihres
   Geräts die Koordinaten beim Ortungsdienst von Apple bzw. Google ab. Diese Server sehen Ihre
@@ -271,7 +280,7 @@ Dienstes:
 | **PostHog** ([Datenschutz](https://posthog.com/privacy)) | Produktanalyse (Opt-out verfügbar) | Anonyme Nutzungsereignisse (keine personenbezogenen Daten), gehostet auf EU-Servern |
 | **Quran Foundation** ([Datenschutz](https://quran.com/privacy)) | Rezitationen (Rezitatorenliste und Audiodateien der Verse) | Audiodateien werden direkt von Servern der Quran Foundation und von quranicaudio.com auf dein Gerät geladen; diese Server sehen deine IP-Adresse und die angefragte Datei. Es werden keine Kontodaten übermittelt; die Rezitatorenliste wird anonym über unseren Server abgerufen |
 | **Diyanet-Gebetszeitserver** (ezanvakti.emushaf.net) | Gebetszeiten (Berechnungsmethode Diyanet) | Kennnummern von Land, Stadt und Bezirk; der Server sieht die IP-Adresse. Es werden keine Koordinaten und keine Kontodaten übermittelt |
-| **Aladhan** (api.aladhan.com) | Gebetszeiten, wenn keine Diyanet-Daten abrufbar sind, und bei anderen Berechnungsmethoden; Zeitzone der Stadt in Ländern mit mehreren Zeitzonen | Koordinaten der Stadt (bei automatischem Standort die des Geräts), Berechnungsmethode, Datum; der Server sieht die IP-Adresse. Es werden keine Kontodaten übermittelt |
+| **Aladhan** (api.aladhan.com) | Gebetszeiten, wenn keine Diyanet-Daten abrufbar sind, und bei anderen Berechnungsmethoden; Zeitzone der Stadt in Ländern mit mehreren Zeitzonen | Koordinaten der Stadt (bei automatischem Standort die des Geräts, auf etwa 1 km gerundet), Berechnungsmethode, Datum; der Server sieht die IP-Adresse. Es werden keine Kontodaten übermittelt |
 | **Cloudflare Turnstile** ([Datenschutz](https://www.cloudflare.com/turnstile-privacy-policy/)) | Bot-Prüfung bei Beiträgen auf manevihalka.app | IP-Adresse, Browserinformationen (User-Agent, TLS-Fingerabdruck), Name der Website; nur im Moment eines Beitrags auf der Website |
 
 ---
