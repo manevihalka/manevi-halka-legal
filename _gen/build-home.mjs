@@ -707,13 +707,16 @@ const KIS = [
       ar: "استخدم العدّاد حلقةً برقم كبير أو مسبحةً بحبّات متحركة." } },
 ];
 
+// Sergide telefonun govdesi: on yuzun arkasinda 8 ince katman (home.src.html .kb).
+const KATMAN = Array.from({ length: 8 }, (_, i) => `<i class="kb" style="--i:${i + 1}"></i>`).join("");
+
 function kisSeridi(dil) {
   return KIS.map((k) => {
     const yol = join(KOK, "img", "app", dil, `kis-${k.img}.webp`);
     if (!existsSync(yol)) hata(`${dil}: kisisellestirme gorseli yok: kis-${k.img}.webp`);
     const [w, h] = webpBoyut(yol);
     for (const a of ["tag", "ad", "acik"]) if (k[a][dil] == null) hata(`KIS.${k.img}.${a}.${dil} yok`);
-    return `<li class="kis-card"><figure class="phone"><img src="/img/app/${dil}/kis-${k.img}.webp" alt="${kacis(k.ad[dil])}" width="${w}" height="${h}" loading="lazy" decoding="async"></figure>`
+    return `<li class="kis-card"><figure class="phone"><img src="/img/app/${dil}/kis-${k.img}.webp" alt="${kacis(k.ad[dil])}" width="${w}" height="${h}" loading="lazy" decoding="async">${KATMAN}</figure>`
       + `<div class="kis-cap"><span class="kis-tag">${kacis(k.tag[dil])}</span><b>${kacis(k.ad[dil])}</b><span>${kacis(k.acik[dil])}</span></div></li>`;
   }).join("\n        ");
 }

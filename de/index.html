@@ -483,7 +483,9 @@
      yaklasirken kartlar ondeki telefonun arkasindan acilir, uzaklasinca toplanir.
      Butun kartlar seridin icinde kalir, sayfanin disina tasmaz.
      JS yoksa (is-ring eklenmez) ayni isaretleme yatay seritte, kartin altinda kendi yazisiyla durur. */
-  .kis { --kp: max(20px, calc(50vw - 560px)); --kw: 250px; }
+  .kis { --kp: max(20px, calc(50vw - 560px)); --kw: 250px; --kt: calc(var(--kw) * .055); --kis-far: brightness(1.1) saturate(.75) contrast(.88); }
+  :root[data-theme="dark"] .kis { --kis-far: brightness(.62) saturate(.8); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kis { --kis-far: brightness(.62) saturate(.8); } }
   .kis-strip { list-style: none; margin: 34px calc(50% - 50vw) 0; padding: 14px var(--kp) 30px; display: flex; gap: 28px;
     overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--kp); scrollbar-width: none; overscroll-behavior-x: contain;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--kp), #000 calc(100% - var(--kp)), transparent);
@@ -507,9 +509,28 @@
   .kis.is-ring .kis-strip { display: block; position: relative; height: calc(var(--kw) * 1391 / 640 + 64px); margin: 26px calc(50% - 50vw) 0; padding: 0;
     overflow: hidden; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; perspective: 1500px; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
   .kis.is-ring .kis-strip.drag { cursor: grabbing; }
-  .kis.is-ring .kis-card { position: absolute; top: 18px; left: calc(50% - var(--kw) / 2); width: var(--kw); display: block; will-change: transform, opacity;
-    transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; }
+  .kis.is-ring .kis-card { position: absolute; top: 18px; left: calc(50% - var(--kw) / 2); width: var(--kw); display: block; will-change: transform;
+    transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; }
   .kis.is-ring .kis-card[data-d="0"] { cursor: default; }
+  /* Telefon izlenimi: on yuzun arkasina ayni kose yuvarlakliginda ince katmanlar dizilir
+     (.kb, build-home.mjs KATMAN). Yandan bakilinca duz bir cubuk degil, yuvarlak kenarli
+     metal bir govde ve telefonun arkasi gorunur; katman tonlari ortada acik, uclarda koyu
+     (yuvarlatilmis kenar golgesi). Kalinlik ile birlikte olceklensin diye JS scale3d verir.
+     Uzak kartlar opaklikla degil goruntu filtresiyle soner: opaklik preserve-3d'yi
+     duzlestirir ve govde kaybolurdu. Koyu zeminde koyu cerceve kaybolmasin diye ince bir
+     dis cizgi de var. */
+  .kis.is-ring .kis-card .phone { position: relative; transform-style: preserve-3d;
+    box-shadow: 0 34px 60px -34px rgba(10, 30, 20, .6), 0 0 0 1px color-mix(in srgb, var(--ink) 16%, transparent), inset 0 0 0 1px rgba(255, 255, 255, .14); }
+  .kb { display: none; }
+  .kis.is-ring .kb { display: block; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: var(--kbc); transform: translateZ(calc(var(--i) * var(--kt) / -8)); }
+  .kis.is-ring .kb:nth-of-type(1) { --kbc: #1a2420; } .kis.is-ring .kb:nth-of-type(2) { --kbc: #2a3531; }
+  .kis.is-ring .kb:nth-of-type(3) { --kbc: #3b4742; } .kis.is-ring .kb:nth-of-type(4) { --kbc: #4b5852; }
+  .kis.is-ring .kb:nth-of-type(5) { --kbc: #46524c; } .kis.is-ring .kb:nth-of-type(6) { --kbc: #36413c; }
+  .kis.is-ring .kb:nth-of-type(7) { --kbc: #26302c; }
+  .kis.is-ring .kb:nth-of-type(8) { --kbc: linear-gradient(160deg, #2c3833, #18211d 60%, #222c28); }
+  .kis.is-ring .kis-card img { transition: filter .5s ease; }
+  .kis.is-ring .kis-card.far img { filter: var(--kis-far); }
   .kis.is-ring .kis-cap { display: none; }
   .kis.is-ring .kis-now { display: grid; gap: 6px; justify-items: center; text-align: center; max-width: 30em; min-height: 7.4em; margin: 10px auto 0; transition: opacity .2s ease; }
   .kis-now.swap { opacity: 0; }
@@ -893,15 +914,15 @@
       <p>Wähle deinen Hintergrund, deine Farbe und das Widget auf deinem Startbildschirm. Der Ort, auf den du jeden Tag schaust, soll zu dir passen.</p>
     </div>
     <ul class="kis-strip" id="kisStrip" tabindex="0" aria-label="Bildschirme zur Personalisierung">
-        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-ufuk.webp" alt="Horizont" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">Hintergrund</span><b>Horizont</b><span>Sonne und Mond gehen mit den Gebetszeiten deiner Stadt auf und unter.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-kandil.webp" alt="Lampen" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">Hintergrund · Dunkles Design</span><b>Lampen</b><span>Ein sanftes Dunkel im Lampenlicht, für alle, die nachts lesen.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-revzen.webp" alt="Fensterlicht" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">Hintergrund · Safran</span><b>Fensterlicht</b><span>Licht durch ein Moscheefenster, dessen Farbe den ganzen Tag der Sonne folgt.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-ebru.webp" alt="Marmorpapier" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">Hintergrund · Pflaume</span><b>Marmorpapier</b><span>Fein geädertes Marmorpapier, das von den Ecken hereinfließt.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-gorunum.webp" alt="Erscheinungsbild" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">Einstellungen</span><b>Erscheinungsbild</b><span>Hintergrund, Design und Farbe an einem Ort, jede Änderung siehst du sofort.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-anaekran.webp" alt="Widgets" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">Startbildschirm</span><b>Widgets</b><span>Deine heutige Aufgabe, das Hidschri-Datum und die Gebetszeit beisammen. Das Gebetszeiten-Widget gibt es in acht Ansichten.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-kilit.webp" alt="Gebetszeit auf einen Blick" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">Sperrbildschirm</span><b>Gebetszeit auf einen Blick</b><span>Sieh, wie lange die aktuelle Gebetszeit noch dauert und was als Nächstes kommt, ohne das Telefon zu entsperren.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-sayfa.webp" alt="Seitenfarbe" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">Beim Lesen</span><b>Seitenfarbe</b><span>Lies den Koran in fünf Seitentönen, von Weiß über Sepia bis Nacht.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-tesbih.webp" alt="Gebetskette" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">Dhikr</span><b>Gebetskette</b><span>Nutze den Zähler als Ring mit Zahl oder als fließende Gebetskette.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-ufuk.webp" alt="Horizont" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Hintergrund</span><b>Horizont</b><span>Sonne und Mond gehen mit den Gebetszeiten deiner Stadt auf und unter.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-kandil.webp" alt="Lampen" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Hintergrund · Dunkles Design</span><b>Lampen</b><span>Ein sanftes Dunkel im Lampenlicht, für alle, die nachts lesen.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-revzen.webp" alt="Fensterlicht" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Hintergrund · Safran</span><b>Fensterlicht</b><span>Licht durch ein Moscheefenster, dessen Farbe den ganzen Tag der Sonne folgt.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-ebru.webp" alt="Marmorpapier" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Hintergrund · Pflaume</span><b>Marmorpapier</b><span>Fein geädertes Marmorpapier, das von den Ecken hereinfließt.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-gorunum.webp" alt="Erscheinungsbild" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Einstellungen</span><b>Erscheinungsbild</b><span>Hintergrund, Design und Farbe an einem Ort, jede Änderung siehst du sofort.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-anaekran.webp" alt="Widgets" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Startbildschirm</span><b>Widgets</b><span>Deine heutige Aufgabe, das Hidschri-Datum und die Gebetszeit beisammen. Das Gebetszeiten-Widget gibt es in acht Ansichten.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-kilit.webp" alt="Gebetszeit auf einen Blick" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Sperrbildschirm</span><b>Gebetszeit auf einen Blick</b><span>Sieh, wie lange die aktuelle Gebetszeit noch dauert und was als Nächstes kommt, ohne das Telefon zu entsperren.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-sayfa.webp" alt="Seitenfarbe" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Beim Lesen</span><b>Seitenfarbe</b><span>Lies den Koran in fünf Seitentönen, von Weiß über Sepia bis Nacht.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/de/kis-tesbih.webp" alt="Gebetskette" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">Dhikr</span><b>Gebetskette</b><span>Nutze den Zähler als Ring mit Zahl oder als fließende Gebetskette.</span></div></li>
     </ul>
     <div class="kis-now" id="kisNow" aria-live="polite"></div>
     <div class="kis-foot">
@@ -1430,7 +1451,7 @@
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     sec.classList.add("is-ring");
     var act = 0, open = reduce ? 1 : 0, raf = 0, dots = [], lastDrag = 0;
-    var S = [1, .82, .66, .54, .46], R = [0, 24, 34, 40, 44], O = [1, 1, .94, .62, 0];
+    var S = [1, .82, .66, .54, .46], R = [0, 24, 34, 40, 44], O = [1, 1, 1, 1, 0];
 
     function rel(i) { var d = ((i - act) % n + n) % n; if (d > n / 2) d -= n; return d; }
     function layout() {
@@ -1440,8 +1461,9 @@
       for (var i = 0; i < n; i++) {
         var d = rel(i), a = Math.min(Math.abs(d), 4), sg = d < 0 ? -1 : 1, c = cards[i];
         var vis = a <= far ? O[a] : 0;
-        c.style.transform = "translateX(" + (X[a] * sg * dir * open).toFixed(1) + "px) rotateY(" + (R[a] * sg * dir * open).toFixed(1) + "deg) scale(" + S[a] + ")";
-        c.style.opacity = vis;
+        c.style.transform = "translateX(" + (X[a] * sg * dir * open).toFixed(1) + "px) rotateY(" + (R[a] * sg * dir * open).toFixed(1) + "deg) scale3d(" + S[a] + "," + S[a] + "," + S[a] + ")";
+        c.style.opacity = vis ? "" : "0";
+        c.classList.toggle("far", a >= far);
         c.style.zIndex = String(20 - a);
         c.style.pointerEvents = vis ? "" : "none";
         c.dataset.d = String(d);

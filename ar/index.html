@@ -483,7 +483,9 @@
      yaklasirken kartlar ondeki telefonun arkasindan acilir, uzaklasinca toplanir.
      Butun kartlar seridin icinde kalir, sayfanin disina tasmaz.
      JS yoksa (is-ring eklenmez) ayni isaretleme yatay seritte, kartin altinda kendi yazisiyla durur. */
-  .kis { --kp: max(20px, calc(50vw - 560px)); --kw: 250px; }
+  .kis { --kp: max(20px, calc(50vw - 560px)); --kw: 250px; --kt: calc(var(--kw) * .055); --kis-far: brightness(1.1) saturate(.75) contrast(.88); }
+  :root[data-theme="dark"] .kis { --kis-far: brightness(.62) saturate(.8); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .kis { --kis-far: brightness(.62) saturate(.8); } }
   .kis-strip { list-style: none; margin: 34px calc(50% - 50vw) 0; padding: 14px var(--kp) 30px; display: flex; gap: 28px;
     overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--kp); scrollbar-width: none; overscroll-behavior-x: contain;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--kp), #000 calc(100% - var(--kp)), transparent);
@@ -507,9 +509,28 @@
   .kis.is-ring .kis-strip { display: block; position: relative; height: calc(var(--kw) * 1391 / 640 + 64px); margin: 26px calc(50% - 50vw) 0; padding: 0;
     overflow: hidden; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; perspective: 1500px; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
   .kis.is-ring .kis-strip.drag { cursor: grabbing; }
-  .kis.is-ring .kis-card { position: absolute; top: 18px; left: calc(50% - var(--kw) / 2); width: var(--kw); display: block; will-change: transform, opacity;
-    transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; }
+  .kis.is-ring .kis-card { position: absolute; top: 18px; left: calc(50% - var(--kw) / 2); width: var(--kw); display: block; will-change: transform;
+    transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; }
   .kis.is-ring .kis-card[data-d="0"] { cursor: default; }
+  /* Telefon izlenimi: on yuzun arkasina ayni kose yuvarlakliginda ince katmanlar dizilir
+     (.kb, build-home.mjs KATMAN). Yandan bakilinca duz bir cubuk degil, yuvarlak kenarli
+     metal bir govde ve telefonun arkasi gorunur; katman tonlari ortada acik, uclarda koyu
+     (yuvarlatilmis kenar golgesi). Kalinlik ile birlikte olceklensin diye JS scale3d verir.
+     Uzak kartlar opaklikla degil goruntu filtresiyle soner: opaklik preserve-3d'yi
+     duzlestirir ve govde kaybolurdu. Koyu zeminde koyu cerceve kaybolmasin diye ince bir
+     dis cizgi de var. */
+  .kis.is-ring .kis-card .phone { position: relative; transform-style: preserve-3d;
+    box-shadow: 0 34px 60px -34px rgba(10, 30, 20, .6), 0 0 0 1px color-mix(in srgb, var(--ink) 16%, transparent), inset 0 0 0 1px rgba(255, 255, 255, .14); }
+  .kb { display: none; }
+  .kis.is-ring .kb { display: block; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: var(--kbc); transform: translateZ(calc(var(--i) * var(--kt) / -8)); }
+  .kis.is-ring .kb:nth-of-type(1) { --kbc: #1a2420; } .kis.is-ring .kb:nth-of-type(2) { --kbc: #2a3531; }
+  .kis.is-ring .kb:nth-of-type(3) { --kbc: #3b4742; } .kis.is-ring .kb:nth-of-type(4) { --kbc: #4b5852; }
+  .kis.is-ring .kb:nth-of-type(5) { --kbc: #46524c; } .kis.is-ring .kb:nth-of-type(6) { --kbc: #36413c; }
+  .kis.is-ring .kb:nth-of-type(7) { --kbc: #26302c; }
+  .kis.is-ring .kb:nth-of-type(8) { --kbc: linear-gradient(160deg, #2c3833, #18211d 60%, #222c28); }
+  .kis.is-ring .kis-card img { transition: filter .5s ease; }
+  .kis.is-ring .kis-card.far img { filter: var(--kis-far); }
   .kis.is-ring .kis-cap { display: none; }
   .kis.is-ring .kis-now { display: grid; gap: 6px; justify-items: center; text-align: center; max-width: 30em; min-height: 7.4em; margin: 10px auto 0; transition: opacity .2s ease; }
   .kis-now.swap { opacity: 0; }
@@ -893,15 +914,15 @@
       <p>اختر خلفيتك ولونك والأداة على شاشتك الرئيسية. ليكن المكان الذي تنظر إليه كل يوم على ذوقك.</p>
     </div>
     <ul class="kis-strip" id="kisStrip" tabindex="0" aria-label="شاشات التخصيص">
-        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-ufuk.webp" alt="الأفق" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">الخلفية</span><b>الأفق</b><span>تشرق الشمس ويطلع القمر ويغيبان مع مواقيت الصلاة في مدينتك.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-kandil.webp" alt="القناديل" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">الخلفية · السمة الداكنة</span><b>القناديل</b><span>عتمة هادئة على ضوء القناديل لمن يقرأ ليلًا.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-revzen.webp" alt="القمرية" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">الخلفية · زعفراني</span><b>القمرية</b><span>ضوء يتسلّل من نافذة مسجد، ولونه يتبع الشمس طوال اليوم.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-ebru.webp" alt="إبرو" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">الخلفية · برقوقي</span><b>إبرو</b><span>ورق إبرو بعروق دقيقة ينساب من الزوايا.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-gorunum.webp" alt="المظهر" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">الإعدادات</span><b>المظهر</b><span>الخلفية والسمة واللون في مكان واحد، ويظهر كل تغيير فورًا.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-anaekran.webp" alt="الأدوات" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">الشاشة الرئيسية</span><b>الأدوات</b><span>مهمتك اليوم والتاريخ الهجري ووقت الصلاة معًا. ولأداة الصلاة ثمانية أشكال.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-kilit.webp" alt="الوقت بنظرة واحدة" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">شاشة القفل</span><b>الوقت بنظرة واحدة</b><span>اعرف ما تبقّى من وقت الصلاة الحالية وما يليها دون فتح هاتفك.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-sayfa.webp" alt="لون الصفحة" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">أثناء القراءة</span><b>لون الصفحة</b><span>اقرأ القرآن بخمس درجات للصفحة، من الأبيض إلى البني الفاتح حتى الليلي.</span></div></li>
-        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-tesbih.webp" alt="المسبحة" width="640" height="1391" loading="lazy" decoding="async"></figure><div class="kis-cap"><span class="kis-tag">الذكر</span><b>المسبحة</b><span>استخدم العدّاد حلقةً برقم كبير أو مسبحةً بحبّات متحركة.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-ufuk.webp" alt="الأفق" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">الخلفية</span><b>الأفق</b><span>تشرق الشمس ويطلع القمر ويغيبان مع مواقيت الصلاة في مدينتك.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-kandil.webp" alt="القناديل" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">الخلفية · السمة الداكنة</span><b>القناديل</b><span>عتمة هادئة على ضوء القناديل لمن يقرأ ليلًا.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-revzen.webp" alt="القمرية" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">الخلفية · زعفراني</span><b>القمرية</b><span>ضوء يتسلّل من نافذة مسجد، ولونه يتبع الشمس طوال اليوم.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-ebru.webp" alt="إبرو" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">الخلفية · برقوقي</span><b>إبرو</b><span>ورق إبرو بعروق دقيقة ينساب من الزوايا.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-gorunum.webp" alt="المظهر" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">الإعدادات</span><b>المظهر</b><span>الخلفية والسمة واللون في مكان واحد، ويظهر كل تغيير فورًا.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-anaekran.webp" alt="الأدوات" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">الشاشة الرئيسية</span><b>الأدوات</b><span>مهمتك اليوم والتاريخ الهجري ووقت الصلاة معًا. ولأداة الصلاة ثمانية أشكال.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-kilit.webp" alt="الوقت بنظرة واحدة" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">شاشة القفل</span><b>الوقت بنظرة واحدة</b><span>اعرف ما تبقّى من وقت الصلاة الحالية وما يليها دون فتح هاتفك.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-sayfa.webp" alt="لون الصفحة" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">أثناء القراءة</span><b>لون الصفحة</b><span>اقرأ القرآن بخمس درجات للصفحة، من الأبيض إلى البني الفاتح حتى الليلي.</span></div></li>
+        <li class="kis-card"><figure class="phone"><img src="/img/app/ar/kis-tesbih.webp" alt="المسبحة" width="640" height="1391" loading="lazy" decoding="async"><i class="kb" style="--i:1"></i><i class="kb" style="--i:2"></i><i class="kb" style="--i:3"></i><i class="kb" style="--i:4"></i><i class="kb" style="--i:5"></i><i class="kb" style="--i:6"></i><i class="kb" style="--i:7"></i><i class="kb" style="--i:8"></i></figure><div class="kis-cap"><span class="kis-tag">الذكر</span><b>المسبحة</b><span>استخدم العدّاد حلقةً برقم كبير أو مسبحةً بحبّات متحركة.</span></div></li>
     </ul>
     <div class="kis-now" id="kisNow" aria-live="polite"></div>
     <div class="kis-foot">
@@ -1430,7 +1451,7 @@
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     sec.classList.add("is-ring");
     var act = 0, open = reduce ? 1 : 0, raf = 0, dots = [], lastDrag = 0;
-    var S = [1, .82, .66, .54, .46], R = [0, 24, 34, 40, 44], O = [1, 1, .94, .62, 0];
+    var S = [1, .82, .66, .54, .46], R = [0, 24, 34, 40, 44], O = [1, 1, 1, 1, 0];
 
     function rel(i) { var d = ((i - act) % n + n) % n; if (d > n / 2) d -= n; return d; }
     function layout() {
@@ -1440,8 +1461,9 @@
       for (var i = 0; i < n; i++) {
         var d = rel(i), a = Math.min(Math.abs(d), 4), sg = d < 0 ? -1 : 1, c = cards[i];
         var vis = a <= far ? O[a] : 0;
-        c.style.transform = "translateX(" + (X[a] * sg * dir * open).toFixed(1) + "px) rotateY(" + (R[a] * sg * dir * open).toFixed(1) + "deg) scale(" + S[a] + ")";
-        c.style.opacity = vis;
+        c.style.transform = "translateX(" + (X[a] * sg * dir * open).toFixed(1) + "px) rotateY(" + (R[a] * sg * dir * open).toFixed(1) + "deg) scale3d(" + S[a] + "," + S[a] + "," + S[a] + ")";
+        c.style.opacity = vis ? "" : "0";
+        c.classList.toggle("far", a >= far);
         c.style.zIndex = String(20 - a);
         c.style.pointerEvents = vis ? "" : "none";
         c.dataset.d = String(d);
