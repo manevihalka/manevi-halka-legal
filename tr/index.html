@@ -423,7 +423,7 @@
   /* --sh: golge gucu (0-1). Kirpinti ekrandaki yerine inerken golgesi kaybolur, ekrandaki
      kismin ustune dikissiz oturur. calc'li satir desteklenmezse ustteki duz golge kalir. */
   .fx { position: absolute; z-index: 2; height: auto; display: block; pointer-events: none; user-select: none; transform-origin: 50% 50%; --sh: 1; }
-  .fx-move .fx { will-change: transform, opacity; }
+  .fx-move .fx, .fx-move .band-visual .ves-done, .fx-move .ves-tag, .fx-move .webcard { will-change: transform, opacity; }
   .fx-w { filter: drop-shadow(0 18px 24px rgba(10, 30, 20, .22)) drop-shadow(0 2px 4px rgba(10, 30, 20, .10)); filter: drop-shadow(0 18px 24px rgba(10, 30, 20, calc(.22 * var(--sh)))) drop-shadow(0 2px 4px rgba(10, 30, 20, calc(.10 * var(--sh)))); }
   .fx-card { background: #fff; border-radius: 18px; box-shadow: 0 22px 44px -18px rgba(10, 30, 20, .38), 0 0 0 1px rgba(20, 35, 28, .06); box-shadow: 0 22px 44px -18px rgba(10, 30, 20, calc(.38 * var(--sh))), 0 0 0 1px rgba(20, 35, 28, calc(.06 * var(--sh))); }
   :root[data-theme="dark"] .fx-w { filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .5)); filter: drop-shadow(0 18px 26px rgba(0, 0, 0, calc(.5 * var(--sh)))); }
@@ -1328,6 +1328,57 @@
           c.el.style.setProperty("--sh", sh.toFixed(3));
         });
       });
+    }
+
+    function ask() { if (!raf) raf = requestAnimationFrame(frame); }
+    function relayout() { measure(); ask(); }
+    relayout();
+    window.addEventListener("scroll", ask, { passive: true });
+    window.addEventListener("resize", relayout);
+    window.addEventListener("load", relayout);
+  })();
+
+  // ── Vesile bandi: on ekran sabit, cevresi kaydirmayla gelir ──
+  // Arkadaki egik "Halka Neticesi" telefonu on telefonun arkasindan cikip yerine yatar
+  // (ayni halkanin bittigi hal, simdiki halin icinden dogar); ardindan web karti asagidan
+  // yukselir, en son "Halka tamamlaninca" etiketi belirir. Uzaklasinca tersine oynar.
+  // Hareket on telefonun arkasi ile son yerler arasinda kalir, ekranin disina tasmaz.
+  (function () {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var host = document.querySelector("#vesile .band-visual");
+    if (!host) return;
+    var back = host.querySelector(".ves-done"), front = host.querySelector(".ves-now");
+    var tag = host.querySelector(".ves-tag"), card = host.querySelector(".webcard");
+    if (!back || !front) return;
+    document.documentElement.classList.add("fx-move");
+    var rot = document.documentElement.dir === "rtl" ? 6 : -6;
+    var g = { dx: 0, dy: 0 }, raf = 0;
+
+    function measure() {
+      g.dx = (front.offsetLeft + front.offsetWidth / 2) - (back.offsetLeft + back.offsetWidth / 2);
+      g.dy = (front.offsetTop + front.offsetHeight / 2) - (back.offsetTop + back.offsetHeight / 2);
+    }
+    function sub(p, a, b) { var t = Math.max(0, Math.min(1, (p - a) / (b - a))); return t * t * (3 - 2 * t); }
+
+    function frame() {
+      raf = 0;
+      var vh = window.innerHeight, r = host.getBoundingClientRect();
+      if (r.bottom < -vh * 0.5 || r.top > vh * 1.5) return;
+      var d = r.top + r.height / 2 - vh / 2;
+      var t = Math.max(0, Math.min(1, (1 - Math.abs(d) / (vh * 0.6)) / 0.7));
+      var p = t * t * (3 - 2 * t), k = 1 - p;
+      // Arkadaki telefon: on telefonun tam arkasindan (kucuk oldugu icin gorunmez) yerine
+      back.style.transform = "translate(" + (g.dx * k).toFixed(1) + "px," + (g.dy * k * 0.6).toFixed(1) + "px) rotate(" + (rot * p).toFixed(2) + "deg) scale(" + (1 - 0.06 * k).toFixed(3) + ")";
+      if (card) {
+        var c = sub(p, 0.3, 0.85);
+        card.style.opacity = c.toFixed(3);
+        card.style.transform = "translateY(" + ((1 - c) * 18).toFixed(1) + "px)";
+      }
+      if (tag) {
+        var a = sub(p, 0.6, 1);
+        tag.style.opacity = a.toFixed(3);
+        tag.style.transform = "translateY(" + ((1 - a) * 8).toFixed(1) + "px) scale(" + (0.94 + 0.06 * a).toFixed(3) + ")";
+      }
     }
 
     function ask() { if (!raf) raf = requestAnimationFrame(frame); }
