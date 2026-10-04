@@ -254,7 +254,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .phone { margin: 0; padding: 8px; border-radius: 40px; background: #101a16; box-shadow: 0 40px 70px -40px rgba(10, 30, 20, .75), inset 0 0 0 1px rgba(255, 255, 255, .08); user-select: none; }
   .phone img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 33px; pointer-events: none; background: var(--mint); }
   .showcase { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-  .stage { position: relative; width: min(520px, 100%); aspect-ratio: 1; touch-action: pan-y; user-select: none; }
+  .stage { position: relative; width: min(520px, 100%); aspect-ratio: 1; touch-action: pan-y pinch-zoom; user-select: none; }
   .card { position: absolute; inset: 0; transition: transform .75s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; will-change: transform; }
   .card[data-pos="0"] { z-index: 3; transform: rotate(calc(-2.5deg * var(--s))); }
   .card[data-pos="1"] { z-index: 2; transform: translate(calc(14% * var(--s)), -3%) rotate(calc(6deg * var(--s))) scale(.82); cursor: pointer; }
@@ -519,8 +519,11 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   :root[dir="rtl"] .kis-btn svg { transform: scaleX(-1); }
   /* sergi kipi */
   .kis.is-ring .kis-strip { display: block; position: relative; height: calc(var(--kw) * 1391 / 640 + 64px); margin: 26px calc(50% - 50vw) 0; padding: 0;
-    overflow: hidden; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; perspective: 1500px; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+    overflow: hidden; scroll-snap-type: none; -webkit-mask-image: none; mask-image: none; perspective: 1500px; touch-action: pan-y pinch-zoom; cursor: grab; user-select: none; -webkit-user-select: none; }
   .kis.is-ring .kis-strip.drag { cursor: grabbing; }
+  /* Yakinlastirilmis sayfada surukleme tarayicinin: iki parmakla uzaklastirma ve yatay kaydirma
+     engellenmesin (pan-y yakinlasinca ekrani dolduran alanda geri cikmayi imkansiz kiliyordu). */
+  html.mh-zoom .stage, html.mh-zoom .kis.is-ring .kis-strip { touch-action: auto; cursor: auto; }
   .kis.is-ring .kis-card { position: absolute; top: 18px; left: calc(50% - var(--kw) / 2); width: var(--kw); display: block;
     transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; }
   .kis.is-ring .kis-card[data-d="0"] { cursor: default; }
@@ -1453,15 +1456,23 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     document.getElementById("prev").addEventListener("click", function (e) { e.stopPropagation(); stop(); go(cur - 1); });
 
     // Kaydirma: okuma yonunde ileri cekince siradaki gelir (Arapcada yon ters)
-    var sx = 0, dx = 0, drag = false, moved = false;
-    stage.addEventListener("pointerdown", function (e) { if (e.target.closest(".nav")) return; drag = true; moved = false; sx = e.clientX; dx = 0; cards[cur].classList.add("drag"); });
+    // Iki parmak (yakinlastirma) ya da yakinlastirilmis sayfa: surukleme yok, hareket tarayicinin.
+    var sx = 0, dx = 0, drag = false, moved = false, touches = 0;
+    function zoomed() { return document.documentElement.classList.contains("mh-zoom"); }
+    function abort() { if (!drag) return; drag = false; cards[cur].classList.remove("drag"); paint(); }
+    stage.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "touch") touches++;
+      if (touches > 1 || zoomed()) { abort(); return; }
+      if (e.target.closest(".nav")) return; drag = true; moved = false; sx = e.clientX; dx = 0; cards[cur].classList.add("drag");
+    });
     stage.addEventListener("pointermove", function (e) {
       if (!drag) return; dx = e.clientX - sx; if (Math.abs(dx) > 6) moved = true;
       cards[cur].style.transform = "translateX(" + dx * .5 + "px) rotate(" + (-2.5 * S + dx * .02) + "deg)";
     });
-    function end() {
+    function end(e) {
+      if (e && e.pointerType === "touch" && (e.type === "pointerup" || e.type === "pointercancel")) touches = Math.max(0, touches - 1);
       if (!drag) return; drag = false; cards[cur].classList.remove("drag");
-      if (Math.abs(dx) > 50) { stop(); go((dx < 0) !== RTL ? cur + 1 : cur - 1); } else paint();
+      if (e && e.type !== "pointercancel" && Math.abs(dx) > 50) { stop(); go((dx < 0) !== RTL ? cur + 1 : cur - 1); } else paint();
       setTimeout(function () { moved = false; }, 0);
     }
     stage.addEventListener("pointerup", end); stage.addEventListener("pointercancel", end); stage.addEventListener("pointerleave", end);
@@ -1639,11 +1650,19 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     });
 
     // Parmak / fare ile cevirme: yatay hareket 40 px'i gecince bir kart.
-    var sx = 0, sy = 0, down = false, moved = false;
-    strip.addEventListener("pointerdown", function (e) { down = true; moved = false; sx = e.clientX; sy = e.clientY; });
+    // Iki parmak (yakinlastirma) ya da yakinlastirilmis sayfa: cevirme yok, hareket tarayicinin.
+    var sx = 0, sy = 0, down = false, moved = false, touches = 0;
+    strip.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "touch") touches++;
+      if (touches > 1 || document.documentElement.classList.contains("mh-zoom")) { down = false; moved = false; strip.classList.remove("drag"); return; }
+      down = true; moved = false; sx = e.clientX; sy = e.clientY;
+    });
     strip.addEventListener("pointermove", function (e) {
       if (down && !moved && Math.abs(e.clientX - sx) > 8 && Math.abs(e.clientX - sx) > Math.abs(e.clientY - sy)) { moved = true; strip.classList.add("drag"); }
     });
+    function lift(e) { if (e.pointerType === "touch") touches = Math.max(0, touches - 1); }
+    strip.addEventListener("pointerup", lift);
+    strip.addEventListener("pointercancel", lift);
     function up(e) {
       if (!down) return;
       down = false;
