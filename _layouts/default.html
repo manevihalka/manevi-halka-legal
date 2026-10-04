@@ -21,7 +21,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ page.title }} · Manevi Halka</title>
 <meta name="description" content="{{ page.title }} · Manevi Halka">
-<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+{%- comment -%} Kanonik adres .html'li: site haritasi, dil baglantilari ve uygulama (lib/legal.ts) bu bicimi
+     kullaniyor. page.url Jekyll'da uzantisiz geliyordu, Google iki adresi ayri sayip ikisini de bekletti. {%- endcomment %}
+<link rel="canonical" href="{{ site.url }}/{{ url }}.html">
 {%- if policy %}
 <link rel="alternate" hreflang="tr" href="{{ site.url }}/{{ base }}.html">
 <link rel="alternate" hreflang="en" href="{{ site.url }}/{{ base }}-en.html">
@@ -33,7 +35,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{ page.title }} · Manevi Halka">
 <meta property="og:image" content="{{ site.url }}/og-cover.jpg">
-<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:url" content="{{ site.url }}/{{ url }}.html">
 <meta name="theme-color" content="#1e4d35">
 <meta name="apple-itunes-app" content="app-id=6760654292">
 <link rel="icon" type="image/png" href="/icon.png">
