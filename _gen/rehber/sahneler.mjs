@@ -39,7 +39,7 @@ export const SAHNE = {
 
   /** Basliktaki kisi+ -> Halkaya Davet Et penceresi (kod, link, QR). */
   "davet-penceresi": (K) => K.telefon({
-    aria: `${K.L("group.inviteToCircle")}: ${K.L("group.shortCode")}, ${K.L("group.inviteLink")}, ${K.L("group.qrCode")}`,
+    aria: `${K.L("group.inviteToCircle")}: ${[K.L("group.shortCode"), K.L("group.inviteLink"), K.L("group.qrCode")].join(K.dil === "ar" ? "، " : ", ")}`,
     views: [["r", K.V.circleReady()]],
     overlays: [["iv", K.O.invite(), "sheet"]],
     tl: [["w", 800], ["tap", "invite"], ["ov", "iv"], ["w", 2600], ["tap", "invShare"], ["w", 900], ["cl", "iv"], ["w", 900]],

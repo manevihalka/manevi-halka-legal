@@ -87,7 +87,7 @@ export default {
           baslik: "Tesbihle çektiysen toplu ekle",
           metin: [
             "Zikri tesbihle ya da ezberden çektiysen tek tek dokunman gerekmez. Sayacın altındaki [[zikir.bulkAdd]] düğmesine dokun. Sayaca uzun basmak da aynı pencereyi açar.",
-            "+10, +33 ya da +100 seçeneğine dokun, ya da [[tx:zikir.bulkAddPlaceholder]] kutusuna kendi sayını yazıp [[common.add]] de. Görev ekranının altındaki çubuk, günün ortak toplamını yüzdeyle gösterir.",
+            "+10, +33 ya da +100 seçeneğine dokun ya da [[tx:zikir.bulkAddPlaceholder]] kutusuna kendi sayını yazıp [[common.add]] de. Görev ekranının altındaki çubuk, günün ortak toplamını yüzdeyle gösterir.",
           ],
           ipucu: "Ortak sayaç her gün gece yarısı, senin saatinle baştan başlar; bu bir günlük hedeftir. Birkaç güne yayılan tek bir büyük toplam istiyorsan aşağıdaki tek seferlik halkayı kullan.",
           sahne: "zikir-toplu",

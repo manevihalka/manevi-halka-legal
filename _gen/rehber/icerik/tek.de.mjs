@@ -157,7 +157,7 @@ export default {
           baslik: "Im Kreis für Dhikr oder Bittgebete: zählen",
           metin: [
             "Im Kreis steht in der Karte [[tx:event.zikirSection]] (im Kreis für Bittgebete [[tx:event.duaSection]]) neben jeder Zeile der Knopf [[event.count]]. Tippst du darauf, öffnet sich der Zähler; jedes Tippen auf den Bildschirm zählt eins.",
-            "Hast du mit der Gebetskette (Tasbih) oder auswendig gezählt, trag die Zahl mit dem Knopf [[ol:zikir.bulkAdd]] unter dem Zähler auf einmal ein. Die Zahlen werden von selbst gespeichert. Beim Dhikr mit [[tx:event.modeCollective]] zeigt der Zähler auch die Zeile [[tx:zikir.counterGroupTotal]].",
+            "Hast du mit der Gebetskette (Tasbih) oder im Kopf gezählt, trag die Zahl mit dem Knopf [[ol:zikir.bulkAdd]] unter dem Zähler auf einmal ein. Die Zahlen werden von selbst gespeichert. Beim Dhikr mit [[tx:event.modeCollective]] zeigt der Zähler auch die Zeile [[tx:zikir.counterGroupTotal]].",
           ],
         },
         {
@@ -197,7 +197,7 @@ export default {
           baslik: "Kurz vor dem Ende",
           metin: [
             "12 Stunden vor dem Ende bekommen alle, die ihren Teil noch nicht fertig haben, eine Erinnerung. In Kreisen für Dhikr und Bittgebete geht diese Erinnerung an alle Teilnehmenden.",
-            "Bei einer Khatm gehen 6 Stunden vor dem Ende Seiten, die in der App genommen und nicht mit [[event.done]] abgehakt wurden, zurück in den Pool. Jemand anderes kann sie nehmen und lesen; wessen Seiten zurück in den Pool gegangen sind, erfährt das in der App.",
+            "Bei einer Khatm gehen 6 Stunden vor dem Ende Seiten, die in der App genommen und nicht mit [[event.done]] abgehakt wurden, zurück in den Pool. Jemand anderes kann sie nehmen und lesen; die Person, deren Seiten zurück in den Pool gegangen sind, erfährt das in der App.",
             "Reicht die Zeit nicht, tippe im Tab [[tx:event.tabCircle]] in der Karte [[tx:event.adminControls]] auf [[tx:event.extend24h]]. Das Enddatum rückt 24 Stunden nach hinten; bei Bedarf tippst du noch einmal.",
           ],
           sahne: "vf-uzat",

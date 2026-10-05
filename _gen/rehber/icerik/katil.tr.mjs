@@ -154,7 +154,7 @@ export default {
       { s: "Hesap açmam gerekir mi?",
         c: "Hayır. Uygulama yalnız adını sorar; e-posta, şifre ya da telefon numarası istemez. İstersen sonra [[tabs.circles]] ekranının üstündeki [[tx:secure.banner]] şeridine dokunup hesabını Apple, Google ya da e-postayla bağlarsın. Böylece telefonun değişse de halkaların kaybolmaz." },
       { s: "Katıldım, görevimi nerede görürüm?",
-        c: "[[tx:tabs.home]] sekmesindeki [[tx:dashboard.myTasks]] bölümünde. Halkanın ekranındaki [[tx:group.readingsTab]] sekmesinde de halkadaki bütün görevler listelenir. Süren bir hatime tur ortasında katıldıysan payın bir sonraki turla gelir." },
+        c: "[[tx:tabs.home]] sekmesindeki [[tx:dashboard.myTasks]] bölümünde. Halkanın ekranındaki [[tx:group.readingsTab]] sekmesinde de halkadaki bütün görevler listelenir. Süren bir hatme tur ortasında katıldıysan payın bir sonraki turla gelir." },
       { s: "Halkadan nasıl ayrılırım?",
         c: "Halkanın ekranında sağ üstteki üç noktaya dokun. Açılan listede [[tx:group.leaveGroup]] satırına dokun. Sonraki sayfada neyin değişeceğini görürsün. [[ol:common.leave]] dersen ayrılırsın, [[tx:notice.stayInCircle]] dersen vazgeçersin. Bitirmediğin Kur'an payların havuza bırakılır; halkadakiler oradan alabilir. İstersen sonra aynı kodla yeniden katılabilirsin." },
       { s: "Davet linki ya da kod çalışmıyor, ne yapmalıyım?",

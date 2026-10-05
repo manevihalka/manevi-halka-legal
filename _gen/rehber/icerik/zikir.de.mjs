@@ -33,7 +33,7 @@ export default {
             "Öffne unten in der Leiste den Tab [[tabs.circles]] und dann deinen Kreis. Tippe im Tab [[tx:group.readingsTab]] unten rechts auf den runden Knopf **+**.",
             "Der Bildschirm [[tx:wizard.goalTypeQuestion]] öffnet sich. Tippe unter [[tx:practice.sectionReadings]] auf die Karte [[tx:wizard.goalZikir]].",
           ],
-          ipucu: "In einem neuen Kreis öffnet auch [[group.welcome.step2Btn]] auf der Karte [[tx:group.welcome.title]] diesen Bildschirm. Den Knopf **+** sehen der Admin und die Moderatoren des Kreises.",
+          ipucu: "In einem neuen Kreis öffnet auch der Knopf [[group.welcome.step2Btn]] auf der Karte [[tx:group.welcome.title]] diesen Bildschirm. Den Knopf **+** sehen der Admin und die Moderatoren des Kreises.",
           sahne: "zikir-gorev-ac",
         },
         {
@@ -88,14 +88,14 @@ export default {
             "Hast du den Dhikr mit der Tasbih oder im Kopf gezählt, musst du nicht einzeln tippen. Tippe unter dem Zähler auf [[zikir.bulkAdd]]. Langes Drücken auf den Zähler öffnet dasselbe Fenster.",
             "Tippe auf +10, +33 oder +100, oder gib im Feld [[tx:zikir.bulkAddPlaceholder]] deine eigene Zahl ein und tippe auf [[common.add]]. Der Balken unten in der Aufgabe zeigt die gemeinsame Summe des Tages in Prozent.",
           ],
-          ipucu: "Der gemeinsame Zähler beginnt jeden Tag um Mitternacht nach deiner Ortszeit von vorn; es ist ein Tagesziel. Möchtest du eine große Summe über mehrere Tage, nimm den einmaligen Kreis unten.",
+          ipucu: "Der gemeinsame Zähler beginnt jeden Tag um Mitternacht nach deiner Ortszeit von vorn; es ist ein Tagesziel. Möchtest du über mehrere Tage eine große Summe sammeln, nimm den einmaligen Kreis unten.",
           sahne: "zikir-toplu",
         },
       ],
     },
     {
       tur: "bolum", id: "tek-seferlik", rol: "Wer den Kreis gründet", baslik: "Ein einmaliges Ziel für einen Anlass",
-      giris: "Möchtest du eine große Summe bis zu einem bestimmten Datum, etwa Salawat in einer gesegneten Nacht oder für einen Verstorbenen, brauchst du keinen dauerhaften Kreis.",
+      giris: "Möchtest du bis zu einem bestimmten Datum eine große Summe sammeln, etwa Salawat in einer gesegneten Nacht oder für einen Verstorbenen, brauchst du keinen dauerhaften Kreis.",
       adimlar: [
         {
           baslik: "Im einmaligen Kreis „Gemeinsam“ wählen",
@@ -127,7 +127,7 @@ export default {
         {
           baslik: "Schau in den Bereich Gemeinsame Praxis",
           metin: [
-            "Tippst du im Kreis auf **+**, steht unten auf dem Bildschirm der Bereich [[tx:practice.sectionPractices]]: [[tx:practice.typeReading]] (etwa al-Mulk, al-Kahf, Yasin), [[tx:practice.typeDua]] und [[tx:practice.typePrayer]].",
+            "Tippst du im Kreis auf **+**, steht unten auf dem Bildschirm der Bereich [[tx:practice.sectionPractices]]: [[tx:practice.typeReading]] (etwa Al-Mulk, Al-Kahf, Yasin), [[tx:practice.typeDua]] und [[tx:practice.typePrayer]].",
             "Hier wird nicht gezählt: Jeder pflegt seine eigene Praxis und hakt ab, was er an diesem Tag getan hat. Diesen Bereich sieht der Admin des Kreises.",
           ],
         },
@@ -152,7 +152,7 @@ export default {
         c: "Das wählst du. Bei [[tx:wizard.zikirOption1]] zählt jeder dieselbe Liste für sich. Bei [[tx:wizard.zikirOption2]] hat der Kreis einen einzigen Zähler, und was jeder rezitiert, kommt in dieselbe Summe. Im einmaligen Kreis wählst du das für jeden Dhikr einzeln: [[tx:event.modeIndividual]] oder [[tx:event.modeCollective]]." },
       { s: "Beginnt der gemeinsame Zähler jeden Tag von vorn?",
         c: "Der gemeinsame Pool im regelmäßigen Kreis ist ein Tagesziel: Der Zähler beginnt jede Nacht um Mitternacht nach der Ortszeit jedes Einzelnen von vorn. Im einmaligen Kreis sammelt sich die Zahl eines Dhikr mit [[tx:event.modeCollective]] nach dem Start bis zum Enddatum." },
-      { s: "Können wir Yasin oder Ichlas gemeinsam eine bestimmte Anzahl lesen?",
+      { s: "Können wir Yasin oder Ichlas gemeinsam eine bestimmte Anzahl von Malen lesen?",
         c: "Gründe einen einmaligen Kreis, wähle als Art [[tx:event.typeDua]] und füge aus der Vorlagenliste [[=Yâsîn Sûresi]] oder [[=İhlâs Sûresi]] hinzu. Schreib die Gesamtzahl in das Feld für das Ziel und wähle [[tx:event.modeCollective]]. Wie oft gelesen wird, entscheidest du; zur Überlieferung der Anzahl frag einen Gelehrten deines Vertrauens." },
       { s: "Wie trage ich meine Anzahl ein?",
         c: "Tippe in der Aufgabe auf die Karte des Dhikr; im Zähler zählt jedes Tippen eins. Hast du mit der Tasbih gezählt, trägst du mit [[zikir.bulkAdd]] eine Zahl wie +33 oder +100 auf einmal ein. Einen Speichern-Knopf gibt es nicht, gespeichert wird von selbst." },

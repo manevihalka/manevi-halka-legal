@@ -55,7 +55,7 @@ const VF = {
       wheel: [["9 Dec", "20", "59"], ["10 Dec", "21", "00"], ["11 Dec", "22", "01"]], guests: ["Hassan", "Khadija", "Karim"], guest: "Khadija" },
     de: { title: "Chatma zur Laylat al-Ragha'ib", ded: "Zum Wohl unserer Familie und der ganzen Umma", endDef: "7. Okt., 14:30", end: "10. Dez., 21:00", until: "10. Dezember", gun: 66,
       wheel: [["9. Dez.", "20", "59"], ["10. Dez.", "21", "00"], ["11. Dez.", "22", "01"]], guests: ["Hasan", "Hatice", "Kerem"], guest: "Hatice" },
-    fr: { title: "Khatma de Laylat al-Ragha'ib", ded: "Pour le bien de notre famille et de toute la Oumma", endDef: "7 oct. 14:30", end: "10 déc. 21:00", until: "10 décembre", gun: 66,
+    fr: { title: "Khatma de Laylat al-Ragha’ib", ded: "Pour le bien de notre famille et de toute la Oumma", endDef: "7 oct. 14:30", end: "10 déc. 21:00", until: "10 décembre", gun: 66,
       wheel: [["9 déc.", "20", "59"], ["10 déc.", "21", "00"], ["11 déc.", "22", "01"]], guests: ["Hassan", "Khadija", "Karim"], guest: "Khadija" },
     ar: { title: "ختمة ليلة الرغائب", ded: "لخير عائلتنا والأمة جمعاء", endDef: "7 أكتوبر 14:30", end: "10 ديسمبر 21:00", until: "10 ديسمبر", gun: 66,
       wheel: [["9 ديسمبر", "20", "59"], ["10 ديسمبر", "21", "00"], ["11 ديسمبر", "22", "01"]], guests: ["حسن", "خديجة", "كريم"], guest: "خديجة" },
@@ -445,10 +445,10 @@ export const SAHNE = {
     const once = { prog: [7, 40, 100, 464], cd: hazirla(K).kalanGun(2), my: "on", cuz: [8, 9, 10, 11, 12, 13] };
     return K.telefon({
       aria: `${K.L("event.read")} › ${K.L("event.done")} › ${K.L("event.completeConfirmTitle")}`,
-      views: [["g", aktif(K, { ...once, sc: "gsc1" })], ["rd", K.V.reader(), "push"], ["g2", aktif(K, { ...once, sc: "gsc2", toast: true }), "back"]],
+      views: [["g", aktif(K, { ...once, sc: "gsc1" })], ["rd", K.V.reader("١٢١"), "push"], ["g2", aktif(K, { ...once, sc: "gsc2", toast: true }), "back"]],
       overlays: [["cc", tamamlaOnay(K), "pop"]],
-      tl: [["w", 700], ["y", "gsc1", 4], ["txt", "pgn", "121"], ["y", "gsc2", 4], ["w", 900], ["tap", "readBtn"], ["go", "rd"], ["w", 600],
-        ["st", "rprog", "width", "35%"], ["txt", "pgn", "128"], ["w", 650], ["st", "rprog", "width", "70%"], ["txt", "pgn", "134"], ["w", 650], ["st", "rprog", "width", "100%"], ["txt", "pgn", "140"], ["w", 700],
+      tl: [["w", 700], ["y", "gsc1", 4], ["txt", "pgn", "١٢١"], ["y", "gsc2", 4], ["w", 900], ["tap", "readBtn"], ["go", "rd"], ["w", 600],
+        ["st", "rprog", "width", "35%"], ["txt", "pgn", "١٢٨"], ["w", 650], ["st", "rprog", "width", "70%"], ["txt", "pgn", "١٣٤"], ["w", 650], ["st", "rprog", "width", "100%"], ["txt", "pgn", "١٤٠"], ["w", 700],
         ["go", "g2"], ["w", 800], ["tap", "doneBtn"], ["ov", "cc"], ["w", 1100], ["tap", "ccOk"], ["cl", "cc"],
         ["on", "toast", "show"], ["on", "myrow", "dn"], ["on", "mydone", "on"],
         ["st", "pbD", "width", "9.9%"], ["st", "pbH", "width", "13.2%"], ["txt", "pct", K.L("common.percent", { n: 10 })],

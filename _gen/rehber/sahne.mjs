@@ -61,7 +61,7 @@ export function fmt(s, v = {}, dil = "tr") {
 /** Dile gore ornek veriler (kullanicinin yazdigi seyler: ad, halka adi). Uygulama metni DEGIL. */
 export const ORNEK = {
   tr: { me: "Ömer", member: "Ayşe", names: ["Ömer", "Ayşe", "Yusuf", "Zeynep", "Mehmet"], circle: "Ailem", task: "Aile Hatmi",
-    city: "Istanbul", date: "5 Eki 2026", code: "T4X6RC", pushTitle: "Yeni tur başladı!", pushBody: "“Aile Hatmi” 1. tur, yeni görevlerin atandı.",
+    city: "İstanbul", date: "5 Eki 2026", code: "T4X6RC", pushTitle: "Yeni tur başladı!", pushBody: "“Aile Hatmi” 1. tur, yeni görevlerin atandı.",
     shareApps: ["WhatsApp", "Mesajlar", "Posta", "Telegram"], now: "şimdi", lockDate: "Pazartesi, 5 Ekim" },
   en: { me: "Omar", member: "Aisha", names: ["Omar", "Aisha", "Yusuf", "Maryam", "Bilal"], circle: "My Family", task: "Family Khatm",
     city: "London", date: "5 Oct 2026", code: "T4X6RC", pushTitle: "New round started!", pushBody: "“Family Khatm” round 1, new tasks assigned.",
@@ -310,11 +310,11 @@ export function kit(dil) {
       </div>`,
 
     /** Kur'an okuyucusu (soyut sayfa, ayet metni cizilmez). */
-    reader: () => `<div class="rd-h"><span class="hb">${ic("back", "fl")}</span><b>${Le("quran.title")}</b><span class="hr">${ic("book")}</span></div>
+    reader: (sayfa = "٢١") => `<div class="rd-h"><span class="hb">${ic("back", "fl")}</span><b>${Le("quran.title")}</b><span class="hr">${ic("book")}</span></div>
       <i class="rd-p"><i${k("rprog")}></i></i>
       <div class="seg mini"><span class="on">${Le("cevsen.tabArabic")}</span><span>${Le("cevsen.tabMeal")}</span></div>
       <div class="mushaf" aria-hidden="true">${Array.from({ length: 12 }, (_, i) => `<i style="--w:${[94, 88, 97, 91, 85, 96, 90, 93, 87, 95, 89, 60][i]}%"></i>`).join("")}</div>
-      <div class="rd-nav"><span>${ic("chev", "fl rot")}</span><span class="pgn"${k("pgn")}>${num("٢١")}</span><span>${ic("chev", "fl")}</span></div>
+      <div class="rd-nav"><span>${ic("chev", "fl rot")}</span><span class="pgn"${k("pgn")}>${num(sayfa)}</span><span>${ic("chev", "fl")}</span></div>
       ${bt(L("hatim.markRead"), { key: "markRead", cls: "pill float", icon: "check" })}`,
 
     /** Tamamlandi: Elhamdulillah karti. */

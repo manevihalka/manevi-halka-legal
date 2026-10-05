@@ -32,7 +32,7 @@ export default {
             "Open the [[tabs.circles]] tab from the bar at the bottom and open your circle. In the [[tx:group.readingsTab]] tab, tap the round **+** button at the bottom right.",
             "The [[tx:wizard.goalTypeQuestion]] screen opens. Tap the [[tx:wizard.goalZikir]] card under [[tx:practice.sectionReadings]].",
           ],
-          ipucu: "In a circle you have just created, the [[group.welcome.step2Btn]] button on the [[tx:group.welcome.title]] card opens the same screen. The **+** button is visible to the circle's admin and moderator.",
+          ipucu: "In a circle you have just created, the [[group.welcome.step2Btn]] button on the [[tx:group.welcome.title]] card opens the same screen. The **+** button is visible to the circle's admin and moderators.",
           sahne: "zikir-gorev-ac",
         },
         {
@@ -113,7 +113,7 @@ export default {
         {
           baslik: "For reading Yasin or Ikhlas, choose the Du'a / Surah type",
           metin: [
-            "At the first step of the One-Time Circle, choose [[tx:event.typeDua]] as the type. The ready list at the [[tx:event.duaGoalTitle]] step includes [[=Yâsîn Sûresi]] (Surah Yasin) and [[=İhlâs Sûresi]] (Surah Al-Ikhlas). Type the total number the circle will read in the [[tx:event.target]] box and choose [[tx:event.modeCollective]].",
+            "At the first step of the One-Time Circle, choose [[tx:event.typeDua]] as the type. The ready list at the [[tx:event.duaGoalTitle]] step includes [[=Yâsîn Sûresi]] (Surah Yasin) and [[=İhlâs Sûresi]] (Surah al-Ikhlas). Type the total number the circle will read in the [[tx:event.target]] box and choose [[tx:event.modeCollective]].",
             "As people read, each adds what they read to the counter; the total shows on everyone's screen. You decide how many times it will be read; for the tradition behind a particular number, ask a scholar where you live.",
           ],
         },
@@ -126,7 +126,7 @@ export default {
         {
           baslik: "Look at the Shared practices section",
           metin: [
-            "When you tap the **+** button on the circle screen, the screen that opens has the [[tx:practice.sectionPractices]] section at the bottom: [[tx:practice.typeReading]] (such as Al-Mulk, Al-Kahf, Yasin), [[tx:practice.typeDua]] and [[tx:practice.typePrayer]].",
+            "When you tap the **+** button on the circle screen, the screen that opens has the [[tx:practice.sectionPractices]] section at the bottom: [[tx:practice.typeReading]] (such as al-Mulk, al-Kahf, Yasin), [[tx:practice.typeDua]] and [[tx:practice.typePrayer]].",
             "No count is kept here: everyone carries on with their own worship and marks what they did that day. The circle's admin sees this section.",
           ],
         },
@@ -151,8 +151,8 @@ export default {
         c: "You choose. With [[tx:wizard.zikirOption1]], everyone counts the same list on their own. With [[tx:wizard.zikirOption2]], the circle has one single counter and what everyone recites is added to the same total. In a one-time circle this choice is separate for each dhikr: [[tx:event.modeIndividual]] or [[tx:event.modeCollective]]." },
       { s: "Does the shared counter start again every day?",
         c: "The shared pool in a regular circle is a daily goal: the counter starts again from zero every midnight, in each person's own time. In a one-time circle, the count of a dhikr set to [[tx:event.modeCollective]] adds up from the moment the circle starts until the end date." },
-      { s: "Can we read Yasin or Al-Ikhlas a set number of times together?",
-        c: "Create a [[tx:event.createMenuTitle]], choose [[tx:event.typeDua]] as the type and add [[=Yâsîn Sûresi]] (Yasin) or [[=İhlâs Sûresi]] (Al-Ikhlas) from the ready list. Type the total number in the target box and choose [[tx:event.modeCollective]]. You decide how many times it will be read; for the tradition behind a particular number, ask a scholar where you live." },
+      { s: "Can we read Yasin or al-Ikhlas a set number of times together?",
+        c: "Create a [[tx:event.createMenuTitle]], choose [[tx:event.typeDua]] as the type and add [[=Yâsîn Sûresi]] (Yasin) or [[=İhlâs Sûresi]] (al-Ikhlas) from the ready list. Type the total number in the target box and choose [[tx:event.modeCollective]]. You decide how many times it will be read; for the tradition behind a particular number, ask a scholar where you live." },
       { s: "How do I add what I have recited?",
         c: "On the task screen, tap the dhikr's card; every tap on the counter counts one. If you recited on your prayer beads, you can add a number such as +33 or +100 in one go with [[zikir.bulkAdd]]. There is no save button; the count is saved automatically." },
       { s: "Can people without the app add to the count?",

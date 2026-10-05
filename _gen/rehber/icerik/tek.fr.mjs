@@ -9,7 +9,7 @@ export default {
   h1: "Cercle ponctuel : organiser une khatma, un dhikr ou une invocation en groupe",
   crumb: "Cercle ponctuel",
   eyebrow: "Guide pas à pas",
-  lead: "Pour une nuit bénie, le Ramadan, un proche décédé ou une occasion dans ta famille, tu peux vouloir lire une khatma, réciter un dhikr et des salawat ou lire une invocation avec ceux que tu aimes. Dans l’appli, tu crées pour cela un cercle ponctuel : tu choisis l’objectif, tu fixes la date de fin, tu envoies le lien. Chacun lit ou récite sa part chez lui. L’appli ne fait que répartir les parts et additionner les nombres.",
+  lead: "Pour une nuit bénie, le Ramadan, un proche décédé ou une occasion dans ta famille, tu souhaites peut-être lire une khatma, réciter un dhikr et des salawat ou lire une invocation avec ceux que tu aimes. Dans l’appli, tu crées pour cela un cercle ponctuel : tu choisis l’objectif, tu fixes la date de fin, tu envoies le lien. Chacun lit ou récite sa part chez lui. L’appli ne fait que répartir les parts et additionner les nombres.",
   meta: ["Prêt en 2 minutes environ", "Même sans l’appli", "Gratuit"],
   film: { sahne: "film-tek", cap: "Tout le parcours d’un seul coup : crée le cercle ponctuel, choisis l’objectif et la date de fin, écris la dédicace, lance le cercle et envoie le lien." },
 
@@ -19,7 +19,7 @@ export default {
       "Choisis l’objectif : [[tx:event.typeQuran]], [[tx:event.typeZikir]] ou [[tx:event.typeDua]]. Pour répartir une khatma, touche [[tx:event.distPool]] ; pour un nombre de dhikr commun, touche [[tx:event.modeCollective]].",
       "Dans le champ [[tx:event.endDate]], choisis jusqu’à quand le cercle durera.",
       "Donne un nom au cercle, écris si tu veux l’occasion dans le champ [[tx:event.dedicationLabel]], puis touche [[event.create]].",
-      "Lance le cercle avec [[event.startNow]], puis envoie le lien à ta famille et à votre groupe WhatsApp avec [[ol:event.inviteFriends]].",
+      "Lance le cercle avec [[event.startNow]], puis envoie le lien à ta famille et à ton groupe WhatsApp avec [[ol:event.inviteFriends]].",
       "Chacun lit ou récite sa part chez lui. Ceux qui n’ont pas l’appli participent à la plupart des cercles depuis le navigateur. À la fin, le cercle se ferme et son résumé reste dans l’appli.",
     ],
   },
@@ -66,7 +66,7 @@ export default {
           baslik: "Choisis la date de fin",
           metin: [
             "Touche le champ [[tx:event.endDate]] et choisis jusqu’à quand le cercle durera. Le champ propose une date dans deux jours ; tu peux en choisir une autre, par exemple une nuit bénie. Touche ensuite [[common.continue]].",
-            "Si tu veux que le cercle commence tout seul à une heure précise, coche [[tx:event.registrationWindowToggle]]. Sinon, c’est toi qui le lances.",
+            "Si tu veux que le cercle commence tout seul à une heure précise, active [[tx:event.registrationWindowToggle]]. Sinon, c’est toi qui le lances.",
           ],
           ipucu: "Le cercle est supprimé 24 heures après la date de fin. Si le temps manque, tu peux le prolonger plus tard ; c’est expliqué plus bas.",
           sahne: "vf-zaman",
@@ -93,10 +93,10 @@ export default {
         {
           baslik: "Envoie le lien",
           metin: [
-            "Une fois le cercle lancé, la carte d’invitation passe dans l’onglet [[tx:event.tabCircle]]. Touche [[ol:event.inviteFriends]] et envoie le lien à votre groupe WhatsApp, à ta famille ou à qui tu veux.",
+            "Une fois le cercle lancé, la carte d’invitation passe dans l’onglet [[tx:event.tabCircle]]. Touche [[ol:event.inviteFriends]] et envoie le lien à ton groupe WhatsApp, à ta famille ou à qui tu veux.",
             "La note sous la carte dit ce que ceux qui n’ont pas l’appli peuvent faire avec ce lien. Dans une khatma avec pool commun, elle dit : [[tx:event.webJoinClaim]]",
           ],
-          fark: "Garde votre groupe WhatsApp. Partage le lien là-bas : l’appli retient qui a pris quel juz et combien de fois on a récité, tu n’as pas besoin d’écrire une liste.",
+          fark: "Garde ton groupe WhatsApp. Partage le lien là-bas : l’appli retient qui a pris quel juz et combien de fois on a récité ; tu n’as pas besoin d’écrire une liste.",
           ipucu: "Envoie le lien avec le bouton [[ol:event.inviteFriends]] de cet écran ou avec l’icône de partage en haut à droite. N’envoie pas seulement le code d’invitation : sans l’appli, on ne peut participer dans le navigateur qu’avec ce lien.",
           sahne: "vf-davet",
         },
@@ -182,7 +182,7 @@ export default {
           baslik: "Tu n’as pas l’appli : participe au décompte dans le navigateur",
           metin: [
             "Quand tu ouvres le lien d’un cercle de dhikr ou d’invocation, la carte [[=Invocations de ce cercle]] s’affiche dans le navigateur. Chaque dhikr en mode [[tx:event.modeCollective]] a un bouton [[=Participer au décompte]].",
-            "Touche-le : un grand compteur rond s’ouvre. Chaque fois que tu le touches, il compte un ; les boutons [[=+33]] et [[=+100]] ajoutent d’un coup. Quand tu as fini, touche [[=Ajouter mon décompte]] : ton nombre s’ajoute au total du cercle.",
+            "Touche-le : un grand compteur rond s’ouvre. Chaque fois que tu le touches, il ajoute un ; les boutons [[=+33]] et [[=+100]] ajoutent d’un coup. Quand tu as fini, touche [[=Ajouter mon décompte]] : ton nombre s’ajoute au total du cercle.",
           ],
           ipucu: "Pour les dhikrs en mode [[tx:event.modeIndividual]], la ligne affiche [[=Pour les membres du cercle]] au lieu du bouton. Ceux-là, tu ne peux les réciter que dans l’appli.",
         },

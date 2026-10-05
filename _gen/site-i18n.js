@@ -67,9 +67,9 @@ var I18N = {
   },
   de: {
     title: "Manevi Halka: Chatma, Dhikr und Gebetszeiten",
-    desc: "Teile die Dschus in deinem Kreis, lest reihum und vollendet die Chatma gemeinsam. Gebetszeiten nach dem Diyanet-Kalender, Qibla, Dhikr-Zähler und Bittgebete in einer App.",
+    desc: "Teile die Dschuz in deinem Kreis, lest reihum und vollendet die Chatma gemeinsam. Gebetszeiten nach dem Diyanet-Kalender, Qibla, Dhikr-Zähler und Bittgebete in einer App.",
     h1sub: "Chatma, Dhikr und Bittgebete gemeinsam",
-    taglineSub: "Teile die Dschus in deinem Kreis, lest reihum, vollendet die Chatma gemeinsam. Gebetszeiten, Qibla und Dhikr-Zähler sind in derselben App.",
+    taglineSub: "Teile die Dschuz in deinem Kreis, lest reihum, vollendet die Chatma gemeinsam. Gebetszeiten, Qibla und Dhikr-Zähler sind in derselben App.",
     introTitle: "Was ist die Manevi-Halka-App",
     ccTitle: "Gemeinsames Lesen",
     ccLead: "Eine fortlaufende Chatma mit Lesern aus aller Welt. Übernimm einen Abschnitt oder mach beim gemeinsamen Dhikr mit.",

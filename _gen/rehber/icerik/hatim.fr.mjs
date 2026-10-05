@@ -13,7 +13,7 @@ export default {
   kisa: {
     maddeler: [
       "Dans l’appli, ouvre l’onglet [[tabs.circles]] et touche [[circlesTab.anonCreate]]. Écris ton prénom et le nom du cercle, puis touche [[createGroup.create]].",
-      "Touche [[group.welcome.step1Btn]] et envoie le lien à ta famille ou à votre groupe WhatsApp. La personne qui touche le lien choisit [[joinGroup.join]] et entre dans le cercle.",
+      "Touche [[group.welcome.step1Btn]] et envoie le lien à ta famille ou à ton groupe WhatsApp. La personne qui touche le lien choisit [[joinGroup.join]] et entre dans le cercle.",
       "Quand tout le monde est là, touche [[group.welcome.step2Btn]] et choisis la carte [[tx:wizard.goalQuran]].",
       "Khatma par juz, khatma complète, un tour par semaine et 1 juz par personne sont déjà réglés. Touche trois fois [[wizard.continue]].",
       "Donne un nom à la tâche, regarde dans l’aperçu qui commence par quel juz, puis touche [[wizard.startCircle]].",
@@ -46,8 +46,8 @@ export default {
         },
         {
           baslik: "Invite tes proches",
-          metin: "Sur l’écran du cercle, la carte [[tx:group.welcome.title]] s’affiche. Touche [[group.welcome.step1Btn]] et envoie le lien à votre groupe WhatsApp, à ta famille ou à qui tu veux. Sur le téléphone de la personne qui touche le lien, la carte d’invitation du cercle s’ouvre. Quand elle touche [[joinGroup.join]], elle entre dans le cercle. Si le lien s’ouvre dans le navigateur au lieu de l’appli, elle touche le bouton **Ouvrir l’application** de la page.",
-          fark: "Garde votre groupe WhatsApp. Partage le lien là-bas : l’appli retient qui lit quel juz.",
+          metin: "Sur l’écran du cercle, la carte [[tx:group.welcome.title]] s’affiche. Touche [[group.welcome.step1Btn]] et envoie le lien à ton groupe WhatsApp, à ta famille ou à qui tu veux. Sur le téléphone de la personne qui touche le lien, la carte d’invitation du cercle s’ouvre. Quand elle touche [[joinGroup.join]], elle entre dans le cercle. Si le lien s’ouvre dans le navigateur au lieu de l’appli, elle touche le bouton **Ouvrir l’application** de la page.",
+          fark: "Garde ton groupe WhatsApp. Partage le lien là-bas : l’appli retient qui lit quel juz.",
           ipucu: "Invite d’abord, lance la khatma ensuite. Les juz sont répartis entre les personnes présentes dans le cercle au moment où tu lances la khatma. Celles qui arrivent plus tard reçoivent leur part au tour suivant.",
           sahne: "davet-paylas",
         },
@@ -75,7 +75,7 @@ export default {
           metin: "Les réglages sont prêts pour la khatma la plus courante. Si tu n’as rien à changer, touche trois fois [[wizard.continue]] :",
           liste: [
             "[[tx:wizard.targetJuz]] et [[tx:wizard.fullHatim]] : les 30 juz sont répartis dans le cercle.",
-            "[[tx:wizard.week]] : un nouveau tour commence chaque semaine. Si tu veux, choisis [[tx:wizard.day]] : vous lirez alors chaque jour.",
+            "[[tx:wizard.week]] : un nouveau tour commence chaque semaine. Si tu veux, choisis [[tx:wizard.day]] : on lira alors chaque jour.",
             "1 juz par personne : dans un cercle de 5 personnes, on lit 5 juz chaque semaine et la khatma se termine en 6 semaines environ. Avec 30 personnes, elle se termine en une semaine.",
           ],
           fark: "Le résumé en bas de l’écran calcule la durée approximative de la khatma au fur et à mesure que tu changes les réglages.",
@@ -110,7 +110,7 @@ export default {
           sahne: "uye-bildirim",
         },
         {
-          baslik: "Commencer à lire, puis J’ai lu",
+          baslik: "Touche Commencer à lire, puis J’ai lu",
           metin: [
             "Touche [[quran.startReading]]. Le Coran s’ouvre à la première page qui t’est attribuée. La fine barre en haut montre combien tu as déjà lu. À la dernière page, le bouton [[hatim.markRead]] apparaît en bas. Touche-le, puis touche encore [[hatim.markRead]] dans la fenêtre qui s’ouvre. Ta part est terminée et tu reviens à l’écran de la tâche.",
             "La carte de la tâche devient la carte [[tx:taskDone.title]]. Tu y vois combien de membres du cercle ont terminé.",

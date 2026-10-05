@@ -4,7 +4,7 @@
 // components/zikir/ZikirCounterModal.tsx, app/create-event.tsx (Cercle ponctuel, Individuel/Collectif).
 export default {
   title: "Dhikr et salawat en groupe : un objectif commun",
-  desc: "Fixe avec ton cercle un objectif commun de salawat ou de dhikr : chacun ajoute ce qu’il récite au même compteur. Aussi pour lire Yasin ou Al-Ikhlas.",
+  desc: "Fixe avec ton cercle un objectif commun de salawat ou de dhikr : chacun ajoute ce qu’il récite au même compteur. Aussi pour lire Ya-Sin ou Al-Ikhlas.",
   h1: "Fixer un objectif commun de dhikr ou de salawat",
   crumb: "Dhikr et salawat en groupe",
   eyebrow: "Guide pas à pas",
@@ -52,7 +52,7 @@ export default {
           baslik: "Choisis le dhikr et le nombre visé",
           metin: [
             "Dans la section [[tx:wizard.zikirPresetSection]], touche la ligne [[tx:wizard.zikirPresetSalavat]]. Une fenêtre s’ouvre en bas de l’écran. Touche le nombre et écris l’objectif commun du cercle pour une journée, par exemple 1000. Le compteur repart de zéro chaque nuit à minuit. Touche ensuite [[wizard.zikirAdd]].",
-            "Tu peux ajouter d’autres dhikr : [[tx:wizard.zikirPresetIstigfar]], [[tx:wizard.zikirPresetKelime]], [[tx:wizard.zikirEsmaTitle]], ou ton propre dhikr avec [[tx:wizard.zikirCustomAdd]]. Ceux que tu as choisis apparaissent sous la liste. Termine la liste ici : dans un pool commun, on ne peut plus ajouter ni retirer de dhikr une fois la tâche lancée. Quand c’est fait, touche [[wizard.continue]].",
+            "Tu peux ajouter d’autres dhikrs : [[tx:wizard.zikirPresetIstigfar]], [[tx:wizard.zikirPresetKelime]], [[tx:wizard.zikirEsmaTitle]], ou ton propre dhikr avec [[tx:wizard.zikirCustomAdd]]. Ceux que tu as choisis apparaissent sous la liste. Termine la liste ici : dans un pool commun, on ne peut plus ajouter ni retirer de dhikr une fois la tâche lancée. Quand c’est fait, touche [[wizard.continue]].",
           ],
           ipucu: "La même fenêtre a une ligne [[tx:wizard.zikirItemTimeLabel]]. L’option [[tx:wizard.zikirTimeAllDay]] est sélectionnée par défaut, et ce choix se fait pour chaque dhikr séparément. Si tu choisis [[tx:wizard.zikirTimeMorning]], ce dhikr est mis en avant jusqu’à l’heure de la prière de midi. Le reste du temps, il est grisé, mais on peut toujours le compter.",
           sahne: "zikir-salavat",
@@ -80,7 +80,7 @@ export default {
             "Il n’y a pas de bouton Enregistrer. Ce que tu comptes s’enregistre tout seul, et [[tx:zikir.counterSaved]] s’affiche en bas.",
           ],
           fark: "Plus besoin de demander le soir « on en est où ? » : le nombre commun se met à jour aussi sur l’écran des autres membres.",
-          ipucu: "Tu as touché par erreur ? Touche [[ol:zikir.counterUndo]] en bas : le dernier compte est effacé.",
+          ipucu: "Tu as touché par erreur ? Touche [[ol:zikir.counterUndo]] en bas : le dernier appui est annulé.",
           sahne: "zikir-say",
         },
         {
@@ -106,16 +106,16 @@ export default {
             "À l’étape [[tx:event.zikirGoalTitle]], touche le choix [[=Salavât-ı Şerîfe]] (les salawat). Dans le champ [[tx:event.target]], écris l’objectif total du cercle, par exemple 10 000. Touche ensuite l’option [[tx:event.modeCollective]].",
             "Pour un dhikr en mode [[tx:event.modeCollective]], tout le cercle compte pour atteindre un seul objectif, et les nombres s’accumulent jusqu’à la date de fin. Si tu choisis [[tx:event.modeIndividual]], chacun atteint son propre objectif.",
             "Aux étapes suivantes, choisis la date de fin, donne un nom au cercle et touche [[event.create]]. Sur l’écran du cercle, partage le lien d’invitation avec [[event.inviteFriends]].",
-            "Le décompte s’ouvre quand le cercle commence. Quand tes proches ont rejoint, touche [[event.startNow]] sur l’écran du cercle, puis encore [[event.startNow]] dans la fenêtre qui s’ouvre. Tu peux aussi cocher [[tx:event.registrationWindowToggle]] à la création : le cercle commence alors tout seul à l’heure choisie.",
+            "Le décompte s’ouvre quand le cercle commence. Quand tes proches ont rejoint, touche [[event.startNow]] sur l’écran du cercle, puis encore [[event.startNow]] dans la fenêtre qui s’ouvre. Tu peux aussi activer [[tx:event.registrationWindowToggle]] à la création : le cercle commence alors tout seul à l’heure choisie.",
           ],
-          fark: "Une personne qui touche le lien partagé avec le bouton [[event.inviteFriends]] de l’écran du cercle peut ajouter au décompte depuis la page qui s’ouvre dans le navigateur, même sans l’appli. Cela fonctionne seulement pour les dhikr en mode [[tx:event.modeCollective]], et une fois le cercle commencé.",
+          fark: "Une personne qui touche le lien partagé avec le bouton [[event.inviteFriends]] de l’écran du cercle peut ajouter au décompte depuis la page qui s’ouvre dans le navigateur, même sans l’appli. Cela fonctionne seulement pour les dhikrs en mode [[tx:event.modeCollective]], et une fois le cercle commencé.",
           ipucu: "Pour la date, l’invitation et la dédicace : [Cercle ponctuel](/fr/guides/cercle-ponctuel/).",
           sahne: "zikir-tek-toplu",
         },
         {
-          baslik: "Pour lire Yasin ou Al-Ikhlas, choisis Invocation / Sourate",
+          baslik: "Pour lire Ya-Sin ou Al-Ikhlas, choisis Invocation / Sourate",
           metin: [
-            "À la première étape du cercle ponctuel, choisis le type [[tx:event.typeDua]]. La liste toute prête de l’étape [[tx:event.duaGoalTitle]] contient aussi [[=Yâsîn Sûresi]] (sourate Yasin) et [[=İhlâs Sûresi]] (sourate Al-Ikhlas). Dans le champ [[tx:event.target]], écris le nombre total de lectures du cercle et choisis [[tx:event.modeCollective]].",
+            "À la première étape du cercle ponctuel, choisis le type [[tx:event.typeDua]]. La liste toute prête de l’étape [[tx:event.duaGoalTitle]] contient aussi [[=Yâsîn Sûresi]] (sourate Ya-Sin) et [[=İhlâs Sûresi]] (sourate Al-Ikhlas). Dans le champ [[tx:event.target]], écris le nombre total de lectures du cercle et choisis [[tx:event.modeCollective]].",
             "Chacun ajoute au compteur ce qu’il a lu ; le total s’affiche sur l’écran de tous. C’est toi qui décides combien de fois lire. Pour la tradition liée à ce nombre, demande conseil à un savant de ta région.",
           ],
         },
@@ -128,7 +128,7 @@ export default {
         {
           baslik: "Regarde la section Pratiques communes",
           metin: [
-            "Quand tu touches le bouton **+** sur l’écran du cercle, la section [[tx:practice.sectionPractices]] se trouve en bas de l’écran qui s’ouvre : [[tx:practice.typeReading]] (Al-Mulk, Al-Kahf ou Yasin par exemple), [[tx:practice.typeDua]] et [[tx:practice.typePrayer]].",
+            "Quand tu touches le bouton **+** sur l’écran du cercle, la section [[tx:practice.sectionPractices]] se trouve en bas de l’écran qui s’ouvre : [[tx:practice.typeReading]] (Al-Mulk, Al-Kahf ou Ya-Sin par exemple), [[tx:practice.typeDua]] et [[tx:practice.typePrayer]].",
             "Ici, on ne compte pas : chacun poursuit sa propre pratique et coche ce qu’il a fait ce jour-là. Cette section est visible pour l’administrateur du cercle.",
           ],
         },
@@ -153,18 +153,18 @@ export default {
         c: "C’est toi qui choisis. Avec [[tx:wizard.zikirOption1]], chacun compte la même liste de son côté. Avec [[tx:wizard.zikirOption2]], le cercle a un seul compteur et ce que chacun récite s’ajoute au même total. Dans un cercle ponctuel, ce choix se fait pour chaque dhikr : [[tx:event.modeIndividual]] ou [[tx:event.modeCollective]]." },
       { s: "Le compteur commun repart-il de zéro chaque jour ?",
         c: "Dans un cercle régulier, le pool commun est un objectif quotidien : le compteur repart de zéro chaque nuit à minuit, à l’heure de chacun. Dans un cercle ponctuel, le nombre d’un dhikr en mode [[tx:event.modeCollective]] s’accumule à partir du début du cercle, jusqu’à la date de fin." },
-      { s: "Peut-on lire ensemble Yasin ou Al-Ikhlas un nombre de fois défini ?",
+      { s: "Peut-on lire ensemble Ya-Sin ou Al-Ikhlas un nombre de fois défini ?",
         c: "Oui. Crée un cercle ponctuel, choisis le type [[tx:event.typeDua]] et ajoute [[=Yâsîn Sûresi]] ou [[=İhlâs Sûresi]] depuis la liste toute prête. Écris le nombre total dans le champ de l’objectif et choisis [[tx:event.modeCollective]]. C’est toi qui décides combien de fois lire. Pour la tradition liée à ce nombre, demande conseil à un savant de ta région." },
       { s: "Comment ajouter ce que j’ai récité ?",
         c: "Sur l’écran de la tâche, touche la carte du dhikr : dans le compteur, chaque appui compte pour un. Si tu as utilisé un chapelet, [[zikir.bulkAdd]] te permet d’ajouter d’un coup un nombre comme +33 ou +100. Il n’y a pas de bouton Enregistrer : le décompte s’enregistre tout seul." },
       { s: "Ceux qui n’ont pas l’appli peuvent-ils participer au compteur ?",
-        c: "Dans un cercle ponctuel, oui : une fois le cercle commencé, la personne qui touche le lien partagé avec [[event.inviteFriends]] depuis l’écran du cercle ajoute son décompte aux dhikr en mode [[tx:event.modeCollective]], depuis la page qui s’ouvre dans le navigateur. Pour les dhikr en mode [[tx:event.modeIndividual]], il faut l’appli. Pour participer à l’objectif de dhikr d’un cercle régulier, il faut aussi l’appli." },
+        c: "Dans un cercle ponctuel, oui : une fois le cercle commencé, la personne qui touche le lien partagé avec [[event.inviteFriends]] depuis l’écran du cercle ajoute son décompte aux dhikrs en mode [[tx:event.modeCollective]], depuis la page qui s’ouvre dans le navigateur. Pour les dhikrs en mode [[tx:event.modeIndividual]], il faut l’appli. Pour participer à l’objectif de dhikr d’un cercle régulier, il faut aussi l’appli." },
       { s: "Faut-il se réunir pour faire le dhikr à voix haute ?",
         c: "Non. Chacun récite chez lui, au moment qui lui convient. L’appli ne fait qu’additionner les nombres et montrer le total du cercle." },
     ],
   },
 
   ilgili: ["hatim", "tek", "katil"],
-  kart: { kicker: "Dhikr", baslik: "Dhikr et salawat en groupe", metin: "Un seul compteur pour tout le cercle : salawat, dhikr, objectifs de Yasin et d’Al-Ikhlas." },
+  kart: { kicker: "Dhikr", baslik: "Dhikr et salawat en groupe", metin: "Un seul compteur pour tout le cercle : salawat, dhikr, objectifs de Ya-Sin et d’Al-Ikhlas." },
   onizleme: { sahne: "zikir-say", adim: 6 },
 };

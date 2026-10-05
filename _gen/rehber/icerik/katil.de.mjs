@@ -103,7 +103,7 @@ export default {
             "Jeder liest oder rezitiert an seinem eigenen Ort; die Seite verteilt nur die Teile und zählt die Zahlen zusammen. Bei manchen Kreisen zeigt die Seite nur den Kreis; dann brauchst du zum Mitmachen die App. Mehr dazu: [Einmaliger Kreis](/de/anleitungen/einmaliger-kreis/) und [Dhikr und Salawat gemeinsam](/de/anleitungen/dhikr-salawat-gemeinsam/).",
           ],
           fark: "Auch ein Angehöriger ohne App kann meist einfach den Link antippen und seinen Teil im Browser übernehmen.",
-          ipucu: "Hast du die App und diese Seite hat sich geöffnet, tippe ganz unten auf [[=In der App öffnen]] und in der App auf [[joinGroup.join]]. So werden die Teile, die du ab jetzt nimmst, deinem Konto zugeordnet und erscheinen im Bereich [[tx:dashboard.myTasks]].",
+          ipucu: "Hast du die App und hat sich trotzdem diese Seite geöffnet, tippe ganz unten auf [[=In der App öffnen]] und in der App auf [[joinGroup.join]]. So werden die Teile, die du ab jetzt nimmst, deinem Konto zugeordnet und erscheinen im Bereich [[tx:dashboard.myTasks]].",
           sahne: "katil-web",
         },
       ],

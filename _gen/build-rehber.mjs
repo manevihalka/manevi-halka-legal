@@ -416,7 +416,24 @@ function sayfa(id, dil) {
 
 // ─── uret ───────────────────────────────────────────────────────────────────
 const ciktilar = new Map();
-for (const id of ["merkez", ...IDLER]) for (const d of DILLER) if (var_mi(id, d) && (!YALNIZ || id === YALNIZ)) ciktilar.set(join(KOK, dosyaYolu(adres(id, d))), sayfa(id, d));
+// Fransiz tipografisi BUTUN sayfaya: satir() yalniz govde metnini duzeltiyordu; baslik, aciklama,
+// h1, kart basliklari, alt/aria metinleri ve mini telefonlar duz bosluk ve duz kesme isaretiyle
+// kaliyordu. Betik ve stil bloklarina, yalniz metin dugumlerine ve okunan niteliklere dokunur.
+function frTipografi(html) {
+  const duzelt = (t) => t
+    .replace(/ ([:;?!\u00bb])/g, "\u00a0$1").replace(/\u00ab /g, "\u00ab\u00a0")
+    .replace(/([A-Za-z\u00c0-\u00ff])(?:'|&#39;|&#x27;)([A-Za-z\u00c0-\u00ff])/g, "$1\u2019$2");
+  return html.split(/(<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/style>)/i).map((parca, i) => {
+    if (i % 2) return parca;
+    return parca
+      .replace(/>([^<]+)</g, (_, t) => ">" + duzelt(t) + "<")
+      .replace(/\b(alt|aria-label|title|placeholder|content)="([^"]*)"/g, (m, ad, v) => (ad === "content" && !/[a-z]{3}/i.test(v) ? m : `${ad}="${duzelt(v)}"`));
+  }).join("");
+}
+for (const id of ["merkez", ...IDLER]) for (const d of DILLER) if (var_mi(id, d) && (!YALNIZ || id === YALNIZ)) {
+  const h = sayfa(id, d);
+  ciktilar.set(join(KOK, dosyaYolu(adres(id, d))), d === "fr" ? frTipografi(h) : h);
+}
 
 const HARITA = join(KOK, "sitemap.xml");
 const lastmodsuz = (x) => x.replace(/\s*<lastmod>[^<]*<\/lastmod>/g, "");

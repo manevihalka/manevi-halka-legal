@@ -25,7 +25,7 @@ const WEB = {
     mayAccept: "May Allah accept it.", readNow: "Read now", until: "Until {d}" },
   de: { join: "Dem Kreis beitreten", opening: "Öffne die App oder installiere sie unten.", inviteCode: "Einladungscode", openApp: "App öffnen", hint: "Du hast die App noch nicht?",
     heroEyebrow: "Absicht dieser Chatma", ongoing: "Die Chatma läuft", lgDone: "abgeschlossen", lgHeld: "übernommen", lgFree: "verfügbar", nextLbl: "Nächster Abschnitt",
-    cuzN: "Dschus {n}", freeIn: "{p} Seiten verfügbar", takeThis: "Diesen nehmen", pagesRange: "Seiten {a}-{b}", pageCount: "{p} Seiten", amountLbl: "Wie viel wirst du lesen?",
+    cuzN: "Dschuz {n}", freeIn: "{p} Seiten verfügbar", takeThis: "Diesen nehmen", pagesRange: "Seiten {a}-{b}", pageCount: "{p} Seiten", amountLbl: "Wie viel wirst du lesen?",
     confirmQ: "Bestätigst du, dass du diesen Abschnitt liest?", confirm: "Ich bestätige, ich nehme ihn", cancel: "Abbrechen", entrusted: "Die Seiten {a}-{b} sind dir anvertraut.",
     mayAccept: "Möge Allah es annehmen.", readNow: "Jetzt lesen", until: "Bis {d}" },
   fr: { join: "Rejoindre le cercle", opening: "Ouvre l’application, ou installe-la ci-dessous.", inviteCode: "Code d’invitation", openApp: "Ouvrir l’application", hint: "Tu n’as pas encore l’application ?",
