@@ -1,13 +1,14 @@
 ---
 layout: default
 title: Privacy Policy
+description: "What data Manevi Halka collects and why, where and how long it is kept, how to export or delete it, and what your rights are."
 lang: en
 ---
 
 # Privacy Policy
 
 **Effective date:** May 3, 2026<br>
-**Last updated:** October 4, 2026
+**Last updated:** October 5, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -57,7 +58,6 @@ rights you have.
   code/link. When you share, a copy (snapshot) of your list at that moment is stored with
   the share code; recipients can add the list to their own library. You can revoke a share
   at any time
-- **Completion certificates:** When you complete a Hatim, Cevshen, or book, a PDF certificate is generated **locally on your device** (never uploaded to our servers, stays on your device for sharing)
 - **Report records:** When you use the in-app "Report" feature, your report
   (the reporting account ID, the reported group/member/event, the selected
   reason, and your optional note) is stored on our servers. These records are

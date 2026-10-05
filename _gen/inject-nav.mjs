@@ -17,7 +17,9 @@ import { fileURLToPath } from "node:url";
 
 const KOK = dirname(dirname(fileURLToPath(import.meta.url)));
 const KONTROL = process.argv.includes("--check");
-const SAYFALAR = ["ortak-okuma.html", "_layouts/default.html", "halka.html", "links.html", "join.html",
+// Ortak Okuma 5 Eki 2026'dan beri uretiliyor (_gen/build-ortak.mjs parcayi kendisi yazar); eski
+// /ortak-okuma.html artik yalniz yonlendirme kabugu, sayfa gecisi gerekmez.
+const SAYFALAR = ["_layouts/default.html", "halka.html", "links.html", "join.html",
   "indir.html", "auth/verify.html", "auth/reset-password.html"];
 
 const metin = readFileSync(join(KOK, "_gen", "nav-loader.html"), "utf8");

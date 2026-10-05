@@ -10,7 +10,7 @@ export default {
   h1: "Einmaliger Kreis: So planst du eine gemeinsame Khatm, Dhikr und Bittgebete",
   crumb: "Einmaliger Kreis",
   eyebrow: "Schritt-für-Schritt-Anleitung",
-  lead: "Zu einer gesegneten Nacht, im Ramadan, für einen verstorbenen Angehörigen oder zu einem Anlass in deiner Familie möchtest du vielleicht mit deinen Liebsten den ganzen Koran lesen, eine Khatm, auf Türkisch Hatim. Oder ihr wollt gemeinsam Dhikr und Salawat sprechen oder Bittgebete lesen. In der App gründest du dafür einen einmaligen Kreis: Du wählst das Ziel, legst das Enddatum fest und schickst den Link. Jeder liest oder zählt seinen Teil an seinem eigenen Ort. Die App teilt nur die Teile auf und zählt die Zahlen zusammen.",
+  lead: "Zu einer gesegneten Nacht, im Ramadan, für einen verstorbenen Angehörigen oder zu einem Anlass in deiner Familie möchtest du vielleicht mit deinen Liebsten den ganzen Koran lesen, eine Khatm (in der App: Chatma, auf Türkisch Hatim). Oder du möchtest mit ihnen gemeinsam Dhikr und Salawat sprechen oder Bittgebete lesen. In der App gründest du dafür einen einmaligen Kreis: Du wählst das Ziel, legst das Enddatum fest und schickst den Link. Jeder liest oder zählt seinen Teil an seinem eigenen Ort. Die App teilt nur die Teile auf und zählt die Zahlen zusammen.",
   meta: ["Einrichtung etwa 2 Minuten", "Auch ohne App möglich", "Kostenlos"],
   film: { sahne: "film-tek", cap: "Der ganze Ablauf am Stück: einmaligen Kreis gründen, Ziel und Enddatum wählen, Widmung schreiben, starten und den Link schicken." },
 
@@ -20,7 +20,7 @@ export default {
       "Wähle das Ziel: [[tx:event.typeQuran]], [[tx:event.typeZikir]] oder [[tx:event.typeDua]]. Bei der Khatm tippst du für die Verteilung auf [[tx:event.distPool]], für eine gemeinsame Zahl beim Dhikr auf [[tx:event.modeCollective]].",
       "Wähle als [[tx:event.endDate]], bis wann der Kreis läuft.",
       "Gib dem Kreis einen Namen, schreib bei Bedarf den Anlass in das Feld [[tx:event.dedicationLabel]] und tippe auf [[event.create]].",
-      "Starte den Kreis mit [[event.startNow]] und schick den Link mit [[ol:event.inviteFriends]] an deine Familie und in eure WhatsApp-Gruppe.",
+      "Starte den Kreis mit [[event.startNow]] und schick den Link mit [[ol:event.inviteFriends]] an deine Familie und in deine WhatsApp-Gruppe.",
       "Jeder liest oder zählt seinen Teil an seinem eigenen Ort. Wer die App nicht hat, macht bei den meisten Kreisen im Browser mit. Ist die Zeit um, schließt der Kreis, und seine Zusammenfassung bleibt in der App.",
     ],
   },
@@ -30,7 +30,7 @@ export default {
       tur: "bolum", id: "kur", rol: "Wer den Kreis gründet", baslik: "Gründe den Kreis",
       giris: [
         "Einen einmaligen Kreis gründest du für einen Anlass: Er hat ein Enddatum, wächst über den Einladungslink, schließt, wenn die Zeit um ist, und seine Zusammenfassung bleibt im Archiv. Eine dauerhafte Gruppe brauchst du dafür nicht.",
-        "Wollt ihr als Familie jede Woche weiterlesen, passt ein regelmäßiger Kreis besser: [Khatm-Gruppe gründen](/de/anleitungen/khatm-gruppe/).",
+        "Willst du mit deiner Familie jede Woche weiterlesen, passt ein regelmäßiger Kreis besser: [Khatm-Gruppe gründen](/de/anleitungen/khatm-gruppe/).",
       ],
       adimlar: [
         {
@@ -94,10 +94,10 @@ export default {
         {
           baslik: "Schick den Link",
           metin: [
-            "Nach dem Start wechselt die Einladungskarte in den Tab [[tx:event.tabCircle]]. Tippe auf [[ol:event.inviteFriends]] und schick den Link in eure WhatsApp-Gruppe, an deine Familie oder an wen du möchtest.",
+            "Nach dem Start wechselt die Einladungskarte in den Tab [[tx:event.tabCircle]]. Tippe auf [[ol:event.inviteFriends]] und schick den Link in deine WhatsApp-Gruppe, an deine Familie oder an wen du möchtest.",
             "Der Hinweis unter der Karte sagt, was man ohne App mit diesem Link tun kann. Bei einer Khatm mit gemeinsamem Pool steht dort: [[tx:event.webJoinClaim]]",
           ],
-          fark: "Eure WhatsApp-Gruppe bleibt. Teilt dort den Link; wer welchen Dschuz genommen hat und wie oft gezählt wurde, hält die App fest, eine eigene Liste brauchst du nicht.",
+          fark: "Deine WhatsApp-Gruppe bleibt. Teil dort den Link; wer welchen Dschuz genommen hat und wie oft gezählt wurde, hält die App fest, eine eigene Liste brauchst du nicht.",
           ipucu: "Schick den Link über den Knopf [[ol:event.inviteFriends]] hier oder über das Teilen-Symbol oben rechts. Schick nicht nur den Einladungscode; wer die App nicht hat, kann nur über diesen Link im Browser mitmachen.",
           sahne: "vf-davet",
         },
@@ -234,7 +234,7 @@ export default {
           baslik: "Für eine gesegnete Nacht, den Mawlid und den Ramadan",
           metin: [
             "Bei einer Khatm zu einer gesegneten Nacht, zum Mawlid oder im Ramadan legst du das Enddatum auf den Tag des Anlasses, zum Beispiel auf den Abend der gesegneten Nacht. Die Widmung schreibst du passend zum Anlass. Solange das Feld leer ist, steht darin [[tx:event.dedicationPlaceholder]].",
-            "Lest ihr mit einer großen Gemeinde, kannst du mit [[ol:event.addSeries]] im selben Kreis mehrere Khatms öffnen.",
+            "Liest du mit einer großen Gemeinde, kannst du mit [[ol:event.addSeries]] im selben Kreis mehrere Khatms öffnen.",
             "Für eine Khatm, die im Ramadan jeden Tag oder jede Woche weiterläuft, passt ein regelmäßiger Kreis besser: [Khatm-Gruppe gründen](/de/anleitungen/khatm-gruppe/).",
           ],
         },
@@ -264,7 +264,7 @@ export default {
       { s: "Was, wenn vor dem Bittgebet zum Abschluss nicht alle Dschuz gelesen sind?",
         c: "Ein eigenes Urteil gibt diese Anleitung nicht; frag dazu einen Gelehrten deines Vertrauens. In der App gehen Seiten, die nicht als erledigt abgehakt sind, 6 Stunden vor dem Ende zurück in den Pool, damit jemand anderes sie lesen kann. Reicht die Zeit nicht, verlängert der Admin den Kreis mit **Um 24 Stunden verlängern**." },
       { s: "Wie gründe ich den Kreis für eine gesegnete Nacht, den Mawlid oder den Ramadan?",
-        c: "Mit denselben Schritten. Leg das Enddatum auf den Tag des Anlasses, zum Beispiel auf den Abend der gesegneten Nacht, und schreib die Widmung passend dazu. Lest ihr mit einer großen Gemeinde, öffnest du mit **Neue Serie** im selben Kreis mehrere Khatms. Für eine Khatm, die im Ramadan jeden Tag oder jede Woche weiterläuft, passt ein regelmäßiger Kreis besser: [Khatm-Gruppe gründen](/de/anleitungen/khatm-gruppe/)." },
+        c: "Mit denselben Schritten. Leg das Enddatum auf den Tag des Anlasses, zum Beispiel auf den Abend der gesegneten Nacht, und schreib die Widmung passend dazu. Liest du mit einer großen Gemeinde, öffnest du mit **Neue Serie** im selben Kreis mehrere Khatms. Für eine Khatm, die im Ramadan jeden Tag oder jede Woche weiterläuft, passt ein regelmäßiger Kreis besser: [Khatm-Gruppe gründen](/de/anleitungen/khatm-gruppe/)." },
       { s: "Kostet das etwas?",
         c: "Einen einmaligen Kreis gründen und beitreten ist kostenlos. Mit einem kostenlosen Konto kannst du keinen neuen einmaligen Kreis gründen, solange dein bisheriger nicht gelöscht ist; er wird 24 Stunden nach dem Enddatum gelöscht. Beitreten kannst du beliebig vielen Kreisen." },
     ],

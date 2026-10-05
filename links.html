@@ -10,6 +10,10 @@
 <meta property="og:image" content="https://manevihalka.app/og-cover.jpg">
 <meta property="og:url" content="https://manevihalka.app/links">
 <title>Manevi Halka</title>
+<!-- Biyografi bağlantı sayfası, arama için açılış sayfası değil (5 Eki 2026): dizine girmez,
+     bağlantıları izlenir. /links ve /links.html ikisi de 200 döndüğü için kanonik /links. -->
+<link rel="canonical" href="https://manevihalka.app/links">
+<meta name="robots" content="noindex, follow">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
 <script>
   /* Bağlantı sayfası (manevihalka.app/links): uygulama, site ve sosyal hesaplar tek yerde.
@@ -28,6 +32,9 @@
     var ua = navigator.userAgent || '';
     var ios = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
     window.MH_PLATFORM = ios ? 'ios' : (/Android/.test(ua) ? 'android' : 'other');
+    // Android'de Google Play once: sira dugmeler cizilmeden CSS'ten gelir (.is-android). Sayfa sonundaki
+    // betik yalniz DOM sirasini (klavye, ekran okuyucu) esitler; gorunen yer degismez.
+    if (window.MH_PLATFORM === 'android') document.documentElement.classList.add('is-android');
   })();
 </script>
 <script>
@@ -82,6 +89,20 @@
   .store svg { width:22px; height:22px; flex-shrink:0; fill:currentColor; }
   .store .small { display:block; font-size:11px; opacity:.85; }
   .store .big { display:block; font-size:15.5px; font-weight:700; line-height:1.2; }
+  /* Android'de Google Play once (bastaki betik <html>'e is-android koyar); gorunen sira yalniz CSS. */
+  .is-android #androidBtn { order:-1; }
+  /* Satir yuksekligi yazi tipinin gelisine bagli kalmasin: line-height normal iken Onest gelince (font-display:
+     swap) etiketler ve dugmenin ust satiri 1-2 px buyuyup magaza dugmelerini ve listeyi asagi kaydiriyordu
+     (5 Eki 2026 olculdu, App Store dugmesi 3 px). Degerler Onest yuklu haldeki yukseklikler (15, 14; Arapcada 18, 16 px). */
+  .label { line-height:1.305; }
+  .store .small { line-height:1.273; }
+  [dir="rtl"] .label { line-height:1.385; }
+  [dir="rtl"] .store .small { line-height:1.455; }
+  /* Kart, sonundaki bos isaret (.card-end, dil betiginden sonra) okunana kadar gorunmez: yavas baglantida
+     once Ingilizce metin ve yarim okunmus dugmeler cizilip sonra kayiyordu. Isaret silinirse kart 3 sn sonra
+     yine gorunur. :has() bilmeyen tarayicida kural yok sayilir. */
+  .card:not(:has(> .card-end)) { visibility:hidden; animation:mh-card-show 0s 3s forwards; }
+  @keyframes mh-card-show { to { visibility:visible; } }
   /* Magaza dugmesi hover (5 Eki 2026, ana sayfayla ayni): hafifce kalkar; elma sapindan asiliymis gibi
      sallanir, Play ucgeni ileri kayar. Yalniz fareli cihazda; klavyede :focus-visible; hareketi azaltta yalniz renk. */
   .store { transition: transform .28s cubic-bezier(.3, 1.4, .5, 1), box-shadow .28s ease, background-color .2s ease, filter .2s ease; }
@@ -107,14 +128,22 @@
   .row .ic { width:40px; height:40px; border-radius:50%; background:var(--mint); color:var(--green);
     display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .row .ic svg { width:19px; height:19px; }
+  /* Metin kutusu daralabilsin (min-width:0): 320 px'te e-posta satiri ok isaretini kartin disina itiyordu.
+     Adres @ isaretinden sonra (<wbr>) kirilir; o da yetmezse herhangi bir yerden. */
+  .row .txt { min-width:0; }
   .row .name { font-size:15px; font-weight:650; }
-  .row .sub { display:block; font-size:13px; color:var(--muted); margin-top:1px; direction:ltr; unicode-bidi:isolate; }
+  .row .sub { display:block; font-size:13px; color:var(--muted); margin-top:1px; direction:ltr; unicode-bidi:isolate; overflow-wrap:anywhere; }
   .row .chev { margin-inline-start:auto; color:var(--muted); width:16px; height:16px; flex-shrink:0; }
   [dir="rtl"] .row .chev { transform:scaleX(-1); }
+  /* Alt satir soldan saga yazilir; ikiye bolundugunde (e-posta) Arapcada da satirin basina, saga yaslansin. */
+  [dir="rtl"] .row .sub { text-align:right; }
   .store:focus-visible, .row:focus-visible { outline:2px solid var(--gold-soft); outline-offset:3px; }
   .note { margin-top:24px; font-size:13px; color:var(--muted); }
   /* Telefonda iki dugme yan yana sigmiyor ve karti genisletiyordu: alt alta. */
   @media (max-width:440px) { .stores { grid-template-columns:1fr; } .store { justify-content:center; } }
+  /* En dar telefonda (320 px) "Bleib mit dem Kreis verbunden" iki satira dusuyordu: harf araligi biraz daralir. */
+  @media (max-width:340px) { .label { letter-spacing:.08em; } }
+  .label { text-wrap:balance; }
   /* Harf araligi Arapca harf baglarini koparir. */
   [dir="rtl"] .label { letter-spacing:0; text-transform:none; font-size:13px; }
   [dir="rtl"] h1 { font-family:var(--display); }
@@ -242,38 +271,38 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     </a>
   </div>
 
-  <p class="label" id="lFollow">Follow us</p>
+  <p class="label" id="lSocial">Stay close to the circle</p>
   <div class="list">
     <a class="row" href="https://www.instagram.com/manevihalkaapp">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></span>
-      <span><span class="name">Instagram</span><span class="sub">@manevihalkaapp</span></span>
+      <span class="txt"><span class="name">Instagram</span><span class="sub">@manevihalkaapp</span></span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
     <!-- TikTok bağlantısı 28 Eyl 2026'da kaldırıldı: hesap kısıtlı (izlenme ve takip
          yok). Hesap düzelince geri eklenebilir. -->
     <a class="row" href="https://www.youtube.com/@manevihalkaapp">
       <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></span>
-      <span><span class="name">YouTube</span><span class="sub">@manevihalkaapp</span></span>
+      <span class="txt"><span class="name">YouTube</span><span class="sub">@manevihalkaapp</span></span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
     <a class="row" href="https://x.com/ManeviHalkaApp">
       <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.2h3.7l-8 9.2 9.4 12.5h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9 6.1-6.9zm-1.3 19.5h2L6.5 3.2H4.3l13.3 17.5z"/></svg></span>
-      <span><span class="name">X</span><span class="sub">@ManeviHalkaApp</span></span>
+      <span class="txt"><span class="name">X</span><span class="sub">@ManeviHalkaApp</span></span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
     <a class="row" href="https://www.facebook.com/manevihalkaapp">
       <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg></span>
-      <span><span class="name">Facebook</span><span class="sub">manevihalkaapp</span></span>
+      <span class="txt"><span class="name">Facebook</span><span class="sub">manevihalkaapp</span></span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
     <a class="row" href="https://www.pinterest.com/manevihalkaapp/">
       <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg></span>
-      <span><span class="name">Pinterest</span><span class="sub">@manevihalkaapp</span></span>
+      <span class="txt"><span class="name">Pinterest</span><span class="sub">@manevihalkaapp</span></span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
     <a class="row" href="https://whatsapp.com/channel/0029VbDM2z67IUYTITv3yY2V">
       <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
-      <span><span class="name">WhatsApp</span><span class="sub">Manevi Halka</span></span>
+      <span class="txt"><span class="name">WhatsApp</span><span class="sub">Manevi Halka</span></span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
   </div>
@@ -282,26 +311,25 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   <div class="list">
     <a class="row" id="siteRow" href="/">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></span>
-      <span><span class="name" id="nSite">Website</span><span class="sub">manevihalka.app</span></span>
+      <span class="txt"><span class="name" id="nSite">Website</span><span class="sub">manevihalka.app</span></span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
     <a class="row" href="mailto:support@manevihalka.app">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></span>
-      <span><span class="name" id="nMail">Contact</span><span class="sub">support@manevihalka.app</span></span>
+      <span class="txt"><span class="name" id="nMail">Contact</span><span class="sub">support@<wbr>manevihalka.app</span></span>
       <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
   </div>
 
   <p class="note" id="note">Free · No ads · 5 languages</p>
-</main>
 <script>
   (function () {
     var S = {
-      en: { tag: 'Circles that come together in the Qur’an, du’a, dhikr and good deeds.', app: 'Get the app', follow: 'Follow us', more: 'More', site: 'Website', mail: 'Contact', get: 'Download', note: 'Free · No ads · 5 languages' },
-      tr: { tag: 'Kur’an’da, duada, zikirde ve güzel amellerde buluşan halkalar.', app: 'Uygulamayı indir', follow: 'Bizi takip et', more: 'Diğer', site: 'Web sitesi', mail: 'İletişim', get: 'İndir', note: 'Ücretsiz · Reklamsız · 5 dilde' },
-      de: { tag: 'Kreise, die in Koran, Dua, Dhikr und guten Taten zusammenkommen.', app: 'App herunterladen', follow: 'Folge uns', more: 'Mehr', site: 'Website', mail: 'Kontakt', get: 'Laden', note: 'Kostenlos · Werbefrei · 5 Sprachen' },
-      fr: { tag: 'Des cercles réunis autour du Coran, des invocations, du dhikr et des bonnes actions.', app: 'Télécharger l’app', follow: 'Suis-nous', more: 'Plus', site: 'Site web', mail: 'Contact', get: 'Télécharger', note: 'Gratuit · Sans publicité · 5 langues' },
-      ar: { tag: 'حلقات تجتمع على القرآن والدعاء والذكر والعمل الصالح.', app: 'حمّل التطبيق', follow: 'تابعنا', more: 'المزيد', site: 'الموقع', mail: 'تواصل معنا', get: 'حمّل', note: 'مجاني · بلا إعلانات · 5 لغات' }
+      en: { tag: 'Circles that come together in the Qur’an, du’a, dhikr and good deeds.', app: 'Get the app', social: 'Stay close to the circle', more: 'More', site: 'Website', mail: 'Contact', get: 'Download', note: 'Free · No ads · 5 languages' },
+      tr: { tag: 'Kur’an’da, duada, zikirde ve güzel amellerde buluşan halkalar.', app: 'Uygulamayı indir', social: 'Halkayla bağlantıda kal', more: 'Diğer', site: 'Web sitesi', mail: 'İletişim', get: 'İndir', note: 'Ücretsiz · Reklamsız · 5 dilde' },
+      de: { tag: 'Kreise, die in Koran, Dua, Dhikr und guten Taten zusammenkommen.', app: 'App herunterladen', social: 'Bleib mit dem Kreis verbunden', more: 'Mehr', site: 'Website', mail: 'Kontakt', get: 'Laden', note: 'Kostenlos · Werbefrei · 5 Sprachen' },
+      fr: { tag: 'Des cercles réunis autour du Coran, des invocations, du dhikr et des bonnes actions.', app: 'Télécharger l’app', social: 'Reste lié au cercle', more: 'Plus', site: 'Site web', mail: 'Contact', get: 'Télécharger', note: 'Gratuit · Sans publicité · 5 langues' },
+      ar: { tag: 'حلقات تجتمع على القرآن والدعاء والذكر والعمل الصالح.', app: 'حمّل التطبيق', social: 'ابقَ على صلة بالحلقة', more: 'المزيد', site: 'الموقع', mail: 'للتواصل', get: 'حمّل', note: 'مجاني · بلا إعلانات · 5 لغات' }
     };
     var q = new URLSearchParams(location.search);
     // Dil sirasi: ?lang > sitede secilen dil (mh_lang, ortak anahtar) > tarayici > en.
@@ -313,7 +341,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     var set = function (id, v) { document.getElementById(id).textContent = v; };
-    set('tag', T.tag); set('lApp', T.app); set('lFollow', T.follow); set('lMore', T.more);
+    set('tag', T.tag); set('lApp', T.app); set('lSocial', T.social); set('lMore', T.more);
     set('nSite', T.site); set('nMail', T.mail); set('note', T.note);
     // Web sitesi satiri o dilin ana sayfasina gider (_gen/site-urls.mjs EV ile ayni).
     document.getElementById('siteRow').href = ({ en: '/', tr: '/tr/', de: '/de/', fr: '/fr/', ar: '/ar/' })[lang];
@@ -322,12 +350,17 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     document.getElementById('iosBtn').href = st.ios;
     document.getElementById('androidBtn').href = st.android;
     // Telefonda kişinin kendi mağazası solda/önde; öteki de görünür kalır (paylaşılan sayfa).
+    // Görünen sıra CSS'ten (is-android); bu taşıma yalnız klavye ve ekran okuyucu sırası için.
     if (window.MH_PLATFORM === 'android') {
       var s = document.getElementById('stores');
       s.insertBefore(document.getElementById('androidBtn'), document.getElementById('iosBtn'));
     }
   })();
 </script>
+  <!-- Kartin son ogesi: yukaridaki dil betigi calistiktan SONRA okunur. Kart bu isaret gelene kadar gorunmez
+       (bastaki CSS), boylece Ingilizce metin, sol-sag yon ve magaza sirasi hic yanlis cizilmez. SILME. -->
+  <i class="card-end" hidden></i>
+</main>
 <!--NAV:JS-->
 <script>
 (function () {

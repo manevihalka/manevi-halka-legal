@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- 404 sayfasi (5 Eki 2026). GitHub Pages bulunamayan her adreste bunu sunar; dil adresten
-     (/tr/, /de/, /fr/, /ar/, /rehber/, /anleitungen/, /dalil/), sonra mh_lang'den, sonra tarayicidan
+     (/tr/, /de/, /fr/, /ar/, /rehber/, /anleitungen/, /dalil/; Ingilizce koksuz adresler /guides/,
+     /prayer-times/, /shared-reading/, /khatam-chart/), sonra mh_lang'den, sonra tarayicidan
      secilir, yoksa Ingilizce. Adresler _gen/site-urls.mjs ile AYNI (EV, VAKIT, REHBER); orasi
      degisirse burayi da degistir. Uzun tire ve emoji yok. -->
 <html lang="en" dir="ltr">
@@ -84,7 +85,7 @@
     <li><a id="lnkHome" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"/><path d="M6 10v9h12v-9"/></svg><span id="tHome">Home</span></a></li>
     <li><a id="lnkTimes" href="/prayer-times/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span id="tTimes">Prayer times</span></a></li>
     <li><a id="lnkGuides" href="/guides/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5v13c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z"/><path d="M12 6v13.5"/></svg><span id="tGuides">Step-by-step guides</span></a></li>
-    <li><a id="lnkReading" href="/ortak-okuma.html?lang=en"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg><span id="tReading">Shared Reading</span></a></li>
+    <li><a id="lnkReading" href="/shared-reading/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg><span id="tReading">Shared Reading</span></a></li>
   </ul>
   <p class="hint" id="tHint">Trying to open an invite link? Copy the link from the message again, or enter the code in the app: <b>Circles</b> tab, <b>Join with an invite code</b>.</p>
 </main>
@@ -111,12 +112,14 @@
     var EV = { en: "/", tr: "/tr/", de: "/de/", fr: "/fr/", ar: "/ar/" };
     var VAKIT = { en: "/prayer-times/", tr: "/tr/namaz-vakitleri/", de: "/de/gebetszeiten/", fr: "/fr/horaires-de-priere/", ar: "/ar/mawaqit/" };
     var REHBER = { en: "/guides/", tr: "/tr/rehber/", de: "/de/anleitungen/", fr: "/fr/guides/", ar: "/ar/dalil/" };
+    // Ortak Okuma: _gen/site-urls.mjs ORTAK ile AYNI (node _gen/build-ortak.mjs --check denetler)
+    var ORTAK = { en: "/shared-reading/", tr: "/tr/ortak-okuma/", de: "/de/gemeinsames-lesen/", fr: "/fr/lecture-commune/", ar: "/ar/qiraa-mushtaraka/" };
     var p = location.pathname, d = null;
     var m = p.match(/^\/(tr|de|fr|ar)(\/|$)/);
     if (m) d = m[1];
     else if (/^\/(rehber|namaz-vakitleri)(\/|$)/.test(p)) d = "tr";
     else if (/^\/(anleitungen|gebetszeiten)(\/|$)/.test(p)) d = "de";
-    else if (/^\/(guides|prayer-times)(\/|$)/.test(p)) d = "en";
+    else if (/^\/(guides|prayer-times|shared-reading|khatam-chart)(\/|$)/.test(p)) d = "en";
     else if (/^\/(dalil|mawaqit)(\/|$)/.test(p)) d = "ar";
     if (!d) { try { var s = localStorage.getItem("mh_lang"); if (T[s]) d = s; } catch (e) { /* gizli mod */ } }
     if (!d) { var n = ((navigator.languages && navigator.languages[0]) || navigator.language || "en").slice(0, 2).toLowerCase(); d = T[n] ? n : "en"; }
@@ -131,7 +134,7 @@
     document.getElementById("lnkHome").href = EV[d];
     document.getElementById("lnkTimes").href = VAKIT[d];
     document.getElementById("lnkGuides").href = REHBER[d];
-    document.getElementById("lnkReading").href = "/ortak-okuma.html?lang=" + d;
+    document.getElementById("lnkReading").href = ORTAK[d];
   })();
 </script>
 </body>

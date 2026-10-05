@@ -151,7 +151,7 @@ export default {
       { s: "Biri cüzünü okuyamazsa ne olur?",
         c: "Okunmayan pay kaybolmaz, bir sonraki turda **emanet** olarak o kişide kalır. İsterse **Yardım İste** ile bir kısmını halkaya bırakır ya da **Mazeret** ile tamamını havuza devreder; diğerleri **Yardım Et** ya da **Al** ile üstlenir." },
       { s: "WhatsApp grubumuz var, yine de gerekir mi?",
-        c: "Grubunuz kalsın. Davet linkini gruba at; listeyi, kimin okuduğunu ve hatırlatmayı uygulama tutar. Her hafta yeni liste yazman gerekmez." },
+        c: "Grubunuz kalsın. Davet linkini gruba at; listeyi, kimin okuduğunu ve hatırlatmayı uygulama tutar. Her hafta yeni liste yazman gerekmez. Listeyi yine de kâğıtta tutmak istersen [yazdırılabilir hatim çizelgesini](/tr/hatim-cizelgesi/) kullanabilirsin." },
       { s: "Uygulaması olmayan bir aile büyüğü katılabilir mi?",
         c: "Düzenli halkada yönetici, uygulaması olmayan birini **misafir** olarak ekleyebilir; onun okumasını sorumlu bir kişi işaretler. Tek seferlik bir hatimde **Ortak havuz** seçilirse uygulaması olmayanlar davet linkinden tarayıcıyla cüz alabilir: [Tek seferlik halka](/tr/rehber/tek-seferlik-halka/)." },
       { s: "Ücretli mi?",

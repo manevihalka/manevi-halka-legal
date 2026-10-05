@@ -11,9 +11,10 @@
  * kartlari ana sayfada YOK.
  *
  * Korunan arama sozlesmeleri: kok Ingilizce taban, hreflang="en" + x-default,
- * /en/ ACILMAZ. Kokun basligi, aciklamasi, OG metni, Bing dogrulamasi ve yapisal
- * verisi onceki ana sayfayla BIREBIR; marka adi h1'de kalir (ust satir). Metin
- * STATIK yazilir. Kok, kayitli dil ya da tarayici dili baska bir dilse o dilin
+ * /en/ ACILMAZ. Bing ve Pinterest dogrulamasi korunur; marka adi h1'de kalir
+ * (ust satir). Metin STATIK yazilir. Baslik ve aciklama 5 Eki 2026'dan beri
+ * BES DILDE de site-i18n.js title/desc'ten gelir (kok dahil; eskiden kok onceki
+ * ana sayfanin Ingilizce metnini tasiyordu). og:title/og:description ayni metin. Kok, kayitli dil ya da tarayici dili baska bir dilse o dilin
  * sayfasina gecer (bot etkilenmez, Ingilizce secen kalir).
  *
  * Magaza dugmesindeki "Indir", politika baglantilari, Iletisim, Itani atfi ve
@@ -41,7 +42,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
-import { SITE, DILLER, EV, VAKIT, ESKI_APP, DIL_ADI, OG_LOCALE, REHBER, rehberAdresi, dosyaYolu, tamAdres } from "./site-urls.mjs";
+import { SITE, DILLER, EV, VAKIT, ORTAK as ORTAK_URL, ESKI_APP, DIL_ADI, OG_LOCALE, REHBER, rehberAdresi, dosyaYolu, tamAdres } from "./site-urls.mjs";
 
 const KOK = dirname(dirname(fileURLToPath(import.meta.url)));
 const KONTROL = process.argv.includes("--check");
@@ -104,6 +105,8 @@ const T = {
   navTogether: { tr: "Birlikte", en: "Together", de: "Gemeinsam", fr: "Ensemble", ar: "معًا" },
   navFaq: { tr: "Sık sorulanlar", en: "FAQ", de: "Häufige Fragen", fr: "Questions fréquentes", ar: "الأسئلة الشائعة" },
   getApp: { tr: "İndir", en: "Get the app", de: "App laden", fr: "Télécharger", ar: "حمّل التطبيق" },
+  // Kapanis bandinda magaza dugmelerinin yanindaki QR'in yazisi (yalniz genis ekran + fare; blok aria-hidden).
+  qrCaption: { tr: "Telefonunla okut", en: "Scan with your phone", de: "Mit deinem Handy scannen", fr: "Scanne avec ton téléphone", ar: "امسح الرمز بهاتفك" },
   themeToDark: { tr: "Koyu temaya geç", en: "Switch to dark theme", de: "Zum dunklen Design wechseln", fr: "Passer au thème sombre", ar: "التبديل إلى السمة الداكنة" },
   themeToLight: { tr: "Açık temaya geç", en: "Switch to light theme", de: "Zum hellen Design wechseln", fr: "Passer au thème clair", ar: "التبديل إلى السمة الفاتحة" },
   prevAria: { tr: "Önceki ekran", en: "Previous screen", de: "Vorheriger Bildschirm", fr: "Écran précédent", ar: "الشاشة السابقة" },
@@ -119,11 +122,13 @@ const T = {
   h1a: { tr: "Bir niyet, bir halka,", en: "One intention, one circle,", de: "Eine Absicht, ein Kreis,", fr: "Une intention, un cercle,",
     ar: "نيّة واحدة، حلقة واحدة،" },
   h1b: { tr: "nice ameller.", en: "many good deeds.", de: "viele gute Taten.", fr: "tant de bonnes œuvres.", ar: "وأعمال صالحة كثيرة." },
-  lead: { tr: "Kur'an, namaz, zikir, ezber ve okumalarını günlük hayatında sürdür. Dilersen sevdiklerinle bir halka kurup güzel amellerde buluş.",
-    en: "Keep up your Quran, prayers, dhikr, memorisation and reading in daily life. And if you like, start a circle with your loved ones and meet in good deeds.",
-    de: "Bleib im Alltag bei Koran, Gebet, Dhikr, Auswendiglernen und Lesen. Und wenn du möchtest, gründe mit deinen Liebsten einen Kreis und kommt in guten Taten zusammen.",
-    fr: "Garde au quotidien le Coran, la prière, le dhikr, la mémorisation et la lecture. Et si tu veux, crée un cercle avec tes proches pour vous retrouver dans les bonnes œuvres.",
-    ar: "حافظ في يومك على القرآن والصلاة والذكر والحفظ والقراءة. وإن شئت، أنشئ حلقة مع أحبّتك لتجتمعوا على الأعمال الصالحة." },
+  // 5 Eki 2026: ikinci cumle halkanin ne yaptigini soyler (telefonun ilk ekraninda "hatim" hic gecmiyordu).
+  // Uzunluk 390 px'te olculdu: TR/DE/FR/AR satir sayisi ayni, EN +1 satir. Almanca "ihr" (kommt) kaldirildi.
+  lead: { tr: "Kur'an, namaz, zikir, ezber ve okumalarını günlük hayatında sürdür. Dilersen sevdiklerinle bir halka kur: cüzler paylaşılsın, hatim birlikte tamamlansın.",
+    en: "Keep up your Quran, prayers, dhikr, memorisation and reading in daily life. And if you like, start a circle with your loved ones to share the juz and complete the khatm together.",
+    de: "Bleib im Alltag bei Koran, Gebet, Dhikr, Auswendiglernen und Lesen. Und wenn du möchtest, gründe mit deinen Liebsten einen Kreis, verteile die Dschuz und vollende die Chatma gemeinsam.",
+    fr: "Garde au quotidien le Coran, la prière, le dhikr, la mémorisation et la lecture. Et si tu veux, crée un cercle avec tes proches pour partager les juz et terminer la khatma ensemble.",
+    ar: "حافظ في يومك على القرآن والصلاة والذكر والحفظ والقراءة. وإن شئت، أنشئ حلقة مع أحبّتك لتتقاسموا الأجزاء وتُتمّوا الختمة معًا." },
   trust1b: { tr: "Reklamsız", en: "No ads", de: "Keine Werbung", fr: "Sans publicité", ar: "بلا إعلانات" },
   trust1t: { tr: "Dikkatin ibadette kalsın", en: "Your attention stays on worship", de: "Dein Fokus bleibt beim Gebet",
     fr: "Ton attention reste sur l'adoration", ar: "ليبقى انتباهك في العبادة" },
@@ -314,7 +319,7 @@ const T = {
     fr: "Écrans de personnalisation", ar: "شاشات التخصيص" },
 
   faqTitle: { tr: "Başlamadan önce", en: "Before you start", de: "Bevor du anfängst", fr: "Avant de commencer", ar: "قبل أن تبدأ" },
-  faqText: { tr: "Başka bir sorun varsa support@manevihalka.app adresine yaz.", en: "Any other question? Write to support@manevihalka.app.",
+  faqText: { tr: "Aklına takılan başka bir şey varsa support@manevihalka.app adresine yaz.", en: "Any other question? Write to support@manevihalka.app.",
     de: "Noch eine Frage? Schreib an support@manevihalka.app.", fr: "Une autre question ? Écris à support@manevihalka.app.",
     ar: "لديك سؤال آخر؟ اكتب إلى support@manevihalka.app." },
   q1: { tr: "Ücretsiz mi?", en: "Is it free?", de: "Ist es kostenlos?", fr: "Est-ce gratuit ?", ar: "هل هو مجاني؟" },
@@ -323,6 +328,16 @@ const T = {
     de: "Ja. Die Anbetung selbst ist immer kostenlos: Koran, Gebetszeiten, Dhikr, Bittgebete und das Mitmachen in Kreisen. Einige zusätzliche Annehmlichkeiten sind optional.",
     fr: "Oui. L'adoration elle-même est toujours gratuite : le Coran, les horaires de prière, le dhikr, les invocations et la participation aux cercles. Quelques options de confort sont facultatives.",
     ar: "نعم. العبادة نفسها مجانية دائمًا: القرآن ومواقيت الصلاة والذكر والأدعية والانضمام إلى الحلقات. وبعض الميزات الإضافية اختيارية." },
+  // 5 Eki 2026: halka kurmanin ucretsiz siniri. Kaynak uygulamada lib/premiumLimits.ts
+  // (FREE_GROUP_LIMIT 1, FREE_ACTIVE_EVENT_LIMIT 1, katilma kilitsiz) ve rehber README kural 9.
+  // FIYAT YAZILMAZ. Sablonda {{qCircle}} yoksa uretici onu q1'in hemen altina ekler (SSS_EK).
+  qCircle: { tr: "Halka kurmak ücretsiz mi?", en: "Is setting up a circle free?", de: "Kann ich kostenlos einen Kreis gründen?",
+    fr: "Créer un cercle, c'est gratuit ?", ar: "هل إنشاء حلقة مجاني؟" },
+  aCircle: { tr: "Evet. Bir halka kurup yönetmek ücretsiz; aynı anda bir tek seferlik halka da yürütebilirsin. Halkalara katılmak ise her zaman ücretsiz ve sınırsız. Daha fazla halka için Premium isteğe bağlı.",
+    en: "Yes. You can manage one circle for free, plus one active one-time circle at a time. Joining circles is always free, with no limit. Premium is optional if you want more circles.",
+    de: "Ja. Du kannst kostenlos einen Kreis verwalten und jeweils einen einmaligen Kreis durchführen. Kreisen beizutreten ist immer kostenlos und unbegrenzt. Für mehr Kreise ist Premium optional.",
+    fr: "Oui. Tu peux gérer gratuitement un cercle et, en même temps, un cercle ponctuel actif. Rejoindre des cercles est toujours gratuit et sans limite. Pour en créer davantage, Premium est facultatif.",
+    ar: "نعم. يمكنك مجانًا إدارة حلقة واحدة، وتنظيم حلقة لمرة واحدة نشطة في كل مرة. والانضمام إلى الحلقات مجاني دائمًا وبلا حدود. وإن أردت حلقات أكثر، فبريميوم اختياري." },
   q2: { tr: "Hesap açmam gerekiyor mu?", en: "Do I need an account?", de: "Brauche ich ein Konto?", fr: "Dois-je créer un compte ?", ar: "هل أحتاج إلى حساب؟" },
   a2: { tr: "Hayır. Uygulamayı açıp hemen kullanabilirsin. İstersen hesabını sonradan Apple, Google ya da e-postayla güvenceye alırsın.",
     en: "No. Open the app and start right away. If you like, you can secure your account later with Apple, Google or email.",
@@ -513,8 +528,13 @@ function veri(dil) {
 
 // ─── bas bilgisi: kok onceki ana sayfayla BIREBIR (arama gorunurlugu) ───────
 const I18N = kutu.I18N;
-const KOK_ACIKLAMA = "Share the juz with your circle, read in turns and complete the khatm together. Prayer times from the Diyanet calendar, qibla, dhikr counter and duas, in one app for iPhone and Android.";
-const KOK_OG_ACIKLAMA = "Build khatm and dhikr circles together. Prayer times, qibla and dhikr counter in one app.";
+// Baslik ve aciklama sinirlari (arama sonucunda kesilmesin). Kok dahil bes dil site-i18n.js'ten.
+for (const d of DILLER) {
+  const t = I18N[d];
+  if (!t.title.startsWith("Manevi Halka")) hata(`I18N.${d}.title "Manevi Halka" ile baslamali`);
+  if ([...t.title].length > 60) hata(`I18N.${d}.title 60 karakteri asiyor (${[...t.title].length})`);
+  if ([...t.desc].length > 155) hata(`I18N.${d}.desc 155 karakteri asiyor (${[...t.desc].length})`);
+}
 const hreflang = [...DILLER.map((d) => `<link rel="alternate" hreflang="${d}" href="${tamAdres(EV[d])}">`),
   `<link rel="alternate" hreflang="x-default" href="${tamAdres(EV.en)}">`].join("\n");
 
@@ -523,27 +543,48 @@ const hreflang = [...DILLER.map((d) => `<link rel="alternate" hreflang="${d}" hr
 const YONLENDIR = `<script>
 (function () {
   var M = ${JSON.stringify(Object.fromEntries(DILLER.filter((d) => d !== "en").map((d) => [d, EV[d]])))};
+  var s = location.search || "";
+  // Uygulama ici pencere (?app=1, ya da bu pencerede bir rehber ?app=1 ile acildi): dili uygulama secti,
+  // adres kalir (rehber ve cizelgeyle ayni kural). Diger parametreler yonlendirmede tasinir.
+  if (/[?&]app=1(&|$)/.test(s)) return;
+  try { if (sessionStorage.getItem("mh_app") === "1") return; } catch (e) { /* gizli mod */ }
   var l = null;
   try { l = localStorage.getItem("mh_lang"); } catch (e) { /* gizli mod */ }
   if (!l) { var n = (navigator.languages && navigator.languages[0]) || navigator.language || ""; l = String(n).slice(0, 2).toLowerCase(); }
-  if (M[l]) location.replace(M[l] + location.search + location.hash);
+  if (M[l]) location.replace(M[l] + s + location.hash);
 })();
 </script>`;
 
+// Yapisal verideki uygulama aciklamasi (5 Eki 2026'ya kadar her dilde Ingilizceydi).
+const APP_LD = {
+  tr: "Kur'an hatmini halkanla paylaşmak için bir uygulama: cüzleri dağıtır, her turu takip eder. Zikirmatik, namaz vakitleri ve kıble de içinde.",
+  en: "An app for a shared Quran khatam with your circle: it shares out the juz and tracks each round. With a dhikr counter, prayer times and qibla.",
+  de: "Eine App für die gemeinsame Koran-Khatm im Kreis: sie verteilt die Dschuz und begleitet jede Runde. Mit Dhikr-Zähler, Gebetszeiten und Qibla.",
+  fr: "Une appli pour une khatma du Coran en cercle : elle répartit les juz et suit chaque tour. Avec un compteur de dhikr, les horaires de prière et la qibla.",
+  ar: "تطبيق لختمة القرآن الجماعية مع حلقتك: يوزّع الأجزاء ويتابع كل جولة. وفيه عدّاد الذكر ومواقيت الصلاة والقبلة.",
+};
+
 function jsonLd(dil) {
   const t = I18N[dil];
-  const sayfa = dil === "en" ? [] : [{
-    "@type": "WebPage", "@id": `${tamAdres(EV[dil])}#page`, url: tamAdres(EV[dil]), name: t.title, description: t.desc,
-    inLanguage: dil, isPartOf: { "@id": `${SITE}/#site` },
-  }];
+  const url = tamAdres(EV[dil]);
+  // Sayfa dugumu bes dilde (kok dahil). FAQPage, WebPage'in alt turu: SSS sablondaki sirayla,
+  // gorunen metinle BIREBIR (SSS_SIRA, sablondan okunur).
+  const sayfa = {
+    "@type": ["WebPage", "FAQPage"], "@id": `${url}#page`, url, name: t.title, description: t.desc,
+    inLanguage: dil, isPartOf: { "@id": `${SITE}/#site` }, about: { "@id": `${SITE}/#app` },
+    mainEntity: SSS_SIRA.map(([q, a]) => ({ "@type": "Question", name: T[q][dil],
+      acceptedAnswer: { "@type": "Answer", text: T[a][dil] } })),
+  };
   // ⚠️ aggregateRating EKLEME (gercek puanimiz yok). Fiyat "0": uygulama ucretsiz,
   // abonelik rakami buraya YAZILMAZ (App Store 3.1.2(c) reddinin dersi).
-  const graph = [...sayfa,
-    { "@type": "Organization", "@id": `${SITE}/#org`, name: "Manevi Halka", url: `${SITE}/`, logo: `${SITE}/icon.png`, email: "support@manevihalka.app" },
+  // Organization.sameAs = altbilgideki sosyal hesaplar (SOSYAL, sablondan okunur; elle kopya yok).
+  const graph = [sayfa,
+    { "@type": "Organization", "@id": `${SITE}/#org`, name: "Manevi Halka", url: `${SITE}/`, logo: `${SITE}/icon.png`, email: "support@manevihalka.app",
+      sameAs: SOSYAL },
     { "@type": "WebSite", "@id": `${SITE}/#site`, url: `${SITE}/`, name: "Manevi Halka", publisher: { "@id": `${SITE}/#org` }, inLanguage: DILLER },
     { "@type": "MobileApplication", "@id": `${SITE}/#app`, name: "Manevi Halka", operatingSystem: "iOS, Android",
       applicationCategory: "LifestyleApplication", url: `${SITE}/`, image: `${SITE}/icon.png`,
-      description: "Shared Qur'an khatm and dhikr circles, with prayer times, qibla and a dhikr counter.",
+      description: APP_LD[dil],
       offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" }, publisher: { "@id": `${SITE}/#org` },
       sameAs: ["https://apps.apple.com/app/manevi-halka/id6760654292", "https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle"] },
   ];
@@ -554,13 +595,12 @@ function basBilgisi(dil) {
   const t = I18N[dil];
   const kok = dil === "en";
   const url = tamAdres(EV[dil]);
-  const og = kok
-    ? [`<meta property="og:title" content="Manevi Halka">`, `<meta property="og:description" content="${kacis(KOK_OG_ACIKLAMA)}">`, `<meta property="og:url" content="${SITE}">`]
-    : [`<meta property="og:title" content="${kacis(t.title)}">`, `<meta property="og:description" content="${kacis(t.desc)}">`, `<meta property="og:url" content="${url}">`,
-       `<meta property="og:locale" content="${OG_LOCALE[dil]}">`,
-       ...DILLER.filter((d) => d !== dil).map((d) => `<meta property="og:locale:alternate" content="${OG_LOCALE[d]}">`)];
+  const og = [`<meta property="og:title" content="${kacis(t.title)}">`, `<meta property="og:description" content="${kacis(t.desc)}">`,
+    ...(kok ? [`<meta property="og:url" content="${SITE}">`]
+      : [`<meta property="og:url" content="${url}">`, `<meta property="og:locale" content="${OG_LOCALE[dil]}">`,
+         ...DILLER.filter((d) => d !== dil).map((d) => `<meta property="og:locale:alternate" content="${OG_LOCALE[d]}">`)])];
   return `${kok ? YONLENDIR + "\n" : ""}<title>${kacis(t.title)}</title>
-<meta name="description" id="metaDesc" content="${kacis(kok ? KOK_ACIKLAMA : t.desc)}">
+<meta name="description" id="metaDesc" content="${kacis(t.desc)}">
 <link rel="canonical" href="${url}">
 ${hreflang}
 <!-- Bing Webmaster Tools dogrulamasi (ayni jeton /BingSiteAuth.xml'de). Silme. -->
@@ -732,7 +772,26 @@ function kisSeridi(dil) {
   }).join("\n        ");
 }
 
-const sablon = readFileSync(join(KOK, "_gen", "home.src.html"), "utf8");
+let sablon = readFileSync(join(KOK, "_gen", "home.src.html"), "utf8");
+// SSS'ye "Halka kurmak ücretsiz mi?" (5 Eki 2026). Sablonda henuz yoksa q1'in hemen altina eklenir;
+// sablona {{qCircle}} satiri yazilinca bu ek kendiliginden devre disi kalir.
+if (!sablon.includes("{{qCircle}}")) {
+  const m = sablon.match(/^([ \t]*)(<details[^>]*><summary>\{\{q1\}\}<\/summary><p>\{\{a1\}\}<\/p><\/details>)[ \t]*$/m);
+  if (!m) hata("sablonda SSS q1 satiri bulunamadi, qCircle eklenemedi");
+  sablon = sablon.replace(m[0], `${m[0]}\n${m[1]}<details><summary>{{qCircle}}</summary><p>{{aCircle}}</p></details>`);
+}
+// Yapisal veri sablondaki gorunen SSS sirasini izler.
+const SSS_SIRA = [...sablon.matchAll(/<summary>\{\{(\w+)\}\}<\/summary><p>\{\{(\w+)\}\}<\/p>/g)].map((x) => [x[1], x[2]]);
+if (SSS_SIRA.length < 6) hata(`sablonda SSS sorusu eksik (${SSS_SIRA.length})`);
+for (const [q, a] of SSS_SIRA) if (!T[q] || !T[a]) hata(`SSS anahtari T'de yok: ${q}/${a}`);
+// Organization.sameAs: altbilgideki sosyal hesap baglantilari, sablondan.
+const SOSYAL = (() => {
+  const blok = sablon.match(/<div class="social-icons">([\s\S]*?)<\/div>/);
+  if (!blok) hata("sablonda social-icons blogu yok (Organization.sameAs)");
+  const adresler = [...blok[1].matchAll(/<a href="(https:\/\/[^"]+)"/g)].map((x) => x[1]);
+  if (adresler.length < 3) hata(`altbilgide sosyal baglanti az (${adresler.length})`);
+  return adresler;
+})();
 // Sayfa gecisi parcasi (_gen/nav-loader.html) uc bolum: HEAD (ilk kare isareti), BODY (katman, <body> basi), JS (sonda).
 function navParcalari(metin) {
   const m = metin.match(/<!--@@HEAD-->([\s\S]*?)<!--@@BODY-->([\s\S]*?)<!--@@JS-->([\s\S]*)$/);
@@ -749,7 +808,7 @@ function sayfa(dil) {
   const s = sozlukFor(dil);
   const ham = {
     lang: dil, dir: dil === "ar" ? "rtl" : "ltr",
-    homeHref: EV[dil], vakitHref: VAKIT[dil], imgBase: `/img/app/${dil}/`, guidesHref: REHBER[dil], guideHatimHref: rehberAdresi("hatim", dil), guideTekHref: rehberAdresi("tek", dil),
+    homeHref: EV[dil], vakitHref: VAKIT[dil], readingHref: ORTAK_URL[dil], imgBase: `/img/app/${dil}/`, guidesHref: REHBER[dil], guideHatimHref: rehberAdresi("hatim", dil), guideTekHref: rehberAdresi("tek", dil),
     iosHref: IOS, androidHero: play("hero", dil), androidClose: play("close", dil),
     privacyHref: politika("privacy", dil), termsHref: politika("terms", dil), deleteHref: politika("account-delete", dil),
     langsHtml: DILLER.map((d) => `<a href="${EV[d]}" hreflang="${d}" lang="${d}"${d === dil ? ' aria-current="page"' : ""}>${DIL_ADI[d]}</a>`).join(""),
@@ -757,6 +816,10 @@ function sayfa(dil) {
     langCode: dil.toUpperCase(),
     ...fxParcalari(dil),
     kisHtml: kisSeridi(dil),
+    // Vitrin sekmeleri ve ilk altyazi HTML'de hazir (eskiden betik sonradan ekliyordu: genis ekranda vitrin 84 px
+    // uzuyor, soldaki sutun magaza dugmeleriyle 32 px asagi kayiyordu, CLS 0,033; 5 Eki 2026 olculdu).
+    tabsHtml: TABS[dil].map((t, i) => `<button type="button" role="tab" aria-selected="${i === 0}">${kacis(t)}<span class="fill"></span></button>`).join(""),
+    scap0: kacis(CAPS[dil][0]),
     creditHtml: dil === "en" ? `${kacis(s.itaniCredit)} <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span>` : "",
   };
   const eksik = new Set();
@@ -814,7 +877,7 @@ ciktilar.set(join(KOK, "yeni", "index.html"), kabuk("/", "/yeni/ 28 Eyl 2026'da 
     const k = kutu.I18N[d];
     veri[d] = {
       dir: d === "ar" ? "rtl" : "ltr", home: EV[d], times: VAKIT[d],
-      app: APP[d], navTimes: T.navTimes[d], reading: k.ccTitle, sections: T.navAria[d], language: T.langAria[d],
+      app: APP[d], navTimes: T.navTimes[d], reading: k.ccTitle, readingHref: ORTAK_URL[d], sections: T.navAria[d], language: T.langAria[d],
       guides: T.navGuides[d], guidesHref: REHBER[d],
       toDark: T.themeToDark[d], toLight: T.themeToLight[d],
       socialTitle: T.socialTitle[d], socialText: T.socialText[d],

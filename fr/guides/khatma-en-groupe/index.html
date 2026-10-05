@@ -112,7 +112,7 @@
           "name": "Nous avons déjà un groupe WhatsApp : à quoi sert l’appli ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Garde ton groupe. Partage le lien d’invitation dans le groupe : la liste, qui a lu et les rappels, c’est l’appli qui s’en occupe. Tu n’as pas à refaire une liste chaque semaine."
+            "text": "Garde ton groupe. Partage le lien d’invitation dans le groupe : la liste, qui a lu et les rappels, c’est l’appli qui s’en occupe. Tu n’as pas à refaire une liste chaque semaine. Si tu veux quand même une liste sur papier, utilise le tableau de khatma à imprimer."
           }
         },
         {
@@ -146,6 +146,11 @@
 </script>
 <script>/* sayfa gecisi: onceki sayfada isaret gorunurken gelindiyse ilk kare isaretle cizilir (nav-loader.html) */
 try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.removeItem("mh-land");if(L&&L.p===location.pathname&&Date.now()-L.t<15000)document.documentElement.classList.add("mh-land")}catch(e){}</script>
+<!-- Girisin yazi tipleri erken iner (Marcellus 14 KB, Onest 34 KB): gec geldiklerinde baslik ve giris paragrafi yeniden
+     kiriliyor, altindaki her sey (mini ekran dahil) 29 px kayiyordu (yavas baglantida olculdu). crossorigin sart: yazi tipi
+     istegi CORS kipinde, yoksa dosya iki kez iner. -->
+<link rel="preload" href="/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>
 (function () {
   var root = document.documentElement, t = null, app = false, q = null;
@@ -175,6 +180,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     try { t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } catch (e) { t = "light"; }
   }
   root.setAttribute("data-theme", t);
+  // Android'de Google Play once ve dolu: karar magaza dugmeleri cizilmeden BURADA verilir, sira ve gorunum
+  // yalniz CSS'te (.is-android). Dugmelerden sonra calisan betik yavas baglantida App Store'u kaydiriyordu.
+  if (/Android/.test(navigator.userAgent || "")) root.classList.add("is-android");
 })();
 </script>
 <style>
@@ -195,7 +203,11 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   :root {
     /* Acik tema bilerek sitenin geri kalanindan bir ton koyu: rehber uzun okunan, cok sayida acik
        ekran tasiyan bir sayfa; #f7f4ec + beyaz telefonlar goz aliyordu (kullanici, 5 Eki 2026). */
-    --page: #efebe2; --paper: #f8f5ee; --ink: #14231c; --body: #46554d; --muted: #737f78;
+    --page: #efebe2; --paper: #f8f5ee; --ink: #14231c; --body: #46554d; --muted: #5f6b64;
+    /* 5 Eki 2026 kontrast: --muted #737f78 zeminde 3,51:1 idi, #5f6b64 4,68:1 (kagit 5,11). Altbilgi baglantilari
+       govde renginde (--foot). Metindeki uygulama dugmesi (.kb) mini ekranin --a-pri tonundan biraz koyu:
+       dolu #3b7a73 beyaz yaziyla 4,98:1, cizgili #376c66 zeminde 5,04:1 (ipucu kutusunda 4,62). Koyu tema degismedi. */
+    --foot: var(--body); --kb: #3b7a73; --kb-ol: #376c66;
     --green: #1e4d35; --green-2: #2f6b4a; --mint: #e8f2ea; --gold: #8a6a22; --gold-soft: #c9a55a;
     --line: color-mix(in srgb, #14231c 10%, transparent);
     --band: #10231b; --band-ink: #eef4ef; --band-sub: #b7c8bd;
@@ -213,7 +225,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       color-scheme: dark;
-      --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298;
+      --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298; --foot: var(--muted); --kb: var(--a-pri); --kb-ol: var(--a-pri);
       --green: #8fd3ae; --green-2: #7ab894; --mint: #1d3227; --gold: #d9b563; --gold-soft: #d9b563;
       --line: color-mix(in srgb, #eaf3ee 12%, transparent); --band: #07110c;
       --a-bg: #0e1816; --a-card: #182824; --a-hd: #13211e; --a-ink: #c0dcd8; --a-mut: #80a8a0; --a-line: #283e3a;
@@ -223,7 +235,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298;
+    --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298; --foot: var(--muted); --kb: var(--a-pri); --kb-ol: var(--a-pri);
     --green: #8fd3ae; --green-2: #7ab894; --mint: #1d3227; --gold: #d9b563; --gold-soft: #d9b563;
     --line: color-mix(in srgb, #eaf3ee 12%, transparent); --band: #07110c;
     --a-bg: #0e1816; --a-card: #182824; --a-hd: #13211e; --a-ink: #c0dcd8; --a-mut: #80a8a0; --a-line: #283e3a;
@@ -233,7 +245,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 
   * { box-sizing: border-box; }
   [hidden] { display: none !important; }
-  html { -webkit-text-size-adjust: 100%; }
+  /* Yatay tasma kokte de kirpilir: yalniz body'de olunca deger gorunum alanina tasiniyor, Arapca rehberler
+     (sag-sol) 12-19 px yana kaymis aciliyordu (390 px'te scrollX -15, scrollWidth 405; 5 Eki 2026 olculdu). */
+  html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
   body { overflow-x: clip; margin: 0; background: var(--page); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 1160px; margin: 0 auto; padding-inline: 20px; }
   h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -.005em; }
@@ -306,6 +320,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .meta svg { width: 16px; height: 16px; color: var(--green); fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
   .film { position: relative; display: grid; justify-items: center; gap: 14px; }
   .film .halo { position: absolute; width: min(470px, 120%); aspect-ratio: 1; top: 46%; left: 50%; transform: translate(-50%, -50%); color: var(--gold-soft); opacity: .32; pointer-events: none; }
+  /* Halka, .film'in yuksekliginin %46'sina oturur: yavas baglantida mini ekran okunmadan cizilince ust kenarda gorunup
+     ekran gelince 260 px asagi kayiyordu (390 px'te CLS 0,17; 5 Eki 2026 olculdu). Altyazi (.cap, son oge) okunana kadar gizli. */
+  .film:not(:has(> .cap)) > .halo { visibility: hidden; }
+  /* Kunye satirlari (.meta) yan yana akar: yarim okunan son oge once ust satira oturup yazisi gelince alta iniyordu.
+     Liste, ardindaki .film okunana kadar gizli. */
+  .g-hero:not(:has(> .film)) .meta { visibility: hidden; }
   .film figcaption, .film .cap { position: relative; font-size: 14px; color: var(--muted); text-align: center; }
   @media (max-width: 900px) { .g-hero { grid-template-columns: 1fr; gap: 28px; } }
   :root[lang="ar"] .eyebrow { letter-spacing: 0; }
@@ -367,8 +387,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   @media (max-width: 460px) { .gstep { grid-template-columns: 44px minmax(0, 1fr); gap: 0 12px; } .bead { width: 44px; height: 44px; font-size: 20px; } .gsteps::before { inset-inline-start: 21px; } }
 
   /* Uygulamadaki dugme adi: uygulamanin kendi rengiyle (mini ekrandaki dugmeyle eslessin) */
-  .kb { display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; border-radius: 8px; background: var(--a-pri); color: var(--a-on); font-family: var(--sans); font-weight: 700; font-size: .92em; line-height: 1.55; white-space: nowrap; vertical-align: baseline; }
-  .kb.ol { background: transparent; color: var(--a-pri); box-shadow: inset 0 0 0 1.5px var(--a-pri); }
+  .kb { display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px; border-radius: 8px; background: var(--kb); color: var(--a-on); font-family: var(--sans); font-weight: 700; font-size: .92em; line-height: 1.55; white-space: nowrap; vertical-align: baseline; }
+  .kb.ol { background: transparent; color: var(--kb-ol); box-shadow: inset 0 0 0 1.5px var(--kb-ol); }
   .kb.tx { background: var(--a-soft); color: var(--a-ink); }
   .kbw { white-space: nowrap; }
   .kb.uzun { display: inline; white-space: normal; padding: 2px 8px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
@@ -476,7 +496,19 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .cta p { position: relative; margin: 12px auto 0; color: var(--band-sub); font-size: 17px; max-width: 34em; }
   .stores { position: relative; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; justify-content: center; }
   .store { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border-radius: 14px; text-decoration: none; background: #f6f1e4; color: #10231b; min-width: 172px; }
-  .store.alt { background: transparent; color: #f6f1e4; border: 1px solid rgba(246, 241, 228, .3); }
+  /* Ikincil (cizgili) magaza: varsayilan Google Play (.alt). Android'de (<html class="is-android">, bastaki betik)
+     App Store ikincil olur, Google Play one gecer ve dolar; sira ve gorunum YALNIZ CSS (ana sayfayla ayni). */
+  .store.alt, .is-android .store[data-store="ios"] { background: transparent; color: #f6f1e4; border: 1px solid rgba(246, 241, 228, .3); }
+  .is-android .store[data-store="android"] { order: -1; }
+  .is-android .store.alt[data-store="android"] { background: #f6f1e4; color: #10231b; border: 0; }
+  /* Yavas baglantida blogun yarisi cizilebiliyor (Android'de App Store, Google Play gelmeden ilk yerde gorunup
+     sonra kayiyordu): blok, sonundaki bos isaret (.stores-end) okunana kadar gorunmez. Isareti SILME (silinirse
+     blok ancak 3 sn sonra gorunur). :has() bilmeyen tarayicida kural yok sayilir. */
+  .stores:not(:has(> .stores-end)) { visibility: hidden; animation: mh-stores-show 0s 3s forwards; }
+  @keyframes mh-stores-show { to { visibility: visible; } }
+  /* Ust cubuk yarim okunurken cizilirse dil ve tema dugmeleri once en saga oturup "Indir" (.get, cubugun son
+     ogesi) gelince sola kayiyordu (yavas baglantida olculdu). .get okunana kadar marka disindakiler gorunmez. */
+  .top:not(:has(> .get)) > :not(.brand) { visibility: hidden; animation: mh-stores-show 0s 3s forwards; }
   .store svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
   .store small { display: block; font-size: 10.5px; font-weight: 500; opacity: .8; line-height: 1.1; text-align: start; }
   .store b { display: block; font-size: 16px; line-height: 1.25; text-align: start; }
@@ -488,7 +520,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   @keyframes mh-elma { 0% { transform: rotate(0); } 28% { transform: rotate(-13deg); } 56% { transform: rotate(8deg); } 80% { transform: rotate(-3deg); } 100% { transform: rotate(0); } }
   @media (hover: hover) {
     .store:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -14px rgba(0, 0, 0, .55); }
-    .store.alt:hover { background: rgba(246, 241, 228, .1); }
+    .store.alt:hover, .is-android .store[data-store="ios"]:hover { background: rgba(246, 241, 228, .1); }
+    .is-android .store.alt[data-store="android"]:hover { background: #f6f1e4; }
     .store[data-store="ios"]:hover svg { animation: mh-elma .75s ease-out; }
     .store[data-store="android"]:hover svg { transform: translateX(3px); }
   }
@@ -499,11 +532,25 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     .store:hover, .store:focus-visible, .store:active { transform: none; }
     .store:hover svg { animation: none !important; transform: none !important; }
   }
+  /* Bilgisayardan telefona: genis ekran ve fareli cihazda magaza dugmelerinin yaninda QR (ana sayfa ve
+     indir.html ile ayni kod: https://manevihalka.app/indir?utm_source=qr). Telefonda ve tablette gizli.
+     Yazi ureticinin sozlugunden (OZEL.qrCaption, bes dil), blok ekran okuyucudan gizli: magaza baglantilari ayni isi gorur. */
+  .qr-hand { display: none; }
+  @media (hover: hover) and (min-width: 900px) {
+    /* Dugmeler eskisi gibi esit boyda kalsin, bant uzamasin: QR satirin ortasina oturur, dikeyde dugme boyunu asan
+       kismi (90 px karo, 54 px dugme) negatif kenar payiyla satir yuksekligine sayilmaz. */
+    .cta .stores { margin-top: 40px; }
+    .qr-hand { display: inline-flex; align-items: center; align-self: center; gap: 12px; margin-block: -20px; margin-inline-start: 14px; padding-inline-start: 22px; border-inline-start: 1px solid rgba(246, 241, 228, .18); }
+  }
+  .qr-tile { display: block; padding: 9px; border-radius: 12px; background: #fff; line-height: 0; }
+  .qr-hand .qr { display: block; width: 72px; height: 72px; color: #10231b; }
+  .qr-cap { max-width: 9.5em; font-size: 13.5px; font-weight: 600; line-height: 1.35; text-align: start; color: #f6f1e4; }
 
   /* ── altbilgi (ana sayfayla ayni) ── */
   footer { padding-block: 40px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13.5px; color: var(--muted); border-top: 1px solid var(--line); }
   footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
   footer a { text-decoration: none; }
+  footer nav a { color: var(--foot); }
   footer a:hover { text-decoration: underline; }
   footer .langs { display: flex; flex-wrap: wrap; gap: 12px; }
   footer .langs a[aria-current="page"] { color: var(--ink); font-weight: 700; }
@@ -1360,7 +1407,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <nav aria-label="Sections">
       <a href="/fr/">L’application</a>
       <a href="/fr/horaires-de-priere/">Horaires</a>
-      <a href="/ortak-okuma.html">Lecture commune</a>
+      <a href="/fr/lecture-commune/">Lecture commune</a>
       <a href="/fr/guides/">Guides</a>
     </nav>
     <div class="lang" id="langBox">
@@ -1852,7 +1899,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <div><details><summary>Comment les juz sont-ils répartis entre les participants ?</summary><p>L’appli les répartit selon l’ordre du cercle : le juz 1 à la première personne, le juz 2 à la deuxième, et ainsi de suite. Tu vois cette liste sur le dernier écran, avant de lancer la khatma. Au tour suivant, les juz suivants sont répartis dans le même ordre : dans un cercle de 5 personnes, le deuxième tour continue avec les juz 6–10.</p></details>
         <details><summary>Que se passe-t-il à la fin d’un tour ?</summary><p>Si <b>Avancement automatique des tours</b> est activé (c’est le cas par défaut), le nouveau tour commence tout seul à minuit, dans le fuseau horaire du cercle, et les juz suivants sont répartis. Si tu le désactives, c’est toi qui lances le nouveau tour.</p></details>
         <details><summary>Et si quelqu’un ne peut pas terminer son juz ?</summary><p>La part non lue ne se perd pas : au tour suivant, elle reste <b>confiée</b> à la même personne. Elle peut aussi laisser une partie au cercle avec <b>Demander de l’aide</b>, ou remettre toute sa part au pool avec <b>Excuse</b>. Les autres la prennent avec <b>Aide</b> ou <b>Prendre</b>.</p></details>
-        <details><summary>Nous avons déjà un groupe WhatsApp : à quoi sert l’appli ?</summary><p>Garde ton groupe. Partage le lien d’invitation dans le groupe : la liste, qui a lu et les rappels, c’est l’appli qui s’en occupe. Tu n’as pas à refaire une liste chaque semaine.</p></details>
+        <details><summary>Nous avons déjà un groupe WhatsApp : à quoi sert l’appli ?</summary><p>Garde ton groupe. Partage le lien d’invitation dans le groupe : la liste, qui a lu et les rappels, c’est l’appli qui s’en occupe. Tu n’as pas à refaire une liste chaque semaine. Si tu veux quand même une liste sur papier, utilise le <a href="/fr/tableau-khatma/">tableau de khatma à imprimer</a>.</p></details>
         <details><summary>Un parent âgé sans l’appli peut-il participer ?</summary><p>Dans un cercle régulier, l’administrateur peut ajouter une personne sans l’appli comme <b>invité</b> ; un membre responsable marque sa lecture. Pour une khatma ponctuelle avec <b>Pool commun</b>, ceux qui n’ont pas l’appli prennent un juz depuis le lien d’invitation, dans le navigateur : <a href="/fr/guides/cercle-ponctuel/">Cercle ponctuel</a>.</p></details>
         <details><summary>Est-ce payant ?</summary><p>Créer un cercle, lancer une khatma et rejoindre un cercle sont gratuits. Avec un compte gratuit, tu peux gérer un seul cercle créé par toi à la fois. Rejoindre les cercles des autres n’a pas de limite.</p></details>
         <details><summary>Peut-on faire une khatma en répartissant les juz ?</summary><p>Les avis peuvent varier selon les écoles et les savants. Pour un avis religieux, demande à un savant en qui tu as confiance. L’appli, elle, se contente de répartir les juz : chacun lit sa part.</p></details></div>
@@ -1870,7 +1917,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <div class="stores">
         <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>Télécharger</small><b>App Store</b></span></a>
         <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dguide-hatim-fr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>Télécharger</small><b>Google Play</b></span></a>
+        <div class="qr-hand" aria-hidden="true"><span class="qr-tile"><svg class="qr" viewBox="0 0 33 33" width="72" height="72" shape-rendering="crispEdges" focusable="false"><path fill="currentColor" d="M0 0h7v1h-7zM8 0h5v1h-5zM14 0h1v1h-1zM19 0h3v1h-3zM23 0h1v1h-1zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h3v1h-3zM14 1h1v1h-1zM17 1h1v1h-1zM23 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h1v1h-1zM12 2h5v1h-5zM18 2h2v1h-2zM23 2h2v1h-2zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h2v1h-2zM12 3h1v1h-1zM15 3h1v1h-1zM18 3h1v1h-1zM21 3h1v1h-1zM24 3h1v1h-1zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM10 4h1v1h-1zM12 4h2v1h-2zM16 4h3v1h-3zM21 4h4v1h-4zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h2v1h-2zM12 5h1v1h-1zM14 5h3v1h-3zM22 5h2v1h-2zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM8 7h1v1h-1zM15 7h3v1h-3zM19 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM0 8h1v1h-1zM2 8h2v1h-2zM5 8h3v1h-3zM11 8h2v1h-2zM14 8h2v1h-2zM17 8h2v1h-2zM21 8h1v1h-1zM23 8h2v1h-2zM26 8h1v1h-1zM29 8h1v1h-1zM31 8h2v1h-2zM1 9h4v1h-4zM8 9h7v1h-7zM16 9h2v1h-2zM19 9h2v1h-2zM23 9h1v1h-1zM26 9h2v1h-2zM29 9h3v1h-3zM1 10h1v1h-1zM6 10h1v1h-1zM9 10h2v1h-2zM13 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h5v1h-5zM26 10h4v1h-4zM31 10h2v1h-2zM0 11h1v1h-1zM2 11h3v1h-3zM8 11h2v1h-2zM11 11h2v1h-2zM16 11h2v1h-2zM20 11h3v1h-3zM24 11h1v1h-1zM26 11h2v1h-2zM29 11h1v1h-1zM0 12h1v1h-1zM2 12h1v1h-1zM6 12h1v1h-1zM10 12h1v1h-1zM12 12h1v1h-1zM14 12h1v1h-1zM16 12h1v1h-1zM19 12h4v1h-4zM24 12h2v1h-2zM27 12h3v1h-3zM31 12h2v1h-2zM1 13h4v1h-4zM7 13h1v1h-1zM10 13h2v1h-2zM13 13h2v1h-2zM17 13h1v1h-1zM20 13h2v1h-2zM23 13h1v1h-1zM27 13h1v1h-1zM30 13h2v1h-2zM2 14h1v1h-1zM4 14h1v1h-1zM6 14h1v1h-1zM11 14h1v1h-1zM13 14h2v1h-2zM19 14h2v1h-2zM22 14h1v1h-1zM26 14h1v1h-1zM29 14h2v1h-2zM0 15h2v1h-2zM3 15h1v1h-1zM5 15h1v1h-1zM8 15h1v1h-1zM14 15h2v1h-2zM18 15h1v1h-1zM21 15h1v1h-1zM23 15h5v1h-5zM29 15h2v1h-2zM0 16h4v1h-4zM6 16h1v1h-1zM8 16h1v1h-1zM11 16h4v1h-4zM20 16h4v1h-4zM25 16h2v1h-2zM28 16h1v1h-1zM30 16h1v1h-1zM1 17h2v1h-2zM8 17h1v1h-1zM13 17h1v1h-1zM15 17h1v1h-1zM22 17h5v1h-5zM28 17h2v1h-2zM31 17h2v1h-2zM0 18h1v1h-1zM2 18h2v1h-2zM6 18h1v1h-1zM10 18h2v1h-2zM13 18h3v1h-3zM18 18h1v1h-1zM20 18h2v1h-2zM24 18h2v1h-2zM27 18h2v1h-2zM30 18h2v1h-2zM1 19h2v1h-2zM7 19h1v1h-1zM13 19h1v1h-1zM16 19h3v1h-3zM20 19h1v1h-1zM22 19h1v1h-1zM24 19h3v1h-3zM28 19h1v1h-1zM32 19h1v1h-1zM2 20h2v1h-2zM6 20h3v1h-3zM11 20h3v1h-3zM16 20h1v1h-1zM19 20h1v1h-1zM22 20h4v1h-4zM27 20h1v1h-1zM29 20h2v1h-2zM0 21h2v1h-2zM4 21h1v1h-1zM8 21h1v1h-1zM10 21h3v1h-3zM14 21h4v1h-4zM20 21h4v1h-4zM25 21h2v1h-2zM30 21h1v1h-1zM32 21h1v1h-1zM3 22h1v1h-1zM5 22h6v1h-6zM12 22h1v1h-1zM14 22h2v1h-2zM18 22h3v1h-3zM23 22h3v1h-3zM27 22h1v1h-1zM30 22h3v1h-3zM1 23h2v1h-2zM4 23h2v1h-2zM7 23h4v1h-4zM13 23h3v1h-3zM18 23h1v1h-1zM20 23h1v1h-1zM27 23h3v1h-3zM32 23h1v1h-1zM0 24h1v1h-1zM3 24h2v1h-2zM6 24h7v1h-7zM17 24h1v1h-1zM19 24h1v1h-1zM22 24h1v1h-1zM24 24h5v1h-5zM32 24h1v1h-1zM8 25h1v1h-1zM14 25h3v1h-3zM19 25h1v1h-1zM21 25h1v1h-1zM23 25h2v1h-2zM28 25h2v1h-2zM31 25h1v1h-1zM0 26h7v1h-7zM8 26h3v1h-3zM12 26h1v1h-1zM16 26h6v1h-6zM23 26h2v1h-2zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h5v1h-5zM16 27h4v1h-4zM23 27h2v1h-2zM28 27h4v1h-4zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM9 28h1v1h-1zM12 28h8v1h-8zM22 28h7v1h-7zM30 28h3v1h-3zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM8 29h1v1h-1zM10 29h1v1h-1zM12 29h1v1h-1zM14 29h1v1h-1zM16 29h2v1h-2zM19 29h1v1h-1zM21 29h3v1h-3zM27 29h1v1h-1zM29 29h4v1h-4zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM8 30h3v1h-3zM13 30h4v1h-4zM18 30h1v1h-1zM20 30h3v1h-3zM24 30h1v1h-1zM26 30h2v1h-2zM29 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM11 31h4v1h-4zM17 31h2v1h-2zM20 31h1v1h-1zM24 31h2v1h-2zM27 31h2v1h-2zM32 31h1v1h-1zM0 32h7v1h-7zM8 32h1v1h-1zM12 32h1v1h-1zM16 32h4v1h-4zM21 32h1v1h-1zM23 32h1v1h-1zM28 32h3v1h-3z"/></svg></span><span class="qr-cap">Scanne avec ton téléphone</span></div>
+        <i class="stores-end" hidden></i>
       </div>
+      <script>/* Android: gorunen sira CSS'te (is-android); klavye ve ekran okuyucu sirasi da uysun diye Google Play DOM'da one alinir. Gorunen yer degismez, kayma olmaz. */
+(function (s) { if (!s || !document.documentElement.classList.contains("is-android")) return; var a = s.querySelector('[data-store="android"]'), i = s.querySelector('[data-store="ios"]');
+  if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentScript.previousElementSibling);</script>
     </section>
   </main>
 
@@ -1887,7 +1939,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       </div>
     </div>
     <span>© 2026 Manevi Halka</span>
-    <nav><a href="/fr/">L’application</a><a href="/fr/horaires-de-priere/">Horaires</a><a href="/ortak-okuma.html">Lecture commune</a><a href="/fr/guides/">Guides</a><a href="/privacy-fr.html">Politique de confidentialité</a><a href="/terms-fr.html">Conditions d’utilisation</a><a href="/account-delete-fr.html">Suppression du compte</a><a href="mailto:support@manevihalka.app">Contact</a></nav>
+    <nav><a href="/fr/">L’application</a><a href="/fr/horaires-de-priere/">Horaires</a><a href="/fr/lecture-commune/">Lecture commune</a><a href="/fr/guides/">Guides</a><a href="/privacy-fr.html">Politique de confidentialité</a><a href="/terms-fr.html">Conditions d’utilisation</a><a href="/account-delete-fr.html">Suppression du compte</a><a href="mailto:support@manevihalka.app">Contact</a></nav>
     <nav class="langs" aria-label="Langue"><a href="/tr/rehber/hatim-grubu-kurma/" hreflang="tr" lang="tr">Türkçe</a><a href="/guides/group-khatam/" hreflang="en" lang="en">English</a><a href="/de/anleitungen/khatm-gruppe/" hreflang="de" lang="de">Deutsch</a><a href="/fr/guides/khatma-en-groupe/" hreflang="fr" lang="fr" aria-current="page">Français</a><a href="/ar/dalil/khatma-jamaiya/" hreflang="ar" lang="ar">العربية</a></nav>
   </footer>
 </div>

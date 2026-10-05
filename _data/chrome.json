@@ -6,6 +6,7 @@
     "app": "Uygulama",
     "navTimes": "Vakitler",
     "reading": "Ortak Okuma",
+    "readingHref": "/tr/ortak-okuma/",
     "sections": "Bölümler",
     "language": "Dil",
     "guides": "Rehberler",
@@ -26,6 +27,7 @@
     "app": "The app",
     "navTimes": "Prayer times",
     "reading": "Shared Reading",
+    "readingHref": "/shared-reading/",
     "sections": "Sections",
     "language": "Language",
     "guides": "Guides",
@@ -46,6 +48,7 @@
     "app": "Die App",
     "navTimes": "Gebetszeiten",
     "reading": "Gemeinsames Lesen",
+    "readingHref": "/de/gemeinsames-lesen/",
     "sections": "Bereiche",
     "language": "Sprache",
     "guides": "Anleitungen",
@@ -66,6 +69,7 @@
     "app": "L'application",
     "navTimes": "Horaires",
     "reading": "Lecture commune",
+    "readingHref": "/fr/lecture-commune/",
     "sections": "Sections",
     "language": "Langue",
     "guides": "Guides",
@@ -86,6 +90,7 @@
     "app": "التطبيق",
     "navTimes": "المواقيت",
     "reading": "القراءة المشتركة",
+    "readingHref": "/ar/qiraa-mushtaraka/",
     "sections": "الأقسام",
     "language": "اللغة",
     "guides": "الأدلة",
@@ -97,6 +102,6 @@
     "privacy": "سياسة الخصوصية",
     "terms": "شروط الاستخدام",
     "deleteAcc": "حذف الحساب",
-    "contact": "تواصل معنا"
+    "contact": "للتواصل"
   }
 }

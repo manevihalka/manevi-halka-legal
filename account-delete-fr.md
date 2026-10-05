@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Suppression de compte
+description: "Comment supprimer ton compte Manevi Halka dans l'application ou par e-mail, le délai de récupération de 30 jours et les données supprimées ou conservées."
 lang: fr
 ---
 

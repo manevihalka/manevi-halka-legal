@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Konto löschen
+description: "Wie du dein Konto bei Manevi Halka in der App oder per E-Mail löschst, die 30-tägige Wiederherstellungsfrist und was gelöscht oder aufbewahrt wird."
 lang: de
 ---
 

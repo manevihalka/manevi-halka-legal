@@ -29,6 +29,10 @@
     var ios = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
     var android = /Android/.test(ua);
     window.MH_PLATFORM = ios ? 'ios' : (android ? 'android' : 'other');
+    // Telefonda (?stay=1 ya da yonlendirme gecikirse) yalniz kisinin kendi magazasi gorunur. Karar dugmeler
+    // cizilmeden verilir ve CSS'ten uygulanir (.is-android / .is-ios); sayfa sonundaki betik oteki dugmeyi
+    // gizlerken yavas baglantida Google Play yerinden kayiyordu.
+    if (window.MH_PLATFORM !== 'other') document.documentElement.classList.add('is-' + window.MH_PLATFORM);
     if (q.get('stay') !== '1') {
       if (ios) location.replace(window.MH_STORE.ios);
       else if (android) location.replace(window.MH_STORE.android);
@@ -55,6 +59,12 @@
   .store-badge { display:inline-flex; align-items:center; gap:12px; padding:12px 22px; background:var(--pill); color:#fff;
     border-radius:14px; text-decoration:none; text-align:start; }
   .store-badge:focus-visible { outline:2px solid var(--green); outline-offset:3px; }
+  .is-android #iosBtn, .is-ios #androidBtn { display:none; }
+  /* Kart dikeyde ortali: okundukca buyuyup yukari kayiyor, dil betigi metni degistirince yeniden kayiyordu.
+     Sonundaki bos isaret (.card-end, dil betiginden sonra) okunana kadar gorunmez; isaret silinirse 3 sn sonra
+     yine gorunur. :has() bilmeyen tarayicida kural yok sayilir. */
+  .card:not(:has(> .card-end)) { visibility:hidden; animation:mh-card-show 0s 3s forwards; }
+  @keyframes mh-card-show { to { visibility:visible; } }
   .store-badge svg { width:26px; height:26px; flex-shrink:0; fill:currentColor; }
   .store-badge .small { display:block; font-size:11px; opacity:.85; }
   .store-badge .big { display:block; font-size:17px; font-weight:700; line-height:1.2; }
@@ -213,7 +223,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   </div>
   <p class="note" id="note">Free · No ads · 5 languages</p>
   <p class="home"><a href="/">manevihalka.app</a></p>
-</main>
 <script>
   (function () {
     var S = {
@@ -238,10 +247,13 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     [].forEach.call(document.querySelectorAll('[data-t="get"]'), function (el) { el.textContent = T.get; });
     var st = window.MH_STORE;
     if (st) { document.getElementById('iosBtn').href = st.ios; document.getElementById('androidBtn').href = st.android; }
-    if (window.MH_PLATFORM === 'ios') document.getElementById('androidBtn').style.display = 'none';
-    if (window.MH_PLATFORM === 'android') document.getElementById('iosBtn').style.display = 'none';
+    // Telefonda oteki magaza dugmesi CSS'te gizli (.is-android / .is-ios, bastaki betik).
   })();
 </script>
+  <!-- Kartin son ogesi: yukaridaki dil betigi calistiktan SONRA okunur. Kart bu isaret gelene kadar gorunmez
+       (bastaki CSS), boylece Ingilizce metin, sol-sag yon ve magaza sirasi hic yanlis cizilmez. SILME. -->
+  <i class="card-end" hidden></i>
+</main>
 <!--NAV:JS-->
 <script>
 (function () {

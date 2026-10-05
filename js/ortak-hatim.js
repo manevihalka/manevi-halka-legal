@@ -1,25 +1,38 @@
 window.MHOrtakHatim = (function () {
   /**
-   * Ortak Hatim bileşeni. AYNI KOD iki yerde çalışır: ana sayfadaki kart ve
-   * /hatim.html. ⛔ İkinci bir kopya YAZMA; biri güncellenip öteki bayatlar
-   * (bu repoda tam olarak bu yaşandı: statik metin sözlükten aylarca geride kalmıştı).
+   * Ortak Okuma bileşeni. AYNI KOD iki yerde çalışabilir: Ortak Okuma sayfası
+   * ve (bugün kullanılmayan) ana sayfa kartı. ⛔ İkinci bir kopya YAZMA; biri
+   * güncellenip öteki bayatlar (bu repoda tam olarak bu yaşandı: statik metin
+   * sözlükten aylarca geride kalmıştı).
    *
-   * mount(host, { chrome: true })  -> /hatim.html: sayfa başlığı, politika
-   *                                   bağlantıları, mağaza düğmesi, canlı
-   *                                   senkron ve yoklama BU MODDA.
+   * mount(host, { chrome: true })  -> Ortak Okuma sayfası: mağaza düğmesi,
+   *                                   canlı senkron ve yoklama BU MODDA.
    * mount(host, { chrome: false }) -> ana sayfa kartı: yalnız bileşen. Canlı
    *                                   senkron ve yoklama YOK; ana sayfaya her
    *                                   ziyarette websocket açmak ve 20 sn'de bir
    *                                   sormak, kartın değerine göre pahalı.
    *                                   Sayılar eylemlerden sonra zaten tazeleniyor.
+   *
+   * 5 Eki 2026: sayfa her dilde kendi adresinde (_gen/build-ortak.mjs, adresler
+   * _gen/site-urls.mjs ORTAK). Sayfa dili açıkça verir ({ lang }) ve başlığını,
+   * açıklamasını, altbilgisini STATİK yazar ({ staticShell: true }): bileşen o
+   * düğümlere dokunmaz. Sayfa tahtanın iskeletini de HTML'de verir
+   * (host içinde `.stage.sk`): bileşen onu devralır, "Yükleniyor" yazmaz, ilk
+   * veriyle yerine gerçek içeriği koyar (ilk yüklemede sayfa kaymasın diye).
    */
   function mount(host, opts) {
     opts = opts || {};
     var CHROME = !!opts.chrome;
+    var STATIC_SHELL = !!opts.staticShell;
     host.classList.add('mhh');
-    var stageEl = document.createElement('div');
-    stageEl.className = 'stage';
-    host.appendChild(stageEl);
+    // Sayfanın HTML'de verdiği iskelet (yalnız ilk kurulumda; dil değişince yeniden kurulur).
+    var stageEl = host.querySelector('.stage.sk');
+    var SKELETON = !!stageEl;
+    if (!stageEl) {
+      stageEl = document.createElement('div');
+      stageEl.className = 'stage';
+      host.appendChild(stageEl);
+    }
   var SUPA_URL = 'https://ohmescuwjyaitykemuub.supabase.co';
   // Publishable (anon) anahtar. Gizli DEĞİL: APK içinde de dağıtılıyor ve tek
   // başına hiçbir şeye erişim vermez — misafir RPC'lerinin hepsi anon'a kapalı.
@@ -39,34 +52,34 @@ window.MHOrtakHatim = (function () {
     en: { loading:'Loading…',
       pageTitle:'Shared Reading', pageSub:'Read together with people all over the world: the shared khatm and the shared dhikr. No account needed.',
       tabHatim:'Khatm', tabZikir:'Dhikr',
-      ongoing:'The recitation is in progress',
-      cycleN:'Recitation {n} is in progress', cycleFirst:'The first recitation is in progress',
-      lgDone:'completed', lgHeld:'undertaken', lgFree:'available',
+      ongoing:'The khatm is in progress',
+      cycleN:'Khatm {n} is in progress', cycleFirst:'The first khatm is in progress',
+      lgDone:'completed', lgHeld:'taken', lgFree:'available',
       cuzWord:'Juz',
       nextLbl:'Next portion', cuzN:'Juz {n}',
       closesIn:'{p} left to finish it', freeIn:'{p} available', takeThis:'Take this',
       avail:'Available', all:'All', full:'Full',
       mapHead:'Juz map', joinCta:'Join the shared reading',
-      pagesRange:'Pages {a}-{b}',
+      pagesRange:'Pages {a}-{b}', goesOn:'Reading continues with {c}, pages {a}-{b}.',
       pageCount:'{p} pages',
       confirmQ:'Do you confirm that you will read this portion?',
       confirm:'I confirm, I will take it', cancel:'Cancel',
       entrustedU:'{u} are entrusted to you.',
       mayAccept:'May Allah accept it.',
       another:'Would you like to take another portion?', takeAnother:'Take another portion',
-      none:'There is no portion available right now.', closed:'This recitation is closed.',
+      none:'There is no portion available right now.', closed:'This khatm is closed for now.',
       quota:'You have reached your open portions. Mark them as finished to take more.',
-      taken:'That portion was just taken. Let us give you another one.',
+      taken:'This portion was just taken. Choose another portion from the map.',
       amountLbl:'How much will you read?',
       myLbl:'Your portions', markDone:'I finished it', dropIt:'Remove', sure:'Sure?',
-      doneMark:'Finished', pastCycle:'From an earlier recitation',
+      doneMark:'Finished', pastCycle:'From an earlier khatm',
       gone:'This is not available right now.', slow:'Too many attempts. Please wait a moment and try again.', verify:'The security check could not be completed. Wait a moment and try again.',
       error:'Something went wrong. Please try again.',
       getApp:'Get the app', until:'Until {d}',
       keepLink:'Save this link to return to your portions later.', copy:'Copy link', copied:'Copied',
-      shareQ:'Would you like to bring one more person into this circle?', shareBtn:'Share', shareText:'We\'re reading a khatm together. Will you take a portion too?', followLine:'Follow us for reminders on the blessed nights and in Ramadan:',
+      shareQ:'Would you like to bring one more person into this circle?', shareBtn:'Share', shareText:'We\'re reading a khatm together. Will you take a portion too?', followTitle:'Stay close to the circle',
       zHead:'Shared dhikr and supplications', zOf:'{a} of {b}', zMine:'Your contribution: {n}',
-      zRounds:'{n} rounds completed', zAdd:'Join the count', zSession:'Counted in this session',
+      zRounds:'{n} rounds completed', zAdd:'Join the count', zAddFor:'Join the count: {n}', zSession:'Counted in this session',
       zSubmit:'Add my count', zNone:'There is no shared dhikr right now.', zZero:'Count first, then add it.',
       home:'Home', privacy:'Privacy', terms:'Terms', arrow:'→' },
     tr: { loading:'Yükleniyor…',
@@ -80,7 +93,7 @@ window.MHOrtakHatim = (function () {
       closesIn:'Bitmesine {p} kaldı', freeIn:'{p} müsait', takeThis:'Bunu al',
       avail:'Müsait', all:'Tümü', full:'Dolu',
       mapHead:'Cüz haritası', joinCta:'Ortak okumaya katıl',
-      pagesRange:'Sayfa {a}-{b}',
+      pagesRange:'Sayfa {a}-{b}', goesOn:'Okuma {c} ile sürüyor, sayfa {a}-{b}.',
       pageCount:'{p} sayfa',
       confirmQ:'Bu bölümü okuyacağını onaylıyor musun?',
       confirm:'Onaylıyorum, alıyorum', cancel:'Vazgeç',
@@ -89,7 +102,7 @@ window.MHOrtakHatim = (function () {
       another:'Başka bir bölüm almak ister misin?', takeAnother:'Başka bölüm al',
       none:'Şu anda alınabilecek bölüm yok.', closed:'Bu hatim şu an kapalı.',
       quota:'Açık bölüm sınırına ulaştın. Aldıklarını tamamladıkça yenilerini alabilirsin.',
-      taken:'Bu bölüm az önce alındı, sana başka bir bölüm verelim.',
+      taken:'Bu bölüm az önce alındı. Haritadan başka bir bölüm seç.',
       amountLbl:'Ne kadar okuyacaksın?',
       myLbl:'Aldığın bölümler', markDone:'Tamamladım', dropIt:'Kaldır', sure:'Emin misin?',
       doneMark:'Tamamlandı', pastCycle:'Önceki hatimden',
@@ -97,9 +110,9 @@ window.MHOrtakHatim = (function () {
       error:'Bir şeyler ters gitti. Tekrar dener misin?',
       getApp:'Uygulamayı indir', until:'{d} tarihine kadar',
       keepLink:'Bölümlerine sonra dönmek için bu bağlantıyı kaydet.', copy:'Bağlantıyı kopyala', copied:'Kopyalandı',
-      shareQ:'Bu halkaya bir kişi daha katmak ister misin?', shareBtn:'Paylaş', shareText:'Birlikte hatim okuyoruz, sen de bir bölüm alır mısın?', followLine:'Kandil ve Ramazan hatırlatmaları için bizi takip et:',
+      shareQ:'Bu halkaya bir kişi daha katmak ister misin?', shareBtn:'Paylaş', shareText:'Birlikte hatim okuyoruz, sen de bir bölüm alır mısın?', followTitle:'Halkayla bağlantıda kal',
       zHead:'Ortak zikir ve dualar', zOf:'{b} hedefin {a} tanesi', zMine:'Senin katkın: {n}',
-      zRounds:'{n} tur tamamlandı', zAdd:'Sayıma katıl', zSession:'Bu oturumda saydığın',
+      zRounds:'{n} tur tamamlandı', zAdd:'Sayıma katıl', zAddFor:'Sayıma katıl: {n}', zSession:'Bu oturumda saydığın',
       zSubmit:'Katkımı ekle', zNone:'Şu anda ortak zikir yok.', zZero:'Önce say, sonra ekle.',
       home:'Ana sayfa', privacy:'Gizlilik', terms:'Şartlar', arrow:'→' },
     de: { loading:'Wird geladen…',
@@ -113,7 +126,7 @@ window.MHOrtakHatim = (function () {
       closesIn:'Noch {p} bis zum Abschluss', freeIn:'{p} verfügbar', takeThis:'Diesen nehmen',
       avail:'Verfügbar', all:'Alle', full:'Vergeben',
       mapHead:'Dschuz-Karte', joinCta:'Beim gemeinsamen Lesen mitmachen',
-      pagesRange:'Seite {a}-{b}',
+      pagesRange:'Seite {a}-{b}', goesOn:'Weiter geht es mit {c}, Seiten {a}-{b}.',
       pageCount:'{p} Seiten',
       confirmQ:'Bestätigst du, dass du diesen Abschnitt liest?',
       confirm:'Ich bestätige, ich nehme ihn', cancel:'Abbrechen',
@@ -122,7 +135,7 @@ window.MHOrtakHatim = (function () {
       another:'Möchtest du einen weiteren Abschnitt nehmen?', takeAnother:'Weiteren Abschnitt nehmen',
       none:'Zurzeit ist kein Abschnitt verfügbar.', closed:'Diese Chatma ist derzeit geschlossen.',
       quota:'Du hast dein Limit an offenen Abschnitten erreicht. Markiere sie als gelesen, um weitere zu nehmen.',
-      taken:'Dieser Abschnitt wurde gerade vergeben. Wir geben dir einen anderen.',
+      taken:'Dieser Abschnitt wurde gerade vergeben. Wähle auf der Karte einen anderen Abschnitt.',
       amountLbl:'Wie viel wirst du lesen?',
       myLbl:'Deine Abschnitte', markDone:'Ich habe ihn gelesen', dropIt:'Entfernen', sure:'Sicher?',
       doneMark:'Gelesen', pastCycle:'Aus einer früheren Chatma',
@@ -130,9 +143,9 @@ window.MHOrtakHatim = (function () {
       error:'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
       getApp:'App installieren', until:'Bis {d}',
       keepLink:'Speichere diesen Link, um später zu deinen Abschnitten zurückzukehren.', copy:'Link kopieren', copied:'Kopiert',
-      shareQ:'Möchtest du noch jemanden in diesen Kreis holen?', shareBtn:'Teilen', shareText:'Wir lesen gemeinsam eine Chatma. Übernimmst du auch einen Teil?', followLine:'Folge uns für Erinnerungen in den gesegneten Nächten und im Ramadan:',
+      shareQ:'Möchtest du noch jemanden in diesen Kreis holen?', shareBtn:'Teilen', shareText:'Wir lesen gemeinsam eine Chatma. Übernimmst du auch einen Teil?', followTitle:'Bleib mit dem Kreis verbunden',
       zHead:'Gemeinsame Dhikr und Gebete', zOf:'{a} von {b}', zMine:'Dein Beitrag: {n}',
-      zRounds:'{n} Runden abgeschlossen', zAdd:'Mitzählen', zSession:'In dieser Sitzung gezählt',
+      zRounds:'{n} Runden abgeschlossen', zAdd:'Mitzählen', zAddFor:'Mitzählen: {n}', zSession:'In dieser Sitzung gezählt',
       zSubmit:'Beitrag hinzufügen', zNone:'Zurzeit gibt es kein gemeinsames Dhikr.', zZero:'Zähle zuerst, dann füge hinzu.',
       home:'Startseite', privacy:'Datenschutz', terms:'Nutzungsbedingungen', arrow:'→' },
     fr: { loading:'Chargement…',
@@ -146,7 +159,7 @@ window.MHOrtakHatim = (function () {
       closesIn:'Encore {p} pour la terminer', freeIn:'{p} disponibles', takeThis:'Prendre celle-ci',
       avail:'Disponible', all:'Tout', full:'Prise',
       mapHead:'Carte des juz', joinCta:'Rejoindre la lecture commune',
-      pagesRange:'Pages {a}-{b}',
+      pagesRange:'Pages {a}-{b}', goesOn:'La lecture continue avec le juz {n}, pages {a}-{b}.',
       pageCount:'{p} pages',
       confirmQ:'Confirmes-tu que tu liras cette portion ?',
       confirm:'Je confirme, je la prends', cancel:'Annuler',
@@ -155,7 +168,7 @@ window.MHOrtakHatim = (function () {
       another:'Veux-tu prendre une autre portion ?', takeAnother:'Prendre une autre portion',
       none:'Aucune portion disponible pour le moment.', closed:'Cette khatma est fermée pour le moment.',
       quota:'Tu as atteint ta limite de portions en cours. Marque-les comme terminées pour en prendre d’autres.',
-      taken:'Cette portion vient d’être prise. Nous t’en donnons une autre.',
+      taken:'Cette portion vient d’être prise. Choisis-en une autre sur la carte.',
       amountLbl:'Combien vas-tu lire ?',
       myLbl:'Tes portions', markDone:'Je l’ai terminée', dropIt:'Retirer', sure:'Sûr ?',
       doneMark:'Terminée', pastCycle:'D’une khatma précédente',
@@ -163,9 +176,9 @@ window.MHOrtakHatim = (function () {
       error:'Une erreur est survenue. Réessaie.',
       getApp:'Installer l’application', until:'Jusqu’au {d}',
       keepLink:'Enregistre ce lien pour revenir à tes portions plus tard.', copy:'Copier le lien', copied:'Copié',
-      shareQ:'Veux-tu faire venir une personne de plus dans ce cercle ?', shareBtn:'Partager', shareText:'Nous lisons une khatma ensemble. Prendras-tu une part toi aussi ?', followLine:'Suis-nous pour les rappels des nuits bénies et du Ramadan :',
+      shareQ:'Veux-tu faire venir une personne de plus dans ce cercle ?', shareBtn:'Partager', shareText:'Nous lisons une khatma ensemble. Prendras-tu une part toi aussi ?', followTitle:'Reste lié au cercle',
       zHead:'Dhikr et invocations communes', zOf:'{a} sur {b}', zMine:'Ta contribution : {n}',
-      zRounds:'{n} tours terminés', zAdd:'Participer au décompte', zSession:'Compté dans cette session',
+      zRounds:'{n} tours terminés', zAdd:'Participer au décompte', zAddFor:'Participer au décompte : {n}', zSession:'Compté dans cette session',
       zSubmit:'Ajouter mon décompte', zNone:'Aucune invocation commune pour le moment.', zZero:'Compte d’abord, puis ajoute.',
       home:'Accueil', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
     ar: { loading:'…جارٍ التحميل',
@@ -175,30 +188,30 @@ window.MHOrtakHatim = (function () {
       cycleN:'الختمة {n} جارية', cycleFirst:'الختمة الأولى جارية',
       lgDone:'مكتملة', lgHeld:'متعهَّد بها', lgFree:'متاحة',
       cuzWord:'جزء',
-      nextLbl:'الجزء التالي', cuzN:'الجزء {n}',
+      nextLbl:'النصيب التالي', cuzN:'الجزء {n}',
       closesIn:'بقي {p} لإتمامه', freeIn:'{p} متاحة', takeThis:'خذ هذا',
       avail:'المتاح', all:'الكل', full:'مأخوذ',
       mapHead:'خريطة الأجزاء', joinCta:'شارك في القراءة المشتركة',
-      pagesRange:'الصفحات {a}-{b}',
+      pagesRange:'الصفحات \u200E{a}-{b}', goesOn:'تتواصل القراءة مع {c}، الصفحات \u200E{a}-{b}.',
       pageCount:'{p} صفحة',
-      confirmQ:'هل تؤكد أنك ستقرأ هذا الجزء؟',
+      confirmQ:'هل تؤكد أنك ستقرأ هذا النصيب؟',
       confirm:'أؤكد، سآخذه', cancel:'إلغاء',
       entrustedU:'{u} أمانة لديك.',
       mayAccept:'تقبّل الله.',
-      another:'هل تريد أخذ جزء آخر؟', takeAnother:'خذ جزءًا آخر',
-      none:'لا يوجد جزء متاح الآن.', closed:'هذه الختمة مغلقة حاليًا.',
-      quota:'بلغت حدّ الأجزاء المفتوحة. أتمّها لتأخذ المزيد.',
-      taken:'أُخذ هذا الجزء للتو، سنعطيك جزءًا آخر.',
+      another:'هل تريد أخذ نصيب آخر؟', takeAnother:'خذ نصيبًا آخر',
+      none:'لا يوجد نصيب متاح الآن.', closed:'هذه الختمة مغلقة حاليًا.',
+      quota:'بلغت حدّ أنصبتك المفتوحة. أتمّها لتأخذ المزيد.',
+      taken:'أُخذ هذا النصيب للتو. اختر نصيبًا آخر من الخريطة.',
       amountLbl:'كم ستقرأ؟',
-      myLbl:'أجزاؤك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟',
+      myLbl:'أنصبتك', markDone:'أتممته', dropIt:'إزالة', sure:'متأكد؟',
       doneMark:'تم', pastCycle:'من ختمة سابقة',
       gone:'غير متاح حاليًا.', slow:'محاولات كثيرة. انتظر قليلًا ثم أعد المحاولة.', verify:'تعذّر إكمال التحقق الأمني. انتظر قليلًا ثم حاول مرة أخرى.',
       error:'حدث خطأ ما. حاول مرة أخرى.',
       getApp:'ثبّت التطبيق', until:'حتى {d}',
-      keepLink:'احفظ هذا الرابط للعودة إلى أجزائك لاحقًا.', copy:'انسخ الرابط', copied:'تم النسخ',
-      shareQ:'هل تودّ أن تضمّ شخصًا آخر إلى هذه الحلقة؟', shareBtn:'مشاركة', shareText:'نقرأ ختمة معًا، هل تأخذ جزءًا أنت أيضًا؟', followLine:'تابعنا لتصلك التذكيرات في الليالي المباركة ورمضان:',
+      keepLink:'احفظ هذا الرابط للعودة إلى أنصبتك لاحقًا.', copy:'انسخ الرابط', copied:'تم النسخ',
+      shareQ:'هل تودّ أن تضمّ شخصًا آخر إلى هذه الحلقة؟', shareBtn:'مشاركة', shareText:'نقرأ ختمة معًا، هل تأخذ نصيبًا أنت أيضًا؟', followTitle:'ابقَ على صلة بالحلقة',
       zHead:'الأذكار والأدعية المشتركة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}',
-      zRounds:'اكتملت {n} جولة', zAdd:'شارك في العدّ', zSession:'ما عددته في هذه الجلسة',
+      zRounds:'اكتملت {n} جولة', zAdd:'شارك في العدّ', zAddFor:'شارك في العدّ: {n}', zSession:'ما عددته في هذه الجلسة',
       zSubmit:'أضف عدّي', zNone:'لا يوجد ذكر مشترك حاليًا.', zZero:'عُدّ أولاً ثم أضف.',
       home:'الرئيسية', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
   };
@@ -206,6 +219,9 @@ window.MHOrtakHatim = (function () {
   /* Zikir adları ve anlamları. ⚠️ ELLE YAZILMADI: uygulamanın
      locales/<dil>.json → globalDhikr.<slug>.name/.meaning değerlerinden
      alındı, birebir aynı. Uygulamada değişirse buraya da taşı.
+     TEK İSTİSNA (5 Eki 2026): Arapça hasbinallah anlamı. Uygulamada anlam
+     satırı adı tekrar ediyor ("حسبنا الله ونعم الوكيل" iki kez); burada gerçek
+     bir açıklama var. Uygulama düzeltilirse ikisi yeniden eşitlenir.
      ⚠️ AYET AYET MEAL BURAYA KONMAZ: Kur'an kaynaklı üç zikrin meali
      uygulamada Tanzil edisyonundan okunuyor ve o metni herkese açık bir
      sayfaya basmak lisans sorununu siteye taşır (docs §5.3). Burada yalnız
@@ -215,7 +231,7 @@ window.MHOrtakHatim = (function () {
     tr:{fatiha:["Fâtiha-i Şerîfe","Kur'an'ın açılış sûresi"],ihlas:["İhlâs-ı Şerîf","İhlâs sûresi (Tevhid)"],ayetelkursi:["Âyetü'l-Kürsî","Bakara sûresi 255. âyet"],salavat:["Salavât-ı Şerîfe","Peygamberimize (s.a.v.) salât ü selâm getirmek"],tefriciye:["Salât-ı Tefrîciye","Sıkıntıların giderilmesi için okunan salavât"],hasbinallah:["Hasbünallâhü ve ni'mel-vekîl","Allah bize yeter, O ne güzel vekildir"]},
     de:{fatiha:["Sure al-Fatiha","Die Eröffnungssure des Korans"],ihlas:["Sure al-Ichlas","Die Sure des aufrichtigen Glaubens (Tauhid)"],ayetelkursi:["Ayat al-Kursi","Vers 255 der Sure al-Baqara"],salavat:["Salawat","Segenswünsche für den Propheten (Friede sei mit ihm)"],tefriciye:["Salat at-Tafridschiyya","Ein Salawat zur Linderung von Not"],hasbinallah:["Hasbunallahu wa ni'mal-Wakil","Allah genügt uns, und Er ist der beste Sachwalter"]},
     fr:{fatiha:["Sourate al-Fatiha","La sourate d'ouverture du Coran"],ihlas:["Sourate al-Ikhlas","La sourate de la foi sincère (Tawhid)"],ayetelkursi:["Ayat al-Kursi","Verset 255 de la sourate al-Baqara"],salavat:["Salawat","Prières sur le Prophète (paix sur lui)"],tefriciye:["Salat at-Tafrijiyya","Un salawat pour le soulagement des épreuves"],hasbinallah:["Hasbunallahu wa ni'mal-Wakil","Allah nous suffit, et quel excellent Garant"]},
-    ar:{fatiha:["سورة الفاتحة","سورة فاتحة الكتاب"],ihlas:["سورة الإخلاص","سورة التوحيد والإخلاص"],ayetelkursi:["آية الكرسي","الآية ٢٥٥ من سورة البقرة"],salavat:["الصلاة على النبي ﷺ","الصلاة والسلام على النبي محمد ﷺ"],tefriciye:["الصلاة التفريجية","صلاة تُقرأ لتفريج الكروب"],hasbinallah:["حسبنا الله ونعم الوكيل","حسبنا الله ونعم الوكيل"]}
+    ar:{fatiha:["سورة الفاتحة","سورة فاتحة الكتاب"],ihlas:["سورة الإخلاص","سورة التوحيد والإخلاص"],ayetelkursi:["آية الكرسي","الآية ٢٥٥ من سورة البقرة"],salavat:["الصلاة على النبي ﷺ","الصلاة والسلام على النبي محمد ﷺ"],tefriciye:["الصلاة التفريجية","صلاة تُقرأ لتفريج الكروب"],hasbinallah:["حسبنا الله ونعم الوكيل","الله كافينا، وهو خير من نتوكّل عليه"]}
   };
 
   var POLICY_SUFFIX = { en:'-en', tr:'', de:'-de', fr:'-fr', ar:'-ar' };
@@ -224,14 +240,14 @@ window.MHOrtakHatim = (function () {
 
   var params = new URLSearchParams(location.search);
   // Dil sırası: çağıranın verdiği > ?lang= > ana sayfanın kaydettiği seçim
-  // (mh_lang) > tarayıcı > İngilizce. mh_lang ORTAK: ana sayfada Türkçe seçen
-  // kişi /hatim.html'i de Türkçe açar.
+  // (mh_lang) > tarayıcı > İngilizce. Ortak Okuma sayfası dili HER ZAMAN
+  // verir (adresten gelir, 5 Eki 2026); geri kalan sıra eski çağrılar için.
   var lang = (opts.lang || params.get('lang') || '').slice(0,2).toLowerCase();
   if (!S[lang]) { try { lang = localStorage.getItem('mh_lang') || ''; } catch (e) { lang = ''; } }
   if (!S[lang]) lang = (navigator.language || 'en').slice(0,2).toLowerCase();
   if (!S[lang]) lang = 'en';
   var T = S[lang];
-  if (CHROME) {
+  if (CHROME && !STATIC_SHELL) {
     document.documentElement.lang = lang;
     // ⚠️ Her iki yönü de YAZ. Yalnız 'ar' iken rtl kurmak yetmiyordu: dil
     // seçiciyle Arapçadan çıkan kullanıcıda yön rtl kalıyordu.
@@ -248,8 +264,10 @@ window.MHOrtakHatim = (function () {
   }
   function nf(n) { return Number(n || 0).toLocaleString(LOCALE_TAG[lang]); }
 
-  // Sayfa chrome'u yalnız /hatim.html'de var; kart modunda bu düğümler YOK.
-  if (CHROME) {
+  // Eski tek adresli kabuk: başlığı ve altbilgiyi bileşen yazıyordu. Dil
+  // adreslerinde (staticShell) hepsi HTML'de statik; burada dokunulmaz, yoksa
+  // arama motorunun gördüğü başlık ve açıklama ezilir.
+  if (CHROME && !STATIC_SHELL && $('title')) {
     document.title = T.pageTitle + ' · Manevi Halka';
     $('title').textContent = T.pageTitle;
     $('heroSub').textContent = T.pageSub;
@@ -279,7 +297,9 @@ window.MHOrtakHatim = (function () {
   // ⚠️ Cevşen SUNUCUDA AÇIK (kota 10 bab, tahta hazır) ama sitede
   // gösterilmiyor; geri açmak için bab etiketlerini geri getirmek yeterli,
   // sunucu tarafında hiçbir şey gerekmiyor.
-  var PAGE_URL = '/ortak-okuma.html';
+  // Sayfanın dil adresleri: _gen/site-urls.mjs ORTAK ile AYNI (build-ortak.mjs denetler).
+  var ORTAK_URL = { en:'/shared-reading/', tr:'/tr/ortak-okuma/', de:'/de/gemeinsames-lesen/', fr:'/fr/lecture-commune/', ar:'/ar/qiraa-mushtaraka/' };
+  var PAGE_URL = ORTAK_URL[lang] || ORTAK_URL.en;
   var TABS = ['zikir', 'hatim'];
   // ⚠️ SEKME ADI SUNUCU TÜRÜ DEĞİLDİR. Sunucu yalnız 'quran' | 'cevsen' kabul eder
   // (web_global_offer/commit). 9 Eyl 2026'da sekme 'quran' -> 'hatim' adını aldı,
@@ -296,6 +316,11 @@ window.MHOrtakHatim = (function () {
   var filter = 'avail';
   // ⚠️ Ekran durumu AÇIK DEĞİŞKENDE tutulur; DOM'a bakarak çıkarmak kırılgan.
   var mode = 'loading';   // loading | board | confirm | done | count | message
+  // Tahtanın üstünde duran kısa not (ör. "bu bölüm az önce alındı"). Eskiden
+  // metin 900 ms görünüp tahtaya dönülüyordu, okunamıyordu. Not tahtayla birlikte
+  // çizilir ve kullanıcının bir sonraki hareketine kadar durur (arka plan
+  // tazelemesi silmez).
+  var notice = null;
 
   function newGuestToken() {
     var a = new Uint8Array(32); crypto.getRandomValues(a);
@@ -379,27 +404,46 @@ window.MHOrtakHatim = (function () {
     return [T.error, false];
   }
 
+  /** İlk çizimde HTML iskeletinin yer tutma sınıfı kalkar (bkz. mount). */
+  function clearStage() {
+    stageEl.classList.remove('sk');
+    stageEl.removeAttribute('aria-busy');
+    stageEl.innerHTML = '';
+  }
+
   function stageMessage(text, isError) {
     mode = 'message';
-    stageEl.innerHTML = '';
+    clearStage();
     var w = el('div', 'narrow');
     w.appendChild(el('div', 'msg' + (isError ? ' err' : ''), text));
     stageEl.appendChild(w);
   }
 
   var STORE_IOS = 'https://apps.apple.com/app/manevi-halka/id6760654292';
-  var STORE_PLAY = 'https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle';
+  // Google Play kurulum kaynağı: links.html ile aynı kalıp (referrer içinde URL kodlu utm).
+  var STORE_PLAY = 'https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=' +
+    encodeURIComponent('utm_source=manevihalka.app&utm_medium=website&utm_content=ortak');
   function showAppCta() {
     if (!CHROME) return;
     // ⚠️ halka.html'den fark: orada davet kodu vardı ve düğme uygulamayı
     // AÇIYORDU. Burada davet yok; düğme mağazaya gider. Var olmayan bir derin
     // bağlantı uydurma.
+    // Telefonda tek düğme (#appCta) doğru mağazaya; masaüstünde iki mağaza
+    // düğmesi (#appStores, sayfada statik). Hangisinin görüneceğini sayfanın
+    // CSS'i seçer (html.is-ios / .is-android); bileşen ikisini de açar.
     var a = $('appCta');
-    a.href = /Android/i.test(navigator.userAgent || '') ? STORE_PLAY : STORE_IOS;
-    a.textContent = T.getApp;
-    a.classList.remove('hidden');
+    if (a) {
+      a.href = /Android/i.test(navigator.userAgent || '') ? STORE_PLAY : STORE_IOS;
+      if (!a.textContent) a.textContent = T.getApp;
+      a.classList.remove('hidden');
+    }
+    var st = $('appStores');
+    if (st) st.classList.remove('hidden');
   }
-  function hideAppCta() { if (CHROME) $('appCta').classList.add('hidden'); }
+  function hideAppCta() {
+    if (!CHROME) return;
+    ['appCta', 'appStores'].forEach(function (id) { var x = $(id); if (x) x.classList.add('hidden'); });
+  }
 
   // ── Ortak parçalar ────────────────────────────────────────────────────────
   function icon(d) {
@@ -446,9 +490,12 @@ window.MHOrtakHatim = (function () {
     bar.appendChild(d); bar.appendChild(h);
     wrap.appendChild(bar);
 
+    // ⚠️ Sıfır yazılmaz (5 Eki 2026): "0 üstlenildi" sayfayı ölü gösteriyordu.
+    // Sayısı sıfır olan durum lejanttan çıkar; müsait her zaman kalır.
     var lg = el('div', 'legend');
     [[T.lgDone, done, 'var(--done)'], [T.lgHeld, held, 'var(--held)'],
      [T.lgFree, free, 'var(--free)']].forEach(function (p) {
+      if (!p[1] && p[0] !== T.lgFree) return;
       var k = el('span', 'k');
       var dot = el('span', 'dot'); dot.style.background = p[2];
       k.appendChild(dot);
@@ -456,6 +503,18 @@ window.MHOrtakHatim = (function () {
       lg.appendChild(k);
     });
     wrap.appendChild(lg);
+
+    // Kimse bir bölüm üstlenmemişken sıfırın yerine sakin ve DOĞRU bir satır:
+    // okumanın sürdüğü yer (önerilen cüz ve sayfa aralığı). Veri zaten
+    // tahtada var (suggest + groups), yeni istek atılmaz.
+    if (!held) {
+      var sg = board.suggest, g = null;
+      if (sg) (board.groups || []).forEach(function (x) { if (x.g === sg.g) g = x; });
+      if (g && g.start && g.end) {
+        // {n} yalniz cuz numarasi: Fransizcada cumle icinde kucuk harf 'juz' (etiket 'Juz 7' buyuk harfle).
+        wrap.appendChild(el('div', 'legend goes', fmt(T.goesOn, { c: groupLabel(g), n: g.g, a: g.start, b: g.end })));
+      }
+    }
 
     // Bitiş tarihi YOK, tur VAR: sonsuz döngünün kaçıncı turundayız.
     var cy = el('div', 'cycle');
@@ -539,9 +598,14 @@ window.MHOrtakHatim = (function () {
     var wrap = el('div', 'map');
     wrap.appendChild(panelHead(T.mapHead, ICON_MAP));
     var tabs = el('div', 'tabs');
+    // Bölmeli seçici: seçili olan aria-pressed ile söylenir (ekran okuyucu).
+    tabs.setAttribute('role', 'group');
+    tabs.setAttribute('aria-label', T.mapHead);
     [['avail', T.avail], ['all', T.all]].forEach(function (p) {
       var b = el('button', filter === p[0] ? 'on' : '', p[1]);
-      b.onclick = function () { filter = p[0]; renderBoard(); };
+      b.type = 'button';
+      b.setAttribute('aria-pressed', filter === p[0] ? 'true' : 'false');
+      b.onclick = function () { notice = null; filter = p[0]; renderBoard(); };
       tabs.appendChild(b);
     });
     wrap.appendChild(tabs);
@@ -599,27 +663,44 @@ window.MHOrtakHatim = (function () {
     // tutulmuyor, docs §5.3). Yoksa satır hiç çizilmez.
     if (it.arabic) row.appendChild(el('div', 'zar', it.arabic));
 
-    var bar = el('div', 'bar');
-    var d = el('div', 'done');
-    d.style.width = (Math.min(1, (it.current || 0) / Math.max(1, it.target)) * 100) + '%';
-    bar.appendChild(d);
-    row.appendChild(bar);
+    // ⚠️ NEREDEYSE BOŞ SAYAÇ GÖSTERİLMEZ (5 Eki 2026). "356 / 1.000.000" gibi
+    // bir sayı, hemen üstteki "dünyanın her yerinden okuyanlarla" cümlesini
+    // yalanlıyor gibi duruyordu. Hedefin %10'una ulaşmamış ve henüz tur
+    // tamamlamamış zikirde sayı ve çubuk çizilmez; ad ve "Sayıma katıl" kalır.
+    // Hedefler DEĞİŞTİRİLMEZ (uygulamayla ortak) ve sayı UYDURULMAZ.
+    var quiet = !(it.rounds > 0) && (it.current || 0) < QUIET_FRAC * Math.max(1, it.target);
+    if (quiet) row.classList.add('quiet');
+    else {
+      var bar = el('div', 'bar');
+      var d = el('div', 'done');
+      d.style.width = (Math.min(1, (it.current || 0) / Math.max(1, it.target)) * 100) + '%';
+      bar.appendChild(d);
+      row.appendChild(bar);
 
-    var nums = el('div', 'znums');
-    var left = el('span');
-    left.appendChild(el('b', null, nf(it.current)));
-    left.appendChild(el('span', null, ' / ' + nf(it.target)));
-    nums.appendChild(left);
-    if (it.rounds > 0) nums.appendChild(el('span', null, fmt(T.zRounds, { n: nf(it.rounds) })));
-    row.appendChild(nums);
+      var nums = el('div', 'znums');
+      var left = el('span');
+      left.appendChild(el('b', null, nf(it.current)));
+      left.appendChild(el('span', null, ' / ' + nf(it.target)));
+      nums.appendChild(left);
+      if (it.rounds > 0) nums.appendChild(el('span', null, fmt(T.zRounds, { n: nf(it.rounds) })));
+      row.appendChild(nums);
+    }
 
     if (it.mine > 0) row.appendChild(el('div', 'zmine', fmt(T.zMine, { n: nf(it.mine) })));
 
     var b = el('button', 'primary', T.zAdd);
+    b.type = 'button';
+    // Altı düğmenin hepsi "Sayıma katıl" diyor; ekran okuyucu hangisi olduğunu bilsin.
+    b.setAttribute('aria-label', fmt(T.zAddFor, { n: txt[0] }));
     b.onclick = function () { openCounter(it); };
     row.appendChild(b);
     return row;
   }
+
+  // Sayaç bu oranın altındaysa (ve hiç tur tamamlanmadıysa) sayı gösterilmez.
+  // 0,02 yetmedi: "Fâtiha 3 / 41" (%7) ve "Hasbünallah 31 / 500" (%6) yine
+  // boş sayaç gibi okunuyordu (5 Eki 2026). Ad, anlam, Arapça ve düğme kalır.
+  var QUIET_FRAC = 0.1;
 
   var REDUCED = !!(window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -664,11 +745,16 @@ window.MHOrtakHatim = (function () {
 
   function tabsNode() {
     var w = el('div', 'tabs main');
+    // Bölmeli seçici (Zikir | Hatim): seçili bölme aria-pressed ile söylenir.
+    w.setAttribute('role', 'group');
+    w.setAttribute('aria-label', T.pageTitle);
     [['zikir', T.tabZikir], ['hatim', T.tabHatim]].forEach(function (p) {
       var b = el('button', tab === p[0] ? 'on' : '', p[1]);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', tab === p[0] ? 'true' : 'false');
       b.onclick = function () {
         if (tab === p[0]) return;
-        tab = p[0]; offer = null; chosenLen = null; zItem = null; filter = 'avail';
+        tab = p[0]; offer = null; chosenLen = null; zItem = null; filter = 'avail'; notice = null;
         mode = 'board';
         // ⚠️ URL'i yalnız kendi sayfasında yaz; ana sayfa kartı sekmesiz.
         if (CHROME) { try { history.replaceState(null, '', location.pathname + '?t=' + tab); } catch (e) {} }
@@ -685,7 +771,7 @@ window.MHOrtakHatim = (function () {
   function renderZikirTab() {
     mode = 'board';
     hideAppCta();
-    var st = stageEl; st.innerHTML = '';
+    var st = stageEl; clearStage();
     var mid = el('div', 'mid'); st.appendChild(mid);
     mid.appendChild(tabsNode());
 
@@ -711,7 +797,7 @@ window.MHOrtakHatim = (function () {
   function renderCounter(errMsg) {
     mode = 'count';
     hideAppCta();
-    var host = stageEl; host.innerHTML = '';
+    var host = stageEl; clearStage();
     var st = el('div', 'narrow'); host.appendChild(st);
     if (errMsg) st.appendChild(el('div', 'msg err', errMsg));
     var txt = dhikrText(zItem.slug);
@@ -771,7 +857,7 @@ window.MHOrtakHatim = (function () {
     mode = 'board';
     hideAppCta();
     var st = stageEl;
-    st.innerHTML = '';
+    clearStage();
 
     // ⚠️ Geniş ekranda ızgara genişler, ilerleme ve "aldığın bölümler" DAR
     // kalır: uzun satır okumayı zorlaştırır.
@@ -780,6 +866,12 @@ window.MHOrtakHatim = (function () {
     mid.appendChild(progressNode());
     var mn = myNode(); if (mn) mid.appendChild(mn);
     st.appendChild(mid);
+
+    if (notice) {
+      var nt = el('div', 'msg notice', notice);
+      nt.setAttribute('role', 'status');
+      var nw = el('div', 'mid'); nw.appendChild(nt); st.appendChild(nw);
+    }
 
     if (!board.active) { st.appendChild(el('div', 'msg', T.closed)); showAppCta(); return; }
 
@@ -814,7 +906,7 @@ window.MHOrtakHatim = (function () {
   function renderConfirm() {
     mode = 'confirm';
     hideAppCta();
-    var host = stageEl; host.innerHTML = '';
+    var host = stageEl; clearStage();
     var st = el('div', 'narrow'); host.appendChild(st);
     var maxLen = offer.end - offer.start + 1;
     if (chosenLen == null || chosenLen > maxLen) chosenLen = maxLen;
@@ -832,8 +924,12 @@ window.MHOrtakHatim = (function () {
       var amt = el('div', 'amt');
       amt.appendChild(el('div', 'lbl', T.amountLbl));
       var row = el('div', 'row');
+      row.setAttribute('role', 'group');
+      row.setAttribute('aria-label', T.amountLbl);
       opts.forEach(function (n) {
         var b = el('button', n === chosenLen ? 'on' : '', String(n));
+        b.type = 'button';
+        b.setAttribute('aria-pressed', n === chosenLen ? 'true' : 'false');
         b.onclick = function () { chosenLen = n; renderConfirm(); };
         row.appendChild(b);
       });
@@ -849,7 +945,7 @@ window.MHOrtakHatim = (function () {
 
   function renderDone(claim) {
     mode = 'done';
-    var host = stageEl; host.innerHTML = '';
+    var host = stageEl; clearStage();
     var st = el('div', 'narrow'); host.appendChild(st);
     st.appendChild(el('div', 'ok-title',
       fmt(T.entrustedU, { u: unitLabel(claim.start, claim.end) })));
@@ -909,7 +1005,7 @@ window.MHOrtakHatim = (function () {
     };
     box.appendChild(btn);
     var f = el('div', 'follow');
-    f.appendChild(el('span', null, T.followLine));
+    f.appendChild(el('span', null, T.followTitle));
     var row = el('span', 'soc');
     SOCIAL.forEach(function (sc) {
       var a = document.createElement('a');
@@ -949,8 +1045,22 @@ window.MHOrtakHatim = (function () {
     return tab === 'zikir' ? renderZikirTab() : renderBoard();
   }
 
+  /**
+   * Seçilen bölüm o arada başkasına gittiyse: tahta tazelenir ve not tahtanın
+   * üstünde DURUR ("Haritadan başka bir bölüm seç"). Bölüm kendiliğinden
+   * verilmez; metin de bunu vaat etmez.
+   */
+  function boardWithNotice(text) {
+    notice = text;
+    goBoard().then(function () {
+      var n = stageEl.querySelector('.notice');
+      if (n && n.scrollIntoView) n.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' });
+    });
+  }
+
   function pickGroup(g) {
     if (busy) return;
+    notice = null;
     busy = true;
     call('offer', { type: HATIM_TYPE, group: g }).then(function (r) {
       busy = false;
@@ -959,8 +1069,9 @@ window.MHOrtakHatim = (function () {
         return;
       }
       var m = errText(r.body && r.body.error);
+      if (m[1]) { boardWithNotice(m[0]); return; }
       stageMessage(m[0], m[0] === T.error);
-      if (m[1]) setTimeout(goBoard, 900); else showAppCta();
+      showAppCta();
     }).catch(function () { busy = false; stageMessage(T.error, true); });
   }
 
@@ -974,8 +1085,9 @@ window.MHOrtakHatim = (function () {
         busy = false;
         if (r.status === 200 && r.body.ok) { renderDone(r.body.claim); loadBoard(); return; }
         var m = errText(r.body && r.body.error);
+        if (m[1]) { boardWithNotice(m[0]); return; }
         stageMessage(m[0], m[0] === T.error);
-        if (m[1]) setTimeout(goBoard, 900); else showAppCta();
+        showAppCta();
       })
       .catch(function () { busy = false; stageMessage(T.error, true); });
   }
@@ -1048,16 +1160,61 @@ window.MHOrtakHatim = (function () {
     }, RT_WINDOW - (now - rtLast));
   }
 
+  // Supabase istemcisi YALNIZ canlı senkron için ve KENDİ SUNUCUMUZDAN (CDN
+  // her ziyaretçinin IP'sini üçüncü tarafa verirdi; sürüm dondurulmuş). 5 Eki
+  // 2026'dan beri sayfa onu BEKLEMİYOR: 212 KB'lik dosya eskiden bileşenden
+  // önce senkron yükleniyor, tahtanın ilk çizimini geciktiriyordu. Artık ilk
+  // çizimden SONRA yüklenir. ⚠️ Yol "assets/" altında: Jekyll vendor/'ü atıyor.
+  var SUPA_JS = '/assets/vendor/supabase-js-2.112.4.js';
+  var supaLoading = null;
+  function loadSupabase() {
+    if (window.supabase && window.supabase.createClient) return Promise.resolve(window.supabase);
+    if (supaLoading) return supaLoading;
+    supaLoading = new Promise(function (resolve, reject) {
+      var sc = document.createElement('script');
+      sc.src = SUPA_JS; sc.async = true;
+      sc.onload = function () {
+        if (window.supabase && window.supabase.createClient) resolve(window.supabase);
+        else { supaLoading = null; reject(new Error('supabase')); }
+      };
+      sc.onerror = function () { supaLoading = null; reject(new Error('supabase')); };
+      document.head.appendChild(sc);
+    });
+    return supaLoading;
+  }
+
+  // Kanal ya da kütüphane gelmezse YENİDEN DENENİR (artan bekleme, en çok
+  // RT_MAX_TRIES kez); o arada 20 sn'lik yoklama zaten sayıları tazeliyor.
+  var RT_MAX_TRIES = 6, rtClient = null, rtLibTries = 0;
+  function rtDelay(n) { return Math.min(60000, 2000 * Math.pow(2, n)); }
+
+  function subscribeTopic(topic, eventName, tries) {
+    var ch = rtClient.channel(topic).on('broadcast', { event: eventName }, onSignal);
+    var handled = false;
+    ch.subscribe(function (status) {
+      if (handled || (status !== 'CHANNEL_ERROR' && status !== 'TIMED_OUT')) return;
+      handled = true;
+      // ⚠️ Yalnız hata ve zaman aşımında: removeChannel kendisi 'CLOSED' basar,
+      // ona da yeniden abone olunsaydı döngü kurulurdu.
+      try { rtClient.removeChannel(ch); } catch (e) { /* zaten kapalı */ }
+      if (tries + 1 < RT_MAX_TRIES) {
+        setTimeout(function () { subscribeTopic(topic, eventName, tries + 1); }, rtDelay(tries));
+      }
+    });
+  }
+
   function startRealtime() {
-    try {
-      if (!window.supabase || !window.supabase.createClient) return;
-      var c = window.supabase.createClient(SUPA_URL, SUPA_ANON);
+    loadSupabase().then(function (sb) {
+      if (!rtClient) rtClient = sb.createClient(SUPA_URL, SUPA_ANON);
       // Üç kaynak, üç kanal. Sekme değişince yeniden abone olmuyoruz: sinyal
       // zaten yalnız "tazele" diyor ve refresh() aktif sekmeyi çekiyor.
-      c.channel('global:hatim:quran').on('broadcast', { event:'pool_change' }, onSignal).subscribe();
-      c.channel('global:hatim:cevsen').on('broadcast', { event:'pool_change' }, onSignal).subscribe();
-      c.channel('global:dhikr').on('broadcast', { event:'dhikr_change' }, onSignal).subscribe();
-    } catch (e) { /* realtime yoksa yoklama yeter */ }
+      subscribeTopic('global:hatim:quran', 'pool_change', 0);
+      subscribeTopic('global:hatim:cevsen', 'pool_change', 0);
+      subscribeTopic('global:dhikr', 'dhikr_change', 0);
+    }).catch(function () {
+      // Kütüphane yüklenemedi (ağ koptu vb.): biraz sonra yeniden.
+      if (++rtLibTries < RT_MAX_TRIES) setTimeout(startRealtime, rtDelay(rtLibTries));
+    });
   }
 
   // Ana sayfada dil seçici var: değişince bileşen yeniden kurulur. Kendi
@@ -1066,7 +1223,7 @@ window.MHOrtakHatim = (function () {
     var next = String((e && e.detail) || '').slice(0, 2);
     if (!S[next] || next === lang) return;
     host.innerHTML = '';
-    mount(host, { chrome: CHROME, lang: next });
+    mount(host, { chrome: CHROME, lang: next, staticShell: STATIC_SHELL });
   });
 
   // ── Ana sayfa kartı ───────────────────────────────────────────────────────
@@ -1132,13 +1289,22 @@ window.MHOrtakHatim = (function () {
   // ── Açılış ────────────────────────────────────────────────────────────────
   if (!CHROME) { renderCard(); return; }
 
-  stageMessage(T.loading);
+  // HTML iskeleti varsa "Yükleniyor" YAZILMAZ: iskelet ilk veriye kadar yerinde
+  // kalır, sonra gerçek içerikle değişir (ilk yüklemede sayfa kaymasın).
+  if (!SKELETON) stageMessage(T.loading);
 
-  fetch('/data/quran-page-refs.json')
+  // Sûre künyeleri (yerel, küçük) ile tahta PARALEL çekilir; eskiden tahta
+  // isteği künyeler inene kadar bekliyordu.
+  var refsP = fetch('/data/quran-page-refs.json')
     .then(function (r) { return r.json(); })
     .then(function (j) { REFS = j.refs; NAMES = j.names; })
-    .catch(function () { /* sûre adı gösterilemezse sayfa yine çalışır */ })
-    .then(function () { return refresh(); })
+    .catch(function () { /* sûre adı gösterilemezse sayfa yine çalışır */ });
+
+  Promise.all([loadBoard(), refsP])
+    .then(function () { renderAnyBoard(); }, function (e) {
+      stageMessage((e && e.userText) || T.error, !e || !e.userText);
+      showAppCta();
+    })
     .then(function () {
       if (CHROME) {
         startRealtime();

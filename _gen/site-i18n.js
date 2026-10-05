@@ -5,15 +5,20 @@
  * (dil sayfalari, /yeni/, /app/) onu oradan sokuyordu. Ana sayfa yeni tasarima
  * gecince index.html URETILEN bir dosya oldu; sozluk buraya tasindi.
  *
- * Okuyanlar: _gen/build-home.mjs (index.html, tr/index.html) ve
- * _gen/build-app.mjs (/app/ sayfalari). Ikisi de node:vm ile calistirir,
- * kopya tutmaz. Anahtar kumesi bes dilde ayni olmali (build-home kontrol eder).
- * Duzeltme yaptiktan sonra iki ureticiyi de calistir.
+ * Okuyanlar: _gen/build-home.mjs (ana sayfalar), _gen/build-vakit.mjs ve
+ * _gen/build-rehber.mjs (yalniz ortak kabuk metinleri). Hepsi node:vm ile
+ * calistirir, kopya tutmaz. Duzeltme yaptiktan sonra ureticileri calistir.
+ *
+ * title/desc: ana sayfanin <title>, meta aciklama, og ve WebPage metni.
+ * 5 Eki 2026: aranan sozcuklere cekildi (TR "hatim uygulamasi", EN "group
+ * Quran khatam", DE "Khatm", FR "khatma", AR "ختمة جماعية"). Sinir: title <= 60,
+ * desc <= 155 karakter (build-home kontrol eder). Rehber ve vakit sayfalarinin
+ * basliklariyla AYNI olmasin (_gen/rehber/icerik/*.mjs, _gen/build-vakit.mjs).
  */
 var I18N = {
   tr: {
-    title: "Manevi Halka: birlikte hatim, zikir ve namaz vakitleri",
-    desc: "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve dualar tek uygulamada.",
+    title: "Manevi Halka: hatim uygulaması, zikir ve namaz vakitleri",
+    desc: "Ailen ve dostlarınla toplu hatim başlat, cüzler kendiliğinden dağıtılsın. Zikirmatik, kıble ve Diyanet takvimine göre namaz vakitleri de aynı uygulamada.",
     h1sub: "Birlikte hatim, zikir ve dua halkaları",
     taglineSub: "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Namaz vakitleri, kıble ve zikir sayacı da aynı uygulamada.",
     introTitle: "Manevi Halka uygulaması nedir",
@@ -39,8 +44,8 @@ var I18N = {
     suffix: ""
   },
   en: {
-    title: "Manevi Halka: shared Qur'an khatm, dhikr and prayer times",
-    desc: "Share the juz with your circle, read in turns and complete the khatm together. Prayer times from the Diyanet calendar, qibla, dhikr counter and duas, in one app.",
+    title: "Manevi Halka: Quran khatam app, dhikr and prayer times",
+    desc: "Start a group Quran khatam with family or friends: the app shares out the juz and tracks each round. Dhikr counter, prayer times and qibla included.",
     h1sub: "Shared khatm, dhikr and dua circles",
     taglineSub: "Share the juz with your circle, read in turns, complete the khatm together. Prayer times, qibla and a dhikr counter are in the same app.",
     introTitle: "What is the Manevi Halka app",
@@ -66,8 +71,8 @@ var I18N = {
     suffix: "-en"
   },
   de: {
-    title: "Manevi Halka: Chatma, Dhikr und Gebetszeiten",
-    desc: "Teile die Dschuz in deinem Kreis, lest reihum und vollendet die Chatma gemeinsam. Gebetszeiten nach dem Diyanet-Kalender, Qibla, Dhikr-Zähler und Bittgebete in einer App.",
+    title: "Manevi Halka: Khatm-App, Dhikr-Zähler und Gebetszeiten",
+    desc: "Teile die Khatm mit Familie und Freunden: Die App verteilt die Dschuz und begleitet jede Runde. Dazu Dhikr-Zähler, Gebetszeiten und Qibla.",
     h1sub: "Chatma, Dhikr und Bittgebete gemeinsam",
     taglineSub: "Teile die Dschuz in deinem Kreis, lest reihum, vollendet die Chatma gemeinsam. Gebetszeiten, Qibla und Dhikr-Zähler sind in derselben App.",
     introTitle: "Was ist die Manevi-Halka-App",
@@ -93,8 +98,8 @@ var I18N = {
     suffix: "-de"
   },
   fr: {
-    title: "Manevi Halka : khatma, dhikr et heures de prière",
-    desc: "Répartis les juz dans ton cercle, lisez à tour de rôle et terminez la khatma ensemble. Heures de prière selon le calendrier de la Diyanet, qibla, compteur de dhikr et invocations dans une seule application.",
+    title: "Manevi Halka : appli de khatma, dhikr et horaires de prière",
+    desc: "Lis le Coran en groupe avec ta famille ou tes amis : l'appli répartit les juz de chaque khatma. Compteur de dhikr, horaires de prière et qibla inclus.",
     h1sub: "Khatma, dhikr et invocations, ensemble",
     taglineSub: "Répartis les juz dans ton cercle, lisez à tour de rôle, terminez la khatma ensemble. Les heures de prière, la qibla et un compteur de dhikr sont dans la même application.",
     introTitle: "Qu'est-ce que l'application Manevi Halka",
@@ -120,13 +125,13 @@ var I18N = {
     suffix: "-fr"
   },
   ar: {
-    title: "Manevi Halka: ختم القرآن والذكر ومواقيت الصلاة",
-    desc: "وزّع الأجزاء على حلقتك، واقرأوا بالتناوب، وأتمّوا الختمة معًا. مواقيت الصلاة وفق تقويم ديانت، والقبلة، وعدّاد الذكر، والأدعية في تطبيق واحد.",
+    title: "Manevi Halka: تطبيق ختم القرآن والذكر ومواقيت الصلاة",
+    desc: "أنشئ ختمة قرآن جماعية مع عائلتك وأصدقائك: يوزّع التطبيق الأجزاء ويتابع كل جولة حتى تكتمل الختمة. وفيه عدّاد الذكر ومواقيت الصلاة والقبلة.",
     h1sub: "حلقات ختم القرآن والذكر والدعاء معًا",
     taglineSub: "وزّع الأجزاء على حلقتك، واقرأوا بالتناوب، وأتمّوا الختمة معًا. مواقيت الصلاة والقبلة وعدّاد الذكر في التطبيق نفسه.",
     introTitle: "ما هو تطبيق Manevi Halka",
     ccTitle: "القراءة المشتركة",
-    ccLead: ".ختمة مستمرة مع قارئين من كل أنحاء العالم. تكفّل بجزء أو شارك في الذكر المشترك",
+    ccLead: "ختمة مستمرة مع قارئين من كل أنحاء العالم. تكفّل بجزء أو شارك في الذكر المشترك.",
     ccNote: "لا حاجة إلى حساب",
     heroInviteTitle: "شارك في الختمة المشتركة",
     heroInviteSub: "ببضع صفحات، مع قرّاء من أنحاء العالم",
@@ -142,7 +147,7 @@ var I18N = {
     quoteText: "وحدة القلوب خيرٌ من وحدة الألسنة.",
     quoteSource: "جلال الدين الرومي، المثنوي",
     privacy: "سياسة الخصوصية", terms: "شروط الاستخدام",
-    deleteAcc: "حذف الحساب", contact: "تواصل معنا",
+    deleteAcc: "حذف الحساب", contact: "للتواصل",
     itaniCredit: "الترجمة الإنجليزية: طلال إيتاني،",
     suffix: "-ar"
   }

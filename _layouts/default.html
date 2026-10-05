@@ -20,7 +20,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ page.title }} · Manevi Halka</title>
-<meta name="description" content="{{ page.title }} · Manevi Halka">
+{%- comment -%} Aciklama (5 Eki 2026): front matter'daki `description` (sayfanin kendi dilinde, en fazla 155 karakter).
+     Yoksa eski davranis: baslik + marka. Ayni metin og:description ve twitter:description'a da gider. {%- endcomment -%}
+{%- assign desc = page.description | default: "" | strip -%}
+{%- if desc == "" -%}{%- capture desc -%}{{ page.title }} · Manevi Halka{%- endcapture -%}{%- endif -%}
+{%- comment -%} Paylasim gorseli ve og:locale sayfanin dilinden (ana sayfalarla ayni dosyalar ve kodlar).
+     tr icin og-cover.jpg (og-cover-tr.jpg ile birebir ayni dosya); taninmayan dil de oraya duser. {%- endcomment -%}
+{%- assign og_img = "og-cover.jpg" -%}
+{%- if L == "en" or L == "de" or L == "fr" or L == "ar" -%}{%- assign og_img = "og-cover-" | append: L | append: ".jpg" -%}{%- endif -%}
+{%- assign og_loc = "tr_TR" -%}
+{%- if L == "en" -%}{%- assign og_loc = "en_US" -%}
+{%- elsif L == "de" -%}{%- assign og_loc = "de_DE" -%}
+{%- elsif L == "fr" -%}{%- assign og_loc = "fr_FR" -%}
+{%- elsif L == "ar" -%}{%- assign og_loc = "ar_AR" -%}
+{%- endif %}
+<meta name="description" content="{{ desc | escape }}">
 {%- comment -%} Kanonik adres .html'li: site haritasi, dil baglantilari ve uygulama (lib/legal.ts) bu bicimi
      kullaniyor. page.url Jekyll'da uzantisiz geliyordu, Google iki adresi ayri sayip ikisini de bekletti. {%- endcomment %}
 <link rel="canonical" href="{{ site.url }}/{{ url }}.html">
@@ -34,8 +48,18 @@
 {%- endif %}
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{ page.title }} · Manevi Halka">
-<meta property="og:image" content="{{ site.url }}/og-cover.jpg">
+<meta property="og:description" content="{{ desc | escape }}">
+<meta property="og:locale" content="{{ og_loc }}">
+{%- assign all_locs = "tr_TR,en_US,de_DE,fr_FR,ar_AR" | split: "," -%}
+{%- for loc in all_locs -%}{%- if loc != og_loc %}
+<meta property="og:locale:alternate" content="{{ loc }}">
+{%- endif -%}{%- endfor %}
+<meta property="og:image" content="{{ site.url }}/{{ og_img }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="{{ site.url }}/{{ url }}.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="{{ desc | escape }}">
 <meta name="theme-color" content="#1e4d35">
 <meta name="apple-itunes-app" content="app-id=6760654292">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -292,7 +316,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <nav aria-label="{{ C.sections | escape }}">
       <a href="{{ C.home }}">{{ C.app }}</a>
       <a href="{{ C.times }}">{{ C.navTimes }}</a>
-      <a href="/ortak-okuma.html">{{ C.reading }}</a>
+      <a href="{{ C.readingHref }}">{{ C.reading }}</a>
       <a href="{{ C.guidesHref }}">{{ C.guides }}</a>
     </nav>
     <div class="tools">
@@ -342,7 +366,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <nav class="foot-links">
       <a href="{{ C.home }}">{{ C.app }}</a>
       <a href="{{ C.times }}">{{ C.navTimes }}</a>
-      <a href="/ortak-okuma.html">{{ C.reading }}</a>
+      <a href="{{ C.readingHref }}">{{ C.reading }}</a>
       <a href="{{ C.guidesHref }}">{{ C.guides }}</a>
       <a href="/privacy{{ suffix }}.html"{% if base == "privacy" %} aria-current="page"{% endif %}>{{ C.privacy }}</a>
       <a href="/terms{{ suffix }}.html"{% if base == "terms" %} aria-current="page"{% endif %}>{{ C.terms }}</a>

@@ -23,7 +23,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
-import { SITE, DILLER, EV, VAKIT, REHBER, OG_LOCALE, dosyaYolu, tamAdres } from "./site-urls.mjs";
+import { SITE, DILLER, EV, VAKIT, REHBER, ORTAK, OG_LOCALE, dosyaYolu, tamAdres } from "./site-urls.mjs";
 
 const KOK = dirname(dirname(fileURLToPath(import.meta.url)));
 const KONTROL = process.argv.includes("--check");
@@ -39,7 +39,7 @@ const OZEL = {
   pageDesc: { tr: "Bulunduğun şehir için bugünün namaz vakitleri ve 30 günlük takvim, Diyanet takvimine göre. Hicri tarih ve dini günler de burada.",
     en: "Today's prayer times for your city and a 30-day calendar, based on the Diyanet calendar. With the Hijri date and religious days.",
     de: "Die heutigen Gebetszeiten für deine Stadt und ein 30-Tage-Kalender nach dem Diyanet-Kalender. Mit Hidschri-Datum und religiösen Tagen.",
-    fr: "Les horaires de prière du jour pour ta ville et un calendrier de 30 jours, selon le calendrier de la Diyanet. Avec la date de l'Hégire et les jours religieux.",
+    fr: "Les horaires de prière du jour pour ta ville et un calendrier de 30 jours selon la Diyanet, avec la date de l'Hégire et les jours religieux.",
     ar: "مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية." },
   vTitle: { tr: "Namaz vakitleri", en: "Prayer times", de: "Gebetszeiten", fr: "Horaires de prière", ar: "مواقيت الصلاة" },
   // Namaz ayetinin ust etiketi: uygulamadaki tesvik kartlariyla ayni sozcukler (practice.encLabelAyah)
@@ -63,6 +63,17 @@ const OZEL = {
   yNavSections: { tr: "Bölümler", en: "Sections", de: "Bereiche", fr: "Sections", ar: "الأقسام" },
   ySocialTitle: { tr: "Halkayla bağlantıda kal", en: "Stay close to the circle", de: "Bleib mit dem Kreis verbunden",
     fr: "Reste lié au cercle", ar: "ابقَ على صلة بالحلقة" },
+  // Dil dugmesinin erisilebilir adi: ana sayfadaki dil dugmesiyle ayni sozcukler (build-home.mjs langAria)
+  langAria: { tr: "Dil", en: "Language", de: "Sprache", fr: "Langue", ar: "اللغة" },
+  // Ekran okuyucu icin halkanin sabit cumlesi (#ringStatus). Saniyelik sayac okunmaz; cumle yalniz
+  // vakit degisince degisir. {name} vakit adi (mh-dynamic PRAYER_STRINGS), {time} sehrin saati.
+  // Saatten sonra Turkce ek yok (okunusa gore degisir: 18:40'ta, 13:05'te), iki nokta kullanildi.
+  vSrNow: { tr: "Şu anki vakit: {name}. Vaktin çıkışı: {time}.", en: "Current prayer time: {name}. It ends at {time}.",
+    de: "Aktuelle Gebetszeit: {name}. Sie endet um {time} Uhr.", fr: "Heure de prière actuelle : {name}. Elle se termine à {time}.",
+    ar: "وقت الصلاة الحالي: {name}، وينتهي الساعة {time}." },
+  vSrNext: { tr: "Sıradaki vakit: {name}. Vaktin girişi: {time}.", en: "Next prayer time: {name}. It begins at {time}.",
+    de: "Nächste Gebetszeit: {name}. Sie beginnt um {time} Uhr.", fr: "Prochaine heure de prière : {name}. Elle commence à {time}.",
+    ar: "وقت الصلاة التالي: {name}، ويدخل الساعة {time}." },
   ySocialText: { tr: "Günün ayeti her sabah, kandil gecelerinde hatırlatma.",
     en: "The verse of the day every morning, reminders on the blessed nights.",
     de: "Jeden Morgen der Vers des Tages, Erinnerungen in den gesegneten Nächten.",
@@ -76,11 +87,35 @@ vm.createContext(kutu);
 vm.runInContext(readFileSync(join(KOK, "_gen", "site-i18n.js"), "utf8"), kutu);
 const I18N = kutu.I18N;
 if (!I18N) hata("_gen/site-i18n.js I18N tanimlamiyor");
+// ─── vakit motorunun metinleri (js/mh-dynamic.js, TEK KAYNAK) ─────────────────
+// Sayfanin ilk karesi (yer tutucu vakit satirlari, takvim dugmesi, secici basligi, dugme adlari)
+// motorun kendi metinleriyle yazilir: veri gelince ayni metin yeniden yazilir, kutu boyu degismez.
+// Ikinci kopya tutulmaz; nesneler mh-dynamic.js'ten okunur, bulunamazsa uretim durur.
+const MOTOR = readFileSync(join(KOK, "js", "mh-dynamic.js"), "utf8");
+function motorNesnesi(ad) {
+  const bas = MOTOR.indexOf(`  var ${ad} = {`);
+  const son = bas < 0 ? -1 : MOTOR.indexOf("\n  };", bas);
+  if (bas < 0 || son < 0) hata(`js/mh-dynamic.js: var ${ad} bulunamadi`);
+  try { return vm.runInNewContext("(" + MOTOR.slice(MOTOR.indexOf("{", bas), son + 4) + ")"); }
+  catch (e) { return hata(`js/mh-dynamic.js: ${ad} okunamadi (${e.message})`); }
+}
+const VAKIT_ADLARI = motorNesnesi("PRAYER_STRINGS");
+const MOTOR_METIN = motorNesnesi("M");
+const VAKIT_ANAHTARLARI = ["fajr", "sunrise", "dhuhr", "asr", "maghrib", "isha"];
+const MOTOR_ANAHTARLARI = ["themeToggle", "useLocation", "close", "pickerTitle", "monthShow", "searchCity"];
+
 const sozluk = {};
 for (const d of DILLER) {
   sozluk[d] = {};
   for (const k of ANAHTARLAR) { if (I18N[d][k] == null) hata(`I18N.${d}.${k} yok`); sozluk[d][k] = I18N[d][k]; }
   for (const [k, v] of Object.entries(OZEL)) { if (v[d] == null) hata(`OZEL.${k}.${d} yok`); sozluk[d][k] = v[d]; }
+  for (const k of MOTOR_ANAHTARLARI) {
+    const v = MOTOR_METIN[d] && MOTOR_METIN[d][k];
+    if (v == null) hata(`mh-dynamic M.${d}.${k} yok`);
+    sozluk[d][k] = v;
+  }
+  // Arama kutusunun adi: yer tutucudaki uc nokta olmadan ("Sehir ara...")
+  sozluk[d].searchCityLabel = sozluk[d].searchCity.replace(/\s*(\.\.\.|…)$/, "");
   sozluk[d].title = OZEL.pageTitle[d];
   sozluk[d].desc = OZEL.pageDesc[d];
 }
@@ -104,7 +139,7 @@ const yonlendir = (harita) => `<script>
   var l = null;
   try { l = localStorage.getItem("mh_lang"); } catch (e) { /* gizli mod */ }
   if (!l) { var n = (navigator.languages && navigator.languages[0]) || navigator.language || ""; l = String(n).slice(0, 2).toLowerCase(); }
-  if (M[l]) location.replace(M[l] + location.hash);
+  if (M[l]) location.replace(M[l] + location.search + location.hash);
 })();
 </script>`;
 
@@ -122,6 +157,7 @@ function basBilgisi(dil) {
 ${hreflang}
 <meta name="apple-itunes-app" content="app-id=6760654292">
 <meta name="theme-color" content="#1e4d35">
+<link rel="preload" href="/js/mh-dynamic.js" as="script">
 <link rel="preconnect" href="https://ezanvakti.emushaf.net" crossorigin>
 <link rel="dns-prefetch" href="https://ezanvakti.emushaf.net">
 <meta property="og:title" content="${kacir(t.title)}">
@@ -191,11 +227,20 @@ function sayfa(dil) {
   s = degistir(s, '<span id="langCode">EN</span>', `<span id="langCode">${dil.toUpperCase()}</span>`, 1, "langCode");
   s = degistir(s, 'href="/" data-home-link', `href="${EV[dil]}" data-home-link`, 4, "ana sayfa baglantilari");
   s = degistir(s, 'href="/guides/" data-guides-link', `href="${REHBER[dil]}" data-guides-link`, 2, "rehber baglantilari");
+  s = degistir(s, 'href="/ortak-okuma.html" data-reading-link', `href="${ORTAK[dil]}" data-reading-link`, 2, "ortak okuma baglantilari");
   s = degistir(s, `utm_content%3Dtimes"`, `utm_content%3Dtimes-${dil}"`, 1, "play etiketi");
+
+  // Yer tutucu vakit satirlari: gercek adlar, saat 00:00 (rakamlar esit genislikte), gorunmez.
+  const adlar = (VAKIT_ADLARI[dil] || hata(`PRAYER_STRINGS.${dil} yok`)).names;
+  s = degistir(s, "<!--__TIMES_PH__-->", VAKIT_ANAHTARLARI.map((k) => {
+    if (!adlar[k]) hata(`PRAYER_STRINGS.${dil}.names.${k} yok`);
+    return `<li data-k="${k}"${k === "sunrise" ? ' class="sun"' : ""}><span>${kacirMetin(adlar[k])}</span><b>00:00</b></li>`;
+  }).join(""), 1, "vakit yer tutucu");
 
   s = degistir(s, "/*__I18N__*/null", JSON.stringify({ [dil]: t }).replace(/</g, "\\u003c"), 1, "sozluk");
   s = degistir(s, "/*__PAGE_LANG__*/null", JSON.stringify(dil), 1, "sayfa dili");
   s = degistir(s, "/*__VAKIT_URL__*/null", JSON.stringify(VAKIT), 1, "vakit adresleri");
+  s = degistir(s, "/*__VK_LABEL__*/null", JSON.stringify(t.vAyahLabel).replace(/</g, "\\u003c"), 1, "ayet etiketi");
   s = degistir(s, "/*__NAMAZ_AYET__*/null", JSON.stringify(namazAyetleri(dil)).replace(/</g, "\\u003c"), 1, "namaz ayetleri");
 
   if (/__[A-Z_]+__/.test(s.replace(/\/\*__[A-Z_]+__\*\//g, ""))) hata(`${dil}: doldurulmamis yer tutucu kaldi`);

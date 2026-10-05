@@ -30,7 +30,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import vm from "node:vm";
-import { SITE, DILLER, EV, VAKIT, OG_LOCALE, DIL_ADI, REHBER, REHBER_SAYFA, rehberAdresi, dosyaYolu, tamAdres } from "./site-urls.mjs";
+import { SITE, DILLER, EV, VAKIT, ORTAK, OG_LOCALE, DIL_ADI, REHBER, REHBER_SAYFA, rehberAdresi, dosyaYolu, tamAdres } from "./site-urls.mjs";
 import { kit, ikonSprite, e, IKON } from "./rehber/sahne.mjs";
 import { SAHNE as SAHNE_TABAN, turHalkasi } from "./rehber/sahneler.mjs";
 import { readdirSync } from "node:fs";
@@ -86,6 +86,8 @@ const OZEL = {
     fr: "Télécharge Manevi Halka gratuitement, crée ton cercle et partage le lien d’invitation.",
     ar: "حمّل Manevi Halka مجانًا، وأنشئ حلقتك، وشارك رابط الدعوة." },
   bolum: { tr: "Bölüm", en: "Part", de: "Teil", fr: "Partie", ar: "الجزء" },
+  // Indirme bandinda magaza dugmelerinin yanindaki QR'in yazisi (yalniz genis ekran + fare; ana sayfayla ayni metin).
+  qrCaption: { tr: "Telefonunla okut", en: "Scan with your phone", de: "Mit deinem Handy scannen", fr: "Scanne avec ton téléphone", ar: "امسح الرمز بهاتفك" },
 };
 const IOS = "https://apps.apple.com/app/manevi-halka/id6760654292";
 const play = (yer, dil) => "https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=" +
@@ -328,10 +330,15 @@ function basBilgisi(id, dil) {
   const yonlendir = dil === "en" ? `<script>
 (function () {
   var M = ${JSON.stringify(Object.fromEntries(diller.filter((d) => d !== "en").map((d) => [d, adres(id, d)])))};
+  var s = location.search || "";
+  // Uygulama ici kip (?app=1, ya da bu pencerede daha once acildi): dili uygulama secti, adres kalir.
+  // Yonlendirme ?app=1'i dusururse sayfa menu, altbilgi ve magaza dugmeleriyle acilirdi (Apple 2.3.10).
+  if (/[?&]app=1(&|$)/.test(s)) return;
+  try { if (sessionStorage.getItem("mh_app") === "1") return; } catch (e) { /* gizli mod */ }
   var l = null;
   try { l = localStorage.getItem("mh_lang"); } catch (e) { /* gizli mod */ }
   if (!l) { var n = (navigator.languages && navigator.languages[0]) || navigator.language || ""; l = String(n).slice(0, 2).toLowerCase(); }
-  if (M[l]) location.replace(M[l] + location.hash);
+  if (M[l]) location.replace(M[l] + s + location.hash);
 })();
 </script>\n` : "";
   return `${yonlendir}<title>${kacirMetin(c.title)}</title>
@@ -447,7 +454,7 @@ function sayfa(id, dil, og = false) {
   }).join("");
   const ham = {
     lang: dil, dir: dil === "ar" ? "rtl" : "ltr",
-    homeHref: EV[dil], vakitHref: VAKIT[dil], hubHref: REHBER[dil], hubCurrent: id === "merkez" ? ' aria-current="page"' : "",
+    homeHref: EV[dil], vakitHref: VAKIT[dil], readingHref: ORTAK[dil], hubHref: REHBER[dil], hubCurrent: id === "merkez" ? ' aria-current="page"' : "",
     main, sprite: ikonSprite(K.kullanilan), extraCss: EK_CSS,
     langMenuHtml: diller(), langsHtml: diller(), langCode: dil.toUpperCase(),
     iosHref: IOS, androidHref: play(`guide-${id}`, dil),
@@ -456,7 +463,7 @@ function sayfa(id, dil, og = false) {
   const metin = {
     navAria: ch.sections, navApp: ch.app, navTimes: ch.navTimes, navReading: ch.reading, navGuides: OZEL.navGuides[dil],
     langAria: ch.language, themeToDark: ch.toDark, getApp: OZEL.getApp[dil], get: s.get,
-    ctaTitle: (c.cta && c.cta.baslik) || OZEL.ctaTitle[dil], ctaText: (c.cta && c.cta.metin) || OZEL.ctaText[dil],
+    ctaTitle: (c.cta && c.cta.baslik) || OZEL.ctaTitle[dil], ctaText: (c.cta && c.cta.metin) || OZEL.ctaText[dil], qrCaption: OZEL.qrCaption[dil],
     socialTitle: ch.socialTitle, socialText: ch.socialText, privacy: ch.privacy, terms: ch.terms, deleteAcc: ch.deleteAcc, contact: ch.contact,
   };
   const yok = new Set();

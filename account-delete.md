@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Hesap Silme
+description: "Manevi Halka hesabını uygulamadan ya da e-postayla nasıl sileceğin, 30 günlük geri alma süresi ve hangi verilerin silinip hangilerinin saklanabileceği."
 lang: tr
 ---
 

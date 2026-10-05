@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Nutzungsbedingungen
+description: "Die Regeln für die Nutzung von Manevi Halka: dein Konto, deine Inhalte und Moderation, Premium-Abo, Kündigung, Erstattung und Haftung."
 lang: de
 ---
 

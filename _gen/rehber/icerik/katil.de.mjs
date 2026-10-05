@@ -7,7 +7,7 @@ export default {
   h1: "So trittst du einem Kreis per Link oder Code bei",
   crumb: "Einem Kreis beitreten",
   eyebrow: "Schritt-für-Schritt-Anleitung",
-  lead: "Du hast eine Einladung zu einer Khatm (Hatim) oder einem Dhikr bekommen? Dann bist du hier richtig. Hast du die App, genügt es, den Link anzutippen. Sonst lädst du die App und trittst mit dem Einladungscode bei. Einem einmaligen Kreis kannst du auch im Browser beitreten.",
+  lead: "Du hast eine Einladung zu einer Khatm (in der App: Chatma, auf Türkisch Hatim) oder einem Dhikr bekommen? Dann bist du hier richtig. Hast du die App, genügt es, den Link anzutippen. Sonst lädst du die App und trittst mit dem Einladungscode bei. Einem einmaligen Kreis kannst du auch im Browser beitreten.",
   meta: ["Etwa 1 Minute", "Keine E-Mail, kein Passwort", "Beitreten kostenlos"],
   film: { sahne: "film-katil", cap: "Link antippen, auf [[joinGroup.join]] tippen, Namen eingeben. Schon bist du im Kreis." },
 

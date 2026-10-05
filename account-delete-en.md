@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Account Deletion
+description: "How to delete your Manevi Halka account in the app or by email, the 30-day recovery window, and which data is deleted and which may be kept."
 lang: en
 ---
 

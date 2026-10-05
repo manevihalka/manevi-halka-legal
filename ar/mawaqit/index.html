@@ -26,6 +26,7 @@
 <link rel="alternate" hreflang="x-default" href="https://manevihalka.app/prayer-times/">
 <meta name="apple-itunes-app" content="app-id=6760654292">
 <meta name="theme-color" content="#1e4d35">
+<link rel="preload" href="/js/mh-dynamic.js" as="script">
 <link rel="preconnect" href="https://ezanvakti.emushaf.net" crossorigin>
 <link rel="dns-prefetch" href="https://ezanvakti.emushaf.net">
 <meta property="og:title" content="مواقيت الصلاة · Manevi Halka">
@@ -62,6 +63,11 @@
 </script>
 <script>/* sayfa gecisi: onceki sayfada isaret gorunurken gelindiyse ilk kare isaretle cizilir (nav-loader.html) */
 try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.removeItem("mh-land");if(L&&L.p===location.pathname&&Date.now()-L.t<15000)document.documentElement.classList.add("mh-land")}catch(e){}</script>
+<!-- Girisin yazi tipleri erken iner (Marcellus 14 KB, Onest 34 KB; ikisi de her dilde kullaniliyor): gec geldiklerinde
+     baslik ve alt yazi yeniden kiriliyor, giris (genis ekranda altindaki magaza dugmeleri de) kayiyordu (5 Eki 2026
+     olculdu). crossorigin sart: yazi tipi istegi CORS kipinde, yoksa dosya iki kez iner. -->
+<link rel="preload" href="/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>
 (function () {
   var t = null;
@@ -72,6 +78,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     } catch (e) { t = "light"; }
   }
   document.documentElement.setAttribute("data-theme", t);
+  // Magaza dugmeleri: ziyaretcinin magazasi once ve dolu, oteki ikincil (cizgili). Karar dugmeler cizilmeden
+  // BURADA verilir, sira ve gorunum yalniz CSS'te (.is-android / .is-ios). js/mh-dynamic.js initStoreButtons
+  // ayni siniflari okur (.secondary ve DOM sirasi icin); algilama orada da AYNI (Android once bakilir, iPadOS
+  // "masaustu site" kipi MacIntel + cok dokunmali). Eskiden yalniz o betik vardi ve sayfa sonunda calistigi icin
+  // Android'de App Store once cizilip sonra yer degistiriyordu.
+  var ua = navigator.userAgent || "";
+  if (/Android/.test(ua)) document.documentElement.classList.add("is-android");
+  else if (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) document.documentElement.classList.add("is-ios");
 })();
 </script>
 <style>
@@ -96,6 +110,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   @property --sky-top { syntax: "<color>"; inherits: true; initial-value: #cfe0ea; }
   @property --sky-mid { syntax: "<color>"; inherits: true; initial-value: #dfe9ee; }
   @property --sky-hor { syntax: "<color>"; inherits: true; initial-value: #eef3ef; }
+  @property --sun-x { syntax: "<percentage>"; inherits: true; initial-value: 50%; }
+  @property --sun-y { syntax: "<percentage>"; inherits: true; initial-value: 10%; }
 
   :root {
     /* Adlar site-chrome.css ile AYNI: ortak-hatim.css, 30 gunluk takvim ve
@@ -174,25 +190,32 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     --s-line: color-mix(in srgb, var(--s-ink, #14302a) 22%, transparent);
     padding-top: env(safe-area-inset-top, 0px);
   }
-  .sky.anim { transition: --sky-top 3s ease, --sky-mid 3s ease, --sky-hor 3s ease, color 2s ease; }
+  .sky.anim { transition: --sky-top 3s ease, --sky-mid 3s ease, --sky-hor 3s ease, --sun-x 3s ease, --sun-y 3s ease, color 2s ease; }
   .sky-bg { position: absolute; inset: 0; z-index: -3; background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 58%, var(--sky-hor) 100%); }
+  /* ⚠️ Gunes kutusu YER DEGISTIRMEZ: gokun tamamini kaplar, yalniz isigin merkezi (--sun-x/--sun-y)
+     kayar. Eskiden 620 px'lik daire left/top ile tasiniyordu; vakit gelince saatten tahmin edilen
+     gokten gercek vakte gecis bu buyuk kutuyu kaydiriyor ve sayfa kaymasi (CLS) sayiliyordu
+     (Berlin'de 0,27'nin cogu, 5 Eki 2026 olculdu). Yaricap eskisiyle ayni: 620 px karenin kose
+     uzakligi 438 px, isik %62'de biter. */
   .sky-sun {
-    position: absolute; z-index: -2; width: 620px; height: 620px; margin: -310px 0 0 -310px; border-radius: 50%;
-    left: var(--sun-x, 50%); top: var(--sun-y, 10%);
-    background: radial-gradient(circle, var(--sun-c, #fff7e0) 0%, transparent 62%);
+    position: absolute; inset: 0; z-index: -2;
+    background: radial-gradient(circle 438px at var(--sun-x) var(--sun-y), var(--sun-c, #fff7e0) 0%, transparent 62%);
     opacity: var(--sun, 0); pointer-events: none;
   }
   .sky-stars { position: absolute; inset: 0 0 35% 0; z-index: -2; opacity: var(--stars, 0); pointer-events: none; }
   .sky-stars b { position: absolute; border-radius: 50%; background: #fff8e8; }
   .sky-moon { position: absolute; z-index: -2; top: 92px; inset-inline-end: 9%; width: 30px; height: 30px; opacity: var(--moon, 0); pointer-events: none; }
   @media (max-width: 820px) { .sky-moon { top: 72px; inset-inline-end: auto; inset-inline-start: 6%; width: 24px; height: 24px; } }
-  .sky.anim .sky-sun, .sky.anim .sky-stars, .sky.anim .sky-moon { transition: opacity 3s ease, left 3s ease, top 3s ease; }
+  .sky.anim .sky-sun, .sky.anim .sky-stars, .sky.anim .sky-moon { transition: opacity 3s ease; }
   /* Gok ile sayfa arasinda sert cizgi olmasin */
   /* Gok sayfaya UZUN ve yumusak erir; cizgi, siluet yok (kullanici karari,
      28 Eyl 2026: cami siluetli gecis begenilmedi). Kartlar bu erimenin
      ustune oturur, gokun rengi camdan suzulur. */
-  .sky::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 260px; z-index: -1; pointer-events: none;
-    background: linear-gradient(to bottom, color-mix(in srgb, var(--page) 0%, transparent) 0%, color-mix(in srgb, var(--page) 55%, transparent) 55%, var(--page) 100%); }
+  /* ⚠️ Erime katmani gokun TAMAMINI kaplar, gradyan son 260 px'te calisir (eskiden alta yapisik
+     260 px'lik kutuydu). Belge parca parca inerken gok uzadikca o kutu asagi kayiyor ve genis
+     ekranda tek basina CLS 0,19 sayiliyordu; ust kenari sabit katman kaymaz. Duraklar eskisiyle ayni. */
+  .sky::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--page) 0%, transparent) calc(100% - 260px), color-mix(in srgb, var(--page) 55%, transparent) calc(100% - 117px), var(--page) 100%); }
 
   /* ── ust cubuk ── */
   .top { display: flex; align-items: center; gap: 10px; padding-block: 14px; }
@@ -229,15 +252,17 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; align-items: center;
     padding-block: 18px 170px;
   }
-  .hero-now { order: 2; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .hero-copy { order: 1; }
+  /* Hucreler ACIKCA: belge parca parca inerken hero-copy henuz gelmemisse halka tek basina ilk
+     (sol) hucreye oturup sonra saga kayiyordu (masaustunde CLS 0,14, olculdu). */
+  .hero-now { order: 2; grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .hero-copy { order: 1; grid-column: 1; grid-row: 1; }
   @media (max-width: 820px) {
     /* ⚠️ Telefonda ilk ekran butcesi (375x812): gok + halka + vakitler + ad +
        magaza dugmeleri + ortak hatim daveti SIGMALI (kullanici karari: davet
        ilk ekranda). Bosluk/boyut buyutulurse davet ekranin altina duser. */
     .hero { grid-template-columns: 1fr; padding-block: 0 110px; gap: 12px; }
-    .hero-now { order: 1; gap: 8px; }
-    .hero-copy { order: 2; text-align: center; }
+    .hero-now { order: 1; grid-column: 1; grid-row: auto; gap: 8px; }
+    .hero-copy { order: 2; grid-column: 1; grid-row: auto; text-align: center; }
     .top { padding-block: 10px; }
     .hero-copy h1 { font-size: 34px; }
     .h1-verse { text-align: center; margin-bottom: 6px; font-size: 12.5px; line-height: 1.35; }
@@ -256,6 +281,11 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .dateline .sep { margin: 0 6px; opacity: .6; }
   .islamic-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 4px 11px; border-radius: 999px; background: color-mix(in srgb, var(--s-accent, #1e4d35) 14%, transparent); color: inherit; }
   .islamic-chip svg { width: 12px; height: 12px; fill: currentColor; }
+  /* Veri gelene kadar yer KAPLAR ama gorunmez (hidden degil): vakitler gelince kahraman buyuyor ve
+     baslik ~128 px kayiyordu (CLS 0,26-0,31, 5 Eki 2026). visibility:hidden odaklanmaz, ekran
+     okuyucuya da gorunmez. */
+  .times.pending, .month-btn.pending, .islamic-chip.pending { visibility: hidden; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
 
   /* halka: SVG cizgiler + ortada HTML (satir kaydirabilsin diye SVG metni degil) */
   .ring-wrap { position: relative; width: min(100%, 360px); aspect-ratio: 1 / 1; max-width: 100%; }
@@ -309,7 +339,16 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     background: var(--s-btn-bg, #1e4d35); color: var(--s-btn-fg, #fff); border: 1px solid var(--s-btn-line, transparent);
     box-shadow: 0 8px 22px -12px rgba(10, 30, 20, .5);
   }
-  .store-badge.secondary { background: transparent; color: inherit; border-color: var(--s-line); box-shadow: none; }
+  /* Ikincil magaza: ziyaretcinin olmayan magazasi (.is-android'de App Store, .is-ios'ta Google Play; bastaki betik).
+     .secondary'yi js/mh-dynamic.js ekler, ayni gorunum; ikisi ayni karari verir. Masaustunde ikisi de dolu. */
+  .store-badge.secondary, .is-android .store-badge[data-store="ios"], .is-ios .store-badge[data-store="android"] { background: transparent; color: inherit; border-color: var(--s-line); box-shadow: none; }
+  .is-android .store-badge[data-store="android"] { order: -1; }
+  /* Yavas baglantida blogun yarisi cizilebiliyor (Android'de DOM'da once gelen App Store, Google Play gelmeden ilk
+     yerde gorunup sonra kayardi; dar ekranda dugme icerigi ortali oldugu icin yarim okunan dugmenin ikonu da kayardi):
+     blok, sonundaki bos isaret (.stores-end) okunana kadar gorunmez. Isareti SILME (silinirse blok ancak 3 sn sonra
+     gorunur). :has() bilmeyen tarayicida kural yok sayilir. */
+  .cta:not(:has(> .stores-end)) { visibility: hidden; animation: mh-stores-show 0s 3s forwards; }
+  @keyframes mh-stores-show { to { visibility: visible; } }
   .store-badge svg { width: 22px; height: 22px; flex: none; fill: currentColor; }
   .store-badge .small { display: block; font-size: 10.5px; font-weight: 500; opacity: .78; line-height: 1.1; text-align: start; }
   .store-badge .big { display: block; font-size: 15.5px; font-weight: 700; line-height: 1.2; white-space: nowrap; text-align: start; }
@@ -321,7 +360,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   @keyframes mh-elma { 0% { transform: rotate(0); } 28% { transform: rotate(-13deg); } 56% { transform: rotate(8deg); } 80% { transform: rotate(-3deg); } 100% { transform: rotate(0); } }
   @media (hover: hover) {
     .store-badge:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -12px rgba(10, 30, 20, .55); }
-    .store-badge.secondary:hover { background: color-mix(in srgb, currentColor 9%, transparent); }
+    .store-badge.secondary:hover, .is-android .store-badge[data-store="ios"]:hover, .is-ios .store-badge[data-store="android"]:hover { background: color-mix(in srgb, currentColor 9%, transparent); }
     .store-badge[data-store="ios"]:hover svg { animation: mh-elma .75s ease-out; }
     .store-badge[data-store="android"]:hover svg { transform: translateX(3px); }
   }
@@ -333,6 +372,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     .store-badge:hover svg { animation: none !important; transform: none !important; }
   }
   @media (max-width: 820px) { .cta .store-badge { flex: 1 1 0; min-width: 0; justify-content: center; max-width: 200px; } }
+  /* Dar telefonda (360 px'in alti) iki dugme yan yana sigmiyor, "Google Play" kutusundan tasiyordu:
+     her dugme kendi satirinda, ortada. */
+  @media (max-width: 359px) { .cta .store-badge { flex: 1 1 100%; max-width: 240px; } }
 
   .invite {
     display: flex; align-items: center; gap: 12px; max-width: 440px; margin-top: 16px; padding: 10px 10px 10px 16px;
@@ -591,16 +633,16 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <nav class="top-nav" data-t-aria="yNavSections" aria-label="الأقسام">
         <a href="/ar/" data-home-link data-t="yNavApp">التطبيق</a>
         <a href="#sky" aria-current="page" data-t="yNavTimes">المواقيت</a>
-        <a href="/ortak-okuma.html" data-t="ccTitle">القراءة المشتركة</a>
+        <a href="/ar/qiraa-mushtaraka/" data-reading-link data-t="ccTitle">القراءة المشتركة</a>
         <a href="/ar/dalil/" data-guides-link data-t="yNavGuides">الأدلة</a>
       </nav>
       <div class="top-tools">
-        <button type="button" class="tool-btn icon" id="themeToggle" aria-label="Theme">
+        <button type="button" class="tool-btn icon" id="themeToggle" data-t-aria="themeToggle" aria-label="تبديل المظهر">
           <svg id="iconMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.5A8.3 8.3 0 0 1 9.5 3.8a8.3 8.3 0 1 0 10.7 10.7z"/></svg>
           <svg id="iconSun" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2.5V5M12 19v2.5M21.5 12H19M5 12H2.5M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8M18.7 18.7l-1.8-1.8M7.1 7.1L5.3 5.3"/></svg>
         </button>
         <div class="lang">
-          <button type="button" class="tool-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+          <button type="button" class="tool-btn" id="langBtn" data-t-aria="langAria" aria-haspopup="listbox" aria-expanded="false" aria-label="اللغة">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
             <span id="langCode">AR</span>
           </button>
@@ -622,26 +664,33 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.4-6.5-10A6.5 6.5 0 0 1 12 4.5 6.5 6.5 0 0 1 18.5 11c0 4.6-6.5 10-6.5 10z"/><circle cx="12" cy="11" r="2.3"/></svg>
             <span id="cityName">…</span>
           </button>
-          <button type="button" class="gps-btn" id="gpsBtn2" aria-label="Location">
+          <button type="button" class="gps-btn" id="gpsBtn2" data-t-aria="useLocation" aria-label="استخدام موقعي">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/><path d="M12 2.5V6M12 18v3.5M21.5 12H18M6 12H2.5"/></svg>
           </button>
         </div>
         <div class="dateline"><span id="dlGreg"></span><span class="sep">·</span><span id="dlHijri"></span></div>
-        <div class="islamic-chip" id="islamicChip" hidden>
+        <!-- Dini gun cipi neredeyse her gun gorunur (siradaki dini gune kalan gun): yeri bastan ayrilir,
+             gunluk veri gelince (mh:daily) gorunur olur. -->
+        <div class="islamic-chip pending" id="islamicChip">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>
-          <span id="islamicChipText"></span>
+          <span id="islamicChipText">&nbsp;</span>
         </div>
         <div class="ring-wrap" id="ringWrap">
           <svg id="ring" viewBox="40 40 360 360" aria-hidden="true"></svg>
-          <div class="ring-center" id="ringCenter" aria-live="polite"></div>
+          <!-- ⚠️ Saniyede bir degisen sayac canli bolge DEGIL (ekran okuyucu her saniye okuyordu).
+               Ekran okuyucuya yalniz vakit degisince degisen sabit cumle gider (#ringStatus). -->
+          <div class="ring-center" id="ringCenter"></div>
+          <p class="sr-only" id="ringStatus" role="status"></p>
         </div>
-        <ol class="times" id="times" hidden></ol>
+        <!-- Alti satir uretimde gercek vakit adlariyla yazilir (yer tutucu, gorunmez): vakitler gelince
+             kahraman buyumesin. Saatler sehre gore gelince mh-dynamic verisiyle yeniden yazilir. -->
+        <ol class="times pending" id="times"><li data-k="fajr"><span>الفجر</span><b>00:00</b></li><li data-k="sunrise" class="sun"><span>الشروق</span><b>00:00</b></li><li data-k="dhuhr"><span>الظهر</span><b>00:00</b></li><li data-k="asr"><span>العصر</span><b>00:00</b></li><li data-k="maghrib"><span>المغرب</span><b>00:00</b></li><li data-k="isha"><span>العشاء</span><b>00:00</b></li></ol>
         <!-- ⚠️ Kimlik "monthBtn" OLAMAZ: mh-dynamic.js eski kartin dugmesini o
              kimlikle bulup tiklama baglar, tiklama iki kez islenir ve takvim
              acilip hemen kapanir (28 Eyl 2026). Ayni sebeple cityBtn/gpsBtn de yok. -->
-        <button type="button" class="month-btn" id="monthToggle" hidden>
+        <button type="button" class="month-btn pending" id="monthToggle">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 2.8V6M16 2.8V6"/></svg>
-          <span></span>
+          <span data-t="monthShow">تقويم 30 يومًا</span>
         </button>
       </div>
 
@@ -655,6 +704,43 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <p class="vk-meal" id="vkMeal" hidden></p>
           <span class="vk-ref" id="vkRef"></span>
         </div>
+        <script>
+        // ── Namaz ayeti: sade satir ─────────────────────────────────────────────
+        // 28 Eyl 2026: genel "Gunun Ayeti" yerine NAMAZ uzerine ayetlerden biri (liste ve metin
+        // kaynagi _gen/build-vakit.mjs NAMAZ_AYETLERI; metinler uygulamanin mushafindan).
+        // Her yerel gun bir sonraki ayet. TR/EN meal; AR Arapca asli; DE/FR meal izni yok,
+        // yalniz Arapca ve kunye (Arapca 3 satiri asarsa satir o gun gorunmez).
+        // ⚠️ Bu betik kutunun HEMEN ARDINDA durur (sayfa sonunda degil): belge parca parca inerken
+        // ilk kare sonundaki betikten once cizilirse kutu sonradan acilip baslik kayiyordu (5 Eki 2026).
+        (function () {
+          var NAMAZ = [{"ar":"اِنَّ الصَّلٰوةَ كَانَتْ عَلَى الْمُؤْمِنٖینَ كِتَابًا مَوْقُوتًا","ref":"النساء 4:103 (جزء من الآية)"},{"ar":"اَقِمِ الصَّلٰوةَ لِدُلُوكِ الشَّمْسِ اِلٰى غَسَقِ الَّیْلِ وَقُرْاٰنَ الْفَجْرِؕ اِنَّ قُرْاٰنَ الْفَجْرِ كَانَ مَشْهُودًا","ref":"الإسراء 17:78"},{"ar":"حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلٰوةِ الْوُسْطٰى وَقُومُوا لِلّٰهِ قَانِتٖینَ","ref":"البقرة 2:238"},{"ar":"وَاَقِمِ الصَّلٰوةَ طَرَفَیِ النَّهَارِ وَزُلَفًا مِنَ الَّیْلِؕ","ref":"هود 11:114 (جزء من الآية)"},{"ar":"اِنَّ الصَّلٰوةَ تَنْهٰى عَنِ الْفَحْشَٓاءِ وَالْمُنْكَرِؕ","ref":"العنكبوت 29:45 (جزء من الآية)"},{"ar":"وَاسْتَعٖینُوا بِالصَّبْرِ وَالصَّلٰوةِؕ وَاِنَّهَا لَكَبٖیرَةٌ اِلَّا عَلَى الْخَاشِعٖینَۙ","ref":"البقرة 2:45"},{"ar":"وَاَقٖیمُوا الصَّلٰوةَ وَاٰتُوا الزَّكٰوةَ وَارْكَعُوا مَعَ الرَّاكِعٖینَ","ref":"البقرة 2:43"}];
+          var LABEL = "آية كريمة";
+          var MAX_AR_LINES = 3;
+          var loc = document.documentElement.getAttribute("lang") || "en";
+          function $(id) { return document.getElementById(id); }
+          function up(s) { try { return s.toLocaleUpperCase(loc === "tr" ? "tr-TR" : loc); } catch (e) { return s.toUpperCase(); } }
+          if (!NAMAZ || !NAMAZ.length) return;
+          var now = new Date();
+          var gun = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 864e5);
+          var a = NAMAZ[gun % NAMAZ.length], box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
+          var useMeal = !!a.meal;
+          $("vkLabel").textContent = up(LABEL || "");
+          $("vkRef").textContent = up(a.ref);
+          meal.textContent = useMeal ? a.meal : "";
+          meal.hidden = !useMeal;
+          ar.textContent = useMeal ? "" : a.ar;
+          ar.hidden = useMeal;
+          box.hidden = false;
+          if (!useMeal && loc !== "ar") {
+            var fit = function () {
+              var lh = parseFloat(getComputedStyle(ar).lineHeight) || 48;
+              if (Math.round(ar.getBoundingClientRect().height / lh) > MAX_AR_LINES) box.hidden = true;
+            };
+            if (document.fonts && document.fonts.load) document.fonts.load('26px "MushafAr"').then(fit, fit);
+            else fit();
+          }
+        })();
+        </script>
       </div>
     </div>
   </div>
@@ -679,6 +765,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg>
             <span><span class="small" data-t="get">حمّل</span><span class="big">Google Play</span></span>
           </a>
+          <i class="stores-end" hidden></i>
     </div>
   </section>
 
@@ -697,27 +784,27 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     </div>
     <div class="foot-links">
       <a href="/ar/" data-home-link data-t="yNavApp">التطبيق</a>
-      <a href="/ortak-okuma.html" data-t="ccTitle">القراءة المشتركة</a>
+      <a href="/ar/qiraa-mushtaraka/" data-reading-link data-t="ccTitle">القراءة المشتركة</a>
       <a href="/ar/dalil/" data-guides-link data-t="yNavGuides">الأدلة</a>
       <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy-ar.html" data-t="privacy">سياسة الخصوصية</a>
       <a id="lnkTerms" target="_blank" rel="noopener" href="/terms-ar.html" data-t="terms">شروط الاستخدام</a>
       <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete-ar.html" data-t="deleteAcc">حذف الحساب</a>
-      <a href="mailto:support@manevihalka.app" data-t="contact">تواصل معنا</a>
+      <a href="mailto:support@manevihalka.app" data-t="contact">للتواصل</a>
     </div>
     <p>© 2026 Manevi Halka</p>
   </footer>
 </main>
 
-<div class="cp-overlay" id="cityPicker" role="dialog" aria-modal="true">
+<div class="cp-overlay" id="cityPicker" role="dialog" aria-modal="true" aria-labelledby="cpTitle">
   <div class="cp-panel">
     <div class="cp-top">
-      <span class="cp-title"></span>
-      <button type="button" class="cp-close" id="cpClose" aria-label="Close">
+      <span class="cp-title" id="cpTitle" data-t="pickerTitle">اختر مدينة</span>
+      <button type="button" class="cp-close" id="cpClose" data-t-aria="close" aria-label="إغلاق">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/></svg>
       </button>
     </div>
     <p class="cp-hint"></p>
-    <input type="text" class="cp-search" id="cpSearch" autocomplete="off">
+    <input type="text" class="cp-search" id="cpSearch" autocomplete="off" data-t-aria="searchCityLabel" aria-label="ابحث عن مدينة">
     <button type="button" class="cp-gps-row" id="cpGps">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4"/><path d="M12 2.5V6M12 18v3.5M21.5 12H18M6 12H2.5"/></svg>
       <span></span>
@@ -732,10 +819,17 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   "use strict";
 
   // ── Dil ──────────────────────────────────────────────────────────────────
-  // Sozluk URETIMDE yazilir (_gen/build-home.mjs, kaynak _gen/site-i18n.js).
-  // PAGE_LANG: uretilmis dil sayfasinda (/tr/) dil ADRESTEN gelir, kayitli
-  // tercih onu ezemez; kokte null, dil tercih/cihaz diline gore secilir.
-  var T = {"ar":{"get":"حمّل","ccTitle":"القراءة المشتركة","privacy":"سياسة الخصوصية","terms":"شروط الاستخدام","deleteAcc":"حذف الحساب","contact":"تواصل معنا","itaniCredit":"الترجمة الإنجليزية: طلال إيتاني،","suffix":"-ar","pageTitle":"مواقيت الصلاة · Manevi Halka","pageDesc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية.","vTitle":"مواقيت الصلاة","vAyahLabel":"آية كريمة","vSub":"وفق تقويم ديانت. يمكنك تغيير مدينتك، وفتح تقويم 30 يومًا أسفل المواقيت أو طباعته.","vPromoTitle":"اعرف متى يدخل كل وقت","vPromoText":"تنبيهات وأدوات للشاشة الرئيسية والقبلة. والقرآن والحلقات والذكر في التطبيق نفسه.","vKnowApp":"تعرّف على التطبيق","yNavApp":"التطبيق","yNavTimes":"المواقيت","yNavGuides":"الأدلة","yNavSections":"الأقسام","ySocialTitle":"ابقَ على صلة بالحلقة","ySocialText":"آية اليوم كل صباح، وتذكير في الليالي المباركة.","title":"مواقيت الصلاة · Manevi Halka","desc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية."}};
+  // Sozluk URETIMDE yazilir (_gen/build-vakit.mjs, kaynak _gen/site-i18n.js).
+  // PAGE_LANG: her vakit sayfasi bir dilin sayfasi, dil ADRESTEN gelir, kayitli
+  // tercih onu ezemez. Asagidaki tercih/cihaz zinciri yalniz PAGE_LANG yokken
+  // (uretilmemis sablon) devreye girer.
+  // ⚠️ mh_lang ZIYARETTE YAZILMAZ, yalniz dil menusunden ACIK secimde. Sitenin ortak
+  // anahtari: Ingilizce adresler (ana sayfa, rehber, cizelge, Ortak Okuma, bu sayfanin
+  // Ingilizcesi) ona bakip yonlendiriyor. Eskiden (ana sayfa vakit sayfasiyken, /tr/
+  // kokun dilini hatirlatsin diye) ziyarette yaziliyordu; /ar/mawaqit/'e bir kez giren
+  // tarayicida butun Ingilizce adresler Arapca aciliyordu (5 Eki 2026). Sayfanin kendi
+  // dili (mh-dynamic.js dahil) <html lang>'dan okunur, depoya ihtiyac yok.
+  var T = {"ar":{"get":"حمّل","ccTitle":"القراءة المشتركة","privacy":"سياسة الخصوصية","terms":"شروط الاستخدام","deleteAcc":"حذف الحساب","contact":"للتواصل","itaniCredit":"الترجمة الإنجليزية: طلال إيتاني،","suffix":"-ar","pageTitle":"مواقيت الصلاة · Manevi Halka","pageDesc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية.","vTitle":"مواقيت الصلاة","vAyahLabel":"آية كريمة","vSub":"وفق تقويم ديانت. يمكنك تغيير مدينتك، وفتح تقويم 30 يومًا أسفل المواقيت أو طباعته.","vPromoTitle":"اعرف متى يدخل كل وقت","vPromoText":"تنبيهات وأدوات للشاشة الرئيسية والقبلة. والقرآن والحلقات والذكر في التطبيق نفسه.","vKnowApp":"تعرّف على التطبيق","yNavApp":"التطبيق","yNavTimes":"المواقيت","yNavGuides":"الأدلة","yNavSections":"الأقسام","ySocialTitle":"ابقَ على صلة بالحلقة","langAria":"اللغة","vSrNow":"وقت الصلاة الحالي: {name}، وينتهي الساعة {time}.","vSrNext":"وقت الصلاة التالي: {name}، ويدخل الساعة {time}.","ySocialText":"آية اليوم كل صباح، وتذكير في الليالي المباركة.","themeToggle":"تبديل المظهر","useLocation":"استخدام موقعي","close":"إغلاق","pickerTitle":"اختر مدينة","monthShow":"تقويم 30 يومًا","searchCity":"ابحث عن مدينة...","searchCityLabel":"ابحث عن مدينة","title":"مواقيت الصلاة · Manevi Halka","desc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية."}};
   var PAGE_LANG = "ar";
   var VAKIT_URL = {"en":"/prayer-times/","tr":"/tr/namaz-vakitleri/","de":"/de/gebetszeiten/","fr":"/fr/horaires-de-priere/","ar":"/ar/mawaqit/"};
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
@@ -746,7 +840,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* gizli mod */ } }
 
   function resolveLocale() {
-    if (PAGE_LANG) { lsSet("mh_lang", PAGE_LANG); return PAGE_LANG; }
+    if (PAGE_LANG) return PAGE_LANG;
     try {
       var q = new URLSearchParams(location.search).get("lang");
       if (q && SUPPORTED.indexOf(q) !== -1) return q;
@@ -806,8 +900,10 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       var next = b.getAttribute("data-lang");
       list.hidden = true;
       btn.setAttribute("aria-expanded", "false");
-      // Her dilin kendi vakit sayfasi var: secim bir GEZINME.
-      if (next !== loc && VAKIT_URL[next]) { lsSet("mh_lang", next); location.href = VAKIT_URL[next]; }
+      // Her dilin kendi vakit sayfasi var: secim bir GEZINME. Secim (bulunulan dil dahil)
+      // ACIK tercihtir, mh_lang'e yazilir; oteki sayfalarin dil menusuyle ayni kural.
+      if (VAKIT_URL[next]) lsSet("mh_lang", next);
+      if (next !== loc && VAKIT_URL[next]) location.href = VAKIT_URL[next];
     });
   })();
 
@@ -937,35 +1033,58 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   function setCenter(mode, build) {
     if (centerMode !== mode) { center.innerHTML = ""; centerMode = mode; build(); }
   }
+  // Saniyede bir calisan tick DOM'a yalniz deger DEGISTIYSE yazar (ayni metni yeniden yazmak
+  // dugumu degistirir, ekran okuyucu ve tarayici bosuna is yapar).
+  function setText(node, v) { if (node && node.textContent !== v) node.textContent = v; }
+  function setAttr(node, k, v) { v = String(v); if (node && node.getAttribute(k) !== v) node.setAttribute(k, v); }
+  // Ekran okuyucu icin sabit cumle: vakit adi ve cikis/giris saati (sehrin saati). Geri sayim
+  // bilerek YOK: yalniz vakit degisince degisir, rol "status" oldugu icin o an bir kez okunur.
+  var ringStatus = $("ringStatus");
+  var DAY = 86400000;
+  function cityClock(ms, offsetMs) {
+    var m = Math.floor((((ms + offsetMs) % DAY) + DAY) % DAY / 60000);
+    return pad(Math.floor(m / 60)) + ":" + pad(m % 60);
+  }
+  function statusText(s) {
+    var name = String(s.headName || "").replace(/\u00ad/g, "");
+    if (s.targetAt == null) return name;
+    return String(s.inside ? t.vSrNow : t.vSrNext).replace("{name}", name).replace("{time}", cityClock(s.targetAt, s.offsetMs));
+  }
 
   var PHASE_OF = { fajr: "imsak", dhuhr: "ogle", asr: "ikindi", maghrib: "aksam", isha: "yatsi" };
 
   function tick() {
     if (!window.MHPrayer) return;
     var s = window.MHPrayer.snapshot();
-    $("cityName").textContent = s.city || eng("chooseCity");
-    $("cityChip").setAttribute("aria-label", eng("changeCity"));
-    $("gpsBtn2").setAttribute("aria-label", eng("useLocation"));
+    var chip = $("cityChip");
+    setText($("cityName"), s.city || eng("chooseCity"));
+    // Gorunen metin sehrin adi: erisilebilir ad onu da tasir ("Sehri degistir: Istanbul")
+    setAttr(chip, "aria-label", s.city ? eng("changeCity") + (loc === "fr" ? " : " : ": ") + s.city : eng("chooseCity"));
+    setAttr($("gpsBtn2"), "aria-label", eng("useLocation"));
 
     var ready = s.state === "ready" && s.rows.length === 6;
-    $("times").hidden = !ready;
-    $("monthToggle").hidden = !ready;
+    // hidden DEGIL: kutular ilk karede yerini korur (yer tutucu, gorunmez)
+    $("times").classList.toggle("pending", !ready);
+    $("monthToggle").classList.toggle("pending", !ready);
 
     if (!ready) {
       ARC_KEYS.forEach(function (k) { arcEls[k].classList.remove("on"); });
-      progEl.setAttribute("d", ""); dotEl.setAttribute("cx", -99); glowEl.setAttribute("cx", -99);
+      setAttr(progEl, "d", ""); setAttr(dotEl, "cx", -99); setAttr(glowEl, "cx", -99);
+      var msg;
       if (s.state === "nocity" || s.state === "error") {
         setCenter(s.state, function () {
-          var p = document.createElement("p"); p.className = "rc-msg"; center.appendChild(p);
+          var p = document.createElement("p"); p.className = "rc-msg"; p.setAttribute("aria-hidden", "true"); center.appendChild(p);
           var b = document.createElement("button"); b.type = "button"; b.className = "rc-action"; center.appendChild(b);
           b.addEventListener("click", function () { if (centerMode === "nocity") window.MHPrayer.openPicker(); else window.MHPrayer.retry(); });
         });
-        center.querySelector(".rc-msg").textContent = eng(s.state === "nocity" ? "emptyCity" : "errorTimes");
-        center.querySelector(".rc-action").textContent = eng(s.state === "nocity" ? "chooseCity" : "retry");
+        msg = eng(s.state === "nocity" ? "emptyCity" : "errorTimes");
+        setText(center.querySelector(".rc-action"), eng(s.state === "nocity" ? "chooseCity" : "retry"));
       } else {
-        setCenter("loading", function () { var p = document.createElement("p"); p.className = "rc-msg"; center.appendChild(p); });
-        center.querySelector(".rc-msg").textContent = eng("loading");
+        setCenter("loading", function () { var p = document.createElement("p"); p.className = "rc-msg"; p.setAttribute("aria-hidden", "true"); center.appendChild(p); });
+        msg = eng("loading");
       }
+      setText(center.querySelector(".rc-msg"), msg);
+      setText(ringStatus, msg);
       return;
     }
 
@@ -980,22 +1099,24 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     var now = Date.now();
     var nowMin = (((now + s.offsetMs) % 86400000) + 86400000) % 86400000 / 60000;
     var p = pt(R, ang(nowMin));
-    dotEl.setAttribute("cx", p[0].toFixed(2)); dotEl.setAttribute("cy", p[1].toFixed(2));
-    glowEl.setAttribute("cx", p[0].toFixed(2)); glowEl.setAttribute("cy", p[1].toFixed(2));
+    setAttr(dotEl, "cx", p[0].toFixed(2)); setAttr(dotEl, "cy", p[1].toFixed(2));
+    setAttr(glowEl, "cx", p[0].toFixed(2)); setAttr(glowEl, "cy", p[1].toFixed(2));
     if (s.prevAt != null) {
       var startMin = (((s.prevAt + s.offsetMs) % 86400000) + 86400000) % 86400000 / 60000;
       if (startMin > nowMin) startMin -= 1440;
-      progEl.setAttribute("d", nowMin - startMin > 3 ? arcD(R, ang(startMin) + 1.1, ang(nowMin)) : "");
-    } else progEl.setAttribute("d", "");
+      setAttr(progEl, "d", nowMin - startMin > 3 ? arcD(R, ang(startMin) + 1.1, ang(nowMin)) : "");
+    } else setAttr(progEl, "d", "");
 
     setCenter("ready", function () {
-      center.innerHTML = '<div class="rc-head"></div><div class="rc-count"></div><div class="rc-foot"></div>';
+      center.innerHTML = '<div class="rc-head" aria-hidden="true"></div><div class="rc-count" aria-hidden="true"></div><div class="rc-foot" aria-hidden="true"></div>';
     });
-    center.querySelector(".rc-head").textContent = up(s.headName || "");
-    center.querySelector(".rc-count").textContent = s.targetAt != null ? fmtLeft(s.targetAt - now) : "—";
-    center.querySelector(".rc-foot").textContent = s.label || "";
+    setText(center.querySelector(".rc-head"), up(s.headName || ""));
+    setText(center.querySelector(".rc-count"), s.targetAt != null ? fmtLeft(s.targetAt - now) : "\u2014");
+    setText(center.querySelector(".rc-foot"), s.label || "");
+    setText(ringStatus, statusText(s));
 
-    // Gunun alti satiri (liste sehrin bugunudur)
+    // Gunun alti satiri (liste sehrin bugunudur). Uretimdeki yer tutucunun data-loc'u yok:
+    // ilk hazir veride gercek satirlarla degisir.
     var list = $("times");
     if (list.childElementCount !== 6 || list.getAttribute("data-loc") !== loc || list.getAttribute("data-key") !== lastRowsKey) {
       list.innerHTML = s.rows.map(function (r) {
@@ -1009,8 +1130,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     for (var j = 0; j < items.length; j++) {
       items[j].classList.toggle("on", s.inside && items[j].getAttribute("data-k") === s.headKey);
     }
-    var mb = $("monthToggle").querySelector("span");
-    mb.textContent = eng(window.MHPrayer.isMonthOpen() ? "monthHide" : "monthShow");
+    setText($("monthToggle").querySelector("span"), eng(window.MHPrayer.isMonthOpen() ? "monthHide" : "monthShow"));
   }
 
   $("cityChip").addEventListener("click", function () { if (window.MHPrayer) window.MHPrayer.openPicker(); });
@@ -1018,37 +1138,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   $("monthToggle").addEventListener("click", function () { if (window.MHPrayer) { window.MHPrayer.toggleMonth(); tick(); } });
   document.addEventListener("mh:prayer", tick);
   setInterval(tick, 1000);
-
-  // ── Namaz ayeti: sade satir ─────────────────────────────────────────────
-  // 28 Eyl 2026: genel "Gunun Ayeti" yerine NAMAZ uzerine ayetlerden biri (liste ve metin
-  // kaynagi _gen/build-vakit.mjs NAMAZ_AYETLERI; metinler uygulamanin mushafindan).
-  // Her yerel gun bir sonraki ayet. TR/EN meal; AR Arapca asli; DE/FR meal izni yok,
-  // yalniz Arapca ve kunye (Arapca 3 satiri asarsa satir o gun gorunmez).
-  var NAMAZ = [{"ar":"اِنَّ الصَّلٰوةَ كَانَتْ عَلَى الْمُؤْمِنٖینَ كِتَابًا مَوْقُوتًا","ref":"النساء 4:103 (جزء من الآية)"},{"ar":"اَقِمِ الصَّلٰوةَ لِدُلُوكِ الشَّمْسِ اِلٰى غَسَقِ الَّیْلِ وَقُرْاٰنَ الْفَجْرِؕ اِنَّ قُرْاٰنَ الْفَجْرِ كَانَ مَشْهُودًا","ref":"الإسراء 17:78"},{"ar":"حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلٰوةِ الْوُسْطٰى وَقُومُوا لِلّٰهِ قَانِتٖینَ","ref":"البقرة 2:238"},{"ar":"وَاَقِمِ الصَّلٰوةَ طَرَفَیِ النَّهَارِ وَزُلَفًا مِنَ الَّیْلِؕ","ref":"هود 11:114 (جزء من الآية)"},{"ar":"اِنَّ الصَّلٰوةَ تَنْهٰى عَنِ الْفَحْشَٓاءِ وَالْمُنْكَرِؕ","ref":"العنكبوت 29:45 (جزء من الآية)"},{"ar":"وَاسْتَعٖینُوا بِالصَّبْرِ وَالصَّلٰوةِؕ وَاِنَّهَا لَكَبٖیرَةٌ اِلَّا عَلَى الْخَاشِعٖینَۙ","ref":"البقرة 2:45"},{"ar":"وَاَقٖیمُوا الصَّلٰوةَ وَاٰتُوا الزَّكٰوةَ وَارْكَعُوا مَعَ الرَّاكِعٖینَ","ref":"البقرة 2:43"}];
-  var MAX_AR_LINES = 3;
-  function paintAyah() {
-    if (!NAMAZ || !NAMAZ.length) return;
-    var now = new Date();
-    var gun = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 864e5);
-    var a = NAMAZ[gun % NAMAZ.length], box = $("vkAyah"), ar = $("vkAr"), meal = $("vkMeal");
-    var useMeal = !!a.meal;
-    $("vkLabel").textContent = up(t.vAyahLabel || "");
-    $("vkRef").textContent = up(a.ref);
-    meal.textContent = useMeal ? a.meal : "";
-    meal.hidden = !useMeal;
-    ar.textContent = useMeal ? "" : a.ar;
-    ar.hidden = useMeal;
-    box.hidden = false;
-    if (!useMeal && loc !== "ar") {
-      var fit = function () {
-        var lh = parseFloat(getComputedStyle(ar).lineHeight) || 48;
-        if (Math.round(ar.getBoundingClientRect().height / lh) > MAX_AR_LINES) box.hidden = true;
-      };
-      if (document.fonts && document.fonts.load) document.fonts.load('26px "MushafAr"').then(fit, fit);
-      else fit();
-    }
-  }
-  paintAyah();
+  // Dini gun cipi: metnini mh-dynamic yazar (renderDateLine), yer tutucu o an gorunur olur.
+  document.addEventListener("mh:daily", function () { $("islamicChip").classList.remove("pending"); });
 })();
 </script>
 <script src="/js/mh-dynamic.js" defer></script>

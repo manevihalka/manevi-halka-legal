@@ -3,7 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- maximum-scale YOK (5 Eki 2026): yakinlastirmayi kapatmak erisilebilirlik hatasi. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <!-- iOS Safari kurulum seridi. Davet linkine tiklayan ve uygulamasi OLMAYAN
      kisi buraya duser: sayfadaki her dugmeden yuksek donusen yer burasi.
@@ -36,20 +37,33 @@
 })();
 </script>
 <title>Manevi Halka · Join</title>
+<!-- Yazi tipleri erken iner (Marcellus 14 KB, Onest 34 KB): gec geldiklerinde satir yukseklikleri ve kirilmalar degisip
+     kartin icindeki dugmeler kayiyordu (yavas baglantida olculdu). crossorigin sart: yazi tipi istegi CORS kipinde. -->
+<link rel="preload" href="/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Bağlantı önizlemesi (WhatsApp, Telegram, iMessage, X). Davet mesajı yalnız
      "halkaya katıl: bağlantı" diyor; önizleme olmadan alıcı neye davet edildiğini
-     göremiyordu (2 Eki 2026, gurbetçi aile senaryosu). Önizleme botları
-     betik çalıştırmadığı için tek dil: taban dil İngilizce (Kural 9a). Zikir
-     listesi ve tek seferlik halka davetleri de bu sayfayı kullandığı için metin genel. -->
-<meta name="description" content="You've been invited to Manevi Halka. Complete the khatm and dhikr together with family and friends.">
+     göremiyordu (2 Eki 2026, gurbetçi aile senaryosu).
+     ⚠️ Önizleme botları betik çalıştırmaz, yani önizleme TEK metin taşır. Davet
+     Türkçe ya da Almanca bir mesajla paylaşılınca İngilizce önizleme yabancı
+     duruyordu (5 Eki 2026): artık DİLDEN BAĞIMSIZ. Başlık yalnız marka, açıklama
+     beş dilin tek satırı (sayfanın kendi başlığıyla aynı sözcükler), görsel
+     yazısız kart (img/og-join.jpg: marka yeşili + uygulama ikonu + tesbih halkası).
+     Zikir listesi ve tek seferlik halka davetleri de bu sayfayı kullanır; bu yüzden
+     görselde "hatim" ya da "zikir" yazmaz. -->
+<meta name="description" content="Halkaya katıl · Join the circle · Dem Kreis beitreten · Rejoindre le cercle · انضم إلى الحلقة">
 <meta property="og:site_name" content="Manevi Halka">
-<meta property="og:title" content="Manevi Halka · Invitation">
-<meta property="og:description" content="You've been invited. Complete the khatm and dhikr together with family and friends.">
-<meta property="og:image" content="https://manevihalka.app/og-cover-en.jpg">
+<meta property="og:title" content="Manevi Halka">
+<meta property="og:description" content="Halkaya katıl · Join the circle · Dem Kreis beitreten · Rejoindre le cercle · انضم إلى الحلقة">
+<meta property="og:image" content="https://manevihalka.app/img/og-join.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Manevi Halka">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Manevi Halka">
+<meta name="twitter:description" content="Halkaya katıl · Join the circle · Dem Kreis beitreten · Rejoindre le cercle · انضم إلى الحلقة">
+<meta name="twitter:image" content="https://manevihalka.app/img/og-join.jpg">
 <script>
 (function () {
   // Tema ILK BOYAMADAN once: sitenin ortak tercihi (mh_theme), yoksa sistem.
@@ -127,8 +141,37 @@
   .footer a { color: var(--body); text-decoration: none; }
   .footer a:hover { text-decoration: underline; }
   :focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; border-radius: 6px; }
+  /* iOS'ta App Store dolu birincil, "Uygulamayi ac" ikincil (cizgili) dugme. */
+  .btn-ghost { background: transparent; color: var(--green); border: 1px solid color-mix(in srgb, var(--green) 45%, transparent); }
+  .btn-ghost:hover, .btn-ghost:active { filter: none; background: var(--mint); }
+  .hint + .btn { margin-top: 10px; }
+  /* Uzun kod (eski halkalarda uuid) kutuya sigsin. */
+  .code.long { font-size: 14px; letter-spacing: .02em; word-break: break-all; }
+  /* Kurulumdan sonra: davet nasil kullanilir + baglantiyi kopyala. */
+  .after { margin-top: 22px; padding: 16px 16px 6px; border-radius: 18px; border: 1px solid var(--line);
+    color: var(--body); font-size: 13.5px; line-height: 1.55; }
+  .after b { color: var(--ink); font-weight: 700; }
+  .copy-btn { margin-top: 12px; font: inherit; font-size: 14px; font-weight: 700; color: var(--green); background: transparent;
+    border: 1px solid var(--line); border-radius: 999px; padding: 10px 18px; cursor: pointer; }
+  .copy-btn:hover { background: var(--mint); border-color: transparent; }
+  .copy-status { min-height: 1.5em; margin-top: 6px; font-size: 12.5px; font-weight: 700; color: var(--green); }
+  .footer .mail { color: var(--body); direction: ltr; unicode-bidi: isolate; -webkit-user-select: all; user-select: all; }
   #fallback { display: none; }
   #fallback.show { display: block; }
+  /* Satir yuksekligi yazi tipinin gelisine bagli kalmasin: line-height normal iken Onest gelince ust etiketler ve
+     dugmeler 1-2 px buyuyup magaza dugmelerini asagi kaydiriyordu (olculdu). Degerler Onest yuklu haldeki yukseklikler
+     (15, 20, 18 px; Arapca kod etiketi 18 px). Arapca ana dugme yazisi sistem yazi tipinde, iki halde de ayni: normal. */
+  .brand-name, .code-label { line-height: 1.305; }
+  .btn { line-height: 1.291; }
+  .store-row a { line-height: 1.286; }
+  :root[lang="ar"] .code-label { line-height: 1.385; }
+  :root[lang="ar"] .btn { line-height: normal; }
+  /* Kart dikeyde ortali ve betik onu hemen degistiriyor (dil, magaza sirasi, yedek dugmeler): yavas baglantida once
+     "Aciliyor" karti cizilip yedek gelince kart iki katina uzuyor, her sey kayiyordu (Android, 390 px: CLS 0,33;
+     5 Eki 2026 olculdu). Kart, betigin ardindaki bos isaret (.card-end) okunana kadar gorunmez; isaret silinirse
+     3 sn sonra yine gorunur. :has() bilmeyen tarayicida kural yok sayilir. */
+  body:not(:has(> .card-end)) > .card { visibility: hidden; animation: mh-card-show 0s 3s forwards; }
+  @keyframes mh-card-show { to { visibility: visible; } }
 </style>
 <!--NAV:HEAD-->
 <script>/* sayfa gecisi: onceki sayfada isaret gorunurken gelindiyse ilk kare isaretle cizilir (nav-loader.html) */
@@ -250,11 +293,19 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     </div>
 
     <div id="fallback">
-      <a href="#" class="btn" id="openAppBtn">Open App</a>
-      <p class="hint">Don’t have the app yet?</p>
-      <div class="store-row">
-        <a href="https://apps.apple.com/app/manevi-halka/id6760654292" id="iosBtn">App Store</a>
-        <a href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle" id="androidBtn">Google Play</a>
+      <!-- Dugme sirasi platforma gore betikte kurulur (asagidaki "PLATFORM" notu). -->
+      <div id="actions">
+        <a href="#" class="btn" id="openAppBtn">Open App</a>
+        <p class="hint" id="storeHint">Don’t have the app yet?</p>
+        <div class="store-row" id="storeRow">
+          <a href="https://apps.apple.com/app/manevi-halka/id6760654292" id="iosBtn">App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&amp;referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Djoin" id="androidBtn">Google Play</a>
+        </div>
+      </div>
+      <div class="after" id="afterBox" hidden>
+        <p id="afterText"></p>
+        <button type="button" class="copy-btn" id="copyBtn">Copy link</button>
+        <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
       </div>
       <p class="howto"><a href="/guides/join-a-circle/" id="howtoLink">How do I join?</a></p>
     </div>
@@ -263,6 +314,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <a href="/" id="homeLink">manevihalka.app</a>
       <a href="/privacy-en.html" id="privacyLink">Privacy</a>
       <a href="/terms-en.html" id="termsLink">Terms</a>
+      <span class="mail" dir="ltr">support@manevihalka.app</span>
     </div>
   </div>
 
@@ -272,30 +324,55 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     // Sayfa 5 dilli. Taban İNGİLİZCE: eşleşmeyen tarayıcı dili Türkçeye değil
     // İngilizceye düşer (uygulamadaki Kural 9 ile aynı ilke). Uygulama adı
     // "Manevi Halka" beş dilde de sabittir, çevrilmez.
+    // after*: kurulumdan sonra daveti nasıl kullanacağı. Kalın yazılanlar
+    // uygulamadaki GERÇEK etiketler: tabs.circles + circlesTab.anonJoin
+    // (hesapsız Halkalar ekranının düğmesi; 404.html ile aynı sözcükler).
+    // O ekran yapıştırılan bağlantıyı da çözer (lib/inviteCode.ts): zikir
+    // paylaşımı bağlantısı da oradan kendi önizlemesine gider.
     var STRINGS = {
       en: { join: 'Join the Circle', zikir: 'Dhikr List', opening: 'Open the app, or install it below.',
+            openingIos: 'Install the app, or open it if you already have it.',
             inviteCode: 'Invite Code', shareCode: 'Share Code', openApp: 'Open App',
+            getIos: 'Download on the App Store', haveApp: 'Already have the app?',
             hint: 'Don’t have the app yet?', howto: 'How do I join? Step by step',
+            after: 'After installing, tap the link in your message again, or copy it here and paste it in the app: <b>Circles</b> tab, <b>Join with an invite code</b>.',
+            copy: 'Copy link', copied: 'Copied',
             invalid: 'Invalid invitation link.',
             privacy: 'Privacy', terms: 'Terms', title: 'Manevi Halka · Join' },
       tr: { join: 'Halkaya Katıl', zikir: 'Zikir Listesi', opening: 'Uygulaman varsa aç, yoksa aşağıdan indir.',
+            openingIos: 'Uygulamayı indir, zaten varsa aç.',
             inviteCode: 'Davet Kodu', shareCode: 'Paylaşım Kodu', openApp: 'Uygulamayı Aç',
+            getIos: 'App Store’dan indir', haveApp: 'Uygulaman zaten var mı?',
             hint: 'Uygulaman yok mu?', howto: 'Nasıl katılırım? Adım adım',
+            after: 'Kurduktan sonra mesajdaki bağlantıya yeniden dokun ya da buradan kopyalayıp uygulamada yapıştır: <b>Halkalar</b> sekmesi, <b>Davet koduyla katıl</b>.',
+            copy: 'Bağlantıyı kopyala', copied: 'Kopyalandı',
             invalid: 'Geçersiz davet bağlantısı.',
             privacy: 'Gizlilik', terms: 'Şartlar', title: 'Manevi Halka · Katıl' },
       de: { join: 'Dem Kreis beitreten', zikir: 'Dhikr-Liste', opening: 'Öffne die App oder installiere sie unten.',
+            openingIos: 'Installiere die App oder öffne sie, wenn du sie schon hast.',
             inviteCode: 'Einladungscode', shareCode: 'Freigabecode', openApp: 'App öffnen',
+            getIos: 'Im App Store laden', haveApp: 'Hast du die App schon?',
             hint: 'Du hast die App noch nicht?', howto: 'Wie trete ich bei? Schritt für Schritt',
+            after: 'Tippe nach der Installation noch einmal auf den Link in deiner Nachricht oder kopiere ihn hier und füge ihn in der App ein: im Tab <b>Kreise</b> unter <b>Mit Einladungscode beitreten</b>.',
+            copy: 'Link kopieren', copied: 'Kopiert',
             invalid: 'Ungültiger Einladungslink.',
             privacy: 'Datenschutz', terms: 'Nutzungsbedingungen', title: 'Manevi Halka · Beitreten' },
       fr: { join: 'Rejoindre le cercle', zikir: 'Liste de dhikr', opening: 'Ouvre l’application, ou installe-la ci-dessous.',
+            openingIos: 'Installe l’application, ou ouvre-la si tu l’as déjà.',
             inviteCode: 'Code d’invitation', shareCode: 'Code de partage', openApp: 'Ouvrir l’application',
+            getIos: 'Télécharger dans l’App Store', haveApp: 'Tu as déjà l’application ?',
             hint: 'Tu n’as pas encore l’application ?', howto: 'Comment rejoindre ? Pas à pas',
+            after: 'Après l’installation, touche à nouveau le lien dans ton message, ou copie-le ici et colle-le dans l’application : onglet <b>Cercles</b>, <b>Rejoindre avec un code</b>.',
+            copy: 'Copier le lien', copied: 'Copié',
             invalid: 'Lien d’invitation invalide.',
             privacy: 'Confidentialité', terms: 'Conditions', title: 'Manevi Halka · Rejoindre' },
       ar: { join: 'انضم إلى الحلقة', zikir: 'قائمة الأذكار', opening: 'افتح التطبيق، أو ثبّته من الأسفل',
+            openingIos: 'ثبّت التطبيق، أو افتحه إن كان لديك',
             inviteCode: 'رمز الدعوة', shareCode: 'رمز المشاركة', openApp: 'فتح التطبيق',
+            getIos: 'حمّله من App Store', haveApp: 'هل لديك التطبيق بالفعل؟',
             hint: 'أليس لديك التطبيق بعد؟', howto: 'كيف أنضم؟ خطوة بخطوة',
+            after: 'بعد التثبيت، اضغط على الرابط في رسالتك مرة أخرى، أو انسخه من هنا والصقه في التطبيق: تبويب <b>الحلقات</b>، ثم <b>انضم برمز دعوة</b>.',
+            copy: 'انسخ الرابط', copied: 'تم النسخ',
             invalid: 'رابط دعوة غير صالح.',
             privacy: 'الخصوصية', terms: 'الشروط', title: 'Manevi Halka · انضمام' }
     };
@@ -310,6 +387,18 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     if (!STRINGS[lang]) lang = 'en';
     var T = STRINGS[lang];
 
+    // ── PLATFORM ───────────────────────────────────────────────────────────
+    // iPadOS 13+ masaüstü Safari gibi "Macintosh" der; dokunmatik noktadan ayrılır.
+    var ua = navigator.userAgent || '';
+    var isAndroid = /Android/i.test(ua);
+    var isIOS = !isAndroid && (/iPhone|iPad|iPod/i.test(ua) ||
+                (/Macintosh/i.test(ua) && (navigator.maxTouchPoints || 0) > 1));
+
+    // Google Play kurulum kaynağı (links.html / indir.html ile aynı desen).
+    var PKG = 'com.emrhnayz.spiritualcircle';
+    var STORE_PLAY = 'https://play.google.com/store/apps/details?id=' + PKG + '&referrer=' +
+      encodeURIComponent('utm_source=manevihalka.app&utm_medium=website&utm_content=join');
+
     document.documentElement.lang = lang;
     if (lang === 'ar') document.documentElement.dir = 'rtl';
     document.title = T.title;
@@ -317,7 +406,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 
     document.querySelector('h1').textContent = T.join;
     document.querySelector('.code-label').textContent = T.inviteCode;
-    document.querySelector('.hint').textContent = T.hint;
+    var storeHint = document.getElementById('storeHint');
+    storeHint.textContent = T.hint;
     document.getElementById('openAppBtn').textContent = T.openApp;
     // Rehber: _gen/site-urls.mjs REHBER_SAYFA.katil ile AYNI adresler
     var howto = document.getElementById('howtoLink');
@@ -329,6 +419,33 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     priv.textContent = T.privacy; priv.href = '/privacy' + POLICY_SUFFIX[lang] + '.html';
     term.textContent = T.terms;   term.href = '/terms'   + POLICY_SUFFIX[lang] + '.html';
 
+    var actions = document.getElementById('actions');
+    var openAppBtn = document.getElementById('openAppBtn');
+    var iosBtn = document.getElementById('iosBtn');
+    var androidBtn = document.getElementById('androidBtn');
+    var storeRow = document.getElementById('storeRow');
+    androidBtn.href = STORE_PLAY;
+
+    /* Düğme sırası platforma göre:
+       - Android: "Uygulamayı aç" (intent://, uygulama yoksa Google Play'e düşer),
+         sonra mağazalar Google Play önde.
+       - iOS: App Store DOLU birincil düğme; "Uygulamayı aç" ikincil. Safari özel
+         şemayı (manevisosyal://) uygulama yokken "adres geçersiz" diye reddediyor,
+         yani kurulu olmayan kişi için o düğme hiçbir şey yapmıyordu. Google Play
+         iPhone'da işe yaramadığı için mağaza satırı gizlenir.
+       - Masaüstü: eskisi gibi, iki mağaza birlikte. */
+    if (isIOS) {
+      iosBtn.className = 'btn';
+      iosBtn.textContent = T.getIos;
+      actions.insertBefore(iosBtn, actions.firstChild);
+      storeHint.textContent = T.haveApp;
+      actions.insertBefore(storeHint, openAppBtn);
+      openAppBtn.className = 'btn btn-ghost';
+      storeRow.style.display = 'none';
+    } else if (isAndroid) {
+      storeRow.insertBefore(androidBtn, iosBtn);
+    }
+
     var params = new URLSearchParams(window.location.search);
     // 'code' = grup daveti, 'event' = tek seferlik halka daveti. İkisi aynı
     // deep link'e (manevisosyal://join/CODE) gider; app kodu grup VEYA event
@@ -337,22 +454,32 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     // (manevisosyal://join?zikir=CODE): app tarafındaki çözüm deterministik
     // kalsın diye /join/CODE biçimine DÜŞÜRÜLMEZ (o biçim tipsizdir ve app onu
     // grup→event sırasıyla dener; zikir orada kaybolur).
+    // Eski halkalarda davet bağlantısı kod yerine halkanın uuid'sini taşıyabilir
+    // (uygulama `invite_code || id` yazıyor); uygulama /join/<uuid>'yi de çözer.
+    var UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     var zikir = (params.get('zikir') || '').toUpperCase().trim();
-    var code = zikir || (params.get('code') || params.get('event') || '').toUpperCase().trim();
+    var key = zikir ? 'zikir' : (params.get('code') ? 'code' : 'event');
+    var raw = zikir || (params.get('code') || params.get('event') || '').trim();
+    var isUuid = !zikir && UUID.test(raw);
+    var code = isUuid ? raw.toLowerCase() : raw.toUpperCase();
     var statusEl = document.getElementById('status');
-    statusEl.textContent = T.opening;
+    statusEl.textContent = isIOS ? T.openingIos : T.opening;
     var codeBox = document.getElementById('codeBox');
     var codeText = document.getElementById('codeText');
     var fallback = document.getElementById('fallback');
-    var openAppBtn = document.getElementById('openAppBtn');
 
-    if (!code || !/^[A-Z0-9]{4,12}$/.test(code)) {
+    if (!isUuid && !/^[A-Z0-9]{4,12}$/.test(code)) {
       statusEl.textContent = T.invalid;
+      // Açılacak davet yok: yalnız mağazalar. iOS'ta App Store zaten birincil;
+      // öbür platformlarda hiçbir yere gitmeyen "Uygulamayı aç" gizlenir.
+      openAppBtn.style.display = 'none';
+      if (isIOS) storeHint.style.display = 'none';
       fallback.classList.add('show');
       return;
     }
 
     codeText.textContent = code;
+    if (isUuid) codeText.className = 'code long';
     codeBox.style.display = 'block';
 
     // Zikir paylaşımında başlık/etiket bağlama uysun.
@@ -364,10 +491,71 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       if (label) label.textContent = T.shareCode;
     }
 
-    var deepLink = zikir
-      ? 'manevisosyal://join?zikir=' + zikir
-      : 'manevisosyal://join/' + code;
+    // Uygulamaya giden yol: şema kısmı (manevisosyal://) olmadan.
+    var appPath = zikir ? 'join?zikir=' + encodeURIComponent(code)
+                        : 'join/' + encodeURIComponent(code);
+    /* ANDROID: intent:// biçimi. Chrome ve Chromium tabanlı tarayıcılar bunu
+       uygulamaya verir; uygulama KURULU DEĞİLSE S.browser_fallback_url'e, yani
+       kurulum kaynağıyla Google Play'e gider. Düz manevisosyal:// ise Chrome'da
+       uygulama yokken HİÇBİR ŞEY yapmıyordu. Uygulamanın manifestinde
+       manevisosyal şeması BROWSABLE ile kayıtlı; Chrome intent'in verisini
+       "manevisosyal://" + appPath diye kurar, yani uygulamaya giden adres düz
+       şemayla birebir aynıdır.
+       ⚠️ Yalnız DOKUNUŞLA çalışır; aşağıdaki nota bak (otomatik açma yok). */
+    var deepLink = isAndroid
+      ? 'intent://' + appPath + '#Intent;scheme=manevisosyal;package=' + PKG +
+        ';S.browser_fallback_url=' + encodeURIComponent(STORE_PLAY) + ';end'
+      : 'manevisosyal://' + appPath;
     openAppBtn.href = deepLink;
+
+    // ── Kurulumdan sonra + bağlantıyı kopyala ─────────────────────────────
+    // Kopyalanan şey KODUN kendisi değil BAĞLANTI: uygulamadaki "Davet koduyla
+    // katıl" ekranı yapıştırılan bağlantıdan tipi de çıkarır (zikir paylaşımı
+    // yalnız kodla grup sanılırdı). Adres sabit: yerelde denerken localhost
+    // kopyalanmasın. ?w= taşınmaz (o bağlantılar bu sayfayı hiç çizmez).
+    var shareUrl = 'https://manevihalka.app/join.html?' + key + '=' + encodeURIComponent(code);
+    var afterBox = document.getElementById('afterBox');
+    document.getElementById('afterText').innerHTML = T.after; // sabit metin, kullanıcı verisi yok
+    var copyBtn = document.getElementById('copyBtn');
+    var copyStatus = document.getElementById('copyStatus');
+    copyBtn.textContent = T.copy;
+    var statusTimer = 0;
+    function copied(ok) {
+      clearTimeout(statusTimer);
+      if (!ok) {
+        // Kopyalanamadıysa kod seçili bırakılır, kişi kendisi kopyalasın.
+        try {
+          var r = document.createRange(); r.selectNodeContents(codeText);
+          var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        } catch (e) {}
+        copyStatus.textContent = '';
+        return;
+      }
+      copyStatus.textContent = T.copied;
+      statusTimer = setTimeout(function () { copyStatus.textContent = ''; }, 2600);
+    }
+    function legacyCopy() {
+      var ta = document.createElement('textarea');
+      ta.value = shareUrl;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px;';
+      document.body.appendChild(ta);
+      ta.select();
+      try { ta.setSelectionRange(0, shareUrl.length); } catch (e) {}
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      return ok;
+    }
+    copyBtn.addEventListener('click', function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl).then(function () { copied(true); },
+          function () { copied(legacyCopy()); });
+      } else {
+        copied(legacyCopy());
+      }
+    });
+    afterBox.hidden = false;
 
     /* ⚠️ BURADA ESKIDEN OTOMATIK UYGULAMA ACMA DENEMESI VARDI. GERI KOYMA.
        iOS'ta gizli iframe, Android'de window.location.href ile ozel semaya
@@ -376,7 +564,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
        olmasina ragmen ikisinde de uygulama ACILMADI, sure dolup yedege
        dusuldu. Sebep ortak: tarayicilar OTOMATIK sema gecisini engelliyor,
        yalniz KULLANICI DOKUNUSUYLA tetiklenene izin veriyor.
-       (Chrome'un kabul ettigi bicim intent:// -- bizimki o degil.)
+       (Android'deki intent:// de ayni kurala tabi: yalniz dugmeye dokununca.)
 
        Yani o 2500 ms hicbir sey satin almiyordu; uygulamayi acan tek sey
        isletim sistemi duzeyindeki Universal Link / App Links (o da bu sayfa
@@ -385,6 +573,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     fallback.classList.add('show');
   })();
 </script>
+<!-- Karti gorunur yapan isaret: yukaridaki betik calistiktan SONRA okunur (bastaki CSS). SILME. -->
+<i class="card-end" hidden></i>
 <!--NAV:JS-->
 <script>
 (function () {

@@ -3,7 +3,7 @@
 // Die Vorlagen im einmaligen Kreis (Salavât-ı Şerîfe, Yâsîn Sûresi, İhlâs Sûresi) zeigt die App in jeder Sprache so.
 export default {
   title: "Dhikr und Salawat gemeinsam zählen: ein Ziel",
-  desc: "Setze mit deinem Kreis ein gemeinsames Salawat- oder Dhikr-Ziel, und ihr zählt zusammen auf einem Zähler. Auch für Yasin oder Ichlas mit fester Anzahl.",
+  desc: "Setze mit deinem Kreis ein gemeinsames Salawat- oder Dhikr-Ziel, und alle zählen zusammen auf einem Zähler. Auch für Yasin oder Ichlas mit fester Anzahl.",
   h1: "So setzt du ein gemeinsames Dhikr- oder Salawat-Ziel",
   crumb: "Dhikr und Salawat gemeinsam",
   eyebrow: "Schritt-für-Schritt-Anleitung",

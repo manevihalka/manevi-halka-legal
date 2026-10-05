@@ -3,10 +3,12 @@
 // and the deceased example stays as one section.
 // Button names come from the app through [[key]]; since 2.0 the preset chips are in the user's language too.
 // Religious language: no reward promises, no rulings of our own, no specific memorial days.
+// Search aim: "khatam/dhikr for an occasion". "Group khatam" belongs to hatim.en.mjs; do not put it back in
+// title, desc, h1 or the first FAQ question (both pages would compete for the same search).
 export default {
-  title: "How to organise a group khatam: One-Time Circle guide",
-  desc: "Organise a group khatam, dhikr or salawat for a blessed night, Ramadan, a loved one who passed away or a prayer. People without the app can join too.",
-  h1: "One-Time Circle: how to organise a group khatam, dhikr or du'a",
+  title: "Khatam or dhikr for an occasion: One-Time Circle guide",
+  desc: "Organise a khatam, dhikr or salawat for an occasion: Ramadan, a blessed night, a late loved one or a prayer for someone. No app needed to join.",
+  h1: "One-Time Circle: how to organise a khatam, dhikr or du'a for an occasion",
   crumb: "One-time circle",
   eyebrow: "Step-by-step guide",
   lead: "For a blessed night, Ramadan, a loved one who passed away or an occasion in your family, you may want to complete a khatam, recite dhikr and salawat or read du'as together with the people you love. In the app you create a one-time circle for this: you choose the goal, set the end date and send the link. Everyone reads or counts their own share in their own place. The app only shares out the parts and adds up the counts.",
@@ -252,7 +254,7 @@ export default {
 
   sss: {
     sorular: [
-      { s: "How do I organise a group khatam?",
+      { s: "How do I organise a khatam for an occasion?",
         c: "In the [[tabs.circles]] tab, tap the **+** button, then the [[tx:event.createMenuTitle]] card and then the [[tx:event.typeQuran]] card. Choose [[tx:event.distPool]] for the distribution, set the end date, write the dedication if you like and tap [[event.create]]. Start it with [[event.startNow]] and send the link. Everyone takes a juz and reads it in their own place." },
       { s: "What is the difference between a one-time circle and a regular circle?",
         c: "A one-time circle is set up for one occasion: it has an end date, closes when its time is up and is deleted 24 hours later; its summary stays in the app. A regular circle is a lasting group with your family or community, where the khatam carries on with a new round every day or every week. More details: [Setting up a group khatam](/guides/group-khatam/)." },

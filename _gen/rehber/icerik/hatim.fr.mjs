@@ -151,7 +151,7 @@ export default {
       { s: "Et si quelqu’un ne peut pas terminer son juz ?",
         c: "La part non lue ne se perd pas : au tour suivant, elle reste **confiée** à la même personne. Elle peut aussi laisser une partie au cercle avec **Demander de l’aide**, ou remettre toute sa part au pool avec **Excuse**. Les autres la prennent avec **Aide** ou **Prendre**." },
       { s: "Nous avons déjà un groupe WhatsApp : à quoi sert l’appli ?",
-        c: "Garde ton groupe. Partage le lien d’invitation dans le groupe : la liste, qui a lu et les rappels, c’est l’appli qui s’en occupe. Tu n’as pas à refaire une liste chaque semaine." },
+        c: "Garde ton groupe. Partage le lien d’invitation dans le groupe : la liste, qui a lu et les rappels, c’est l’appli qui s’en occupe. Tu n’as pas à refaire une liste chaque semaine. Si tu veux quand même une liste sur papier, utilise le [tableau de khatma à imprimer](/fr/tableau-khatma/)." },
       { s: "Un parent âgé sans l’appli peut-il participer ?",
         c: "Dans un cercle régulier, l’administrateur peut ajouter une personne sans l’appli comme **invité** ; un membre responsable marque sa lecture. Pour une khatma ponctuelle avec **Pool commun**, ceux qui n’ont pas l’appli prennent un juz depuis le lien d’invitation, dans le navigateur : [Cercle ponctuel](/fr/guides/cercle-ponctuel/)." },
       { s: "Est-ce payant ?",

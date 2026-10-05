@@ -37,3 +37,17 @@ export const OG_LOCALE = { tr: "tr_TR", en: "en_US", de: "de_DE", fr: "fr_FR", a
 /** Bir adres haritasindan dosya yolu: "/tr/" -> "tr/index.html", "/" -> "index.html". */
 export const dosyaYolu = (u) => (u === "/" ? "index.html" : u.replace(/^\//, "") + "index.html");
 export const tamAdres = (u) => SITE + u;
+/**
+ * Ortak Okuma sayfasi (5 Eki 2026, _gen/build-ortak.mjs): her dilin kendi adresi ve kendi sozcugu
+ * (Ortak Okuma, Shared Reading, Gemeinsames Lesen, Lecture commune, القراءة المشتركة; Arapca ASCII
+ * harf cevirisi). Eski /ortak-okuma.html ve /hatim.html yonlendirme kabugu (noindex): dili secip
+ * sorgu dizesi ve # ile buraya gecer. ⚠️ js/ortak-hatim.js ORTAK_URL ve 404.html ayni haritayi tasir
+ * (uretici ikisini de denetler).
+ */
+export const ORTAK = { en: "/shared-reading/", tr: "/tr/ortak-okuma/", de: "/de/gemeinsames-lesen/", fr: "/fr/lecture-commune/", ar: "/ar/qiraa-mushtaraka/" };
+/**
+ * Yazdirilabilir hatim cizelgesi (5 Eki 2026, _gen/build-cizelge.mjs). Her dilin arama sozcugu:
+ * TR "hatim cizelgesi", EN "khatam chart", DE "Khatm-Plan", FR "tableau khatma", AR "جدول ختمة" (harf cevirisi).
+ * Rehber sayfalarindan (hatim rehberi ve merkez) baglanir.
+ */
+export const CIZELGE = { en: "/khatam-chart/", tr: "/tr/hatim-cizelgesi/", de: "/de/khatm-plan/", fr: "/fr/tableau-khatma/", ar: "/ar/jadwal-khatma/" };

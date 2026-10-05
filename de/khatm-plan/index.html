@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: _gen/cizelge.src.html + _gen/build-cizelge.mjs
+     Uretici: node _gen/build-cizelge.mjs · dil=de -->
+<html lang="de" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- KAYNAK SABLON: yazdirilabilir hatim cizelgesi, 5 dil (adresler _gen/site-urls.mjs CIZELGE).
+     Uretici: `node _gen/build-cizelge.mjs` (--check: yazmaz, fark varsa cikis 1). Metinler ve cuz
+     verisi ureticide; veri uygulamanin mushafindan (lib/mushafCoords.ts, assets/data/quran-pages.json)
+     ve uretici her calismada uygulama deposuyla karsilastirir. Ust cubuk, altbilgi, tema ve indirme
+     bandi rehber sayfalarindan (_gen/rehber.src.html) kopyalandi: ortak parcalari degistirirsen
+     ikisini birlikte degistir. Yazdirma: tek A4 sayfa cizelge, ikinci sayfada 7 gunluk plan;
+     dugmeler html[data-print-sheet] ile yalniz birini basar. Uzun tire yok, Cevsen yok, emoji yok. -->
+<title>Khatm-Plan zum Ausdrucken: 30 Dschuz verteilen (PDF)</title>
+<meta name="description" content="Kostenloser Khatm-Plan: wo jeder der 30 Dschuz beginnt, seine Seiten im Diyanet-Mushaf, Spalten für Namen und zum Abhaken. Drucken oder als PDF speichern.">
+<link rel="canonical" href="https://manevihalka.app/de/khatm-plan/">
+<link rel="alternate" hreflang="tr" href="https://manevihalka.app/tr/hatim-cizelgesi/">
+<link rel="alternate" hreflang="en" href="https://manevihalka.app/khatam-chart/">
+<link rel="alternate" hreflang="de" href="https://manevihalka.app/de/khatm-plan/">
+<link rel="alternate" hreflang="fr" href="https://manevihalka.app/fr/tableau-khatma/">
+<link rel="alternate" hreflang="ar" href="https://manevihalka.app/ar/jadwal-khatma/">
+<link rel="alternate" hreflang="x-default" href="https://manevihalka.app/khatam-chart/">
+<meta name="apple-itunes-app" content="app-id=6760654292">
+<meta name="theme-color" content="#1e4d35">
+<meta property="og:title" content="Khatm-Plan zum Ausdrucken: 30 Dschuz verteilen (PDF)">
+<meta property="og:description" content="Kostenloser Khatm-Plan: wo jeder der 30 Dschuz beginnt, seine Seiten im Diyanet-Mushaf, Spalten für Namen und zum Abhaken. Drucken oder als PDF speichern.">
+<meta property="og:url" content="https://manevihalka.app/de/khatm-plan/">
+<meta property="og:locale" content="de_DE">
+<meta property="og:image" content="https://manevihalka.app/og-cover-de.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://manevihalka.app/de/khatm-plan/#page",
+      "url": "https://manevihalka.app/de/khatm-plan/",
+      "name": "Khatm-Plan zum Ausdrucken: 30 Dschuz verteilen (PDF)",
+      "description": "Kostenloser Khatm-Plan: wo jeder der 30 Dschuz beginnt, seine Seiten im Diyanet-Mushaf, Spalten für Namen und zum Abhaken. Drucken oder als PDF speichern.",
+      "inLanguage": "de",
+      "isPartOf": {
+        "@id": "https://manevihalka.app/#site"
+      },
+      "publisher": {
+        "@id": "https://manevihalka.app/#org"
+      },
+      "breadcrumb": {
+        "@id": "https://manevihalka.app/de/khatm-plan/#crumbs"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://manevihalka.app/de/khatm-plan/#crumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Manevi Halka",
+          "item": "https://manevihalka.app/de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Anleitungen",
+          "item": "https://manevihalka.app/de/anleitungen/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Khatm-Plan",
+          "item": "https://manevihalka.app/de/khatm-plan/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script>/* sayfa gecisi: onceki sayfada isaret gorunurken gelindiyse ilk kare isaretle cizilir (nav-loader.html) */
+try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.removeItem("mh-land");if(L&&L.p===location.pathname&&Date.now()-L.t<15000)document.documentElement.classList.add("mh-land")}catch(e){}</script>
+<!-- Girisin yazi tipleri erken iner (Marcellus 14 KB, Onest 34 KB): gec geldiklerinde baslik ve giris paragrafi yeniden
+     kiriliyor, altindaki her sey (mini ekran dahil) 29 px kayiyordu (yavas baglantida olculdu). crossorigin sart: yazi tipi
+     istegi CORS kipinde, yoksa dosya iki kez iner. -->
+<link rel="preload" href="/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+(function () {
+  var root = document.documentElement, t = null, app = false, q = null;
+  // Uygulama ici kip (?app=1&theme=dark|light): Manevi Halka uygulamasi rehberi kendi
+  // tarayici penceresinde acar. Indirme bolumu, site menusu, dil/tema dugmeleri ve altbilgi
+  // gizlenir (iOS uygulamasinda Google Play rozeti Apple 2.3.10'a takilabilir); tema
+  // uygulamadan gelir. Rehberler arasi gecisteki adreste parametre yok: kip, o pencerenin
+  // oturumu boyunca sessionStorage'da tutulur (normal tarayiciya tasinmaz).
+  try { q = new URLSearchParams(location.search); } catch (e) { /* eski tarayici */ }
+  try {
+    if (q && q.get("app") === "1") {
+      sessionStorage.setItem("mh_app", "1");
+      var pt = q.get("theme");
+      if (pt === "dark" || pt === "light") sessionStorage.setItem("mh_app_theme", pt);
+    }
+    app = sessionStorage.getItem("mh_app") === "1";
+    if (app) t = sessionStorage.getItem("mh_app_theme");
+  } catch (e) {
+    app = !!(q && q.get("app") === "1");
+    if (app) t = q.get("theme");
+  }
+  if (app) root.setAttribute("data-app", "1");
+  if (t !== "dark" && t !== "light") {
+    try { t = localStorage.getItem("mh_theme"); } catch (e) { /* gizli mod */ }
+  }
+  if (t !== "dark" && t !== "light") {
+    try { t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } catch (e) { t = "light"; }
+  }
+  root.setAttribute("data-theme", t);
+  // Android'de Google Play once ve dolu: karar magaza dugmeleri cizilmeden BURADA verilir, sira ve gorunum
+  // yalniz CSS'te (.is-android). Dugmelerden sonra calisan betik yavas baglantida App Store'u kaydiriyordu.
+  if (/Android/.test(navigator.userAgent || "")) root.classList.add("is-android");
+})();
+</script>
+<style>
+  /* Yazi tipleri KENDI SUNUCUMUZDAN (SIL OFL, fonts/OFL-*.txt); ucuncu tarafa istek yok. */
+  @font-face { font-family: "Marcellus"; font-style: normal; font-weight: 400; font-display: swap;
+    src: url(/fonts/marcellus-latin-ext.woff2) format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: "Marcellus"; font-style: normal; font-weight: 400; font-display: swap;
+    src: url(/fonts/marcellus-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Onest"; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url(/fonts/onest-latin-ext.woff2) format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: "Onest"; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url(/fonts/onest-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  :root {
+    /* Acik tema bilerek sitenin geri kalanindan bir ton koyu: rehber uzun okunan, cok sayida acik
+       ekran tasiyan bir sayfa; #f7f4ec + beyaz telefonlar goz aliyordu (kullanici, 5 Eki 2026). */
+    --page: #efebe2; --paper: #f8f5ee; --ink: #14231c; --body: #46554d; --muted: #5f6b64;
+    /* 5 Eki 2026 kontrast: --muted #737f78 zeminde 3,51:1 idi, #5f6b64 4,68:1 (kagit 5,11). Altbilgi baglantilari
+       govde renginde (--foot). Metindeki uygulama dugmesi (.kb) mini ekranin --a-pri tonundan biraz koyu:
+       dolu #3b7a73 beyaz yaziyla 4,98:1, cizgili #376c66 zeminde 5,04:1 (ipucu kutusunda 4,62). Koyu tema degismedi. */
+    --foot: var(--body); --kb: #3b7a73; --kb-ol: #376c66;
+    --green: #1e4d35; --green-2: #2f6b4a; --mint: #e8f2ea; --gold: #8a6a22; --gold-soft: #c9a55a;
+    --line: color-mix(in srgb, #14231c 10%, transparent);
+    --band: #10231b; --band-ink: #eef4ef; --band-sub: #b7c8bd;
+    --display: "Marcellus", "Iowan Old Style", Georgia, serif;
+    --sans: "Onest", -apple-system, "Segoe UI", system-ui, sans-serif;
+    --s: 1;
+    /* Uygulamanin kendi renkleri (ocean tema): mini ekranlar ve metindeki dugme adlari */
+    /* Mini ekranlar parlakligi kisilmis bir telefon gibi: uygulamanin ocean temasinin oranlari korunur
+       (zemin karttan koyu), beyaz yerine kirik beyaz. */
+    --a-bg: #e8efed; --a-card: #f7faf9; --a-hd: #f7faf9; --a-ink: #284744; --a-mut: #5a706c; --a-line: #c6d9d5;
+    --a-pri: #4a9088; --a-soft: #d6e8e3; --a-on: #ffffff; --a-in: #e2ebe8; --a-red: #e63946; --a-gold: #a08a50;
+    --a-g1: #3f8178; --a-g2: #5ba096; --a-paper: #f5f1e7; --a-tg: #c8d3d0;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298; --foot: var(--muted); --kb: var(--a-pri); --kb-ol: var(--a-pri);
+      --green: #8fd3ae; --green-2: #7ab894; --mint: #1d3227; --gold: #d9b563; --gold-soft: #d9b563;
+      --line: color-mix(in srgb, #eaf3ee 12%, transparent); --band: #07110c;
+      --a-bg: #0e1816; --a-card: #182824; --a-hd: #13211e; --a-ink: #c0dcd8; --a-mut: #80a8a0; --a-line: #283e3a;
+      --a-pri: #70b0a8; --a-soft: #1e332f; --a-on: #0e1816; --a-in: #142220; --a-red: #ef5a62; --a-gold: #c9ad6a;
+      --a-g1: #2c5d56; --a-g2: #3f7a71; --a-paper: #17221f; --a-tg: #3a4f4b;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298; --foot: var(--muted); --kb: var(--a-pri); --kb-ol: var(--a-pri);
+    --green: #8fd3ae; --green-2: #7ab894; --mint: #1d3227; --gold: #d9b563; --gold-soft: #d9b563;
+    --line: color-mix(in srgb, #eaf3ee 12%, transparent); --band: #07110c;
+    --a-bg: #0e1816; --a-card: #182824; --a-hd: #13211e; --a-ink: #c0dcd8; --a-mut: #80a8a0; --a-line: #283e3a;
+    --a-pri: #70b0a8; --a-soft: #1e332f; --a-on: #0e1816; --a-in: #142220; --a-red: #ef5a62; --a-gold: #c9ad6a;
+    --a-g1: #2c5d56; --a-g2: #3f7a71; --a-paper: #17221f; --a-tg: #3a4f4b;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  /* Yatay tasma kokte de kirpilir: yalniz body'de olunca deger gorunum alanina tasiniyor, Arapca rehberler
+     (sag-sol) 12-19 px yana kaymis aciliyordu (390 px'te scrollX -15, scrollWidth 405; 5 Eki 2026 olculdu). */
+  html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+  body { overflow-x: clip; margin: 0; background: var(--page); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding-inline: 20px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -.005em; }
+  p { margin: 0; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; border-radius: 6px; }
+
+  /* ── ust cubuk (ana sayfayla ayni) ── */
+  .top { display: flex; align-items: center; gap: 24px; height: 72px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-size: 20px; white-space: nowrap; }
+  .brand img { width: 32px; height: 32px; border-radius: 9px; }
+  .top nav { display: flex; gap: 4px; margin-inline-start: auto; }
+  .top nav a { text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px; opacity: .8; white-space: nowrap; }
+  /* 821-1120 px: dort sayfa baglantisi tek satira sigsin (DE/FR 1024'te ikiye kiriliyordu);
+     dar ucta "Uygulama" saklanir, marka zaten ana sayfaya gider (ana sayfadaki menuSigdir de once onu saklar) */
+  @media (max-width: 1120px) { .top { gap: 14px; } .top nav { gap: 0; } .top nav a { padding: 8px 9px; } }
+  @media (max-width: 1000px) { .top nav a:first-child { display: none; } }
+  @media (max-width: 900px) { .top { gap: 10px; } .top nav a { padding: 8px 7px; font-size: 14px; } }
+  .top nav a:hover { opacity: 1; background: var(--mint); }
+  .top nav a[aria-current="page"] { opacity: 1; background: var(--mint); }
+  .theme-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; overflow: hidden; }
+  .theme-btn:hover { background: var(--mint); }
+  .theme-btn svg { position: absolute; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; transition: opacity .45s ease, transform .6s cubic-bezier(.3, 1.3, .5, 1); }
+  .theme-btn .sun { opacity: 0; transform: rotate(-90deg) scale(.5); }
+  :root[data-theme="dark"] .theme-btn .sun { opacity: 1; transform: none; }
+  :root[data-theme="dark"] .theme-btn .moon { opacity: 0; transform: rotate(90deg) scale(.5); }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+  :root.theme-fade, :root.theme-fade * { transition: background-color .6s ease, color .6s ease, border-color .6s ease, fill .6s ease, stroke .6s ease, box-shadow .6s ease !important; }
+  .get { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; white-space: nowrap; flex: none; border-radius: 999px; background: var(--green); color: var(--page); text-decoration: none; font-weight: 700; font-size: 14.5px; }
+  .get svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .get .gs { display: none; }
+  @media (max-width: 920px) { .get .gl { display: none; } .get .gs { display: inline; } }
+  @media (max-width: 820px) { .top nav { display: none; } .top .lang { margin-inline-start: auto; } .top { gap: 10px; } }
+  .lang { position: relative; flex: none; }
+  .lang-btn { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+  .lang-btn:hover { background: var(--mint); }
+  .lang-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .lang-list { position: absolute; top: calc(100% + 8px); inset-inline-end: 0; z-index: 80; min-width: 172px; padding: 6px; border-radius: 16px; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 22px 44px -22px rgba(10, 30, 20, .45); display: grid; gap: 2px; }
+  .lang-list[hidden] { display: none; }
+  .lang-list a { display: block; padding: 9px 12px; border-radius: 10px; font-size: 14.5px; text-decoration: none; }
+  .lang-list a:hover { background: var(--mint); }
+  .lang-list a[aria-current="page"] { font-weight: 700; background: var(--mint); }
+  @media (max-width: 520px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
+    .brand { font-size: 18px; } .get { width: 40px; padding: 0; justify-content: center; } .get .gl, .get .gs { display: none; } .get svg { width: 18px; height: 18px; } }
+  /* 320 px telefonda baslik 303 px ediyordu, indirme dugmesi sagdan kesiliyordu */
+  @media (max-width: 360px) { .top { gap: 6px; } .brand { font-size: 17px; } .lang-btn, .theme-btn, .get { width: 36px; height: 36px; } }
+
+  /* ── iz (breadcrumb) ── */
+  .crumbs { font-size: 13.5px; color: var(--muted); padding-top: 8px; }
+  .crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .crumbs li { display: inline-flex; align-items: center; gap: 6px; }
+  .crumbs li + li::before { content: "›"; opacity: .6; display: inline-block; transform: scaleX(var(--s)); }
+  .crumbs a { text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; color: var(--ink); }
+
+  /* ── uygulama ici kip (?app=1, yukaridaki betik) ── */
+  :root[data-app] header.top, :root[data-app] footer,
+  :root[data-app] .crumbs li:first-child { display: none !important; }
+  :root[data-app] .crumbs li:nth-child(2)::before { content: none; }
+  :root[data-app] .crumbs { padding-top: 18px; }
+
+  /* ── giris ── */
+  .g-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; padding-block: 24px 40px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+  .eyebrow svg { width: 16px; height: 16px; }
+  .g-hero h1 { font-size: clamp(36px, 4.8vw, 58px); line-height: 1.06; margin-top: 16px; }
+  .lead { margin-top: 18px; font-size: 18.5px; line-height: 1.6; color: var(--body); max-width: 34em; }
+  @media (max-width: 900px) { .g-hero { grid-template-columns: 1fr; gap: 28px; } }
+  :root[lang="ar"] .eyebrow { letter-spacing: 0; }
+  :root[lang="ar"] .g-hero h1 { line-height: 1.3; }
+
+  /* ── kisaca (one cikan cevap) + icindekiler ── */
+  .answer { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 26px 28px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 32px; }
+  .answer h2 { font-size: 26px; }
+  .answer h2 + p { margin-top: 12px; }
+  .answer p + p { margin-top: 8px; }
+  .answer p { color: var(--body); }
+  .answer ol { list-style: none; margin: 14px 0 0; padding: 0; counter-reset: k; display: grid; gap: 10px; }
+  .answer ol li { counter-increment: k; position: relative; padding-inline-start: 40px; font-size: 16px; }
+  .answer ol li::before { content: counter(k); position: absolute; inset-inline-start: 0; top: 0; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--mint); color: var(--green); font-weight: 700; font-size: 13.5px; }
+  .toc { border-inline-start: 1px solid var(--line); padding-inline-start: 28px; }
+  .toc b { font-family: var(--display); font-weight: 400; font-size: 20px; }
+  .toc ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+  .toc a { display: flex; gap: 10px; align-items: baseline; text-decoration: none; font-weight: 600; font-size: 15px; padding: 6px 0; }
+  .toc a small { color: var(--muted); font-weight: 500; font-size: 13px; }
+  .toc a:hover span { text-decoration: underline; }
+  .toc .tn { font-family: var(--sans); font-weight: 700; color: var(--gold); min-width: 1.2em; }
+  @media (max-width: 760px) { .answer { grid-template-columns: 1fr; gap: 22px; padding: 22px 20px; } .toc { border-inline-start: 0; padding-inline-start: 0; border-top: 1px solid var(--line); padding-top: 18px; } }
+
+  .tip, .why { margin-top: 14px !important; padding: 12px 14px; border-radius: 14px; font-size: 15px !important; display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; }
+  .tip { background: var(--mint); color: var(--ink) !important; }
+  .why { background: color-mix(in srgb, var(--gold-soft) 14%, transparent); color: var(--ink) !important; }
+  .tip svg, .why svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
+  .tip svg { color: var(--green); } .why svg { color: var(--gold); }
+  .tip .kb.tx { background: var(--paper); box-shadow: inset 0 0 0 1px var(--a-line); }
+
+  /* ── kapanis ── */
+  .cta { margin-block: 56px 72px; text-align: center; background: var(--band); color: var(--band-ink); border-radius: 32px; padding: clamp(36px, 6vw, 72px) clamp(20px, 5vw, 56px); position: relative; overflow: hidden; }
+  .cta .ring-close { position: absolute; width: 560px; aspect-ratio: 1; left: 50%; top: 50%; transform: translate(-50%, -50%); color: #d9b563; opacity: .14; pointer-events: none; }
+  .cta h2 { position: relative; font-size: clamp(28px, 3.4vw, 40px); color: #f6f1e4; }
+  .cta p { position: relative; margin: 12px auto 0; color: var(--band-sub); font-size: 17px; max-width: 34em; }
+  .stores { position: relative; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; justify-content: center; }
+  .store { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border-radius: 14px; text-decoration: none; background: #f6f1e4; color: #10231b; min-width: 172px; }
+  /* Ikincil (cizgili) magaza: varsayilan Google Play (.alt). Android'de (<html class="is-android">, bastaki betik)
+     App Store ikincil olur, Google Play one gecer ve dolar; sira ve gorunum YALNIZ CSS (ana sayfayla ayni). */
+  .store.alt, .is-android .store[data-store="ios"] { background: transparent; color: #f6f1e4; border: 1px solid rgba(246, 241, 228, .3); }
+  .is-android .store[data-store="android"] { order: -1; }
+  .is-android .store.alt[data-store="android"] { background: #f6f1e4; color: #10231b; border: 0; }
+  /* Yavas baglantida blogun yarisi cizilebiliyor (Android'de App Store, Google Play gelmeden ilk yerde gorunup
+     sonra kayiyordu): blok, sonundaki bos isaret (.stores-end) okunana kadar gorunmez. Isareti SILME (silinirse
+     blok ancak 3 sn sonra gorunur). :has() bilmeyen tarayicida kural yok sayilir. */
+  .stores:not(:has(> .stores-end)) { visibility: hidden; animation: mh-stores-show 0s 3s forwards; }
+  @keyframes mh-stores-show { to { visibility: visible; } }
+  /* Ust cubuk yarim okunurken cizilirse dil ve tema dugmeleri once en saga oturup "Indir" (.get, cubugun son
+     ogesi) gelince sola kayiyordu (yavas baglantida olculdu). .get okunana kadar marka disindakiler gorunmez. */
+  .top:not(:has(> .get)) > :not(.brand) { visibility: hidden; animation: mh-stores-show 0s 3s forwards; }
+  .store svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
+  .store small { display: block; font-size: 10.5px; font-weight: 500; opacity: .8; line-height: 1.1; text-align: start; }
+  .store b { display: block; font-size: 16px; line-height: 1.25; text-align: start; }
+  /* Magaza dugmesi hover (5 Eki 2026, ana sayfayla ayni): hafifce kalkar; elma sapindan asiliymis gibi
+     sallanir, Play ucgeni ileri kayar. Yalniz fareli cihazda; klavyede :focus-visible; hareketi azaltta yalniz renk. */
+  .store { transition: transform .28s cubic-bezier(.3, 1.4, .5, 1), box-shadow .28s ease, background-color .2s ease, filter .2s ease; }
+  .store svg { transition: transform .4s cubic-bezier(.3, 1.7, .5, 1); }
+  .store[data-store="ios"] svg { transform-origin: 62% 4%; }
+  @keyframes mh-elma { 0% { transform: rotate(0); } 28% { transform: rotate(-13deg); } 56% { transform: rotate(8deg); } 80% { transform: rotate(-3deg); } 100% { transform: rotate(0); } }
+  @media (hover: hover) {
+    .store:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -14px rgba(0, 0, 0, .55); }
+    .store.alt:hover, .is-android .store[data-store="ios"]:hover { background: rgba(246, 241, 228, .1); }
+    .is-android .store.alt[data-store="android"]:hover { background: #f6f1e4; }
+    .store[data-store="ios"]:hover svg { animation: mh-elma .75s ease-out; }
+    .store[data-store="android"]:hover svg { transform: translateX(3px); }
+  }
+  .store:focus-visible { transform: translateY(-2px); }
+  .store:active { transform: translateY(0) scale(.98); transition-duration: .1s; }
+  @media (prefers-reduced-motion: reduce) {
+    .store, .store svg { transition: background-color .2s ease, filter .2s ease; }
+    .store:hover, .store:focus-visible, .store:active { transform: none; }
+    .store:hover svg { animation: none !important; transform: none !important; }
+  }
+  /* Bilgisayardan telefona: genis ekran ve fareli cihazda magaza dugmelerinin yaninda QR (ana sayfa ve
+     indir.html ile ayni kod: https://manevihalka.app/indir?utm_source=qr). Telefonda ve tablette gizli.
+     Yazi ureticinin sozlugunden (OZEL.qrCaption, bes dil), blok ekran okuyucudan gizli: magaza baglantilari ayni isi gorur. */
+  .qr-hand { display: none; }
+  @media (hover: hover) and (min-width: 900px) {
+    /* Dugmeler eskisi gibi esit boyda kalsin, bant uzamasin: QR satirin ortasina oturur, dikeyde dugme boyunu asan
+       kismi (90 px karo, 54 px dugme) negatif kenar payiyla satir yuksekligine sayilmaz. */
+    .cta .stores { margin-top: 40px; }
+    .qr-hand { display: inline-flex; align-items: center; align-self: center; gap: 12px; margin-block: -20px; margin-inline-start: 14px; padding-inline-start: 22px; border-inline-start: 1px solid rgba(246, 241, 228, .18); }
+  }
+  .qr-tile { display: block; padding: 9px; border-radius: 12px; background: #fff; line-height: 0; }
+  .qr-hand .qr { display: block; width: 72px; height: 72px; color: #10231b; }
+  .qr-cap { max-width: 9.5em; font-size: 13.5px; font-weight: 600; line-height: 1.35; text-align: start; color: #f6f1e4; }
+
+  /* ── altbilgi (ana sayfayla ayni) ── */
+  footer { padding-block: 40px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13.5px; color: var(--muted); border-top: 1px solid var(--line); }
+  footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+  footer a { text-decoration: none; }
+  footer nav a { color: var(--foot); }
+  footer a:hover { text-decoration: underline; }
+  footer .langs { display: flex; flex-wrap: wrap; gap: 12px; }
+  footer .langs a[aria-current="page"] { color: var(--ink); font-weight: 700; }
+  footer .social { flex-basis: 100%; display: grid; justify-items: center; gap: 4px; padding-block: 8px 22px; text-align: center; border-bottom: 1px solid var(--line); margin-bottom: 6px; }
+  .social-title { font-family: var(--display); font-size: 22px; color: var(--ink); }
+  :root[lang="ar"] .social-title { font-family: inherit; font-weight: 700; }
+  .social-text { color: var(--body); font-size: 14.5px; }
+  .social-icons { display: flex; gap: 10px; margin-top: 10px; }
+  .social-icons a { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--green); background: var(--mint); border: 1px solid var(--line); }
+  .social-icons a:hover { background: var(--green); color: var(--page); }
+  .social-icons svg { width: 19px; height: 19px; }
+  /* Dar telefonda (320 px) alti simge 302 px ediyordu, sonuncusu kesiliyordu: kucult, yine sigmazsa alt satira. */
+  .social-icons { flex-wrap: wrap; }
+  @media (max-width: 360px) { .social-icons { gap: 8px; } .social-icons a { width: 38px; height: 38px; } }
+
+  /* ── Arapca: sag-sol aynalama, Arap yazisinda harf araligi yok ── */
+  :root[dir="rtl"] { --s: -1; --display: "Marcellus", "Noto Naskh Arabic", "Geeza Pro", "Segoe UI", serif;
+    --sans: "Onest", "Noto Sans Arabic", "Geeza Pro", "Segoe UI", system-ui, sans-serif; }
+
+  /* ═════════════ HATIM CIZELGESI ═════════════ */
+  .g-hero { align-items: start; padding-block: 28px 44px; }
+  .acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 20px; border-radius: 999px; border: 1px solid transparent;
+    font: inherit; font-weight: 700; font-size: 15.5px; line-height: 1.2; text-decoration: none; cursor: pointer; transition: background-color .2s ease, border-color .2s ease; }
+  .btn svg { width: 19px; height: 19px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .btn.pri { background: var(--green); color: var(--page); }
+  .btn.pri:hover { background: var(--green-2); }
+  .btn.sec { background: transparent; color: var(--ink); border-color: color-mix(in srgb, var(--ink) 22%, transparent); }
+  .btn.sec:hover { background: var(--mint); }
+  .btn.sm { min-height: 42px; padding: 0 16px; font-size: 14.5px; }
+  .hint { margin-top: 14px; font-size: 14.5px; color: var(--muted); max-width: 34em; }
+  .howto { grid-template-columns: 1fr; gap: 0; }
+  .howto ol li { font-size: 15.5px; color: var(--body); }
+  .howto ol li b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 380px) { .acts .btn { width: 100%; } }
+
+  /* ── kagit (ekranda kart, yazdirinca A4) ── */
+  .part { padding-block: 8px 24px; scroll-margin-top: 16px; }
+  .sheet { background: var(--paper); border: 1px solid var(--line); border-radius: 26px; padding: clamp(18px, 3.2vw, 36px); box-shadow: 0 34px 70px -56px rgba(10, 30, 20, .5); scroll-margin-top: 16px; }
+  .sheet-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 24px; }
+  .sheet-head h2, .sheet-head h3 { font-size: clamp(26px, 3vw, 36px); line-height: 1.15; }
+  .sheet-sub { margin-top: 6px; color: var(--muted); font-size: 14.5px; }
+  .sheet-brand { display: none; }
+  .fields { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px 24px; margin-top: 20px; }
+  .field { display: grid; gap: 2px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+  .field input { width: 100%; font: inherit; font-size: 16px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--ink); background: transparent;
+    border: 0; border-bottom: 1.5px dotted color-mix(in srgb, var(--ink) 35%, transparent); border-radius: 0; padding: 6px 2px; }
+  :root[lang="ar"] .field { letter-spacing: 0; font-size: 13px; }
+  @media (max-width: 640px) { .fields { grid-template-columns: 1fr 1fr; } .fields .field:first-child { grid-column: 1 / -1; } }
+  .tbl-wrap { margin-top: 18px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .chart { width: 100%; border-collapse: collapse; font-size: 15.5px; font-variant-numeric: tabular-nums; }
+  .chart caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .chart thead th { text-align: start; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); padding: 10px; border-bottom: 1.5px solid color-mix(in srgb, var(--ink) 22%, transparent); white-space: nowrap; }
+  :root[lang="ar"] .chart thead th { letter-spacing: 0; font-size: 13px; }
+  .chart td, .chart tbody th { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; text-align: start; font-weight: 400; }
+  .chart tbody tr:nth-child(even) { background: color-mix(in srgb, var(--mint) 55%, transparent); }
+  .chart tbody tr:has(.chk:checked) { background: color-mix(in srgb, var(--green-2) 16%, transparent); }
+  .c-no { width: 54px; }
+  .chart th.c-start { width: 30%; } .chart th.c-pg { width: 14%; }
+  .week th.c-juz { width: 11%; } .week th.c-start { width: 24%; }
+  .chart th.c-ok, .chart td.c-ok { width: 74px; text-align: center; }
+  .jn { display: inline-grid; place-items: center; min-width: 34px; height: 34px; padding: 0 6px; border-radius: 999px; border: 1px solid var(--line); background: var(--page); color: var(--green); font-weight: 700; font-size: 15px; }
+  .sn { font-weight: 600; }
+  .ref { margin-inline-start: 8px; color: var(--muted); font-size: 13px; }
+  /* .ref soldan saga yalitildigi icin kendi 'start' kenari soldur; Arapcada bosluk sagda olmali */
+  :root[dir="rtl"] .ref { margin-inline-start: 0; margin-right: 8px; }
+  .c-pg, .c-juz { white-space: nowrap; }
+  .pg-sm { display: none; color: var(--muted); font-size: 13px; white-space: nowrap; }
+  .ltr { direction: ltr; unicode-bidi: isolate; white-space: nowrap; }
+  .c-nm { min-width: 8em; }
+  .nm { width: 100%; min-width: 6em; font: inherit; color: var(--ink); background: transparent; border: 0; border-bottom: 1px dashed color-mix(in srgb, var(--ink) 25%, transparent); border-radius: 0; padding: 6px 2px; }
+  .nm:focus, .field input:focus { outline: none; border-bottom: 2px solid var(--green-2); }
+  .nm:focus-visible, .field input:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; border-radius: 4px; }
+  .chk { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; margin: 0; border: 1.5px solid var(--green-2); border-radius: 8px; background: transparent no-repeat center / 17px; vertical-align: middle; cursor: pointer; }
+  .chk:checked { background-color: var(--green); border-color: var(--green);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chk:checked { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e1a14' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E"); } }
+  :root[data-theme="dark"] .chk:checked { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e1a14' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+  .chk:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
+  .sheet-note { margin-top: 16px; font-size: 13.5px; line-height: 1.55; color: var(--muted); max-width: 62em; }
+  /* Telefonda sayfa sutunu baslangic hucresinin altina iner, kunye (2:142) gizlenir: tablo sayfayi yana kaydirmaz. */
+  @media (max-width: 600px) {
+    .chart { font-size: 14.5px; }
+    .chart .c-pg, .ref, .week .c-start { display: none; }
+    .pg-sm { display: block; }
+    .chart td, .chart tbody th { padding: 6px 6px; }
+    .chart thead th { padding: 8px 5px; font-size: 10px; letter-spacing: .02em; white-space: normal; }
+    .c-start { font-size: 13.5px; }
+    .c-no { width: 36px; }
+    .chart th.c-start, .chart th.c-pg, .week th.c-juz { width: auto; }
+    .chart th.c-ok, .chart td.c-ok { width: 44px; }
+    .chk { width: 24px; height: 24px; }
+    .jn { min-width: 26px; height: 26px; font-size: 13px; }
+    .c-nm, .nm { min-width: 0; }
+    .sheet { border-radius: 22px; padding: 18px 14px; }
+  }
+
+  /* ── planlar ── */
+  .plans-head { padding-top: 56px; max-width: 44em; }
+  .plans-head h2 { font-size: clamp(30px, 3.6vw, 42px); line-height: 1.12; }
+  .plans-head p { margin-top: 10px; font-size: 17px; color: var(--body); }
+  .pcard { margin-top: 26px; background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: clamp(20px, 3vw, 30px) clamp(18px, 3.2vw, 36px); display: grid; gap: 10px; align-content: start; scroll-margin-top: 16px; }
+  .pcard h3 { font-size: clamp(24px, 2.6vw, 30px); line-height: 1.2; }
+  .pcard p { color: var(--body); font-size: 16px; max-width: 46em; }
+  .pcard .btn { justify-self: start; margin-top: 8px; }
+  #week { margin-top: 20px; }
+  #plan7 { scroll-margin-top: 24px; }
+  .sheet-desc { margin-top: 10px; color: var(--body); font-size: 16px; max-width: 46em; }
+  .print-only { display: none; }
+
+  /* ── kapanis bandindaki rehber baglantisi; uygulama ici kipte yalniz magaza dugmeleri gizli ── */
+  .cta p a { color: #f6f1e4; text-underline-offset: 3px; text-decoration-color: rgba(246, 241, 228, .55); }
+  .cta p a:hover { text-decoration-color: currentColor; }
+  :root[data-app] .cta .stores { display: none !important; }
+
+  /* ═════════════ YAZDIRMA (A4) ═════════════
+     Cizelge tek sayfa: 30 satir x 7 mm; baslik, alanlar ve not sigar (Chrome --print-to-pdf ile olculdu).
+     Ctrl+P iki sayfa basar (cizelge + 7 gunluk plan); dugmeler html[data-print-sheet] ile yalniz birini.
+     Koyu tema yazdirmada acik: renkler murekkep dostu siyah-gri, satir zemini cok acik gri. */
+  @page { size: A4; margin: 11mm 12mm; }
+  @media print {
+    html:root, html:root[data-theme="dark"], html:root:not([data-theme="light"]) {
+      color-scheme: light; --page: #fff; --paper: #fff; --ink: #000; --body: #1d1d1d; --muted: #3a3a3a; --gold: #333; --green: #000; --green-2: #333;
+      --mint: #fff; --line: #b9b9b9; }
+    body { background: #fff; color: #000; font-size: 10pt; }
+    .wrap { max-width: none; padding: 0; }
+    header.top, .crumbs, .g-hero, .plans-head, .pcard, .cta, footer, .nav-load, .no-print, #download { display: none !important; }
+    .print-only { display: block; }
+    main, .part { padding: 0; margin: 0; }
+    .sheet { border: 0; border-radius: 0; padding: 0; box-shadow: none; background: none; }
+    .sheet-head { align-items: baseline; gap: 4px 12px; }
+    .sheet-head h2, .sheet-head h3 { font-size: 19pt; }
+    .sheet-sub { margin-top: 1mm; font-size: 9pt; color: #333; }
+    .sheet-brand { display: block; font-size: 9pt; font-weight: 600; color: #333; }
+    .fields { grid-template-columns: 1.5fr 1fr 1fr; gap: 0 6mm; margin-top: 4mm; }
+    .fields .field:first-child { grid-column: auto; }
+    .field { font-size: 7pt; color: #333; }
+    .field input { font-size: 10pt; padding: 1mm 0; border-bottom: .3mm solid #000; }
+    .tbl-wrap { margin-top: 4mm; overflow: visible; }
+    .chart { font-size: 10pt; }
+    .chart thead { display: table-header-group; }
+    .chart tr { break-inside: avoid; }
+    .chart thead th { font-size: 7.5pt; padding: 1.6mm 2mm; color: #333; border-bottom: .4mm solid #000; }
+    .chart td, .chart tbody th { padding: 0 2mm; height: 7mm; border-bottom: .2mm solid #9a9a9a; }
+    .week td, .week tbody th { height: 12mm; }
+    .chart tbody tr:nth-child(even) { background: #f1f1f1; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .chart tbody tr:has(.chk:checked) { background: none; }
+    .chart .c-pg, .week .c-start { display: table-cell; } .ref { display: inline; font-size: 8pt; color: #444; } .pg-sm { display: none; }
+    .jn { min-width: 0; height: auto; padding: 0; border: 0; background: none; color: #000; font-size: 10pt; }
+    .nm { border: 0; padding: 0; font-size: 10pt; }
+    .chk { width: 4.4mm; height: 4.4mm; border: .3mm solid #000; border-radius: 1mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html:root .chk:checked, html:root[data-theme] .chk:checked { background-color: #fff; border-color: #000; background-size: 3.6mm;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E"); }
+    .sheet-note { margin-top: 3mm; font-size: 7.5pt; line-height: 1.4; color: #333; max-width: none; }
+    #week { margin-top: 0; break-before: page; }
+    html[data-print-sheet="chart"] #plans { display: none !important; }
+    html[data-print-sheet="week"] #chart { display: none !important; }
+    html[data-print-sheet="week"] #week { break-before: auto; }
+  }
+
+</style>
+</head>
+<body>
+<!-- Sayfa gecisi (build-home.mjs ve build-vakit.mjs: bas kismi HEAD, katman BODY basina, betik sona).
+     Kahraman uygulama ikonu. Site ici bir baglantiya basilinca:
+     1. Sayfa bugulanir, basliktaki ikon yerinden kalkip ortaya buyur; icinde tesbih halkasi alttaki
+        imameden iki yana dogru dilim dilim acilir, soner, yeniden acilir (uygulamanin HalkaLoader
+        hareketi; cami ve halka maskeleri o animasyondan, halka 9 aci diliminde).
+     2. Yeni sayfa ISARET GORUNMEDEN geldiyse (hizli gecis) yalniz belgeler arasi View Transition
+        erimesi olur. Isaret gorunduyse gecis atlanir; yeni sayfa ayni bugulu katmanla ve ortadaki
+        ikonla ACILIR (sessionStorage "mh-land" + bastaki betik), sonra bugu cozulur ve ikon ucup
+        yeni sayfanin baslik ikonuna oturur. Iki sayfa arasindaki an fark edilmez; her tarayicida
+        (Firefox dahil) ayni calisir.
+     3. Fare baglantinin ustune gelince belge onceden indirilir (speculation rules, yalniz prefetch:
+        sayfanin betigi calismaz, ucuncu taraf istek gitmez).
+     ⚠️ Safari (iOS 26, 4 Eki 2026 olculdu): gezinme baslar baslamaz sayfayi dondurur (zamanlayici,
+     requestAnimationFrame, gecikmeli gecis ve gecikmeli animasyon durur; tiklama aninda baslamis
+     opaklik/konum animasyonlari surer). Bu yuzden: her sey tiklama aninda GECIKMESIZ baslar, esik
+     animasyonlarin ilk 120 ms'si gorunmez tutularak kurulur, gezinme iki kare ertelenir (yoksa sayfa
+     degisiklik ekrana islenmeden donuyordu) ve halka @property/maske acisi degil dilim opakligiyla
+     doner. Ayrica Safari View Transition'in eski sayfa goruntusune bu katmani CIZMIYOR (bugusuz eski
+     sayfa bir an gorunuyordu); varis bu yuzden View Transition'a degil "mh-land" acilisina birakildi.
+     Bunlari geri zamanlayiciya, gecikmeye ya da View Transition varisina CEVIRME.
+     Elle yazilan sayfalara (ortak okuma, politika duzeni, davet, baglantilar, giris) ayni parca
+     _gen/inject-nav.mjs ile isaretler arasina yazilir; burayi degistirince onu calistir.
+     ⚠️ Ana sayfanin tema dugmesi de View Transition kullanir ve root animasyonunu kapatir; sayfa
+     gecisi bu yuzden "mh-page" turuyla ayrilir.
+     Hareketi azaltta ucus, erime ve dilim hareketi yok; halka tam ve sabit. -->
+<script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [download]"}}]},"eagerness":"moderate"}]}</script>
+<style>
+  @view-transition { navigation: auto; types: mh-page; }
+  html:active-view-transition-type(mh-page)::view-transition-old(root) { animation: mh-out .28s ease both; }
+  html:active-view-transition-type(mh-page)::view-transition-new(root) { animation: mh-in .4s cubic-bezier(.2, .8, .2, 1) both; }
+  @keyframes mh-out { to { opacity: 0; } }
+  @keyframes mh-in { from { opacity: 0; transform: translateY(8px); } }
+  @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+  .nav-load { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; pointer-events: none;
+    opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility 0s linear .2s; }
+  .nl-veil { position: absolute; inset: 0; background: color-mix(in srgb, var(--page, var(--bg, #f7f4ec)) 62%, transparent);
+    -webkit-backdrop-filter: blur(10px) saturate(.9); backdrop-filter: blur(10px) saturate(.9); }
+  .nav-load.on, html.mh-land .nav-load { opacity: 1; visibility: visible; pointer-events: auto; transition: none; }
+  /* Belirme bugu ve ikonda ayri ayri: kapsayicinin kendisine opaklik animasyonu verilirse Safari
+     bugunun arkasini bulandirmiyor (sayfa yalniz soluklasiyordu). */
+  .nav-load.on .nl-veil, .nav-load.on .nl-tile { animation: nl-in .4s ease both; }
+  @keyframes nl-in { 0%, 30% { opacity: 0; } 100% { opacity: 1; } }
+  html.nl-on [data-vt-brand] { animation: nl-hide .12s steps(1, end) both; }
+  html.mh-land [data-vt-brand] { opacity: 0; }
+  /* Emniyet: varis betigi bir sebeple calismazsa katman 3 sn sonra kendiliginden kalkar, sayfa kilitli kalmaz.
+     ⚠️ Yalniz visibility: katmanin kendisinde saydamlik animasyonu olursa Chrome onu "backdrop root"
+     sayiyor ve bugu arkadaki sayfayi bulandirmiyor (varista sayfa yalniz soluk gorunuyordu, olculdu). */
+  html.mh-land .nav-load { animation: nl-safety 0s 3s forwards; }
+  html.mh-land [data-vt-brand] { animation: nl-safety-b 0s 3s forwards; }
+  @keyframes nl-safety { to { visibility: hidden; } }
+  @keyframes nl-safety-b { to { opacity: 1; } }
+  @keyframes nl-hide { to { opacity: 0; } }
+  .nl-tile { position: relative; width: 104px; height: 104px; border-radius: 29px; color: #88edb2;
+    background: linear-gradient(135deg, #335644, #223c2e);
+    box-shadow: 0 24px 48px -20px rgba(8, 24, 16, .55), inset 0 0 0 1px rgba(255, 255, 255, .06); }
+  .nl-tile i { position: absolute; inset: 0; background: currentColor;
+    -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; }
+  .nl-mosque { --m: url(data:image/webp;base64,UklGRioFAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSKMEAAARf6CgbRs2VABnfxERiKnUfFTH1RCUsP9f2zY/SQ6MlXhUVplbrR6j+7jMYGVcZggcx+5t6GTMC5zGzhgKXoe3asybxrxobIx+B/3/svz7/8cU0f8JgH9+XrK/rDqmyqprsayeapHWJbJ6UVqf2qqcVnk4UU4FRCcio25ExBUS0ss+NyKfLmSeIp9fWFlFOmUW1gRbeot4JnL3C7SkfLJ4q3iDAuVtVSKTg7TiAkW8JaH8jLUgkcFByrYqAaPMGRTA9DKKBGC6tX6mZVnrtQCt2CkFboMSoAMzMnjwPW46QAptGeSR66pBsFYCv/AcjbcKcZIEunlp4BsediriQYFljwkAecSBAJCKiJXjqEFeQrTnxNZ+o4qVD8P00H8xCJd+BNHWgsCrPnecIlYB3bFGCW01kP4lont2A4idx6wGn1QCRn9mgwbC3aFCb0XQ3w7C5/EqBboq0r2MDJohBAOzigRWhBFHR5XTXsRa4XK4KAS9iNgspWcREQeIt4KhBGlFvx0RSo8VMB2LPYT2MRrPKDHwYqF6XeS3cPTPkXuSSB9iwE7OM8h3xwn0Ugg7MKhTK04qyCLGknIg7FSFgQLPrfMZRaxwuzgp3jng/wwrniiMyRvgewgrd2tFWcKbAAApLwTMaoLEeQMBzBKG2iyI6bHceoAchjxBrLQGPRi2UyOSewQs6Q8N2xWB0lrDZ1jFQSLE0e8ep+zAamZVYdIq5KuCp4AuyARIYXVtVVeEyEYgVyWcBLoiwrl6G1Y7q4JOzPQQ3bHwWdVwAIBCK46I7Y1Gf/VaAHRapod4LnRh9R0ViPvG6zkCuL8AdsTsp9AiQKeaQoq2Su8c5WMSeCS9AVCgcQo55/DhHo12cll1FdLMKtTaYS8RN0JtEXxMBOuoTYZfqAyiNgiKVBZRGwBlKs3U6vV+KpcotPpqTY9KRqXlRJagnGxtFRlbo9ZKxiWXohOh1krGiVJbRSbbSKuvJk4mQ8ytMT05ebXQT6UdyJWoNFOrhwKVFQqxQZCnci4QGwI/UZlHy/h2EvT2ET2cFhylgZ44OpG0rBkzkjNjiRmJZNKykpa1fsOGDU0bmixrw/oma8aMGTMaiVFWpEU/NjIWS8wI20paAZOjiT3v9vWhhyTt40l1IWVHpfQzKTyAUonWSkKGR6uTkEksq0pL+w2A/H3B9nmBnH5eJkInzttz6VtB7CteCOJefoMnkDM3Nq3Ic2+ZnfgywJUbRz7HyQpw5SgF2nh3bDymcXqZkzkvMdIoCGNvOAwAciz3vGOioD/I2XpMTIGrOYeSu2ikAgApVmZMVAGIewynaaQKoJdEORv8Rj/jqpEKAOgFxh2zVACAjxkZjY7p+dwFDCgwroiC/2fG7ccovl5WlBD6nfGsPOMshfETo3kE+DvoeYw61i+ME4H5CqOFlWJpYk1gvcy4WAmUjYo1MNglIIhRQS6MFlFMVj0rH8a5FWh0DFYk2ADWi4wVrA5GJyFYftPNd919N2fNnXff/eQttawlN9199857zmIZN+zcuXPnVkoADSOGj1BZoI9oHN4IXD02IjYtygJ92owZM0bBH9a6tP6fJgBWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-r { position: absolute; inset: 0; }
+  .nl-b:nth-child(1) { --m: url(data:image/webp;base64,UklGRnYBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSPAAAAARf6C2bRs25d1OLxER8Oi65XvV+jmgYNt+3vmOuk8+s71kd9u2bS/ZtpqirbRTt2QzWd9Qv1kR/Z8A+Pf/v////f8zp4QsfwZVBUyabFy6WDRdY7GIJDNEbx49OqwXZUBu9YFUqQqxhUGINhMAYtaWHs5wddkNyOTK3EUBwHmZXvx9pryekJB8RDZw7w0AtrOYoKvHpEIyj9ifkngmBmgfKBo+nhBTwZ1FfECUsgBsEBFLhGTEPkxaB/atsQB8pA3O+nwgk5sfwmZIHjgA09kyQKsMAFypA/faCAgemnRcWWNTJBk+wAggWbsghE/TJyNWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-b:nth-child(2) { --m: url(data:image/webp;base64,UklGRpQBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSA4BAAARf6CgbRQ4hYF7gYiIQfPqWes4Adxt244vz/vLm5ttm5ut0bZrsna3tf9aba22+wtc3/7TnX94MyP6PwH07/9////7/+PbQ+elGg56qbYr2AtVPaTzMonr1+1fpGzAzvdF2gGc2Yu0DYTQS5zXASHgJcrG4kmnyUvUC8HGmnGWIlJJjRx6xLmh2EUl2TLBnDePpSpPkQo8JF0mvOVedEuGmHKGuXb0aCjjpl++DhiogB61mGgScZM0NwW4LsUoxR54HCGWcUOe/cACoKXEo3USNJkQxxYy4RTQY0pZDiqEVCviumZgH/BXxmJCjsUo4t2oHVu+pGSydKvE2oQ7osk0a2U8CmwYvYSGRkyZb8pWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-b:nth-child(3) { --m: url(data:image/webp;base64,UklGRpoBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSBQBAAARf6C2bRs25D29JyICbhaTY+6WHwQo2LYde573G+Pv1a/Ptm02b5Fxa162zb5oNCvZ9valGU8aXsQhov8TAP/+//f/f2bthNWvF9VRMhFU96RBUPYL4WLK2PZ0FtMdDujE9PSuGItqWSemIyyShFQ3MxYKIlY9K846MU2hJXCpMqYF5W+efMQHh9GKu3LnQpW0iuaU5Eb9RxqWQH57j6UEAdIHGaFM2SFW0frkRSRhSfWGVYkSG72KBTC9gi2Yz4Tdaz5hS1VwhooRCyt7JsD6A6IJoVeDkYS5I1QGcwktv9dKAsxnvHW+ZkuU5ItlU+Awq2XJFeiq1hR3wgMkdOgplWGyBHwWSpQqsglwKgNlewI/mQNWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-b:nth-child(4) { --m: url(data:image/webp;base64,UklGRmoBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSOMAAAARf6CgbRQ4hYF7gYiI0ePWSaDrEXBsWzv2PM8fd7ZtDMBobScTMGrVGYPt1rY1gHTGW/98uh93/XW+iP5PAGn+1/yvBdV7PhktJh6kR14ZK3pwmTEqvsUDq//qT4dBsxZrvOMBTszKBaTg2s+KjkZ23LCMu4FQMVvx0glANZd7OhBvaww5BOhtkgwQawtUEEKBSDvc0QYjZIt0w+lzCVIvpQxWodwxhm93xhjreYIxqEPEC8rblEY4kVBTDy4oFaJCofRthOpt3g9AGlGBMDTa6Iv0NsQ42NGbHuScvUvYSf27EgBWUDggYAAAALAJAJ0BKrAAsAA+bTaZSaQjIqEgSACADYlpbuF2ARtAE9r0VcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVSa7bRcIMghqqTXbaLhBkENVR+AAP7/uxAAAAAAAA==); }
+  .nl-b:nth-child(5) { --m: url(data:image/webp;base64,UklGRloBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSNQAAAARf6CgbRs2VARbb0QEvuS5ImeSgKpt+/rk95tv6bfFJfcNh6ZnQLLECWiDps09u0TYESAn4Mmd+m84fPm93mX+Ef2fAGX73/b//xGD1Y4y1doeoqkOYcyQk2Y8jSlJI81rDvMh+zQfYcy3WA6WLx/mQ45ZzK8HU5IeTdJ258SojS6WgV0NOrI8JHuzCvwj3SSPfSAjskLyXkD9spjvAEi9SS9Hi+VBtexMOClWj10oNXeco3gc1rCLiQaKj0bccoNmMJdeBW/VijEy6MSRmpguU3ZIAVZQOCBgAAAAsAkAnQEqsACwAD5tNplJpCMioSBIAIANiWlu4XYBG0AT2vRVwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VH4AA/v+7EAAAAAAA); }
+  .nl-b:nth-child(6) { --m: url(data:image/webp;base64,UklGRk4BAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSMgAAAARf6C2bRs25N3pNSIC3t7+vLTsMQcUbduOTe9vJKU/2lqB/xX82bYm2va0abMEL8CRfeJUm09+judNw4j+TwD79/+//78DqpFiUaOASkGEs70yKaJyKMW5uzwSU3lU4qQ/54RUHlw4qm4To3rnx7k4FpM5S6H4AFxkdloobYAUnQWUIECSzBoOewUHmdUFAcpgXcup5T4Bn1QfoCCzjtMG8JDZGWCYg9zyfZ7ryJwNCDDYSFlIZiOOwzSMbJeVcVqv4dW//78+A1ZQOCBgAAAAsAkAnQEqsACwAD5tNplJpCMioSBIAIANiWlu4XYBG0AT2vRVwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VH4AA/v+7EAAAAAAA); }
+  .nl-b:nth-child(7) { --m: url(data:image/webp;base64,UklGRlYBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSM8AAAARf6CgbRs2VQLt/omIALPdR7SKjxSgWNu2LPpeHJKtgENyyBwSNJcNOInKIbMC2YE0msNYmjPVdoBuYdze/P7P5Pkj+j8BSve/Xl0v/VUdsxaSPgK4S2ig+thGWMw0cOKdCSD2a5J7ZrYAqA+H3InZjHCKyBW5TwjjgVjsKu1RiMU9SZ05ryCdP2apT34iCPXhkPrivQHjJSz1yiPCuK1I9XZxhTmcCTm3fgNI8YlkJjwgkNjOKLO6uTeCOKcmmXKri6JSBhmny0souv//7wgAVlA4IGAAAACwCQCdASqwALAAPm02mUmkIyKhIEgAgA2JaW7hdgEbQBPa9FXCDIIaqk122i4QZBDVUmu20XCDIIaqk122i4QZBDVUmu20XCDIIaqk122i4QZBDVUfgAD+/7sQAAAAAAA=); }
+  .nl-b:nth-child(8) { --m: url(data:image/webp;base64,UklGRhgBAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSJIAAAARf6C4bRs3ln/vyV1EBISZql8w/XBMuKm2bVne7//R7WP2CLC5S40/AE6CvwGMTDAxE8EKEMEjuBV4eGa+iP5PgBj//2GbUKyGaVbuzkNKPwukZLy1SOl3mJRsFqySXz9KCE3ODkh/CufuFMZ1BqffQYwXnpwcVv2lgriM8PTEg5Cat/CkakE01Q+AJmgZ/5uSAlZQOCBgAAAAsAkAnQEqsACwAD5tNplJpCMioSBIAIANiWlu4XYBG0AT2vRVwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VH4AA/v+7EAAAAAAA); }
+  .nl-b:nth-child(9) { --m: url(data:image/webp;base64,UklGRu4AAABXRUJQVlA4WAoAAAAQAAAArwAArwAAQUxQSGcAAAARd6CobRs4WADt7u2/iAhExfhfKpYTYFNbW5uPtjOigQkpCMAEBlhZmRijIg6yx0ZPlPQe0f8JwO//d126WJkuVQpkodC7pfKzWiiUtVgo2YSFgp30QqEq6ELJyBcKhizV7//f/ycyAFZQOCBgAAAAsAkAnQEqsACwAD5tNplJpCMioSBIAIANiWlu4XYBG0AT2vRVwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VJrttFwgyCGqpNdtouEGQQ1VH4AA/v+7EAAAAAAA); }
+  /* Dongu 1.9 s: dilim k, 120 + k*65 ms'de belirir (imameden yukari, iki yanda birden; Safari icin
+     gecikme yok, her dilimin kendi anahtar kareleri var); butun halka %64-%71'de birlikte soner,
+     yeni turda yeniden acilir. Dilim de %72'de kapanir ki tur basinda ustteki dilimler bir an
+     onceki turdan dolu kalmasin. Varista (mh-land) halka tam ve sabit. */
+  .nav-load.on .nl-b { opacity: 0; animation-duration: 1.9s; animation-timing-function: linear; animation-iteration-count: infinite; animation-fill-mode: both; }
+  .nav-load.on .nl-b:nth-child(1) { animation-name: nl-b0; }
+  .nav-load.on .nl-b:nth-child(2) { animation-name: nl-b1; }
+  .nav-load.on .nl-b:nth-child(3) { animation-name: nl-b2; }
+  .nav-load.on .nl-b:nth-child(4) { animation-name: nl-b3; }
+  .nav-load.on .nl-b:nth-child(5) { animation-name: nl-b4; }
+  .nav-load.on .nl-b:nth-child(6) { animation-name: nl-b5; }
+  .nav-load.on .nl-b:nth-child(7) { animation-name: nl-b6; }
+  .nav-load.on .nl-b:nth-child(8) { animation-name: nl-b7; }
+  .nav-load.on .nl-b:nth-child(9) { animation-name: nl-b8; }
+  .nav-load.on .nl-r { animation: nl-r 1.9s ease infinite both; }
+  @keyframes nl-b0 { 0%, 6.3% { opacity: 0; } 10.3%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b1 { 0%, 9.7% { opacity: 0; } 13.7%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b2 { 0%, 13.2% { opacity: 0; } 17.2%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b3 { 0%, 16.6% { opacity: 0; } 20.6%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b4 { 0%, 20.0% { opacity: 0; } 24.0%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b5 { 0%, 23.4% { opacity: 0; } 27.4%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b6 { 0%, 26.8% { opacity: 0; } 30.8%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b7 { 0%, 30.3% { opacity: 0; } 34.3%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-b8 { 0%, 33.7% { opacity: 0; } 37.7%, 70% { opacity: 1; } 72%, 100% { opacity: 0; } }
+  @keyframes nl-r { 0%, 64% { opacity: 1; } 71%, 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-load.on .nl-b, .nav-load.on .nl-r { animation: none; opacity: 1; }
+  }
+</style>
+<div class="nav-load" id="navLoad" aria-hidden="true"><div class="nl-veil"></div><div class="nl-tile"><i class="nl-mosque"></i><div class="nl-r"><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i><i class="nl-b"></i></div></div></div>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/de/"><img src="/img/brand-icon.webp" alt="" width="32" height="32" data-vt-brand><span>Manevi Halka</span></a>
+    <nav aria-label="Bereiche">
+      <a href="/de/">Die App</a>
+      <a href="/de/gebetszeiten/">Gebetszeiten</a>
+      <a href="/de/gemeinsames-lesen/">Gemeinsames Lesen</a>
+      <a href="/de/anleitungen/">Anleitungen</a>
+    </nav>
+    <div class="lang" id="langBox">
+      <button type="button" class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="Sprache">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+        <span>DE</span>
+      </button>
+      <div class="lang-list" id="langMenu" hidden><a href="/tr/hatim-cizelgesi/" hreflang="tr" lang="tr">Türkçe</a><a href="/khatam-chart/" hreflang="en" lang="en">English</a><a href="/de/khatm-plan/" hreflang="de" lang="de" aria-current="page">Deutsch</a><a href="/fr/tableau-khatma/" hreflang="fr" lang="fr">Français</a><a href="/ar/jadwal-khatma/" hreflang="ar" lang="ar">العربية</a></div>
+    </div>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Zum dunklen Design wechseln">
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8 8 0 1 1 9.8 4a6.4 6.4 0 0 0 10.2 10.2z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+    </button>
+    <a class="get" href="#download" data-get aria-label="App laden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">App laden</span><span class="gs">Laden</span></a>
+  </header>
+
+  <main id="top">
+
+    <nav class="crumbs" aria-label="Pfad"><ol>
+      <li><a href="/de/">Manevi Halka</a></li>
+      <li><a href="/de/anleitungen/">Anleitungen</a></li>
+      <li aria-current="page">Khatm-Plan</li>
+    </ol></nav>
+
+    <header class="g-hero">
+      <div>
+        <p class="eyebrow"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Kostenlos zum Ausdrucken</p>
+        <h1>Khatm-Plan: die 30 Dschuz verteilen</h1>
+        <p class="lead">Eine Khatm (auf Türkisch Hatim) ist die Lesung des ganzen Korans; in der Gruppe teilt man dafür die 30 Dschuz auf. Dieser Plan zeigt, wo jeder Dschuz beginnt und welche Seiten er umfasst, mit Spalten für Namen und zum Abhaken, auf einer einzigen A4-Seite.</p>
+        <div class="acts">
+          <button type="button" class="btn pri" data-print="chart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M7 14h10v6H7z"/></svg><span>Drucken oder als PDF speichern</span></button>
+          <a class="btn sec" href="#plan7"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>7-Tage-Plan</span></a>
+        </div>
+        <p class="hint">Du kannst die Namen auch zuerst hier eintippen und dann drucken.</p>
+      </div>
+      <section class="answer howto" aria-labelledby="howto-t">
+        <div><h2 id="howto-t">So geht’s</h2>
+          <ol><li><b>Druck ihn aus oder speichere ihn als PDF.</b> Der Plan passt auf eine A4-Seite; das PDF kannst du auch in deine WhatsApp-Gruppe schicken.</li><li><b>Schreib neben jeden Dschuz einen Namen.</b> Bei 30 Personen liest jede einen Dschuz, bei 15 Personen je zwei, bei 10 je drei, bei 6 je fünf.</li><li><b>Hak jeden gelesenen Dschuz ab.</b> Sind alle dreißig Kästchen abgehakt, ist die Khatm vollständig.</li></ol></div>
+      </section>
+    </header>
+
+    <section class="part" id="chart" aria-labelledby="chart-t">
+      <div class="sheet">
+        <div class="sheet-head">
+          <div><h2 id="chart-t">Khatm-Plan</h2><p class="sheet-sub">30 Dschuz · Seiten des Diyanet-Mushafs wie in Manevi Halka</p></div>
+          <p class="sheet-brand">Manevi Halka · manevihalka.app</p>
+          <button type="button" class="btn sec sm no-print" data-print="chart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M7 14h10v6H7z"/></svg><span>Plan drucken</span></button>
+        </div>
+        <div class="fields">
+          <label class="field"><span>Name der Khatm</span><input type="text" id="c-ad" autocomplete="off" maxlength="60"></label>
+          <label class="field"><span>Beginn</span><input type="text" id="c-bas" autocomplete="off" maxlength="30"></label>
+          <label class="field"><span>Fertig bis</span><input type="text" id="c-bit" autocomplete="off" maxlength="30"></label>
+        </div>
+        <div class="tbl-wrap">
+          <table class="chart">
+            <caption>Wo jeder der 30 Dschuz beginnt und seine Seiten im Diyanet-Mushaf, mit einem Feld für den Namen und einem Kästchen zum Abhaken in jeder Zeile.</caption>
+            <thead><tr><th scope="col" class="c-no">Dschuz</th><th scope="col" class="c-start">Beginnt bei</th><th scope="col" class="c-pg">Seiten</th><th scope="col" class="c-nm">Name</th><th scope="col" class="c-ok">Gelesen</th></tr></thead>
+            <tbody>
+            <tr><th scope="row" class="c-no"><span class="jn">1</span></th><td class="c-start"><span class="sn">Al-Fatihah</span> 1<span class="ref ltr">1:1</span><span class="pg-sm">S. <span class="ltr">1–20</span></span></td><td class="c-pg"><span class="ltr">1–20</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 1"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 1 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">2</span></th><td class="c-start"><span class="sn">Al-Baqarah</span> 142<span class="ref ltr">2:142</span><span class="pg-sm">S. <span class="ltr">21–40</span></span></td><td class="c-pg"><span class="ltr">21–40</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 2"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 2 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">3</span></th><td class="c-start"><span class="sn">Al-Baqarah</span> 253<span class="ref ltr">2:253</span><span class="pg-sm">S. <span class="ltr">41–60</span></span></td><td class="c-pg"><span class="ltr">41–60</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 3"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 3 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">4</span></th><td class="c-start"><span class="sn">Al ’Imran</span> 92<span class="ref ltr">3:92</span><span class="pg-sm">S. <span class="ltr">61–80</span></span></td><td class="c-pg"><span class="ltr">61–80</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 4"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 4 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">5</span></th><td class="c-start"><span class="sn">An-Nisa’</span> 24<span class="ref ltr">4:24</span><span class="pg-sm">S. <span class="ltr">81–100</span></span></td><td class="c-pg"><span class="ltr">81–100</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 5"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 5 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">6</span></th><td class="c-start"><span class="sn">An-Nisa’</span> 148<span class="ref ltr">4:148</span><span class="pg-sm">S. <span class="ltr">101–120</span></span></td><td class="c-pg"><span class="ltr">101–120</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 6"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 6 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">7</span></th><td class="c-start"><span class="sn">Al-Ma’idah</span> 83<span class="ref ltr">5:83</span><span class="pg-sm">S. <span class="ltr">121–140</span></span></td><td class="c-pg"><span class="ltr">121–140</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 7"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 7 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">8</span></th><td class="c-start"><span class="sn">Al-An’am</span> 111<span class="ref ltr">6:111</span><span class="pg-sm">S. <span class="ltr">141–160</span></span></td><td class="c-pg"><span class="ltr">141–160</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 8"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 8 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">9</span></th><td class="c-start"><span class="sn">Al-A’raf</span> 88<span class="ref ltr">7:88</span><span class="pg-sm">S. <span class="ltr">161–180</span></span></td><td class="c-pg"><span class="ltr">161–180</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 9"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 9 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">10</span></th><td class="c-start"><span class="sn">Al-Anfal</span> 41<span class="ref ltr">8:41</span><span class="pg-sm">S. <span class="ltr">181–200</span></span></td><td class="c-pg"><span class="ltr">181–200</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 10"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 10 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">11</span></th><td class="c-start"><span class="sn">At-Tawbah</span> 94<span class="ref ltr">9:94</span><span class="pg-sm">S. <span class="ltr">201–220</span></span></td><td class="c-pg"><span class="ltr">201–220</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 11"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 11 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">12</span></th><td class="c-start"><span class="sn">Hud</span> 6<span class="ref ltr">11:6</span><span class="pg-sm">S. <span class="ltr">221–240</span></span></td><td class="c-pg"><span class="ltr">221–240</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 12"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 12 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">13</span></th><td class="c-start"><span class="sn">Yusuf</span> 53<span class="ref ltr">12:53</span><span class="pg-sm">S. <span class="ltr">241–260</span></span></td><td class="c-pg"><span class="ltr">241–260</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 13"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 13 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">14</span></th><td class="c-start"><span class="sn">Al-Hijr</span> 1<span class="ref ltr">15:1</span><span class="pg-sm">S. <span class="ltr">261–280</span></span></td><td class="c-pg"><span class="ltr">261–280</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 14"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 14 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">15</span></th><td class="c-start"><span class="sn">Al-Isra’</span> 1<span class="ref ltr">17:1</span><span class="pg-sm">S. <span class="ltr">281–300</span></span></td><td class="c-pg"><span class="ltr">281–300</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 15"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 15 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">16</span></th><td class="c-start"><span class="sn">Al-Kahf</span> 75<span class="ref ltr">18:75</span><span class="pg-sm">S. <span class="ltr">301–320</span></span></td><td class="c-pg"><span class="ltr">301–320</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 16"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 16 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">17</span></th><td class="c-start"><span class="sn">Al-Anbiya’</span> 1<span class="ref ltr">21:1</span><span class="pg-sm">S. <span class="ltr">321–340</span></span></td><td class="c-pg"><span class="ltr">321–340</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 17"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 17 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">18</span></th><td class="c-start"><span class="sn">Al-Mu’minun</span> 1<span class="ref ltr">23:1</span><span class="pg-sm">S. <span class="ltr">341–360</span></span></td><td class="c-pg"><span class="ltr">341–360</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 18"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 18 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">19</span></th><td class="c-start"><span class="sn">Al-Furqan</span> 21<span class="ref ltr">25:21</span><span class="pg-sm">S. <span class="ltr">361–380</span></span></td><td class="c-pg"><span class="ltr">361–380</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 19"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 19 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">20</span></th><td class="c-start"><span class="sn">An-Naml</span> 56<span class="ref ltr">27:56</span><span class="pg-sm">S. <span class="ltr">381–400</span></span></td><td class="c-pg"><span class="ltr">381–400</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 20"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 20 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">21</span></th><td class="c-start"><span class="sn">Al-’Ankabut</span> 46<span class="ref ltr">29:46</span><span class="pg-sm">S. <span class="ltr">401–420</span></span></td><td class="c-pg"><span class="ltr">401–420</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 21"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 21 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">22</span></th><td class="c-start"><span class="sn">Al-Ahzab</span> 31<span class="ref ltr">33:31</span><span class="pg-sm">S. <span class="ltr">421–440</span></span></td><td class="c-pg"><span class="ltr">421–440</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 22"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 22 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">23</span></th><td class="c-start"><span class="sn">Ya-Sin</span> 28<span class="ref ltr">36:28</span><span class="pg-sm">S. <span class="ltr">441–460</span></span></td><td class="c-pg"><span class="ltr">441–460</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 23"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 23 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">24</span></th><td class="c-start"><span class="sn">Az-Zumar</span> 32<span class="ref ltr">39:32</span><span class="pg-sm">S. <span class="ltr">461–480</span></span></td><td class="c-pg"><span class="ltr">461–480</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 24"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 24 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">25</span></th><td class="c-start"><span class="sn">Fussilat</span> 47<span class="ref ltr">41:47</span><span class="pg-sm">S. <span class="ltr">481–500</span></span></td><td class="c-pg"><span class="ltr">481–500</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 25"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 25 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">26</span></th><td class="c-start"><span class="sn">Al-Jathiyah</span> 33<span class="ref ltr">45:33</span><span class="pg-sm">S. <span class="ltr">501–520</span></span></td><td class="c-pg"><span class="ltr">501–520</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 26"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 26 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">27</span></th><td class="c-start"><span class="sn">Adh-Dhariyat</span> 31<span class="ref ltr">51:31</span><span class="pg-sm">S. <span class="ltr">521–540</span></span></td><td class="c-pg"><span class="ltr">521–540</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 27"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 27 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">28</span></th><td class="c-start"><span class="sn">Al-Mujadilah</span> 1<span class="ref ltr">58:1</span><span class="pg-sm">S. <span class="ltr">541–560</span></span></td><td class="c-pg"><span class="ltr">541–560</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 28"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 28 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">29</span></th><td class="c-start"><span class="sn">Al-Mulk</span> 1<span class="ref ltr">67:1</span><span class="pg-sm">S. <span class="ltr">561–580</span></span></td><td class="c-pg"><span class="ltr">561–580</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 29"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 29 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">30</span></th><td class="c-start"><span class="sn">An-Naba’</span> 1<span class="ref ltr">78:1</span><span class="pg-sm">S. <span class="ltr">581–604</span></span></td><td class="c-pg"><span class="ltr">581–604</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Dschuz 30"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Dschuz 30 gelesen"></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="sheet-note">Die Seitenzahlen folgen dem Diyanet-Mushaf, so wie Manevi Halka ihn zählt: Die beiden Eröffnungsseiten (Al-Fatihah und der Anfang von Al-Baqarah) gelten als Seite 1. In vielen gedruckten Exemplaren beginnt derselbe Dschuz eine Seite später (Dschuz 2 zum Beispiel auf Seite 22); andere Ausgaben können noch etwas mehr abweichen. Im Medina-Mushaf beginnen die Dschuz 4, 7, 11 und 26 an etwas anderer Stelle: Al ’Imran 93, Al-Ma’idah 82, At-Tawbah 93 und Al-Ahqaf 1.</p>
+      </div>
+    </section>
+
+    <section class="part" id="plans" aria-labelledby="plans-t">
+      <header class="plans-head"><h2 id="plans-t">Khatm-Pläne</h2><p>Liest du allein oder mit wenigen? Teil die Khatm auf Tage auf.</p></header>
+      <article class="pcard" id="plan30"><h3>Khatm in 30 Tagen</h3><p>Liest du jeden Tag einen Dschuz, bist du in einem Monat mit dem Koran fertig. Der Plan oben ist genau dieser 30-Tage-Plan: Tag 1 Dschuz 1, Tag 2 Dschuz 2 und so weiter. Ein Dschuz hat etwa 20 Seiten, Dschuz 30 hat 24. Liest du allein, trag in der Namensspalte das Datum ein.</p>
+        <button type="button" class="btn sec sm" data-print="chart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M7 14h10v6H7z"/></svg><span>Plan drucken</span></button></article>
+      <div class="sheet" id="week" role="region" aria-labelledby="week-t">
+        <div class="sheet-head" id="plan7">
+          <div><h3 id="week-t">Khatm in 7 Tagen</h3><p class="sheet-sub print-only">4 oder 5 Dschuz am Tag · Seitenzahlen nach dem Diyanet-Mushaf</p><p class="sheet-desc no-print">Für eine Woche werden die Tage an den Dschuz-Grenzen geteilt: an den ersten beiden Tagen je fünf Dschuz, danach fünf Tage lang je vier. Das sind etwa 80 bis 100 Seiten am Tag.</p></div>
+          <p class="sheet-brand">Manevi Halka · manevihalka.app</p>
+          <button type="button" class="btn sec sm no-print" data-print="week"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M7 14h10v6H7z"/></svg><span>Diesen Plan drucken</span></button>
+        </div>
+        <div class="fields">
+          <label class="field"><span>Name der Khatm</span><input type="text" id="w-ad" autocomplete="off" maxlength="60"></label>
+          <label class="field"><span>Beginn</span><input type="text" id="w-bas" autocomplete="off" maxlength="30"></label>
+          <label class="field"><span>Fertig bis</span><input type="text" id="w-bit" autocomplete="off" maxlength="30"></label>
+        </div>
+        <div class="tbl-wrap">
+          <table class="chart week">
+            <caption>Khatm in 7 Tagen: Dschuz, Anfang und Seiten für jeden Tag, mit einem Feld für den Namen und einem Kästchen zum Abhaken.</caption>
+            <thead><tr><th scope="col" class="c-no">Tag</th><th scope="col" class="c-juz">Dschuz</th><th scope="col" class="c-start">Beginnt bei</th><th scope="col" class="c-pg">Seiten</th><th scope="col" class="c-nm">Name</th><th scope="col" class="c-ok">Gelesen</th></tr></thead>
+            <tbody>
+            <tr><th scope="row" class="c-no"><span class="jn">1</span></th><td class="c-juz"><span class="ltr">1–5</span><span class="pg-sm">S. <span class="ltr">1–100</span></span></td><td class="c-start"><span class="sn">Al-Fatihah</span> 1<span class="ref ltr">1:1</span></td><td class="c-pg"><span class="ltr">1–100</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Tag 1"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Tag 1 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">2</span></th><td class="c-juz"><span class="ltr">6–10</span><span class="pg-sm">S. <span class="ltr">101–200</span></span></td><td class="c-start"><span class="sn">An-Nisa’</span> 148<span class="ref ltr">4:148</span></td><td class="c-pg"><span class="ltr">101–200</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Tag 2"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Tag 2 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">3</span></th><td class="c-juz"><span class="ltr">11–14</span><span class="pg-sm">S. <span class="ltr">201–280</span></span></td><td class="c-start"><span class="sn">At-Tawbah</span> 94<span class="ref ltr">9:94</span></td><td class="c-pg"><span class="ltr">201–280</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Tag 3"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Tag 3 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">4</span></th><td class="c-juz"><span class="ltr">15–18</span><span class="pg-sm">S. <span class="ltr">281–360</span></span></td><td class="c-start"><span class="sn">Al-Isra’</span> 1<span class="ref ltr">17:1</span></td><td class="c-pg"><span class="ltr">281–360</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Tag 4"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Tag 4 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">5</span></th><td class="c-juz"><span class="ltr">19–22</span><span class="pg-sm">S. <span class="ltr">361–440</span></span></td><td class="c-start"><span class="sn">Al-Furqan</span> 21<span class="ref ltr">25:21</span></td><td class="c-pg"><span class="ltr">361–440</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Tag 5"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Tag 5 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">6</span></th><td class="c-juz"><span class="ltr">23–26</span><span class="pg-sm">S. <span class="ltr">441–520</span></span></td><td class="c-start"><span class="sn">Ya-Sin</span> 28<span class="ref ltr">36:28</span></td><td class="c-pg"><span class="ltr">441–520</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Tag 6"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Tag 6 gelesen"></td></tr>
+            <tr><th scope="row" class="c-no"><span class="jn">7</span></th><td class="c-juz"><span class="ltr">27–30</span><span class="pg-sm">S. <span class="ltr">521–604</span></span></td><td class="c-start"><span class="sn">Adh-Dhariyat</span> 31<span class="ref ltr">51:31</span></td><td class="c-pg"><span class="ltr">521–604</span></td><td class="c-nm"><input class="nm" type="text" autocomplete="off" maxlength="40" aria-label="Name für Tag 7"></td><td class="c-ok"><input class="chk" type="checkbox" aria-label="Tag 7 gelesen"></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="sheet-note">Seitenzahlen nach dem Diyanet-Mushaf, wie Manevi Halka ihn zählt (<span class="ltr">1–604</span>, Al-Fatihah und der Anfang von Al-Baqarah sind Seite 1). In vielen gedruckten Exemplaren beginnen die Dschuz 2 bis 30 eine Seite später.</p>
+      </div>
+    </section>
+
+    <section class="cta" id="download" aria-labelledby="ctaTitle">
+      <svg class="ring-close" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 19.27"/></svg>
+      <h2 id="ctaTitle">Lass die App die Dschuz verteilen</h2>
+      <p>In Manevi Halka gründest du einen Kreis und startest eine Chatma, so heißt die Khatm in der App: Die Dschuz werden von selbst verteilt, die App merkt sich, wer gelesen hat, und nach jeder Runde kommen die nächsten. Wie das geht, zeigt dir die <a href="/de/anleitungen/khatm-gruppe/">Anleitung zur Khatm-Gruppe</a> Schritt für Schritt. Einen Kreis gründen und beitreten ist kostenlos.</p>
+      <div class="stores">
+        <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>Laden</small><b>App Store</b></span></a>
+        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dchart-de"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>Laden</small><b>Google Play</b></span></a>
+        <div class="qr-hand" aria-hidden="true"><span class="qr-tile"><svg class="qr" viewBox="0 0 33 33" width="72" height="72" shape-rendering="crispEdges" focusable="false"><path fill="currentColor" d="M0 0h7v1h-7zM8 0h5v1h-5zM14 0h1v1h-1zM19 0h3v1h-3zM23 0h1v1h-1zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h3v1h-3zM14 1h1v1h-1zM17 1h1v1h-1zM23 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h1v1h-1zM12 2h5v1h-5zM18 2h2v1h-2zM23 2h2v1h-2zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h2v1h-2zM12 3h1v1h-1zM15 3h1v1h-1zM18 3h1v1h-1zM21 3h1v1h-1zM24 3h1v1h-1zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM10 4h1v1h-1zM12 4h2v1h-2zM16 4h3v1h-3zM21 4h4v1h-4zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h2v1h-2zM12 5h1v1h-1zM14 5h3v1h-3zM22 5h2v1h-2zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM8 7h1v1h-1zM15 7h3v1h-3zM19 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM0 8h1v1h-1zM2 8h2v1h-2zM5 8h3v1h-3zM11 8h2v1h-2zM14 8h2v1h-2zM17 8h2v1h-2zM21 8h1v1h-1zM23 8h2v1h-2zM26 8h1v1h-1zM29 8h1v1h-1zM31 8h2v1h-2zM1 9h4v1h-4zM8 9h7v1h-7zM16 9h2v1h-2zM19 9h2v1h-2zM23 9h1v1h-1zM26 9h2v1h-2zM29 9h3v1h-3zM1 10h1v1h-1zM6 10h1v1h-1zM9 10h2v1h-2zM13 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h5v1h-5zM26 10h4v1h-4zM31 10h2v1h-2zM0 11h1v1h-1zM2 11h3v1h-3zM8 11h2v1h-2zM11 11h2v1h-2zM16 11h2v1h-2zM20 11h3v1h-3zM24 11h1v1h-1zM26 11h2v1h-2zM29 11h1v1h-1zM0 12h1v1h-1zM2 12h1v1h-1zM6 12h1v1h-1zM10 12h1v1h-1zM12 12h1v1h-1zM14 12h1v1h-1zM16 12h1v1h-1zM19 12h4v1h-4zM24 12h2v1h-2zM27 12h3v1h-3zM31 12h2v1h-2zM1 13h4v1h-4zM7 13h1v1h-1zM10 13h2v1h-2zM13 13h2v1h-2zM17 13h1v1h-1zM20 13h2v1h-2zM23 13h1v1h-1zM27 13h1v1h-1zM30 13h2v1h-2zM2 14h1v1h-1zM4 14h1v1h-1zM6 14h1v1h-1zM11 14h1v1h-1zM13 14h2v1h-2zM19 14h2v1h-2zM22 14h1v1h-1zM26 14h1v1h-1zM29 14h2v1h-2zM0 15h2v1h-2zM3 15h1v1h-1zM5 15h1v1h-1zM8 15h1v1h-1zM14 15h2v1h-2zM18 15h1v1h-1zM21 15h1v1h-1zM23 15h5v1h-5zM29 15h2v1h-2zM0 16h4v1h-4zM6 16h1v1h-1zM8 16h1v1h-1zM11 16h4v1h-4zM20 16h4v1h-4zM25 16h2v1h-2zM28 16h1v1h-1zM30 16h1v1h-1zM1 17h2v1h-2zM8 17h1v1h-1zM13 17h1v1h-1zM15 17h1v1h-1zM22 17h5v1h-5zM28 17h2v1h-2zM31 17h2v1h-2zM0 18h1v1h-1zM2 18h2v1h-2zM6 18h1v1h-1zM10 18h2v1h-2zM13 18h3v1h-3zM18 18h1v1h-1zM20 18h2v1h-2zM24 18h2v1h-2zM27 18h2v1h-2zM30 18h2v1h-2zM1 19h2v1h-2zM7 19h1v1h-1zM13 19h1v1h-1zM16 19h3v1h-3zM20 19h1v1h-1zM22 19h1v1h-1zM24 19h3v1h-3zM28 19h1v1h-1zM32 19h1v1h-1zM2 20h2v1h-2zM6 20h3v1h-3zM11 20h3v1h-3zM16 20h1v1h-1zM19 20h1v1h-1zM22 20h4v1h-4zM27 20h1v1h-1zM29 20h2v1h-2zM0 21h2v1h-2zM4 21h1v1h-1zM8 21h1v1h-1zM10 21h3v1h-3zM14 21h4v1h-4zM20 21h4v1h-4zM25 21h2v1h-2zM30 21h1v1h-1zM32 21h1v1h-1zM3 22h1v1h-1zM5 22h6v1h-6zM12 22h1v1h-1zM14 22h2v1h-2zM18 22h3v1h-3zM23 22h3v1h-3zM27 22h1v1h-1zM30 22h3v1h-3zM1 23h2v1h-2zM4 23h2v1h-2zM7 23h4v1h-4zM13 23h3v1h-3zM18 23h1v1h-1zM20 23h1v1h-1zM27 23h3v1h-3zM32 23h1v1h-1zM0 24h1v1h-1zM3 24h2v1h-2zM6 24h7v1h-7zM17 24h1v1h-1zM19 24h1v1h-1zM22 24h1v1h-1zM24 24h5v1h-5zM32 24h1v1h-1zM8 25h1v1h-1zM14 25h3v1h-3zM19 25h1v1h-1zM21 25h1v1h-1zM23 25h2v1h-2zM28 25h2v1h-2zM31 25h1v1h-1zM0 26h7v1h-7zM8 26h3v1h-3zM12 26h1v1h-1zM16 26h6v1h-6zM23 26h2v1h-2zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h5v1h-5zM16 27h4v1h-4zM23 27h2v1h-2zM28 27h4v1h-4zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM9 28h1v1h-1zM12 28h8v1h-8zM22 28h7v1h-7zM30 28h3v1h-3zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM8 29h1v1h-1zM10 29h1v1h-1zM12 29h1v1h-1zM14 29h1v1h-1zM16 29h2v1h-2zM19 29h1v1h-1zM21 29h3v1h-3zM27 29h1v1h-1zM29 29h4v1h-4zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM8 30h3v1h-3zM13 30h4v1h-4zM18 30h1v1h-1zM20 30h3v1h-3zM24 30h1v1h-1zM26 30h2v1h-2zM29 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM11 31h4v1h-4zM17 31h2v1h-2zM20 31h1v1h-1zM24 31h2v1h-2zM27 31h2v1h-2zM32 31h1v1h-1zM0 32h7v1h-7zM8 32h1v1h-1zM12 32h1v1h-1zM16 32h4v1h-4zM21 32h1v1h-1zM23 32h1v1h-1zM28 32h3v1h-3z"/></svg></span><span class="qr-cap">Mit deinem Handy scannen</span></div>
+        <i class="stores-end" hidden></i>
+      </div>
+      <script>/* Android: gorunen sira CSS'te (is-android); klavye ve ekran okuyucu sirasi da uysun diye Google Play DOM'da one alinir. Gorunen yer degismez, kayma olmaz. */
+(function (s) { if (!s || !document.documentElement.classList.contains("is-android")) return; var a = s.querySelector('[data-store="android"]'), i = s.querySelector('[data-store="ios"]');
+  if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentScript.previousElementSibling);</script>
+    </section>
+  </main>
+
+
+  <footer>
+    <div class="social">
+      <p class="social-title">Bleib mit dem Kreis verbunden</p>
+      <p class="social-text">Jeden Morgen der Vers des Tages, Erinnerungen in den gesegneten Nächten.</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/manevihalkaapp" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.youtube.com/@manevihalkaapp" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+        <a href="https://x.com/ManeviHalkaApp" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.2h3.7l-8 9.2 9.4 12.5h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.2h7.6l5.2 6.9 6.1-6.9zm-1.3 19.5h2L6.5 3.2H4.3l13.3 17.5z"/></svg></a>
+        <a href="https://www.facebook.com/manevihalkaapp" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg></a>
+        <a href="https://whatsapp.com/channel/0029VbDM2z67IUYTITv3yY2V" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      </div>
+    </div>
+    <span>© 2026 Manevi Halka</span>
+    <nav><a href="/de/">Die App</a><a href="/de/gebetszeiten/">Gebetszeiten</a><a href="/de/gemeinsames-lesen/">Gemeinsames Lesen</a><a href="/de/anleitungen/">Anleitungen</a><a href="/privacy-de.html">Datenschutzerklärung</a><a href="/terms-de.html">Nutzungsbedingungen</a><a href="/account-delete-de.html">Kontolöschung</a><a href="mailto:support@manevihalka.app">Kontakt</a></nav>
+    <nav class="langs" aria-label="Sprache"><a href="/tr/hatim-cizelgesi/" hreflang="tr" lang="tr">Türkçe</a><a href="/khatam-chart/" hreflang="en" lang="en">English</a><a href="/de/khatm-plan/" hreflang="de" lang="de" aria-current="page">Deutsch</a><a href="/fr/tableau-khatma/" hreflang="fr" lang="fr">Français</a><a href="/ar/jadwal-khatma/" hreflang="ar" lang="ar">العربية</a></nav>
+  </footer>
+</div>
+
+<script>
+  var D = {"aria":{"toDark":"Zum dunklen Design wechseln","toLight":"Zum hellen Design wechseln"},"links":{"ios":"https://apps.apple.com/app/manevi-halka/id6760654292","android":"https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dchart-top-de"}};
+
+  // ── Tema (ana sayfayla ayni: dugmeden yayilan daire) ──
+  (function () {
+    var root = document.documentElement, btn = document.getElementById("themeBtn");
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function current() { return root.getAttribute("data-theme") === "dark" ? "dark" : "light"; }
+    function label() { btn.setAttribute("aria-label", current() === "dark" ? D.aria.toLight : D.aria.toDark); }
+    function apply(next) { root.setAttribute("data-theme", next); try { localStorage.setItem("mh_theme", next); } catch (e) { /* gizli mod */ } label(); }
+    btn.addEventListener("click", function () {
+      var next = current() === "dark" ? "light" : "dark";
+      if (reduce || !document.startViewTransition) { root.classList.add("theme-fade"); apply(next); setTimeout(function () { root.classList.remove("theme-fade"); }, 650); return; }
+      var r = btn.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+      var end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      var t = document.startViewTransition(function () { apply(next); });
+      t.ready.then(function () {
+        root.animate({ clipPath: ["circle(0px at " + x + "px " + y + "px)", "circle(" + end + "px at " + x + "px " + y + "px)"] },
+          { duration: 850, easing: "cubic-bezier(.45, 0, .2, 1)", pseudoElement: "::view-transition-new(root)" });
+      }).catch(function () {});
+    });
+    label();
+  })();
+
+  // ── Ustteki Indir: iPhone'da App Store, Android'de Play, digerlerinde sayfa sonu ──
+  (function () {
+    var ua = navigator.userAgent || "";
+    var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var android = /Android/.test(ua);
+    [].forEach.call(document.querySelectorAll("[data-get]"), function (a) {
+      if (ios) { a.href = D.links.ios; a.target = "_blank"; a.rel = "noopener"; }
+      else if (android) { a.href = D.links.android; a.target = "_blank"; a.rel = "noopener"; }
+    });
+  })();
+
+  // ── Dil menusu; secim kaydedilir (kok adres tercihe gore yonlendirir) ──
+  (function () {
+    var box = document.getElementById("langBox"), btn = document.getElementById("langBtn"), menu = document.getElementById("langMenu");
+    function set(open) { menu.hidden = !open; btn.setAttribute("aria-expanded", open ? "true" : "false"); }
+    btn.addEventListener("click", function (e) { e.stopPropagation(); set(menu.hidden); });
+    document.addEventListener("click", function (e) { if (!box.contains(e.target)) set(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) { set(false); btn.focus(); } });
+    [].forEach.call(document.querySelectorAll(".langs a[hreflang], .lang-list a[hreflang]"), function (a) {
+      a.addEventListener("click", function () { try { localStorage.setItem("mh_lang", a.getAttribute("hreflang")); } catch (e) { /* gizli mod */ } });
+    });
+  })();
+
+  // ── Yazdir: dugme yalniz kendi kagidini basar (html[data-print-sheet]); Ctrl+P ikisini de (cizelge + 7 gun) ──
+  // Ayrim yazdirma bitince (afterprint) kalkar. Yazilan adlar sayfada kalir, hicbir yere gonderilmez ve saklanmaz.
+  (function () {
+    var root = document.documentElement;
+    window.addEventListener("afterprint", function () { root.removeAttribute("data-print-sheet"); });
+    [].forEach.call(document.querySelectorAll("button[data-print]"), function (b) {
+      b.addEventListener("click", function () {
+        var ne = b.getAttribute("data-print");
+        if (ne) root.setAttribute("data-print-sheet", ne); else root.removeAttribute("data-print-sheet");
+        window.print();
+      });
+    });
+  })();
+
+</script>
+<script>
+(function () {
+  var el = document.getElementById("navLoad");
+  if (!el) return;
+  var root = document.documentElement, tile = el.querySelector(".nl-tile");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var clickAt = 0, target = "", safety = 0;
+  function brandOffset() {
+    // Basliktaki ikonun ortadaki ikona gore yeri ve olcegi (gorunmuyorsa null).
+    var b = document.querySelector("[data-vt-brand]");
+    if (!b) return null;
+    var r = b.getBoundingClientRect(), tr = tile.getBoundingClientRect();
+    if (!(r.bottom > 0 && r.top < innerHeight && r.width)) return null;
+    return "translate(" + (r.left + r.width / 2 - (tr.left + tr.width / 2)) + "px," + (r.top + r.height / 2 - (tr.top + tr.height / 2)) + "px) scale(" + (r.width / tr.width) + ")";
+  }
+  function hide() { clearTimeout(safety); el.classList.remove("on"); root.classList.remove("nl-leaving", "nl-on", "mh-land"); }
+  function shown() { return el.classList.contains("on") && performance.now() - clickAt >= 260; }
+
+  // VARIS: onceki sayfa isaretle ayrildiysa bu sayfa ayni katmanla acildi (mh-land); bugu cozulur,
+  // ikon basliktaki yerine ucar.
+  if (root.classList.contains("mh-land")) {
+    var land = function () {
+      var to = reduce ? null : brandOffset(), d = reduce ? 0 : 620;
+      var done = function () { el.style.transition = "none"; root.classList.remove("mh-land"); void el.offsetWidth; el.style.transition = ""; };
+      if (!el.animate || reduce) { done(); return; }
+      if (to) tile.animate([{ transform: "none" }, { transform: to }], { duration: d, easing: "cubic-bezier(.45, 0, .2, 1)", fill: "forwards" });
+      // Sayfada baslik ikonu yoksa (giris, indirme sayfalari) ikon yerinde hafifce kuculup soner.
+      else tile.animate([{ opacity: 1, transform: "none" }, { opacity: 1, offset: .25 }, { opacity: 0, transform: "scale(.9)" }], { duration: d, easing: "ease", fill: "forwards" });
+      // Yalniz bugu cozulur; ikon dolu kalip basliga oturur (ikon katmanin icinde oldugu icin
+      // butun katmani soldurmak ikonu da ucarken soluklastiriyordu).
+      var veil = el.querySelector(".nl-veil");
+      veil.animate([{ opacity: 1 }, { opacity: 1, offset: .25 }, { opacity: 0 }], { duration: d, easing: "ease", fill: "forwards" }).onfinish = function () {
+        done();
+        veil.getAnimations().concat(tile.getAnimations()).forEach(function (a) { a.cancel(); });
+      };
+    };
+    requestAnimationFrame(function () { requestAnimationFrame(land); });
+  }
+
+  document.addEventListener("click", function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || (a.target && a.target !== "_self") || a.hasAttribute("download")) return;
+    var u;
+    try { u = new URL(a.href, location.href); } catch (_) { return; }
+    if (u.origin !== location.origin) return;
+    if (u.pathname === location.pathname && u.search === location.search) return;
+    // Hepsi SIMDI ve GECIKMESIZ baslar (Safari, yukaridaki not). Ilk 120 ms animasyonlarin icinde
+    // gorunmez tutulur, hizli geciste isaret hic belirmez.
+    clickAt = performance.now();
+    target = u.pathname;
+    root.classList.add("nl-leaving", "nl-on");
+    el.classList.add("on");
+    if (!reduce && tile.animate) {
+      var from = brandOffset() || "scale(.82)";
+      tile.animate([{ transform: from, offset: 0 }, { transform: from, offset: .2, easing: "cubic-bezier(.3, .7, .2, 1)" }, { transform: "none" }], { duration: 600 });
+    }
+    clearTimeout(safety);
+    safety = setTimeout(hide, 12000);
+    // Gezinme iki kare ertelenir: degisiklik ekrana islensin, animasyonlar baslasin (Safari).
+    e.preventDefault();
+    var gone = false, go = function () { if (!gone) { gone = true; location.assign(u.href); } };
+    requestAnimationFrame(function () { requestAnimationFrame(go); });
+    setTimeout(go, 80);
+  });
+  // Ayrilirken: isaret gorunuyorsa gecis atlanir ve yeni sayfaya "isaretle ac" notu birakilir.
+  window.addEventListener("pageswap", function (e) { if (shown() && e.viewTransition) e.viewTransition.skipTransition(); });
+  window.addEventListener("pagehide", function () {
+    if (shown()) { try { sessionStorage.setItem("mh-land", JSON.stringify({ p: target, t: Date.now() })); } catch (_) {} }
+  });
+  // geri tusuyla onbellekten donulunce isaret kalmasin
+  window.addEventListener("pageshow", function (e) { if (e.persisted) hide(); });
+})();
+</script>
+</body>
+</html>

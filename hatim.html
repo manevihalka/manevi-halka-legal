@@ -1,33 +1,47 @@
 <!DOCTYPE html>
-<html lang="tr">
+<!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Uretici: node _gen/build-ortak.mjs
+     Yonlendirme kabugu: Sayfa 7 Eyl 2026'da bir gun /hatim.html adresinde yayindaydi (o gun Kur'an sekmesi onde aciliyordu, bu yuzden ?t= yoksa Hatim sekmesi acilir); 9 Eyl'de adi Ortak Okuma oldu.
+     Dil sayfalari _gen/site-urls.mjs ORTAK. -->
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ortak Okuma · Manevi Halka</title>
-<!--
-  Yönlendirme kabuğu. Sayfa 7 Eyl 2026'da /hatim.html adresinde yayına girdi;
-  9 Eyl'de adı "Ortak Okuma" olarak düzeltildi (hatim yalnız Kur'an'ın
-  hatmedilmesini anlatır, sayfada zikir de var) ve adres /ortak-okuma.html
-  oldu. Bu dosya eski adresi kırmamak için duruyor.
-
-  ⚠️ GitHub Pages 301 veremez (sunucu kuralı yazılamıyor); statik sitede
-  standart yol meta refresh + canonical. Canonical, arama motoruna asıl
-  adresi söyler, yoksa iki adres birbirinin kopyası olarak indekslenir.
-  ⛔ Bu dosyayı SİLME: sitemap'te bir gün durdu, dış bağlantı verilmiş olabilir.
--->
-<link rel="canonical" href="https://manevihalka.app/ortak-okuma.html">
 <meta name="robots" content="noindex, follow">
-<meta http-equiv="refresh" content="0; url=/ortak-okuma.html">
-<script>location.replace('/ortak-okuma.html' + location.search);</script>
+<title>Shared Reading · Manevi Halka</title>
+<script>
+(function () {
+  var M = {"en":"/shared-reading/","tr":"/tr/ortak-okuma/","de":"/de/gemeinsames-lesen/","fr":"/fr/lecture-commune/","ar":"/ar/qiraa-mushtaraka/"};
+  var q = new URLSearchParams(location.search);
+  var l = String(q.get("lang") || "").slice(0, 2).toLowerCase();
+  if (!M[l]) { try { l = localStorage.getItem("mh_lang") || ""; } catch (e) { l = ""; } }
+  if (!M[l]) { var n = (navigator.languages && navigator.languages[0]) || navigator.language || ""; l = String(n).slice(0, 2).toLowerCase(); }
+  if (!M[l]) l = "en";
+  q.delete("lang");
+  if (!q.has("t")) q.set("t", "hatim");
+  var s = q.toString();
+  location.replace(M[l] + (s ? "?" + s : "") + location.hash);
+})();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=/shared-reading/"></noscript>
+<meta property="og:site_name" content="Manevi Halka">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shared Reading: online Quran khatam and dhikr, no account">
+<meta property="og:description" content="Take a portion of an ongoing shared Quran khatam, or add to a shared dhikr with readers worldwide. No account or app needed: it works in your browser.">
+<meta property="og:url" content="https://manevihalka.app/shared-reading/">
+<meta property="og:image" content="https://manevihalka.app/og-cover-en.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
 <style>
-  body { font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-         background:#f8f5ef; color:#1f2937; display:flex; align-items:center;
-         justify-content:center; min-height:100vh; margin:0; }
-  @media (prefers-color-scheme: dark) { body { background:#0e1512; color:#e8eae6; } }
-  a { color:#2f6b4a; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background: #f7f4ec; color: #14231c;
+         display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+  @media (prefers-color-scheme: dark) { body { background: #0e1a14; color: #eaf3ee; } a { color: #8fd3ae; } }
+  ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; }
+  a { color: #1e4d35; }
 </style>
 </head>
 <body>
-  <p>Bu sayfa taşındı: <a href="/ortak-okuma.html">Ortak Okuma</a></p>
+<ul><li><a href="/tr/ortak-okuma/" hreflang="tr" lang="tr">Ortak Okuma</a></li><li><a href="/shared-reading/" hreflang="en" lang="en">Shared Reading</a></li><li><a href="/de/gemeinsames-lesen/" hreflang="de" lang="de">Gemeinsames Lesen</a></li><li><a href="/fr/lecture-commune/" hreflang="fr" lang="fr">Lecture commune</a></li><li><a href="/ar/qiraa-mushtaraka/" hreflang="ar" lang="ar" dir="rtl">القراءة المشتركة</a></li></ul>
 </body>
 </html>

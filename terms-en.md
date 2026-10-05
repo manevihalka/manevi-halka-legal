@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Terms of Service
+description: "The rules for using Manevi Halka: your account, content you share and moderation, Premium subscriptions, cancellation, refunds and liability."
 lang: en
 ---
 

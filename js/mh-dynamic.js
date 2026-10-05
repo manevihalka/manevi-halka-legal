@@ -551,17 +551,29 @@
   // Ziyaretcinin platformu belliyse o magaza birincil, oteki ikincil stilde
   // kalir (silinmez: iPhone kullanicisi Android'deki esine link gonderebilir).
   // Masaustunde ikisi de birincil.
+  // Vakit sayfasi karari <head>'de verir (<html class="is-android|is-ios">) ve sira ile
+  // gorunumu CSS'ten cizer; burada once o siniflar okunur ki iki mekanizma ayni karari
+  // versin. Bu betik yalniz .secondary sinifini ve DOM sirasini (klavye/ekran okuyucu)
+  // esitler; gorunen yer degismez.
   function initStoreButtons() {
-    var ua = navigator.userAgent || "";
-    // ⚠️ ANDROID ONCE BAKILIR. iPadOS "masaustu site" modunda kendini
-    // MacIntel + cok dokunmali gosterdigi icin o kosul gerekli, ama tek basina
-    // birakilirsa Mac uzerinde calisan Android emulasyonunu da iOS sayar
-    // (13 Agu 2026'da olculdu: Android cihazda App Store one cikiyordu).
-    var isAndroid = /Android/.test(ua);
-    var isIOS = !isAndroid && (
-      /iPad|iPhone|iPod/.test(ua) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
-    );
+    var root = document.documentElement;
+    var isAndroid, isIOS;
+    if (root.classList.contains("is-android") || root.classList.contains("is-ios")) {
+      isAndroid = root.classList.contains("is-android");
+      isIOS = !isAndroid;
+    } else {
+      var ua = navigator.userAgent || "";
+      // ⚠️ ANDROID ONCE BAKILIR. iPadOS "masaustu site" modunda kendini
+      // MacIntel + cok dokunmali gosterdigi icin o kosul gerekli, ama tek basina
+      // birakilirsa Mac uzerinde calisan Android emulasyonunu da iOS sayar
+      // (13 Agu 2026'da olculdu: Android cihazda App Store one cikiyordu).
+      // Ayni algilama _gen/vakit.src.html'in basindaki betikte; birini degistirirsen otekini de.
+      isAndroid = /Android/.test(ua);
+      isIOS = !isAndroid && (
+        /iPad|iPhone|iPod/.test(ua) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+      );
+    }
     if (!isIOS && !isAndroid) return;
     var demote = isIOS ? "android" : "ios";
     var badges = document.querySelectorAll(".store-badge[data-store]");
@@ -881,6 +893,24 @@
     return ilceMapPromise;
   }
 
+  /**
+   * Bu sehrin ilce kimligi tarayicida (localStorage) TAZE duruyor mu? Duruyorsa ilce haritasina
+   * hic gerek yok. Anahtar resolveDiyanetCity ile AYNI ("CC|NORMALIZE(ad)"); ad verilmezse
+   * (saat dilimi tahmini, sehir henuz bilinmiyor) yalniz ad soneki eslenir.
+   */
+  function ilceCacheFresh(cc, normName) {
+    var cache = lsGetJson(CITY_CACHE_KEY) || {};
+    var now = Date.now();
+    for (var k in cache) {
+      if (!Object.prototype.hasOwnProperty.call(cache, k)) continue;
+      var match = cc ? k === cc + "|" + normName : k.slice(k.indexOf("|") + 1) === normName;
+      if (!match || !cache[k]) continue;
+      var age = now - cache[k].at;
+      if (cache[k].id === "" ? age < NEG_TTL : age < CITY_TTL) return true;
+    }
+    return false;
+  }
+
   function resolveDiyanetCity(cc, cityName, coords) {
     cc = cc.toUpperCase();
     var ulkeID = DIYANET_COUNTRY_MAP[cc];
@@ -1034,11 +1064,14 @@
 
   /** Saat diliminden sehir tahmini: "Europe/Berlin" -> katalogda Berlin.
    *  Izin penceresi ACMADAN makul bir varsayilan verir; kalici secim sayilmaz. */
-  function guessCityFromTimezone() {
+  function tzGuessName() {
     var tz = "";
     try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) { /* yok */ }
-    if (!tz || tz.indexOf("/") === -1) return Promise.resolve(null);
-    var guess = normalize(tz.split("/").pop().replace(/_/g, " "));
+    if (!tz || tz.indexOf("/") === -1) return "";
+    return normalize(tz.split("/").pop().replace(/_/g, " "));
+  }
+  function guessCityFromTimezone() {
+    var guess = tzGuessName();
     if (!guess) return Promise.resolve(null);
     return loadCities().then(function (data) {
       for (var i = 0; i < data.countries.length; i++) {
@@ -1364,6 +1397,15 @@
     var seq = ++flowSeq;
     var stale = function () { return seq !== flowSeq; };
     var explicit = loadSavedCity();
+    // Ilk ziyarette zincir ARDISIKTI: sehir listesi (saat dilimi tahmini) -> ilce haritasi ->
+    // vakitler. Ilce haritasi sehirden bagimsiz tek dosya; sehir listesiyle AYNI ANDA iner
+    // (Berlin ilk ziyaret, 150 ms gecikme + 1,6 Mbit/s: hazir olma ~2120 ms -> ~1690 ms, 5 Eki
+    // 2026 olculdu). Sehrin ilcesi
+    // tarayicida zaten tazeyse harita hic istenmez (tekrar ziyaret).
+    var knownIlce = explicit
+      ? ilceCacheFresh(String(explicit.cc).toUpperCase(), normalize(explicit.nameEn || explicit.name))
+      : ilceCacheFresh("", tzGuessName());
+    if (!knownIlce) loadIlceMap();
     var cityPromise = explicit
       ? Promise.resolve(explicit)
       : guessCityFromTimezone(); // yalniz acik secim kalici; tz tahmini her aciliste taze
@@ -1461,6 +1503,9 @@
     var overlay = $("cityPicker");
     if (!overlay) return;
     overlay.querySelector(".cp-title").textContent = t("pickerTitle");
+    // Iletisim kutusunun ve arama alaninin erisilebilir adi: sayfa kendisi baglamadiysa buradan
+    // (vakit sayfasi aria-labelledby + aria-label ile uretimde baglar).
+    if (!overlay.hasAttribute("aria-labelledby") && !overlay.hasAttribute("aria-label")) overlay.setAttribute("aria-label", t("pickerTitle"));
     overlay.querySelector(".cp-hint").textContent = t("pickerHint");
     overlay.querySelector(".cp-privacy").textContent = t("pickerPrivacy");
     $("cpClose").setAttribute("aria-label", t("close"));
@@ -1469,6 +1514,7 @@
     var input = $("cpSearch");
     input.value = "";
     input.setAttribute("placeholder", t("searchCity"));
+    if (!input.hasAttribute("aria-labelledby")) input.setAttribute("aria-label", String(t("searchCity")).replace(/\s*(\.\.\.|\u2026)$/, ""));
     $("cpResults").innerHTML = "";
     overlay.classList.add("open");
     document.body.style.overflow = "hidden";
@@ -1621,6 +1667,9 @@
   };
 
   function init() {
+    // Dil sayfanin kendisinden (<html lang>, uretimde yazilir; dil degisimi mh:locale olayi).
+    // mh_lang burada OKUNMAZ ve YAZILMAZ: o anahtar yalniz ziyaretcinin dil menusundeki acik
+    // secimidir, Ingilizce adreslerin yonlendirmesi ona bakar.
     locale = document.documentElement.getAttribute("lang") || "en";
     initTheme();
     initStoreButtons();

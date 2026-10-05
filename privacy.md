@@ -1,13 +1,14 @@
 ---
 layout: default
 title: Gizlilik Politikası
+description: "Manevi Halka'nın hangi verileri neden topladığı, nerede ve ne kadar sakladığı, verilerini nasıl indirip silebileceğin ve hangi haklara sahip olduğun."
 lang: tr
 ---
 
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026<br>
-**Son güncelleme:** 4 Ekim 2026
+**Son güncelleme:** 5 Ekim 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -56,7 +57,6 @@ haklarınızın neler olduğunu açıklar.
   başkalarıyla paylaşabilirsiniz. Paylaştığınızda listenizin o anki bir kopyası (anlık
   görüntü) paylaşım koduyla saklanır; kodu alanlar bu listeyi kendi kütüphanelerine
   ekleyebilir. Paylaşımı istediğiniz zaman iptal edebilirsiniz
-- **Tamamlama sertifikaları:** Hatim, Cevşen ve kitap tamamlamalarında **cihazınızda lokal olarak** PDF sertifika üretilir (sunucuya yüklenmez, sadece paylaşım için cihazınızda kalır)
 - **Şikayet kayıtları:** Uygulama içi "Şikayet et" özelliğini kullandığınızda
   şikayetiniz (şikayet eden hesap kimliği, şikayet edilen halka/üye/etkinlik
   bilgisi, seçilen sebep ve varsa açıklamanız) sunucularımızda saklanır. Bu

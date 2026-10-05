@@ -4,7 +4,7 @@ export default {
   desc: "Hatim grubu kurmayı, cüz dağıtmayı, toplu zikir ve salavat hedefini, davetle katılmayı adım adım ve resimli anlatan kısa rehberler.",
   h1: "Adım adım rehberler",
   eyebrow: "Nasıl yapılır",
-  lead: "Her rehber uygulamanın kendi ekranlarıyla, dokunacağın düğmeleri tek tek göstererek anlatır. Birkaç dakikada halkanı kurar, hedefini başlatırsın.",
+  lead: "Her rehber uygulamanın kendi ekranlarıyla, dokunacağın düğmeleri tek tek göstererek anlatır. Birkaç dakikada halkanı kurar, hedefini başlatırsın. Hatmi kâğıt üzerinde düzenlemek istersen [yazdırılabilir hatim çizelgesi](/tr/hatim-cizelgesi/) de hazır.",
   halka: {
     baslik: "Halka ve görev: iki kelime yeter",
     metin: [

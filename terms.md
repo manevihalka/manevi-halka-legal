@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Kullanım Koşulları
+description: "Manevi Halka'yı kullanırken geçerli kurallar: hesabın, paylaştığın içerikler ve moderasyon, Premium abonelik, iptal, iade ve sorumluluk."
 lang: tr
 ---
 

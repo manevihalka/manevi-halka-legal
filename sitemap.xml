@@ -17,6 +17,7 @@
 
   <url>
     <loc>https://manevihalka.app/</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -50,33 +51,70 @@
   </url>
   <!-- MH:VAKIT:BITIS -->
 
-  <!-- Ortak Okuma: canlı katılım sayfası. join.html'in aksine noindex DEĞİL;
-       bu bir davet sayfası değil varış sayfası.
-       ⚠️ Eski adres /hatim.html yönlendirme kabuğu olarak duruyor ve BURAYA
-       GİRMEZ: noindex, canonical bu sayfayı gösteriyor. -->
+  <!-- Ortak Okuma: canlı katılım sayfası, 5 dil (5 Eki 2026'dan beri her dilin kendi adresi).
+       join.html'in aksine noindex DEĞİL; bu bir davet sayfası değil varış sayfası.
+       ⚠️ İçi _gen/build-ortak.mjs tarafından yazılır. Eski /ortak-okuma.html ve /hatim.html
+       yönlendirme kabuğu (noindex) ve BURAYA GİRMEZ. -->
+  <!-- MH:ORTAK:BASLA -->
   <url>
-    <loc>https://manevihalka.app/ortak-okuma.html</loc>
+    <loc>https://manevihalka.app/tr/ortak-okuma/</loc>
+    <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://manevihalka.app/shared-reading/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/de/gemeinsames-lesen/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/fr/lecture-commune/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/ar/qiraa-mushtaraka/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <!-- MH:ORTAK:BITIS -->
 
-  <url><loc>https://manevihalka.app/privacy.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://manevihalka.app/privacy-en.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://manevihalka.app/privacy-de.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://manevihalka.app/privacy-fr.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://manevihalka.app/privacy-ar.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/privacy.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/privacy-en.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/privacy-de.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/privacy-fr.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/privacy-ar.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
 
-  <url><loc>https://manevihalka.app/terms.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://manevihalka.app/terms-en.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://manevihalka.app/terms-de.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://manevihalka.app/terms-fr.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://manevihalka.app/terms-ar.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/terms.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/terms-en.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/terms-de.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/terms-fr.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://manevihalka.app/terms-ar.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
 
-  <url><loc>https://manevihalka.app/account-delete.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://manevihalka.app/account-delete-en.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://manevihalka.app/account-delete-de.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://manevihalka.app/account-delete-fr.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://manevihalka.app/account-delete-ar.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://manevihalka.app/account-delete.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://manevihalka.app/account-delete-en.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://manevihalka.app/account-delete-de.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://manevihalka.app/account-delete-fr.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://manevihalka.app/account-delete-ar.html</loc>
+    <lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
 
   <!-- Ana sayfanın dil sürümleri (/tr/, /de/, /fr/, /ar/). ⚠️ İçi _gen/build-home.mjs tarafından yazılır. -->
   <!-- MH:LOCALES:BASLA -->
@@ -199,4 +237,26 @@
     <lastmod>2026-10-05</lastmod>
   </url>
   <!-- MH:REHBER:BITIS -->
+  <!-- MH:CIZELGE:BASLA -->
+  <url>
+    <loc>https://manevihalka.app/tr/hatim-cizelgesi/</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/khatam-chart/</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/de/khatm-plan/</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/fr/tableau-khatma/</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://manevihalka.app/ar/jadwal-khatma/</loc>
+    <lastmod>2026-10-05</lastmod>
+  </url>
+  <!-- MH:CIZELGE:BITIS -->
 </urlset>

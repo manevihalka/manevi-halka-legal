@@ -1,13 +1,14 @@
 ---
 layout: default
 title: Datenschutzerklärung
+description: "Welche Daten Manevi Halka erhebt und warum, wo und wie lange sie gespeichert werden, wie du sie exportierst oder löschst und welche Rechte du hast."
 lang: de
 ---
 
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026<br>
-**Zuletzt aktualisiert:** 4. Oktober 2026
+**Zuletzt aktualisiert:** 5. Oktober 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -59,7 +60,6 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   Teilen-Code/-Link mit anderen teilen. Beim Teilen wird eine Kopie (Momentaufnahme) Ihrer
   Liste zu diesem Zeitpunkt mit dem Teilen-Code gespeichert; Empfänger können die Liste zu
   ihrer eigenen Bibliothek hinzufügen. Sie können eine Freigabe jederzeit widerrufen
-- **Abschlusszertifikate:** Bei Hatim-, Cevshen- und Buchabschlüssen wird **lokal auf Ihrem Gerät** ein PDF-Zertifikat erzeugt (nicht auf unsere Server hochgeladen, bleibt zum Teilen auf Ihrem Gerät)
 - **Meldedaten:** Wenn Sie die Funktion „Melden" in der App nutzen, wird Ihre
   Meldung (Kennung des meldenden Kontos, Angaben zur gemeldeten Gruppe bzw.
   zum gemeldeten Mitglied oder Ereignis, der gewählte Grund und ggf. Ihre

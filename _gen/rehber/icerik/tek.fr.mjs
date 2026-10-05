@@ -3,10 +3,12 @@
 // l'exemple du défunt reste une partie.
 // Format : commentaire en tête de _gen/build-rehber.mjs. Les noms des boutons viennent de l'appli via [[clé]].
 // Langage religieux : aucune promesse de récompense, aucun avis juridique, aucun jour précis (3e, 7e, 40e).
+// Recherche visée : « khatma / dhikr pour une occasion ». « Khatma en groupe » appartient à hatim.fr.mjs ;
+// ne pas le remettre dans title, desc, h1 ni dans la première question (les deux pages se concurrenceraient).
 export default {
-  title: "Khatma en groupe : guide du cercle ponctuel",
-  desc: "Organise une khatma, un dhikr ou des salawat en groupe pour une nuit bénie, le Ramadan, un proche décédé ou une invocation. On participe même sans l’appli.",
-  h1: "Cercle ponctuel : organiser une khatma, un dhikr ou une invocation en groupe",
+  title: "Khatma ou dhikr pour une occasion : le cercle ponctuel",
+  desc: "Organise une khatma, un dhikr ou des salawat pour une occasion : Ramadan, nuit bénie, proche décédé ou invocation pour quelqu’un. Même sans l’appli.",
+  h1: "Cercle ponctuel : organiser une khatma, un dhikr ou une invocation pour une occasion",
   crumb: "Cercle ponctuel",
   eyebrow: "Guide pas à pas",
   lead: "Pour une nuit bénie, le Ramadan, un proche décédé ou une occasion dans ta famille, tu souhaites peut-être lire une khatma, réciter un dhikr et des salawat ou lire une invocation avec ceux que tu aimes. Dans l’appli, tu crées pour cela un cercle ponctuel : tu choisis l’objectif, tu fixes la date de fin, tu envoies le lien. Chacun lit ou récite sa part chez lui. L’appli ne fait que répartir les parts et additionner les nombres.",
@@ -252,7 +254,7 @@ export default {
 
   sss: {
     sorular: [
-      { s: "Comment faire une khatma en groupe en ligne ?",
+      { s: "Comment organiser une khatma pour une occasion ?",
         c: "Dans l’onglet **Cercles**, touche le bouton **+**, puis la carte **Cercle ponctuel** et la carte **Khatma du Coran**. Pour la répartition, choisis **Pool commun**, fixe la date de fin, écris si tu veux la dédicace et touche **Créer le cercle**. Lance le cercle avec **Démarrer maintenant** et envoie le lien. Chacun prend un juz et le lit chez lui." },
       { s: "Quelle différence entre un cercle ponctuel et un cercle régulier ?",
         c: "Un cercle ponctuel se crée pour une occasion : il a une date de fin, il se ferme quand le temps est écoulé et il est supprimé 24 heures plus tard ; son résumé reste dans l’appli. Un cercle régulier est un groupe permanent avec ta famille ou ta communauté ; la khatma continue chaque jour ou chaque semaine avec un nouveau tour. Détails : [Organiser une khatma en groupe](/fr/guides/khatma-en-groupe/)." },

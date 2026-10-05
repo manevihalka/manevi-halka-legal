@@ -151,7 +151,7 @@ export default {
       { s: "What if someone cannot finish their juz?",
         c: "The unread share is not lost: in the next round it stays with that person, marked **Carried over**. They can also release part of it to the circle with [[flow.askHelp]], or hand all of it to the pool with [[flow.excuse]]; the others take it on with [[flow.helpTitle]] or **Take**." },
       { s: "We already use a WhatsApp group. Do we still need the app?",
-        c: "Keep your group. Share the invite link there; the app keeps the list, tracks who has read and sends the reminders. You do not have to write a new list every week." },
+        c: "Keep your group. Share the invite link there; the app keeps the list, tracks who has read and sends the reminders. You do not have to write a new list every week. If you still want a list on paper, use the [printable khatam chart](/khatam-chart/)." },
       { s: "Can an older relative without the app take part?",
         c: "In a regular circle, the admin can add someone without the app as a **guest**; a person who looks after them marks their reading. In a one-time khatam set up with [[tx:event.distPool]], people without the app can take a juz in their browser from the invite link: [One-time circle](/guides/one-time-circle/)." },
       { s: "Is it free?",

@@ -13,8 +13,8 @@
      Baslik, aciklama, canonical, hreflang, OG, Bing ve yapisal veri uretici yazar
      (asagidaki yer tutucu). Agustos 2026 marka aramasi dususunun dersi: marka adi
      baslikta ve h1'de kalir, statik metin bos birakilmaz. -->
-<title>Manevi Halka: birlikte hatim, zikir ve namaz vakitleri</title>
-<meta name="description" id="metaDesc" content="Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve dualar tek uygulamada.">
+<title>Manevi Halka: hatim uygulaması, zikir ve namaz vakitleri</title>
+<meta name="description" id="metaDesc" content="Ailen ve dostlarınla toplu hatim başlat, cüzler kendiliğinden dağıtılsın. Zikirmatik, kıble ve Diyanet takvimine göre namaz vakitleri de aynı uygulamada.">
 <link rel="canonical" href="https://manevihalka.app/tr/">
 <link rel="alternate" hreflang="tr" href="https://manevihalka.app/tr/">
 <link rel="alternate" hreflang="en" href="https://manevihalka.app/">
@@ -33,8 +33,8 @@
 <!-- Seritteki vakitler bu alan adindan cekiliyor: el sikismayi erken baslat -->
 <link rel="preconnect" href="https://ezanvakti.emushaf.net" crossorigin>
 <link rel="dns-prefetch" href="https://ezanvakti.emushaf.net">
-<meta property="og:title" content="Manevi Halka: birlikte hatim, zikir ve namaz vakitleri">
-<meta property="og:description" content="Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve dualar tek uygulamada.">
+<meta property="og:title" content="Manevi Halka: hatim uygulaması, zikir ve namaz vakitleri">
+<meta property="og:description" content="Ailen ve dostlarınla toplu hatim başlat, cüzler kendiliğinden dağıtılsın. Zikirmatik, kıble ve Diyanet takvimine göre namaz vakitleri de aynı uygulamada.">
 <meta property="og:url" content="https://manevihalka.app/tr/">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:locale:alternate" content="en_US">
@@ -53,15 +53,71 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebPage",
+      "@type": [
+        "WebPage",
+        "FAQPage"
+      ],
       "@id": "https://manevihalka.app/tr/#page",
       "url": "https://manevihalka.app/tr/",
-      "name": "Manevi Halka: birlikte hatim, zikir ve namaz vakitleri",
-      "description": "Kur'an'ı halkanla bölüş, cüzleri paylaş, hatmi birlikte tamamla. Diyanet takvimine göre namaz vakitleri, kıble, zikirmatik ve dualar tek uygulamada.",
+      "name": "Manevi Halka: hatim uygulaması, zikir ve namaz vakitleri",
+      "description": "Ailen ve dostlarınla toplu hatim başlat, cüzler kendiliğinden dağıtılsın. Zikirmatik, kıble ve Diyanet takvimine göre namaz vakitleri de aynı uygulamada.",
       "inLanguage": "tr",
       "isPartOf": {
         "@id": "https://manevihalka.app/#site"
-      }
+      },
+      "about": {
+        "@id": "https://manevihalka.app/#app"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Ücretsiz mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. İbadetin kendisi her zaman ücretsiz: Kur'an, namaz vakitleri, zikir, dualar ve halkalara katılmak. Bazı ek kolaylıklar isteğe bağlıdır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Halka kurmak ücretsiz mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. Bir halka kurup yönetmek ücretsiz; aynı anda bir tek seferlik halka da yürütebilirsin. Halkalara katılmak ise her zaman ücretsiz ve sınırsız. Daha fazla halka için Premium isteğe bağlı."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hesap açmam gerekiyor mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hayır. Uygulamayı açıp hemen kullanabilirsin. İstersen hesabını sonradan Apple, Google ya da e-postayla güvenceye alırsın."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Uygulaması olmayan halkaya katılabilir mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tek seferlik halkalarda evet. Davet linkine dokunan kişi tarayıcıdan cüz alıp okuyabilir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hangi mushaf kullanılıyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Diyanet'in Türkiye mushafı. Meal ve üç kâriden sesli tilavet de var."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "iPhone ve Android'de çalışıyor mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "İkisinde de. Uygulama Türkçe, İngilizce, Almanca, Fransızca ve Arapça kullanılabilir."
+          }
+        }
+      ]
     },
     {
       "@type": "Organization",
@@ -69,7 +125,15 @@
       "name": "Manevi Halka",
       "url": "https://manevihalka.app/",
       "logo": "https://manevihalka.app/icon.png",
-      "email": "support@manevihalka.app"
+      "email": "support@manevihalka.app",
+      "sameAs": [
+        "https://www.instagram.com/manevihalkaapp",
+        "https://www.youtube.com/@manevihalkaapp",
+        "https://x.com/ManeviHalkaApp",
+        "https://www.facebook.com/manevihalkaapp",
+        "https://www.pinterest.com/manevihalkaapp/",
+        "https://whatsapp.com/channel/0029VbDM2z67IUYTITv3yY2V"
+      ]
     },
     {
       "@type": "WebSite",
@@ -95,7 +159,7 @@
       "applicationCategory": "LifestyleApplication",
       "url": "https://manevihalka.app/",
       "image": "https://manevihalka.app/icon.png",
-      "description": "Shared Qur'an khatm and dhikr circles, with prayer times, qibla and a dhikr counter.",
+      "description": "Kur'an hatmini halkanla paylaşmak için bir uygulama: cüzleri dağıtır, her turu takip eder. Zikirmatik, namaz vakitleri ve kıble de içinde.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -114,6 +178,13 @@
 </script>
 <script>/* sayfa gecisi: onceki sayfada isaret gorunurken gelindiyse ilk kare isaretle cizilir (nav-loader.html) */
 try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.removeItem("mh-land");if(L&&L.p===location.pathname&&Date.now()-L.t<15000)document.documentElement.classList.add("mh-land")}catch(e){}</script>
+<!-- Vakit motoru sayfanin sonunda defer ile yukleniyor (asagidaki script etiketi); on yukleme indirmeyi
+     basa alir. Adres script etiketindekiyle BIREBIR ayni olmali, yoksa dosya iki kez iner. -->
+<link rel="preload" href="/js/mh-dynamic.js" as="script">
+<!-- Basligin yazi tipi (14 KB) erken iner: yedek yazi tipinde giris basligi 390 px'te uc satira tasiyor, Marcellus
+     gelince ikiye inip butun girisi (magaza dugmeleri dahil) 43 px yukari kaydiriyordu (yavas baglantida CLS 0,035;
+     5 Eki 2026 olculdu). crossorigin sart: yazi tipi istegi CORS kipinde, yoksa dosya iki kez iner. -->
+<link rel="preload" href="/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>
 (function () {
   var t = null;
@@ -122,6 +193,11 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     try { t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } catch (e) { t = "light"; }
   }
   document.documentElement.setAttribute("data-theme", t);
+  document.documentElement.classList.add("mh-js");
+  // Android'de Google Play once ve dolu: karar dugmeler cizilmeden BURADA verilir, sira ve gorunum
+  // yalniz CSS'te (.is-android). Dugmelerden sonra calisan betik yavas baglantida App Store'u ilk
+  // boyamadan sonra yerinden kaydiriyordu (5 Eki 2026, /tr/ 3/3 olcumde layout-shift 0,004).
+  if (/Android/.test(navigator.userAgent || "")) document.documentElement.classList.add("is-android");
 })();
 </script>
 <style>
@@ -146,7 +222,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     --paper: #fffdf8;
     --ink: #14231c;
     --body: #4b5a52;
-    --muted: #7a867f;
+    --muted: #636f68; /* 5 Eki 2026: #7a867f zeminde 3,45:1 idi; #636f68 4,77:1 (nane 4,58, kagit 5,16) */
+    --foot: var(--body); /* altbilgi baglantilari; koyu temada eskisi gibi --muted */
     --green: #1e4d35;
     --green-2: #2f6b4a;
     --mint: #e8f2ea;
@@ -167,19 +244,22 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       color-scheme: dark; --floor: rgba(0, 0, 0, .55); --side-dim: .82; --side-dim-2: .7;
-      --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298;
+      --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298; --foot: var(--muted);
       --green: #8fd3ae; --green-2: #7ab894; --mint: #1d3227; --gold: #d9b563; --gold-soft: #d9b563;
       --line: color-mix(in srgb, #eaf3ee 12%, transparent); --band: #07110c;
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark; --floor: rgba(0, 0, 0, .55); --side-dim: .82; --side-dim-2: .7;
-    --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298;
+    --page: #0e1a14; --paper: #152720; --ink: #eaf3ee; --body: #b9c8c0; --muted: #8fa298; --foot: var(--muted);
     --green: #8fd3ae; --green-2: #7ab894; --mint: #1d3227; --gold: #d9b563; --gold-soft: #d9b563;
     --line: color-mix(in srgb, #eaf3ee 12%, transparent); --band: #07110c;
   }
 
   * { box-sizing: border-box; }
+  /* Yatay tasma kokte de kirpilir: yalniz body'de olunca deger gorunum alanina tasiniyor, 1024 px'te sayfa
+     13 px yana kaydirilabiliyordu (halka etiketi, yakin plan kirpintisi; Arapcada -6). 5 Eki 2026 olculdu. */
+  html { overflow-x: clip; }
   body { overflow-x: clip; margin: 0; background: var(--page); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 1160px; margin: 0 auto; padding-inline: 20px; }
   h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -.005em; }
@@ -249,7 +329,21 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .lead { margin-top: 20px; font-size: 18.5px; line-height: 1.6; color: var(--body); max-width: 34em; }
   .stores { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
   .store { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border-radius: 14px; text-decoration: none; background: var(--green); color: var(--page); min-width: 172px; }
-  .store.alt { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  /* Ikincil (cizgili) magaza: varsayilan Google Play (.alt). Android'de (<html class="is-android">, bastaki
+     betik) App Store ikincil olur, Google Play one gecer ve dolar. Sira ve gorunum YALNIZ CSS: ilk boyamada
+     dogru, sonradan kayma yok. */
+  .store.alt, .is-android .store[data-store="ios"] { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .is-android .store[data-store="android"] { order: -1; }
+  .is-android .store.alt[data-store="android"] { background: var(--green); color: var(--page); border: 0; }
+  /* Yavas baglantida tarayici blogun yarisini cizebiliyor: Android'de DOM'da once gelen App Store, Google Play
+     daha okunmadan tek basina ilk yerde gorunup sonra ikinci yere kayiyordu (5 Eki 2026 olculdu). Blok, sonundaki
+     bos isaret (.stores-end) okunana kadar gorunmez; gorundugunde dugmeler tam ve son yerlerinde. Isareti SILME
+     (silinirse blok ancak 3 sn sonra gorunur, asagidaki emniyet). :has() bilmeyen tarayicida kural yok sayilir. */
+  .stores:not(:has(> .stores-end)) { visibility: hidden; animation: mh-stores-show 0s 3s forwards; }
+  @keyframes mh-stores-show { to { visibility: visible; } }
+  /* Ust cubuk yarim okunurken cizilirse dil ve tema dugmeleri once en saga oturup "Indir" (.get, cubugun son
+     ogesi) gelince sola kayiyordu (yavas baglantida olculdu). .get okunana kadar marka disindakiler gorunmez. */
+  .top:not(:has(> .get)) > :not(.brand) { visibility: hidden; animation: mh-stores-show 0s 3s forwards; }
   .store svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
   .store small { display: block; font-size: 10.5px; font-weight: 500; opacity: .8; line-height: 1.1; }
   .store b { display: block; font-size: 16px; line-height: 1.25; }
@@ -262,7 +356,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   @keyframes mh-elma { 0% { transform: rotate(0); } 28% { transform: rotate(-13deg); } 56% { transform: rotate(8deg); } 80% { transform: rotate(-3deg); } 100% { transform: rotate(0); } }
   @media (hover: hover) {
     .store:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -14px color-mix(in srgb, var(--green) 75%, transparent); }
-    .store.alt:hover { background: var(--mint); }
+    .store.alt:hover, .is-android .store[data-store="ios"]:hover { background: var(--mint); }
+    .is-android .store.alt[data-store="android"]:hover { background: var(--green); }
     .store[data-store="ios"]:hover svg { animation: mh-elma .75s ease-out; }
     .store[data-store="android"]:hover svg { transform: translateX(3px); }
   }
@@ -344,6 +439,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .nav.next { inset-inline-end: -6px; }
   .nav svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 520px; }
+  /* Sekmeler ve ilk altyazi HTML'de hazir (vitrin sonradan uzayip giristeki magaza dugmelerini kaydirmasin); betik
+     calismiyorsa ise yaramazlar, gizli kalir (yerine noscript notu). mh-js bastaki betikten. */
+  html:not(.mh-js) .tabs, html:not(.mh-js) #scap { display: none; }
   .tabs button { position: relative; overflow: hidden; font: 600 13.5px var(--sans); color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 8px 15px; cursor: pointer; }
   .tabs button:hover { background: var(--mint); }
   .tabs button[aria-selected="true"] { background: var(--green); border-color: var(--green); color: var(--page); }
@@ -354,6 +452,10 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     .hero { grid-template-columns: 1fr; padding-block: 16px 56px; }
     .showcase { order: 2; margin-top: 12px; }
   }
+  /* Genis ekranda iki sutun dikeyde ortali: vitrin (sag sutun) okundukca uzarken sol sutun (baslik, magaza dugmeleri)
+     30 px asagi kayiyordu (yavas baglantida olculdu). Giris, vitrinin altyazisi (#scap) okunana kadar gorunmez; bu kisa
+     bir an (vitrin birkac KB), ust cubuk ve vakit seridi gorunur kalir. Dar ekranda vitrin altta, gerek yok. */
+  @media (min-width: 901px) { .hero:not(:has(#scap)) { visibility: hidden; animation: mh-stores-show 0s 3s forwards; } }
   @media (max-width: 560px) {
     .chip { display: none; }
     .card[data-pos="1"] { transform: translate(calc(8% * var(--s)), -2%) rotate(calc(5deg * var(--s))) scale(.84); }
@@ -615,11 +717,27 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .closing .purpose { position: relative; margin-top: 26px; color: var(--band-sub); font-size: 17px; }
   .closing .stores { position: relative; justify-content: center; margin-top: 30px; }
   .closing .store { background: #f6f1e4; color: #10231b; }
-  .closing .store.alt { background: transparent; color: #f6f1e4; border-color: rgba(246, 241, 228, .3); }
+  .closing .store.alt, .is-android .closing .store[data-store="ios"] { background: transparent; color: #f6f1e4; border-color: rgba(246, 241, 228, .3); }
+  .is-android .closing .store.alt[data-store="android"] { background: #f6f1e4; color: #10231b; }
   @media (hover: hover) {
     .closing .store:hover { box-shadow: 0 14px 26px -14px rgba(0, 0, 0, .55); }
-    .closing .store.alt:hover { background: rgba(246, 241, 228, .1); }
+    .closing .store.alt:hover, .is-android .closing .store[data-store="ios"]:hover { background: rgba(246, 241, 228, .1); }
+    .is-android .closing .store.alt[data-store="android"]:hover { background: #f6f1e4; }
   }
+  /* Bilgisayardan telefona: genis ekran ve fareli cihazda magaza dugmelerinin yaninda QR (indir.html'deki
+     kodun aynisi: https://manevihalka.app/indir?utm_source=qr, telefonu kendi magazasina goturur).
+     Telefonda ve tablette gizli. Yazi ureticinin sozlugunden (T.qrCaption, bes dil); blok ekran okuyucudan gizli:
+     yanindaki magaza baglantilari ayni isi gorur. */
+  .qr-hand { display: none; }
+  @media (hover: hover) and (min-width: 900px) {
+    /* Dugmeler eskisi gibi esit boyda kalsin, bant uzamasin: QR satirin ortasina oturur, dikeyde dugme boyunu asan
+       kismi (90 px karo, 54 px dugme) negatif kenar payiyla satir yuksekligine sayilmaz. */
+    .closing .stores { margin-top: 44px; }
+    .qr-hand { display: inline-flex; align-items: center; align-self: center; gap: 12px; margin-block: -20px; margin-inline-start: 14px; padding-inline-start: 22px; border-inline-start: 1px solid rgba(246, 241, 228, .18); }
+  }
+  .qr-tile { display: block; padding: 9px; border-radius: 12px; background: #fff; line-height: 0; }
+  .qr-hand .qr { display: block; width: 72px; height: 72px; color: #10231b; }
+  .qr-cap { max-width: 9.5em; font-size: 13.5px; font-weight: 600; line-height: 1.35; text-align: start; color: #f6f1e4; }
 
 
   /* ── kurucu ayet ── */
@@ -662,6 +780,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   footer { padding-block: 40px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13.5px; color: var(--muted); }
   footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
   footer a { text-decoration: none; }
+  /* Acik temada altbilgi baglantilari govde renginde (soluk gri 3,45:1 kaliyordu); koyu temada degismedi */
+  footer nav a { color: var(--foot); }
 
   @media (prefers-reduced-motion: reduce) { .phone, .dots button, .faq summary::after { transition: none; } }
 
@@ -915,7 +1035,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <a href="#together" data-p="2">Birlikte</a>
       <a href="#faq" data-p="3">Sık sorulanlar</a>
       <a class="pg ilk" href="/tr/namaz-vakitleri/">Vakitler</a>
-      <a class="pg" href="/ortak-okuma.html" data-p="4">Ortak Okuma</a>
+      <a class="pg" href="/tr/ortak-okuma/" data-p="4">Ortak Okuma</a>
       <a class="pg" href="/tr/rehber/">Rehberler</a>
     </nav>
     <div class="lang" id="langBox">
@@ -931,17 +1051,22 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     </button>
     <a class="get" href="#download" data-get aria-label="İndir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">İndir</span><span class="gs">İndir</span></a>
   </header>
-  <nav class="mnav" aria-label="Sayfalar"><a class="pg" href="/ortak-okuma.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg>Ortak Okuma</a><a class="pg" href="/tr/rehber/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5v13c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z"/><path d="M12 6v13.5"/></svg>Rehberler</a></nav>
+  <nav class="mnav" aria-label="Sayfalar"><a class="pg" href="/tr/ortak-okuma/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg>Ortak Okuma</a><a class="pg" href="/tr/rehber/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5v13c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z"/><path d="M12 6v13.5"/></svg>Rehberler</a></nav>
 
+  <main>
   <!-- GIRIS -->
   <div class="hero" id="top">
     <div>
       <h1><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">Bir niyet, bir halka, <em>nice ameller.</em></span></h1>
-      <p class="lead">Kur'an, namaz, zikir, ezber ve okumalarını günlük hayatında sürdür. Dilersen sevdiklerinle bir halka kurup güzel amellerde buluş.</p>
+      <p class="lead">Kur'an, namaz, zikir, ezber ve okumalarını günlük hayatında sürdür. Dilersen sevdiklerinle bir halka kur: cüzler paylaşılsın, hatim birlikte tamamlansın.</p>
       <div class="stores">
         <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>İndir</small><b>App Store</b></span></a>
         <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dhero-tr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>İndir</small><b>Google Play</b></span></a>
+        <i class="stores-end" hidden></i>
       </div>
+      <script>/* Android: gorunen sira CSS'te (is-android); klavye ve ekran okuyucu sirasi da uysun diye Google Play DOM'da one alinir. Gorunen yer degismez, kayma olmaz. */
+(function (s) { if (!s || !document.documentElement.classList.contains("is-android")) return; var a = s.querySelector('[data-store="android"]'), i = s.querySelector('[data-store="ios"]');
+  if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentScript.previousElementSibling);</script>
       <ul class="trust">
         <li><b>Reklamsız</b>Dikkatin ibadette kalsın</li>
         <li><b>İbadet ücretsiz</b>İbadetin kendisi her zaman</li>
@@ -955,8 +1080,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <button type="button" class="nav prev" id="prev" aria-label="Önceki ekran"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
         <button type="button" class="nav next" id="next" aria-label="Sonraki ekran"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
-      <div class="tabs" id="tabs" role="tablist" aria-label="Ekranlar"></div>
-      <p class="scap" id="scap" aria-live="polite"></p>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Ekranlar"><button type="button" role="tab" aria-selected="true">Namaz<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">Kur'an<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">Halka<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">Ortak Ameller<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">Tek Seferlik<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">Kitaplık<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">Dahası<span class="fill"></span></button></div>
+      <p class="scap" id="scap">Vakitler günün içinde. Kıldığını kendin için işaretle.</p>
       <noscript><p class="scap">Uygulamanın ekranlarını görmek için JavaScript'i aç.</p></noscript>
     </div>
   </div>
@@ -1080,7 +1205,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="eyebrow">Ortak Okuma</span>
         <h3>Farklı yerlerden, aynı niyetle.</h3>
         <p>Dünyanın dört bir yanından okuyanlarla süregiden ortak hatme ve ortak zikre katıl.</p>
-        <a class="qlink" href="/ortak-okuma.html">Web'den katıl</a>
+        <a class="qlink" href="/tr/ortak-okuma/">Web'den katıl</a>
       </article>
       <article>
         <span class="eyebrow">Yolculuğum</span>
@@ -1125,11 +1250,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <div class="sec-head">
         <span class="eyebrow">Sık sorulanlar</span>
         <h2>Başlamadan önce</h2>
-        <p>Başka bir sorun varsa support@manevihalka.app adresine yaz.</p>
+        <p>Aklına takılan başka bir şey varsa support@manevihalka.app adresine yaz.</p>
         <a class="qlink" href="/tr/rehber/">Bütün adım adım rehberler</a>
       </div>
       <div>
         <details open><summary>Ücretsiz mi?</summary><p>Evet. İbadetin kendisi her zaman ücretsiz: Kur'an, namaz vakitleri, zikir, dualar ve halkalara katılmak. Bazı ek kolaylıklar isteğe bağlıdır.</p></details>
+        <details><summary>Halka kurmak ücretsiz mi?</summary><p>Evet. Bir halka kurup yönetmek ücretsiz; aynı anda bir tek seferlik halka da yürütebilirsin. Halkalara katılmak ise her zaman ücretsiz ve sınırsız. Daha fazla halka için Premium isteğe bağlı.</p></details>
         <details><summary>Hesap açmam gerekiyor mu?</summary><p>Hayır. Uygulamayı açıp hemen kullanabilirsin. İstersen hesabını sonradan Apple, Google ya da e-postayla güvenceye alırsın.</p></details>
         <details><summary>Uygulaması olmayan halkaya katılabilir mi?</summary><p>Tek seferlik halkalarda evet. Davet linkine dokunan kişi tarayıcıdan cüz alıp okuyabilir.</p></details>
         <details><summary>Hangi mushaf kullanılıyor?</summary><p>Diyanet'in Türkiye mushafı. Meal ve üç kâriden sesli tilavet de var.</p></details>
@@ -1147,9 +1273,15 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <div class="stores">
         <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>İndir</small><b>App Store</b></span></a>
         <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dclose-tr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>İndir</small><b>Google Play</b></span></a>
+        <div class="qr-hand" aria-hidden="true"><span class="qr-tile"><svg class="qr" viewBox="0 0 33 33" width="72" height="72" shape-rendering="crispEdges" focusable="false"><path fill="currentColor" d="M0 0h7v1h-7zM8 0h5v1h-5zM14 0h1v1h-1zM19 0h3v1h-3zM23 0h1v1h-1zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h3v1h-3zM14 1h1v1h-1zM17 1h1v1h-1zM23 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h1v1h-1zM12 2h5v1h-5zM18 2h2v1h-2zM23 2h2v1h-2zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h2v1h-2zM12 3h1v1h-1zM15 3h1v1h-1zM18 3h1v1h-1zM21 3h1v1h-1zM24 3h1v1h-1zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM10 4h1v1h-1zM12 4h2v1h-2zM16 4h3v1h-3zM21 4h4v1h-4zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h2v1h-2zM12 5h1v1h-1zM14 5h3v1h-3zM22 5h2v1h-2zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM8 7h1v1h-1zM15 7h3v1h-3zM19 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM0 8h1v1h-1zM2 8h2v1h-2zM5 8h3v1h-3zM11 8h2v1h-2zM14 8h2v1h-2zM17 8h2v1h-2zM21 8h1v1h-1zM23 8h2v1h-2zM26 8h1v1h-1zM29 8h1v1h-1zM31 8h2v1h-2zM1 9h4v1h-4zM8 9h7v1h-7zM16 9h2v1h-2zM19 9h2v1h-2zM23 9h1v1h-1zM26 9h2v1h-2zM29 9h3v1h-3zM1 10h1v1h-1zM6 10h1v1h-1zM9 10h2v1h-2zM13 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h5v1h-5zM26 10h4v1h-4zM31 10h2v1h-2zM0 11h1v1h-1zM2 11h3v1h-3zM8 11h2v1h-2zM11 11h2v1h-2zM16 11h2v1h-2zM20 11h3v1h-3zM24 11h1v1h-1zM26 11h2v1h-2zM29 11h1v1h-1zM0 12h1v1h-1zM2 12h1v1h-1zM6 12h1v1h-1zM10 12h1v1h-1zM12 12h1v1h-1zM14 12h1v1h-1zM16 12h1v1h-1zM19 12h4v1h-4zM24 12h2v1h-2zM27 12h3v1h-3zM31 12h2v1h-2zM1 13h4v1h-4zM7 13h1v1h-1zM10 13h2v1h-2zM13 13h2v1h-2zM17 13h1v1h-1zM20 13h2v1h-2zM23 13h1v1h-1zM27 13h1v1h-1zM30 13h2v1h-2zM2 14h1v1h-1zM4 14h1v1h-1zM6 14h1v1h-1zM11 14h1v1h-1zM13 14h2v1h-2zM19 14h2v1h-2zM22 14h1v1h-1zM26 14h1v1h-1zM29 14h2v1h-2zM0 15h2v1h-2zM3 15h1v1h-1zM5 15h1v1h-1zM8 15h1v1h-1zM14 15h2v1h-2zM18 15h1v1h-1zM21 15h1v1h-1zM23 15h5v1h-5zM29 15h2v1h-2zM0 16h4v1h-4zM6 16h1v1h-1zM8 16h1v1h-1zM11 16h4v1h-4zM20 16h4v1h-4zM25 16h2v1h-2zM28 16h1v1h-1zM30 16h1v1h-1zM1 17h2v1h-2zM8 17h1v1h-1zM13 17h1v1h-1zM15 17h1v1h-1zM22 17h5v1h-5zM28 17h2v1h-2zM31 17h2v1h-2zM0 18h1v1h-1zM2 18h2v1h-2zM6 18h1v1h-1zM10 18h2v1h-2zM13 18h3v1h-3zM18 18h1v1h-1zM20 18h2v1h-2zM24 18h2v1h-2zM27 18h2v1h-2zM30 18h2v1h-2zM1 19h2v1h-2zM7 19h1v1h-1zM13 19h1v1h-1zM16 19h3v1h-3zM20 19h1v1h-1zM22 19h1v1h-1zM24 19h3v1h-3zM28 19h1v1h-1zM32 19h1v1h-1zM2 20h2v1h-2zM6 20h3v1h-3zM11 20h3v1h-3zM16 20h1v1h-1zM19 20h1v1h-1zM22 20h4v1h-4zM27 20h1v1h-1zM29 20h2v1h-2zM0 21h2v1h-2zM4 21h1v1h-1zM8 21h1v1h-1zM10 21h3v1h-3zM14 21h4v1h-4zM20 21h4v1h-4zM25 21h2v1h-2zM30 21h1v1h-1zM32 21h1v1h-1zM3 22h1v1h-1zM5 22h6v1h-6zM12 22h1v1h-1zM14 22h2v1h-2zM18 22h3v1h-3zM23 22h3v1h-3zM27 22h1v1h-1zM30 22h3v1h-3zM1 23h2v1h-2zM4 23h2v1h-2zM7 23h4v1h-4zM13 23h3v1h-3zM18 23h1v1h-1zM20 23h1v1h-1zM27 23h3v1h-3zM32 23h1v1h-1zM0 24h1v1h-1zM3 24h2v1h-2zM6 24h7v1h-7zM17 24h1v1h-1zM19 24h1v1h-1zM22 24h1v1h-1zM24 24h5v1h-5zM32 24h1v1h-1zM8 25h1v1h-1zM14 25h3v1h-3zM19 25h1v1h-1zM21 25h1v1h-1zM23 25h2v1h-2zM28 25h2v1h-2zM31 25h1v1h-1zM0 26h7v1h-7zM8 26h3v1h-3zM12 26h1v1h-1zM16 26h6v1h-6zM23 26h2v1h-2zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h5v1h-5zM16 27h4v1h-4zM23 27h2v1h-2zM28 27h4v1h-4zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM9 28h1v1h-1zM12 28h8v1h-8zM22 28h7v1h-7zM30 28h3v1h-3zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM8 29h1v1h-1zM10 29h1v1h-1zM12 29h1v1h-1zM14 29h1v1h-1zM16 29h2v1h-2zM19 29h1v1h-1zM21 29h3v1h-3zM27 29h1v1h-1zM29 29h4v1h-4zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM8 30h3v1h-3zM13 30h4v1h-4zM18 30h1v1h-1zM20 30h3v1h-3zM24 30h1v1h-1zM26 30h2v1h-2zM29 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM11 31h4v1h-4zM17 31h2v1h-2zM20 31h1v1h-1zM24 31h2v1h-2zM27 31h2v1h-2zM32 31h1v1h-1zM0 32h7v1h-7zM8 32h1v1h-1zM12 32h1v1h-1zM16 32h4v1h-4zM21 32h1v1h-1zM23 32h1v1h-1zM28 32h3v1h-3z"/></svg></span><span class="qr-cap">Telefonunla okut</span></div>
+        <i class="stores-end" hidden></i>
       </div>
+      <script>/* Android: gorunen sira CSS'te (is-android); klavye ve ekran okuyucu sirasi da uysun diye Google Play DOM'da one alinir. Gorunen yer degismez, kayma olmaz. */
+(function (s) { if (!s || !document.documentElement.classList.contains("is-android")) return; var a = s.querySelector('[data-store="android"]'), i = s.querySelector('[data-store="ios"]');
+  if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentScript.previousElementSibling);</script>
     </div>
   </section>
+  </main>
 
   <footer>
     <div class="social">
@@ -1165,7 +1297,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       </div>
     </div>
     <span>© 2026 Manevi Halka</span>
-    <nav><a href="/tr/namaz-vakitleri/">Vakitler</a><a href="/ortak-okuma.html">Ortak Okuma</a><a href="/tr/rehber/">Rehberler</a><a href="/privacy.html">Gizlilik Politikası</a><a href="/terms.html">Kullanım Koşulları</a><a href="/account-delete.html">Hesap Silme</a><a href="mailto:support@manevihalka.app">İletişim</a></nav>
+    <nav><a href="/tr/namaz-vakitleri/">Vakitler</a><a href="/tr/ortak-okuma/">Ortak Okuma</a><a href="/tr/rehber/">Rehberler</a><a href="/privacy.html">Gizlilik Politikası</a><a href="/terms.html">Kullanım Koşulları</a><a href="/account-delete.html">Hesap Silme</a><a href="mailto:support@manevihalka.app">İletişim</a></nav>
     <nav class="langs" aria-label="Dil"><a href="/tr/" hreflang="tr" lang="tr" aria-current="page">Türkçe</a><a href="/" hreflang="en" lang="en">English</a><a href="/de/" hreflang="de" lang="de">Deutsch</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/ar/" hreflang="ar" lang="ar">العربية</a></nav>
     <p class="credit"></p>
   </footer>
@@ -1179,7 +1311,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <a href="#together" data-sec="together" data-p="2">Birlikte</a>
       <a href="#faq" data-sec="faq" data-p="3">Sık sorulanlar</a>
       <a class="pg ilk" href="/tr/namaz-vakitleri/">Vakitler</a>
-      <a class="pg" href="/ortak-okuma.html" data-p="4">Ortak Okuma</a>
+      <a class="pg" href="/tr/ortak-okuma/" data-p="4">Ortak Okuma</a>
       <a class="pg" href="/tr/rehber/">Rehberler</a>
     </nav>
     <a class="get-btn" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>İndir</span></a>
@@ -1203,7 +1335,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <a href="#download" data-sec="download"><span>İndir</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     <div class="ss-rule"></div>
     <a class="ss-page" href="/tr/namaz-vakitleri/"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><span class="ss-txt"><b>Namaz vakitleri</b><span>Bugün ve 30 günlük takvim</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
-    <a class="ss-page" href="/ortak-okuma.html"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg></span><span class="ss-txt"><b>Ortak Okuma</b><span>Dünya genelinde ortak hatim ve zikir</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
+    <a class="ss-page" href="/tr/ortak-okuma/"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg></span><span class="ss-txt"><b>Ortak Okuma</b><span>Dünya genelinde ortak hatim ve zikir</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
     <a class="ss-page" href="/tr/rehber/"><span class="ss-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5v13c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z"/><path d="M12 6v13.5"/></svg></span><span class="ss-txt"><b>Rehberler</b><span>Halka kurma, hatim ve zikir adım adım</span></span><span class="ss-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5"/></svg></span></a>
   </div>
 </div>
@@ -1500,10 +1632,16 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       });
       c.addEventListener("click", function () { if (!moved && c.getAttribute("data-pos") === "1") { stop(); go(cur + 1); } });
       stage.insertBefore(c, stage.firstChild); cards.push(c);
-      var b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab");
-      b.innerHTML = esc(s.t) + '<span class="fill"></span>';
+      // Sekmeler HTML'de hazir gelir (uretici, tabsHtml): sonradan eklenince genis ekranda vitrin uzuyor, soldaki
+      // sutun magaza dugmeleriyle birlikte asagi kayiyordu. Yoksa (eski kopya) burada kurulur.
+      var b = tabs.children[i];
+      if (!b) {
+        b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab");
+        b.innerHTML = esc(s.t) + '<span class="fill"></span>';
+        tabs.appendChild(b);
+      }
       b.addEventListener("click", function () { stop(); go(i); });
-      tabs.appendChild(b); tbtn.push(b);
+      tbtn.push(b);
     });
     function paint() {
       cards.forEach(function (c, i) {
@@ -1513,9 +1651,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         c.style.transform = "";
       });
       tbtn.forEach(function (b, i) { b.setAttribute("aria-selected", i === cur ? "true" : "false"); b.querySelector(".fill").style.width = "0"; });
-      cap.textContent = SC[cur].d;
+      // Canli bolge bu gorevde yeni acildiysa (asagida arm) metin bir kare sonra yazilir: ayni gorevde
+      // hem aria-live hem metin degisirse ekran okuyucu ilk duyuruyu kaciriyordu.
+      if (capLate) { capLate = false; requestAnimationFrame(function () { requestAnimationFrame(function () { cap.textContent = SC[cur].d; }); }); }
+      else cap.textContent = SC[cur].d;
     }
-    function go(i) { cur = (i + n) % n; start = 0; paint(); }
+    function go(i) { cur = (i + n) % n; start = 0; held = 0; paint(); }
     document.getElementById("next").addEventListener("click", function (e) { e.stopPropagation(); stop(); go(cur + 1); });
     document.getElementById("prev").addEventListener("click", function (e) { e.stopPropagation(); stop(); go(cur - 1); });
 
@@ -1541,23 +1682,46 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     }
     stage.addEventListener("pointerup", end); stage.addEventListener("pointercancel", end); stage.addEventListener("pointerleave", end);
     document.addEventListener("keydown", function (e) {
-      if (e.target.closest && e.target.closest("details, input, textarea")) return;
+      if (e.defaultPrevented || !inView) return;
+      if (e.target.closest && e.target.closest("details, input, textarea, .kis-strip")) return;
       var fwd = RTL ? "ArrowLeft" : "ArrowRight", back = RTL ? "ArrowRight" : "ArrowLeft";
       if (e.key === fwd) { stop(); go(cur + 1); } else if (e.key === back) { stop(); go(cur - 1); }
     });
 
-    // Kendiliginden ilerleme: etkin sekmenin altindaki cizgi dolar; dokununca durur
-    var raf = null, start = 0, DUR = 5600;
+    // Kendiliginden ilerleme: etkin sekmenin altindaki cizgi dolar; dokununca durur.
+    // Sahne ekranin disindayken ya da sekme arka plandayken BEKLER (kaldigi yerden surer).
+    // Altyazi (#scap) baslangicta canli bolge DEGIL: kendiliginden donerken ekran okuyucu ilgisiz cumleleri
+    // surekli okuyordu. Kullanici vitrine dokununca ya da odak girince canli bolge olur (asagida arm).
+    // Canli bolge kullanici vitrine ilk dokundugunda ya da odak vitrine ilk girdiginde, yani DEGISIKLIKTEN
+    // ONCE acilir (arm). Odak vitrindeyken kendiliginden donme bekler (WAI-ARIA vitrin deseni), cikinca surer:
+    // klavyeyle gezen kisiye kendiliginden donen cumleler okunmaz. Ok tuslari odak disindayken de calisir;
+    // o yolda canli bolge ayni gorevde aciliyorsa metin bir kare sonra yazilir (capLate).
+    var raf = null, start = 0, held = 0, DUR = 5600, auto = !reduce, inView = true, shown = !document.hidden, focusIn = false, capLate = false;
+    var show = stage.parentNode;
+    function arm() { if (!cap.hasAttribute("aria-live")) { cap.setAttribute("aria-live", "polite"); return true; } return false; }
+    show.addEventListener("pointerdown", arm, true);
+    show.addEventListener("focusin", function () { arm(); focusIn = true; hold(); });
+    show.addEventListener("focusout", function (e) { if (!e.relatedTarget || !show.contains(e.relatedTarget)) { focusIn = false; run(); } });
     function tick(t) {
-      if (!start) start = t;
+      if (!start) { start = t - held; held = 0; }
       var f = Math.min(1, (t - start) / DUR);
       tbtn[cur].querySelector(".fill").style.width = (f * 100) + "%";
       if (f >= 1) go(cur + 1);
       raf = requestAnimationFrame(tick);
     }
-    function stop() { if (raf) cancelAnimationFrame(raf); raf = null; tbtn.forEach(function (b) { b.querySelector(".fill").style.width = "0"; }); }
+    function run() { if (auto && inView && shown && !focusIn && !raf) raf = requestAnimationFrame(tick); }
+    function hold() { if (!raf) return; cancelAnimationFrame(raf); raf = null; if (start) held = Math.min(DUR, performance.now() - start); start = 0; }
+    function stop() {
+      auto = false; held = 0; if (raf) cancelAnimationFrame(raf); raf = null;
+      tbtn.forEach(function (b) { b.querySelector(".fill").style.width = "0"; });
+      if (arm()) capLate = true;
+    }
     paint();
-    if (!reduce) raf = requestAnimationFrame(tick);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { inView = es[es.length - 1].isIntersecting; if (inView) run(); else hold(); }).observe(stage);
+    }
+    document.addEventListener("visibilitychange", function () { shown = !document.hidden; if (shown) run(); else hold(); });
+    run();
   })();
 
   // ── Yakin plan kirpintilari: ekrandan kalkan yakin plan ──

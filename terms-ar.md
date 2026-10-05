@@ -1,6 +1,7 @@
 ---
 layout: default
 title: شروط الاستخدام
+description: "قواعد استخدام Manevi Halka: حسابك، والمحتوى الذي تشاركه والإشراف عليه، واشتراك Premium وإلغاؤه، واسترداد المبالغ، والمسؤولية."
 lang: ar
 dir: rtl
 ---

@@ -4,7 +4,7 @@ export default {
   desc: "Short illustrated guides: set up a khatam group, share the juz, set a group salawat or dhikr goal and join a circle from an invite.",
   h1: "Step-by-step guides",
   eyebrow: "How to",
-  lead: "Each guide uses the app's own screens and shows you every button to tap, one at a time. In a few minutes you can create your circle and start your goal.",
+  lead: "Each guide uses the app's own screens and shows you every button to tap, one at a time. In a few minutes you can create your circle and start your goal. If you would rather organise a khatm on paper, there is also a [printable khatam chart](/khatam-chart/).",
   halka: {
     baslik: "Circle and task: the two words you need",
     metin: [
