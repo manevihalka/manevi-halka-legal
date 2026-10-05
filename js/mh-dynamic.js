@@ -223,7 +223,7 @@
       endsIn: "Time ends in",
     },
     de: {
-      names: { fajr: "Fadschr", sunrise: "Sonnenaufgang", dhuhr: "Dhuhr", asr: "Asr", maghrib: "Maghrib", isha: "Ischa" },
+      names: { fajr: "Fadschr", sunrise: "Sonnen\u00adaufgang", dhuhr: "Dhuhr", asr: "Asr", maghrib: "Maghrib", isha: "Ischa" },
       until: { fajr: "Bis Fadschr", sunrise: "Bis Sonnenaufgang", dhuhr: "Bis Dhuhr", asr: "Bis Asr", maghrib: "Bis Maghrib", isha: "Bis Ischa" },
       endsIn: "Endet in",
     },

@@ -347,6 +347,28 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .month-table tr.today td { background: var(--mint-bg); }
   .month-table tr.friday td.mt-date strong { color: var(--green); }
   .month-table tr:last-child td { border-bottom: 0; }
+  /* Telefonda tablo yana kaymasin: alti vakit de gorunsun (eskiden yalniz Imsak ve Gunes
+     gorunuyor, gerisi kaydirma gerektiriyordu). Uzun vakit adlari basligin icinde kirilir: "Lever du
+     soleil" bosluklardan, "Sonnenaufgang" js/mh-dynamic.js'teki yumusak tireden. */
+  @media screen and (max-width: 600px) {
+    .month-wrap { padding: 14px 8px; }
+    .month-head { padding-inline: 6px; }
+    .month-table { min-width: 0; font-size: 12.5px; table-layout: fixed; }
+    .month-table th, .month-table td { padding: 6px 2px; }
+    .month-table th { font-size: 10px; letter-spacing: 0; white-space: normal; vertical-align: bottom; line-height: 1.25; }
+    .month-table th:first-child, .month-table td.mt-date { width: 21%; padding-inline-start: 6px; }
+    .mt-date strong { font-size: 12.5px; }
+    .mt-date span { font-size: 10px; line-height: 1.25; display: block; }
+  }
+  @media screen and (max-width: 360px) {
+    .month-wrap { padding: 12px 4px; }
+    .month-table { font-size: 11.5px; }
+    .month-table th { font-size: 9px; letter-spacing: -.1px; }
+    .month-table th, .month-table td { padding-inline: 1px; }
+    .month-table th:first-child, .month-table td.mt-date { width: 20%; padding-inline-start: 4px; }
+    .mt-date strong { font-size: 11.5px; }
+    .mt-date span { font-size: 9.5px; }
+  }
   .pc-primary { border: 0; border-radius: 10px; padding: 8px 14px; background: var(--pill); color: #fff; font-weight: 700; font-size: 13.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
   .pc-primary svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 
