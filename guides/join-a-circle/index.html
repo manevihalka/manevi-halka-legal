@@ -489,6 +489,25 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .store svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
   .store small { display: block; font-size: 10.5px; font-weight: 500; opacity: .8; line-height: 1.1; text-align: start; }
   .store b { display: block; font-size: 16px; line-height: 1.25; text-align: start; }
+  /* Magaza dugmesi hover (5 Eki 2026, ana sayfayla ayni): hafifce kalkar; elma sapindan asiliymis gibi
+     sallanir, Play ucgeni ileri kayar. Yalniz fareli cihazda; klavyede :focus-visible; hareketi azaltta yalniz renk. */
+  .store { transition: transform .28s cubic-bezier(.3, 1.4, .5, 1), box-shadow .28s ease, background-color .2s ease, filter .2s ease; }
+  .store svg { transition: transform .4s cubic-bezier(.3, 1.7, .5, 1); }
+  .store[data-store="ios"] svg { transform-origin: 62% 4%; }
+  @keyframes mh-elma { 0% { transform: rotate(0); } 28% { transform: rotate(-13deg); } 56% { transform: rotate(8deg); } 80% { transform: rotate(-3deg); } 100% { transform: rotate(0); } }
+  @media (hover: hover) {
+    .store:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -14px rgba(0, 0, 0, .55); }
+    .store.alt:hover { background: rgba(246, 241, 228, .1); }
+    .store[data-store="ios"]:hover svg { animation: mh-elma .75s ease-out; }
+    .store[data-store="android"]:hover svg { transform: translateX(3px); }
+  }
+  .store:focus-visible { transform: translateY(-2px); }
+  .store:active { transform: translateY(0) scale(.98); transition-duration: .1s; }
+  @media (prefers-reduced-motion: reduce) {
+    .store, .store svg { transition: background-color .2s ease, filter .2s ease; }
+    .store:hover, .store:focus-visible, .store:active { transform: none; }
+    .store:hover svg { animation: none !important; transform: none !important; }
+  }
 
   /* ── altbilgi (ana sayfayla ayni) ── */
   footer { padding-block: 40px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13.5px; color: var(--muted); border-top: 1px solid var(--line); }

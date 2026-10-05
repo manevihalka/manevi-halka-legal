@@ -58,6 +58,24 @@
   .store-badge svg { width:26px; height:26px; flex-shrink:0; fill:currentColor; }
   .store-badge .small { display:block; font-size:11px; opacity:.85; }
   .store-badge .big { display:block; font-size:17px; font-weight:700; line-height:1.2; }
+  /* Magaza dugmesi hover (5 Eki 2026, ana sayfayla ayni): hafifce kalkar; elma sapindan asiliymis gibi
+     sallanir, Play ucgeni ileri kayar. Yalniz fareli cihazda; klavyede :focus-visible; hareketi azaltta yalniz renk. */
+  .store-badge { transition: transform .28s cubic-bezier(.3, 1.4, .5, 1), box-shadow .28s ease, background-color .2s ease, filter .2s ease; }
+  .store-badge svg { transition: transform .4s cubic-bezier(.3, 1.7, .5, 1); }
+  #iosBtn svg { transform-origin: 62% 4%; }
+  @keyframes mh-elma { 0% { transform: rotate(0); } 28% { transform: rotate(-13deg); } 56% { transform: rotate(8deg); } 80% { transform: rotate(-3deg); } 100% { transform: rotate(0); } }
+  @media (hover: hover) {
+    .store-badge:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -12px rgba(10, 30, 20, .5); }
+    #iosBtn:hover svg { animation: mh-elma .75s ease-out; }
+    #androidBtn:hover svg { transform: translateX(3px); }
+  }
+  .store-badge:focus-visible { transform: translateY(-2px); }
+  .store-badge:active { transform: translateY(0) scale(.98); transition-duration: .1s; }
+  @media (prefers-reduced-motion: reduce) {
+    .store-badge, .store-badge svg { transition: background-color .2s ease, filter .2s ease; }
+    .store-badge:hover, .store-badge:focus-visible, .store-badge:active { transform: none; }
+    .store-badge:hover svg { animation: none !important; transform: none !important; }
+  }
   .note { margin-top:20px; font-size:13px; color:var(--muted); }
   .home { margin-top:14px; font-size:13px; }
   .home a { color:var(--green); text-decoration:none; font-weight:600; }

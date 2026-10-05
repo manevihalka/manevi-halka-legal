@@ -110,6 +110,18 @@
   .store-row a { text-decoration: none; color: var(--green); font-size: 14px; font-weight: 700; padding: 10px 18px;
     border-radius: 999px; border: 1px solid var(--line); background: transparent; }
   .store-row a:hover { background: var(--mint); border-color: transparent; }
+  /* Magaza dugmesi hover (5 Eki 2026, ana sayfayla ayni): hafifce kalkar; elma sapindan asiliymis gibi
+     sallanir, Play ucgeni ileri kayar. Yalniz fareli cihazda; klavyede :focus-visible; hareketi azaltta yalniz renk. */
+  .store-row a { transition: transform .28s cubic-bezier(.3, 1.4, .5, 1), box-shadow .28s ease, background-color .2s ease, filter .2s ease; }
+  @media (hover: hover) {
+    .store-row a:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -14px rgba(10, 30, 20, .45); }
+  }
+  .store-row a:focus-visible { transform: translateY(-2px); }
+  .store-row a:active { transform: translateY(0) scale(.98); transition-duration: .1s; }
+  @media (prefers-reduced-motion: reduce) {
+    .store-row a { transition: background-color .2s ease, filter .2s ease; }
+    .store-row a:hover, .store-row a:focus-visible, .store-row a:active { transform: none; }
+  }
   .footer { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12.5px;
     display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; }
   .footer a { color: var(--body); text-decoration: none; }
