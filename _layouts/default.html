@@ -287,6 +287,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <a href="{{ C.home }}">{{ C.app }}</a>
       <a href="{{ C.times }}">{{ C.navTimes }}</a>
       <a href="/ortak-okuma.html">{{ C.reading }}</a>
+      <a href="{{ C.guidesHref }}">{{ C.guides }}</a>
     </nav>
     <div class="tools">
       {%- if policy %}
@@ -336,6 +337,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <a href="{{ C.home }}">{{ C.app }}</a>
       <a href="{{ C.times }}">{{ C.navTimes }}</a>
       <a href="/ortak-okuma.html">{{ C.reading }}</a>
+      <a href="{{ C.guidesHref }}">{{ C.guides }}</a>
       <a href="/privacy{{ suffix }}.html"{% if base == "privacy" %} aria-current="page"{% endif %}>{{ C.privacy }}</a>
       <a href="/terms{{ suffix }}.html"{% if base == "terms" %} aria-current="page"{% endif %}>{{ C.terms }}</a>
       <a href="/account-delete{{ suffix }}.html"{% if base == "account-delete" %} aria-current="page"{% endif %}>{{ C.deleteAcc }}</a>

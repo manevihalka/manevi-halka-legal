@@ -41,7 +41,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
-import { SITE, DILLER, EV, VAKIT, ESKI_APP, DIL_ADI, OG_LOCALE, dosyaYolu, tamAdres } from "./site-urls.mjs";
+import { SITE, DILLER, EV, VAKIT, ESKI_APP, DIL_ADI, OG_LOCALE, REHBER, rehberAdresi, dosyaYolu, tamAdres } from "./site-urls.mjs";
 
 const KOK = dirname(dirname(fileURLToPath(import.meta.url)));
 const KONTROL = process.argv.includes("--check");
@@ -71,6 +71,12 @@ const T = {
   sheetReadD: { tr: "Dünya genelinde ortak hatim ve zikir", en: "A shared khatm and dhikr with readers worldwide",
     de: "Gemeinsame Chatma und Dhikr mit Lesenden weltweit", fr: "Khatma et dhikr communs avec des lecteurs du monde entier",
     ar: "ختمة وذكر جماعيان مع قرّاء حول العالم" },
+  // Rehberler (5 Eki 2026): altbilgi, bolum listesi ve "Birlikte" satirindaki baglanti
+  navGuides: { tr: "Rehberler", en: "Guides", de: "Anleitungen", fr: "Guides", ar: "الأدلة" },
+  sheetGuidesD: { tr: "Halka kurma, hatim ve zikir adım adım", en: "Circles, khatam and dhikr, step by step",
+    de: "Kreise, Khatm und Dhikr Schritt für Schritt", fr: "Cercles, khatma et dhikr pas à pas", ar: "الحلقات والختمة والذكر خطوة بخطوة" },
+  guideHatimLink: { tr: "Adım adım: hatim grubu nasıl kurulur", en: "Step by step: set up a group khatam",
+    de: "Schritt für Schritt: eine Khatm-Gruppe gründen", fr: "Pas à pas : organiser une khatma en groupe", ar: "خطوة بخطوة: كيف تنشئ ختمة جماعية" },
   pTodayLink: { tr: "Bugünün vakitleri", en: "Today's prayer times", de: "Die heutigen Gebetszeiten", fr: "Les horaires du jour", ar: "مواقيت اليوم" },
   socialTitle: { tr: "Halkayla bağlantıda kal", en: "Stay close to the circle", de: "Bleib mit dem Kreis verbunden",
     fr: "Reste lié au cercle", ar: "ابقَ على صلة بالحلقة" },
@@ -738,7 +744,7 @@ function sayfa(dil) {
   const s = sozlukFor(dil);
   const ham = {
     lang: dil, dir: dil === "ar" ? "rtl" : "ltr",
-    homeHref: EV[dil], vakitHref: VAKIT[dil], imgBase: `/img/app/${dil}/`,
+    homeHref: EV[dil], vakitHref: VAKIT[dil], imgBase: `/img/app/${dil}/`, guidesHref: REHBER[dil], guideHatimHref: rehberAdresi("hatim", dil),
     iosHref: IOS, androidHero: play("hero", dil), androidClose: play("close", dil),
     privacyHref: politika("privacy", dil), termsHref: politika("terms", dil), deleteHref: politika("account-delete", dil),
     langsHtml: DILLER.map((d) => `<a href="${EV[d]}" hreflang="${d}" lang="${d}"${d === dil ? ' aria-current="page"' : ""}>${DIL_ADI[d]}</a>`).join(""),
@@ -804,6 +810,7 @@ ciktilar.set(join(KOK, "yeni", "index.html"), kabuk("/", "/yeni/ 28 Eyl 2026'da 
     veri[d] = {
       dir: d === "ar" ? "rtl" : "ltr", home: EV[d], times: VAKIT[d],
       app: APP[d], navTimes: T.navTimes[d], reading: k.ccTitle, sections: T.navAria[d], language: T.langAria[d],
+      guides: T.navGuides[d], guidesHref: REHBER[d],
       toDark: T.themeToDark[d], toLight: T.themeToLight[d],
       socialTitle: T.socialTitle[d], socialText: T.socialText[d],
       privacy: k.privacy, terms: k.terms, deleteAcc: k.deleteAcc, contact: k.contact,

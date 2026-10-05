@@ -16,6 +16,22 @@ export const VAKIT = {
 };
 /** Eski /app/ adresleri (28 Eyl 2026'da birkac saat yayinda kaldi): ana sayfaya yonlenir. */
 export const ESKI_APP = { en: "/app/", tr: "/tr/app/", de: "/de/app/", fr: "/fr/app/", ar: "/ar/app/" };
+/**
+ * Rehber sayfalari (5 Eki 2026, _gen/build-rehber.mjs). Her dilin kendi sozcugu ve
+ * kendi sayfa adlari (arama dili: TR "hatim grubu", EN "khatam", FR "khatma", AR harf cevirisi).
+ * Kimlikler (hatim, tek, zikir, katil) dilden bagimsiz; icerik dosyalari bu adla aranir.
+ */
+export const REHBER = { en: "/guides/", tr: "/tr/rehber/", de: "/de/anleitungen/", fr: "/fr/guides/", ar: "/ar/dalil/" };
+export const REHBER_SAYFA = {
+  hatim: { en: "group-khatam/", tr: "hatim-grubu-kurma/", de: "khatm-gruppe/", fr: "khatma-en-groupe/", ar: "khatma-jamaiya/" },
+  // Tek seferlik halka (5 Eki 2026: once "vefat eden icin hatim" diye daraltilmisti, kullanici duzeltti:
+  // tek seferlik halka her vesile icin; vefat ve kandil yalniz ornek). Adlar uygulamadaki ozellik adi.
+  tek: { en: "one-time-circle/", tr: "tek-seferlik-halka/", de: "einmaliger-kreis/", fr: "cercle-ponctuel/", ar: "halqa-li-marra-wahida/" },
+  zikir: { en: "group-dhikr-salawat/", tr: "toplu-zikir-salavat/", de: "dhikr-salawat-gemeinsam/", fr: "dhikr-salawat-en-groupe/", ar: "dhikr-jamai/" },
+  katil: { en: "join-a-circle/", tr: "halkaya-katilma/", de: "kreis-beitreten/", fr: "rejoindre-un-cercle/", ar: "indimam-ila-halqa/" },
+};
+/** Rehber adresi: rehberAdresi("hatim", "tr") -> "/tr/rehber/hatim-grubu-kurma/"; kimlik yoksa merkez. */
+export const rehberAdresi = (id, dil) => REHBER[dil] + (id ? REHBER_SAYFA[id][dil] : "");
 export const DIL_ADI = { tr: "Türkçe", en: "English", de: "Deutsch", fr: "Français", ar: "العربية" };
 export const OG_LOCALE = { tr: "tr_TR", en: "en_US", de: "de_DE", fr: "fr_FR", ar: "ar_AR" };
 /** Bir adres haritasindan dosya yolu: "/tr/" -> "tr/index.html", "/" -> "index.html". */

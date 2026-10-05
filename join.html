@@ -104,6 +104,8 @@
     border-radius: 999px; font-size: 15.5px; font-weight: 700; margin-bottom: 12px; border: none; cursor: pointer; }
   .btn:hover, .btn:active { filter: brightness(1.08); }
   .hint { color: var(--muted); font-size: 13.5px; margin-top: 16px; line-height: 1.5; }
+  .howto { margin-top: 18px; font-size: 13.5px; }
+  .howto a { color: inherit; opacity: .8; }
   .store-row { display: flex; gap: 10px; margin-top: 12px; justify-content: center; flex-wrap: wrap; }
   .store-row a { text-decoration: none; color: var(--green); font-size: 14px; font-weight: 700; padding: 10px 18px;
     border-radius: 999px; border: 1px solid var(--line); background: transparent; }
@@ -242,6 +244,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <a href="https://apps.apple.com/app/manevi-halka/id6760654292" id="iosBtn">App Store</a>
         <a href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle" id="androidBtn">Google Play</a>
       </div>
+      <p class="howto"><a href="/guides/join-a-circle/" id="howtoLink">How do I join?</a></p>
     </div>
 
     <div class="footer">
@@ -260,27 +263,27 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     var STRINGS = {
       en: { join: 'Join the Circle', zikir: 'Dhikr List', opening: 'Open the app, or install it below.',
             inviteCode: 'Invite Code', shareCode: 'Share Code', openApp: 'Open App',
-            hint: 'Don’t have the app yet?',
+            hint: 'Don’t have the app yet?', howto: 'How do I join? Step by step',
             invalid: 'Invalid invitation link.',
             privacy: 'Privacy', terms: 'Terms', title: 'Manevi Halka · Join' },
       tr: { join: 'Halkaya Katıl', zikir: 'Zikir Listesi', opening: 'Uygulaman varsa aç, yoksa aşağıdan indir.',
             inviteCode: 'Davet Kodu', shareCode: 'Paylaşım Kodu', openApp: 'Uygulamayı Aç',
-            hint: 'Uygulaman yok mu?',
+            hint: 'Uygulaman yok mu?', howto: 'Nasıl katılırım? Adım adım',
             invalid: 'Geçersiz davet bağlantısı.',
             privacy: 'Gizlilik', terms: 'Şartlar', title: 'Manevi Halka · Katıl' },
       de: { join: 'Dem Kreis beitreten', zikir: 'Dhikr-Liste', opening: 'Öffne die App oder installiere sie unten.',
             inviteCode: 'Einladungscode', shareCode: 'Freigabecode', openApp: 'App öffnen',
-            hint: 'Du hast die App noch nicht?',
+            hint: 'Du hast die App noch nicht?', howto: 'Wie trete ich bei? Schritt für Schritt',
             invalid: 'Ungültiger Einladungslink.',
             privacy: 'Datenschutz', terms: 'Nutzungsbedingungen', title: 'Manevi Halka · Beitreten' },
       fr: { join: 'Rejoindre le cercle', zikir: 'Liste de dhikr', opening: 'Ouvre l’application, ou installe-la ci-dessous.',
             inviteCode: 'Code d’invitation', shareCode: 'Code de partage', openApp: 'Ouvrir l’application',
-            hint: 'Tu n’as pas encore l’application ?',
+            hint: 'Tu n’as pas encore l’application ?', howto: 'Comment rejoindre ? Pas à pas',
             invalid: 'Lien d’invitation invalide.',
             privacy: 'Confidentialité', terms: 'Conditions', title: 'Manevi Halka · Rejoindre' },
       ar: { join: 'انضم إلى الحلقة', zikir: 'قائمة الأذكار', opening: 'افتح التطبيق، أو ثبّته من الأسفل',
             inviteCode: 'رمز الدعوة', shareCode: 'رمز المشاركة', openApp: 'فتح التطبيق',
-            hint: 'أليس لديك التطبيق بعد؟',
+            hint: 'أليس لديك التطبيق بعد؟', howto: 'كيف أنضم؟ خطوة بخطوة',
             invalid: 'رابط دعوة غير صالح.',
             privacy: 'الخصوصية', terms: 'الشروط', title: 'Manevi Halka · انضمام' }
     };
@@ -304,6 +307,10 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     document.querySelector('.code-label').textContent = T.inviteCode;
     document.querySelector('.hint').textContent = T.hint;
     document.getElementById('openAppBtn').textContent = T.openApp;
+    // Rehber: _gen/site-urls.mjs REHBER_SAYFA.katil ile AYNI adresler
+    var howto = document.getElementById('howtoLink');
+    howto.textContent = T.howto;
+    howto.href = ({ en: '/guides/join-a-circle/', tr: '/tr/rehber/halkaya-katilma/', de: '/de/anleitungen/kreis-beitreten/', fr: '/fr/guides/rejoindre-un-cercle/', ar: '/ar/dalil/indimam-ila-halqa/' })[lang];
 
     var priv = document.getElementById('privacyLink');
     var term = document.getElementById('termsLink');
@@ -338,6 +345,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 
     // Zikir paylaşımında başlık/etiket bağlama uysun.
     if (zikir) {
+      howto.parentNode.style.display = 'none'; // rehber halkalar icin; zikir listesi paylasimina uymaz
       var h1 = document.querySelector('h1');
       if (h1) h1.textContent = T.zikir;
       var label = document.querySelector('.code-label');

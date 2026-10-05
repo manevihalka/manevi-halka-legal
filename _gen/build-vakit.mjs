@@ -23,7 +23,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
-import { SITE, DILLER, EV, VAKIT, OG_LOCALE, dosyaYolu, tamAdres } from "./site-urls.mjs";
+import { SITE, DILLER, EV, VAKIT, REHBER, OG_LOCALE, dosyaYolu, tamAdres } from "./site-urls.mjs";
 
 const KOK = dirname(dirname(fileURLToPath(import.meta.url)));
 const KONTROL = process.argv.includes("--check");
@@ -59,6 +59,7 @@ const OZEL = {
   vKnowApp: { tr: "Uygulamayı tanı", en: "Discover the app", de: "Die App entdecken", fr: "Découvrir l'appli", ar: "تعرّف على التطبيق" },
   yNavApp: { tr: "Uygulama", en: "The app", de: "Die App", fr: "L'application", ar: "التطبيق" },
   yNavTimes: { tr: "Vakitler", en: "Prayer times", de: "Gebetszeiten", fr: "Horaires", ar: "المواقيت" },
+  yNavGuides: { tr: "Rehberler", en: "Guides", de: "Anleitungen", fr: "Guides", ar: "الأدلة" },
   yNavSections: { tr: "Bölümler", en: "Sections", de: "Bereiche", fr: "Sections", ar: "الأقسام" },
   ySocialTitle: { tr: "Halkayla bağlantıda kal", en: "Stay close to the circle", de: "Bleib mit dem Kreis verbunden",
     fr: "Reste lié au cercle", ar: "ابقَ على صلة بالحلقة" },
@@ -181,6 +182,7 @@ function sayfa(dil) {
   s = degistir(s, 'href="/account-delete-en.html"', `href="/account-delete${ek}.html"`, 1, "account-delete");
   s = degistir(s, '<span id="langCode">EN</span>', `<span id="langCode">${dil.toUpperCase()}</span>`, 1, "langCode");
   s = degistir(s, 'href="/" data-home-link', `href="${EV[dil]}" data-home-link`, 4, "ana sayfa baglantilari");
+  s = degistir(s, 'href="/guides/" data-guides-link', `href="${REHBER[dil]}" data-guides-link`, 2, "rehber baglantilari");
   s = degistir(s, `utm_content%3Dtimes"`, `utm_content%3Dtimes-${dil}"`, 1, "play etiketi");
 
   s = degistir(s, "/*__I18N__*/null", JSON.stringify({ [dil]: t }).replace(/</g, "\\u003c"), 1, "sozluk");

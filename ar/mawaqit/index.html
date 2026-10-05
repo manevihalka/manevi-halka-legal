@@ -548,6 +548,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <a href="/ar/" data-home-link data-t="yNavApp">التطبيق</a>
         <a href="#sky" aria-current="page" data-t="yNavTimes">المواقيت</a>
         <a href="/ortak-okuma.html" data-t="ccTitle">القراءة المشتركة</a>
+        <a href="/ar/dalil/" data-guides-link data-t="yNavGuides">الأدلة</a>
       </nav>
       <div class="top-tools">
         <button type="button" class="tool-btn icon" id="themeToggle" aria-label="Theme">
@@ -653,6 +654,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <div class="foot-links">
       <a href="/ar/" data-home-link data-t="yNavApp">التطبيق</a>
       <a href="/ortak-okuma.html" data-t="ccTitle">القراءة المشتركة</a>
+      <a href="/ar/dalil/" data-guides-link data-t="yNavGuides">الأدلة</a>
       <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy-ar.html" data-t="privacy">سياسة الخصوصية</a>
       <a id="lnkTerms" target="_blank" rel="noopener" href="/terms-ar.html" data-t="terms">شروط الاستخدام</a>
       <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete-ar.html" data-t="deleteAcc">حذف الحساب</a>
@@ -693,7 +695,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   // Sozluk URETIMDE yazilir (_gen/build-home.mjs, kaynak _gen/site-i18n.js).
   // PAGE_LANG: uretilmis dil sayfasinda (/tr/) dil ADRESTEN gelir, kayitli
   // tercih onu ezemez; kokte null, dil tercih/cihaz diline gore secilir.
-  var T = {"ar":{"get":"حمّل","ccTitle":"القراءة المشتركة","privacy":"سياسة الخصوصية","terms":"شروط الاستخدام","deleteAcc":"حذف الحساب","contact":"تواصل معنا","itaniCredit":"الترجمة الإنجليزية: طلال إيتاني،","suffix":"-ar","pageTitle":"مواقيت الصلاة · Manevi Halka","pageDesc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية.","vTitle":"مواقيت الصلاة","vAyahLabel":"آية كريمة","vSub":"وفق تقويم ديانت. يمكنك تغيير مدينتك، وفتح تقويم 30 يومًا أسفل المواقيت أو طباعته.","vPromoTitle":"اعرف متى يدخل كل وقت","vPromoText":"تنبيهات وأدوات للشاشة الرئيسية والقبلة. والقرآن والحلقات والذكر في التطبيق نفسه.","vKnowApp":"تعرّف على التطبيق","yNavApp":"التطبيق","yNavTimes":"المواقيت","yNavSections":"الأقسام","ySocialTitle":"ابقَ على صلة بالحلقة","ySocialText":"آية اليوم كل صباح، وتذكير في الليالي المباركة.","title":"مواقيت الصلاة · Manevi Halka","desc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية."}};
+  var T = {"ar":{"get":"حمّل","ccTitle":"القراءة المشتركة","privacy":"سياسة الخصوصية","terms":"شروط الاستخدام","deleteAcc":"حذف الحساب","contact":"تواصل معنا","itaniCredit":"الترجمة الإنجليزية: طلال إيتاني،","suffix":"-ar","pageTitle":"مواقيت الصلاة · Manevi Halka","pageDesc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية.","vTitle":"مواقيت الصلاة","vAyahLabel":"آية كريمة","vSub":"وفق تقويم ديانت. يمكنك تغيير مدينتك، وفتح تقويم 30 يومًا أسفل المواقيت أو طباعته.","vPromoTitle":"اعرف متى يدخل كل وقت","vPromoText":"تنبيهات وأدوات للشاشة الرئيسية والقبلة. والقرآن والحلقات والذكر في التطبيق نفسه.","vKnowApp":"تعرّف على التطبيق","yNavApp":"التطبيق","yNavTimes":"المواقيت","yNavGuides":"الأدلة","yNavSections":"الأقسام","ySocialTitle":"ابقَ على صلة بالحلقة","ySocialText":"آية اليوم كل صباح، وتذكير في الليالي المباركة.","title":"مواقيت الصلاة · Manevi Halka","desc":"مواقيت الصلاة لمدينتك اليوم وتقويم 30 يومًا وفق تقويم ديانت، مع التاريخ الهجري والأيام الدينية."}};
   var PAGE_LANG = "ar";
   var VAKIT_URL = {"en":"/prayer-times/","tr":"/tr/namaz-vakitleri/","de":"/de/gebetszeiten/","fr":"/fr/horaires-de-priere/","ar":"/ar/mawaqit/"};
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];

@@ -548,6 +548,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <a href="/tr/" data-home-link data-t="yNavApp">Uygulama</a>
         <a href="#sky" aria-current="page" data-t="yNavTimes">Vakitler</a>
         <a href="/ortak-okuma.html" data-t="ccTitle">Ortak Okuma</a>
+        <a href="/tr/rehber/" data-guides-link data-t="yNavGuides">Rehberler</a>
       </nav>
       <div class="top-tools">
         <button type="button" class="tool-btn icon" id="themeToggle" aria-label="Theme">
@@ -653,6 +654,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <div class="foot-links">
       <a href="/tr/" data-home-link data-t="yNavApp">Uygulama</a>
       <a href="/ortak-okuma.html" data-t="ccTitle">Ortak Okuma</a>
+      <a href="/tr/rehber/" data-guides-link data-t="yNavGuides">Rehberler</a>
       <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy.html" data-t="privacy">Gizlilik Politikası</a>
       <a id="lnkTerms" target="_blank" rel="noopener" href="/terms.html" data-t="terms">Kullanım Koşulları</a>
       <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete.html" data-t="deleteAcc">Hesap Silme</a>
@@ -693,7 +695,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   // Sozluk URETIMDE yazilir (_gen/build-home.mjs, kaynak _gen/site-i18n.js).
   // PAGE_LANG: uretilmis dil sayfasinda (/tr/) dil ADRESTEN gelir, kayitli
   // tercih onu ezemez; kokte null, dil tercih/cihaz diline gore secilir.
-  var T = {"tr":{"get":"İndir","ccTitle":"Ortak Okuma","privacy":"Gizlilik Politikası","terms":"Kullanım Koşulları","deleteAcc":"Hesap Silme","contact":"İletişim","itaniCredit":"İngilizce meal: Talal Itani,","suffix":"","pageTitle":"Namaz vakitleri · Manevi Halka","pageDesc":"Bulunduğun şehir için bugünün namaz vakitleri ve 30 günlük takvim, Diyanet takvimine göre. Hicri tarih ve dini günler de burada.","vTitle":"Namaz vakitleri","vAyahLabel":"Âyet-i kerîme","vSub":"Diyanet takvimine göre. Şehrini değiştirebilir, 30 günlük takvimi vakitlerin altından açıp yazdırabilirsin.","vPromoTitle":"Vakit girince haber al","vPromoText":"Bildirim, ana ekranda widget ve kıble. Kur'an, halkalar ve zikir de aynı uygulamada.","vKnowApp":"Uygulamayı tanı","yNavApp":"Uygulama","yNavTimes":"Vakitler","yNavSections":"Bölümler","ySocialTitle":"Halkayla bağlantıda kal","ySocialText":"Günün ayeti her sabah, kandil gecelerinde hatırlatma.","title":"Namaz vakitleri · Manevi Halka","desc":"Bulunduğun şehir için bugünün namaz vakitleri ve 30 günlük takvim, Diyanet takvimine göre. Hicri tarih ve dini günler de burada."}};
+  var T = {"tr":{"get":"İndir","ccTitle":"Ortak Okuma","privacy":"Gizlilik Politikası","terms":"Kullanım Koşulları","deleteAcc":"Hesap Silme","contact":"İletişim","itaniCredit":"İngilizce meal: Talal Itani,","suffix":"","pageTitle":"Namaz vakitleri · Manevi Halka","pageDesc":"Bulunduğun şehir için bugünün namaz vakitleri ve 30 günlük takvim, Diyanet takvimine göre. Hicri tarih ve dini günler de burada.","vTitle":"Namaz vakitleri","vAyahLabel":"Âyet-i kerîme","vSub":"Diyanet takvimine göre. Şehrini değiştirebilir, 30 günlük takvimi vakitlerin altından açıp yazdırabilirsin.","vPromoTitle":"Vakit girince haber al","vPromoText":"Bildirim, ana ekranda widget ve kıble. Kur'an, halkalar ve zikir de aynı uygulamada.","vKnowApp":"Uygulamayı tanı","yNavApp":"Uygulama","yNavTimes":"Vakitler","yNavGuides":"Rehberler","yNavSections":"Bölümler","ySocialTitle":"Halkayla bağlantıda kal","ySocialText":"Günün ayeti her sabah, kandil gecelerinde hatırlatma.","title":"Namaz vakitleri · Manevi Halka","desc":"Bulunduğun şehir için bugünün namaz vakitleri ve 30 günlük takvim, Diyanet takvimine göre. Hicri tarih ve dini günler de burada."}};
   var PAGE_LANG = "tr";
   var VAKIT_URL = {"en":"/prayer-times/","tr":"/tr/namaz-vakitleri/","de":"/de/gebetszeiten/","fr":"/fr/horaires-de-priere/","ar":"/ar/mawaqit/"};
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];

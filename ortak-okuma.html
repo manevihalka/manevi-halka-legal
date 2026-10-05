@@ -260,6 +260,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <a id="navApp" href="/">The app</a>
       <a id="navTimes" href="/prayer-times/">Prayer times</a>
       <a id="navRead" href="/ortak-okuma.html" aria-current="page">Shared Reading</a>
+      <a id="navGuides" href="/guides/">Guides</a>
     </nav>
     <div class="tools">
       <div class="lang" id="lang">
@@ -309,6 +310,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <nav class="foot-links">
       <a id="homeLink" href="/"></a>
       <a id="footTimes" href="/prayer-times/"></a>
+      <a id="footGuides" href="/guides/"></a>
       <a id="privacyLink" href="/privacy.html"></a>
       <a id="termsLink" href="/terms.html"></a>
       <a id="contactLink" href="mailto:support@manevihalka.app"></a>
@@ -338,6 +340,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   (function () {
     var EV = { en: "/", tr: "/tr/", de: "/de/", fr: "/fr/", ar: "/ar/" };
     var VAKIT = { en: "/prayer-times/", tr: "/tr/namaz-vakitleri/", de: "/de/gebetszeiten/", fr: "/fr/horaires-de-priere/", ar: "/ar/mawaqit/" };
+    // Rehberler: _gen/site-urls.mjs REHBER ile AYNI
+    var REHBER = { en: "/guides/", tr: "/tr/rehber/", de: "/de/anleitungen/", fr: "/fr/guides/", ar: "/ar/dalil/" };
+    var G = { tr: "Rehberler", en: "Guides", de: "Anleitungen", fr: "Guides", ar: "الأدلة" };
     var K = {
       tr: { app: "Uygulama", times: "Vakitler", timesLong: "Namaz vakitleri", read: "Ortak Okuma", contact: "İletişim", sections: "Bölümler", language: "Dil", toDark: "Koyu temaya geç", toLight: "Açık temaya geç",
         socialTitle: "Halkayla bağlantıda kal", socialText: "Günün ayeti her sabah, kandil gecelerinde hatırlatma." },
@@ -359,6 +364,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       $("navApp").href = EV[l]; $("navApp").textContent = k.app;
       $("navTimes").href = VAKIT[l]; $("navTimes").textContent = k.times;
       $("navRead").textContent = k.read;
+      $("navGuides").href = REHBER[l]; $("navGuides").textContent = G[l];
+      $("footGuides").href = REHBER[l]; $("footGuides").textContent = G[l];
       $("topNav").setAttribute("aria-label", k.sections);
       $("homeLink").href = EV[l];
       $("footTimes").href = VAKIT[l]; $("footTimes").textContent = k.timesLong;

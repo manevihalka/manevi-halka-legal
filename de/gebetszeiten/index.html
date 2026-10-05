@@ -548,6 +548,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <a href="/de/" data-home-link data-t="yNavApp">Die App</a>
         <a href="#sky" aria-current="page" data-t="yNavTimes">Gebetszeiten</a>
         <a href="/ortak-okuma.html" data-t="ccTitle">Gemeinsames Lesen</a>
+        <a href="/de/anleitungen/" data-guides-link data-t="yNavGuides">Anleitungen</a>
       </nav>
       <div class="top-tools">
         <button type="button" class="tool-btn icon" id="themeToggle" aria-label="Theme">
@@ -653,6 +654,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <div class="foot-links">
       <a href="/de/" data-home-link data-t="yNavApp">Die App</a>
       <a href="/ortak-okuma.html" data-t="ccTitle">Gemeinsames Lesen</a>
+      <a href="/de/anleitungen/" data-guides-link data-t="yNavGuides">Anleitungen</a>
       <a id="lnkPrivacy" target="_blank" rel="noopener" href="/privacy-de.html" data-t="privacy">Datenschutzerklärung</a>
       <a id="lnkTerms" target="_blank" rel="noopener" href="/terms-de.html" data-t="terms">Nutzungsbedingungen</a>
       <a id="lnkDelete" target="_blank" rel="noopener" href="/account-delete-de.html" data-t="deleteAcc">Kontolöschung</a>
@@ -693,7 +695,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   // Sozluk URETIMDE yazilir (_gen/build-home.mjs, kaynak _gen/site-i18n.js).
   // PAGE_LANG: uretilmis dil sayfasinda (/tr/) dil ADRESTEN gelir, kayitli
   // tercih onu ezemez; kokte null, dil tercih/cihaz diline gore secilir.
-  var T = {"de":{"get":"Laden","ccTitle":"Gemeinsames Lesen","privacy":"Datenschutzerklärung","terms":"Nutzungsbedingungen","deleteAcc":"Kontolöschung","contact":"Kontakt","itaniCredit":"Englische Übersetzung: Talal Itani,","suffix":"-de","pageTitle":"Gebetszeiten · Manevi Halka","pageDesc":"Die heutigen Gebetszeiten für deine Stadt und ein 30-Tage-Kalender nach dem Diyanet-Kalender. Mit Hidschri-Datum und religiösen Tagen.","vTitle":"Gebetszeiten","vAyahLabel":"Koranvers","vSub":"Nach dem Diyanet-Kalender. Du kannst deine Stadt ändern und den 30-Tage-Kalender unter den Gebetszeiten öffnen und drucken.","vPromoTitle":"Erfahre, wann jede Gebetszeit beginnt","vPromoText":"Benachrichtigungen, Widgets für den Startbildschirm und die Qibla. Koran, Kreise und Dhikr in derselben App.","vKnowApp":"Die App entdecken","yNavApp":"Die App","yNavTimes":"Gebetszeiten","yNavSections":"Bereiche","ySocialTitle":"Bleib mit dem Kreis verbunden","ySocialText":"Jeden Morgen der Vers des Tages, Erinnerungen in den gesegneten Nächten.","title":"Gebetszeiten · Manevi Halka","desc":"Die heutigen Gebetszeiten für deine Stadt und ein 30-Tage-Kalender nach dem Diyanet-Kalender. Mit Hidschri-Datum und religiösen Tagen."}};
+  var T = {"de":{"get":"Laden","ccTitle":"Gemeinsames Lesen","privacy":"Datenschutzerklärung","terms":"Nutzungsbedingungen","deleteAcc":"Kontolöschung","contact":"Kontakt","itaniCredit":"Englische Übersetzung: Talal Itani,","suffix":"-de","pageTitle":"Gebetszeiten · Manevi Halka","pageDesc":"Die heutigen Gebetszeiten für deine Stadt und ein 30-Tage-Kalender nach dem Diyanet-Kalender. Mit Hidschri-Datum und religiösen Tagen.","vTitle":"Gebetszeiten","vAyahLabel":"Koranvers","vSub":"Nach dem Diyanet-Kalender. Du kannst deine Stadt ändern und den 30-Tage-Kalender unter den Gebetszeiten öffnen und drucken.","vPromoTitle":"Erfahre, wann jede Gebetszeit beginnt","vPromoText":"Benachrichtigungen, Widgets für den Startbildschirm und die Qibla. Koran, Kreise und Dhikr in derselben App.","vKnowApp":"Die App entdecken","yNavApp":"Die App","yNavTimes":"Gebetszeiten","yNavGuides":"Anleitungen","yNavSections":"Bereiche","ySocialTitle":"Bleib mit dem Kreis verbunden","ySocialText":"Jeden Morgen der Vers des Tages, Erinnerungen in den gesegneten Nächten.","title":"Gebetszeiten · Manevi Halka","desc":"Die heutigen Gebetszeiten für deine Stadt und ein 30-Tage-Kalender nach dem Diyanet-Kalender. Mit Hidschri-Datum und religiösen Tagen."}};
   var PAGE_LANG = "de";
   var VAKIT_URL = {"en":"/prayer-times/","tr":"/tr/namaz-vakitleri/","de":"/de/gebetszeiten/","fr":"/fr/horaires-de-priere/","ar":"/ar/mawaqit/"};
   var SUPPORTED = ["tr", "en", "de", "fr", "ar"];
