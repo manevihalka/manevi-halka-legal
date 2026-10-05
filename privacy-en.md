@@ -7,7 +7,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026<br>
-**Last updated:** October 3, 2026
+**Last updated:** October 4, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -30,9 +30,11 @@ rights you have.
 - **Account info:** Email address, full name, profile picture (optional)
 - **Authentication:** If you use Sign in with Apple or Google, the identity
   token from the respective service
-- **Preferences:** App language, theme, notification preferences and the circles you
+- **Preferences:** App language, theme, notification preferences, the circles you
   hide from your Circles list (only you can see this; it is deleted when you leave the
-  circle)
+  circle) and the circles you remove from My Journey and My Spiritual Memories (only you
+  can see this; your records are not deleted, they are just not counted in these views;
+  kept until you add them back or delete your account)
 - **Cross-device backup:** The personal worship records and reading preferences you
   keep while signed in are backed up on our servers so they are not lost when you
   change devices. This backup includes: **your prayer and supererogatory (nafl)

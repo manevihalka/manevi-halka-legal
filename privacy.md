@@ -7,7 +7,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026<br>
-**Son güncelleme:** 3 Ekim 2026
+**Son güncelleme:** 4 Ekim 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -30,9 +30,11 @@ haklarınızın neler olduğunu açıklar.
 - **Hesap bilgileri:** E-posta adresi, ad-soyad, profil fotoğrafı (opsiyonel)
 - **Kimlik doğrulama:** Apple ile Giriş veya Google ile Giriş kullanırsanız ilgili
   servisten alınan kimlik tokeni
-- **Tercihler:** Uygulama dili, tema, bildirim tercihleri ve Halkalar listenizden
+- **Tercihler:** Uygulama dili, tema, bildirim tercihleri, Halkalar listenizden
   gizlediğiniz halkalar (bu bilgiyi yalnızca siz görürsünüz; halkadan ayrıldığınızda
-  silinir)
+  silinir) ve Yolculuğum ile Manevi Hatıralarım'dan çıkardığınız halkalar (yalnızca siz
+  görürsünüz; kayıtlarınız silinmez, yalnız bu görünümlerde sayılmaz; siz geri ekleyene
+  ya da hesabınızı silene kadar saklanır)
 - **Cihazlar arası yedekleme:** Hesabınıza bağlı olarak tuttuğunuz kişisel ibadet
   kayıtları ve okuma tercihleriniz, cihaz değiştirdiğinizde kaybolmasın diye
   sunucularımızda yedeklenir. Bu yedek şunları içerir: **namaz ve nafile takibi

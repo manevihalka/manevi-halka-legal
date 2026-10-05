@@ -7,7 +7,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026<br>
-**Dernière mise à jour :** 3 octobre 2026
+**Dernière mise à jour :** 4 octobre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -27,9 +27,12 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 - **Informations de compte :** adresse e-mail, nom complet, photo de profil (facultative)
 - **Authentification :** si vous utilisez la connexion avec Apple ou Google, le jeton d'identité du service concerné
-- **Préférences :** langue de l'application, thème, préférences de notification et les
+- **Préférences :** langue de l'application, thème, préférences de notification, les
   cercles que vous masquez de votre liste de cercles (vous seul voyez cette information ;
-  elle est supprimée lorsque vous quittez le cercle)
+  elle est supprimée lorsque vous quittez le cercle) et les cercles que vous retirez de
+  « Mon parcours » et de vos souvenirs spirituels (vous seul voyez cette information ;
+  vos enregistrements ne sont pas supprimés, ils ne sont simplement pas comptés dans ces
+  vues ; conservée jusqu'à ce que vous les rajoutiez ou supprimiez votre compte)
 - **Sauvegarde multi-appareils :** les enregistrements de dévotion personnels et les
   préférences de lecture que vous conservez dans votre compte sont sauvegardés sur
   nos serveurs afin de ne pas être perdus lors d'un changement d'appareil. Cette

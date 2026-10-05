@@ -7,7 +7,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026<br>
-**Zuletzt aktualisiert:** 3. Oktober 2026
+**Zuletzt aktualisiert:** 4. Oktober 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -30,9 +30,12 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 - **Kontodaten:** E-Mail-Adresse, vollständiger Name, Profilbild (optional)
 - **Authentifizierung:** Bei Nutzung von „Mit Apple anmelden" oder „Mit Google
   anmelden" das Identitäts-Token des jeweiligen Dienstes
-- **Einstellungen:** App-Sprache, Design, Benachrichtigungseinstellungen und die Kreise,
+- **Einstellungen:** App-Sprache, Design, Benachrichtigungseinstellungen, die Kreise,
   die Sie in Ihrer Kreisliste ausblenden (nur Sie sehen diese Angabe; sie wird gelöscht,
-  wenn Sie den Kreis verlassen)
+  wenn Sie den Kreis verlassen), und die Kreise, die Sie aus „Mein Weg“ und Ihren
+  spirituellen Erinnerungen entfernen (nur Sie sehen diese Angabe; Ihre Einträge werden
+  nicht gelöscht, sondern in diesen Ansichten nur nicht gezählt; gespeichert, bis Sie
+  sie wieder hinzufügen oder Ihr Konto löschen)
 - **Geräteübergreifende Sicherung:** Die persönlichen Andachtsaufzeichnungen und
   Leseeinstellungen, die Sie in Ihrem Konto führen, werden auf unseren Servern
   gesichert, damit sie bei einem Gerätewechsel nicht verloren gehen. Diese Sicherung
