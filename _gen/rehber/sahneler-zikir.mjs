@@ -21,8 +21,9 @@ const ZORNEK = {
 // Zikrin Arapcasi uygulamanin verisinden (lib/zikir.ts ZIKIR_PRESETS), her dilde ayni
 const AR_SAL = "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ";
 const AR_IST = "أَسْتَغْفِرُ اللَّهَ";
-// Tek Seferlik Halka hazir cipleri koda sabit (app/create-event.tsx ZIKIR_PRESETS), cevrilmez: her dilde ayni
-const EV_CHIPS = ["Salavât-ı Şerîfe", "Kelime-i Tevhîd", "İstiğfâr", "Sübhânallâh", "Elhamdülillâh"];
+// Tek Seferlik Halka hazir cipleri (app/create-event.tsx ZIKIR_PRESETS labelKey): 2.0'dan beri dile gore
+// (sync-app-labels anahtarlari L("...") cagrilarindan bulur; bu yuzden dizi degil fonksiyon)
+const evChips = (K) => [K.Le("globalDhikr.salavat.name"), K.Le("wizard.zikirPresetKelime"), K.Le("wizard.zikirPresetIstigfar"), K.Le("wizard.zikirPresetSubhanallah"), K.Le("wizard.zikirPresetElhamdulillah")];
 // Sihirbazin hazir listesi (lib/zikir.ts sirasi ve varsayilan adetleri)
 
 const nf = (dil, n) => new Intl.NumberFormat(dil === "ar" ? "ar-u-nu-latn" : dil).format(n);
@@ -59,8 +60,9 @@ function modAdimi(K) {
 /** Sihirbaz, zikir adim 3: Esma satiri, hazir listeler; secilenler listesi ve Devam asagida (kaydirilir). */
 function secimAdimi(K, { secili = false } = {}) {
   const satir = (ad, adet, key) => `<div class="zk-row"${key ? K.attr(key) : ""}><i class="zk-ck${secili && key ? " on" : ""}"${key ? K.attr(key + "ck") : ""}>${K.ic("check")}</i><b>${K.e(ad)}</b><small class="zk-n">${K.num(String(adet))}</small>${K.ic("chev", "fl")}</div>`;
-  // Secilenler satiri her dilde zikrin Turkce yazimli okunusunu basar (Wizard.tsx item.latin, lib/zikir.ts)
-  const etiket = ZORNEK.tr.okSal;
+  // Secilenler satiri dile gore (Wizard.tsx zikirRowName): Arapcada Arapca yazilis, ötekilerde okunus
+  // (Turkcede sapkali latin, digerlerinde latinPlain; ZORNEK'teki okunuslar lib/zikir.ts ile ayni)
+  const etiket = K.dil === "ar" ? AR_SAL : ZORNEK[K.dil].okSal;
   return `${K.wizHd(3, 4)}<div class="zk-wrap"><div class="pg sc"${K.attr("ssc")}>
     <b class="t1">${K.Le("wizard.zikirSelectTitle")}</b><small class="t2 zk-clamp">${K.Le("wizard.zikirSelectHintCollective")}</small>
     <b class="lb">${K.Le("wizard.zikirEsmaSection")}</b>
@@ -169,10 +171,10 @@ function tekAdim2(K) {
       <b class="t1">${K.Le("event.zikirGoalTitle")}</b><small class="t2">${K.Le("event.zikirGoalSub")}</small>
       <div class="zk-web">${K.ic("web")}<small${K.attr("evweb")}>${K.Le("event.webNoteList")}</small></div>
       <small class="mu zk-lbs">${K.Le("event.addFromPresets")}</small>
-      <div class="zk-chips">${EV_CHIPS.map((c, i) => `<span${i === 0 ? K.attr("evsal") : ""}>${K.ic("plus")}${K.e(c)}</span>`).join("")}<span class="zk-esm">${K.ic("zGrid")}${K.Le("event.esmaulHusna")}</span></div>
+      <div class="zk-chips">${evChips(K).map((c, i) => `<span${i === 0 ? K.attr("evsal") : ""}>${K.ic("plus")}${c}</span>`).join("")}<span class="zk-esm">${K.ic("zGrid")}${K.Le("event.esmaulHusna")}</span></div>
       <div class="zk-cus"><small class="mu zk-lbs">${K.Le("event.customZikir")}</small>${K.input({ ph: K.L("event.customZikirNamePlaceholder") })}<div class="row">${K.input({ ph: K.L("event.perPersonTargetPlaceholder") })}${K.bt(K.L("event.add"), {})}</div></div>
       <div class="zk-it"${K.attr("evit")}>
-        <div class="row sp"><b>${K.e(EV_CHIPS[0])}</b><span class="zk-red">${K.ic("zTrash")}</span></div>
+        <div class="row sp"><b>${evChips(K)[0]}</b><span class="zk-red">${K.ic("zTrash")}</span></div>
         <div class="row sp"><span class="zk-tgt"><small class="mu">${K.Le("event.target")}</small><span class="zk-tin"${K.attr("evcnt")}>${K.num("1000")}</span></span>
           <span class="zk-mode"><span class="on"${K.attr("evind")}>${K.Le("event.modeIndividual")}</span><span${K.attr("evcol")}>${K.Le("event.modeCollective")}</span></span></div>
       </div>

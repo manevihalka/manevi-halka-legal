@@ -246,7 +246,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-size: 20px; white-space: nowrap; }
   .brand img { width: 32px; height: 32px; border-radius: 9px; }
   .top nav { display: flex; gap: 4px; margin-inline-start: auto; }
-  .top nav a { text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px; opacity: .8; }
+  .top nav a { text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px; opacity: .8; white-space: nowrap; }
+  /* 821-1120 px: dort sayfa baglantisi tek satira sigsin (DE/FR 1024'te ikiye kiriliyordu);
+     dar ucta "Uygulama" saklanir, marka zaten ana sayfaya gider (ana sayfadaki menuSigdir de once onu saklar) */
+  @media (max-width: 1120px) { .top { gap: 14px; } .top nav { gap: 0; } .top nav a { padding: 8px 9px; } }
+  @media (max-width: 1000px) { .top nav a:first-child { display: none; } }
+  @media (max-width: 900px) { .top { gap: 10px; } .top nav a { padding: 8px 7px; font-size: 14px; } }
   .top nav a:hover { opacity: 1; background: var(--mint); }
   .top nav a[aria-current="page"] { opacity: 1; background: var(--mint); }
   .theme-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; overflow: hidden; }
@@ -260,6 +265,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .get { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; white-space: nowrap; flex: none; border-radius: 999px; background: var(--green); color: var(--page); text-decoration: none; font-weight: 700; font-size: 14.5px; }
   .get svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .get .gs { display: none; }
+  @media (max-width: 920px) { .get .gl { display: none; } .get .gs { display: inline; } }
   @media (max-width: 820px) { .top nav { display: none; } .top .lang { margin-inline-start: auto; } .top { gap: 10px; } }
   .lang { position: relative; flex: none; }
   .lang-btn { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
@@ -270,7 +276,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .lang-list a { display: block; padding: 9px 12px; border-radius: 10px; font-size: 14.5px; text-decoration: none; }
   .lang-list a:hover { background: var(--mint); }
   .lang-list a[aria-current="page"] { font-weight: 700; background: var(--mint); }
-  @media (max-width: 480px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
+  @media (max-width: 520px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
     .brand { font-size: 18px; } .get { width: 40px; padding: 0; justify-content: center; } .get .gl, .get .gs { display: none; } .get svg { width: 18px; height: 18px; } }
   /* 320 px telefonda baslik 303 px ediyordu, indirme dugmesi sagdan kesiliyordu */
   @media (max-width: 360px) { .top { gap: 6px; } .brand { font-size: 17px; } .lang-btn, .theme-btn, .get { width: 36px; height: 36px; } }
@@ -669,9 +675,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .mp-s .tile .ic { width: 1.7em; height: 1.7em; color: var(--a-pri); }
   .mp-s .tile b { font-size: .86em; }
   .mp-s .tile small { font-size: .62em; color: var(--a-mut); }
-  .mp-s .tile.skel { border-color: var(--a-line); justify-content: center; gap: .5em; }
-  .mp-s .tile.skel i { display: block; height: .5em; width: 52%; border-radius: .3em; background: var(--a-line); }
-  .mp-s .tile.skel i + i { width: 72%; height: .4em; }
   .mp-s .opt { border: 1px solid var(--a-line); border-radius: .95em; padding: .75em .9em; background: var(--a-card); }
   .mp-s .opt b { display: block; font-size: .9em; }
   .mp-s .opt small { display: block; color: var(--a-mut); font-size: .7em; }
@@ -921,8 +924,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .vf-opt small { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--a-mut); font-size: .66em; margin-top: .1em; }
 .mp-s .vf-opt > .ic { color: var(--a-mut); }
 .mp-s .vf-oi { width: 2.5em; height: 2.5em; border-radius: .75em; background: var(--a-pri); color: var(--a-card); display: grid; place-items: center; flex: none; }
-.mp-s .vf-opt .sk { display: block; height: .42em; width: 88%; border-radius: .3em; background: var(--a-line); margin-top: .45em; }
-.mp-s .vf-opt .sk.s2 { width: 62%; margin-top: .3em; }
 .mp-s .vf-dots { display: flex; justify-content: center; gap: .32em; padding: .55em 0 .1em; }
 .mp-s .vf-dots i { width: .45em; height: .45em; border-radius: 1em; background: var(--a-line); transition: width .3s ease; }
 .mp-s .vf-dots i.on { background: var(--a-pri); }
@@ -938,9 +939,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .vf-type.on { box-shadow: inset 0 0 0 .13em var(--a-pri); border-color: transparent; }
 .mp-s .vf-type.on > .ic:first-child { color: var(--a-pri); }
 .mp-s .vf-type.on .vf-ok { opacity: 1; }
-.mp-s .vf-type.skel > i { display: block; width: 1.75em; height: 1.75em; border-radius: .5em; background: var(--a-line); flex: none; }
-.mp-s .vf-type.skel div i { display: block; height: .5em; width: 45%; border-radius: .3em; background: var(--a-line); }
-.mp-s .vf-type.skel div i + i { width: 78%; height: .4em; margin-top: .4em; }
 .mp-s .vf-rd { display: flex; gap: .6em; align-items: flex-start; background: var(--a-card); border: 1px solid var(--a-line); border-radius: 1em; padding: .65em .8em; transition: box-shadow .25s ease; }
 .mp-s .vf-rd > i { position: relative; width: 1.15em; height: 1.15em; border-radius: 50%; box-shadow: inset 0 0 0 .13em var(--a-tg); flex: none; margin-top: .05em; }
 .mp-s .vf-rd > i::after { content: ""; position: absolute; inset: .3em; border-radius: 50%; background: var(--a-pri); opacity: 0; transition: opacity .2s ease; }
@@ -1383,6 +1381,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <b class="t1 c">حلقات للعبادة معًا</b>
           <ul class="feat"><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>ادعُ عائلتك وأصدقاءك برابط دعوة</li><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>تابعوا تقدّم حلقتكم معًا</li></ul>
           <span class="bt blk" data-k="create"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg><span>أنشئ حلقة</span></span>
+          <span class="bt blk ol"><span>أنشئ حلقة لمرة واحدة</span></span>
           <span class="bt blk ol"><span>انضم برمز دعوة</span></span>
         </div>
       </div><nav class="tab"><span class="ti" data-k="tab-read"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg><small>اقرأ</small></span><span class="ti on" data-k="tab-circles"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg><small>الحلقات</small></span><span class="ti" data-k="tab-home"><svg class="ic" aria-hidden="true"><use href="#r-home"/></svg><small>الرئيسية</small></span><span class="ti" data-k="tab-prayer"><svg class="ic" aria-hidden="true"><use href="#r-mosque"/></svg><small>الصلاة</small></span><span class="ti" data-k="tab-profile"><svg class="ic" aria-hidden="true"><use href="#r-person"/></svg><small>الملف</small></span></nav></section><section class="vw" data-v="f" data-in="push"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>إنشاء حلقة جديدة</b></div><span class="hr"></span></div><div class="pg">
@@ -1406,7 +1405,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="sec">قراءة مشتركة</b><small class="t2">أتمّوا محتوى واحدًا معًا</small>
         <div class="grid2">
           <span class="tile" data-k="wq"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg><b>القرآن</b><small>ختمة أو هدف صفحات</small></span>
-          <span class="tile skel" aria-hidden="true"><i></i><i></i></span>
+          <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-shield"/></svg><b>الجوشن</b><small>قراءة منتظمة</small></span>
           <span class="tile" data-k="wz"><svg class="ic" aria-hidden="true"><use href="#r-beads"/></svg><b>ذكر</b><small>هدف عدد</small></span>
           <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-bookClosed"/></svg><b>كتاب</b><small>تتبع بهدف صفحات</small></span>
         </div>
@@ -1415,7 +1414,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       </div></section><section class="vw" data-v="w2" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>رجوع</span></span><small>الخطوة <bdi dir="ltr">2 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">كيف يجب أن يكون هدف القرآن؟</b><small class="t2">اختر ختمة بالأجزاء أو هدف صفحات أو قراءة حرة.</small>
         <div class="opt on"><b>ختمة بالأجزاء</b><small>وزّع 30 جزءاً، أكملوا الختمة معاً</small>
-          <div class="sub"><small class="cap">نطاق الأجزاء</small><div class="chps"><span class="chp on" data-k="full"><b>ختمة كاملة</b><small>1–30 جزء</small></span><span class="chp"><b>نطاق مخصص</b><small>أجزاء محددة</small></span></div></div></div>
+          <div class="sub"><small class="cap">نطاق الأجزاء</small><div class="chps"><span class="chp on" data-k="full"><b>ختمة كاملة</b><small>الأجزاء 1–30</small></span><span class="chp"><b>نطاق مخصص</b><small>أجزاء محددة</small></span></div></div></div>
         <div class="opt"><b>هدف صفحات</b><small>سورة، نطاق صفحات أو مصحف كامل</small></div>
         <div class="opt"><b>قراءة حرة</b><small>بدون هدف، اقرأ أي جزء وصفحة تريد</small></div>
         <span class="bt blk lg" data-k="next2"><span>متابعة</span><svg class="ic fl" aria-hidden="true"><use href="#r-fwd"/></svg></span>
@@ -1430,10 +1429,10 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bt blk lg" data-k="next3"><span>متابعة</span><svg class="ic fl" aria-hidden="true"><use href="#r-fwd"/></svg></span>
       </div></section><section class="vw" data-v="w4" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>رجوع</span></span><small>الخطوة <bdi dir="ltr">4 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">كم يجب أن نستهدف؟</b><small class="t2">كم جزءاً سيُوزع على كل شخص في كل جولة؟</small>
-        <div class="ro"><small>ختمة كاملة</small><b><bdi dir="ltr">1–30</bdi> • 30 جزء</b><small>30 جزء، غير قابل للتعديل</small></div>
-        <b class="lb">كم جزء لكل شخص في كل جولة؟</b>
+        <div class="ro"><small>ختمة كاملة</small><b><bdi dir="ltr">1–30</bdi> • 30 جزءًا</b><small>30 جزءًا، غير قابل للتعديل</small></div>
+        <b class="lb">كم جزءًا لكل شخص في كل جولة؟</b>
         <span class="nb wide" data-k="per"><bdi dir="ltr">1</bdi></span>
-        <div class="note ok" data-k="sum4"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg><div><b>يقرأ كل شخص 1 جزء كل أسبوع، أي 5 جزء في كل جولة.</b><small>المدة المقدرة للختمة: 6 أسابيع.</small></div></div>
+        <div class="note ok" data-k="sum4"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg><div><b>يقرأ كل شخص جزءًا واحدًا كل أسبوع، أي 5 أجزاء في كل جولة.</b><small>المدة المقدرة للختمة: 6 أسابيع.</small></div></div>
         <span class="bt blk lg" data-k="next4"><span>متابعة</span><svg class="ic fl" aria-hidden="true"><use href="#r-fwd"/></svg></span>
       </div></section><section class="vw" data-v="w5" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>رجوع</span></span><small>الخطوة <bdi dir="ltr">5 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">سمِّ المهمة وراجعها</b><small class="t2">أعطِ عنواناً قصيراً؛ وافحص المعاينة.</small>
@@ -1442,7 +1441,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="lb">معاينة: من سيبدأ بأي وحدة؟</b>
         <div class="cd list"><div class="li"><span>عمر</span><b>جزء 1</b></div><div class="li"><span>عائشة</span><b>جزء 2</b></div><div class="li"><span>يوسف</span><b>جزء 3</b></div><div class="li"><span>مريم</span><b>جزء 4</b></div><div class="li"><span>بلال</span><b>جزء 5</b></div></div>
         <div class="cd row tgl"><div><b>التقدم التلقائي للجولات</b><small>مفعّل: تبدأ جولة جديدة تلقائيًا عند انتهاء مدة الجولة. معطّل: تبدأ الجولة التالية بنفسك.</small></div><i class="tg on"></i></div>
-        <div class="tz"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><small>تسير الجولات وفق توقيت Riyadh.</small></div>
+        <div class="tz"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><small>تسير الجولات وفق توقيت الرياض.</small></div>
         <span class="bt blk lg dis" data-k="start"><span>ابدأ المهمة</span><svg class="ic fl" aria-hidden="true"><use href="#r-checkCircle"/></svg></span>
       </div></section><section class="vw" data-v="ct" data-in="fade"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>عائلتي</b><small>تأسست 5 أكتوبر 2026 • 5 أعضاء</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-leaf"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-personAdd"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-dots"/></svg></span></span></div>
       <div class="pg">
@@ -1492,6 +1491,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <b class="t1 c">حلقات للعبادة معًا</b>
           <ul class="feat"><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>ادعُ عائلتك وأصدقاءك برابط دعوة</li><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>تابعوا تقدّم حلقتكم معًا</li></ul>
           <span class="bt blk" data-k="create"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg><span>أنشئ حلقة</span></span>
+          <span class="bt blk ol"><span>أنشئ حلقة لمرة واحدة</span></span>
           <span class="bt blk ol"><span>انضم برمز دعوة</span></span>
         </div>
       </div><nav class="tab"><span class="ti" data-k="tab-read"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg><small>اقرأ</small></span><span class="ti on" data-k="tab-circles"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg><small>الحلقات</small></span><span class="ti" data-k="tab-home"><svg class="ic" aria-hidden="true"><use href="#r-home"/></svg><small>الرئيسية</small></span><span class="ti" data-k="tab-prayer"><svg class="ic" aria-hidden="true"><use href="#r-mosque"/></svg><small>الصلاة</small></span><span class="ti" data-k="tab-profile"><svg class="ic" aria-hidden="true"><use href="#r-person"/></svg><small>الملف</small></span></nav></section><section class="vw" data-v="f" data-in="push"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>إنشاء حلقة جديدة</b></div><span class="hr"></span></div><div class="pg">
@@ -1620,7 +1620,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="sec">قراءة مشتركة</b><small class="t2">أتمّوا محتوى واحدًا معًا</small>
         <div class="grid2">
           <span class="tile" data-k="wq"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg><b>القرآن</b><small>ختمة أو هدف صفحات</small></span>
-          <span class="tile skel" aria-hidden="true"><i></i><i></i></span>
+          <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-shield"/></svg><b>الجوشن</b><small>قراءة منتظمة</small></span>
           <span class="tile" data-k="wz"><svg class="ic" aria-hidden="true"><use href="#r-beads"/></svg><b>ذكر</b><small>هدف عدد</small></span>
           <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-bookClosed"/></svg><b>كتاب</b><small>تتبع بهدف صفحات</small></span>
         </div>
@@ -1629,7 +1629,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       </div></section><section class="vw" data-v="w2" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>رجوع</span></span><small>الخطوة <bdi dir="ltr">2 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">كيف يجب أن يكون هدف القرآن؟</b><small class="t2">اختر ختمة بالأجزاء أو هدف صفحات أو قراءة حرة.</small>
         <div class="opt on"><b>ختمة بالأجزاء</b><small>وزّع 30 جزءاً، أكملوا الختمة معاً</small>
-          <div class="sub"><small class="cap">نطاق الأجزاء</small><div class="chps"><span class="chp on" data-k="full"><b>ختمة كاملة</b><small>1–30 جزء</small></span><span class="chp"><b>نطاق مخصص</b><small>أجزاء محددة</small></span></div></div></div>
+          <div class="sub"><small class="cap">نطاق الأجزاء</small><div class="chps"><span class="chp on" data-k="full"><b>ختمة كاملة</b><small>الأجزاء 1–30</small></span><span class="chp"><b>نطاق مخصص</b><small>أجزاء محددة</small></span></div></div></div>
         <div class="opt"><b>هدف صفحات</b><small>سورة، نطاق صفحات أو مصحف كامل</small></div>
         <div class="opt"><b>قراءة حرة</b><small>بدون هدف، اقرأ أي جزء وصفحة تريد</small></div>
         <span class="bt blk lg" data-k="next2"><span>متابعة</span><svg class="ic fl" aria-hidden="true"><use href="#r-fwd"/></svg></span>
@@ -1650,7 +1650,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <div class="mp-f"><div class="mp-s" role="img" aria-label="ختمة بالأجزاء · ختمة كاملة › أسبوع › 1"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="w2"><div class="wdots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>رجوع</span></span><small>الخطوة <bdi dir="ltr">2 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">كيف يجب أن يكون هدف القرآن؟</b><small class="t2">اختر ختمة بالأجزاء أو هدف صفحات أو قراءة حرة.</small>
         <div class="opt on"><b>ختمة بالأجزاء</b><small>وزّع 30 جزءاً، أكملوا الختمة معاً</small>
-          <div class="sub"><small class="cap">نطاق الأجزاء</small><div class="chps"><span class="chp on" data-k="full"><b>ختمة كاملة</b><small>1–30 جزء</small></span><span class="chp"><b>نطاق مخصص</b><small>أجزاء محددة</small></span></div></div></div>
+          <div class="sub"><small class="cap">نطاق الأجزاء</small><div class="chps"><span class="chp on" data-k="full"><b>ختمة كاملة</b><small>الأجزاء 1–30</small></span><span class="chp"><b>نطاق مخصص</b><small>أجزاء محددة</small></span></div></div></div>
         <div class="opt"><b>هدف صفحات</b><small>سورة، نطاق صفحات أو مصحف كامل</small></div>
         <div class="opt"><b>قراءة حرة</b><small>بدون هدف، اقرأ أي جزء وصفحة تريد</small></div>
         <span class="bt blk lg" data-k="next2"><span>متابعة</span><svg class="ic fl" aria-hidden="true"><use href="#r-fwd"/></svg></span>
@@ -1665,10 +1665,10 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bt blk lg" data-k="next3"><span>متابعة</span><svg class="ic fl" aria-hidden="true"><use href="#r-fwd"/></svg></span>
       </div></section><section class="vw" data-v="w4" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>رجوع</span></span><small>الخطوة <bdi dir="ltr">4 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">كم يجب أن نستهدف؟</b><small class="t2">كم جزءاً سيُوزع على كل شخص في كل جولة؟</small>
-        <div class="ro"><small>ختمة كاملة</small><b><bdi dir="ltr">1–30</bdi> • 30 جزء</b><small>30 جزء، غير قابل للتعديل</small></div>
-        <b class="lb">كم جزء لكل شخص في كل جولة؟</b>
+        <div class="ro"><small>ختمة كاملة</small><b><bdi dir="ltr">1–30</bdi> • 30 جزءًا</b><small>30 جزءًا، غير قابل للتعديل</small></div>
+        <b class="lb">كم جزءًا لكل شخص في كل جولة؟</b>
         <span class="nb wide" data-k="per"><bdi dir="ltr">1</bdi></span>
-        <div class="note ok" data-k="sum4"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg><div><b>يقرأ كل شخص 1 جزء كل أسبوع، أي 5 جزء في كل جولة.</b><small>المدة المقدرة للختمة: 6 أسابيع.</small></div></div>
+        <div class="note ok" data-k="sum4"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg><div><b>يقرأ كل شخص جزءًا واحدًا كل أسبوع، أي 5 أجزاء في كل جولة.</b><small>المدة المقدرة للختمة: 6 أسابيع.</small></div></div>
         <span class="bt blk lg" data-k="next4"><span>متابعة</span><svg class="ic fl" aria-hidden="true"><use href="#r-fwd"/></svg></span>
       </div></section></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
@@ -1691,7 +1691,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="lb">معاينة: من سيبدأ بأي وحدة؟</b>
         <div class="cd list"><div class="li"><span>عمر</span><b>جزء 1</b></div><div class="li"><span>عائشة</span><b>جزء 2</b></div><div class="li"><span>يوسف</span><b>جزء 3</b></div><div class="li"><span>مريم</span><b>جزء 4</b></div><div class="li"><span>بلال</span><b>جزء 5</b></div></div>
         <div class="cd row tgl"><div><b>التقدم التلقائي للجولات</b><small>مفعّل: تبدأ جولة جديدة تلقائيًا عند انتهاء مدة الجولة. معطّل: تبدأ الجولة التالية بنفسك.</small></div><i class="tg on"></i></div>
-        <div class="tz"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><small>تسير الجولات وفق توقيت Riyadh.</small></div>
+        <div class="tz"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><small>تسير الجولات وفق توقيت الرياض.</small></div>
         <span class="bt blk lg dis" data-k="start"><span>ابدأ المهمة</span><svg class="ic fl" aria-hidden="true"><use href="#r-checkCircle"/></svg></span>
       </div></section><section class="vw" data-v="ct" data-in="fade"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>عائلتي</b><small>تأسست 5 أكتوبر 2026 • 5 أعضاء</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-leaf"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-personAdd"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-dots"/></svg></span></span></div>
       <div class="pg">

@@ -26,9 +26,9 @@ kendi dosyanda çöz (ek CSS, ek ikon, kendi görünüm fonksiyonların).
 1. **Düğme ve başlık adları uygulamadan gelir.** Mini ekranda `K.L("anahtar")`, metinde `[[anahtar]]`.
    Anahtarı uygulamanın `locales/tr.json` içinde bul; yeni anahtar ekleyince `node _gen/sync-app-labels.mjs`.
    Uydurma düğme adı yazma. Uygulamada olmayan bir şeyi mini ekranda gösterme.
-2. **Cevşen sitede geçmez** (tanıtım yüzeyi kuralı). Cevşen kartı olan ekranlarda karo boş iskelet
-   (`<span class="tile skel"><i></i><i></i></span>`), Cevşen geçen locale metinlerini kullanma.
-   Üretici `Cevşen/Jawshan/Dschauschan/جوشن` görürse durur.
+2. **Cevşen anlatım metninde geçmez** (tanıtım yüzeyi kuralı). İstisna mini telefonlar: uygulamada Cevşen
+   kartı olan ekranlar onu olduğu gibi gösterir (kullanıcı kararı, 5 Eki 2026; boş iskelet "saklıyormuşuz"
+   gibi duruyordu). Üretici `Cevşen/Jawshan/Dschauschan/جوشن` görürse durur; `<figure class="mp">` içi sayılmaz.
 3. **Uzun tire (—) yok**, ayraç olarak kısa tire de yok. Virgül, iki nokta, nokta. Aralık tiresi (1–5) serbest.
 4. **Emoji yok.**
 5. **Dini dil:** sevap/fazilet vaadi yok, fıkıh hükmü yok. "Olur mu?" sorularına yalnız doğrulanmış kaynak

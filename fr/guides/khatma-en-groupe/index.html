@@ -246,7 +246,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-size: 20px; white-space: nowrap; }
   .brand img { width: 32px; height: 32px; border-radius: 9px; }
   .top nav { display: flex; gap: 4px; margin-inline-start: auto; }
-  .top nav a { text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px; opacity: .8; }
+  .top nav a { text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px; opacity: .8; white-space: nowrap; }
+  /* 821-1120 px: dort sayfa baglantisi tek satira sigsin (DE/FR 1024'te ikiye kiriliyordu);
+     dar ucta "Uygulama" saklanir, marka zaten ana sayfaya gider (ana sayfadaki menuSigdir de once onu saklar) */
+  @media (max-width: 1120px) { .top { gap: 14px; } .top nav { gap: 0; } .top nav a { padding: 8px 9px; } }
+  @media (max-width: 1000px) { .top nav a:first-child { display: none; } }
+  @media (max-width: 900px) { .top { gap: 10px; } .top nav a { padding: 8px 7px; font-size: 14px; } }
   .top nav a:hover { opacity: 1; background: var(--mint); }
   .top nav a[aria-current="page"] { opacity: 1; background: var(--mint); }
   .theme-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; overflow: hidden; }
@@ -260,6 +265,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .get { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; white-space: nowrap; flex: none; border-radius: 999px; background: var(--green); color: var(--page); text-decoration: none; font-weight: 700; font-size: 14.5px; }
   .get svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .get .gs { display: none; }
+  @media (max-width: 920px) { .get .gl { display: none; } .get .gs { display: inline; } }
   @media (max-width: 820px) { .top nav { display: none; } .top .lang { margin-inline-start: auto; } .top { gap: 10px; } }
   .lang { position: relative; flex: none; }
   .lang-btn { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
@@ -270,7 +276,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .lang-list a { display: block; padding: 9px 12px; border-radius: 10px; font-size: 14.5px; text-decoration: none; }
   .lang-list a:hover { background: var(--mint); }
   .lang-list a[aria-current="page"] { font-weight: 700; background: var(--mint); }
-  @media (max-width: 480px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
+  @media (max-width: 520px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
     .brand { font-size: 18px; } .get { width: 40px; padding: 0; justify-content: center; } .get .gl, .get .gs { display: none; } .get svg { width: 18px; height: 18px; } }
   /* 320 px telefonda baslik 303 px ediyordu, indirme dugmesi sagdan kesiliyordu */
   @media (max-width: 360px) { .top { gap: 6px; } .brand { font-size: 17px; } .lang-btn, .theme-btn, .get { width: 36px; height: 36px; } }
@@ -669,9 +675,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .mp-s .tile .ic { width: 1.7em; height: 1.7em; color: var(--a-pri); }
   .mp-s .tile b { font-size: .86em; }
   .mp-s .tile small { font-size: .62em; color: var(--a-mut); }
-  .mp-s .tile.skel { border-color: var(--a-line); justify-content: center; gap: .5em; }
-  .mp-s .tile.skel i { display: block; height: .5em; width: 52%; border-radius: .3em; background: var(--a-line); }
-  .mp-s .tile.skel i + i { width: 72%; height: .4em; }
   .mp-s .opt { border: 1px solid var(--a-line); border-radius: .95em; padding: .75em .9em; background: var(--a-card); }
   .mp-s .opt b { display: block; font-size: .9em; }
   .mp-s .opt small { display: block; color: var(--a-mut); font-size: .7em; }
@@ -921,8 +924,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .vf-opt small { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--a-mut); font-size: .66em; margin-top: .1em; }
 .mp-s .vf-opt > .ic { color: var(--a-mut); }
 .mp-s .vf-oi { width: 2.5em; height: 2.5em; border-radius: .75em; background: var(--a-pri); color: var(--a-card); display: grid; place-items: center; flex: none; }
-.mp-s .vf-opt .sk { display: block; height: .42em; width: 88%; border-radius: .3em; background: var(--a-line); margin-top: .45em; }
-.mp-s .vf-opt .sk.s2 { width: 62%; margin-top: .3em; }
 .mp-s .vf-dots { display: flex; justify-content: center; gap: .32em; padding: .55em 0 .1em; }
 .mp-s .vf-dots i { width: .45em; height: .45em; border-radius: 1em; background: var(--a-line); transition: width .3s ease; }
 .mp-s .vf-dots i.on { background: var(--a-pri); }
@@ -938,9 +939,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .vf-type.on { box-shadow: inset 0 0 0 .13em var(--a-pri); border-color: transparent; }
 .mp-s .vf-type.on > .ic:first-child { color: var(--a-pri); }
 .mp-s .vf-type.on .vf-ok { opacity: 1; }
-.mp-s .vf-type.skel > i { display: block; width: 1.75em; height: 1.75em; border-radius: .5em; background: var(--a-line); flex: none; }
-.mp-s .vf-type.skel div i { display: block; height: .5em; width: 45%; border-radius: .3em; background: var(--a-line); }
-.mp-s .vf-type.skel div i + i { width: 78%; height: .4em; margin-top: .4em; }
 .mp-s .vf-rd { display: flex; gap: .6em; align-items: flex-start; background: var(--a-card); border: 1px solid var(--a-line); border-radius: 1em; padding: .65em .8em; transition: box-shadow .25s ease; }
 .mp-s .vf-rd > i { position: relative; width: 1.15em; height: 1.15em; border-radius: 50%; box-shadow: inset 0 0 0 .13em var(--a-tg); flex: none; margin-top: .05em; }
 .mp-s .vf-rd > i::after { content: ""; position: absolute; inset: .3em; border-radius: 50%; background: var(--a-pri); opacity: 0; transition: opacity .2s ease; }
@@ -1383,13 +1381,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <b class="t1 c">Des cercles pour adorer ensemble</b>
           <ul class="feat"><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>Invite ta famille et tes amis avec un lien d’invitation</li><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>Suis la progression de ton cercle avec les autres</li></ul>
           <span class="bt blk" data-k="create"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg><span>Créer un cercle</span></span>
+          <span class="bt blk ol"><span>Créer un cercle ponctuel</span></span>
           <span class="bt blk ol"><span>Rejoindre avec un code</span></span>
         </div>
       </div><nav class="tab"><span class="ti" data-k="tab-read"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg><small>Lire</small></span><span class="ti on" data-k="tab-circles"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg><small>Cercles</small></span><span class="ti" data-k="tab-home"><svg class="ic" aria-hidden="true"><use href="#r-home"/></svg><small>Accueil</small></span><span class="ti" data-k="tab-prayer"><svg class="ic" aria-hidden="true"><use href="#r-mosque"/></svg><small>Prière</small></span><span class="ti" data-k="tab-profile"><svg class="ic" aria-hidden="true"><use href="#r-person"/></svg><small>Profil</small></span></nav></section><section class="vw" data-v="f" data-in="push"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Créer un cercle</b></div><span class="hr"></span></div><div class="pg">
         <div class="big-ic"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg></div>
         <b class="lb">Nom du cercle</b>
         <span class="in " data-k="cname"><span class="ph">ex. Ma famille, Les amis du vendredi, Communauté de la mosquée...</span><span class="tx"></span><i class="cr"></i></span>
-        <b class="lb">Description (optionnel)</b>
+        <b class="lb">Description (facultatif)</b>
         <span class="in ta"><span class="ph">Quel est l’objectif de ce cercle ?</span><span class="tx"></span><i class="cr"></i></span>
         <div class="cd row tgl"><svg class="ic" aria-hidden="true"><use href="#r-eye"/></svg><div><b>Suivi détaillé du progrès</b><small>En tant qu’admin, tu peux voir le progrès quotidien des membres en détail. Les membres ne le voient pas.</small></div><i class="tg"></i></div>
         <span class="bt blk lg" data-k="cbtn"><span>Créer le cercle</span></span>
@@ -1403,15 +1402,15 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         </div>
       </div><span class="fab" data-k="fab"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg></span></section><section class="vw" data-v="w1" data-in="up"><div class="wdots"><i class="on"></i><i></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Annuler</span></span><small>Étape <bdi dir="ltr">1</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">Quel type d’objectif veux-tu créer ?</b><small class="t2">Les étapes varient selon le type d’objectif.</small>
-        <b class="sec">Lecture commune</b><small class="t2">Terminez un contenu ensemble</small>
+        <b class="sec">Lecture commune</b><small class="t2">On termine un contenu ensemble</small>
         <div class="grid2">
           <span class="tile" data-k="wq"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg><b>Coran</b><small>Khatma ou objectif de pages</small></span>
-          <span class="tile skel" aria-hidden="true"><i></i><i></i></span>
+          <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-shield"/></svg><b>Jawshan</b><small>Lecture régulière</small></span>
           <span class="tile" data-k="wz"><svg class="ic" aria-hidden="true"><use href="#r-beads"/></svg><b>Dhikr</b><small>Objectif de quantité</small></span>
           <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-bookClosed"/></svg><b>Livre</b><small>Suivi par objectif de pages</small></span>
         </div>
         <b class="sec">Pratiques communes</b><small class="t2">Chacun poursuit sa propre pratique</small>
-        <div class="grid2"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-moon"/></svg><b>Prière</b><small>Prières choisies</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-cap"/></svg><b>Mémorisation et révision</b><small>Ton propre travail</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-open"/></svg><b>Lecture de sourates</b><small>Al-Mulk, Al-Kahf, Ya-Sin</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><b>Invocation commune</b><small>Lisez la même</small></span></div>
+        <div class="grid2"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-moon"/></svg><b>Prière</b><small>Prières choisies</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-cap"/></svg><b>Mémorisation et révision</b><small>Ton propre travail</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-open"/></svg><b>Lecture de sourates</b><small>Al-Mulk, Al-Kahf, Yasin</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><b>Invocation commune</b><small>La même invocation pour tous</small></span></div>
       </div></section><section class="vw" data-v="w2" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Retour</span></span><small>Étape <bdi dir="ltr">2 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">Comment doit être l’objectif Coran ?</b><small class="t2">Choisis une khatma par juz, un objectif de pages ou la lecture libre.</small>
         <div class="opt on"><b>Khatma par juz</b><small>Partager 30 juz, terminer la khatma ensemble</small>
@@ -1423,7 +1422,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="t1">À quelle fréquence les tours seront-ils assignés ?</b><small class="t2">De nouvelles assignations sont créées à la fin de chaque cycle.</small>
         <div class="freq"><span class="nb"><bdi dir="ltr">1</bdi></span><span class="chp"><b>Jour</b></span><span class="chp on" data-k="week"><b>Semaine</b></span><span class="mu">par tour</span></div>
         <hr>
-        <b class="lb">Date de début (optionnelle)</b>
+        <b class="lb">Date de début (facultative)</b>
         <div class="row sp"><small>Doit-il commencer à une date précise ?</small><i class="tg"></i></div>
         <div class="note" data-k="note3"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg><div><b>Un nouveau tour commence chaque semaine et les tâches sont réattribuées.</b><small>Les tâches non terminées sont reportées au tour suivant pour rattrapage.</small></div></div>
         <div class="cd row tgl"><svg class="ic" aria-hidden="true"><use href="#r-compass"/></svg><div><b>Mode Mentor</b><small>Lorsqu’activé, aucune tâche ne te sera assignée ; tu suis uniquement la progression des membres et continues à gérer le cercle.</small></div><i class="tg"></i></div>
@@ -1439,7 +1438,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="t1">Nomme la tâche et vérifie</b><small class="t2">Donne un titre court ; vérifie l’aperçu.</small>
         <b class="lb">Nom de la tâche</b>
         <span class="in " data-k="tname"><span class="ph">Ex. : Khatma du Ramadan</span><span class="tx"></span><i class="cr"></i></span>
-        <b class="lb">Aperçu : Qui commencera avec quelle unité ?</b>
+        <b class="lb">Aperçu : qui commencera avec quelle unité ?</b>
         <div class="cd list"><div class="li"><span>Omar</span><b>Juz 1</b></div><div class="li"><span>Aïcha</span><b>Juz 2</b></div><div class="li"><span>Youssef</span><b>Juz 3</b></div><div class="li"><span>Myriam</span><b>Juz 4</b></div><div class="li"><span>Bilal</span><b>Juz 5</b></div></div>
         <div class="cd row tgl"><div><b>Avancement automatique des tours</b><small>Activé : un nouveau tour commence automatiquement à la fin de la durée du tour. Désactivé : tu lances le tour suivant toi-même.</small></div><i class="tg on"></i></div>
         <div class="tz"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><small>Les tours suivent l’heure de Paris.</small></div>
@@ -1492,13 +1491,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <b class="t1 c">Des cercles pour adorer ensemble</b>
           <ul class="feat"><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>Invite ta famille et tes amis avec un lien d’invitation</li><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>Suis la progression de ton cercle avec les autres</li></ul>
           <span class="bt blk" data-k="create"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg><span>Créer un cercle</span></span>
+          <span class="bt blk ol"><span>Créer un cercle ponctuel</span></span>
           <span class="bt blk ol"><span>Rejoindre avec un code</span></span>
         </div>
       </div><nav class="tab"><span class="ti" data-k="tab-read"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg><small>Lire</small></span><span class="ti on" data-k="tab-circles"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg><small>Cercles</small></span><span class="ti" data-k="tab-home"><svg class="ic" aria-hidden="true"><use href="#r-home"/></svg><small>Accueil</small></span><span class="ti" data-k="tab-prayer"><svg class="ic" aria-hidden="true"><use href="#r-mosque"/></svg><small>Prière</small></span><span class="ti" data-k="tab-profile"><svg class="ic" aria-hidden="true"><use href="#r-person"/></svg><small>Profil</small></span></nav></section><section class="vw" data-v="f" data-in="push"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Créer un cercle</b></div><span class="hr"></span></div><div class="pg">
         <div class="big-ic"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg></div>
         <b class="lb">Nom du cercle</b>
         <span class="in " data-k="cname"><span class="ph">ex. Ma famille, Les amis du vendredi, Communauté de la mosquée...</span><span class="tx"></span><i class="cr"></i></span>
-        <b class="lb">Description (optionnel)</b>
+        <b class="lb">Description (facultatif)</b>
         <span class="in ta"><span class="ph">Quel est l’objectif de ce cercle ?</span><span class="tx"></span><i class="cr"></i></span>
         <div class="cd row tgl"><svg class="ic" aria-hidden="true"><use href="#r-eye"/></svg><div><b>Suivi détaillé du progrès</b><small>En tant qu’admin, tu peux voir le progrès quotidien des membres en détail. Les membres ne le voient pas.</small></div><i class="tg"></i></div>
         <span class="bt blk lg" data-k="cbtn"><span>Créer le cercle</span></span>
@@ -1521,7 +1521,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <div class="big-ic"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg></div>
         <b class="lb">Nom du cercle</b>
         <span class="in " data-k="cname"><span class="ph">ex. Ma famille, Les amis du vendredi, Communauté de la mosquée...</span><span class="tx"></span><i class="cr"></i></span>
-        <b class="lb">Description (optionnel)</b>
+        <b class="lb">Description (facultatif)</b>
         <span class="in ta"><span class="ph">Quel est l’objectif de ce cercle ?</span><span class="tx"></span><i class="cr"></i></span>
         <div class="cd row tgl"><svg class="ic" aria-hidden="true"><use href="#r-eye"/></svg><div><b>Suivi détaillé du progrès</b><small>En tant qu’admin, tu peux voir le progrès quotidien des membres en détail. Les membres ne le voient pas.</small></div><i class="tg"></i></div>
         <span class="bt blk lg" data-k="cbtn"><span>Créer le cercle</span></span>
@@ -1617,15 +1617,15 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         </div>
       </div><span class="fab" data-k="fab"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg></span></section><section class="vw" data-v="w1" data-in="up"><div class="wdots"><i class="on"></i><i></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Annuler</span></span><small>Étape <bdi dir="ltr">1</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">Quel type d’objectif veux-tu créer ?</b><small class="t2">Les étapes varient selon le type d’objectif.</small>
-        <b class="sec">Lecture commune</b><small class="t2">Terminez un contenu ensemble</small>
+        <b class="sec">Lecture commune</b><small class="t2">On termine un contenu ensemble</small>
         <div class="grid2">
           <span class="tile" data-k="wq"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg><b>Coran</b><small>Khatma ou objectif de pages</small></span>
-          <span class="tile skel" aria-hidden="true"><i></i><i></i></span>
+          <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-shield"/></svg><b>Jawshan</b><small>Lecture régulière</small></span>
           <span class="tile" data-k="wz"><svg class="ic" aria-hidden="true"><use href="#r-beads"/></svg><b>Dhikr</b><small>Objectif de quantité</small></span>
           <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-bookClosed"/></svg><b>Livre</b><small>Suivi par objectif de pages</small></span>
         </div>
         <b class="sec">Pratiques communes</b><small class="t2">Chacun poursuit sa propre pratique</small>
-        <div class="grid2"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-moon"/></svg><b>Prière</b><small>Prières choisies</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-cap"/></svg><b>Mémorisation et révision</b><small>Ton propre travail</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-open"/></svg><b>Lecture de sourates</b><small>Al-Mulk, Al-Kahf, Ya-Sin</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><b>Invocation commune</b><small>Lisez la même</small></span></div>
+        <div class="grid2"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-moon"/></svg><b>Prière</b><small>Prières choisies</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-cap"/></svg><b>Mémorisation et révision</b><small>Ton propre travail</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-open"/></svg><b>Lecture de sourates</b><small>Al-Mulk, Al-Kahf, Yasin</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><b>Invocation commune</b><small>La même invocation pour tous</small></span></div>
       </div></section><section class="vw" data-v="w2" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Retour</span></span><small>Étape <bdi dir="ltr">2 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">Comment doit être l’objectif Coran ?</b><small class="t2">Choisis une khatma par juz, un objectif de pages ou la lecture libre.</small>
         <div class="opt on"><b>Khatma par juz</b><small>Partager 30 juz, terminer la khatma ensemble</small>
@@ -1658,7 +1658,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="t1">À quelle fréquence les tours seront-ils assignés ?</b><small class="t2">De nouvelles assignations sont créées à la fin de chaque cycle.</small>
         <div class="freq"><span class="nb"><bdi dir="ltr">1</bdi></span><span class="chp"><b>Jour</b></span><span class="chp on" data-k="week"><b>Semaine</b></span><span class="mu">par tour</span></div>
         <hr>
-        <b class="lb">Date de début (optionnelle)</b>
+        <b class="lb">Date de début (facultative)</b>
         <div class="row sp"><small>Doit-il commencer à une date précise ?</small><i class="tg"></i></div>
         <div class="note" data-k="note3"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg><div><b>Un nouveau tour commence chaque semaine et les tâches sont réattribuées.</b><small>Les tâches non terminées sont reportées au tour suivant pour rattrapage.</small></div></div>
         <div class="cd row tgl"><svg class="ic" aria-hidden="true"><use href="#r-compass"/></svg><div><b>Mode Mentor</b><small>Lorsqu’activé, aucune tâche ne te sera assignée ; tu suis uniquement la progression des membres et continues à gérer le cercle.</small></div><i class="tg"></i></div>
@@ -1688,7 +1688,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="t1">Nomme la tâche et vérifie</b><small class="t2">Donne un titre court ; vérifie l’aperçu.</small>
         <b class="lb">Nom de la tâche</b>
         <span class="in " data-k="tname"><span class="ph">Ex. : Khatma du Ramadan</span><span class="tx"></span><i class="cr"></i></span>
-        <b class="lb">Aperçu : Qui commencera avec quelle unité ?</b>
+        <b class="lb">Aperçu : qui commencera avec quelle unité ?</b>
         <div class="cd list"><div class="li"><span>Omar</span><b>Juz 1</b></div><div class="li"><span>Aïcha</span><b>Juz 2</b></div><div class="li"><span>Youssef</span><b>Juz 3</b></div><div class="li"><span>Myriam</span><b>Juz 4</b></div><div class="li"><span>Bilal</span><b>Juz 5</b></div></div>
         <div class="cd row tgl"><div><b>Avancement automatique des tours</b><small>Activé : un nouveau tour commence automatiquement à la fin de la durée du tour. Désactivé : tu lances le tour suivant toi-même.</small></div><i class="tg on"></i></div>
         <div class="tz"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><small>Les tours suivent l’heure de Paris.</small></div>
@@ -1776,7 +1776,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <div class="seg"><span class="on"><svg class="ic" aria-hidden="true"><use href="#r-flag"/></svg>Ma tâche</span><span><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg>Cercle</span></div>
         <div class="cd donec">
           <div class="row"><span class="okc"><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg></span><div><b class="t1">Alhamdulillah</b><small>Lecture terminée : Juz 2 · Qu’Allah l’accepte</small></div></div>
-          <div class="ringrow"><span class="bring"><i class="fill" style="--i:0"></i><i class="gold" style="--i:1"></i><i class="" style="--i:2"></i><i class="" style="--i:3"></i><i class="" style="--i:4"></i><b><bdi dir="ltr">2 / 5</bdi></b><small>terminé</small></span>
+          <div class="ringrow"><span class="bring"><i class="fill" style="--i:0"></i><i class="gold" style="--i:1"></i><i class="" style="--i:2"></i><i class="" style="--i:3"></i><i class="" style="--i:4"></i><b><bdi dir="ltr">2 / 5</bdi></b><small>terminés</small></span>
             <div><b>Ta contribution s’ajoute au cercle</b><small>3 lisent encore · Tour 1</small></div></div>
           <div class="row2 line"><span class="mu"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg>Annuler</span><span class="gr">Voir le cercle<svg class="ic fl" aria-hidden="true"><use href="#r-chev"/></svg></span></div>
         </div>
@@ -1794,7 +1794,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <p>Toutes les semaines ne se ressemblent pas. Celui qui ne pourra pas finir sa part ne bloque pas le cercle : les autres l’aident.</p>
       </div></header>
       <div class="duo"><article><h3>Demander de l’aide</h3><p>Touche <span class="kb ol">Demander de l’aide</span> sous la carte de la tâche. Indique combien de pages tu liras toi-même et touche <span class="kb">Demander de l’aide</span> dans la fenêtre. Les pages restantes apparaissent pour le cercle dans la liste <span class="kbw"><span class="kb tx">En attente d’aide</span>.</span></p><figure class="mp" data-tl='[[&quot;w&quot;,900],[&quot;tap&quot;,&quot;askHelp&quot;],[&quot;ov&quot;,&quot;h&quot;],[&quot;w&quot;,1300],[&quot;tap&quot;,&quot;askOk&quot;],[&quot;cl&quot;,&quot;h&quot;],[&quot;w&quot;,1000]]' data-still="0" data-hint="askHelp">
-      <div class="mp-f"><div class="mp-s" role="img" aria-label="Demander de l’aide › Combien de pages feras-tu ? (Total : 20)"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="t"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Khatma familiale</b><small>Tour 1 • 7 jours restants</small><small class="s2">0 / 30 juz • 5 membres</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg></span></span></div>
+      <div class="mp-f"><div class="mp-s" role="img" aria-label="Demander de l’aide › Combien de pages liras-tu toi-même ? (Total : 20)"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="t"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Khatma familiale</b><small>Tour 1 • 7 jours restants</small><small class="s2">0 / 30 juz • 5 membres</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg></span></span></div>
       <div class="pg sc" data-k="tsc">
         <div class="cd prog"><div class="row sp"><b>Progression du cercle</b><small>0 / 30 juz</small></div><i class="bar"><i style="width:4%"></i></i></div>
         <div class="seg"><span class="on"><svg class="ic" aria-hidden="true"><use href="#r-flag"/></svg>Ma tâche</span><span><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg>Cercle</span></div>
@@ -1806,7 +1806,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="bt blk wht" data-k="complete"><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg><span>TERMINER</span></span>
           <div class="row2"><span class="bt sm ol w" data-k="askHelp"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><span>Demander de l’aide</span></span><span class="bt sm ol w" data-k="excuse"><svg class="ic" aria-hidden="true"><use href="#r-archive"/></svg><span>Excuse</span></span></div>
         </div>
-      </div></section><div class="ov" data-v="h" data-in="pop"><i class="scrim"></i><div class="card-c"><b class="t1 c">Demander de l’aide</b><small class="t2 c">Combien de pages feras-tu ? (Total : 20)</small>
+      </div></section><div class="ov" data-v="h" data-in="pop"><i class="scrim"></i><div class="card-c"><b class="t1 c">Demander de l’aide</b><small class="t2 c">Combien de pages liras-tu toi-même ? (Total : 20)</small>
         <span class="nb wide c" data-k="selfN"><bdi dir="ltr">10</bdi></span><div class="row2"><span class="bt gh"><span>Annuler</span></span><span class="bt " data-k="askOk"><span>Demander de l’aide</span></span></div></div></div></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
     </figure></article><article><h3>Aider</h3><p>Dans l’onglet <span class="kb tx">Cercle</span> de l’écran de la tâche, tu vois les personnes qui attendent de l’aide. Touche <span class="kb">Aide</span> et choisis dans la fenêtre la part que tu prends. Les pages prises arrivent sur ton écran.</p><figure class="mp" data-tl='[[&quot;w&quot;,1200],[&quot;tap&quot;,&quot;helpBtn&quot;],[&quot;ov&quot;,&quot;hc&quot;],[&quot;w&quot;,1300],[&quot;tap&quot;,&quot;hcAll&quot;],[&quot;cl&quot;,&quot;hc&quot;],[&quot;w&quot;,1000]]' data-still="0" data-hint="helpBtn">
@@ -1814,7 +1814,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <div class="pg">
         <div class="seg"><span><svg class="ic" aria-hidden="true"><use href="#r-flag"/></svg>Ma tâche</span><span class="on"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg>Cercle<em class="rb">1</em></span></div>
         <div class="cd sos"><b class="red"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg>En attente d’aide</b>
-          <div class="row sp"><div><b>Myriam</b><small>Juz 14 • Aide : 271–280 (10 pages restant(s))</small></div><span class="bt sm red" data-k="helpBtn"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><span>Aide</span></span></div></div>
+          <div class="row sp"><div><b>Myriam</b><small>Juz 14 • Aide : 271–280 (reste : 10 pages)</small></div><span class="bt sm red" data-k="helpBtn"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><span>Aide</span></span></div></div>
         <b class="lb">Membres du cercle</b>
         <div class="cd list mem"><div class="li"><span class="av g">O</span><span>Omar</span><b>Juz 11</b></div><div class="li me"><span class="av o">A</span><span>Toi</span><b>Juz 12</b></div><div class="li"><span class="av g">Y</span><span>Youssef</span><b>Juz 13</b></div><div class="li"><span class="av r">M</span><span>Myriam</span><b>Juz 14</b></div><div class="li"><span class="av o">B</span><span>Bilal</span><b>Juz 15</b></div></div>
       </div></section><div class="ov" data-v="hc" data-in="pop"><i class="scrim"></i><div class="card-c"><b class="t1 c">Aide</b><small class="t2 c">Combien de pages veux-tu prendre ? (Restant : 10)</small>

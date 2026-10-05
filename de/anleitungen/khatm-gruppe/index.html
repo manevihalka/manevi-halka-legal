@@ -246,7 +246,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-size: 20px; white-space: nowrap; }
   .brand img { width: 32px; height: 32px; border-radius: 9px; }
   .top nav { display: flex; gap: 4px; margin-inline-start: auto; }
-  .top nav a { text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px; opacity: .8; }
+  .top nav a { text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px; opacity: .8; white-space: nowrap; }
+  /* 821-1120 px: dort sayfa baglantisi tek satira sigsin (DE/FR 1024'te ikiye kiriliyordu);
+     dar ucta "Uygulama" saklanir, marka zaten ana sayfaya gider (ana sayfadaki menuSigdir de once onu saklar) */
+  @media (max-width: 1120px) { .top { gap: 14px; } .top nav { gap: 0; } .top nav a { padding: 8px 9px; } }
+  @media (max-width: 1000px) { .top nav a:first-child { display: none; } }
+  @media (max-width: 900px) { .top { gap: 10px; } .top nav a { padding: 8px 7px; font-size: 14px; } }
   .top nav a:hover { opacity: 1; background: var(--mint); }
   .top nav a[aria-current="page"] { opacity: 1; background: var(--mint); }
   .theme-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; overflow: hidden; }
@@ -260,6 +265,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .get { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; white-space: nowrap; flex: none; border-radius: 999px; background: var(--green); color: var(--page); text-decoration: none; font-weight: 700; font-size: 14.5px; }
   .get svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .get .gs { display: none; }
+  @media (max-width: 920px) { .get .gl { display: none; } .get .gs { display: inline; } }
   @media (max-width: 820px) { .top nav { display: none; } .top .lang { margin-inline-start: auto; } .top { gap: 10px; } }
   .lang { position: relative; flex: none; }
   .lang-btn { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
@@ -270,7 +276,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .lang-list a { display: block; padding: 9px 12px; border-radius: 10px; font-size: 14.5px; text-decoration: none; }
   .lang-list a:hover { background: var(--mint); }
   .lang-list a[aria-current="page"] { font-weight: 700; background: var(--mint); }
-  @media (max-width: 480px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
+  @media (max-width: 520px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
     .brand { font-size: 18px; } .get { width: 40px; padding: 0; justify-content: center; } .get .gl, .get .gs { display: none; } .get svg { width: 18px; height: 18px; } }
   /* 320 px telefonda baslik 303 px ediyordu, indirme dugmesi sagdan kesiliyordu */
   @media (max-width: 360px) { .top { gap: 6px; } .brand { font-size: 17px; } .lang-btn, .theme-btn, .get { width: 36px; height: 36px; } }
@@ -669,9 +675,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .mp-s .tile .ic { width: 1.7em; height: 1.7em; color: var(--a-pri); }
   .mp-s .tile b { font-size: .86em; }
   .mp-s .tile small { font-size: .62em; color: var(--a-mut); }
-  .mp-s .tile.skel { border-color: var(--a-line); justify-content: center; gap: .5em; }
-  .mp-s .tile.skel i { display: block; height: .5em; width: 52%; border-radius: .3em; background: var(--a-line); }
-  .mp-s .tile.skel i + i { width: 72%; height: .4em; }
   .mp-s .opt { border: 1px solid var(--a-line); border-radius: .95em; padding: .75em .9em; background: var(--a-card); }
   .mp-s .opt b { display: block; font-size: .9em; }
   .mp-s .opt small { display: block; color: var(--a-mut); font-size: .7em; }
@@ -921,8 +924,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .vf-opt small { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--a-mut); font-size: .66em; margin-top: .1em; }
 .mp-s .vf-opt > .ic { color: var(--a-mut); }
 .mp-s .vf-oi { width: 2.5em; height: 2.5em; border-radius: .75em; background: var(--a-pri); color: var(--a-card); display: grid; place-items: center; flex: none; }
-.mp-s .vf-opt .sk { display: block; height: .42em; width: 88%; border-radius: .3em; background: var(--a-line); margin-top: .45em; }
-.mp-s .vf-opt .sk.s2 { width: 62%; margin-top: .3em; }
 .mp-s .vf-dots { display: flex; justify-content: center; gap: .32em; padding: .55em 0 .1em; }
 .mp-s .vf-dots i { width: .45em; height: .45em; border-radius: 1em; background: var(--a-line); transition: width .3s ease; }
 .mp-s .vf-dots i.on { background: var(--a-pri); }
@@ -938,9 +939,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .vf-type.on { box-shadow: inset 0 0 0 .13em var(--a-pri); border-color: transparent; }
 .mp-s .vf-type.on > .ic:first-child { color: var(--a-pri); }
 .mp-s .vf-type.on .vf-ok { opacity: 1; }
-.mp-s .vf-type.skel > i { display: block; width: 1.75em; height: 1.75em; border-radius: .5em; background: var(--a-line); flex: none; }
-.mp-s .vf-type.skel div i { display: block; height: .5em; width: 45%; border-radius: .3em; background: var(--a-line); }
-.mp-s .vf-type.skel div i + i { width: 78%; height: .4em; margin-top: .4em; }
 .mp-s .vf-rd { display: flex; gap: .6em; align-items: flex-start; background: var(--a-card); border: 1px solid var(--a-line); border-radius: 1em; padding: .65em .8em; transition: box-shadow .25s ease; }
 .mp-s .vf-rd > i { position: relative; width: 1.15em; height: 1.15em; border-radius: 50%; box-shadow: inset 0 0 0 .13em var(--a-tg); flex: none; margin-top: .05em; }
 .mp-s .vf-rd > i::after { content: ""; position: absolute; inset: .3em; border-radius: 50%; background: var(--a-pri); opacity: 0; transition: opacity .2s ease; }
@@ -1383,13 +1381,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <b class="t1 c">Kreise für gemeinsame Andacht</b>
           <ul class="feat"><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>Lade Familie und Freunde per Einladungslink ein</li><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>Verfolgt den Fortschritt eures Kreises gemeinsam</li></ul>
           <span class="bt blk" data-k="create"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg><span>Kreis gründen</span></span>
+          <span class="bt blk ol"><span>Einmaligen Kreis gründen</span></span>
           <span class="bt blk ol"><span>Mit Einladungscode beitreten</span></span>
         </div>
       </div><nav class="tab"><span class="ti" data-k="tab-read"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg><small>Lesen</small></span><span class="ti on" data-k="tab-circles"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg><small>Kreise</small></span><span class="ti" data-k="tab-home"><svg class="ic" aria-hidden="true"><use href="#r-home"/></svg><small>Start</small></span><span class="ti" data-k="tab-prayer"><svg class="ic" aria-hidden="true"><use href="#r-mosque"/></svg><small>Gebet</small></span><span class="ti" data-k="tab-profile"><svg class="ic" aria-hidden="true"><use href="#r-person"/></svg><small>Profil</small></span></nav></section><section class="vw" data-v="f" data-in="push"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Neuen Kreis erstellen</b></div><span class="hr"></span></div><div class="pg">
         <div class="big-ic"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg></div>
         <b class="lb">Name des Kreises</b>
-        <span class="in " data-k="cname"><span class="ph">z.B. Meine Familie, Freitagsfreunde, Moscheegemeinde...</span><span class="tx"></span><i class="cr"></i></span>
-        <b class="lb">Beschreibung (Optional)</b>
+        <span class="in " data-k="cname"><span class="ph">z. B. Meine Familie, Freitagsfreunde, Moscheegemeinde...</span><span class="tx"></span><i class="cr"></i></span>
+        <b class="lb">Beschreibung (optional)</b>
         <span class="in ta"><span class="ph">Was ist der Zweck dieses Kreises?</span><span class="tx"></span><i class="cr"></i></span>
         <div class="cd row tgl"><svg class="ic" aria-hidden="true"><use href="#r-eye"/></svg><div><b>Detaillierte Fortschrittsverfolgung</b><small>Als Admin kannst du den täglichen Fortschritt der Mitglieder im Detail sehen. Mitglieder sehen dies nicht.</small></div><i class="tg"></i></div>
         <span class="bt blk lg" data-k="cbtn"><span>Kreis gründen</span></span>
@@ -1406,14 +1405,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="sec">Gemeinsam lesen</b><small class="t2">Vollendet einen Text gemeinsam</small>
         <div class="grid2">
           <span class="tile" data-k="wq"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg><b>Koran</b><small>Chatma oder Seitenziel</small></span>
-          <span class="tile skel" aria-hidden="true"><i></i><i></i></span>
+          <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-shield"/></svg><b>Dschauschan</b><small>Regelmäßige Lesung</small></span>
           <span class="tile" data-k="wz"><svg class="ic" aria-hidden="true"><use href="#r-beads"/></svg><b>Dhikr</b><small>Anzahl-Ziel</small></span>
           <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-bookClosed"/></svg><b>Buch</b><small>Seitenziel-Tracking</small></span>
         </div>
         <b class="sec">Gemeinsame Praxis</b><small class="t2">Jede Person setzt ihre eigene Praxis fort</small>
-        <div class="grid2"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-moon"/></svg><b>Gebet</b><small>Gewählte Gebete</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-cap"/></svg><b>Auswendiglernen und Wiederholen</b><small>Deine eigene Arbeit</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-open"/></svg><b>Surenlesen</b><small>Al-Mulk, Al-Kahf, Ya-Sin</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><b>Gemeinsames Bittgebet</b><small>Dasselbe lesen</small></span></div>
+        <div class="grid2"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-moon"/></svg><b>Gebet</b><small>Gewählte Gebete</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-cap"/></svg><b>Auswendiglernen und Wiederholen</b><small>Deine eigene Arbeit</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-open"/></svg><b>Suren lesen</b><small>Al-Mulk, Al-Kahf, Yasin</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><b>Gemeinsames Bittgebet</b><small>Dasselbe lesen</small></span></div>
       </div></section><section class="vw" data-v="w2" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Zurück</span></span><small>Schritt <bdi dir="ltr">2 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
-        <b class="t1">Wie soll das Koran-Ziel sein?</b><small class="t2">Wähle Dschuz-Chatma, Seitenziel oder freies Lesen.</small>
+        <b class="t1">Welches Koran-Ziel möchtest du?</b><small class="t2">Wähle Dschuz-Chatma, Seitenziel oder freies Lesen.</small>
         <div class="opt on"><b>Dschuz-Chatma</b><small>30 Dschuz aufteilen, gemeinsam die Chatma abschließen</small>
           <div class="sub"><small class="cap">Dschuz-Bereich</small><div class="chps"><span class="chp on" data-k="full"><b>Volle Chatma</b><small>1–30 Dschuz</small></span><span class="chp"><b>Benutzerdefinierter Bereich</b><small>Bestimmte Dschuz</small></span></div></div></div>
         <div class="opt"><b>Seitenziel</b><small>Sure, Seitenbereich oder voller Mushaf</small></div>
@@ -1438,7 +1437,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       </div></section><section class="vw" data-v="w5" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Zurück</span></span><small>Schritt <bdi dir="ltr">5 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">Aufgabe benennen und prüfen</b><small class="t2">Gib einen kurzen Titel; prüfe die Vorschau.</small>
         <b class="lb">Name der Aufgabe</b>
-        <span class="in " data-k="tname"><span class="ph">z.B.: Ramadan-Chatma</span><span class="tx"></span><i class="cr"></i></span>
+        <span class="in " data-k="tname"><span class="ph">z. B.: Ramadan-Chatma</span><span class="tx"></span><i class="cr"></i></span>
         <b class="lb">Vorschau: Wer startet mit welcher Einheit?</b>
         <div class="cd list"><div class="li"><span>Omar</span><b>Dschuz 1</b></div><div class="li"><span>Aischa</span><b>Dschuz 2</b></div><div class="li"><span>Yusuf</span><b>Dschuz 3</b></div><div class="li"><span>Maryam</span><b>Dschuz 4</b></div><div class="li"><span>Bilal</span><b>Dschuz 5</b></div></div>
         <div class="cd row tgl"><div><b>Automatisch zur nächsten Runde</b><small>An: Wenn die Zeit der Runde abgelaufen ist, startet die nächste automatisch. Aus: Du startest die nächste selbst.</small></div><i class="tg on"></i></div>
@@ -1447,7 +1446,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       </div></section><section class="vw" data-v="ct" data-in="fade"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Meine Familie</b><small>Gegründet 5. Okt. 2026 • 5 Mitglieder</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-leaf"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-personAdd"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-dots"/></svg></span></span></div>
       <div class="pg">
         <div class="seg2"><span class="on">Lesungen</span><span>Mitglieder (5)</span></div>
-        <div class="cd task-row new" data-k="taskRow"><span class="tri"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg></span><div><small class="cap">KUR'AN-LESUNG</small><b>Familien-Chatma</b><small>30 Dschuz</small></div><span class="act">Aktiv</span></div>
+        <div class="cd task-row new" data-k="taskRow"><span class="tri"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg></span><div><small class="cap">KORANLESUNG</small><b>Familien-Chatma</b><small>30 Dschuz</small></div><span class="act">Aktiv</span></div>
       </div><span class="fab"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg></span></section><div class="ov" data-v="n" data-in="pop"><i class="scrim"></i><div class="card-c"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#r-person"/></svg></span><b class="t1 c">Wie heißt du?</b><small class="t2 c">Dein Kreis sieht dich unter diesem Namen. Keine E-Mail nötig.</small>
         <span class="in c" data-k="name"><span class="ph">Dein Name</span><span class="tx"></span><i class="cr"></i></span><span class="bt blk dis" data-k="nameOk"><span>Weiter</span></span><small class="mu c">Abbrechen</small></div></div><div class="ov" data-v="ok" data-in="pop"><i class="scrim"></i><div class="card-c"><span class="okring"><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg></span><b class="t1 c">Erfolg</b><small class="t2 c">Aufgabe gestartet</small>
         <div class="row2"><span class="bt gh"><span>OK</span></span><span class="bt " data-k="goTask"><span>Zur Aufgabenseite</span></span></div></div></div></div><i class="fg" aria-hidden="true"></i></div></div>
@@ -1492,13 +1491,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <b class="t1 c">Kreise für gemeinsame Andacht</b>
           <ul class="feat"><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>Lade Familie und Freunde per Einladungslink ein</li><li><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg>Verfolgt den Fortschritt eures Kreises gemeinsam</li></ul>
           <span class="bt blk" data-k="create"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg><span>Kreis gründen</span></span>
+          <span class="bt blk ol"><span>Einmaligen Kreis gründen</span></span>
           <span class="bt blk ol"><span>Mit Einladungscode beitreten</span></span>
         </div>
       </div><nav class="tab"><span class="ti" data-k="tab-read"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg><small>Lesen</small></span><span class="ti on" data-k="tab-circles"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg><small>Kreise</small></span><span class="ti" data-k="tab-home"><svg class="ic" aria-hidden="true"><use href="#r-home"/></svg><small>Start</small></span><span class="ti" data-k="tab-prayer"><svg class="ic" aria-hidden="true"><use href="#r-mosque"/></svg><small>Gebet</small></span><span class="ti" data-k="tab-profile"><svg class="ic" aria-hidden="true"><use href="#r-person"/></svg><small>Profil</small></span></nav></section><section class="vw" data-v="f" data-in="push"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Neuen Kreis erstellen</b></div><span class="hr"></span></div><div class="pg">
         <div class="big-ic"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg></div>
         <b class="lb">Name des Kreises</b>
-        <span class="in " data-k="cname"><span class="ph">z.B. Meine Familie, Freitagsfreunde, Moscheegemeinde...</span><span class="tx"></span><i class="cr"></i></span>
-        <b class="lb">Beschreibung (Optional)</b>
+        <span class="in " data-k="cname"><span class="ph">z. B. Meine Familie, Freitagsfreunde, Moscheegemeinde...</span><span class="tx"></span><i class="cr"></i></span>
+        <b class="lb">Beschreibung (optional)</b>
         <span class="in ta"><span class="ph">Was ist der Zweck dieses Kreises?</span><span class="tx"></span><i class="cr"></i></span>
         <div class="cd row tgl"><svg class="ic" aria-hidden="true"><use href="#r-eye"/></svg><div><b>Detaillierte Fortschrittsverfolgung</b><small>Als Admin kannst du den täglichen Fortschritt der Mitglieder im Detail sehen. Mitglieder sehen dies nicht.</small></div><i class="tg"></i></div>
         <span class="bt blk lg" data-k="cbtn"><span>Kreis gründen</span></span>
@@ -1520,8 +1520,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <div class="mp-f"><div class="mp-s" role="img" aria-label="Neuen Kreis erstellen › Kreis gründen"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="f"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Neuen Kreis erstellen</b></div><span class="hr"></span></div><div class="pg">
         <div class="big-ic"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg></div>
         <b class="lb">Name des Kreises</b>
-        <span class="in " data-k="cname"><span class="ph">z.B. Meine Familie, Freitagsfreunde, Moscheegemeinde...</span><span class="tx"></span><i class="cr"></i></span>
-        <b class="lb">Beschreibung (Optional)</b>
+        <span class="in " data-k="cname"><span class="ph">z. B. Meine Familie, Freitagsfreunde, Moscheegemeinde...</span><span class="tx"></span><i class="cr"></i></span>
+        <b class="lb">Beschreibung (optional)</b>
         <span class="in ta"><span class="ph">Was ist der Zweck dieses Kreises?</span><span class="tx"></span><i class="cr"></i></span>
         <div class="cd row tgl"><svg class="ic" aria-hidden="true"><use href="#r-eye"/></svg><div><b>Detaillierte Fortschrittsverfolgung</b><small>Als Admin kannst du den täglichen Fortschritt der Mitglieder im Detail sehen. Mitglieder sehen dies nicht.</small></div><i class="tg"></i></div>
         <span class="bt blk lg" data-k="cbtn"><span>Kreis gründen</span></span>
@@ -1533,7 +1533,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <div class="wst"><span class="wn"><bdi dir="ltr">1</bdi></span><div><b>Lade deine Liebsten ein</b><small>Aufgaben werden beim Erstellen unter den Mitgliedern im Kreis verteilt. Lade also zuerst alle ein.</small><span class="bt sm pill" data-k="shareInv"><svg class="ic" aria-hidden="true"><use href="#r-share"/></svg><span>Einladungslink teilen</span></span></div></div>
           <div class="wst"><span class="wn"><bdi dir="ltr">2</bdi></span><div><b>Erstelle die erste Aufgabe</b><span class="bt sm pill ol" data-k="createTask"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg><span>Aufgabe erstellen</span></span></div></div>
         </div>
-      </div><span class="fab" data-k="fab"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg></span></section><div class="ov" data-v="s" data-in="sheet"><i class="scrim"></i><div class="sheet"><i class="grab"></i><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#r-shield"/></svg></span><b class="t1 c">Sichere deinen Kreis</b><small class="t2 c clamp">Du bist der Verwalter dieses Kreises. Ohne verknüpftes Konto leben dein Kreis und dein Fortschritt nur auf diesem Telefon. Bei einem Gerätewechsel sind sie nicht wiederherstellbar.</small>
+      </div><span class="fab" data-k="fab"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg></span></section><div class="ov" data-v="s" data-in="sheet"><i class="scrim"></i><div class="sheet"><i class="grab"></i><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#r-shield"/></svg></span><b class="t1 c">Sichere deinen Kreis</b><small class="t2 c clamp">Du bist der Verwalter dieses Kreises. Ohne verknüpftes Konto sind dein Kreis und dein Fortschritt nur auf diesem Telefon gespeichert. Bei einem Gerätewechsel sind sie nicht wiederherstellbar.</small>
         <span class="bt blk ink"><svg class="ic" aria-hidden="true"><use href="#r-apple"/></svg><span>Mit Apple sichern</span></span><span class="bt blk ol"><svg class="ic" aria-hidden="true"><use href="#r-google"/></svg><span>Mit Google sichern</span></span>
         <small class="gr c">Mit E-Mail verknüpfen ›</small><small class="mu c" data-k="later">Später</small></div></div></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
@@ -1567,13 +1567,13 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bead">4</span>
         <div class="gs-text">
           <h3>Wenn du willst: per Code oder QR-Code einladen</h3>
-          <p>Oben rechts im Kreis siehst du drei Symbole. Tippst du auf das mittlere, die Person mit dem Pluszeichen, öffnet sich das Fenster <span class="kbw"><span class="kb tx">In Kreis einladen</span>:</span> ein kurzer Code aus sechs Zeichen, der Einladungslink und ein QR-Code. Den Code kannst du am Telefon durchsagen, den QR-Code in der Moschee auf einer Leinwand zeigen.</p><p>Wer die App noch nicht hat, lädt sie über die Seite, die sich beim Antippen des Links öffnet. Danach tippt er im Tab <span class="kb">Kreise</span> auf <span class="kb ol uzun">Mit Einladungscode beitreten</span>, fügt den Einladungslink oder den Code ein und tritt bei. Mehr dazu: <a href="/de/anleitungen/kreis-beitreten/">Einem Kreis per Einladung beitreten</a>.</p>
+          <p>Oben rechts im Kreis siehst du drei Symbole. Tippst du auf das mittlere, die Person mit dem Pluszeichen, öffnet sich das Fenster <span class="kb tx uzun">In den Kreis einladen</span>: ein kurzer Code aus sechs Zeichen, der Einladungslink und ein QR-Code. Den Code kannst du am Telefon durchsagen, den QR-Code in der Moschee auf einer Leinwand zeigen.</p><p>Wer die App noch nicht hat, lädt sie über die Seite, die sich beim Antippen des Links öffnet. Danach tippt er im Tab <span class="kb">Kreise</span> auf <span class="kb ol uzun">Mit Einladungscode beitreten</span>, fügt den Einladungslink oder den Code ein und tritt bei. Mehr dazu: <a href="/de/anleitungen/kreis-beitreten/">Einem Kreis per Einladung beitreten</a>.</p>
           
           
           
         </div>
         <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,800],[&quot;tap&quot;,&quot;invite&quot;],[&quot;ov&quot;,&quot;iv&quot;],[&quot;w&quot;,2600],[&quot;tap&quot;,&quot;invShare&quot;],[&quot;w&quot;,900],[&quot;cl&quot;,&quot;iv&quot;],[&quot;w&quot;,900]]' data-still="1" data-hint="invite">
-      <div class="mp-f"><div class="mp-s" role="img" aria-label="In Kreis einladen: Kurzer Code, Einladungslink, QR-Code"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="r"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Meine Familie</b><small>Gegründet 5. Okt. 2026 • 1 Mitglied</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-leaf"/></svg></span><span class="hi" data-k="invite"><svg class="ic" aria-hidden="true"><use href="#r-personAdd"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-dots"/></svg></span></span></div>
+      <div class="mp-f"><div class="mp-s" role="img" aria-label="In den Kreis einladen: Kurzer Code, Einladungslink, QR-Code"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="r"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Meine Familie</b><small>Gegründet 5. Okt. 2026 • 1 Mitglied</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-leaf"/></svg></span><span class="hi" data-k="invite"><svg class="ic" aria-hidden="true"><use href="#r-personAdd"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-dots"/></svg></span></span></div>
       <div class="pg">
         <div class="seg2"><span class="on">Lesungen</span><span>Mitglieder (1)</span></div>
         <div class="cd wel">
@@ -1581,7 +1581,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <div class="wst"><span class="wn"><bdi dir="ltr">1</bdi></span><div><b>Lade deine Liebsten ein</b><small>Aufgaben werden beim Erstellen unter den Mitgliedern im Kreis verteilt. Lade also zuerst alle ein.</small><span class="bt sm pill" data-k="shareInv"><svg class="ic" aria-hidden="true"><use href="#r-share"/></svg><span>Einladungslink teilen</span></span></div></div>
           <div class="wst"><span class="wn"><bdi dir="ltr">2</bdi></span><div><b>Erstelle die erste Aufgabe</b><span class="bt sm pill ol" data-k="createTask"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg><span>Aufgabe erstellen</span></span></div></div>
         </div>
-      </div><span class="fab" data-k="fab"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg></span></section><div class="ov" data-v="iv" data-in="sheet"><i class="scrim"></i><div class="sheet tall"><div class="row sp ih"><b>In Kreis einladen</b><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><b class="c t1">Meine Familie</b>
+      </div><span class="fab" data-k="fab"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg></span></section><div class="ov" data-v="iv" data-in="sheet"><i class="scrim"></i><div class="sheet tall"><div class="row sp ih"><b>In den Kreis einladen</b><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><b class="c t1">Meine Familie</b>
         <div class="cd iv"><small class="cap">Kurzer Code</small><b class="code">T4X6RC</b><small>Du kannst mündlich oder schriftlich teilen</small><span class="bt blk sm"><svg class="ic" aria-hidden="true"><use href="#r-copy"/></svg><span>Kopieren</span></span></div>
         <div class="cd iv"><small class="cap">Einladungslink</small><b class="url">manevihalka.app/join.html?code=T4X6RC</b><div class="row2"><span class="bt sm"><svg class="ic" aria-hidden="true"><use href="#r-copy"/></svg><span>Kopieren</span></span><span class="bt sm" data-k="invShare"><svg class="ic" aria-hidden="true"><use href="#r-shareSocial"/></svg><span>Teilen</span></span></div></div>
         <div class="cd iv"><small class="cap c">QR-Code</small><span class="qr" aria-hidden="true"></span></div></div></div></div><i class="fg" aria-hidden="true"></i></div></div>
@@ -1620,14 +1620,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="sec">Gemeinsam lesen</b><small class="t2">Vollendet einen Text gemeinsam</small>
         <div class="grid2">
           <span class="tile" data-k="wq"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg><b>Koran</b><small>Chatma oder Seitenziel</small></span>
-          <span class="tile skel" aria-hidden="true"><i></i><i></i></span>
+          <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-shield"/></svg><b>Dschauschan</b><small>Regelmäßige Lesung</small></span>
           <span class="tile" data-k="wz"><svg class="ic" aria-hidden="true"><use href="#r-beads"/></svg><b>Dhikr</b><small>Anzahl-Ziel</small></span>
           <span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-bookClosed"/></svg><b>Buch</b><small>Seitenziel-Tracking</small></span>
         </div>
         <b class="sec">Gemeinsame Praxis</b><small class="t2">Jede Person setzt ihre eigene Praxis fort</small>
-        <div class="grid2"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-moon"/></svg><b>Gebet</b><small>Gewählte Gebete</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-cap"/></svg><b>Auswendiglernen und Wiederholen</b><small>Deine eigene Arbeit</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-open"/></svg><b>Surenlesen</b><small>Al-Mulk, Al-Kahf, Ya-Sin</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><b>Gemeinsames Bittgebet</b><small>Dasselbe lesen</small></span></div>
+        <div class="grid2"><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-moon"/></svg><b>Gebet</b><small>Gewählte Gebete</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-cap"/></svg><b>Auswendiglernen und Wiederholen</b><small>Deine eigene Arbeit</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-open"/></svg><b>Suren lesen</b><small>Al-Mulk, Al-Kahf, Yasin</small></span><span class="tile"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><b>Gemeinsames Bittgebet</b><small>Dasselbe lesen</small></span></div>
       </div></section><section class="vw" data-v="w2" data-in="push"><div class="wdots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Zurück</span></span><small>Schritt <bdi dir="ltr">2 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
-        <b class="t1">Wie soll das Koran-Ziel sein?</b><small class="t2">Wähle Dschuz-Chatma, Seitenziel oder freies Lesen.</small>
+        <b class="t1">Welches Koran-Ziel möchtest du?</b><small class="t2">Wähle Dschuz-Chatma, Seitenziel oder freies Lesen.</small>
         <div class="opt on"><b>Dschuz-Chatma</b><small>30 Dschuz aufteilen, gemeinsam die Chatma abschließen</small>
           <div class="sub"><small class="cap">Dschuz-Bereich</small><div class="chps"><span class="chp on" data-k="full"><b>Volle Chatma</b><small>1–30 Dschuz</small></span><span class="chp"><b>Benutzerdefinierter Bereich</b><small>Bestimmte Dschuz</small></span></div></div></div>
         <div class="opt"><b>Seitenziel</b><small>Sure, Seitenbereich oder voller Mushaf</small></div>
@@ -1648,7 +1648,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         </div>
         <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,1400],[&quot;tap&quot;,&quot;next2&quot;],[&quot;go&quot;,&quot;w3&quot;],[&quot;w&quot;,1700],[&quot;tap&quot;,&quot;next3&quot;],[&quot;go&quot;,&quot;w4&quot;],[&quot;w&quot;,1700],[&quot;tap&quot;,&quot;next4&quot;],[&quot;w&quot;,800]]' data-still="0" data-hint="next2">
       <div class="mp-f"><div class="mp-s" role="img" aria-label="Dschuz-Chatma · Volle Chatma › Woche › 1"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="w2"><div class="wdots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Zurück</span></span><small>Schritt <bdi dir="ltr">2 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
-        <b class="t1">Wie soll das Koran-Ziel sein?</b><small class="t2">Wähle Dschuz-Chatma, Seitenziel oder freies Lesen.</small>
+        <b class="t1">Welches Koran-Ziel möchtest du?</b><small class="t2">Wähle Dschuz-Chatma, Seitenziel oder freies Lesen.</small>
         <div class="opt on"><b>Dschuz-Chatma</b><small>30 Dschuz aufteilen, gemeinsam die Chatma abschließen</small>
           <div class="sub"><small class="cap">Dschuz-Bereich</small><div class="chps"><span class="chp on" data-k="full"><b>Volle Chatma</b><small>1–30 Dschuz</small></span><span class="chp"><b>Benutzerdefinierter Bereich</b><small>Bestimmte Dschuz</small></span></div></div></div>
         <div class="opt"><b>Seitenziel</b><small>Sure, Seitenbereich oder voller Mushaf</small></div>
@@ -1687,7 +1687,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <div class="mp-f"><div class="mp-s" role="img" aria-label="Name der Aufgabe › Aufgabe starten › Aufgabe gestartet"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="w5"><div class="wdots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Zurück</span></span><small>Schritt <bdi dir="ltr">5 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
         <b class="t1">Aufgabe benennen und prüfen</b><small class="t2">Gib einen kurzen Titel; prüfe die Vorschau.</small>
         <b class="lb">Name der Aufgabe</b>
-        <span class="in " data-k="tname"><span class="ph">z.B.: Ramadan-Chatma</span><span class="tx"></span><i class="cr"></i></span>
+        <span class="in " data-k="tname"><span class="ph">z. B.: Ramadan-Chatma</span><span class="tx"></span><i class="cr"></i></span>
         <b class="lb">Vorschau: Wer startet mit welcher Einheit?</b>
         <div class="cd list"><div class="li"><span>Omar</span><b>Dschuz 1</b></div><div class="li"><span>Aischa</span><b>Dschuz 2</b></div><div class="li"><span>Yusuf</span><b>Dschuz 3</b></div><div class="li"><span>Maryam</span><b>Dschuz 4</b></div><div class="li"><span>Bilal</span><b>Dschuz 5</b></div></div>
         <div class="cd row tgl"><div><b>Automatisch zur nächsten Runde</b><small>An: Wenn die Zeit der Runde abgelaufen ist, startet die nächste automatisch. Aus: Du startest die nächste selbst.</small></div><i class="tg on"></i></div>
@@ -1696,7 +1696,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       </div></section><section class="vw" data-v="ct" data-in="fade"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Meine Familie</b><small>Gegründet 5. Okt. 2026 • 5 Mitglieder</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-leaf"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-personAdd"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-dots"/></svg></span></span></div>
       <div class="pg">
         <div class="seg2"><span class="on">Lesungen</span><span>Mitglieder (5)</span></div>
-        <div class="cd task-row new" data-k="taskRow"><span class="tri"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg></span><div><small class="cap">KUR'AN-LESUNG</small><b>Familien-Chatma</b><small>30 Dschuz</small></div><span class="act">Aktiv</span></div>
+        <div class="cd task-row new" data-k="taskRow"><span class="tri"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg></span><div><small class="cap">KORANLESUNG</small><b>Familien-Chatma</b><small>30 Dschuz</small></div><span class="act">Aktiv</span></div>
       </div><span class="fab"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg></span></section><div class="ov" data-v="ok" data-in="pop"><i class="scrim"></i><div class="card-c"><span class="okring"><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg></span><b class="t1 c">Erfolg</b><small class="t2 c">Aufgabe gestartet</small>
         <div class="row2"><span class="bt gh"><span>OK</span></span><span class="bt " data-k="goTask"><span>Zur Aufgabenseite</span></span></div></div></div></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
@@ -1738,7 +1738,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="bt sm pill glass" data-k="read"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg><span>Lesen beginnen</span></span>
           <div class="chunks"><small>Wöchentliche Ziele</small><i class="bar w"><i style="width:0"></i></i><small>0/4</small></div>
           <span class="bt blk wht" data-k="complete"><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg><span>FERTIG</span></span>
-          <div class="row2"><span class="bt sm ol w" data-k="askHelp"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><span>Hilfe anfordern</span></span><span class="bt sm ol w" data-k="excuse"><svg class="ic" aria-hidden="true"><use href="#r-archive"/></svg><span>Entschuldigung</span></span></div>
+          <div class="row2"><span class="bt sm ol w" data-k="askHelp"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><span>Hilfe anfordern</span></span><span class="bt sm ol w" data-k="excuse"><svg class="ic" aria-hidden="true"><use href="#r-archive"/></svg><span>Anteil abgeben</span></span></div>
         </div>
       </div></section></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
@@ -1764,7 +1764,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="bt sm pill glass" data-k="read"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg><span>Lesen beginnen</span></span>
           <div class="chunks"><small>Wöchentliche Ziele</small><i class="bar w"><i style="width:0"></i></i><small>0/4</small></div>
           <span class="bt blk wht" data-k="complete"><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg><span>FERTIG</span></span>
-          <div class="row2"><span class="bt sm ol w" data-k="askHelp"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><span>Hilfe anfordern</span></span><span class="bt sm ol w" data-k="excuse"><svg class="ic" aria-hidden="true"><use href="#r-archive"/></svg><span>Entschuldigung</span></span></div>
+          <div class="row2"><span class="bt sm ol w" data-k="askHelp"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><span>Hilfe anfordern</span></span><span class="bt sm ol w" data-k="excuse"><svg class="ic" aria-hidden="true"><use href="#r-archive"/></svg><span>Anteil abgeben</span></span></div>
         </div>
       </div></section><section class="vw" data-v="rd" data-in="push"><div class="rd-h"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><b>Koran</b><span class="hr"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg></span></div>
       <i class="rd-p"><i data-k="rprog"></i></i>
@@ -1794,7 +1794,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <p>Nicht jede Woche läuft gleich. Wer seinen Teil nicht schafft, hält den Kreis nicht auf; die anderen helfen.</p>
       </div></header>
       <div class="duo"><article><h3>Um Hilfe bitten</h3><p>Tippe unter der Aufgabenkarte auf <span class="kbw"><span class="kb ol">Hilfe anfordern</span>.</span> Gib ein, wie viele Seiten du selbst liest, und tippe im Fenster auf <span class="kbw"><span class="kb">Hilfe anfordern</span>.</span> Die übrigen Seiten sehen die anderen im Kreis in der Liste <span class="kbw"><span class="kb tx">Warten auf Hilfe</span>.</span></p><figure class="mp" data-tl='[[&quot;w&quot;,900],[&quot;tap&quot;,&quot;askHelp&quot;],[&quot;ov&quot;,&quot;h&quot;],[&quot;w&quot;,1300],[&quot;tap&quot;,&quot;askOk&quot;],[&quot;cl&quot;,&quot;h&quot;],[&quot;w&quot;,1000]]' data-still="0" data-hint="askHelp">
-      <div class="mp-f"><div class="mp-s" role="img" aria-label="Hilfe anfordern › Wie viele Seiten machst du selbst? (Gesamt: 20)"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="t"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Familien-Chatma</b><small>1. Runde • 7 Tage übrig</small><small class="s2">0 / 30 Dschuz • 5 Mitglieder</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg></span></span></div>
+      <div class="mp-f"><div class="mp-s" role="img" aria-label="Hilfe anfordern › Wie viele Seiten liest du selbst? (Gesamt: 20)"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="t"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Familien-Chatma</b><small>1. Runde • 7 Tage übrig</small><small class="s2">0 / 30 Dschuz • 5 Mitglieder</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-info"/></svg></span></span></div>
       <div class="pg sc" data-k="tsc">
         <div class="cd prog"><div class="row sp"><b>Kreis-Fortschritt</b><small>0 / 30 Dschuz</small></div><i class="bar"><i style="width:4%"></i></i></div>
         <div class="seg"><span class="on"><svg class="ic" aria-hidden="true"><use href="#r-flag"/></svg>Meine Aufgabe</span><span><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg>Kreis</span></div>
@@ -1804,9 +1804,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="bt sm pill glass" data-k="read"><svg class="ic" aria-hidden="true"><use href="#r-book"/></svg><span>Lesen beginnen</span></span>
           <div class="chunks"><small>Wöchentliche Ziele</small><i class="bar w"><i style="width:0"></i></i><small>0/4</small></div>
           <span class="bt blk wht" data-k="complete"><svg class="ic" aria-hidden="true"><use href="#r-check"/></svg><span>FERTIG</span></span>
-          <div class="row2"><span class="bt sm ol w" data-k="askHelp"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><span>Hilfe anfordern</span></span><span class="bt sm ol w" data-k="excuse"><svg class="ic" aria-hidden="true"><use href="#r-archive"/></svg><span>Entschuldigung</span></span></div>
+          <div class="row2"><span class="bt sm ol w" data-k="askHelp"><svg class="ic" aria-hidden="true"><use href="#r-hand"/></svg><span>Hilfe anfordern</span></span><span class="bt sm ol w" data-k="excuse"><svg class="ic" aria-hidden="true"><use href="#r-archive"/></svg><span>Anteil abgeben</span></span></div>
         </div>
-      </div></section><div class="ov" data-v="h" data-in="pop"><i class="scrim"></i><div class="card-c"><b class="t1 c">Hilfe anfordern</b><small class="t2 c">Wie viele Seiten machst du selbst? (Gesamt: 20)</small>
+      </div></section><div class="ov" data-v="h" data-in="pop"><i class="scrim"></i><div class="card-c"><b class="t1 c">Hilfe anfordern</b><small class="t2 c">Wie viele Seiten liest du selbst? (Gesamt: 20)</small>
         <span class="nb wide c" data-k="selfN"><bdi dir="ltr">10</bdi></span><div class="row2"><span class="bt gh"><span>Abbrechen</span></span><span class="bt " data-k="askOk"><span>Hilfe anfordern</span></span></div></div></div></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
     </figure></article><article><h3>Helfen</h3><p>Im Tab <span class="kb tx">Kreis</span> der Aufgabe siehst du, wer auf Hilfe wartet. Tippe auf <span class="kb">Hilfe</span> und wähle im Fenster, wie viel du übernimmst. Die Seiten, die du übernimmst, landen auf deinem Bildschirm.</p><figure class="mp" data-tl='[[&quot;w&quot;,1200],[&quot;tap&quot;,&quot;helpBtn&quot;],[&quot;ov&quot;,&quot;hc&quot;],[&quot;w&quot;,1300],[&quot;tap&quot;,&quot;hcAll&quot;],[&quot;cl&quot;,&quot;hc&quot;],[&quot;w&quot;,1000]]' data-still="0" data-hint="helpBtn">
@@ -1821,7 +1821,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bt blk ol"><span>4 Seiten</span></span><span class="bt blk ol"><span>8 Seiten</span></span><span class="bt blk ol"><span>5 Seiten (Hälfte)</span></span><span class="bt blk ol" data-k="hcAll"><span>Alles (10)</span></span><span class="bt blk gh"><span>Abbrechen</span></span></div></div></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
     </figure></article></div>
-      <p class="tip" style="margin-top:20px;max-width:48em"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>Musst du deinen Teil ganz abgeben, kannst du ihn mit <span class="kb ol">Entschuldigung</span> in den Pool legen; wer möchte, übernimmt ihn von dort. Dieser Schritt lässt sich nicht rückgängig machen.</span></p>
+      <p class="tip" style="margin-top:20px;max-width:48em"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>Musst du deinen Teil ganz abgeben, kannst du ihn mit <span class="kb ol">Anteil abgeben</span> in den Pool legen; wer möchte, übernimmt ihn von dort. Dieser Schritt lässt sich nicht rückgängig machen.</span></p>
     </section>
     <section class="part" id="ekranlar">
       <header class="part-head" style="grid-template-columns:1fr"><div><h2>So sieht es in der App aus</h2><p>Diese Bilder stammen direkt aus der App.</p></div></header>

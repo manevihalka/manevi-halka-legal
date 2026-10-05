@@ -1,8 +1,7 @@
 // P2 · One-time circle: group khatam, dhikr and du'a (EN). Source: tek.tr.mjs. In the app: One-Time Circle.
 // First version was "Khatam for someone who passed away"; on 5 Oct 2026 it became a general guide for any occasion,
 // and the deceased example stays as one section.
-// Button names come from the app through [[key]]. The one-time circle preset chips are Turkish in every
-// language in the app, so preset names are written here as plain text, not as chips.
+// Button names come from the app through [[key]]; since 2.0 the preset chips are in the user's language too.
 // Religious language: no reward promises, no rulings of our own, no specific memorial days.
 export default {
   title: "How to organise a group khatam: One-Time Circle guide",
@@ -39,7 +38,7 @@ export default {
             "Open the app and tap the [[tabs.circles]] tab in the bar at the bottom. Tap the green **+** button at the top right.",
             "The [[tx:dashboard.addCircle]] window slides down from the top. Tap the [[tx:event.createMenuTitle]] card in the middle.",
           ],
-          ipucu: "If there is no **+** button at the top right, you have not entered your name in the app yet. Tap [[circlesTab.anonCreate]] first and type your name. On the [[tx:createGroup.title]] screen that opens, go back without filling anything in; the **+** button now appears.",
+          ipucu: "If there is no **+** button at the top right, you have not entered your name in the app yet. Tap [[ol:circlesTab.anonCreateEvent]] in the middle instead and type your name; the one-time circle form opens straight away and you carry on from the next step.",
           sahne: "vf-ac",
         },
         {
@@ -110,7 +109,7 @@ export default {
         {
           baslik: "Choose the dhikr and the target count",
           metin: [
-            "On the [[tx:event.zikirGoalTitle]] screen, tap one of the chips under the [[tx:event.addFromPresets]] heading, for example the one for salawat. The list also has the declaration of tawhid, istighfar, Subhanallah and Alhamdulillah. You can pick one of the Names of Allah with the [[tx:event.esmaulHusna]] chip, or type your own dhikr in the [[tx:event.customZikir]] box.",
+            "On the [[tx:event.zikirGoalTitle]] screen, tap one of the chips under the [[tx:event.addFromPresets]] heading, for example [[tx:globalDhikr.salavat.name]]. The list also has [[tx:wizard.zikirPresetKelime]], [[tx:wizard.zikirPresetIstigfar]], [[tx:wizard.zikirPresetSubhanallah]] and [[tx:wizard.zikirPresetElhamdulillah]]. You can pick one of the Names of Allah with the [[tx:event.esmaulHusna]] chip, or type your own dhikr in the [[tx:event.customZikir]] box.",
             "On the card of the dhikr you added, type the number in the [[tx:event.target]] box. Next to it there are two options:",
           ],
           liste: [
@@ -124,7 +123,7 @@ export default {
         {
           baslik: "For a du'a or surah recitation",
           metin: [
-            "If you chose [[tx:event.typeDua]], the ready list on the [[tx:event.duaGoalTitle]] screen has Surah al-Fatiha, Ayat al-Kursi, Surah Yasin, Surah al-Ikhlas, Surah al-Mulk and Surah al-Fath. To add a du'a or surah that is not on the list, type it in the [[tx:event.customZikir]] box.",
+            "If you chose [[tx:event.typeDua]], the ready list on the [[tx:event.duaGoalTitle]] screen has [[tx:event.presetFatiha]], [[tx:globalDhikr.ayetelkursi.name]], [[tx:event.presetYasin]], [[tx:event.presetIhlas]], [[tx:event.presetMulk]] and [[tx:event.presetFetih]]. To add a du'a or surah that is not on the list, type it in the [[tx:event.customZikir]] box.",
             "Type the number of recitations in the [[tx:event.target]] box and again choose [[tx:event.modeCollective]] or [[tx:event.modeIndividual]]. You decide how many will be read; for the tradition behind a number, ask a scholar where you live.",
           ],
         },

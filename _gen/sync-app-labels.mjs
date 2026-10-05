@@ -8,9 +8,8 @@
  * _gen/rehber altindaki .mjs dosyalarinda L("anahtar") diye gecen her anahtar.
  * Cikti _gen/rehber/app-labels.json (yalniz kullanilan anahtarlar, 5 dil).
  *
- * Arapca DUZELTMELER: uygulamanin Arapca metninde 5 dizge hatmi "حفظ" (ezber)
- * diye cevirmis. Rehber yanlis terimi yaymasin diye asagidaki AR_DUZELTME
- * kullanilir; uygulama duzeltilince fark kalmaz ve betik bunu soyler.
+ * Arapca DUZELTMELER (AR_DUZELTME): uygulamanin Arapca metni yanlis bir terim tasirsa gecici yama.
+ * 5 Eki 2026'da bos: uygulama kendi metnini duzeltti. Uygulama duzeltilince betik bunu soyler.
  *
  * KULLANIM:
  *   node _gen/sync-app-labels.mjs                 ../SpiritualCircleApp/locales'tan okur
@@ -28,13 +27,9 @@ const DILLER = ["tr", "en", "de", "fr", "ar"];
 const CIKTI = join(KOK, "_gen", "rehber", "app-labels.json");
 const hata = (m) => { console.error("HATA: " + m); process.exit(1); };
 
-const AR_DUZELTME = {
-  "wizard.targetJuz": "ختمة بالأجزاء",
-  "wizard.fullHatim": "ختمة كاملة",
-  "wizard.hatmEquals30": "ختمة كاملة = 30 جزءًا",
-  "wizard.quranTargetHint": "اختر ختمة بالأجزاء أو هدف صفحات أو قراءة حرة.",
-  "group.noReadingsAdminHint": "عندما يبدأ المسؤول حلقة (ختمة، صفحات، إلخ) بـ \"بدء جديد\"، ستظهر هنا.",
-};
+// 5 Eki 2026: uygulama (996e5134) bes dizgeyi de "ختمة" diye duzeltti; tablo bos kaldi. Yeni bir yanlis
+// ceviri cikarsa once uygulamada duzeltilmeli, burasi yalniz gecici yama icindir.
+const AR_DUZELTME = {};
 
 function dosyalar(dir) {
   const out = [];

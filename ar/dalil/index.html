@@ -178,7 +178,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-size: 20px; white-space: nowrap; }
   .brand img { width: 32px; height: 32px; border-radius: 9px; }
   .top nav { display: flex; gap: 4px; margin-inline-start: auto; }
-  .top nav a { text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px; opacity: .8; }
+  .top nav a { text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 8px 12px; border-radius: 999px; opacity: .8; white-space: nowrap; }
+  /* 821-1120 px: dort sayfa baglantisi tek satira sigsin (DE/FR 1024'te ikiye kiriliyordu);
+     dar ucta "Uygulama" saklanir, marka zaten ana sayfaya gider (ana sayfadaki menuSigdir de once onu saklar) */
+  @media (max-width: 1120px) { .top { gap: 14px; } .top nav { gap: 0; } .top nav a { padding: 8px 9px; } }
+  @media (max-width: 1000px) { .top nav a:first-child { display: none; } }
+  @media (max-width: 900px) { .top { gap: 10px; } .top nav a { padding: 8px 7px; font-size: 14px; } }
   .top nav a:hover { opacity: 1; background: var(--mint); }
   .top nav a[aria-current="page"] { opacity: 1; background: var(--mint); }
   .theme-btn { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer; flex: none; overflow: hidden; }
@@ -192,6 +197,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .get { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; white-space: nowrap; flex: none; border-radius: 999px; background: var(--green); color: var(--page); text-decoration: none; font-weight: 700; font-size: 14.5px; }
   .get svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .get .gs { display: none; }
+  @media (max-width: 920px) { .get .gl { display: none; } .get .gs { display: inline; } }
   @media (max-width: 820px) { .top nav { display: none; } .top .lang { margin-inline-start: auto; } .top { gap: 10px; } }
   .lang { position: relative; flex: none; }
   .lang-btn { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
@@ -202,7 +208,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .lang-list a { display: block; padding: 9px 12px; border-radius: 10px; font-size: 14.5px; text-decoration: none; }
   .lang-list a:hover { background: var(--mint); }
   .lang-list a[aria-current="page"] { font-weight: 700; background: var(--mint); }
-  @media (max-width: 480px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
+  @media (max-width: 520px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
     .brand { font-size: 18px; } .get { width: 40px; padding: 0; justify-content: center; } .get .gl, .get .gs { display: none; } .get svg { width: 18px; height: 18px; } }
   /* 320 px telefonda baslik 303 px ediyordu, indirme dugmesi sagdan kesiliyordu */
   @media (max-width: 360px) { .top { gap: 6px; } .brand { font-size: 17px; } .lang-btn, .theme-btn, .get { width: 36px; height: 36px; } }
@@ -601,9 +607,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .mp-s .tile .ic { width: 1.7em; height: 1.7em; color: var(--a-pri); }
   .mp-s .tile b { font-size: .86em; }
   .mp-s .tile small { font-size: .62em; color: var(--a-mut); }
-  .mp-s .tile.skel { border-color: var(--a-line); justify-content: center; gap: .5em; }
-  .mp-s .tile.skel i { display: block; height: .5em; width: 52%; border-radius: .3em; background: var(--a-line); }
-  .mp-s .tile.skel i + i { width: 72%; height: .4em; }
   .mp-s .opt { border: 1px solid var(--a-line); border-radius: .95em; padding: .75em .9em; background: var(--a-card); }
   .mp-s .opt b { display: block; font-size: .9em; }
   .mp-s .opt small { display: block; color: var(--a-mut); font-size: .7em; }
@@ -853,8 +856,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .vf-opt small { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--a-mut); font-size: .66em; margin-top: .1em; }
 .mp-s .vf-opt > .ic { color: var(--a-mut); }
 .mp-s .vf-oi { width: 2.5em; height: 2.5em; border-radius: .75em; background: var(--a-pri); color: var(--a-card); display: grid; place-items: center; flex: none; }
-.mp-s .vf-opt .sk { display: block; height: .42em; width: 88%; border-radius: .3em; background: var(--a-line); margin-top: .45em; }
-.mp-s .vf-opt .sk.s2 { width: 62%; margin-top: .3em; }
 .mp-s .vf-dots { display: flex; justify-content: center; gap: .32em; padding: .55em 0 .1em; }
 .mp-s .vf-dots i { width: .45em; height: .45em; border-radius: 1em; background: var(--a-line); transition: width .3s ease; }
 .mp-s .vf-dots i.on { background: var(--a-pri); }
@@ -870,9 +871,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .vf-type.on { box-shadow: inset 0 0 0 .13em var(--a-pri); border-color: transparent; }
 .mp-s .vf-type.on > .ic:first-child { color: var(--a-pri); }
 .mp-s .vf-type.on .vf-ok { opacity: 1; }
-.mp-s .vf-type.skel > i { display: block; width: 1.75em; height: 1.75em; border-radius: .5em; background: var(--a-line); flex: none; }
-.mp-s .vf-type.skel div i { display: block; height: .5em; width: 45%; border-radius: .3em; background: var(--a-line); }
-.mp-s .vf-type.skel div i + i { width: 78%; height: .4em; margin-top: .4em; }
 .mp-s .vf-rd { display: flex; gap: .6em; align-items: flex-start; background: var(--a-card); border: 1px solid var(--a-line); border-radius: 1em; padding: .65em .8em; transition: box-shadow .25s ease; }
 .mp-s .vf-rd > i { position: relative; width: 1.15em; height: 1.15em; border-radius: 50%; box-shadow: inset 0 0 0 .13em var(--a-tg); flex: none; margin-top: .05em; }
 .mp-s .vf-rd > i::after { content: ""; position: absolute; inset: .3em; border-radius: 50%; background: var(--a-pri); opacity: 0; transition: opacity .2s ease; }
@@ -1314,7 +1312,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <b class="lb">معاينة: من سيبدأ بأي وحدة؟</b>
         <div class="cd list"><div class="li"><span>عمر</span><b>جزء 1</b></div><div class="li"><span>عائشة</span><b>جزء 2</b></div><div class="li"><span>يوسف</span><b>جزء 3</b></div><div class="li"><span>مريم</span><b>جزء 4</b></div><div class="li"><span>بلال</span><b>جزء 5</b></div></div>
         <div class="cd row tgl"><div><b>التقدم التلقائي للجولات</b><small>مفعّل: تبدأ جولة جديدة تلقائيًا عند انتهاء مدة الجولة. معطّل: تبدأ الجولة التالية بنفسك.</small></div><i class="tg on"></i></div>
-        <div class="tz"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><small>تسير الجولات وفق توقيت Riyadh.</small></div>
+        <div class="tz"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><small>تسير الجولات وفق توقيت الرياض.</small></div>
         <span class="bt blk lg dis" data-k="start"><span>ابدأ المهمة</span><svg class="ic fl" aria-hidden="true"><use href="#r-checkCircle"/></svg></span>
       </div></section><section class="vw" data-v="ct" data-in="fade"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>عائلتي</b><small>تأسست 5 أكتوبر 2026 • 5 أعضاء</small></div><span class="hr"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-leaf"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-personAdd"/></svg></span><span class="hi"><svg class="ic" aria-hidden="true"><use href="#r-dots"/></svg></span></span></div>
       <div class="pg">
@@ -1340,8 +1338,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <span class="vf-red"><svg class="ic" aria-hidden="true"><use href="#r-vfTrash"/></svg><span>حذف الحلقة</span></span></div></div></section><section class="vw" data-v="act" data-in="fade"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>ختمة ليلة الرغائب</b></div><span class="hr"><span class="hi" data-k="shareTop"><svg class="ic" aria-hidden="true"><use href="#r-share"/></svg></span></span></div><div class="pg vf-clip"><div class="vf-in sc " data-k="gsc"><div class="cd vf-hero"><span class="vf-edit"><svg class="ic" aria-hidden="true"><use href="#r-edit"/></svg></span><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg>
       <b>ختمة ليلة الرغائب</b><span class="vf-ded"><svg class="ic" aria-hidden="true"><use href="#r-vfRose"/></svg><span>لخير عائلتنا والأمة جمعاء</span></span><span class="vf-badge">جارية</span></div><div class="seg"><span class="on" data-k="tabG"><svg class="ic" aria-hidden="true"><use href="#r-vfCheckbox"/></svg>المهمة</span><span class="" data-k="tabH"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg>الحلقة</span></div><div class="cd vf-prog"><div class="row sp"><b>التقدّم الجماعي</b><b class="vf-pct" data-k="pct">0%</b></div>
         <span class="vf-bar"><i class="d" data-k="pbD" style="width:0.0%"></i><i class="h" data-k="pbH" style="width:0.0%"></i></span>
-        <div class="vf-leg"><span class="d" data-k="lgD">0 صفحة مقروءة</span><span class="mu">·</span><span class="h" data-k="lgH">0 صفحة قيد القراءة</span><span class="mu">·</span><span class="f" data-k="lgF">604 صفحة متاحة</span></div>
-        <span class="vf-cd"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><span data-k="cd">تنتهي خلال 66 يوم 6 س</span></span></div><div class="cd vf-pool"><div class="vf-ph"><b>مجمّع الأجزاء</b><span class="vf-ser" data-k="series"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg>سلسلة جديدة</span></div>
+        <div class="vf-leg"><span class="d" data-k="lgD">0 صفحة مقروءة</span><span class="mu">·</span><span class="h" data-k="lgH">0 صفحة قيد القراءة</span><span class="mu">·</span><span class="f" data-k="lgF">604 صفحات متاحة</span></div>
+        <span class="vf-cd"><svg class="ic" aria-hidden="true"><use href="#r-clock"/></svg><span data-k="cd">تنتهي خلال 66 يومًا 6 س</span></span></div><div class="cd vf-pool"><div class="vf-ph"><b>مجمّع الأجزاء</b><span class="vf-ser" data-k="series"><svg class="ic" aria-hidden="true"><use href="#r-plus"/></svg>سلسلة جديدة</span></div>
         <div class="vf-cg" data-k="cg"><span class="vf-cz" data-k="c1"><b>جزء 1</b><small class="fr">20 صفحة متاحة</small><small class="fl">مكتمل</small><i></i></span><span class="vf-cz" data-k="c2"><b>جزء 2</b><small class="fr">20 صفحة متاحة</small><small class="fl">مكتمل</small><i></i></span><span class="vf-cz" data-k="c3"><b>جزء 3</b><small class="fr">20 صفحة متاحة</small><small class="fl">مكتمل</small><i></i></span><span class="vf-cz" data-k="c4"><b>جزء 4</b><small class="fr">20 صفحة متاحة</small><small class="fl">مكتمل</small><i></i></span><span class="vf-cz" data-k="c5"><b>جزء 5</b><small class="fr">20 صفحة متاحة</small><small class="fl">مكتمل</small><i></i></span><span class="vf-cz" data-k="c6"><b>جزء 6</b><small class="fr">20 صفحة متاحة</small><small class="fl">مكتمل</small><i></i></span></div></div></div></div>
     </section><div class="ov" data-v="cf" data-in="pop"><i class="scrim"></i><div class="card-c"><span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#r-vfPlay"/></svg></span><b class="t1 c">بدء الحلقة</b><small class="t2 c">بعد البدء تُفتح الحلقة ويستطيع الجميع المشاركة. يبقى رابط الدعوة صالحًا، ويمكن لمن يتأخر الانضمام لاحقًا.</small>
       <div class="row2"><span class="bt gh"><span>إلغاء</span></span><span class="bt " data-k="cfOk"><span>ابدأ الآن</span></span></div></div></div></div><i class="fg" aria-hidden="true"></i></div></div>
@@ -1377,9 +1375,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <span class="badge-ic"><svg class="ic" aria-hidden="true"><use href="#r-people"/></svg></span>
       <small class="kt-lbl">دعوة</small>
       <b class="t1 c">عائلتي</b>
-      <small class="t2 c">بالانضمام لهذه الحلقة يمكنك مشاركة المهام.</small>
+      <small class="t2 c">بالانضمام إلى هذه الحلقة يمكنك المشاركة في مهامها.</small>
       <span class="bt blk lg" data-k="join"><svg class="ic" aria-hidden="true"><use href="#r-ktPlusC"/></svg><span>انضم</span></span>
-      <small class="kt-skip">تخطي الآن</small>
+      <small class="kt-skip">تخطَّ الآن</small>
     </div></div></section></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
     </figure></a></li>

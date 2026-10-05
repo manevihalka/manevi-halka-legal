@@ -3,7 +3,7 @@
 // Anleitung für jeden Anlass umgeschrieben, der Verstorbene ist ein Abschnitt darin.
 // Format: Kommentar am Anfang von _gen/build-rehber.mjs. Knopfnamen kommen über [[schlüssel]] aus der App.
 // Religiöse Sprache: kein Lohnversprechen, kein eigenes Urteil, keine bestimmten Gedenktage.
-// Die Vorlagen für Dhikr und Suren heißen in der App in jeder Sprache türkisch; hier deshalb als Klartext.
+// Seit 2.0 heißen die Vorlagen für Dhikr und Suren in der App in jeder Sprache eigen; hier über [[tx:schlüssel]].
 export default {
   title: "Koran gemeinsam lesen: Khatm, Dhikr und Bittgebet planen",
   desc: "Plane eine gemeinsame Khatm, Dhikr oder Salawat für eine gesegnete Nacht, den Ramadan, einen Verstorbenen oder ein Bittgebet. Auch ohne App im Browser.",
@@ -39,7 +39,7 @@ export default {
             "Öffne die App und tippe unten in der Leiste auf den Tab [[tabs.circles]]. Tippe oben rechts auf den grünen Knopf **+**.",
             "Von oben öffnet sich das Fenster [[tx:dashboard.addCircle]]. Tippe auf die mittlere Karte [[tx:event.createMenuTitle]].",
           ],
-          ipucu: "Siehst du oben rechts keinen Knopf **+**, hast du in der App noch keinen Namen eingegeben. Tippe zuerst auf [[circlesTab.anonCreate]] und gib deinen Namen ein. Geh auf dem Bildschirm [[tx:createGroup.title]] zurück, ohne etwas auszufüllen; jetzt ist der Knopf **+** da.",
+          ipucu: "Siehst du oben rechts keinen Knopf **+**, hast du in der App noch keinen Namen eingegeben. Tippe dann auf den mittleren Knopf [[ol:circlesTab.anonCreateEvent]] und gib deinen Namen ein; das Formular für den einmaligen Kreis öffnet sich direkt, und du machst beim nächsten Schritt weiter.",
           sahne: "vf-ac",
         },
         {
@@ -110,7 +110,7 @@ export default {
         {
           baslik: "Wähle den Dhikr und die Zielzahl",
           metin: [
-            "Tippe auf dem Bildschirm [[tx:event.zikirGoalTitle]] unter der Überschrift [[tx:event.addFromPresets]] auf eine der Vorlagen, zum Beispiel Salawat. In der Liste stehen auch Tahlil (La ilaha illallah), Istighfar, Subhanallah und Alhamdulillah. Unter [[tx:event.esmaulHusna]] wählst du einen der schönen Namen Allahs, und im Feld [[tx:event.customZikir]] schreibst du deinen eigenen Dhikr.",
+            "Tippe auf dem Bildschirm [[tx:event.zikirGoalTitle]] unter der Überschrift [[tx:event.addFromPresets]] auf eine der Vorlagen, zum Beispiel [[tx:globalDhikr.salavat.name]]. In der Liste stehen auch [[tx:wizard.zikirPresetKelime]], [[tx:wizard.zikirPresetIstigfar]], [[tx:wizard.zikirPresetSubhanallah]] und [[tx:wizard.zikirPresetElhamdulillah]]. Unter [[tx:event.esmaulHusna]] wählst du einen der schönen Namen Allahs, und im Feld [[tx:event.customZikir]] schreibst du deinen eigenen Dhikr.",
             "Schreib auf der Karte des Dhikr die Zahl in das Feld [[tx:event.target]]. Daneben gibt es zwei Möglichkeiten:",
           ],
           liste: [
@@ -124,7 +124,7 @@ export default {
         {
           baslik: "Für Bittgebete oder Suren",
           metin: [
-            "Hast du [[tx:event.typeDua]] gewählt, stehen auf dem Bildschirm [[tx:event.duaGoalTitle]] in der fertigen Liste die Sure Al-Fatiha, Ayat al-Kursi, die Sure Yasin, die Sure Al-Ikhlas, die Sure Al-Mulk und die Sure Al-Fath. Ein Bittgebet oder eine Sure, die nicht in der Liste steht, fügst du über das Feld [[tx:event.customZikir]] hinzu.",
+            "Hast du [[tx:event.typeDua]] gewählt, stehen auf dem Bildschirm [[tx:event.duaGoalTitle]] in der fertigen Liste [[tx:event.presetFatiha]], [[tx:globalDhikr.ayetelkursi.name]], [[tx:event.presetYasin]], [[tx:event.presetIhlas]], [[tx:event.presetMulk]] und [[tx:event.presetFetih]]. Ein Bittgebet oder eine Sure, die nicht in der Liste steht, fügst du über das Feld [[tx:event.customZikir]] hinzu.",
             "Schreib in das Feld [[tx:event.target]], wie oft gelesen wird, und wähle wieder [[tx:event.modeCollective]] oder [[tx:event.modeIndividual]]. Wie oft gelesen wird, entscheidest du; zur Überlieferung einer Zahl frag einen Gelehrten an deinem Ort.",
           ],
         },

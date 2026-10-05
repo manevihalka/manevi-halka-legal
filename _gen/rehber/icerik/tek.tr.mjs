@@ -38,7 +38,7 @@ export default {
             "Uygulamayı aç ve alttaki çubukta [[tabs.circles]] sekmesine dokun. Sağ üstteki yeşil **+** düğmesine bas.",
             "Üstten [[tx:dashboard.addCircle]] penceresi iner. Ortadaki [[tx:event.createMenuTitle]] kartına dokun.",
           ],
-          ipucu: "Sağ üstte **+** düğmesi yoksa uygulamada henüz adını yazmamışsındır. Önce [[circlesTab.anonCreate]] düğmesine dokun ve adını yaz. Açılan [[tx:createGroup.title]] ekranında bir şey doldurmadan geri dön; artık **+** düğmesi görünür.",
+          ipucu: "Sağ üstte **+** düğmesi yoksa uygulamada henüz adını yazmamışsındır. O zaman ortadaki [[ol:circlesTab.anonCreateEvent]] düğmesine dokun ve adını yaz; tek seferlik halka formu doğrudan açılır, sonraki adımdan devam edersin.",
           sahne: "vf-ac",
         },
         {
@@ -109,7 +109,7 @@ export default {
         {
           baslik: "Zikri ve hedef sayıyı seç",
           metin: [
-            "[[tx:event.zikirGoalTitle]] ekranında [[tx:event.addFromPresets]] başlığının altındaki çiplerden birine dokun, örneğin [[=Salavât-ı Şerîfe]]. Listede [[=Kelime-i Tevhîd]], [[=İstiğfâr]], [[=Sübhânallâh]] ve [[=Elhamdülillâh]] da var. [[tx:event.esmaulHusna]] çipinden bir esma seçebilir, [[tx:event.customZikir]] kutusuna kendi zikrini yazabilirsin.",
+            "[[tx:event.zikirGoalTitle]] ekranında [[tx:event.addFromPresets]] başlığının altındaki çiplerden birine dokun, örneğin [[tx:globalDhikr.salavat.name]]. Listede [[tx:wizard.zikirPresetKelime]], [[tx:wizard.zikirPresetIstigfar]], [[tx:wizard.zikirPresetSubhanallah]] ve [[tx:wizard.zikirPresetElhamdulillah]] da var. [[tx:event.esmaulHusna]] çipinden bir esma seçebilir, [[tx:event.customZikir]] kutusuna kendi zikrini yazabilirsin.",
             "Eklenen zikrin kartında [[tx:event.target]] kutusuna sayıyı yaz. Yanında iki seçenek var:",
           ],
           liste: [
@@ -123,7 +123,7 @@ export default {
         {
           baslik: "Dua ya da sure okuması için",
           metin: [
-            "[[tx:event.typeDua]] seçtiysen [[tx:event.duaGoalTitle]] ekranındaki hazır listede [[=Fâtiha Sûresi]], [[=Âyetü'l-Kürsî]], [[=Yâsîn Sûresi]], [[=İhlâs Sûresi]], [[=Mülk Sûresi]] ve [[=Fetih Sûresi]] var. Listede olmayan bir dua ya da sureyi [[tx:event.customZikir]] kutusuna yazarak eklersin.",
+            "[[tx:event.typeDua]] seçtiysen [[tx:event.duaGoalTitle]] ekranındaki hazır listede [[tx:event.presetFatiha]], [[tx:globalDhikr.ayetelkursi.name]], [[tx:event.presetYasin]], [[tx:event.presetIhlas]], [[tx:event.presetMulk]] ve [[tx:event.presetFetih]] var. Listede olmayan bir dua ya da sureyi [[tx:event.customZikir]] kutusuna yazarak eklersin.",
             "[[tx:event.target]] kutusuna okunacak sayıyı yaz ve yine [[tx:event.modeCollective]] ya da [[tx:event.modeIndividual]] seç. Kaç adet okunacağına sen karar verirsin; sayının geleneği için bulunduğun yerin âlimine danış.",
           ],
         },

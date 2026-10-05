@@ -480,7 +480,9 @@ function sayfa(id, dil, og = false) {
   if (/\[\[[^\]]+\]\]/.test(out.replace(/<script[\s\S]*?<\/script>/g, ""))) hata(`${id}.${dil}: cozulmemis [[...]] isareti kaldi`);
   const gorunen = out.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, "");
   if (/—/.test(gorunen)) hata(`${id}.${dil}: uzun tire (ayrac) var`);
-  if (/Cev[sş]en|Jawshan|Dschauschan|جوشن/i.test(gorunen)) hata(`${id}.${dil}: Cevsen gecen metin var (site kurali)`);
+  // Cevsen yalniz mini telefonlarin icinde gecebilir (uygulamayi oldugu gibi gosterirler, 5 Eki 2026);
+  // anlatim metninde, basliklarda ve sayfanin geri kalaninda yine yasak.
+  if (/Cev[sş]en|Jawshan|Dschauschan|جوشن/i.test(gorunen.replace(/<figure\b[^>]*class="mp[\s\S]*?<\/figure>/g, ""))) hata(`${id}.${dil}: Cevsen gecen metin var (site kurali; yalniz mini telefonlarda serbest)`);
   if (out.startsWith("---")) hata("cikti front matter ile basliyor (Jekyll isler)");
   if (og) {
     out = out.replace("</head>", OG_CSS + "\n</head>").replace("<body>", '<body data-og><script>document.documentElement.setAttribute("data-theme", "light")</script>')

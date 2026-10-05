@@ -259,7 +259,10 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .phone { margin: 0; padding: 8px; border-radius: 40px; background: #101a16; box-shadow: 0 40px 70px -40px rgba(10, 30, 20, .75), inset 0 0 0 1px rgba(255, 255, 255, .08); user-select: none; }
   .phone img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 33px; pointer-events: none; background: var(--mint); }
   .showcase { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-  .stage { position: relative; width: min(520px, 100%); aspect-ratio: 1; touch-action: pan-y pinch-zoom; user-select: none; }
+  /* Halkanin disindaki vakit etiketleri sahneden ~35 px tasar; sutun darken (iPad yatay 1024) sahne
+     kenara kadar buyuyup "Maghrib"i ekran kenarinda kesiyordu. 560 px altinda dis etiketler gizli. */
+  .stage { position: relative; width: min(520px, calc(100% - 72px)); aspect-ratio: 1; touch-action: pan-y pinch-zoom; user-select: none; }
+  @media (max-width: 560px) { .stage { width: min(520px, 100%); } }
   .card { position: absolute; inset: 0; transition: transform .75s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; will-change: transform; }
   .card[data-pos="0"] { z-index: 3; transform: rotate(calc(-2.5deg * var(--s))); }
   .card[data-pos="1"] { z-index: 2; transform: translate(calc(14% * var(--s)), -3%) rotate(calc(6deg * var(--s))) scale(.82); cursor: pointer; }

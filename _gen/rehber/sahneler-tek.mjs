@@ -10,8 +10,8 @@
  *   anahtarlari koddan regex'le topluyor, degiskenden gelen anahtari goremez).
  * - Web sayfasinin metni uygulamanin locale'inde YOK: halka.html'deki S ve RD
  *   sozluklerinden okunur (W(), WR()). Elle yazilmaz; sayfa degisirse sahne de degisir.
- * - Cevsen yok: sihirbazin 1. adimindaki Cevsen karosu bos iskelet, "Duzenli Halka"
- *   kartinin aciklamasi (Cevsen geciyor) iskelet cizgi olarak cizilir.
+ * - Telefonlar uygulamayi oldugu gibi gosterir: sihirbazin 1. adimindaki Cevsen karosu ve
+ *   "Duzenli Halka" kartinin aciklamasi gercek metinleriyle (5 Eki 2026, sahne.mjs basi).
  * - Ortak havuz modunda halka "Tamamlandi"ya gecmez (yalniz Otomatik bol); burada
  *   hatim bitince yalniz Ortak Ilerleme %100 olur, durum "Devam ediyor" kalir.
  */
@@ -86,7 +86,7 @@ function hazirla(K) {
   const yaz = (s, v = {}) => String(s).replace(/\{(\w+)\}/g, (t, k) => (k in v ? v[k] : t));
   const W = (k, v) => { if (!(k in S)) throw new Error(`halka.html S.${k} yok (${K.dil})`); return yaz(S[k], v); };
   const WR = (k, v) => { if (!(k in RD)) throw new Error(`halka.html RD.${k} yok (${K.dil})`); return yaz(RD[k], v); };
-  const kalan = (g, s, d) => (g ? `${g}${K.L("event.unitDay")} ${s}${K.L("event.unitHour")}` : `${s}${K.L("event.unitHour")} ${d}${K.L("event.unitMin")}`);
+  const kalan = (g, s, d) => (g ? `${K.L("event.daysShort", { n: g })} ${s}${K.L("event.unitHour")}` : `${s}${K.L("event.unitHour")} ${d}${K.L("event.unitMin")}`);
   /** Halka basladiktan sonra bitise kalan: ornegin gun sayisi + s saat. */
   const kalanGun = (s) => kalan(V.gun, s);
   return { V, W, WR, kalan, kalanGun };
@@ -103,6 +103,7 @@ const IKON_VF = {
   vfAddCircle: '<circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/>',
   vfEnter: '<path d="M10 8l4 4-4 4M14 12H4M13 4.5h5a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-5"/>',
   vfDoc: '<path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.6 12h5M9.6 15.5h5"/>',
+  vfLibrary: '<rect x="3.5" y="4" width="4" height="16" rx="1"/><rect x="9.5" y="4" width="4" height="16" rx="1"/><path d="M15.6 6.1l3.5-.9 3.4 13.6-3.5.9z"/>',
   vfLock: '<rect x="5.5" y="10.5" width="13" height="9.5" rx="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/>',
   vfMore: '<circle cx="5.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18.5" cy="12" r="1.3" fill="currentColor"/>',
   vfGrid: '<rect x="4.5" y="4.5" width="6" height="6" rx="1.3"/><rect x="13.5" y="4.5" width="6" height="6" rx="1.3"/><rect x="4.5" y="13.5" width="6" height="6" rx="1.3"/><rect x="13.5" y="13.5" width="6" height="6" rx="1.3"/>',
@@ -120,10 +121,10 @@ function halkalar(K) {
     </div>${K.tabbar("circles")}`;
 }
 
-/** Ustten inen "Halka Ekle" paneli: Duzenli Halka (aciklamasi iskelet) · Tek Seferlik Halka · Halkaya Katil. */
+/** Ustten inen "Halka Ekle" paneli: Duzenli Halka · Tek Seferlik Halka · Halkaya Katil. */
 function halkaEkle(K) {
   return `<div class="vf-top"><b>${K.Le("dashboard.addCircle")}</b>
-      <div class="vf-opt"><span class="vf-oi">${K.ic("personAdd")}</span><div><b>${K.Le("dashboard.createNew")}</b><i class="sk"></i><i class="sk s2"></i></div>${K.ic("chev", "fl")}</div>
+      <div class="vf-opt"><span class="vf-oi">${K.ic("personAdd")}</span><div><b>${K.Le("dashboard.createNew")}</b><small>${K.Le("dashboard.createNewDesc")}</small></div>${K.ic("chev", "fl")}</div>
       <div class="vf-opt"${K.attr("oneTime")}><span class="vf-oi">${K.ic("flag")}</span><div><b>${K.Le("event.createMenuTitle")}</b><small>${K.Le("event.createMenuDesc")}</small></div>${K.ic("chev", "fl")}</div>
       <div class="vf-opt"><span class="vf-oi">${K.ic("vfEnter", "fl")}</span><div><b>${K.Le("dashboard.joinExisting")}</b><small>${K.Le("dashboard.joinExistingDesc")}</small></div>${K.ic("chev", "fl")}</div>
       <i class="grab"></i></div>`;
@@ -138,12 +139,12 @@ function sihirbaz(K, adim, govde, dugme) {
 const kaydir = (K, key, html, cls = "") => `<div class="pg vf-clip"><div class="vf-in sc ${cls}"${K.attr(key)}>${html}</div></div>`;
 const devam = (K, key, kapali) => K.bt(K.L("common.continue"), { key, cls: `blk lg${kapali ? " dis" : ""}`, iconEnd: "fwd" });
 
-/** Adim 1: tur. Cevsen karosu bos iskelet. */
+/** Adim 1: tur (uygulamadaki dort kart; ikonlar uygulamadakine yakin cizgi ikonlar). */
 function sihirbaz1(K) {
   return sihirbaz(K, 1, kaydir(K, "", `
       <b class="t1">${K.Le("event.step1Title")}</b><small class="t2">${K.Le("event.step1Sub")}</small>
       <div class="vf-type"${K.attr("tq")}>${K.ic("quran")}<div><b>${K.Le("event.typeQuran")}</b><small>${K.Le("event.typeQuranDesc")}</small></div>${K.ic("checkCircle", "vf-ok")}</div>
-      <div class="vf-type skel" aria-hidden="true"><i></i><div><i></i><i></i></div></div>
+      <div class="vf-type">${K.ic("vfLibrary")}<div><b>${K.Le("event.typeCevsen")}</b><small>${K.Le("event.typeCevsenDesc")}</small></div>${K.ic("checkCircle", "vf-ok")}</div>
       <div class="vf-type">${K.ic("beads")}<div><b>${K.Le("event.typeZikir")}</b><small>${K.Le("event.typeZikirDesc")}</small></div>${K.ic("checkCircle", "vf-ok")}</div>
       <div class="vf-type">${K.ic("vfDoc")}<div><b>${K.Le("event.typeDua")}</b><small>${K.Le("event.typeDuaDesc")}</small></div>${K.ic("checkCircle", "vf-ok")}</div>`, "vf-wz"), devam(K, "next1", true));
 }
@@ -535,8 +536,6 @@ export const CSS = `
 .mp-s .vf-opt small { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--a-mut); font-size: .66em; margin-top: .1em; }
 .mp-s .vf-opt > .ic { color: var(--a-mut); }
 .mp-s .vf-oi { width: 2.5em; height: 2.5em; border-radius: .75em; background: var(--a-pri); color: var(--a-card); display: grid; place-items: center; flex: none; }
-.mp-s .vf-opt .sk { display: block; height: .42em; width: 88%; border-radius: .3em; background: var(--a-line); margin-top: .45em; }
-.mp-s .vf-opt .sk.s2 { width: 62%; margin-top: .3em; }
 .mp-s .vf-dots { display: flex; justify-content: center; gap: .32em; padding: .55em 0 .1em; }
 .mp-s .vf-dots i { width: .45em; height: .45em; border-radius: 1em; background: var(--a-line); transition: width .3s ease; }
 .mp-s .vf-dots i.on { background: var(--a-pri); }
@@ -552,9 +551,6 @@ export const CSS = `
 .mp-s .vf-type.on { box-shadow: inset 0 0 0 .13em var(--a-pri); border-color: transparent; }
 .mp-s .vf-type.on > .ic:first-child { color: var(--a-pri); }
 .mp-s .vf-type.on .vf-ok { opacity: 1; }
-.mp-s .vf-type.skel > i { display: block; width: 1.75em; height: 1.75em; border-radius: .5em; background: var(--a-line); flex: none; }
-.mp-s .vf-type.skel div i { display: block; height: .5em; width: 45%; border-radius: .3em; background: var(--a-line); }
-.mp-s .vf-type.skel div i + i { width: 78%; height: .4em; margin-top: .4em; }
 .mp-s .vf-rd { display: flex; gap: .6em; align-items: flex-start; background: var(--a-card); border: 1px solid var(--a-line); border-radius: 1em; padding: .65em .8em; transition: box-shadow .25s ease; }
 .mp-s .vf-rd > i { position: relative; width: 1.15em; height: 1.15em; border-radius: 50%; box-shadow: inset 0 0 0 .13em var(--a-tg); flex: none; margin-top: .05em; }
 .mp-s .vf-rd > i::after { content: ""; position: absolute; inset: .3em; border-radius: 50%; background: var(--a-pri); opacity: 0; transition: opacity .2s ease; }

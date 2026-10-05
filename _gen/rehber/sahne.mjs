@@ -9,8 +9,9 @@
  * KURALLAR
  * - Dugme/baslik metni L() ile UYGULAMADAN gelir; yeni anahtar ekleyince
  *   `node _gen/sync-app-labels.mjs` calistir. Ornek veriler (ad, halka adi) ORNEK'te.
- * - Cevsen hicbir ekranda yazilmaz (site kurali). Sihirbazin 1. adimindaki Cevsen
- *   karosu bos iskelet olarak cizilir; Cevsen geçen aciklama anahtarlari kullanilmaz.
+ * - Mini telefonlar uygulamayi OLDUGU GIBI gosterir, Cevsen karosu dahil (kullanici karari
+ *   5 Eki 2026: bos iskelet "saklaniyormus gibi" duruyordu). Rehberin anlatim metninde ve
+ *   sitenin oteki yuzeylerinde Cevsen yine gecmez; uretici yalniz telefonlarin icine izin verir.
  * - Uzun tire YOK. Uygulamadaki push metni uzun tire tasiyor, burada virgul.
  * - Bir ekran = gorunumler (.vw, biri acik) + ustlukler (.ov) + zaman cizelgesi.
  *   Zaman cizelgesi adimlari ([fiil, ...]):
@@ -73,7 +74,7 @@ export const ORNEK = {
     city: "Paris", date: "5 oct. 2026", code: "T4X6RC", pushTitle: "Nouveau tour !", pushBody: "« Khatma familiale » tour 1, nouvelles tâches attribuées.",
     shareApps: ["WhatsApp", "Messages", "Mail", "Telegram"], now: "maintenant", lockDate: "lundi 5 octobre" },
   ar: { me: "عمر", member: "عائشة", names: ["عمر", "عائشة", "يوسف", "مريم", "بلال"], circle: "عائلتي", task: "ختمة العائلة",
-    city: "Riyadh", date: "5 أكتوبر 2026", code: "T4X6RC", pushTitle: "بدأت جولة جديدة!", pushBody: "“ختمة العائلة” الجولة 1، تم تعيين مهام جديدة.",
+    city: "الرياض", date: "5 أكتوبر 2026", code: "T4X6RC", pushTitle: "بدأت جولة جديدة!", pushBody: "“ختمة العائلة” الجولة 1، تم تعيين مهام جديدة.",
     shareApps: ["واتساب", "الرسائل", "البريد", "تيليجرام"], now: "الآن", lockDate: "الاثنين، 5 أكتوبر" },
 };
 
@@ -189,6 +190,7 @@ export function kit(dil) {
           <b class="t1 c">${Le("circlesTab.anonTitle")}</b>
           <ul class="feat"><li>${ic("check")}${Le("circlesTab.anonF2")}</li><li>${ic("check")}${Le("circlesTab.anonF3")}</li></ul>
           ${bt(L("circlesTab.anonCreate"), { key: "create", cls: "blk", icon: "plus" })}
+          ${bt(L("circlesTab.anonCreateEvent"), { cls: "blk ol" })}
           ${bt(L("circlesTab.anonJoin"), { cls: "blk ol" })}
         </div>
       </div>${tabbar("circles")}`,
@@ -222,13 +224,13 @@ export function kit(dil) {
         <div class="cd task-row new"${k("taskRow")}><span class="tri">${ic("quran")}</span><div><small class="cap">${e(L("group.sectionKuran"))}</small><b>${e(X.task)}</b><small>30 ${Le("units.juz", { count: 30 })}</small></div><span class="act">${Le("group.statusActive")}</span></div>
       </div><span class="fab">${ic("plus")}</span>`,
 
-    /** Sihirbaz 1: hedef turu. Cevsen karosu bos iskelet. */
+    /** Sihirbaz 1: hedef turu (uygulamadaki dort karo). */
     wiz1: () => `${wizHd(1, 5, true)}<div class="pg">
         <b class="t1">${Le("wizard.goalTypeQuestion")}</b><small class="t2">${Le("wizard.goalTypeHint")}</small>
         <b class="sec">${Le("practice.sectionReadings")}</b><small class="t2">${Le("practice.sectionReadingsDesc")}</small>
         <div class="grid2">
           <span class="tile"${k("wq")}>${ic("quran")}<b>${Le("wizard.goalQuran")}</b><small>${Le("wizard.goalQuranDesc")}</small></span>
-          <span class="tile skel" aria-hidden="true"><i></i><i></i></span>
+          <span class="tile">${ic("shield")}<b>${Le("wizard.goalCevsen")}</b><small>${Le("wizard.goalCevsenDesc")}</small></span>
           <span class="tile"${k("wz")}>${ic("beads")}<b>${Le("wizard.goalZikir")}</b><small>${Le("wizard.goalZikirDesc")}</small></span>
           <span class="tile">${ic("bookClosed")}<b>${Le("wizard.goalBook")}</b><small>${Le("wizard.goalBookDesc")}</small></span>
         </div>

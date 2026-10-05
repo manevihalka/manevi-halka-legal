@@ -2,7 +2,7 @@
 // كانت الصفحة أولًا «ختمة جماعية على روح متوفى»؛ في 5 أكتوبر 2026 صارت دليلًا عامًا لكل مناسبة،
 // وبقي مثال المتوفى قسمًا فيها.
 // اللغة الدينية: لا وعد بالثواب، ولا حكم من عندنا، ولا أيام محددة (الثالث، السابع، الأربعون).
-// أسماء الأذكار الجاهزة تُكتب نصًا عاديًا لا أزرارًا: شرائحها في التطبيق تظهر بالتركية في كل اللغات.
+// منذ الإصدار 2.0 تظهر شرائح الأذكار والسور الجاهزة بلغة المستخدم، فتُكتب هنا بـ [[tx:مفتاح]].
 export default {
   title: "كيف تنظم ختمة جماعية؟ دليل الحلقة لمرة واحدة",
   desc: "نظّم ختمة جماعية أو ذكرًا أو صلاة على النبي لليلة مباركة أو لرمضان أو لعزيز توفي أو لدعاء، بحلقة لمرة واحدة. ويشارك من لا يملك التطبيق.",
@@ -38,7 +38,7 @@ export default {
             "افتح التطبيق، واضغط تبويب [[tabs.circles]] في الشريط السفلي. ثم اضغط زر **+** الأخضر في أعلى الشاشة.",
             "تنزل من الأعلى نافذة [[tx:dashboard.addCircle]]. اضغط البطاقة الوسطى [[tx:event.createMenuTitle]].",
           ],
-          ipucu: "إن لم تجد زر **+** في الأعلى، فأنت لم تكتب اسمك في التطبيق بعد. اضغط أولًا زر [[circlesTab.anonCreate]] واكتب اسمك. في شاشة [[tx:createGroup.title]] التي تُفتح ارجع دون أن تملأ شيئًا؛ وعندها يظهر زر **+**.",
+          ipucu: "إن لم تجد زر **+** في الأعلى، فأنت لم تكتب اسمك في التطبيق بعد. فاضغط الزر الأوسط [[ol:circlesTab.anonCreateEvent]] واكتب اسمك؛ فيُفتح نموذج الحلقة لمرة واحدة مباشرة، وتتابع من الخطوة التالية.",
           sahne: "vf-ac",
         },
         {
@@ -109,7 +109,7 @@ export default {
         {
           baslik: "اختر الذكر والعدد المستهدف",
           metin: [
-            "في شاشة [[tx:event.zikirGoalTitle]] اضغط إحدى الشرائح تحت عنوان [[tx:event.addFromPresets]]، مثل الصلاة على النبي. وفي القائمة أيضًا التهليل، والاستغفار، وسبحان الله، والحمد لله. ويمكنك أن تختار اسمًا من شريحة [[tx:event.esmaulHusna]]، أو أن تكتب ذكرك في خانة [[tx:event.customZikir]].",
+            "في شاشة [[tx:event.zikirGoalTitle]] اضغط إحدى الشرائح تحت عنوان [[tx:event.addFromPresets]]، مثل [[tx:globalDhikr.salavat.name]]. وفي القائمة أيضًا: [[tx:wizard.zikirPresetKelime]]، [[tx:wizard.zikirPresetIstigfar]]، [[tx:wizard.zikirPresetSubhanallah]]، [[tx:wizard.zikirPresetElhamdulillah]]. ويمكنك أن تختار اسمًا من شريحة [[tx:event.esmaulHusna]]، أو أن تكتب ذكرك في خانة [[tx:event.customZikir]].",
             "في بطاقة الذكر الذي أضفته اكتب العدد في خانة [[tx:event.target]]. وبجانبها خياران:",
           ],
           liste: [
@@ -123,7 +123,7 @@ export default {
         {
           baslik: "لقراءة دعاء أو سورة",
           metin: [
-            "إن اخترت [[tx:event.typeDua]]، ففي القائمة الجاهزة في شاشة [[tx:event.duaGoalTitle]] سورة الفاتحة، وآية الكرسي، وسورة يس، وسورة الإخلاص، وسورة الملك، وسورة الفتح. وتضيف دعاءً أو سورة ليست في القائمة بكتابتها في خانة [[tx:event.customZikir]].",
+            "إن اخترت [[tx:event.typeDua]]، ففي القائمة الجاهزة في شاشة [[tx:event.duaGoalTitle]]: [[tx:event.presetFatiha]]، [[tx:globalDhikr.ayetelkursi.name]]، [[tx:event.presetYasin]]، [[tx:event.presetIhlas]]، [[tx:event.presetMulk]]، [[tx:event.presetFetih]]. وتضيف دعاءً أو سورة ليست في القائمة بكتابتها في خانة [[tx:event.customZikir]].",
             "اكتب عدد القراءات في خانة [[tx:event.target]]، واختر أيضًا [[tx:event.modeCollective]] أو [[tx:event.modeIndividual]]. أنت من يقرر كم مرة تُقرأ؛ وعن العدد المأثور في ذلك فاسأل عالمًا في بلدك.",
           ],
         },

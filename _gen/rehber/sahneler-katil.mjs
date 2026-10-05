@@ -95,6 +95,7 @@ function circlesAnon(K) {
         <b class="t1 c">${K.Le("circlesTab.anonTitle")}</b>
         <ul class="feat"><li>${K.ic("people")}${K.Le("circlesTab.anonF2")}</li><li>${K.ic("ktTrend")}${K.Le("circlesTab.anonF3")}</li></ul>
         ${K.bt(K.L("circlesTab.anonCreate"), { cls: "blk" })}
+        ${K.bt(K.L("circlesTab.anonCreateEvent"), { cls: "blk ol" })}
         ${K.bt(K.L("circlesTab.anonJoin"), { key: "joinBtn", cls: "blk ol" })}
       </div>
     </div>${K.tabbar("circles")}`;

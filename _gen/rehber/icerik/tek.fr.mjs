@@ -38,7 +38,7 @@ export default {
             "Ouvre l’appli et touche l’onglet [[tabs.circles]] dans la barre du bas. Touche le bouton vert **+** en haut à droite.",
             "La fenêtre [[tx:dashboard.addCircle]] descend du haut de l’écran. Touche la carte du milieu, [[tx:event.createMenuTitle]].",
           ],
-          ipucu: "Pas de bouton **+** en haut à droite ? Tu n’as sans doute pas encore écrit ton prénom dans l’appli. Touche d’abord [[circlesTab.anonCreate]] et écris ton prénom. L’écran [[tx:createGroup.title]] s’ouvre ensuite : reviens en arrière sans rien remplir, et le bouton **+** apparaît.",
+          ipucu: "Pas de bouton **+** en haut à droite ? Tu n’as sans doute pas encore écrit ton prénom dans l’appli. Touche alors le bouton du milieu, [[ol:circlesTab.anonCreateEvent]], et écris ton prénom : le formulaire du cercle ponctuel s’ouvre directement et tu continues à l’étape suivante.",
           sahne: "vf-ac",
         },
         {
@@ -109,7 +109,7 @@ export default {
         {
           baslik: "Choisis le dhikr et le nombre cible",
           metin: [
-            "Sur l’écran [[tx:event.zikirGoalTitle]], sous le titre [[tx:event.addFromPresets]], touche l’un des dhikrs proposés, par exemple les salawat. La liste contient aussi le tahlil (La ilaha illallah), l’istighfar, Subhanallah et Alhamdulillah. Tu peux choisir un nom d’Allah avec [[tx:event.esmaulHusna]] ou écrire ton propre dhikr dans le champ [[tx:event.customZikir]].",
+            "Sur l’écran [[tx:event.zikirGoalTitle]], sous le titre [[tx:event.addFromPresets]], touche l’un des dhikrs proposés, par exemple [[tx:globalDhikr.salavat.name]]. La liste contient aussi [[tx:wizard.zikirPresetKelime]], [[tx:wizard.zikirPresetIstigfar]], [[tx:wizard.zikirPresetSubhanallah]] et [[tx:wizard.zikirPresetElhamdulillah]]. Tu peux choisir un nom d’Allah avec [[tx:event.esmaulHusna]] ou écrire ton propre dhikr dans le champ [[tx:event.customZikir]].",
             "Sur la carte du dhikr ajouté, écris le nombre dans le champ [[tx:event.target]]. À côté, il y a deux options :",
           ],
           liste: [
@@ -123,7 +123,7 @@ export default {
         {
           baslik: "Pour la lecture d’une invocation ou d’une sourate",
           metin: [
-            "Si tu as choisi [[tx:event.typeDua]], la liste de l’écran [[tx:event.duaGoalTitle]] propose Al-Fatiha, Ayat al-Kursi, Ya-Sin, Al-Ikhlas, Al-Mulk et Al-Fath. Pour une invocation ou une sourate absente de la liste, écris-la dans le champ [[tx:event.customZikir]].",
+            "Si tu as choisi [[tx:event.typeDua]], la liste de l’écran [[tx:event.duaGoalTitle]] propose [[tx:event.presetFatiha]], [[tx:globalDhikr.ayetelkursi.name]], [[tx:event.presetYasin]], [[tx:event.presetIhlas]], [[tx:event.presetMulk]] et [[tx:event.presetFetih]]. Pour une invocation ou une sourate absente de la liste, écris-la dans le champ [[tx:event.customZikir]].",
             "Écris le nombre de lectures dans le champ [[tx:event.target]] et choisis là aussi [[tx:event.modeCollective]] ou [[tx:event.modeIndividual]]. C’est toi qui décides du nombre ; pour l’usage lié à ce nombre, demande à l’imam de ta mosquée.",
           ],
         },
