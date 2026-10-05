@@ -176,6 +176,14 @@ function sayfa(dil) {
     return on + kacir(t[anahtar]) + son;
   });
 
+  // Itani atfi yalniz Ingilizce sayfada: oteki dillerde sayfada Ingilizce meal yok (TR Elmalili,
+  // DE/FR yalniz Arapca, AR Arapca), atif orada yaniltiyordu. Ana sayfa da ayni kurali uyguluyor.
+  if (dil !== "en") {
+    const once = s;
+    s = s.replace(/\n[ \t]*<p class="credit">[\s\S]*?<\/p>/, "");
+    if (s === once) hata(`${dil}: Itani atfi (p.credit) bulunamadi`);
+  }
+
   const ek = t.suffix || "";
   s = degistir(s, 'href="/privacy-en.html"', `href="/privacy${ek}.html"`, 1, "privacy");
   s = degistir(s, 'href="/terms-en.html"', `href="/terms${ek}.html"`, 1, "terms");

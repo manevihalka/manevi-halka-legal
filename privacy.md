@@ -6,7 +6,7 @@ lang: tr
 
 # Gizlilik Politikası
 
-**Yürürlük tarihi:** 3 Mayıs 2026
+**Yürürlük tarihi:** 3 Mayıs 2026<br>
 **Son güncelleme:** 3 Ekim 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
@@ -17,8 +17,8 @@ haklarınızın neler olduğunu açıklar.
 
 ## 1. Veri Sorumlusu
 
-**İsim:** Emirhan Ayaz
-**E-posta:** privacy@manevihalka.app
+**İsim:** Emirhan Ayaz<br>
+**E-posta:** privacy@manevihalka.app<br>
 **Uygulama:** Manevi Halka
 
 ---
@@ -383,7 +383,7 @@ uygulama içi bildirim göndereceğiz. Yürürlük tarihi en üstte belirtilir.
 
 Sorularınız için:
 
-**E-posta:** privacy@manevihalka.app
+**E-posta:** privacy@manevihalka.app<br>
 **Konu:** Manevi Halka — Gizlilik
 
 15 gün içinde yanıt veririz.

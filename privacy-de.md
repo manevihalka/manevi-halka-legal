@@ -6,7 +6,7 @@ lang: de
 
 # Datenschutzerklärung
 
-**Gültig ab:** 3. Mai 2026
+**Gültig ab:** 3. Mai 2026<br>
 **Zuletzt aktualisiert:** 3. Oktober 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
@@ -17,8 +17,8 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 
 ## 1. Verantwortlicher
 
-**Name:** Emirhan Ayaz
-**E-Mail:** privacy@manevihalka.app
+**Name:** Emirhan Ayaz<br>
+**E-Mail:** privacy@manevihalka.app<br>
 **App:** Manevi Halka
 
 ---
@@ -436,7 +436,7 @@ Inkrafttretens ist oben aufgeführt.
 
 Bei Fragen:
 
-**E-Mail:** privacy@manevihalka.app
+**E-Mail:** privacy@manevihalka.app<br>
 **Betreff:** Manevi Halka – Datenschutz
 
 Wir antworten innerhalb von 15 Tagen.

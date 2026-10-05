@@ -6,7 +6,7 @@ lang: fr
 
 # Politique de confidentialité
 
-**Date d'entrée en vigueur :** 3 mai 2026
+**Date d'entrée en vigueur :** 3 mai 2026<br>
 **Dernière mise à jour :** 3 octobre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
@@ -15,8 +15,8 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 ## 1. Responsable du traitement
 
-**Nom :** Emirhan Ayaz
-**E-mail :** privacy@manevihalka.app
+**Nom :** Emirhan Ayaz<br>
+**E-mail :** privacy@manevihalka.app<br>
 **Application :** Manevi Halka
 
 ---
@@ -364,7 +364,7 @@ Nous pouvons mettre à jour la présente politique de temps à autre. Pour les m
 
 Pour toute question :
 
-**E-mail :** privacy@manevihalka.app
+**E-mail :** privacy@manevihalka.app<br>
 **Objet :** Manevi Halka — Confidentialité
 
 Nous répondons sous 15 jours.
