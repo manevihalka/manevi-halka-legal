@@ -204,6 +204,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .lang-list a[aria-current="page"] { font-weight: 700; background: var(--mint); }
   @media (max-width: 480px) { .lang-btn { width: 40px; padding: 0; justify-content: center; } .lang-btn span { display: none; }
     .brand { font-size: 18px; } .get { width: 40px; padding: 0; justify-content: center; } .get .gl, .get .gs { display: none; } .get svg { width: 18px; height: 18px; } }
+  /* 320 px telefonda baslik 303 px ediyordu, indirme dugmesi sagdan kesiliyordu */
+  @media (max-width: 360px) { .top { gap: 6px; } .brand { font-size: 17px; } .lang-btn, .theme-btn, .get { width: 36px; height: 36px; } }
 
   /* ── iz (breadcrumb) ── */
   .crumbs { font-size: 13.5px; color: var(--muted); padding-top: 8px; }
@@ -420,6 +422,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .social-icons a { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--green); background: var(--mint); border: 1px solid var(--line); }
   .social-icons a:hover { background: var(--green); color: var(--page); }
   .social-icons svg { width: 19px; height: 19px; }
+  /* Dar telefonda (320 px) alti simge 302 px ediyordu, sonuncusu kesiliyordu: kucult, yine sigmazsa alt satira. */
+  .social-icons { flex-wrap: wrap; }
+  @media (max-width: 360px) { .social-icons { gap: 8px; } .social-icons a { width: 38px; height: 38px; } }
 
   /* ── Arapca: sag-sol aynalama, Arap yazisinda harf araligi yok ── */
   :root[dir="rtl"] { --s: -1; --display: "Marcellus", "Noto Naskh Arabic", "Geeza Pro", "Segoe UI", serif;

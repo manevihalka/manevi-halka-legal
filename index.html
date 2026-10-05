@@ -230,6 +230,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   /* Telefonda indirme dugmesi yalniz simge: dil menusuyle birlikte kisa etiket bile (EN "Download", FR "Telecharger")
      390 px'te satiri tasiriyordu (olculdu). Etiketli magaza rozetleri hemen altta, hero'da duruyor. */
   @media (max-width: 480px) { .brand { font-size: 18px; } .get { width: 40px; padding: 0; justify-content: center; } .get .gl, .get .gs { display: none; } .get svg { width: 18px; height: 18px; } }
+  /* 320 px telefonda baslik 303 px ediyordu, indirme dugmesi sagdan kesiliyordu */
+  @media (max-width: 360px) { .top { gap: 6px; } .brand { font-size: 17px; } .lang-btn, .theme-btn, .get { width: 36px; height: 36px; } }
 
   /* ── giris ── */
   .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 36px 72px; }
@@ -682,6 +684,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .social-icons a { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: var(--green); background: var(--mint); border: 1px solid var(--line); transition: background .15s ease, color .15s ease; }
   .social-icons a:hover { background: var(--green); color: var(--page); }
   .social-icons svg { width: 19px; height: 19px; }
+  /* Dar telefonda (320 px) alti simge 302 px ediyordu, sonuncusu kesiliyordu: kucult, yine sigmazsa alt satira. */
+  .social-icons { flex-wrap: wrap; }
+  @media (max-width: 360px) { .social-icons { gap: 8px; } .social-icons a { width: 38px; height: 38px; } }
 
   /* ── yuzen gezinme (28 Eyl 2026, kullanici onayi) ──
      Masaustu: baslik kaybolunca ustte ince cubuk (menu + Indir; sayfa sonunda
