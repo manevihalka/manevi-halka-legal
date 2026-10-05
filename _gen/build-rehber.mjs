@@ -42,6 +42,9 @@ const TAM = process.argv.includes("--tam");
 // yalniz o rehberin sahne dosyasi yuklenir, site haritasi yazilmaz.
 const YALNIZ = (() => { const i = process.argv.indexOf("--yalniz"); return i > 0 ? process.argv[i + 1] : null; })();
 // --dil <dil>: yalniz o dilin icerik dosyalari yuklenir ve uretilir (paralel cevirmenler icin; site haritasi yazilmaz).
+// --og: paylasim gorseli icin 1200x630 sayfalar _gen/og-tmp/ altina yazilir (sayfa yazilmaz);
+// _gen/rehber-og.py bunlari Chrome ile cekip img/rehber/og/<id>-<dil>.jpg yapar.
+const OGMOD = process.argv.includes("--og");
 const YDIL = (() => { const i = process.argv.indexOf("--dil"); return i > 0 ? process.argv[i + 1] : null; })();
 const hata = (m) => { console.error("HATA: " + m); process.exit(1); };
 const IDLER = ["hatim", "tek", "zikir", "katil"];
@@ -302,6 +305,10 @@ function merkezGovde(dil, K) {
 }
 
 // ─── bas bilgisi ────────────────────────────────────────────────────────────
+function ogGorsel(id, dil) {
+  const ad = `img/rehber/og/${id}-${dil}.jpg`;
+  return existsSync(join(KOK, ad)) ? `${SITE}/${ad}` : `${SITE}/og-cover-${dil}.jpg`;
+}
 function basBilgisi(id, dil) {
   const c = ICERIK[id][dil];
   const KB = kit(dil);
@@ -337,7 +344,7 @@ ${hreflang}
 <meta property="og:description" content="${e(c.desc)}">
 <meta property="og:url" content="${url}">
 <meta property="og:locale" content="${OG_LOCALE[dil]}">
-<meta property="og:image" content="${SITE}/og-cover-${dil}.jpg">
+<meta property="og:image" content="${ogGorsel(id, dil)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
@@ -368,10 +375,71 @@ function webpBoyut(yol) {
   hata(`WebP turu taninmadi: ${yol}`);
 }
 
-function sayfa(id, dil) {
+// Paylasim gorseli (1200x630): solda marka, ust baslik, rehber adi, kisa aciklama; sagda rehberin
+// kendi mini telefonu (merkezde iki telefon). Site koyu yesil kapagiyla (og-cover) ayni dil.
+function ogGovde(id, dil, K) {
+  const c = ICERIK[id][dil];
+  const baslik = id === "merkez" ? c.h1 : c.kart.baslik;
+  const alt = id === "merkez" ? duzMetin(c.lead, K).split(/(?<=[.!?؟])\s+/)[0] : duzMetin(c.kart.metin, K);
+  const tel = (i) => { const on = ICERIK[i][dil].onizleme; return on ? sahneHtml(on.sahne, K).replace('<figure class="mp', '<figure data-static class="mp').replace(/data-still="\d+"/, `data-still="${on.adim ?? 0}"`) : ""; };
+  const teller = id === "merkez" ? ["hatim", "tek"].filter((i) => var_mi(i, dil)).map(tel).join("") : tel(id);
+  return `<div class="og-sahne${id === "merkez" ? " cift" : ""}">
+    <svg class="og-halka" viewBox="0 0 600 600" aria-hidden="true"><circle cx="300" cy="300" r="290" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 22"/></svg>
+    <div class="og-sol">
+      <div class="og-marka"><img src="/img/brand-icon.webp" alt="" width="56" height="56"><span>Manevi Halka</span></div>
+      <p class="og-kicker">${kacirMetin(c.eyebrow)}</p>
+      <h1 class="og-baslik">${kacirMetin(baslik)}</h1>
+      <p class="og-alt">${kacirMetin(alt)}</p>
+    </div>
+    <p class="og-adres">manevihalka.app</p>
+    <div class="og-tel">${teller}</div>
+  </div>
+  <script>
+  // Uzun basliklar (Almanca, Fransizca) adresin ustune biniyordu: sol sutun adresin 28 px
+  // ustunde bitene kadar once aciklama, sonra baslik kuculur.
+  (function () {
+    function sigdir() {
+      var sol = document.querySelector(".og-sol"), adres = document.querySelector(".og-adres");
+      var b = document.querySelector(".og-baslik"), a = document.querySelector(".og-alt");
+      var fb = parseFloat(getComputedStyle(b).fontSize), fa = parseFloat(getComputedStyle(a).fontSize);
+      for (var i = 0; i < 40 && sol.getBoundingClientRect().bottom > adres.getBoundingClientRect().top - 28; i++) {
+        if (fa > 20) { fa -= 1; a.style.fontSize = fa + "px"; } else if (fb > 42) { fb -= 2; b.style.fontSize = fb + "px"; } else break;
+      }
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sigdir); else sigdir();
+  })();
+  </script>`;
+}
+const OG_CSS = `<style>
+  body[data-og] { width: 1200px; height: 630px; overflow: hidden; margin: 0; background: #0f2a1d; }
+  body[data-og] > :not(.wrap):not(svg):not(script) { display: none !important; }
+  body[data-og] .wrap { max-width: none; width: 1200px; padding: 0; margin: 0; }
+  body[data-og] header.top, body[data-og] footer, body[data-og] #download, body[data-og] .dock-pill, body[data-og] .dock-top { display: none !important; }
+  body[data-og] main { padding: 0; margin: 0; }
+  .og-sahne { position: relative; width: 1200px; height: 630px; overflow: hidden; color: #fff;
+    background: radial-gradient(120% 95% at 82% 8%, #2c6b4b 0%, #19452f 46%, #0f2a1d 100%); }
+  .og-halka { position: absolute; width: 760px; height: 760px; inset-inline-end: -150px; top: -65px; color: #d9b563; opacity: .32; }
+  .og-sol { position: absolute; inset-inline-start: 76px; top: 70px; width: 560px; z-index: 2; }
+  .og-marka { display: flex; align-items: center; gap: 14px; font-family: var(--display); font-size: 30px; color: #f4f1e8; }
+  .og-marka img { width: 56px; height: 56px; border-radius: 14px; }
+  .og-kicker { margin: 48px 0 0; font-family: var(--sans); font-weight: 700; font-size: 18px; letter-spacing: .2em; text-transform: uppercase; color: #d9b563; }
+  :root[lang="ar"] .og-kicker { letter-spacing: 0; font-size: 22px; }
+  .og-baslik { margin: 14px 0 0; font-family: var(--display); font-weight: 400; font-size: 66px; line-height: 1.08; color: #fff; text-wrap: balance; }
+  :root[lang="ar"] .og-baslik { font-family: inherit; font-weight: 700; font-size: 58px; line-height: 1.25; }
+  .og-alt { margin: 22px 0 0; font-family: var(--sans); font-size: 25px; line-height: 1.42; color: #b4e8cb; }
+  .og-adres { position: absolute; inset-inline-start: 76px; bottom: 46px; margin: 0; font-family: var(--sans); font-size: 22px; font-weight: 600; color: rgba(255, 255, 255, .72); z-index: 2; }
+  .og-tel { position: absolute; inset-inline-end: 96px; top: 56px; z-index: 1; }
+  .og-tel .mp { --pw: 300px; }
+  .og-tel .mp-pp, .og-tel figcaption, .og-tel .mp-cap { display: none !important; }
+  .og-sahne.cift .og-tel { inset-inline-end: 60px; display: flex; }
+  .og-sahne.cift .og-tel .mp { --pw: 262px; }
+  .og-sahne.cift .og-tel .mp + .mp { margin-inline-start: -70px; margin-top: 70px; }
+  .og-tel .mp-f { box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .6), 0 0 0 1px rgba(255, 255, 255, .08); }
+</style>`;
+function sayfa(id, dil, og = false) {
   const K = kit(dil);
   const c = ICERIK[id][dil];
-  const main = id === "merkez" ? merkezGovde(dil, K) : rehberGovde(id, dil, K);
+  const main = og ? ogGovde(id, dil, K) : id === "merkez" ? merkezGovde(dil, K) : rehberGovde(id, dil, K);
   const ch = CHROME[dil], s = I18N[dil];
   const diller = (hedef) => DILLER.map((d) => {
     const u = var_mi(id, d) ? adres(id, d) : var_mi("merkez", d) ? REHBER[d] : EV[d];
@@ -414,10 +482,25 @@ function sayfa(id, dil) {
   if (/—/.test(gorunen)) hata(`${id}.${dil}: uzun tire (ayrac) var`);
   if (/Cev[sş]en|Jawshan|Dschauschan|جوشن/i.test(gorunen)) hata(`${id}.${dil}: Cevsen gecen metin var (site kurali)`);
   if (out.startsWith("---")) hata("cikti front matter ile basliyor (Jekyll isler)");
+  if (og) {
+    out = out.replace("</head>", OG_CSS + "\n</head>").replace("<body>", '<body data-og><script>document.documentElement.setAttribute("data-theme", "light")</script>')
+      .replace(/<script>\n\(function \(\) \{\n  var M = [\s\S]*?<\/script>\n/, "");
+  }
   return out;
 }
 
 // ─── uret ───────────────────────────────────────────────────────────────────
+if (OGMOD) {
+  const klasor = join(KOK, "_gen", "og-tmp");
+  mkdirSync(klasor, { recursive: true });
+  let n = 0;
+  for (const id of ["merkez", ...IDLER]) for (const d of DILLER) if (var_mi(id, d) && (!YALNIZ || id === YALNIZ)) {
+    const h = sayfa(id, d, true);
+    writeFileSync(join(klasor, `${id}-${d}.html`), d === "fr" ? frTipografi(h) : h); n++;
+  }
+  console.log(`og: ${n} sayfa _gen/og-tmp/ altina yazildi`);
+  process.exit(0);
+}
 const ciktilar = new Map();
 // Fransiz tipografisi BUTUN sayfaya: satir() yalniz govde metnini duzeltiyordu; baslik, aciklama,
 // h1, kart basliklari, alt/aria metinleri ve mini telefonlar duz bosluk ve duz kesme isaretiyle

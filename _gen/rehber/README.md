@@ -101,6 +101,18 @@ ya da site menüsüne giden bir bağlantı eklersen bu kipte de gizli kalmasına
 "uygulama ici kip").
 Deneme: `http://localhost:7789/tr/rehber/?app=1&theme=dark` (önbellekten eski sayfa gelirse yenile).
 
+## Paylaşım görselleri (og:image)
+
+Her rehber sayfasının kendi 1200×630 görseli var: `img/rehber/og/<id>-<dil>.jpg` (koyu yeşil zemin, rehber adı,
+kısa açıklama, rehberin mini telefonu; merkezde iki telefon). Metin ya da mini telefon değişince yeniden üret:
+
+```
+node _gen/build-rehber.mjs --og      # _gen/og-tmp/ altına 25 sahne sayfası
+python3 -m http.server 7789          # depo kökünden, ayrı pencerede
+python3 _gen/rehber-og.py            # Chrome ile çeker, JPEG yazar, og-tmp'yi siler
+node _gen/build-rehber.mjs --tam     # og:image bu dosyaları gösterir (dosya yoksa og-cover)
+```
+
 ## Kontrol
 
 ```
