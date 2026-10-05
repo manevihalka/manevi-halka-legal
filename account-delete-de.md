@@ -6,8 +6,8 @@ lang: de
 
 # Konto löschen
 
-**App:** Manevi Halka
-**Entwickler:** Emirhan Ayaz
+**App:** Manevi Halka<br>
+**Entwickler:** Emirhan Ayaz<br>
 **Kontakt:** privacy@manevihalka.app
 
 Sie können Ihr Konto und Ihre Daten in der Manevi-Halka-App jederzeit löschen.

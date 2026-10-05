@@ -6,13 +6,13 @@ lang: en
 
 # Account Deletion
 
-**App:** Manevi Halka
-**Developer:** Emirhan Ayaz
+**App:** Manevi Halka<br>
+**Developer:** Emirhan Ayaz<br>
 **Contact:** privacy@manevihalka.app
 
 You may delete your Manevi Halka account and data at any time.
 
-## 1. Deletion Flow — 30-Day Recovery + Permanent Deletion
+## 1. Deletion Flow: 30-Day Recovery + Permanent Deletion
 
 Account deletion is a **two-step process**:
 

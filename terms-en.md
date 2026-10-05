@@ -6,7 +6,7 @@ lang: en
 
 # Terms of Service
 
-**Effective date:** May 3, 2026
+**Effective date:** May 3, 2026<br>
 **Last updated:** September 28, 2026
 
 By using the Manevi Halka mobile application ("the App") you accept these
@@ -129,7 +129,7 @@ If a free trial is offered:
 - App Store / Play Store refund policies apply
 - Apple refunds: https://reportaproblem.apple.com
 - Google refunds: https://play.google.com/store/account
-- We do not process refunds directly — Apple and Google manage all payments
+- We do not process refunds directly; Apple and Google manage all payments
 
 ### 4.7. One-time support payments
 
@@ -220,5 +220,5 @@ of the new Terms.
 
 ## 10. Contact
 
-**Email:** support@manevihalka.app
-**Subject:** Manevi Halka — Terms of Service
+**Email:** support@manevihalka.app<br>
+**Subject:** Manevi Halka: Terms of Service

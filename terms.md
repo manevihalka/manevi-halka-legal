@@ -6,7 +6,7 @@ lang: tr
 
 # Kullanım Koşulları
 
-**Yürürlük tarihi:** 3 Mayıs 2026
+**Yürürlük tarihi:** 3 Mayıs 2026<br>
 **Son güncelleme:** 28 Eylül 2026
 
 Manevi Halka mobil uygulamasını ("Uygulama") kullanarak bu Kullanım
@@ -37,7 +37,7 @@ izlenebilir.
 ### 2.1. Yaş gereksinimi
 
 Uygulamayı kullanabilmek için **en az 13 yaşında** olmalısınız. 16 yaşın
-altındaysanız, ebeveyn onayı gerekebilir (yasal zorunluluk gereği —
+altındaysanız, ebeveyn onayı gerekebilir (yasal zorunluluk gereği,
 ülkenize göre değişir).
 
 ### 2.2. Hesap sorumluluğu
@@ -133,7 +133,7 @@ Eğer ücretsiz deneme süresi sunulursa:
 - App Store / Play Store'un iade politikası geçerlidir
 - Apple iade için: https://reportaproblem.apple.com
 - Google iade için: https://play.google.com/store/account
-- Biz doğrudan iade işlemi yapmıyoruz — Apple ve Google tüm ödemeleri yönetir
+- Biz doğrudan iade işlemi yapmıyoruz; Apple ve Google tüm ödemeleri yönetir
 
 ### 4.7. Tek seferlik destek ödemeleri
 
@@ -155,7 +155,7 @@ Uygulamanın kodu, tasarımı, marka adı ("Manevi Halka"), logo, ikon, illüstr
 metinler **bizim mülkiyetimizdedir** (telif ve marka hakkı saklıdır).
 
 İstisna: Uygulamada yer alan **Kuran-ı Kerim metni, Cevşen-i Kebir, ayet
-mealleri, hadisler ve İslami kaynaklar** — bunlar kamu malıdır veya
+mealleri, hadisler ve İslami kaynaklar**. Bunlar kamu malıdır veya
 kaynaklarına atıf yapılarak kullanılır.
 
 ### 5.2. Sizin içeriğiniz
@@ -223,5 +223,5 @@ devam etmeniz, yeni Koşulları kabul etmiş olduğunuz anlamına gelir.
 
 ## 10. İletişim
 
-**E-posta:** support@manevihalka.app
-**Konu:** Manevi Halka — Kullanım Koşulları
+**E-posta:** support@manevihalka.app<br>
+**Konu:** Manevi Halka: Kullanım Koşulları

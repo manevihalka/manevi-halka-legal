@@ -6,7 +6,7 @@ lang: fr
 
 # Conditions d'utilisation
 
-**Date d'entrée en vigueur :** 3 mai 2026
+**Date d'entrée en vigueur :** 3 mai 2026<br>
 **Dernière mise à jour :** 28 septembre 2026
 
 En utilisant l'application mobile Manevi Halka (« l'Application »), vous acceptez les présentes Conditions d'utilisation. Veuillez les lire attentivement.
@@ -113,7 +113,7 @@ Si un essai gratuit est proposé :
 - Les politiques de remboursement de l'App Store / Play Store s'appliquent
 - Remboursements Apple : https://reportaproblem.apple.com
 - Remboursements Google : https://play.google.com/store/account
-- Nous ne traitons pas les remboursements directement — Apple et Google gèrent tous les paiements
+- Nous ne traitons pas les remboursements directement ; Apple et Google gèrent tous les paiements
 
 ### 4.7. Paiements de soutien ponctuels
 
@@ -191,5 +191,5 @@ Nous pouvons mettre à jour les présentes Conditions de temps à autre. Pour le
 
 ## 10. Contact
 
-**E-mail :** support@manevihalka.app
-**Objet :** Manevi Halka — Conditions d'utilisation
+**E-mail :** support@manevihalka.app<br>
+**Objet :** Manevi Halka : Conditions d'utilisation

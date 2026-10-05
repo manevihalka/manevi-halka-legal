@@ -6,13 +6,13 @@ lang: fr
 
 # Suppression de compte
 
-**Application :** Manevi Halka
-**Développeur :** Emirhan Ayaz
+**Application :** Manevi Halka<br>
+**Développeur :** Emirhan Ayaz<br>
 **Contact :** privacy@manevihalka.app
 
 Vous pouvez supprimer votre compte Manevi Halka et vos données à tout moment.
 
-## 1. Processus de suppression — 30 jours de récupération + suppression définitive
+## 1. Processus de suppression : 30 jours de récupération + suppression définitive
 
 La suppression de compte se déroule en **deux étapes** :
 

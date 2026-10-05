@@ -6,13 +6,13 @@ lang: tr
 
 # Hesap Silme
 
-**Uygulama:** Manevi Halka
-**Geliştirici:** Emirhan Ayaz
+**Uygulama:** Manevi Halka<br>
+**Geliştirici:** Emirhan Ayaz<br>
 **İletişim:** privacy@manevihalka.app
 
 Manevi Halka uygulamasındaki hesabınızı ve verilerinizi istediğiniz zaman silebilirsiniz.
 
-## 1. Silme Akışı — 30 Gün Geri Alma + Kalıcı Silme
+## 1. Silme Akışı: 30 Gün Geri Alma + Kalıcı Silme
 
 Hesap silme **iki aşamalıdır**:
 
