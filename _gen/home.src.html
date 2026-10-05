@@ -565,6 +565,9 @@
   .hero h1 .h1-main { display: block; }
   .ticks + .qlink { display: inline-block; margin-top: 16px; font-weight: 700; font-size: 14.5px; color: var(--green); text-decoration: none; }
   .ticks + .qlink:hover { text-decoration: underline; }
+  .band .ticks + .qlink { color: #d9b563; }
+  .faq .sec-head .qlink { display: inline-block; margin-top: 16px; font-weight: 700; font-size: 14.5px; color: var(--green); text-decoration: none; }
+  .faq .sec-head .qlink:hover { text-decoration: underline; }
 
   /* ── altbilgi: takip blogu (sebep once, sonra ikonlar) ── */
   footer .social { flex-basis: 100%; display: grid; justify-items: center; gap: 4px; padding-block: 8px 22px; text-align: center; border-bottom: 1px solid var(--line); margin-bottom: 6px; }
@@ -597,6 +600,18 @@
   .dock-nav { display: flex; align-items: center; gap: 2px; margin-inline-start: auto; }
   .dock-nav a { position: relative; padding: 8px 12px; border-radius: 999px; font-size: 14.5px; font-weight: 600; text-decoration: none; opacity: .8; }
   .dock-nav a:hover { opacity: 1; background: var(--mint); }
+  /* Menu satiri tek satir kalir; sigmazsa sayfa ici baglantilar (data-p kucukten buyuge) gizlenir,
+     Vakitler ve Rehberler hep gorunur. Bkz. betikteki menuSigdir. */
+  .top nav a, .dock-nav a { white-space: nowrap; }
+  .top nav a[hidden], .dock-nav a[hidden] { display: none; }
+  /* Baska sayfaya giden baglantilar (Vakitler, Ortak Okuma, Rehberler) sonda ve vurgulu: sayfa ici
+     bolum baglantilarindan ince bir cizgiyle ayrilir, yesil yazi ve hafif zeminle gorunur. */
+  .top nav a.pg, .dock-nav a.pg { opacity: 1; color: var(--green); background: color-mix(in srgb, var(--green) 7%, transparent); }
+  .top nav a.pg:hover, .dock-nav a.pg:hover { background: color-mix(in srgb, var(--green) 14%, transparent); }
+  .top nav a.ilk, .dock-nav a.ilk { position: relative; margin-inline-start: 13px; }
+  .top nav a.ilk::before, .dock-nav a.ilk::before { content: ""; position: absolute; inset-inline-start: -9px; top: 9px; bottom: 9px; width: 1px; background: currentColor; opacity: .22; }
+  .top nav.yalniz-sayfa a.ilk, .dock-nav.yalniz-sayfa a.ilk { margin-inline-start: 0; }
+  .top nav.yalniz-sayfa a.ilk::before, .dock-nav.yalniz-sayfa a.ilk::before { display: none; }
   .dock-nav a[aria-current="true"] { opacity: 1; }
   .dock-nav a[aria-current="true"]::after { content: ""; position: absolute; inset-inline: 12px; bottom: 3px; height: 2px; border-radius: 2px; background: var(--gold); }
   .dock-top .get-btn { margin-inline-start: 8px; }
@@ -656,11 +671,12 @@
   <header class="top">
     <a class="brand" href="{{homeHref}}"><img src="/img/brand-icon.webp" alt="" width="32" height="32" data-vt-brand><span>Manevi Halka</span></a>
     <nav aria-label="{{navAria}}">
-      <a href="#solo">{{navSolo}}</a>
-      <a href="#together">{{navTogether}}</a>
-      <a href="{{vakitHref}}">{{navTimes}}</a>
-      <a href="/ortak-okuma.html">{{navReading}}</a>
-      <a href="#faq">{{navFaq}}</a>
+      <a href="#solo" data-p="1">{{navSolo}}</a>
+      <a href="#together" data-p="2">{{navTogether}}</a>
+      <a href="#faq" data-p="3">{{navFaq}}</a>
+      <a class="pg ilk" href="{{vakitHref}}">{{navTimes}}</a>
+      <a class="pg" href="/ortak-okuma.html" data-p="4">{{navReading}}</a>
+      <a class="pg" href="{{guidesHref}}">{{navGuides}}</a>
     </nav>
     <div class="lang" id="langBox">
       <button type="button" class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="{{langAria}}">
@@ -790,6 +806,7 @@
           <li>{{vT2}}</li>
           <li>{{vT3}}</li>
         </ul>
+        <a class="qlink" href="{{guideTekHref}}">{{guideTekLink}}</a>
       </div>
       <div class="band-visual">
         <figure class="phone ves-done"><img src="{{imgBase}}vesile-done.webp" alt="{{altVesileDone}}" width="640" height="1053" loading="lazy"></figure>
@@ -860,6 +877,7 @@
         <span class="eyebrow">{{faqKicker}}</span>
         <h2>{{faqTitle}}</h2>
         <p>{{faqText}}</p>
+        <a class="qlink" href="{{guidesHref}}">{{faqGuidesLink}}</a>
       </div>
       <div>
         <details open><summary>{{q1}}</summary><p>{{a1}}</p></details>
@@ -908,11 +926,12 @@
   <div class="wrap">
     <a class="brand" href="#top" data-sec="top" tabindex="-1"><img src="/img/brand-icon.webp" alt="" width="28" height="28"><span>Manevi Halka</span></a>
     <nav class="dock-nav" aria-label="{{navAria}}">
-      <a href="#solo" data-sec="solo">{{navSolo}}</a>
-      <a href="#together" data-sec="together">{{navTogether}}</a>
-      <a href="{{vakitHref}}">{{navTimes}}</a>
-      <a href="/ortak-okuma.html">{{navReading}}</a>
-      <a href="#faq" data-sec="faq">{{navFaq}}</a>
+      <a href="#solo" data-sec="solo" data-p="1">{{navSolo}}</a>
+      <a href="#together" data-sec="together" data-p="2">{{navTogether}}</a>
+      <a href="#faq" data-sec="faq" data-p="3">{{navFaq}}</a>
+      <a class="pg ilk" href="{{vakitHref}}">{{navTimes}}</a>
+      <a class="pg" href="/ortak-okuma.html" data-p="4">{{navReading}}</a>
+      <a class="pg" href="{{guidesHref}}">{{navGuides}}</a>
     </nav>
     <a class="get-btn" href="#download" data-get><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span>{{get}}</span></a>
     <a class="get-btn soft" href="#top" data-sec="top" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span>{{backTop}}</span></a>
@@ -1539,6 +1558,24 @@
     window.addEventListener("scroll", ask, { passive: true });
     window.addEventListener("resize", relayout);
     window.addEventListener("load", relayout);
+  })();
+  // Menu sigdirma (5 Eki 2026): alti baglanti Almanca ve Fransizcada 1280 pikselin altinda tek
+  // satira sigmiyor, sozcukler ikiye bolunuyordu. Sigmayinca once sayfa ici baglantilari gizler.
+  (function () {
+    function menuSigdir(kap, nav) {
+      if (!kap || !nav) return;
+      var ls = [].slice.call(nav.querySelectorAll("a[data-p]")).sort(function (a, b) { return a.getAttribute("data-p") - b.getAttribute("data-p"); });
+      ls.forEach(function (a) { a.hidden = false; });
+      for (var i = 0; i < ls.length && kap.scrollWidth > kap.clientWidth + 1; i++) ls[i].hidden = true;
+      nav.classList.toggle("yalniz-sayfa", !nav.querySelector('a[href^="#"]:not([hidden])'));
+    }
+    function hepsi() {
+      menuSigdir(document.querySelector("header.top"), document.querySelector("header.top nav"));
+      menuSigdir(document.querySelector(".dock-top .wrap"), document.querySelector(".dock-nav"));
+    }
+    hepsi();
+    addEventListener("resize", hepsi);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(hepsi);
   })();
 </script>
 <script src="/js/mh-dynamic.js" defer></script>

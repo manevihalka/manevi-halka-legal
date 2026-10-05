@@ -77,6 +77,10 @@ const T = {
     de: "Kreise, Khatm und Dhikr Schritt für Schritt", fr: "Cercles, khatma et dhikr pas à pas", ar: "الحلقات والختمة والذكر خطوة بخطوة" },
   guideHatimLink: { tr: "Adım adım: hatim grubu nasıl kurulur", en: "Step by step: set up a group khatam",
     de: "Schritt für Schritt: eine Khatm-Gruppe gründen", fr: "Pas à pas : organiser une khatma en groupe", ar: "خطوة بخطوة: كيف تنشئ ختمة جماعية" },
+  guideTekLink: { tr: "Adım adım: tek seferlik halka nasıl kurulur", en: "Step by step: set up a one-time circle",
+    de: "Schritt für Schritt: einen einmaligen Kreis gründen", fr: "Pas à pas : créer un cercle ponctuel", ar: "خطوة بخطوة: كيف تنشئ حلقة لمرة واحدة" },
+  faqGuidesLink: { tr: "Bütün adım adım rehberler", en: "All step-by-step guides", de: "Alle Schritt-für-Schritt-Anleitungen",
+    fr: "Tous les guides pas à pas", ar: "كل الأدلة خطوة بخطوة" },
   pTodayLink: { tr: "Bugünün vakitleri", en: "Today's prayer times", de: "Die heutigen Gebetszeiten", fr: "Les horaires du jour", ar: "مواقيت اليوم" },
   socialTitle: { tr: "Halkayla bağlantıda kal", en: "Stay close to the circle", de: "Bleib mit dem Kreis verbunden",
     fr: "Reste lié au cercle", ar: "ابقَ على صلة بالحلقة" },
@@ -744,7 +748,7 @@ function sayfa(dil) {
   const s = sozlukFor(dil);
   const ham = {
     lang: dil, dir: dil === "ar" ? "rtl" : "ltr",
-    homeHref: EV[dil], vakitHref: VAKIT[dil], imgBase: `/img/app/${dil}/`, guidesHref: REHBER[dil], guideHatimHref: rehberAdresi("hatim", dil),
+    homeHref: EV[dil], vakitHref: VAKIT[dil], imgBase: `/img/app/${dil}/`, guidesHref: REHBER[dil], guideHatimHref: rehberAdresi("hatim", dil), guideTekHref: rehberAdresi("tek", dil),
     iosHref: IOS, androidHero: play("hero", dil), androidClose: play("close", dil),
     privacyHref: politika("privacy", dil), termsHref: politika("terms", dil), deleteHref: politika("account-delete", dil),
     langsHtml: DILLER.map((d) => `<a href="${EV[d]}" hreflang="${d}" lang="${d}"${d === dil ? ' aria-current="page"' : ""}>${DIL_ADI[d]}</a>`).join(""),
