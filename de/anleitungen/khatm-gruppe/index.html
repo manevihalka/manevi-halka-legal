@@ -336,6 +336,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .kb.ol { background: transparent; color: var(--a-pri); box-shadow: inset 0 0 0 1.5px var(--a-pri); }
   .kb.tx { background: var(--a-soft); color: var(--a-ink); }
   .kbw { white-space: nowrap; }
+  .kb.uzun { display: inline; white-space: normal; padding: 2px 8px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .tip .kb.tx { background: var(--paper); box-shadow: inset 0 0 0 1px var(--a-line); }
 
   /* ── tur halkasi (30 tane) ── */
@@ -423,7 +424,15 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .hub em svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transform: scaleX(var(--s)); }
   .hub .mp { --pw: 150px; margin-block: -14px -60px; }
   @media (max-width: 860px) { .hub { grid-template-columns: 1fr; } }
-  @media (max-width: 460px) { .hub a { grid-template-columns: 1fr; padding: 22px 20px 0; } .hub .mp { --pw: 180px; justify-self: center; margin-block: 8px -90px; } }
+  /* Telefonda kart kisa kalsin: telefon yanda kucuk ve alttan kirpili. Eskiden telefon metnin altina
+     iniyordu, dort kart bes ekran kaydirma ediyordu. */
+  @media (max-width: 460px) {
+    .hub a { gap: 12px; align-items: start; padding-block: 20px 18px; padding-inline: 20px 14px; }
+    .hub h2 { font-size: 22px; }
+    .hub p { font-size: 14.5px; margin-top: 6px; }
+    .hub em { margin-top: 10px; }
+    .hub .mp { --pw: 96px; margin-block: 2px -120px; }
+  }
 
   /* ── kapanis ── */
   .cta { margin-block: 56px 72px; text-align: center; background: var(--band); color: var(--band-ink); border-radius: 32px; padding: clamp(36px, 6vw, 72px) clamp(20px, 5vw, 56px); position: relative; overflow: hidden; }
@@ -1418,7 +1427,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 
     <section class="answer" aria-labelledby="kisa">
       <div><h2 id="kisa">Kurz gesagt</h2>
-        <ol><li>Öffne in der App den Tab <span class="kb">Kreise</span> und tippe auf <span class="kbw"><span class="kb">Kreis gründen</span>.</span> Gib deinen Namen und den Namen des Kreises ein und bestätige mit <span class="kbw"><span class="kb">Kreis gründen</span>.</span></li><li>Tippe auf <span class="kb">Einladungslink teilen</span> und schick den Link an deine Familie oder in eure WhatsApp-Gruppe. Wer den Link antippt, tippt auf <span class="kb">Beitreten</span> und ist im Kreis.</li><li>Sind alle dabei, tippe auf <span class="kb">Aufgabe erstellen</span> und wähle die Karte <span class="kbw"><span class="kb tx">Koran</span>.</span></li><li>Dschuz-Chatma, volle Chatma, eine Runde pro Woche und 1 Dschuz pro Person sind schon eingestellt. Tippe dreimal auf <span class="kbw"><span class="kb">Weiter</span>.</span></li><li>Gib der Aufgabe einen Namen, sieh in der Vorschau, wer mit welchem Dschuz beginnt, und tippe auf <span class="kbw"><span class="kb">Aufgabe starten</span>.</span></li><li>Jeder liest seinen Dschuz und hakt ihn ab. Ist die Woche um, werden die nächsten Dschuz von selbst verteilt.</li></ol></div>
+        <ol><li>Öffne in der App den Tab <span class="kb">Kreise</span> und tippe auf <span class="kbw"><span class="kb">Kreis gründen</span>.</span> Gib deinen Namen und den Namen des Kreises ein und bestätige mit <span class="kbw"><span class="kb">Kreis gründen</span>.</span></li><li>Tippe auf <span class="kb uzun">Einladungslink teilen</span> und schick den Link an deine Familie oder in eure WhatsApp-Gruppe. Wer den Link antippt, tippt auf <span class="kb">Beitreten</span> und ist im Kreis.</li><li>Sind alle dabei, tippe auf <span class="kb">Aufgabe erstellen</span> und wähle die Karte <span class="kbw"><span class="kb tx">Koran</span>.</span></li><li>Dschuz-Chatma, volle Chatma, eine Runde pro Woche und 1 Dschuz pro Person sind schon eingestellt. Tippe dreimal auf <span class="kbw"><span class="kb">Weiter</span>.</span></li><li>Gib der Aufgabe einen Namen, sieh in der Vorschau, wer mit welchem Dschuz beginnt, und tippe auf <span class="kbw"><span class="kb">Aufgabe starten</span>.</span></li><li>Jeder liest seinen Dschuz und hakt ihn ab. Ist die Woche um, werden die nächsten Dschuz von selbst verteilt.</li></ol></div>
       <nav class="toc" aria-label="In dieser Anleitung"><b>In dieser Anleitung</b><ul>
         <li><a href="#halka"><span class="tn">1</span><span>Gründe deinen Kreis<small> · Wer den Kreis gründet</small></span></a></li>
         <li><a href="#hatim"><span class="tn">2</span><span>Starte die Khatm<small> · Wer den Kreis gründet</small></span></a></li>
@@ -1473,7 +1482,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <p>Schreib einen Namen in das Feld <span class="kbw"><span class="kb tx">Name des Kreises</span>,</span> zum Beispiel „Meine Familie“ oder „Freitagskreis“. Eine Beschreibung ist freiwillig. Tippe dann auf <span class="kbw"><span class="kb">Kreis gründen</span>.</span></p><p>Hast du dein Konto noch nicht verknüpft, erscheint bei deinem ersten Kreis einmal das Fenster <span class="kbw"><span class="kb tx">Sichere deinen Kreis</span>.</span> Verknüpfst du es mit Apple, Google oder E-Mail, bleibt dein Kreis erhalten, auch wenn du das Handy wechselst. Du kannst auch auf <span class="kb ol">Später</span> tippen und weitermachen.</p>
           
           
-          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span><span class="kb tx">Detaillierte Fortschrittsverfolgung</span> wählst du nur beim Gründen. Schaltest du sie ein, siehst du als Admin den täglichen Fortschritt der Mitglieder. Die Mitglieder sehen ihn nicht.</span></p>
+          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span><span class="kb tx uzun">Detaillierte Fortschrittsverfolgung</span> wählst du nur beim Gründen. Schaltest du sie ein, siehst du als Admin den täglichen Fortschritt der Mitglieder. Die Mitglieder sehen ihn nicht.</span></p>
         </div>
         <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,700],[&quot;tap&quot;,&quot;cname&quot;],[&quot;type&quot;,&quot;cname&quot;,&quot;Meine Familie&quot;],[&quot;w&quot;,400],[&quot;tap&quot;,&quot;cbtn&quot;],[&quot;ov&quot;,&quot;s&quot;],[&quot;w&quot;,1300],[&quot;tap&quot;,&quot;later&quot;],[&quot;cl&quot;,&quot;s&quot;],[&quot;go&quot;,&quot;r&quot;],[&quot;w&quot;,1600]]' data-still="3" data-hint="cname">
       <div class="mp-f"><div class="mp-s" role="img" aria-label="Neuen Kreis erstellen › Kreis gründen"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="f"><div class="hd"><span class="hb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><div class="ht"><b>Neuen Kreis erstellen</b></div><span class="hr"></span></div><div class="pg">
@@ -1502,7 +1511,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bead">3</span>
         <div class="gs-text">
           <h3>Lade deine Liebsten ein</h3>
-          <p>Im Kreis erscheint die Karte <span class="kbw"><span class="kb tx">Dein Kreis ist bereit</span>.</span> Tippe auf <span class="kb">Einladungslink teilen</span> und schick den Link in eure WhatsApp-Gruppe, an deine Familie oder an wen du möchtest. Wer den Link antippt, sieht auf seinem Handy die Einladungskarte des Kreises. Tippt er auf <span class="kbw"><span class="kb">Beitreten</span>,</span> ist er im Kreis. Öffnet sich der Link im Browser statt in der App, tippt er auf der Seite auf <b>App öffnen</b>.</p>
+          <p>Im Kreis erscheint die Karte <span class="kb tx uzun">Dein Kreis ist bereit</span>. Tippe auf <span class="kb uzun">Einladungslink teilen</span> und schick den Link in eure WhatsApp-Gruppe, an deine Familie oder an wen du möchtest. Wer den Link antippt, sieht auf seinem Handy die Einladungskarte des Kreises. Tippt er auf <span class="kbw"><span class="kb">Beitreten</span>,</span> ist er im Kreis. Öffnet sich der Link im Browser statt in der App, tippt er auf der Seite auf <b>App öffnen</b>.</p>
           
           <p class="why"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>Eure WhatsApp-Gruppe bleibt. Teilt dort den Link; wer welchen Dschuz liest, hält die App fest.</span></p>
           <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>Erst einladen, dann die Khatm starten. Die Dschuz gehen an alle, die beim Start im Kreis sind. Wer später beitritt, bekommt in der nächsten Runde einen Teil.</span></p>
@@ -1526,7 +1535,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bead">4</span>
         <div class="gs-text">
           <h3>Wenn du willst: per Code oder QR-Code einladen</h3>
-          <p>Oben rechts im Kreis siehst du drei Symbole. Tippst du auf das mittlere, die Person mit dem Pluszeichen, öffnet sich das Fenster <span class="kbw"><span class="kb tx">In Kreis einladen</span>:</span> ein kurzer Code aus sechs Zeichen, der Einladungslink und ein QR-Code. Den Code kannst du am Telefon durchsagen, den QR-Code in der Moschee auf einer Leinwand zeigen.</p><p>Wer die App noch nicht hat, lädt sie über die Seite, die sich beim Antippen des Links öffnet. Danach tippt er im Tab <span class="kb">Kreise</span> auf <span class="kbw"><span class="kb ol">Mit Einladungscode beitreten</span>,</span> fügt den Einladungslink oder den Code ein und tritt bei. Mehr dazu: <a href="/de/anleitungen/kreis-beitreten/">Einem Kreis per Einladung beitreten</a>.</p>
+          <p>Oben rechts im Kreis siehst du drei Symbole. Tippst du auf das mittlere, die Person mit dem Pluszeichen, öffnet sich das Fenster <span class="kbw"><span class="kb tx">In Kreis einladen</span>:</span> ein kurzer Code aus sechs Zeichen, der Einladungslink und ein QR-Code. Den Code kannst du am Telefon durchsagen, den QR-Code in der Moschee auf einer Leinwand zeigen.</p><p>Wer die App noch nicht hat, lädt sie über die Seite, die sich beim Antippen des Links öffnet. Danach tippt er im Tab <span class="kb">Kreise</span> auf <span class="kb ol uzun">Mit Einladungscode beitreten</span>, fügt den Einladungslink oder den Code ein und tritt bei. Mehr dazu: <a href="/de/anleitungen/kreis-beitreten/">Einem Kreis per Einladung beitreten</a>.</p>
           
           
           
@@ -1560,7 +1569,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bead">5</span>
         <div class="gs-text">
           <h3>Aufgabe erstellen und Koran wählen</h3>
-          <p>Sind alle beigetreten, tippe auf der Karte <span class="kb tx">Dein Kreis ist bereit</span> auf <span class="kbw"><span class="kb">Aufgabe erstellen</span>.</span> Der runde Knopf <b>+</b> unten rechts öffnet denselben Bildschirm. Wähle dort die Karte <span class="kbw"><span class="kb tx">Koran</span>.</span></p>
+          <p>Sind alle beigetreten, tippe auf der Karte <span class="kb tx uzun">Dein Kreis ist bereit</span> auf <span class="kbw"><span class="kb">Aufgabe erstellen</span>.</span> Der runde Knopf <b>+</b> unten rechts öffnet denselben Bildschirm. Wähle dort die Karte <span class="kbw"><span class="kb tx">Koran</span>.</span></p>
           
           
           
@@ -1640,7 +1649,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <p>Schreib einen Namen in das Feld <span class="kbw"><span class="kb tx">Name der Aufgabe</span>,</span> zum Beispiel „Familien-Chatma“. Darunter zeigt die Vorschau, wer mit welchem Dschuz beginnt. Tippe auf <span class="kbw"><span class="kb">Aufgabe starten</span>.</span> Jeder hat seinen Dschuz im selben Moment auf dem eigenen Bildschirm.</p>
           
           <p class="why"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>Wer was liest, musst du nicht ausrechnen; die App verteilt nach der Reihenfolge im Kreis.</span></p>
-          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span><span class="kb tx">Automatisch zur nächsten Runde</span> ist eingeschaltet: Ist die Rundenzeit um, startet die neue Runde von selbst. Die Runden wechseln um Mitternacht in deiner Zeitzone; auf dem Bildschirm steht dazu eine Zeile wie „Die Runden richten sich nach der Zeit in Berlin.“</span></p>
+          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span><span class="kb tx uzun">Automatisch zur nächsten Runde</span> ist eingeschaltet: Ist die Rundenzeit um, startet die neue Runde von selbst. Die Runden wechseln um Mitternacht in deiner Zeitzone; auf dem Bildschirm steht dazu eine Zeile wie „Die Runden richten sich nach der Zeit in Berlin.“</span></p>
         </div>
         <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,800],[&quot;tap&quot;,&quot;tname&quot;],[&quot;type&quot;,&quot;tname&quot;,&quot;Familien-Chatma&quot;],[&quot;on&quot;,&quot;start&quot;,&quot;en&quot;],[&quot;w&quot;,700],[&quot;tap&quot;,&quot;start&quot;],[&quot;go&quot;,&quot;ct&quot;],[&quot;ov&quot;,&quot;ok&quot;],[&quot;w&quot;,2200]]' data-still="1" data-hint="tname">
       <div class="mp-f"><div class="mp-s" role="img" aria-label="Name der Aufgabe › Aufgabe starten › Aufgabe gestartet"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="w5"><div class="wdots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><div class="whd"><span class="wb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg><span>Zurück</span></span><small>Schritt <bdi dir="ltr">5 / 5</bdi></small><svg class="ic" aria-hidden="true"><use href="#r-x"/></svg></div><div class="pg">
@@ -1707,7 +1716,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bead">9</span>
         <div class="gs-text">
           <h3>Lesen beginnen, am Ende als gelesen markieren</h3>
-          <p>Tippe auf <span class="kbw"><span class="kb">Lesen beginnen</span>.</span> Der Koran öffnet sich auf deiner ersten Seite; die dünne Linie oben zeigt, wie viel du schon gelesen hast. Auf der letzten Seite erscheint unten der Knopf <span class="kbw"><span class="kb">Als gelesen markieren</span>.</span> Tippe darauf und im Fenster noch einmal auf <span class="kbw"><span class="kb">Als gelesen markieren</span>.</span> Dein Teil ist erledigt, und du kommst zurück zur Aufgabe.</p><p>Die Aufgabenkarte wird zur Karte <span class="kbw"><span class="kb tx">Alhamdulillah</span>.</span> Dort siehst du, wie viele im Kreis schon fertig sind.</p>
+          <p>Tippe auf <span class="kbw"><span class="kb">Lesen beginnen</span>.</span> Der Koran öffnet sich auf deiner ersten Seite; die dünne Linie oben zeigt, wie viel du schon gelesen hast. Auf der letzten Seite erscheint unten der Knopf <span class="kb uzun">Als gelesen markieren</span>. Tippe darauf und im Fenster noch einmal auf <span class="kb uzun">Als gelesen markieren</span>. Dein Teil ist erledigt, und du kommst zurück zur Aufgabe.</p><p>Die Aufgabenkarte wird zur Karte <span class="kbw"><span class="kb tx">Alhamdulillah</span>.</span> Dort siehst du, wie viele im Kreis schon fertig sind.</p>
           
           <p class="why"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>Du musst keinen Mushaf suchen: Deine Seiten öffnen sich direkt in der App.</span></p>
           <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>Hast du aus einem gedruckten Mushaf gelesen, tippe in der Aufgabe auf <span class="kbw"><span class="kb">FERTIG</span>.</span> Hast du die gelesenen Abschnitte nicht markiert, antworte auf die Frage mit <span class="kbw"><span class="kb">Ja</span>.</span></span></p>

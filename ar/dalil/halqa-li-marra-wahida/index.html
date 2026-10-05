@@ -336,6 +336,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .kb.ol { background: transparent; color: var(--a-pri); box-shadow: inset 0 0 0 1.5px var(--a-pri); }
   .kb.tx { background: var(--a-soft); color: var(--a-ink); }
   .kbw { white-space: nowrap; }
+  .kb.uzun { display: inline; white-space: normal; padding: 2px 8px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .tip .kb.tx { background: var(--paper); box-shadow: inset 0 0 0 1px var(--a-line); }
 
   /* ── tur halkasi (30 tane) ── */
@@ -423,7 +424,15 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .hub em svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transform: scaleX(var(--s)); }
   .hub .mp { --pw: 150px; margin-block: -14px -60px; }
   @media (max-width: 860px) { .hub { grid-template-columns: 1fr; } }
-  @media (max-width: 460px) { .hub a { grid-template-columns: 1fr; padding: 22px 20px 0; } .hub .mp { --pw: 180px; justify-self: center; margin-block: 8px -90px; } }
+  /* Telefonda kart kisa kalsin: telefon yanda kucuk ve alttan kirpili. Eskiden telefon metnin altina
+     iniyordu, dort kart bes ekran kaydirma ediyordu. */
+  @media (max-width: 460px) {
+    .hub a { gap: 12px; align-items: start; padding-block: 20px 18px; padding-inline: 20px 14px; }
+    .hub h2 { font-size: 22px; }
+    .hub p { font-size: 14.5px; margin-top: 6px; }
+    .hub em { margin-top: 10px; }
+    .hub .mp { --pw: 96px; margin-block: 2px -120px; }
+  }
 
   /* ── kapanis ── */
   .cta { margin-block: 56px 72px; text-align: center; background: var(--band); color: var(--band-ink); border-radius: 32px; padding: clamp(36px, 6vw, 72px) clamp(20px, 5vw, 56px); position: relative; overflow: hidden; }
@@ -1502,7 +1511,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bead">4</span>
         <div class="gs-text">
           <h3>اختر تاريخ الانتهاء</h3>
-          <p>اضغط خانة <span class="kb tx">تاريخ الانتهاء</span> واختر إلى متى تستمر الحلقة. تأتي الخانة بموعد بعد يومين، ولك أن تختار أي تاريخ آخر، مثل ليلة مباركة. ثم اضغط <span class="kbw"><span class="kb">متابعة</span>.</span></p><p>إن أردت أن تبدأ الحلقة تلقائيًا في ساعة محددة، فضع علامة على خيار <span class="kbw"><span class="kb tx">تحديد وقت البدء (اختياري)</span>.</span> وإن لم تضع العلامة، فأنت من يبدأ الحلقة.</p>
+          <p>اضغط خانة <span class="kb tx">تاريخ الانتهاء</span> واختر إلى متى تستمر الحلقة. تأتي الخانة بموعد بعد يومين، ولك أن تختار أي تاريخ آخر، مثل ليلة مباركة. ثم اضغط <span class="kbw"><span class="kb">متابعة</span>.</span></p><p>إن أردت أن تبدأ الحلقة تلقائيًا في ساعة محددة، فضع علامة على خيار <span class="kb tx uzun">تحديد وقت البدء (اختياري)</span>. وإن لم تضع العلامة، فأنت من يبدأ الحلقة.</p>
           
           
           <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>تُحذف الحلقة بعد 24 ساعة من تاريخ الانتهاء. وإن لم تكفِ المدة يمكنك تمديدها لاحقًا، كما يأتي شرحه أدناه.</span></p>
@@ -1592,7 +1601,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bead">7</span>
         <div class="gs-text">
           <h3>أرسل الرابط</h3>
-          <p>عند بدء الحلقة تنتقل بطاقة الدعوة إلى تبويب <span class="kbw"><span class="kb tx">الحلقة</span>.</span> اضغط زر <span class="kbw"><span class="kb ol">دعوة</span>،</span> وأرسل الرابط إلى مجموعة الواتساب، أو إلى عائلتك، أو إلى من تشاء.</p><p>والملاحظة أسفل البطاقة تبيّن ما يستطيعه بهذا الرابط من لا يملك التطبيق. ففي الختمة ذات المجمّع المشترك تقول: <span class="kb tx">يمكن لمن لا يملك التطبيق أن يأخذ جزءًا من هذا الرابط ويقرأه.</span></p>
+          <p>عند بدء الحلقة تنتقل بطاقة الدعوة إلى تبويب <span class="kbw"><span class="kb tx">الحلقة</span>.</span> اضغط زر <span class="kbw"><span class="kb ol">دعوة</span>،</span> وأرسل الرابط إلى مجموعة الواتساب، أو إلى عائلتك، أو إلى من تشاء.</p><p>والملاحظة أسفل البطاقة تبيّن ما يستطيعه بهذا الرابط من لا يملك التطبيق. ففي الختمة ذات المجمّع المشترك تقول: <span class="kb tx uzun">يمكن لمن لا يملك التطبيق أن يأخذ جزءًا من هذا الرابط ويقرأه.</span></p>
           
           <p class="why"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>أبقِ مجموعة الواتساب كما هي. أرسل الرابط فيها، والتطبيق يتابع من أخذ أي جزء وكم مرة ذُكر، فلا تحتاج إلى كتابة قائمة.</span></p>
           <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>أرسل الرابط من زر <span class="kb ol">دعوة</span> في هذه الشاشة، أو من أيقونة المشاركة في الأعلى. لا ترسل رمز الدعوة وحده؛ فمن لا يملك التطبيق لا يستطيع أن يشارك من المتصفح إلا بهذا الرابط.</span></p>
@@ -1632,7 +1641,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bead">8</span>
         <div class="gs-text">
           <h3>اختر الذكر والعدد المستهدف</h3>
-          <p>في شاشة <span class="kb tx">الذكر والهدف</span> اضغط إحدى الشرائح تحت عنوان <span class="kbw"><span class="kb tx">أضف من القوائم الجاهزة</span>،</span> مثل الصلاة على النبي. وفي القائمة أيضًا التهليل، والاستغفار، وسبحان الله، والحمد لله. ويمكنك أن تختار اسمًا من شريحة <span class="kbw"><span class="kb tx">أسماء الله الحسنى</span>،</span> أو أن تكتب ذكرك في خانة <span class="kbw"><span class="kb tx">مخصص</span>.</span></p><p>في بطاقة الذكر الذي أضفته اكتب العدد في خانة <span class="kbw"><span class="kb tx">الهدف</span>.</span> وبجانبها خياران:</p>
+          <p>في شاشة <span class="kb tx">الذكر والهدف</span> اضغط إحدى الشرائح تحت عنوان <span class="kb tx uzun">أضف من القوائم الجاهزة</span>، مثل الصلاة على النبي. وفي القائمة أيضًا التهليل، والاستغفار، وسبحان الله، والحمد لله. ويمكنك أن تختار اسمًا من شريحة <span class="kbw"><span class="kb tx">أسماء الله الحسنى</span>،</span> أو أن تكتب ذكرك في خانة <span class="kbw"><span class="kb tx">مخصص</span>.</span></p><p>في بطاقة الذكر الذي أضفته اكتب العدد في خانة <span class="kbw"><span class="kb tx">الهدف</span>.</span> وبجانبها خياران:</p>
           <ul><li><span class="kbw"><span class="kb tx">جماعي</span>:</span> تعدّ الحلقة كلها نحو مجموع واحد، مثل 10000 صلاة على النبي معًا. وتتجمع الأعداد حتى تاريخ الانتهاء.</li><li><span class="kbw"><span class="kb tx">فردي</span>:</span> يُتمّ كل شخص بنفسه العدد الذي كتبته، مثل 100 لكل شخص.</li></ul>
           <p class="why"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>ومن لا يملك التطبيق يستطيع أيضًا أن يضيف إلى العدّ من الرابط عبر المتصفح. ويكون ذلك في الأذكار التي اختير لها <span class="kb tx">جماعي</span> فقط، وبعد بدء الحلقة.</span></p>
           <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>للمزيد عن العدّ والهدف المشترك: <a href="/ar/dalil/dhikr-jamai/">الذكر الجماعي والصلاة على النبي</a>.</span></p>
@@ -1683,7 +1692,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <p>عندما تضغط رابط الدعوة يُفتح التطبيق، وتظهر بطاقة الحلقة: اسمها، والإهداء، وعدد المشاركين، وتاريخ الانتهاء. اضغط <span class="kbw"><span class="kb">انضم</span>.</span> وإن كانت هذه أول مرة تنضم فيها، فيكفي أن تكتب اسمك؛ لا يُطلب بريد إلكتروني. وإن فُتح الرابط في المتصفح بدل التطبيق، فاضغط زر <span class="kb">افتح في التطبيق</span> أسفل الصفحة؛ والتفاصيل في دليل <a href="/ar/dalil/indimam-ila-halqa/">الانضمام إلى حلقة برابط دعوة</a>.</p><p>في حلقة الختمة اضغط جزءًا متاحًا في قسم <span class="kbw"><span class="kb tx">مجمّع الأجزاء</span>.</span> إن ضغطت <span class="kb">خذ الجزء كاملاً</span> تصبح صفحات ذلك الجزء العشرون لك. وإن كنت ستقرأ أقل من ذلك، فاكتب الصفحة الأولى والأخيرة، ثم اضغط زر <span class="kbw"><span class="kb ol">خذ هذا النطاق</span>.</span></p>
           
           
-          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>إن لم تبدأ الحلقة بعد، ترى على الشاشة عبارة <span class="kbw"><span class="kb tx">تُفتح عندما يبدأها المشرف</span>.</span> وعندما يبدؤها المشرف تُفتح الأجزاء والعدّ.</span></p>
+          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>إن لم تبدأ الحلقة بعد، ترى على الشاشة عبارة <span class="kb tx uzun">تُفتح عندما يبدأها المشرف</span>. وعندما يبدؤها المشرف تُفتح الأجزاء والعدّ.</span></p>
         </div>
         <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,900],[&quot;tap&quot;,&quot;joinBtn&quot;],[&quot;ov&quot;,&quot;n&quot;],[&quot;w&quot;,400],[&quot;tap&quot;,&quot;name&quot;],[&quot;type&quot;,&quot;name&quot;,&quot;عائشة&quot;],[&quot;on&quot;,&quot;nameOk&quot;,&quot;en&quot;],[&quot;w&quot;,300],[&quot;tap&quot;,&quot;nameOk&quot;],[&quot;cl&quot;,&quot;n&quot;],[&quot;go&quot;,&quot;g&quot;],[&quot;w&quot;,900],[&quot;y&quot;,&quot;gsc&quot;,7],[&quot;w&quot;,900],[&quot;tap&quot;,&quot;c7&quot;],[&quot;ov&quot;,&quot;m&quot;],[&quot;w&quot;,1300],[&quot;tap&quot;,&quot;whole&quot;],[&quot;cl&quot;,&quot;m&quot;],[&quot;on&quot;,&quot;c7&quot;,&quot;gone&quot;],[&quot;off&quot;,&quot;c13&quot;,&quot;vf-x&quot;],[&quot;on&quot;,&quot;mytask&quot;,&quot;on&quot;],[&quot;st&quot;,&quot;pbH&quot;,&quot;width&quot;,&quot;16.6%&quot;],[&quot;txt&quot;,&quot;lgH&quot;,&quot;100 صفحة قيد القراءة&quot;],[&quot;txt&quot;,&quot;lgF&quot;,&quot;464 صفحة متاحة&quot;],[&quot;w&quot;,700],[&quot;y&quot;,&quot;gsc&quot;,4],[&quot;w&quot;,2200]]' data-still="0" data-hint="joinBtn">
       <div class="mp-f"><div class="mp-s" role="img" aria-label="انضم › ما اسمك؟ › مجمّع الأجزاء › خذ الجزء كاملاً › مهمتك"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="j"><div class="pg vf-jpg"><div class="cd vf-join"><svg class="ic" aria-hidden="true"><use href="#r-quran"/></svg><small class="cap">حلقة لمرة واحدة</small>
@@ -1867,7 +1876,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     </section></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
     </figure></article></div>
-      <p class="tip" style="margin-top:20px;max-width:48em"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>في الختمة المنشأة بخيار <span class="kbw"><span class="kb tx">تقسيم تلقائي</span>،</span> تظهر في شاشة الحلقة بطاقة <span class="kb">اكتملت ختمتكم</span> عندما تُقرأ الأنصبة كلها. وإن لم يُتمّ أحدهم نصيبه، يستطيع المشرف أن يفتح الأنصبة الباقية للمجمّع بسطر <span class="kb tx">افتح المتبقّي للمجمّع</span> في بطاقة <span class="kbw"><span class="kb tx">الإدارة</span>.</span></span></p>
+      <p class="tip" style="margin-top:20px;max-width:48em"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>في الختمة المنشأة بخيار <span class="kbw"><span class="kb tx">تقسيم تلقائي</span>،</span> تظهر في شاشة الحلقة بطاقة <span class="kb">اكتملت ختمتكم</span> عندما تُقرأ الأنصبة كلها. وإن لم يُتمّ أحدهم نصيبه، يستطيع المشرف أن يفتح الأنصبة الباقية للمجمّع بسطر <span class="kb tx uzun">افتح المتبقّي للمجمّع</span> في بطاقة <span class="kbw"><span class="kb tx">الإدارة</span>.</span></span></p>
     </section>
     <section class="part" id="vesileler">
       <header class="part-head"><span class="part-no"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0 6.07"/></svg>5</span><div>
@@ -1900,7 +1909,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <span class="bt blk" data-k="startNow"><svg class="ic" aria-hidden="true"><use href="#r-vfPlay"/></svg><span>ابدأ الآن</span></span>
       <span class="vf-red"><svg class="ic" aria-hidden="true"><use href="#r-vfTrash"/></svg><span>حذف الحلقة</span></span></div></div></section></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
-    </figure></article><article><h3>لليلة مباركة والمولد النبوي ورمضان</h3><p>في ختمة تُقرأ لليلة مباركة أو للمولد النبوي أو لرمضان، اجعل تاريخ الانتهاء يوم المناسبة، مثل مساء الليلة المباركة. واكتب الإهداء بحسب المناسبة. وعندما تكون خانة الإهداء فارغة يظهر فيها: <span class="kb tx">مثال: بمناسبة الليلة المباركة</span></p><p>وإن كنت تقرأ مع جماعة كبيرة، يمكنك أن تفتح أكثر من ختمة في الحلقة نفسها بزر <span class="kbw"><span class="kb ol">سلسلة جديدة</span>.</span></p><p>أما الختمة التي تستمر طوال رمضان كل يوم أو كل أسبوع، فالحلقة المنتظمة أنسب لها: <a href="/ar/dalil/khatma-jamaiya/">إنشاء ختمة جماعية</a>.</p></article></div>
+    </figure></article><article><h3>لليلة مباركة والمولد النبوي ورمضان</h3><p>في ختمة تُقرأ لليلة مباركة أو للمولد النبوي أو لرمضان، اجعل تاريخ الانتهاء يوم المناسبة، مثل مساء الليلة المباركة. واكتب الإهداء بحسب المناسبة. وعندما تكون خانة الإهداء فارغة يظهر فيها: <span class="kb tx uzun">مثال: بمناسبة الليلة المباركة</span></p><p>وإن كنت تقرأ مع جماعة كبيرة، يمكنك أن تفتح أكثر من ختمة في الحلقة نفسها بزر <span class="kbw"><span class="kb ol">سلسلة جديدة</span>.</span></p><p>أما الختمة التي تستمر طوال رمضان كل يوم أو كل أسبوع، فالحلقة المنتظمة أنسب لها: <a href="/ar/dalil/khatma-jamaiya/">إنشاء ختمة جماعية</a>.</p></article></div>
       
     </section>
     <section class="part" id="ornek">

@@ -336,6 +336,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .kb.ol { background: transparent; color: var(--a-pri); box-shadow: inset 0 0 0 1.5px var(--a-pri); }
   .kb.tx { background: var(--a-soft); color: var(--a-ink); }
   .kbw { white-space: nowrap; }
+  .kb.uzun { display: inline; white-space: normal; padding: 2px 8px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .tip .kb.tx { background: var(--paper); box-shadow: inset 0 0 0 1px var(--a-line); }
 
   /* ── tur halkasi (30 tane) ── */
@@ -423,7 +424,15 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .hub em svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transform: scaleX(var(--s)); }
   .hub .mp { --pw: 150px; margin-block: -14px -60px; }
   @media (max-width: 860px) { .hub { grid-template-columns: 1fr; } }
-  @media (max-width: 460px) { .hub a { grid-template-columns: 1fr; padding: 22px 20px 0; } .hub .mp { --pw: 180px; justify-self: center; margin-block: 8px -90px; } }
+  /* Telefonda kart kisa kalsin: telefon yanda kucuk ve alttan kirpili. Eskiden telefon metnin altina
+     iniyordu, dort kart bes ekran kaydirma ediyordu. */
+  @media (max-width: 460px) {
+    .hub a { gap: 12px; align-items: start; padding-block: 20px 18px; padding-inline: 20px 14px; }
+    .hub h2 { font-size: 22px; }
+    .hub p { font-size: 14.5px; margin-top: 6px; }
+    .hub em { margin-top: 10px; }
+    .hub .mp { --pw: 96px; margin-block: 2px -120px; }
+  }
 
   /* ── kapanis ── */
   .cta { margin-block: 56px 72px; text-align: center; background: var(--band); color: var(--band-ink); border-radius: 32px; padding: clamp(36px, 6vw, 72px) clamp(20px, 5vw, 56px); position: relative; overflow: hidden; }
@@ -1470,7 +1479,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <p>افتح التطبيق، وأنهِ التعريف القصير الذي يظهر عند أول فتح. اضغط تبويب <span class="kb">الحلقات</span> في الشريط السفلي. ثم اضغط زر <span class="kbw"><span class="kb ol">انضم برمز دعوة</span>.</span></p><p>لا يسألك التطبيق إلا عن اسمك. اكتب اسمك واضغط <span class="kbw"><span class="kb">متابعة</span>.</span> ثم تُفتح شاشة <span class="kbw"><span class="kb tx">الانضمام للحلقة</span>.</span></p>
           
           
-          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>إن كنت قد كتبت اسمك في التطبيق من قبل، أو سجّلت الدخول، فلن ترى هذا الزر. اضغط حينها زر <b>+</b> في أعلى الشاشة. وفي اللوحة التي تُفتح اضغط سطر <span class="kbw"><span class="kb tx">الانضمام لحلقة موجودة</span>.</span></span></p>
+          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>إن كنت قد كتبت اسمك في التطبيق من قبل، أو سجّلت الدخول، فلن ترى هذا الزر. اضغط حينها زر <b>+</b> في أعلى الشاشة. وفي اللوحة التي تُفتح اضغط سطر <span class="kb tx uzun">الانضمام لحلقة موجودة</span>.</span></p>
         </div>
         <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,900],[&quot;tap&quot;,&quot;joinBtn&quot;],[&quot;ov&quot;,&quot;n&quot;],[&quot;w&quot;,400],[&quot;tap&quot;,&quot;name&quot;],[&quot;type&quot;,&quot;name&quot;,&quot;عائشة&quot;],[&quot;on&quot;,&quot;nameOk&quot;,&quot;en&quot;],[&quot;w&quot;,300],[&quot;tap&quot;,&quot;nameOk&quot;],[&quot;cl&quot;,&quot;n&quot;],[&quot;go&quot;,&quot;j&quot;],[&quot;w&quot;,1800]]' data-still="0" data-hint="joinBtn">
       <div class="mp-f"><div class="mp-s" role="img" aria-label="الحلقات › انضم برمز دعوة › ما اسمك؟ › الانضمام للحلقة"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="a"><div class="pg pt">
@@ -1500,7 +1509,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <p>في الواتساب اضغط مطوّلًا على رسالة الدعوة، وانسخ الرسالة. ثم ارجع إلى التطبيق، واضغط زر <span class="kbw"><span class="kb ol">لصق</span>.</span> إن طلب هاتفك الإذن باللصق فاسمح به. يجد التطبيق الرمز داخل الرسالة بنفسه. ويمكنك أيضًا أن تكتب الرمز بيدك.</p><p>ثم اضغط زر <span class="kbw"><span class="kb">انضم</span>.</span> فتُفتح شاشة الحلقة مباشرة.</p>
           
           <p class="why"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>يمكنك أن تلصق في الخانة الرابط كاملًا، بل الرسالة كلها. ويتعرّف التطبيق على الرمز حتى لو كُتب بمسافات بين حروفه.</span></p>
-          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>إن كان الرمز غير صحيح، يكتب التطبيق: <span class="kb tx">لم يتم العثور على حلقة بهذا الرمز. تحقق من الرمز.</span> فراجع الرمز حرفًا حرفًا. ولا تُستخدم في الرموز الحرفان I وO، ولا الرقمان 0 و1.</span></p>
+          <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>إن كان الرمز غير صحيح، يكتب التطبيق: <span class="kb tx uzun">لم يتم العثور على حلقة بهذا الرمز. تحقق من الرمز.</span> فراجع الرمز حرفًا حرفًا. ولا تُستخدم في الرموز الحرفان I وO، ولا الرقمان 0 و1.</span></p>
         </div>
         <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,900],[&quot;tap&quot;,&quot;paste&quot;],[&quot;txt&quot;,&quot;codeTx&quot;,&quot;T4X6RC&quot;],[&quot;on&quot;,&quot;codeIn&quot;,&quot;has&quot;],[&quot;w&quot;,900],[&quot;tap&quot;,&quot;joinGo&quot;],[&quot;go&quot;,&quot;c&quot;],[&quot;on&quot;,&quot;toast&quot;,&quot;show&quot;],[&quot;w&quot;,2400]]' data-still="4" data-hint="joinGo">
       <div class="mp-f"><div class="mp-s" role="img" aria-label="الانضمام للحلقة › لصق › T4X6RC › انضم"><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="j"><div class="kt-jh"><span class="kt-jb"><svg class="ic fl" aria-hidden="true"><use href="#r-back"/></svg></span><b>الانضمام للحلقة</b></div>
@@ -1633,7 +1642,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <span class="bead">9</span>
         <div class="gs-text">
           <h3>إن كانت الختمة جارية فنصيبك يأتي في الجولة التالية</h3>
-          <p>إن كانت في الحلقة ختمة جارية وانضممت في منتصف الجولة، تظهر في شاشة المهمة هذه العبارة: <span class="kb tx">لم تُعيَّن لك مهمة في هذه الجولة.</span> وهذا ليس خطأً.</p><p>تُوزَّع الأجزاء عند بدء الجولة على من في الحلقة. وفي الجولة التالية تدخل أنت أيضًا في القائمة، ويصلك نصيبك من تلقاء نفسه. أما مهام مثل هدف الذكر، فتظهر فورًا في قسم <span class="kbw"><span class="kb tx">مهامك</span>.</span></p>
+          <p>إن كانت في الحلقة ختمة جارية وانضممت في منتصف الجولة، تظهر في شاشة المهمة هذه العبارة: <span class="kb tx uzun">لم تُعيَّن لك مهمة في هذه الجولة.</span> وهذا ليس خطأً.</p><p>تُوزَّع الأجزاء عند بدء الجولة على من في الحلقة. وفي الجولة التالية تدخل أنت أيضًا في القائمة، ويصلك نصيبك من تلقاء نفسه. أما مهام مثل هدف الذكر، فتظهر فورًا في قسم <span class="kbw"><span class="kb tx">مهامك</span>.</span></p>
           
           
           <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>إن لم ترد الانتظار، وكان في المجمّع نصيب ينتظر، يظهر في الأسفل رابط <span class="kbw"><span class="kb tx">عرض المجمع</span>.</span> ويمكنك أن تأخذ منه نصيبًا إن شئت.</span></p>
@@ -1662,12 +1671,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <section class="faq" id="sss">
       <div><h2>أسئلة شائعة</h2></div>
       <div><details><summary>ضغطت رابط الدعوة، فماذا يحدث؟</summary><p>إن كان التطبيق على هاتفك، يُفتح التطبيق ويعرض بطاقة الدعوة؛ فتضغط <span class="kbw"><span class="kb">انضم</span>.</span> وإن لم يكن، تُفتح صفحة الدعوة في المتصفح. فيها رمز الدعوة وأزرار تحميل التطبيق. أما رابط الحلقة لمرة واحدة، فيفتح في الغالب صفحة الحلقة نفسها في المتصفح. وإن لم تجد في الصفحة إلا <span class="kb tx">رمز الدعوة</span> وأزرار المتاجر، فتلك الحلقة تحتاج إلى التطبيق؛ فتابع من الخطوة 3.</p></details>
-        <details><summary>وصلني رمز قصير، فأين أكتبه؟</summary><p>ادخل إلى تبويب <span class="kb">الحلقات</span> في التطبيق، واضغط زر <span class="kbw"><span class="kb ol">انضم برمز دعوة</span>.</span> وإن لم تجد هذا الزر (لأنك كتبت اسمك من قبل أو سجّلت الدخول)، فاضغط زر <b>+</b> في أعلى الشاشة، ثم سطر <span class="kbw"><span class="kb tx">الانضمام لحلقة موجودة</span>.</span> اكتب الرمز في الخانة، واضغط <span class="kbw"><span class="kb">انضم</span>.</span></p></details>
+        <details><summary>وصلني رمز قصير، فأين أكتبه؟</summary><p>ادخل إلى تبويب <span class="kb">الحلقات</span> في التطبيق، واضغط زر <span class="kbw"><span class="kb ol">انضم برمز دعوة</span>.</span> وإن لم تجد هذا الزر (لأنك كتبت اسمك من قبل أو سجّلت الدخول)، فاضغط زر <b>+</b> في أعلى الشاشة، ثم سطر <span class="kb tx uzun">الانضمام لحلقة موجودة</span>. اكتب الرمز في الخانة، واضغط <span class="kbw"><span class="kb">انضم</span>.</span></p></details>
         <details><summary>هل يمكنني الانضمام دون تحميل التطبيق؟</summary><p>في الحلقة لمرة واحدة نعم في الغالب: يُفتح الرابط في المتصفح، فتأخذ جزءًا أو تشارك في العدّ. أما الحلقة المنتظمة فتحتاج إلى التطبيق. وإن كان لك قريب كبير لا يملك هاتفًا ذكيًا، فيستطيع المدير أن يضيفه <b>ضيفًا</b>؛ ويعلّم على نصيبه من القرآن الشخصُ المسؤول الذي اختير له أو المدير.</p></details>
-        <details><summary>هل أحتاج إلى إنشاء حساب؟</summary><p>لا. لا يسألك التطبيق إلا عن اسمك؛ ولا يطلب بريدًا إلكترونيًا ولا كلمة مرور ولا رقم هاتف. وإن شئت فاضغط لاحقًا الشريط الذي يظهر في أعلى شاشة <span class="kb">الحلقات</span> ومكتوب فيه: <span class="kb tx">حلقاتك على هذا الجهاز فقط، أمّن حسابك</span> ثم اربط حسابك عبر Apple أو Google أو البريد الإلكتروني. وبذلك لا تضيع حلقاتك حتى لو غيّرت هاتفك.</p></details>
+        <details><summary>هل أحتاج إلى إنشاء حساب؟</summary><p>لا. لا يسألك التطبيق إلا عن اسمك؛ ولا يطلب بريدًا إلكترونيًا ولا كلمة مرور ولا رقم هاتف. وإن شئت فاضغط لاحقًا الشريط الذي يظهر في أعلى شاشة <span class="kb">الحلقات</span> ومكتوب فيه: <span class="kb tx uzun">حلقاتك على هذا الجهاز فقط، أمّن حسابك</span> ثم اربط حسابك عبر Apple أو Google أو البريد الإلكتروني. وبذلك لا تضيع حلقاتك حتى لو غيّرت هاتفك.</p></details>
         <details><summary>انضممت، فأين أجد مهمتي؟</summary><p>في قسم <span class="kb tx">مهامك</span> في تبويب <span class="kbw"><span class="kb tx">الرئيسية</span>.</span> وتظهر مهام الحلقة كلها أيضًا في تبويب <span class="kb tx">القراءات</span> في شاشة الحلقة. وإن انضممت إلى ختمة جارية في منتصف الجولة، فنصيبك يأتي مع الجولة التالية.</p></details>
         <details><summary>كيف أغادر الحلقة؟</summary><p>في شاشة الحلقة اضغط النقاط الثلاث في الأعلى. وفي القائمة التي تُفتح اضغط سطر <span class="kbw"><span class="kb tx">مغادرة الحلقة</span>.</span> في الصفحة التالية ترى ما الذي سيتغيّر. إن ضغطت <span class="kb ol">مغادرة</span> تغادر، وإن ضغطت <span class="kb tx">ابقَ في الحلقة</span> تتراجع. وأنصبتك من القرآن التي لم تُتمّها تُترك في المجمّع، فيأخذها منه أهل الحلقة. ويمكنك إن شئت أن تنضم من جديد لاحقًا بالرمز نفسه.</p></details>
-        <details><summary>رابط الدعوة أو الرمز لا يعمل، فماذا أفعل؟</summary><p>إن كانت المشكلة في الرابط، يكتب التطبيق: <span class="kb tx">رابط الدعوة هذا غير صالح أو منتهي الصلاحية.</span> وإن جرّبت الرمز، يكتب: <span class="kb tx">لم يتم العثور على حلقة بهذا الرمز. تحقق من الرمز.</span> ربما كُتب الرمز خطأً، أو لم تعد الحلقة موجودة. والحلقات لمرة واحدة تُغلق عند انتهاء مدتها. اطلب رابطًا أو رمزًا جديدًا ممن أرسله إليك. وإن امتلأت الحلقة، يكتب التطبيق: <span class="kb tx">وصلت هذه الحلقة إلى الحد الأقصى لعدد الأعضاء.</span> فأخبر المدير حينها.</p></details></div>
+        <details><summary>رابط الدعوة أو الرمز لا يعمل، فماذا أفعل؟</summary><p>إن كانت المشكلة في الرابط، يكتب التطبيق: <span class="kb tx uzun">رابط الدعوة هذا غير صالح أو منتهي الصلاحية.</span> وإن جرّبت الرمز، يكتب: <span class="kb tx uzun">لم يتم العثور على حلقة بهذا الرمز. تحقق من الرمز.</span> ربما كُتب الرمز خطأً، أو لم تعد الحلقة موجودة. والحلقات لمرة واحدة تُغلق عند انتهاء مدتها. اطلب رابطًا أو رمزًا جديدًا ممن أرسله إليك. وإن امتلأت الحلقة، يكتب التطبيق: <span class="kb tx uzun">وصلت هذه الحلقة إلى الحد الأقصى لعدد الأعضاء.</span> فأخبر المدير حينها.</p></details></div>
     </section>
 
     <section class="related">

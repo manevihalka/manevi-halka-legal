@@ -112,13 +112,16 @@ function satir(s, K) {
   let h = kacirMetin(String(s)).replace(/"/g, "&quot;");
   h = h.replace(/\[\[(ol:|tx:)?(=)?([^\]]+?)\]\]/g, (_, tur, duz, govde) => {
     const metin = duz ? govde : kacirMetin(K.L(govde));
-    const cls = tur === "ol:" ? "kb ol" : tur === "tx:" ? "kb tx" : "kb";
+    // Uzun etiket (cumle gibi notlar, Almanca/Fransizca uzun adlar) tek parca kalirsa telefonda
+    // satirdan tasiyor ve kirpiliyordu: 20 harften uzunsa satir icinde kirilabilen bicim.
+    const uzun = metin.replace(/&[a-z#0-9]+;/gi, "x").length > 20 ? " uzun" : "";
+    const cls = (tur === "ol:" ? "kb ol" : tur === "tx:" ? "kb tx" : "kb") + uzun;
     return `<span class="${cls}">${metin}</span>`;
   });
   // Fransizca: iki nokta, noktali virgul, soru ve unlemden onceki bosluk bolunmez olsun
   if (K && K.dil === "fr") h = h.replace(/ ([:;?!»])/g, "\u00a0$1").replace(/« /g, "«\u00a0");
   // Etiketten hemen sonra gelen noktalama alt satira tek basina dusmesin
-  h = h.replace(/(<span class="kb[^"]*">[^<]*<\/span>)([,.;:!?)»؟،]+)/g, '<span class="kbw">$1$2</span>');
+  h = h.replace(/(<span class="kb(?![^"]*uzun)[^"]*">[^<]*<\/span>)([,.;:!?)»؟،\u00a0]+)/g, '<span class="kbw">$1$2</span>');
   h = h.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
   h = h.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => {
     const dis = /^https?:\/\//.test(u) && !u.startsWith(SITE);
