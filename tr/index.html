@@ -212,6 +212,16 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .get { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; white-space: nowrap; flex: none; border-radius: 999px; background: var(--green); color: var(--page); text-decoration: none; font-weight: 700; font-size: 14.5px; }
   .get svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   @media (max-width: 820px) { .top nav { display: none; } .top .lang { margin-inline-start: auto; } .top { gap: 10px; } }
+  /* Telefonda ust menu gizli: baska sayfaya giden iki baglanti basligin altinda kapsul olarak durur
+     (Vakitler zaten en ustteki seritte). Masaustunde bu satir yok. */
+  .mnav { display: none; }
+  @media (max-width: 820px) {
+    .mnav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+    .mnav a { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 999px; font-size: 14.5px; font-weight: 600; text-decoration: none;
+      color: var(--green); background: color-mix(in srgb, var(--green) 8%, transparent); white-space: nowrap; }
+    .mnav a:active { background: color-mix(in srgb, var(--green) 16%, transparent); }
+    .mnav svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  }
   /* ── dil secici: her dilin kendi adresi var, secim bir GEZINME (mh_lang kaydedilir) ── */
   .lang { position: relative; flex: none; }
   .lang-btn { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
@@ -889,6 +899,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     </button>
     <a class="get" href="#download" data-get aria-label="İndir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">İndir</span><span class="gs">İndir</span></a>
   </header>
+  <nav class="mnav" aria-label="Sayfalar"><a class="pg" href="/ortak-okuma.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg>Ortak Okuma</a><a class="pg" href="/tr/rehber/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5v13c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z"/><path d="M12 6v13.5"/></svg>Rehberler</a></nav>
 
   <!-- GIRIS -->
   <div class="hero" id="top">

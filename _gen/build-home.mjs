@@ -72,6 +72,7 @@ const T = {
     de: "Gemeinsame Chatma und Dhikr mit Lesenden weltweit", fr: "Khatma et dhikr communs avec des lecteurs du monde entier",
     ar: "ختمة وذكر جماعيان مع قرّاء حول العالم" },
   // Rehberler (5 Eki 2026): altbilgi, bolum listesi ve "Birlikte" satirindaki baglanti
+  navPagesAria: { tr: "Sayfalar", en: "Pages", de: "Seiten", fr: "Pages", ar: "الصفحات" },
   navGuides: { tr: "Rehberler", en: "Guides", de: "Anleitungen", fr: "Guides", ar: "الأدلة" },
   sheetGuidesD: { tr: "Halka kurma, hatim ve zikir adım adım", en: "Circles, khatam and dhikr, step by step",
     de: "Kreise, Khatm und Dhikr Schritt für Schritt", fr: "Cercles, khatma et dhikr pas à pas", ar: "الحلقات والختمة والذكر خطوة بخطوة" },
