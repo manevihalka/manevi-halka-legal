@@ -148,12 +148,33 @@
 try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.removeItem("mh-land");if(L&&L.p===location.pathname&&Date.now()-L.t<15000)document.documentElement.classList.add("mh-land")}catch(e){}</script>
 <script>
 (function () {
-  var t = null;
-  try { t = localStorage.getItem("mh_theme"); } catch (e) { /* gizli mod */ }
+  var root = document.documentElement, t = null, app = false, q = null;
+  // Uygulama ici kip (?app=1&theme=dark|light): Manevi Halka uygulamasi rehberi kendi
+  // tarayici penceresinde acar. Indirme bolumu, site menusu, dil/tema dugmeleri ve altbilgi
+  // gizlenir (iOS uygulamasinda Google Play rozeti Apple 2.3.10'a takilabilir); tema
+  // uygulamadan gelir. Rehberler arasi gecisteki adreste parametre yok: kip, o pencerenin
+  // oturumu boyunca sessionStorage'da tutulur (normal tarayiciya tasinmaz).
+  try { q = new URLSearchParams(location.search); } catch (e) { /* eski tarayici */ }
+  try {
+    if (q && q.get("app") === "1") {
+      sessionStorage.setItem("mh_app", "1");
+      var pt = q.get("theme");
+      if (pt === "dark" || pt === "light") sessionStorage.setItem("mh_app_theme", pt);
+    }
+    app = sessionStorage.getItem("mh_app") === "1";
+    if (app) t = sessionStorage.getItem("mh_app_theme");
+  } catch (e) {
+    app = !!(q && q.get("app") === "1");
+    if (app) t = q.get("theme");
+  }
+  if (app) root.setAttribute("data-app", "1");
+  if (t !== "dark" && t !== "light") {
+    try { t = localStorage.getItem("mh_theme"); } catch (e) { /* gizli mod */ }
+  }
   if (t !== "dark" && t !== "light") {
     try { t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } catch (e) { t = "light"; }
   }
-  document.documentElement.setAttribute("data-theme", t);
+  root.setAttribute("data-theme", t);
 })();
 </script>
 <style>
@@ -259,6 +280,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .crumbs li + li::before { content: "›"; opacity: .6; display: inline-block; transform: scaleX(var(--s)); }
   .crumbs a { text-decoration: none; }
   .crumbs a:hover { text-decoration: underline; color: var(--ink); }
+
+  /* ── uygulama ici kip (?app=1, yukaridaki betik) ── */
+  :root[data-app] header.top, :root[data-app] #download, :root[data-app] footer,
+  :root[data-app] .crumbs li:first-child { display: none !important; }
+  :root[data-app] .crumbs li:nth-child(2)::before { content: none; }
+  :root[data-app] .crumbs { padding-top: 18px; }
 
   /* ── giris ── */
   .g-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; padding-block: 24px 40px; }

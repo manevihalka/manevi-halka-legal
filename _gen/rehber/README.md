@@ -89,6 +89,18 @@ export const CSS = `.mp-s .benim { ... }`;   // yalnız .mp-s altında, em birim
 - Ekranda yazı az olsun: mini telefon bir resim gibi okunur, asıl anlatım yanındaki metindedir.
 - Gerçek uygulamada olmayan bir hâl çizme; emin değilsen koddan bak (rapor dosyaları akışı anlatır).
 
+## Uygulama içi kip (`?app=1`)
+
+Uygulama rehberleri kendi tarayıcı penceresinde açar: `…/tr/rehber/hatim-grubu-kurma/?app=1&theme=dark`
+(adresler uygulamada `lib/guides.ts`; `REHBER`/`REHBER_SAYFA` değişirse orayı da değiştir).
+Bu kipte üst çubuk, indirme bölümü (`#download`), altbilgi ve kırıntıdaki "Manevi Halka" gizlenir;
+tema uygulamadan gelir. Kip, pencerenin oturumu boyunca `sessionStorage`'da tutulur (rehberden
+rehbere geçişte adreste parametre yok). Sebep: uygulamanın içinde indirme düğmesi anlamsız ve
+iOS uygulamasında Google Play rozeti Apple 2.3.10'a takılabilir. Rehbere yeni bir mağaza bağlantısı
+ya da site menüsüne giden bir bağlantı eklersen bu kipte de gizli kalmasına bak (`rehber.src.html`,
+"uygulama ici kip").
+Deneme: `http://localhost:7789/tr/rehber/?app=1&theme=dark` (önbellekten eski sayfa gelirse yenile).
+
 ## Kontrol
 
 ```
