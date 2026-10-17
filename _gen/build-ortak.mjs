@@ -29,6 +29,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
+import { createHash } from "node:crypto";
 import { SITE, DILLER, EV, VAKIT, REHBER, ORTAK, OG_LOCALE, DIL_ADI, dosyaYolu, tamAdres } from "./site-urls.mjs";
 
 const KOK = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -203,6 +204,60 @@ function iskelet(dil) {
     + `</div></div>`;
 }
 
+// ─── guvenlik basliklari (17 Eki 2026, guvenlik taramasi) ───────────────────
+// GitHub Pages HTTP basligi yazdiramadigi icin ikisi de sayfanin ICINDE:
+//  * CERCEVE: sayfa baska bir sitenin <iframe>'inde acildiysa (tiklama tuzagi) gosterilmez,
+//    ust pencere sayfanin kendisine goturulur. Meta CSP'de frame-ancestors CALISMAZ (tarayici
+//    yok sayar ve konsola uyari basar), yerine bu betik. Sitede kendi sayfalarimizi gomen bir
+//    yer YOK (17 Eki'de tarandi); eklenirse ayni koken burada serbest birakilmali.
+//    Ayni betik halka.html'de elle duruyor; biri degisirse oteki de.
+//  * CSP: satir ici her betigin sha256 ozeti URETIMDE hesaplanir (cspUygula), yani sablona,
+//    sozluge ya da nav-loader.html'e dokunan herkes zaten bu ureticiyi calistirmak zorunda;
+//    ozet elle yazilmaz, bayatlayamaz. ⛔ Uretilen sayfayi ELLE duzenleme: satir ici betik bir
+//    harf degisirse tarayici onu CALISTIRMAZ ve tahta hic kurulmaz.
+//    Kokenler: Supabase (guest-global https + canli senkron wss), Cloudflare Turnstile (betik +
+//    cerceve; yalniz katki aninda yuklenir). style-src BILEREK yok (sayfa ve bilesen satir ici
+//    stil kullaniyor). Yeni bir dis koken eklenirse (yazi tipi, analitik, API) BURAYA da yaz,
+//    yoksa tarayici sessizce engeller.
+const SUPA = "https://ohmescuwjyaitykemuub.supabase.co";
+const TURNSTILE = "https://challenges.cloudflare.com";
+if (!BILESEN.includes(`var SUPA_URL = '${SUPA}'`)) hata("js/ortak-hatim.js SUPA_URL, build-ortak.mjs SUPA ile ayni degil (CSP connect-src)");
+const CERCEVE = `<script>
+(function () {
+  // Cerceve icinde acildiysa gosterme, ust pencereyi sayfanin kendisine gotur (build-ortak.mjs CERCEVE).
+  if (window.top === window.self) return;
+  document.documentElement.style.setProperty("display", "none", "important");
+  try { window.top.location.replace(window.location.href); } catch (e) { /* tarayici engelledi: sayfa gizli kalir */ }
+})();
+</script>`;
+const ozet = (metin) => "'sha256-" + createHash("sha256").update(metin, "utf8").digest("base64") + "'";
+/** Sayfanin TAMAMI kurulduktan sonra: satir ici calisan betiklerin ozetiyle CSP meta'si.
+ *  application/ld+json veri blogudur, CSP ona uygulanmaz; speculationrules ise betik sayilir. */
+function cspUygula(html, sayfaAdi) {
+  const ozetler = [];
+  for (const m of html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+    const nit = m[1] || "";
+    if (/\ssrc\s*=/.test(nit)) continue;
+    const tur = (nit.match(/\stype\s*=\s*"([^"]*)"/) || [])[1];
+    if (tur && tur !== "speculationrules" && tur !== "module" && !/javascript/i.test(tur)) continue;
+    ozetler.push(ozet(m[2]));
+  }
+  if (!ozetler.length) hata(`${sayfaAdi}: satir ici betik bulunamadi (CSP)`);
+  const politika = [
+    // 'unsafe-inline' yalniz ozeti tanimayan cok eski tarayicilar icin; ozet varken CSP2+ onu yok sayar.
+    `script-src 'self' ${[...new Set(ozetler)].join(" ")} 'unsafe-inline' ${TURNSTILE}`,
+    `connect-src 'self' ${SUPA} ${SUPA.replace("https://", "wss://")} ${TURNSTILE}`,
+    `frame-src ${TURNSTILE}`,
+    "img-src 'self' data: blob:",
+    "font-src 'self' data:",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+  ].join("; ");
+  if (html.split("<!--__CSP__-->").length !== 2) hata(`${sayfaAdi}: <!--__CSP__--> tek olmali`);
+  return html.replace("<!--__CSP__-->", () => `<meta http-equiv="Content-Security-Policy" content="${politika}">`);
+}
+
 const sablon = readFileSync(join(KOK, "_gen", "ortak.src.html"), "utf8");
 function navParcalari(metin) {
   const m = metin.match(/<!--@@HEAD-->([\s\S]*?)<!--@@BODY-->([\s\S]*?)<!--@@JS-->([\s\S]*)$/);
@@ -239,6 +294,7 @@ function sayfa(dil) {
   if (yok.size) hata(`${dil}: sablonda karsiligi olmayan anahtar(lar): ${[...yok].join(", ")}`);
   const veri = { lang: dil, urls: ORTAK, aria: { toDark: ch.toDark, toLight: ch.toLight } };
   for (const [isaret, parca] of [["/*__DATA__*/null", JSON.stringify(veri).replace(/</g, "\\u003c")], ["<!--__HEAD__-->", basBilgisi(dil)],
+    ["<!--__ANTIFRAME__-->", CERCEVE],
     ["<!--__NAVLOAD_HEAD__-->", NAV.HEAD], ["<!--__NAVLOAD_BODY__-->", NAV.BODY], ["<!--__NAVLOAD_JS__-->", NAV.JS]]) {
     if (out.split(isaret).length !== 2) hata(`sablonda ${isaret} tek olmali`);
     out = out.replace(isaret, () => parca);
@@ -252,7 +308,7 @@ function sayfa(dil) {
   if (/[—–]/.test(gorunen.replace(/\d–\d/g, ""))) hata(`${dil}: uzun ya da orta tire (ayrac) var`);
   if (/Cev[sş]en|Jawshan|Dschauschan|جوشن/i.test(gorunen)) hata(`${dil}: Cevsen gecen metin var (site kurali)`);
   if (!out.includes(`<h1>${kacir(s.ccTitle)}</h1>`)) hata(`${dil}: statik h1 yok`);
-  return out;
+  return cspUygula(out, dil);
 }
 
 /**
@@ -266,6 +322,9 @@ function sayfa(dil) {
  * ⛔ Bu iki dosyayi SILME: sosyal medyada, uygulamada ve 7 Eyl'de sitemap'te bu adresler dagildi.
  */
 function kabuk(dosya, varsayilanSekme) {
+  return cspUygula(kabukHtml(dosya, varsayilanSekme), dosya);
+}
+function kabukHtml(dosya, varsayilanSekme) {
   const hedef = ORTAK.en;
   const neden = dosya === "hatim.html"
     ? "Sayfa 7 Eyl 2026'da bir gun /hatim.html adresinde yayindaydi (o gun Kur'an sekmesi onde aciliyordu, bu yuzden ?t= yoksa Hatim sekmesi acilir); 9 Eyl'de adi Ortak Okuma oldu."
@@ -277,8 +336,11 @@ function kabuk(dosya, varsayilanSekme) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!--__CSP__-->
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, follow">
+${CERCEVE}
 <title>${kacir(S.en.pageTitle)} · Manevi Halka</title>
 <script>
 (function () {

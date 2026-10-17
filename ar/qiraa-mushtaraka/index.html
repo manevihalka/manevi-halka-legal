@@ -4,7 +4,17 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'sha256-hcOlgn7dhh/1lF6a5YX4RYB3Wg5Wti4GO3pCPld9kp0=' 'sha256-2VUsjAcLzkU5lKgslbkOWpvUJEAq3XodTcZ2L/IMcqE=' 'sha256-GEMn5hFOlDYK+CD8acfDxWPxD7wFcMQE8FPhBgkRXTA=' 'sha256-Ib+2gOBi+uTz0D9XAPeZ8zMSVDmn1oL+aVYEgl1YcuQ=' 'sha256-tiuiNMkbSE1G7D2Z9Te0qDeY1YQkUO4vk80IBHgfrbw=' 'sha256-q6XOFACpD5zoqxfuc6qvAe/5gZf78dv3WdhvmsUhI4g=' 'sha256-c9VO+MXrXgLYJgLIieEzqFuEL4Dp2huodXM8Mdn/6fc=' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://ohmescuwjyaitykemuub.supabase.co wss://ohmescuwjyaitykemuub.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; img-src 'self' data: blob:; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function () {
+  // Cerceve icinde acildiysa gosterme, ust pencereyi sayfanin kendisine gotur (build-ortak.mjs CERCEVE).
+  if (window.top === window.self) return;
+  document.documentElement.style.setProperty("display", "none", "important");
+  try { window.top.location.replace(window.location.href); } catch (e) { /* tarayici engelledi: sayfa gizli kalir */ }
+})();
+</script>
 <title>القراءة المشتركة: ختمة وذكر عبر الإنترنت دون حساب</title>
 <meta name="description" content="تكفّل بنصيب من ختمة مشتركة مستمرة، أو شارك في الذكر المشترك مع قرّاء من أنحاء العالم. لا حاجة إلى حساب ولا إلى تطبيق.">
 <link rel="canonical" href="https://manevihalka.app/ar/qiraa-mushtaraka/">
@@ -492,8 +502,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   themeLabel();
 
   // Dil menusu: her dilin kendi adresi. Secim mh_lang'e yazilir (sitenin ortak anahtari; Ingilizce
-  // adres bu tercihe gore yonlendirir) ve sorgu dizesi (?t=, ?g=) ile # tasinir: sekme ve
-  // kurtarma baglantisi dil degisince kaybolmasin. Gezinmeyi sayfa gecisi (nav-loader) yapar;
+  // adres bu tercihe gore yonlendirir) ve sorgu dizesi (?t=) ile # tasinir: sekme dil degisince
+  // kaybolmasin. (?g= bilesen tarafindan acilista adresten silinir; jeton dillerden bagimsiz tek
+  // anahtarda oldugu icin tasinmasi gerekmez.) Gezinmeyi sayfa gecisi (nav-loader) yapar;
   // bu dinleyici ondan ONCE calisir (baglantinin kendisinde), adresi tiklama aninda yazar.
   var box = $("lang"), btn = $("langBtn"), list = $("langList");
   function set(open) { list.hidden = !open; btn.setAttribute("aria-expanded", open ? "true" : "false"); }

@@ -81,6 +81,7 @@ window.MHOrtakHatim = (function () {
       zHead:'Shared dhikr and supplications', zOf:'{a} of {b}', zMine:'Your contribution: {n}',
       zRounds:'{n} rounds completed', zAdd:'Join the count', zAddFor:'Join the count: {n}', zSession:'Counted in this session',
       zSubmit:'Add my count', zNone:'There is no shared dhikr right now.', zZero:'Count first, then add it.',
+      gSwitch:'This link carries a different guest identity. Do you want to use it instead of your own identity on this device?',
       home:'Home', privacy:'Privacy', terms:'Terms', arrow:'→' },
     tr: { loading:'Yükleniyor…',
       pageTitle:'Ortak Okuma', pageSub:'Dünyanın her yerinden okuyanlarla aynı hatimde ve zikirde buluş. Hesap gerekmiyor.',
@@ -114,6 +115,7 @@ window.MHOrtakHatim = (function () {
       zHead:'Ortak zikir ve dualar', zOf:'{b} hedefin {a} tanesi', zMine:'Senin katkın: {n}',
       zRounds:'{n} tur tamamlandı', zAdd:'Sayıma katıl', zAddFor:'Sayıma katıl: {n}', zSession:'Bu oturumda saydığın',
       zSubmit:'Katkımı ekle', zNone:'Şu anda ortak zikir yok.', zZero:'Önce say, sonra ekle.',
+      gSwitch:'Bu bağlantı başka bir misafir kimliği taşıyor. Bu cihazdaki kendi kimliğin yerine bunu kullanmak ister misin?',
       home:'Ana sayfa', privacy:'Gizlilik', terms:'Şartlar', arrow:'→' },
     de: { loading:'Wird geladen…',
       pageTitle:'Gemeinsames Lesen', pageSub:'Lies gemeinsam mit Menschen aus aller Welt: dieselbe Chatma und dasselbe Dhikr. Ohne Konto.',
@@ -147,6 +149,7 @@ window.MHOrtakHatim = (function () {
       zHead:'Gemeinsame Dhikr und Gebete', zOf:'{a} von {b}', zMine:'Dein Beitrag: {n}',
       zRounds:'{n} Runden abgeschlossen', zAdd:'Mitzählen', zAddFor:'Mitzählen: {n}', zSession:'In dieser Sitzung gezählt',
       zSubmit:'Beitrag hinzufügen', zNone:'Zurzeit gibt es kein gemeinsames Dhikr.', zZero:'Zähle zuerst, dann füge hinzu.',
+      gSwitch:'Dieser Link enthält eine andere Gastidentität. Möchtest du sie statt deiner eigenen Identität auf diesem Gerät verwenden?',
       home:'Startseite', privacy:'Datenschutz', terms:'Nutzungsbedingungen', arrow:'→' },
     fr: { loading:'Chargement…',
       pageTitle:'Lecture commune', pageSub:'Lis avec des gens du monde entier : la même khatma et le même dhikr. Sans compte.',
@@ -180,6 +183,7 @@ window.MHOrtakHatim = (function () {
       zHead:'Dhikr et invocations communes', zOf:'{a} sur {b}', zMine:'Ta contribution : {n}',
       zRounds:'{n} tours terminés', zAdd:'Participer au décompte', zAddFor:'Participer au décompte : {n}', zSession:'Compté dans cette session',
       zSubmit:'Ajouter mon décompte', zNone:'Aucune invocation commune pour le moment.', zZero:'Compte d’abord, puis ajoute.',
+      gSwitch:'Ce lien contient une autre identité d’invité. Veux-tu l’utiliser à la place de ta propre identité sur cet appareil ?',
       home:'Accueil', privacy:'Confidentialité', terms:'Conditions', arrow:'→' },
     ar: { loading:'…جارٍ التحميل',
       pageTitle:'القراءة المشتركة', pageSub:'اقرأ مع أناس من كل أنحاء العالم: الختمة نفسها والذكر نفسه، دون حساب.',
@@ -213,6 +217,7 @@ window.MHOrtakHatim = (function () {
       zHead:'الأذكار والأدعية المشتركة', zOf:'{a} من {b}', zMine:'مشاركتك: {n}',
       zRounds:'اكتملت {n} جولة', zAdd:'شارك في العدّ', zAddFor:'شارك في العدّ: {n}', zSession:'ما عددته في هذه الجلسة',
       zSubmit:'أضف عدّي', zNone:'لا يوجد ذكر مشترك حاليًا.', zZero:'عُدّ أولاً ثم أضف.',
+      gSwitch:'يحمل هذا الرابط هوية ضيف مختلفة. هل تريد استخدامها بدلًا من هويتك على هذا الجهاز؟',
       home:'الرئيسية', privacy:'الخصوصية', terms:'الشروط', arrow:'←' }
   };
 
@@ -284,8 +289,45 @@ window.MHOrtakHatim = (function () {
   // başınaydı). Tek tarayıcı kimliği Kur'an, Cevşen ve zikirlerin üçüne
   // birden hizmet eder; misafirden üç ayrı jeton taşıması istenemez.
   var guestKey = 'mh_global_guest';
-  var guestToken = params.get('g') || localStorage.getItem(guestKey) || null;
-  if (params.get('g')) { try { localStorage.setItem(guestKey, params.get('g')); } catch (e) {} }
+  var guestToken = takeGuestToken(params, guestKey, T.gSwitch);
+
+  /**
+   * Kurtarma bağlantısındaki ?g= jetonu (17 Eki 2026, güvenlik taraması).
+   * ⚠️ Kayıtlı jetonu SORGUSUZ EZMEZ. Eskiden ?g= gelir gelmez bu tarayıcının
+   * jetonunun üstüne yazılıyordu: jetonlu bir bağlantıyı açan kişinin aldığı
+   * bölümler sessizce listesinden düşüyor, sonraki katkıları o kimliğe
+   * gidiyordu. Kural: kayıtlı jeton yoksa bağlantıdaki alınır (yeni cihazda
+   * kurtarma), aynıysa bir şey değişmez, farklıysa SORULUR; onay yoksa
+   * kayıtlı jeton kalır.
+   * ⚠️ g okunur okunmaz adresten silinir (öteki parametreler ve # kalır).
+   * Dil menüsü adresi tıklama anında kopyaladığı için g artık başka dile
+   * taşınmaz; gerekmez de, jeton dillerden bağımsız tek anahtarda.
+   * Aynı kural halka.html'de; biri değişirse öteki de.
+   */
+  function takeGuestToken(q, key, question) {
+    var fromLink = q.has('g') ? String(q.get('g') || '').trim() : '';
+    if (q.has('g')) {
+      try {
+        var rest = new URLSearchParams(location.search);
+        rest.delete('g');
+        var s = rest.toString();
+        history.replaceState(history.state, '', location.pathname + (s ? '?' + s : '') + location.hash);
+      } catch (e) { /* eski tarayıcı: adres değişmez, jeton kuralı yine geçerli */ }
+    }
+    // Jeton biçimi: bileşenin ürettiği 64 onaltılık hane; sunucu 16'dan kısayı reddeder.
+    if (!/^[A-Za-z0-9_-]{16,128}$/.test(fromLink)) fromLink = '';
+    var saved = null;
+    try { saved = localStorage.getItem(key); } catch (e) { /* gizli mod */ }
+    if (!fromLink || fromLink === saved) return saved || null;
+    if (saved) {
+      var ok = false;
+      // confirm() desteklenmeyen gömülü tarayıcılarda false döner: kayıtlı jeton kalır.
+      try { ok = window.confirm(question); } catch (e) { ok = false; }
+      if (!ok) return saved;
+    }
+    try { localStorage.setItem(key, fromLink); } catch (e) { /* gizli mod: yalnız bu oturum */ }
+    return fromLink;
+  }
 
   // ⚠️ İKİ SEKME: Zikir ve Hatim. İkisini tek ekranda alt alta koymak DENENDİ
   // ve BEĞENİLMEDİ (kullanıcı, 9 Eyl 2026: "bu ikisinin karışık göründüğü

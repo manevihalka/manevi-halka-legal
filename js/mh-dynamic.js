@@ -1030,14 +1030,44 @@
     });
   }
 
+  /**
+   * ⚠️ ezanvakti UCUNCU TARAF: cevap ekrana ve onbellege girmeden once BICIM denetlenir
+   * (17 Eki 2026, guvenlik taramasi). Alti vaktin her biri "SS:DD", tarih "GG.AA.YYYY" olmali;
+   * tek bir satir bile tutmazsa cevabin TAMAMI kullanilmaz ve onbellege YAZILMAZ (yarim
+   * takvimle yanlis vakit gostermektense hata ekrani). Onbellekteki eski kayit da okunurken
+   * ayni denetimden gecer: bicimsiz kayit yok sayilir, bir sonraki yazimda duser.
+   */
+  var TIME_RE = /^\d{2}:\d{2}$/;
+  var DATE_RE = /^\d{1,2}\.\d{1,2}\.\d{4}$/;
+  var TIME_FIELDS = ["Imsak", "Gunes", "Ogle", "Ikindi", "Aksam", "Yatsi"];
+  function validTimesList(data) {
+    if (!Array.isArray(data) || data.length === 0) return false;
+    for (var i = 0; i < data.length; i++) {
+      var e = data[i];
+      if (!e || typeof e !== "object") return false;
+      if (typeof e.MiladiTarihKisa !== "string" || !DATE_RE.test(e.MiladiTarihKisa)) return false;
+      for (var k = 0; k < TIME_FIELDS.length; k++) {
+        var v = e[TIME_FIELDS[k]];
+        if (typeof v !== "string" || !TIME_RE.test(v)) return false;
+      }
+    }
+    return true;
+  }
+  function validTimesHit(h) {
+    return !!(h && typeof h === "object" && typeof h.at === "number" && validTimesList(h.data));
+  }
+
   function getTimes30(ilceID) {
-    var cache = lsGetJson(TIMES_CACHE_KEY) || {};
-    var hit = cache[ilceID];
+    var cache = lsGetJson(TIMES_CACHE_KEY);
+    if (!cache || typeof cache !== "object") cache = {};
+    var hit = validTimesHit(cache[ilceID]) ? cache[ilceID] : null;
     if (hit && Date.now() - hit.at < TIMES_TTL) return Promise.resolve(hit.data);
     return fetchJson(API + "/vakitler/" + ilceID).then(function (data) {
       if (!Array.isArray(data) || data.length === 0) throw new Error("bos vakit listesi");
-      // Kota dostu: yalniz son kullanilan 3 ilce sakla
-      var entries = Object.keys(cache).map(function (k) { return { k: k, at: cache[k].at }; })
+      if (!validTimesList(data)) throw new Error("vakit listesi bicimsiz");
+      // Kota dostu: yalniz son kullanilan 3 ilce sakla (bicimsiz eski kayitlar tasinmaz)
+      var entries = Object.keys(cache).filter(function (k) { return k !== String(ilceID) && validTimesHit(cache[k]); })
+        .map(function (k) { return { k: k, at: cache[k].at }; })
         .sort(function (a, b) { return b.at - a.at; }).slice(0, 2);
       var next = {};
       entries.forEach(function (e) { next[e.k] = cache[e.k]; });
@@ -1045,7 +1075,7 @@
       lsSet(TIMES_CACHE_KEY, JSON.stringify(next));
       return data;
     }).catch(function (e) {
-      if (hit) return hit.data; // ag hatasi: eski takvim varsa onu kullan
+      if (hit) return hit.data; // ag hatasi ya da bicimsiz cevap: denetimden gecmis eski takvim varsa onu kullan
       throw e;
     });
   }
@@ -1213,7 +1243,8 @@
     var rows = [];
     for (var i = 0; i < PRAYER_KEYS.length; i++) {
       var timeStr = diyanetKeyOf(today, PRAYER_KEYS[i]);
-      if (!timeStr) return null;
+      // Ikinci kilit: getTimes30 zaten denetliyor; satirlar MHPrayer.snapshot ile baska sayfalara da gidiyor.
+      if (typeof timeStr !== "string" || !TIME_RE.test(timeStr)) return null;
       rows.push({ key: PRAYER_KEYS[i], time: timeStr });
     }
 

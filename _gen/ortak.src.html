@@ -2,7 +2,10 @@
 <html lang="{{lang}}" dir="{{dir}}">
 <head>
 <meta charset="UTF-8">
+<!--__CSP__-->
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--__ANTIFRAME__-->
 <!--__HEAD__-->
 <!--
   Ortak Okuma (Küresel Okuma'nın web karşılığı). Tasarım: manevi-halka reposunda
@@ -337,8 +340,9 @@
   themeLabel();
 
   // Dil menusu: her dilin kendi adresi. Secim mh_lang'e yazilir (sitenin ortak anahtari; Ingilizce
-  // adres bu tercihe gore yonlendirir) ve sorgu dizesi (?t=, ?g=) ile # tasinir: sekme ve
-  // kurtarma baglantisi dil degisince kaybolmasin. Gezinmeyi sayfa gecisi (nav-loader) yapar;
+  // adres bu tercihe gore yonlendirir) ve sorgu dizesi (?t=) ile # tasinir: sekme dil degisince
+  // kaybolmasin. (?g= bilesen tarafindan acilista adresten silinir; jeton dillerden bagimsiz tek
+  // anahtarda oldugu icin tasinmasi gerekmez.) Gezinmeyi sayfa gecisi (nav-loader) yapar;
   // bu dinleyici ondan ONCE calisir (baglantinin kendisinde), adresi tiklama aninda yazar.
   var box = $("lang"), btn = $("langBtn"), list = $("langList");
   function set(open) { list.hidden = !open; btn.setAttribute("aria-expanded", open ? "true" : "false"); }

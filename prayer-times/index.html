@@ -1132,11 +1132,18 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     // ilk hazir veride gercek satirlarla degisir.
     var list = $("times");
     if (list.childElementCount !== 6 || list.getAttribute("data-loc") !== loc || list.getAttribute("data-key") !== lastRowsKey) {
-      list.innerHTML = s.rows.map(function (r) {
-        return '<li data-k="' + r.key + '"' + (r.key === "sunrise" ? ' class="sun"' : "") + "><span></span><b>" + r.time + "</b></li>";
-      }).join("");
-      var lis = list.children;
-      for (var i = 0; i < lis.length; i++) lis[i].querySelector("span").textContent = s.rows[i].name;
+      // ⚠️ Saat ucuncu tarafin (ezanvakti) cevabindan gelir: HTML olarak YAZILMAZ, textContent
+      // (17 Eki 2026, guvenlik taramasi; mh-dynamic.js cevabi ayrica HH:MM diye denetler).
+      list.textContent = "";
+      s.rows.forEach(function (r) {
+        var li = document.createElement("li"), nm = document.createElement("span"), tm = document.createElement("b");
+        li.setAttribute("data-k", r.key);
+        if (r.key === "sunrise") li.className = "sun";
+        nm.textContent = r.name;
+        tm.textContent = r.time;
+        li.appendChild(nm); li.appendChild(tm);
+        list.appendChild(li);
+      });
       list.setAttribute("data-loc", loc); list.setAttribute("data-key", lastRowsKey);
     }
     var items = list.children;
