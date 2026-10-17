@@ -11,44 +11,44 @@ lang: tr
 **Geliştirici:** Emirhan Ayaz<br>
 **İletişim:** privacy@manevihalka.app
 
-Manevi Halka uygulamasındaki hesabınızı ve verilerinizi istediğiniz zaman silebilirsiniz.
+Manevi Halka uygulamasındaki hesabını ve verilerini istediğin zaman silebilirsin.
 
 ## 1. Silme Akışı: 30 Gün Geri Alma + Kalıcı Silme
 
 Hesap silme **iki aşamalıdır**:
 
-1. **Soft-delete (anında, geri alınabilir):** "Hesabı Sil"e bastığınızda hesabınız işaretlenir. Push bildirimleri kesilir, hesabınız diğer üyelere görünmez olur.
-2. **30 günlük geri alma penceresi:** Bu süre içinde tekrar giriş yaparsanız hesabınız tüm verileriyle birlikte geri yüklenir.
-3. **Kalıcı silme (otomatik):** 30 günden sonra günlük bir cron görevi (pg_cron, 03:00 UTC) hesabınızı ve tüm verilerinizi **kalıcı olarak siler**. Bu adım geri alınamaz.
+1. **Soft-delete (anında, geri alınabilir):** "Hesabımı kalıcı olarak sil" ile onayladığında hesabın işaretlenir. Push bildirimleri kesilir, hesabın diğer üyelere görünmez olur.
+2. **30 günlük geri alma penceresi:** Bu süre içinde tekrar giriş yaparsan hesabın tüm verileriyle birlikte geri yüklenir.
+3. **Kalıcı silme (otomatik):** 30 günden sonra günlük bir cron görevi (pg_cron, 03:00 UTC) hesabını ve tüm verilerini **kalıcı olarak siler**. Bu adım geri alınamaz.
 
-**30 gün beklemeden anında kalıcı silme** isterseniz, e-posta yoluyla başvurabilirsiniz (aşağıdaki §4).
+**30 gün beklemeden anında kalıcı silme** istersen, e-posta yoluyla başvurabilirsin (aşağıdaki §4).
 
 ## 2. Uygulama İçinden Silme (Önerilen Yöntem)
 
-1. Manevi Halka uygulamasını açın
-2. Hesabınızla giriş yapın
-3. **Profil** sekmesine gidin
-4. **Ayarlar → Hesap ve Güvenlik** menüsünü açın
-5. Sayfanın altındaki **"Hesabı Sil"** kırmızı butonuna basın
-6. Onay ekranında talimatları takip edin
+1. Manevi Halka uygulamasını aç
+2. Hesabınla giriş yap
+3. **Profil** sekmesine git
+4. **Hesap & Güvenlik** satırına dokun
+5. Sayfanın altındaki kırmızı **"Hesabı kalıcı olarak sil"** satırına dokun
+6. Onay ekranında talimatları takip et
 
-## 3. Silmeden Önce Verilerinizi Dışa Aktarma (Opsiyonel)
+## 3. Silmeden Önce Verilerini Dışa Aktarma (Opsiyonel)
 
-İsterseniz silmeden önce tüm verilerinizi yedek alabilirsiniz:
+İstersen silmeden önce tüm verilerini yedek alabilirsin:
 
-**Profil → Ayarlar → Veri Dışa Aktar → PDF olarak indir**
+**Profil → Hesap & Güvenlik → Verilerimi İndir** (PDF olarak indirilir)
 
 Bu özellik GDPR/KVKK taşınabilirlik hakkı kapsamındadır ve aşağıdaki tüm bilgileri içerir: profil, halka üyelikleri, ibadet ilerleme verileri, Kuran/kitap notları, abonelik durumu.
 
 ## 4. E-posta Yoluyla Silme Talebi
 
-Uygulamaya erişiminiz yoksa veya **anında kalıcı silme** istiyorsanız, **hesabınızla ilişkili e-posta adresinden** mesaj atın:
+Uygulamaya erişimin yoksa veya **anında kalıcı silme** istiyorsan, **hesabınla ilişkili e-posta adresinden** mesaj at:
 
 - **E-posta:** [privacy@manevihalka.app](mailto:privacy@manevihalka.app)
 - **Konu:** Hesap Silme Talebi
 - **İçerik:** "Manevi Halka hesabımın silinmesini talep ediyorum. [Anında silme / 30 gün soft-delete kabul]"
 
-Talebiniz **30 gün içinde** işleme alınır ve sonuç size e-posta ile bildirilir.
+Talebin **30 gün içinde** işleme alınır ve sonuç sana e-posta ile bildirilir.
 
 ## Silinen Veriler
 
@@ -57,14 +57,14 @@ Talebiniz **30 gün içinde** işleme alınır ve sonuç size e-posta ile bildir
 - E-posta adresi ve hesap kimliği
 - Profil bilgileri (ad, kullanıcı adı, profil fotoğrafı)
 - Zikir, hatim, dua takibi gibi ibadet ilerleme verileri
-- Üyesi olduğunuz halkalardan çıkış (halkalar size atfedilen kayıtlar anonimleştirilir)
-- Kuran ayet notlarınız, kitap okuma notlarınız
+- Üyesi olduğun halkalardan çıkış (halkalar sana atfedilen kayıtlar anonimleştirilir)
+- Kuran ayet notların, kitap okuma notların
 - Push bildirim tokenları
 - Abonelik durumu
-- Bu cihazdaki kişisel kayıtlarınız: dua emanetleriniz, niyet zikirleriniz ve ithaf
-  kayıtlarınız, favori dualarınız, tesbihat ilerlemeniz, Kitaplık'taki kitaplarınız,
-  notlarınız ve vurgularınız (bunlar hesabınızı sildiğiniz cihazdan hemen silinir;
-  başka cihazlarınız varsa oradaki kayıtlar o cihazda kalır)
+- Bu cihazdaki kişisel kayıtların: dua emanetlerin, niyet zikirlerin ve ithaf
+  kayıtların, favori duaların, tesbihat ilerlemen, Kitaplık'taki kitapların,
+  notların ve vurguların (bunlar hesabını sildiğin cihazdan hemen silinir;
+  başka cihazların varsa oradaki kayıtlar o cihazda kalır)
 
 ## Saklanan Veriler
 

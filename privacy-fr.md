@@ -10,7 +10,7 @@ lang: fr
 **Date d'entrée en vigueur :** 3 mai 2026<br>
 **Dernière mise à jour :** 17 octobre 2026
 
-Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
+Manevi Halka (« l'Application », « nous ») accorde une grande importance à ta vie privée. La présente politique explique quelles informations nous collectons lorsque tu utilises l'Application, comment nous les utilisons et quels droits tu as.
 
 ---
 
@@ -24,38 +24,38 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 ## 2. Informations que nous collectons
 
-### 2.1. Informations que vous fournissez directement
+### 2.1. Informations que tu fournis directement
 
 - **Informations de compte :** adresse e-mail, nom complet, photo de profil (facultative)
-- **Authentification :** si vous utilisez la connexion avec Apple ou Google, le jeton d'identité du service concerné
+- **Authentification :** si tu utilises la connexion avec Apple ou Google, le jeton d'identité du service concerné
 - **Préférences :** langue de l'application, thème, préférences de notification, les
-  cercles que vous masquez de votre liste de cercles (vous seul voyez cette information ;
-  elle est supprimée lorsque vous quittez le cercle) et les cercles que vous retirez de
-  « Mon parcours » et de vos souvenirs spirituels (vous seul voyez cette information ;
-  vos enregistrements ne sont pas supprimés, ils ne sont simplement pas comptés dans ces
-  vues ; conservée jusqu'à ce que vous les rajoutiez ou supprimiez votre compte)
+  cercles que tu masques de ta liste de cercles (toi seul vois cette information ;
+  elle est supprimée lorsque tu quittes le cercle) et les cercles que tu retires de
+  « Mon parcours » et de tes souvenirs spirituels (toi seul vois cette information ;
+  tes enregistrements ne sont pas supprimés, ils ne sont simplement pas comptés dans ces
+  vues ; conservée jusqu'à ce que tu les rajoutes ou supprimes ton compte)
 - **Sauvegarde multi-appareils :** les enregistrements de dévotion personnels et les
-  préférences de lecture que vous conservez dans votre compte sont sauvegardés sur
+  préférences de lecture que tu conserves dans ton compte sont sauvegardés sur
   nos serveurs afin de ne pas être perdus lors d'un changement d'appareil. Cette
-  sauvegarde comprend : **vos enregistrements de suivi des prières et des prières
-  surérogatoires (nafl)**, vos préférences de suivi des prières, vos
-  signets du Coran, votre dernière position de lecture dans le Coran et le Jawshan,
-  vos préférences de lecture (langue de la traduction secondaire, style de police du
-  mushaf). Si vous utilisez le même compte sur plusieurs appareils, ces enregistrements
+  sauvegarde comprend : **tes enregistrements de suivi des prières et des prières
+  surérogatoires (nafl)**, tes préférences de suivi des prières, tes
+  signets du Coran, ta dernière position de lecture dans le Coran et le Jawshan,
+  tes préférences de lecture (langue de la traduction secondaire, style de police du
+  mushaf). Si tu utilises le même compte sur plusieurs appareils, ces enregistrements
   sont synchronisés entre eux ; les réglages de notification et de rappel ne font pas
-  partie de cette sauvegarde et restent propres à chaque appareil. **Vous seul pouvez accéder à
-  cette sauvegarde** ; les membres de vos cercles, les administrateurs de cercle et
+  partie de cette sauvegarde et restent propres à chaque appareil. **Toi seul peux accéder à
+  cette sauvegarde** ; les membres de tes cercles, les administrateurs de cercle et
   les autres utilisateurs ne peuvent pas la consulter (protection par règles d'accès
   au niveau des lignes dans la base de données). La sauvegarde est supprimée lorsque
-  vous supprimez votre compte. **Vos coordonnées de localisation ne sont PAS incluses
-  dans cette sauvegarde** et restent uniquement sur votre appareil
-- **Contenu utilisateur :** descriptions de groupes que vous créez, textes de dhikr personnalisés, notes sur les versets du Coran, notes de lecture de livres
-- **Cercle ponctuel (dédicace) :** le titre et le texte de dédicace de tout cercle ponctuel que vous créez. Vous êtes responsable des informations de tiers (par exemple un nom) que vous saisissez dans le texte de dédicace
-- **Partage de liste de dhikr :** vous pouvez partager votre liste de dhikr personnelle
+  tu supprimes ton compte. **Tes coordonnées de localisation ne sont PAS incluses
+  dans cette sauvegarde** et restent uniquement sur ton appareil
+- **Contenu utilisateur :** descriptions de groupes que tu crées, textes de dhikr personnalisés, notes sur les versets du Coran, notes de lecture de livres
+- **Cercle ponctuel (dédicace) :** le titre et le texte de dédicace de tout cercle ponctuel que tu crées. Tu es responsable des informations de tiers (par exemple un nom) que tu saisis dans le texte de dédicace
+- **Partage de liste de dhikr :** tu peux partager ta liste de dhikr personnelle
   avec d'autres via un code/lien de partage. Lors du partage, une copie (instantané) de
-  votre liste à ce moment-là est stockée avec le code de partage ; les destinataires peuvent
-  ajouter la liste à leur propre bibliothèque. Vous pouvez révoquer un partage à tout moment
-- **Signalements :** lorsque vous utilisez la fonctionnalité « Signaler » de l'application, votre signalement (identifiant du compte signalant, informations sur le groupe, le membre ou l'événement signalé, motif sélectionné et, le cas échéant, votre description) est conservé sur nos serveurs. Ces enregistrements sont utilisés uniquement pour examiner le signalement et prévenir les abus, ne sont jamais partagés avec des tiers et sont supprimés ou anonymisés dans un délai raisonnable après la clôture de l'examen
+  ta liste à ce moment-là est stockée avec le code de partage ; les destinataires peuvent
+  ajouter la liste à leur propre bibliothèque. Tu peux révoquer un partage à tout moment
+- **Signalements :** lorsque tu utilises la fonctionnalité « Signaler » de l'application, ton signalement (identifiant du compte signalant, informations sur le groupe, le membre ou l'événement signalé, motif sélectionné et, le cas échéant, ta description) est conservé sur nos serveurs. Ces enregistrements sont utilisés uniquement pour examiner le signalement et prévenir les abus, ne sont jamais partagés avec des tiers et sont supprimés ou anonymisés dans un délai raisonnable après la clôture de l'examen
 - **Personnes que tu bloques :** lorsque tu bloques quelqu'un depuis l'écran de
   signalement, nous enregistrons sur nos serveurs qui tu as bloqué et quand. La
   personne n'est pas prévenue, et toi seul vois cet enregistrement. Ses notifications
@@ -153,12 +153,12 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 ### 2.2. Informations collectées automatiquement
 
-- **Données de progression :** progression des pages du Coran, tâches accomplies, nombre de khatm, compteurs de dhikr, achèvements des nœuds du Cevshen, votre progression Cetele (mémorisation) et votre calendrier de révision
+- **Données de progression :** progression des pages du Coran, tâches accomplies, nombre de khatm, compteurs de dhikr, achèvements des nœuds du Cevshen, ta progression Cetele (mémorisation) et ton calendrier de révision
 - **Jeton de notification :** jeton de l'appareil pour les notifications push (Apple APNs / Google FCM)
-- **Appareils connectés :** pour chaque appareil sur lequel votre compte est connecté, nous conservons le modèle de l'appareil (par exemple iPhone 15 Pro), les versions du système et de l'application, le jeton de notification de cet appareil et l'heure de sa dernière activité. Cela sert uniquement à la sécurité du compte : dans Compte & Sécurité > Mes appareils, vous voyez où votre compte est connecté et pouvez déconnecter n'importe quel appareil ; lorsque votre compte est connecté sur un nouvel appareil, vos autres appareils en sont avertis. Le nom que vous avez donné à l'appareil, votre adresse IP et votre localisation **ne font pas partie** de cet enregistrement. Il n'est pas créé pour l'utilisation en invité (avant que le compte soit sécurisé)
-- **Localisation :** uniquement la position actuelle de votre appareil, utilisée pour calculer les heures de prière et la direction de la qibla. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul. Afin que l'application puisse remarquer un changement de lieu et vous proposer les horaires de votre nouvelle ville, la dernière coordonnée connue est conservée **uniquement sur votre appareil** ; elle est supprimée lorsque vous effacez les données de votre compte.
-- **Serveurs d'horaires de prière :** les horaires de prière sont obtenus auprès de serveurs externes. Avec la méthode de calcul Diyanet, seuls les numéros du pays, de la ville et du district sont envoyés au serveur d'horaires de la Diyanet (ezanvakti.emushaf.net). Lorsque les données de la Diyanet ne peuvent pas être obtenues, ou si une autre méthode de calcul est utilisée, les coordonnées de la ville, la méthode et la date sont envoyées à Aladhan ; si la localisation automatique est activée, ces coordonnées sont celles de votre appareil, arrondies à environ 1 km. Dans les pays qui comptent plusieurs fuseaux horaires (comme les États-Unis, le Canada ou la Russie), Aladhan est aussi interrogé une fois pour connaître le fuseau horaire de la ville. Pour trouver le nom de la ville, le système d'exploitation de votre appareil interroge le service de localisation d'Apple ou de Google. Ces serveurs voient votre adresse IP ; aucune donnée de compte n'est envoyée.
-- **Informations d'abonnement :** si vous avez un abonnement Premium : durée, type de formule, boutique (App Store / Play Store), statut de l'abonnement
+- **Appareils connectés :** pour chaque appareil sur lequel ton compte est connecté, nous conservons le modèle de l'appareil (par exemple iPhone 15 Pro), les versions du système et de l'application, le jeton de notification de cet appareil et l'heure de sa dernière activité. Cela sert uniquement à la sécurité du compte : dans Compte & Sécurité > Mes appareils, tu vois où ton compte est connecté et peux déconnecter n'importe quel appareil ; lorsque ton compte est connecté sur un nouvel appareil, tes autres appareils en sont avertis. Le nom que tu as donné à l'appareil, ton adresse IP et ta localisation **ne font pas partie** de cet enregistrement. Il n'est pas créé pour l'utilisation en invité (avant que le compte soit sécurisé)
+- **Localisation :** uniquement la position actuelle de ton appareil, utilisée pour calculer les heures de prière et la direction de la qibla. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul. Afin que l'application puisse remarquer un changement de lieu et te proposer les horaires de ta nouvelle ville, la dernière coordonnée connue est conservée **uniquement sur ton appareil** ; elle est supprimée lorsque tu effaces les données de ton compte.
+- **Serveurs d'horaires de prière :** les horaires de prière sont obtenus auprès de serveurs externes. Avec la méthode de calcul Diyanet, seuls les numéros du pays, de la ville et du district sont envoyés au serveur d'horaires de la Diyanet (ezanvakti.emushaf.net). Lorsque les données de la Diyanet ne peuvent pas être obtenues, ou si une autre méthode de calcul est utilisée, les coordonnées de la ville, la méthode et la date sont envoyées à Aladhan ; si la localisation automatique est activée, ces coordonnées sont celles de ton appareil, arrondies à environ 1 km. Dans les pays qui comptent plusieurs fuseaux horaires (comme les États-Unis, le Canada ou la Russie), Aladhan est aussi interrogé une fois pour connaître le fuseau horaire de la ville. Pour trouver le nom de la ville, le système d'exploitation de ton appareil interroge le service de localisation d'Apple ou de Google. Ces serveurs voient ton adresse IP ; aucune donnée de compte n'est envoyée.
+- **Informations d'abonnement :** si tu as un abonnement Premium : durée, type de formule, boutique (App Store / Play Store), statut de l'abonnement
 - **Mesures d'amélioration de l'application :** pour comprendre jusqu'où les nouveaux
   utilisateurs vont dans l'application, quelques événements **non liés à ton compte** sont
   envoyés si les analyses sont activées : les centres d'intérêt choisis dans l'introduction
@@ -186,70 +186,70 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 
 ### 2.4. Participation depuis le web sans compte (manevihalka.app)
 
-Sur **manevihalka.app**, vous pouvez prendre une portion ou contribuer à un
+Sur **manevihalka.app**, tu peux prendre une portion ou contribuer à un
 dhikr commun sans créer de compte. Deux chemins y mènent : ouvrir le lien
 d'invitation d'un cercle lorsque l'application n'est pas installée, ou visiter
 la page publique **Lecture commune** (aucune invitation requise). Dans les deux
 cas, nous collectons **uniquement** ce qui suit :
 
-- **Un identifiant aléatoire généré dans votre navigateur.** Il reste dans le
-  stockage local de votre navigateur. L'identifiant lui-même n'est **pas
+- **Un identifiant aléatoire généré dans ton navigateur.** Il reste dans le
+  stockage local de ton navigateur. L'identifiant lui-même n'est **pas
   conservé** sur nos serveurs ; seule une empreinte irréversible (SHA-256) l'est.
-  Il ne sert qu'à une chose : vous permettre de retrouver votre propre portion en
+  Il ne sert qu'à une chose : te permettre de retrouver ta propre portion en
   revenant sur le même lien
-- **La langue de votre interface** (pour afficher la page dans la bonne langue)
-- **La portion que vous avez prise** (plage de pages ou de chapitres) et si vous
-  l'avez marquée comme terminée
-- **Le nombre que vous avez ajouté** à un dhikr commun
+- **La langue de ton interface** (pour afficher la page dans la bonne langue)
+- **La portion que tu as prise** (plage de pages ou de chapitres) et si tu
+  l'as marquée comme terminée
+- **Le nombre que tu as ajouté** à un dhikr commun
 - **La date de première participation et celle de la dernière visite**
-- **Un nom, si vous choisissez d'en donner un.** Il est facultatif et n'est
+- **Un nom, si tu choisis d'en donner un.** Il est facultatif et n'est
   jamais une condition : prendre une portion, contribuer, la marquer comme
-  terminée — tout cela fonctionne sans nom. Si vous laissez le champ vide, vous
-  apparaissez dans le cercle comme « Invité ». Vous pouvez retirer plus tard un
-  nom que vous avez donné, depuis la même page
-- **Pour limiter les abus :** votre adresse IP n'est **jamais enregistrée en
+  terminée — tout cela fonctionne sans nom. Si tu laisses le champ vide, tu
+  apparais dans le cercle comme « Invité ». Tu peux retirer plus tard un
+  nom que tu as donné, depuis la même page
+- **Pour limiter les abus :** ton adresse IP n'est **jamais enregistrée en
   clair** ; seule une empreinte irréversible (SHA-256) est conservée avec un
   compteur, et ces enregistrements sont **supprimés automatiquement au bout
   d'une heure**
 
 **Ne sont pas collectés :** adresse e-mail, numéro de téléphone, compte,
-localisation. Un nom n'est recueilli que si vous en saisissez un. La page ne contient **aucun** outil publicitaire, de mesure
-d'audience ou de suivi. Tant que vous la consultez ou la lisez, aucune requête
+localisation. Un nom n'est recueilli que si tu en saisis un. La page ne contient **aucun** outil publicitaire, de mesure
+d'audience ou de suivi. Tant que tu la consultes ou la lis, aucune requête
 n'est adressée à un tiers (tous les fichiers qu'elle utilise proviennent de nos
 propres serveurs).
 
 **Vérification anti-robots (Cloudflare Turnstile) :** uniquement au moment où
-vous contribuez (prendre une portion, la marquer comme terminée, ajouter à un
+tu contribues (prendre une portion, la marquer comme terminée, ajouter à un
 dhikr commun ou saisir un nom), la page lance le service de vérification de
 Cloudflare afin de distinguer les programmes automatisés des personnes réelles.
-Votre navigateur se connecte alors à Cloudflare, qui traite votre adresse IP,
-des informations sur votre navigateur (comme le User-Agent) et le site sur
-lequel la vérification a lieu. Le plus souvent, vous ne voyez rien ; en cas de
+Ton navigateur se connecte alors à Cloudflare, qui traite ton adresse IP,
+des informations sur ton navigateur (comme le User-Agent) et le site sur
+lequel la vérification a lieu. Le plus souvent, tu ne vois rien ; en cas de
 doute, une case à cocher peut apparaître. À cette fin, Cloudflare peut stocker
 des données techniques strictement nécessaires sur son propre domaine et utilise
 aussi ces signaux, sous sa propre responsabilité, pour améliorer sa détection
 des robots. Détails : [avenant de confidentialité de Cloudflare Turnstile](https://www.cloudflare.com/turnstile-privacy-policy/).
 
-Si vous n'avez pas donné de nom, l'administrateur et les membres du cercle **ne
-peuvent pas savoir qui vous êtes** ; ils voient seulement que la portion a été
-prise, ou qu'une contribution s'est ajoutée au décompte. Si vous avez donné un
-nom, ils le voient avec la portion que vous avez prise et votre contribution.
+Si tu n'as pas donné de nom, l'administrateur et les membres du cercle **ne
+peuvent pas savoir qui tu es** ; ils voient seulement que la portion a été
+prise, ou qu'une contribution s'est ajoutée au décompte. Si tu as donné un
+nom, ils le voient avec la portion que tu as prise et ta contribution.
 
-Si vous effacez les données de site de votre navigateur, l'identifiant disparaît
-et le lien avec votre portion est rompu. Si vous souhaitez accéder à ces données
-ou en demander l'effacement, il vous suffit de nous communiquer votre
+Si tu effaces les données de site de ton navigateur, l'identifiant disparaît
+et le lien avec ta portion est rompu. Si tu souhaites accéder à ces données
+ou en demander l'effacement, il te suffit de nous communiquer ton
 identifiant ; sans lui, il nous est impossible de retrouver l'enregistrement.
 
 
 **Trois choses diffèrent sur la page « Lecture commune » :** il n'y a **pas de
-champ nom** et il ne vous en est jamais demandé ; la page n'a ni administrateur
-ni membres, personne ne voit donc quoi que ce soit vous concernant, seul le
-compteur commun augmente ; et comme la page ne se termine jamais, votre
+champ nom** et il ne t'en est jamais demandé ; la page n'a ni administrateur
+ni membres, personne ne voit donc quoi que ce soit te concernant, seul le
+compteur commun augmente ; et comme la page ne se termine jamais, ton
 enregistrement suit une règle de conservation de 90 jours.
 
 ---
 
-## 3. Comment nous utilisons vos informations
+## 3. Comment nous utilisons tes informations
 
 - Pour fournir les fonctionnalités principales de l'application (suivi de groupe, répartition des tâches, enregistrement de la progression)
 - Pour envoyer des rappels (échéance de tâche, alerte de série, célébration d'étape)
@@ -263,7 +263,7 @@ enregistrement suit une règle de conservation de 90 jours.
   lors de leur enregistrement. Un texte jugé inapproprié n'est pas enregistré. Pour
   ce contrôle, le texte n'est pas conservé à part ni envoyé à un tiers
 
-**Nous n'utilisons pas vos données à des fins publicitaires.** Nous ne vendons pas vos données à des régies publicitaires.
+**Nous n'utilisons pas tes données à des fins publicitaires.** Nous ne vendons pas tes données à des régies publicitaires.
 
 ---
 
@@ -308,14 +308,14 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   supprimé quand tu quittes la tâche ou le cercle
 - **Objectifs de mémorisation personnels :** supprimés immédiatement si tu
   quittes la tâche ou le cercle, et quand l'administrateur retire l'objectif
-- **Appareils connectés :** lorsque vous vous déconnectez d'un appareil ou le retirez dans Mes appareils, son enregistrement et son jeton de notification sont supprimés immédiatement. Les enregistrements des appareils dont la session est terminée et qui n'ont pas été vus depuis 30 jours, ou qui n'ont pas été utilisés depuis 180 jours, sont supprimés par une tâche automatique hebdomadaire
-- **Compte actif :** les données sont conservées tant que votre compte est actif
+- **Appareils connectés :** lorsque tu te déconnectes d'un appareil ou le retires dans Mes appareils, son enregistrement et son jeton de notification sont supprimés immédiatement. Les enregistrements des appareils dont la session est terminée et qui n'ont pas été vus depuis 30 jours, ou qui n'ont pas été utilisés depuis 180 jours, sont supprimés par une tâche automatique hebdomadaire
+- **Compte actif :** les données sont conservées tant que ton compte est actif
 - **Enregistrements vocaux de mémorisation :** tu choisis combien de temps ils sont
   gardés (1 semaine, 1 mois ou jusqu'à ce que tu les supprimes ; par défaut, jusqu'à
   ce que tu les supprimes). Les enregistrements expirés sont supprimés automatiquement
   sur ton appareil. Quand tu te déconnectes ou désinstalles l'application, les
   enregistrements de cet appareil sont aussi supprimés
-- **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
+- **Suppression du compte :** ton compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Tu peux **restaurer ton compte dans un délai de 30 jours** en te reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes tes données personnelles. Si tu souhaites une suppression définitive immédiate, contacte-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
 - **Cercles ponctuels terminés :** lorsqu'un cercle ponctuel se termine, un résumé (nombre de participants, travail accompli) est archivé ; les détails individuels des tâches sont effacés
 - **Cercles inactifs :** les cercles sans activité prolongée sont automatiquement gelés puis archivés (le contenu est conservé, la distribution active des tâches s'arrête)
 - **Cercles vides et abandonnés :** les cercles inactifs depuis plus de 90 jours,
@@ -326,10 +326,10 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   cercle, participation à un événement, offre familiale ni abonnement sont marqués
   pour suppression, puis passent par le processus de suppression définitive
   ci-dessus après 30 jours
-- **Listes de dhikr partagées :** un instantané créé lorsque vous partagez une liste de
+- **Listes de dhikr partagées :** un instantané créé lorsque tu partages une liste de
   dhikr continue d'être conservé pour ceux qui l'ont ajoutée à leur bibliothèque, même si
-  vous supprimez votre compte ; toutefois, votre nom en tant que personne ayant partagé est
-  anonymisé lors de la suppression de votre compte
+  tu supprimes ton compte ; toutefois, ton nom en tant que personne ayant partagé est
+  anonymisé lors de la suppression de ton compte
 - **Membres invités :** lorsqu'un invité est retiré d'un cercle, son nom et les
   résumés de plan partagés sont supprimés immédiatement. L'enregistrement anonyme
   des tâches qu'il a lues est supprimé définitivement selon la règle des comptes
@@ -358,23 +358,23 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   compteurs anti-abus dérivés de l'adresse IP sont supprimés au bout d'une heure,
   les compteurs quotidiens de dhikr et de pages au bout de 3 jours au maximum.
   Comme la page « Lecture commune » ne se termine jamais, une règle distincte
-  s'y applique : si vous ne contribuez pas pendant **90 jours**, votre
-  enregistrement d'invité, la portion prise et votre contribution au dhikr sont
-  supprimés automatiquement. Si une portion est encore ouverte à votre nom à ce
+  s'y applique : si tu ne contribues pas pendant **90 jours**, ton
+  enregistrement d'invité, la portion prise et ta contribution au dhikr sont
+  supprimés automatiquement. Si une portion est encore ouverte à ton nom à ce
   moment-là, la suppression attend qu'elle soit close
 
 ---
 
-## 6. Vos droits (RGPD / KVKK)
+## 6. Tes droits (RGPD / KVKK)
 
-En vertu du RGPD (UE) et du KVKK (Turquie), vous disposez des droits suivants :
+En vertu du RGPD (UE) et du KVKK (Turquie), tu disposes des droits suivants :
 
-- **Droit d'accès :** connaître les données que nous conservons à votre sujet
+- **Droit d'accès :** connaître les données que nous conservons à ton sujet
 - **Droit de rectification :** mettre à jour des informations inexactes (via l'écran de profil de l'application)
-- **Droit à l'effacement :** supprimer votre compte et toutes vos données (dans l'application : Profil → Paramètres → Sécurité du compte → Supprimer mon compte)
-- **Portabilité des données :** demander une copie de vos données. **Dans l'application :** Profil → Paramètres → Exportation des données (PDF) télécharge l'ensemble de vos données au format PDF
-- **Droit d'opposition :** vous opposer à certaines activités de traitement. Vous pouvez désactiver la collecte de données analytiques à tout moment : Profil → Paramètres → Confidentialité → Analytique (activé par défaut)
-- **Droit de réclamation :** introduire une réclamation auprès de votre autorité de protection des données
+- **Droit à l'effacement :** supprimer ton compte et toutes tes données (dans l'application : Profil → Compte & Sécurité → Supprimer définitivement le compte)
+- **Portabilité des données :** demander une copie de tes données. **Dans l'application :** Profil → Compte & Sécurité → Télécharger mes données télécharge l'ensemble de tes données au format PDF
+- **Droit d'opposition :** t'opposer à certaines activités de traitement. Tu peux désactiver la collecte de données analytiques à tout moment : Profil → Compte & Sécurité → Données d’usage anonymes (activé par défaut)
+- **Droit de réclamation :** introduire une réclamation auprès de ton autorité de protection des données
 
 Pour toute demande : **privacy@manevihalka.app**
 
@@ -382,7 +382,7 @@ Pour toute demande : **privacy@manevihalka.app**
 
 ## 7. Enfants
 
-L'Application n'est pas destinée aux enfants de moins de 13 ans. Nous ne collectons pas sciemment de données auprès d'utilisateurs de moins de 13 ans. Si vous pensez que votre enfant nous a fourni des données, veuillez nous contacter — nous les supprimerons immédiatement.
+L'Application n'est pas destinée aux enfants de moins de 13 ans. Nous ne collectons pas sciemment de données auprès d'utilisateurs de moins de 13 ans. Si tu penses que ton enfant nous a fourni des données, contacte-nous — nous les supprimerons immédiatement.
 
 Classification d'âge sur l'App Store : **4+**
 (Contenu islamique — aucun contenu agressif ou inapproprié)
@@ -412,23 +412,23 @@ Supabase et nos autres prestataires de services peuvent héberger des serveurs d
 
 ## 10. Cookies / stockage local
 
-L'Application est une application mobile et n'utilise pas de cookies web. Toutefois, les données suivantes sont stockées localement sur votre appareil :
+L'Application est une application mobile et n'utilise pas de cookies web. Toutefois, les données suivantes sont stockées localement sur ton appareil :
 
 - Jeton de session (pour la connexion, dans Keychain/Keystore)
-- Paramètres de préférence (langue, thème, villes dont vous suivez les horaires de prière)
+- Paramètres de préférence (langue, thème, villes dont tu suis les horaires de prière)
 - Données mises en cache (pour une utilisation hors ligne)
 - Compteurs de notifications
 - Données de widget (UserDefaults / SharedPreferences)
 - Récitations téléchargées (écoute hors ligne) et copies temporaires des versets écoutés récemment. Selon les conditions du fournisseur, elles sont conservées au plus 6 jours et renouvelées dès que tu es en ligne ; tu peux supprimer les téléchargements dans l'application
 
-La suppression de votre compte ou la désinstallation de l'application supprime ces données.
+La suppression de ton compte ou la désinstallation de l'application supprime ces données.
 
 **Site web (manevihalka.app) :** la page de participation sans compte n'utilise
 pas de cookies, mais conserve **une seule valeur** dans le stockage local de
-votre navigateur : l'identifiant aléatoire décrit plus haut (section 2.4). Rien
+ton navigateur : l'identifiant aléatoire décrit plus haut (section 2.4). Rien
 n'est écrit à des fins de mesure d'audience ou de publicité. Effacer les données
-de site de votre navigateur supprime également cette valeur. La vérification
-Cloudflare lancée lorsque vous contribuez peut stocker, sur son propre domaine
+de site de ton navigateur supprime également cette valeur. La vérification
+Cloudflare lancée lorsque tu contribues peut stocker, sur son propre domaine
 (challenges.cloudflare.com), des données techniques strictement nécessaires à la
 détection des robots (section 2.4).
 

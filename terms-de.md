@@ -8,10 +8,10 @@ lang: de
 # Nutzungsbedingungen
 
 **Gültig ab:** 3. Mai 2026<br>
-**Zuletzt aktualisiert:** 28. September 2026
+**Zuletzt aktualisiert:** 17. Oktober 2026
 
-Mit der Nutzung der mobilen Anwendung Manevi Halka („die App") akzeptieren
-Sie diese Nutzungsbedingungen. Bitte lesen Sie sie sorgfältig.
+Mit der Nutzung der mobilen Anwendung Manevi Halka („die App") akzeptierst
+du diese Nutzungsbedingungen. Bitte lies sie sorgfältig.
 
 ---
 
@@ -37,31 +37,31 @@ dabei kein persönliches Konto entsteht, bestehen keine kontogebundenen Ansprüc
 
 ### 2.1. Altersanforderung
 
-Sie müssen **mindestens 13 Jahre alt** sein, um die App zu nutzen. Sind Sie
+Du musst **mindestens 13 Jahre alt** sein, um die App zu nutzen. Bist du
 unter 16, kann die Zustimmung der Erziehungsberechtigten erforderlich sein
 (gesetzliche Vorgaben sind je nach Land unterschiedlich).
 
 ### 2.2. Verantwortung für das Konto
 
-- Sie verpflichten sich, zutreffende und aktuelle Angaben zu machen
-- Sie sind für die Sicherheit Ihres Kontos verantwortlich (E-Mail-Zugang,
+- Du verpflichtest dich, zutreffende und aktuelle Angaben zu machen
+- Du bist für die Sicherheit deines Kontos verantwortlich (E-Mail-Zugang,
   Passwort)
-- Sie müssen uns unverzüglich über jede unbefugte Nutzung informieren
+- Du musst uns unverzüglich über jede unbefugte Nutzung informieren
 - Ein Konto darf nur von einer Person genutzt werden; die gemeinsame
   Nutzung eines Kontos ist untersagt
 
 ### 2.3. Kontolöschung
 
-Sie können Ihr Konto jederzeit in der App löschen:
-**Profil → Einstellungen → Konto und Sicherheit → Konto löschen**
+Du kannst dein Konto jederzeit in der App löschen:
+**Profil → Konto & Sicherheit → Konto endgültig löschen**
 
-Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können es innerhalb von **30 Tagen** durch erneute Anmeldung wiederherstellen; nach Ablauf dieser Frist wird es automatisch und endgültig gelöscht. Einzelheiten finden Sie in der Datenschutzerklärung §5.
+Dein Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Du kannst es innerhalb von **30 Tagen** durch erneute Anmeldung wiederherstellen; nach Ablauf dieser Frist wird es automatisch und endgültig gelöscht. Einzelheiten findest du in der Datenschutzerklärung §5.
 
 ---
 
 ## 3. Pflichten des Nutzers
 
-Bei der Nutzung der App dürfen Sie **NICHT**:
+Bei der Nutzung der App darfst du **NICHT**:
 
 - Inhalte erstellen, die rechtswidrig sind, religiöse Werte herabsetzen
   oder Hassrede enthalten
@@ -77,7 +77,7 @@ schließen.
 
 ### 3.1. Gruppenbeschreibungen und individuelle Dhikr-Texte
 
-Sie sind für die Richtigkeit und Angemessenheit der von Ihnen erstellten
+Du bist für die Richtigkeit und Angemessenheit der von dir erstellten
 Inhalte (Gruppenbeschreibungen, individuelle Dhikr-Texte usw.) verantwortlich.
 Unangemessene Inhalte können nach einer Prüfung im Falle einer Meldung
 entfernt werden.
@@ -86,7 +86,7 @@ entfernt werden.
 
 Gruppennamen, Ankündigungen, Anzeigenamen und ähnliche Nutzerinhalte in der
 App unterliegen den Gemeinschaftsregeln. Unangemessene, belästigende oder
-missbräuchliche Inhalte und Verhaltensweisen können Sie uns über die
+missbräuchliche Inhalte und Verhaltensweisen kannst du uns über die
 Funktion **„Melden"** in der App mitteilen. Meldungen werden vertraulich
 behandelt;
 sie werden spätestens innerhalb von **24 Stunden** geprüft, und soweit
@@ -107,23 +107,23 @@ Die Preise werden in der App angezeigt und können je nach Land variieren.
 
 ### 4.2. Zahlung über Apple-ID / Google-Konto
 
-- Sie schließen das Abonnement in der App ab
-- Die Zahlung wird über Ihre **Apple-ID** oder Ihr **Google-Konto** abgewickelt
+- Du schließt das Abonnement in der App ab
+- Die Zahlung wird über deine **Apple-ID** oder dein **Google-Konto** abgewickelt
   (für uns niemals einsehbar)
 - Der Betrag entspricht dem bei der Kaufbestätigung angezeigten Preis
 
 ### 4.3. Automatische Verlängerung
 
-- **Ihr Abonnement verlängert sich automatisch, sofern es nicht mindestens
+- **Dein Abonnement verlängert sich automatisch, sofern es nicht mindestens
   24 Stunden vor Ablauf des laufenden Zeitraums gekündigt wird**
 - Die Verlängerungsgebühr wird innerhalb von 24 Stunden nach Ende des
-  laufenden Zeitraums über Ihre Apple-ID oder Ihr Google-Konto abgebucht
-- Der Verlängerungspreis entspricht Ihrem aktuellen Tarif (eine Erhöhung
-  wird Ihnen im Voraus mitgeteilt)
+  laufenden Zeitraums über deine Apple-ID oder dein Google-Konto abgebucht
+- Der Verlängerungspreis entspricht deinem aktuellen Tarif (eine Erhöhung
+  wird dir im Voraus mitgeteilt)
 
 ### 4.4. Verwaltung / Kündigung des Abonnements
 
-- **iOS:** Einstellungen → [Ihr Name] → Abonnements → Manevi Halka → Kündigen
+- **iOS:** Einstellungen → [Dein Name] → Abonnements → Manevi Halka → Kündigen
 - **Android:** Play Store → Profil → Zahlungen und Abos → Abos → Manevi
   Halka → Kündigen
 
@@ -133,7 +133,7 @@ laufenden Zeitraums verfügbar.
 ### 4.5. Kostenlose Testphase (sofern angeboten)
 
 Wird eine kostenlose Testphase angeboten:
-- Kündigen Sie nicht innerhalb der Testphase, werden Sie automatisch in
+- Kündigst du nicht innerhalb der Testphase, wirst du automatisch in
   ein kostenpflichtiges Abonnement umgewandelt
 - Die Testphase kann nur einmal in Anspruch genommen werden
   (Apple-/Google-Richtlinie)
@@ -148,13 +148,13 @@ Wird eine kostenlose Testphase angeboten:
 
 ### 4.7. Einmalige Unterstützungszahlungen
 
-- In der App können Sie eine freiwillige, einmalige Unterstützungszahlung leisten
+- In der App kannst du eine freiwillige, einmalige Unterstützungszahlung leisten
 - Unterstützungszahlungen fließen in die Entwicklung von Manevi Halka; es handelt
   sich nicht um Spenden, und sie werden nicht an gemeinnützige Organisationen
   weitergegeben
 - Es handelt sich um kein Abonnement: Die Zahlungen verlängern sich nicht und
   schalten keine Funktionen oder Inhalte frei
-- Die Zahlung erfolgt über Ihre Apple-ID oder Ihr Google-Konto; für Erstattungen
+- Die Zahlung erfolgt über deine Apple-ID oder dein Google-Konto; für Erstattungen
   gelten die Store-Regeln aus 4.6
 
 ---
@@ -171,10 +171,10 @@ Ausnahme: Die in der App enthaltenen Texte des **Korans, von Cevshen-i Kebir,
 Versübersetzungen, Hadithe und islamische Quellen** sind gemeinfrei oder
 werden mit ordnungsgemäßer Quellenangabe verwendet.
 
-### 5.2. Ihre Inhalte
+### 5.2. Deine Inhalte
 
-Von Ihnen erstellte Inhalte (Notizen, Gruppenbeschreibungen, individuelle
-Dhikrs, Widmungen einmaliger Kreise) bleiben Ihr Eigentum. Sie erteilen uns lediglich eine beschränkte,
+Von dir erstellte Inhalte (Notizen, Gruppenbeschreibungen, individuelle
+Dhikrs, Widmungen einmaliger Kreise) bleiben dein Eigentum. Du erteilst uns lediglich eine beschränkte,
 vorübergehende Lizenz, die zum Betrieb der App erforderlich ist.
 
 ---
@@ -195,8 +195,8 @@ Die App wird „wie besehen" bereitgestellt. Wir **garantieren NICHT**:
 
 Im gesetzlich zulässigen Höchstmaß:
 - Wir haften nicht für mittelbare, besondere oder Strafschadenersatzansprüche
-- Unsere Gesamthaftung ist auf den Betrag begrenzt, den Sie in den
-  vergangenen 12 Monaten an uns gezahlt haben (sofern überhaupt)
+- Unsere Gesamthaftung ist auf den Betrag begrenzt, den du in den
+  vergangenen 12 Monaten an uns gezahlt hast (sofern überhaupt)
 
 ### 6.3. Religiöse Inhalte
 
@@ -209,14 +209,14 @@ keine Fiqh-Instanz.
 
 ## 7. Aussetzung und Beendigung des Kontos
 
-Wir können Ihr Konto aussetzen oder beenden:
+Wir können dein Konto aussetzen oder beenden:
 
 - bei Verstoß gegen diese Bedingungen
 - bei rechtswidriger Nutzung
 - bei Sicherheitsbedrohungen (verdächtige Aktivitäten)
 - bei langfristiger Inaktivität (12+ Monate; eine vorherige Warnung erfolgt)
 
-Bei Beendigung werden Ihre Daten innerhalb der in der Datenschutzerklärung
+Bei Beendigung werden deine Daten innerhalb der in der Datenschutzerklärung
 genannten Fristen gelöscht.
 
 ---
@@ -224,7 +224,7 @@ genannten Fristen gelöscht.
 ## 8. Änderungen
 
 Wir können diese Bedingungen von Zeit zu Zeit aktualisieren. Bei wesentlichen
-Änderungen senden wir Ihnen eine In-App-Benachrichtigung. Die fortgesetzte
+Änderungen senden wir dir eine In-App-Benachrichtigung. Die fortgesetzte
 Nutzung nach Änderungen gilt als Zustimmung zu den neuen Bedingungen.
 
 ---

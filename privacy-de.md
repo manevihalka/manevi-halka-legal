@@ -10,9 +10,9 @@ lang: de
 **Gültig ab:** 3. Mai 2026<br>
 **Zuletzt aktualisiert:** 17. Oktober 2026
 
-Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
+Manevi Halka („die App", „wir", „uns") schätzt deine Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
-erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
+erheben, wie wir sie verwenden und welche Rechte dir zustehen.
 
 ---
 
@@ -26,43 +26,43 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 
 ## 2. Welche Informationen wir erheben
 
-### 2.1. Informationen, die Sie uns direkt zur Verfügung stellen
+### 2.1. Informationen, die du uns direkt zur Verfügung stellst
 
 - **Kontodaten:** E-Mail-Adresse, vollständiger Name, Profilbild (optional)
 - **Authentifizierung:** Bei Nutzung von „Mit Apple anmelden" oder „Mit Google
   anmelden" das Identitäts-Token des jeweiligen Dienstes
 - **Einstellungen:** App-Sprache, Design, Benachrichtigungseinstellungen, die Kreise,
-  die Sie in Ihrer Kreisliste ausblenden (nur Sie sehen diese Angabe; sie wird gelöscht,
-  wenn Sie den Kreis verlassen), und die Kreise, die Sie aus „Mein Weg“ und Ihren
-  spirituellen Erinnerungen entfernen (nur Sie sehen diese Angabe; Ihre Einträge werden
-  nicht gelöscht, sondern in diesen Ansichten nur nicht gezählt; gespeichert, bis Sie
-  sie wieder hinzufügen oder Ihr Konto löschen)
+  die du in deiner Kreisliste ausblendest (nur du siehst diese Angabe; sie wird gelöscht,
+  wenn du den Kreis verlässt), und die Kreise, die du aus „Mein Weg“ und deinen
+  spirituellen Erinnerungen entfernst (nur du siehst diese Angabe; deine Einträge werden
+  nicht gelöscht, sondern in diesen Ansichten nur nicht gezählt; gespeichert, bis du
+  sie wieder hinzufügst oder dein Konto löschst)
 - **Geräteübergreifende Sicherung:** Die persönlichen Andachtsaufzeichnungen und
-  Leseeinstellungen, die Sie in Ihrem Konto führen, werden auf unseren Servern
+  Leseeinstellungen, die du in deinem Konto führst, werden auf unseren Servern
   gesichert, damit sie bei einem Gerätewechsel nicht verloren gehen. Diese Sicherung
-  umfasst: **Ihre Aufzeichnungen zum Gebets- und Nafl-Tracking**, Ihre Einstellungen
-  für die Gebetsverfolgung, Ihre Koran-Lesezeichen, Ihre zuletzt
-  gelesene Position in Koran und Dschauschan, Ihre Lesereinstellungen (zweite
-  Übersetzungssprache, Mushaf-Schriftstil). Nutzen Sie dasselbe Konto auf mehreren
+  umfasst: **deine Aufzeichnungen zum Gebets- und Nafl-Tracking**, deine Einstellungen
+  für die Gebetsverfolgung, deine Koran-Lesezeichen, deine zuletzt
+  gelesene Position in Koran und Dschauschan, deine Lesereinstellungen (zweite
+  Übersetzungssprache, Mushaf-Schriftstil). Nutzt du dasselbe Konto auf mehreren
   Geräten, werden diese Aufzeichnungen zwischen ihnen abgeglichen; Benachrichtigungs- und
   Erinnerungseinstellungen gehören nicht zu dieser Sicherung und gelten für jedes Gerät
-  einzeln. **Nur Sie können auf diese Sicherung zugreifen**; Mitglieder Ihrer Kreise,
+  einzeln. **Nur du kannst auf diese Sicherung zugreifen**; Mitglieder deiner Kreise,
   Kreis-Administratoren und andere Nutzende können sie nicht einsehen (geschützt
-  durch zeilenbasierte Zugriffsregeln in der Datenbank). Mit der Löschung Ihres
-  Kontos wird auch die Sicherung gelöscht. **Ihre Standortkoordinaten sind in dieser
-  Sicherung NICHT enthalten** und verbleiben ausschließlich auf Ihrem Gerät
-- **Nutzerinhalte:** Von Ihnen erstellte Gruppenbeschreibungen, individuelle
+  durch zeilenbasierte Zugriffsregeln in der Datenbank). Mit der Löschung deines
+  Kontos wird auch die Sicherung gelöscht. **Deine Standortkoordinaten sind in dieser
+  Sicherung NICHT enthalten** und verbleiben ausschließlich auf deinem Gerät
+- **Nutzerinhalte:** Von dir erstellte Gruppenbeschreibungen, individuelle
   Dhikr-Texte, Notizen zu Koranversen, Notizen zu Buchlektüren
-- **Einmaliger Kreis (Widmung):** Titel und Widmungstext eines von Ihnen
+- **Einmaliger Kreis (Widmung):** Titel und Widmungstext eines von dir
   erstellten einmaligen Kreises. Für personenbezogene Daten Dritter (z. B. einen
-  Namen), die Sie im Widmungstext eingeben, sind Sie verantwortlich
-- **Teilen von Dhikr-Listen:** Sie können Ihre persönliche Dhikr-Liste über einen
-  Teilen-Code/-Link mit anderen teilen. Beim Teilen wird eine Kopie (Momentaufnahme) Ihrer
+  Namen), die du im Widmungstext eingibst, bist du verantwortlich
+- **Teilen von Dhikr-Listen:** Du kannst deine persönliche Dhikr-Liste über einen
+  Teilen-Code/-Link mit anderen teilen. Beim Teilen wird eine Kopie (Momentaufnahme) deiner
   Liste zu diesem Zeitpunkt mit dem Teilen-Code gespeichert; Empfänger können die Liste zu
-  ihrer eigenen Bibliothek hinzufügen. Sie können eine Freigabe jederzeit widerrufen
-- **Meldedaten:** Wenn Sie die Funktion „Melden" in der App nutzen, wird Ihre
+  ihrer eigenen Bibliothek hinzufügen. Du kannst eine Freigabe jederzeit widerrufen
+- **Meldedaten:** Wenn du die Funktion „Melden" in der App nutzt, wird deine
   Meldung (Kennung des meldenden Kontos, Angaben zur gemeldeten Gruppe bzw.
-  zum gemeldeten Mitglied oder Ereignis, der gewählte Grund und ggf. Ihre
+  zum gemeldeten Mitglied oder Ereignis, der gewählte Grund und ggf. deine
   Erläuterung) auf unseren Servern gespeichert. Diese Daten werden
   ausschließlich zur Prüfung der Meldung und zur Verhinderung von Missbrauch
   verwendet, nicht an Dritte weitergegeben und nach Abschluss der Prüfung
@@ -168,34 +168,34 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 ### 2.2. Automatisch erhobene Informationen
 
 - **Fortschrittsdaten:** Koran-Seitenfortschritt, abgeschlossene Aufgaben,
-  Hatim-Zählung, Dhikr-Zähler, Cevshen-Knoten-Abschlüsse, Ihr Cetele-Fortschritt (Auswendiglernen) und Wiederholungsplan
+  Hatim-Zählung, Dhikr-Zähler, Cevshen-Knoten-Abschlüsse, dein Cetele-Fortschritt (Auswendiglernen) und Wiederholungsplan
 - **Benachrichtigungs-Token:** Geräte-Token für Push-Benachrichtigungen
   (Apple APNs / Google FCM)
-- **Angemeldete Geräte:** Für jedes Gerät, auf dem Ihr Konto angemeldet ist, speichern
+- **Angemeldete Geräte:** Für jedes Gerät, auf dem dein Konto angemeldet ist, speichern
   wir das Gerätemodell (zum Beispiel iPhone 15 Pro), die Betriebssystem- und
   App-Version, das Benachrichtigungs-Token dieses Geräts und den Zeitpunkt der letzten
   Aktivität. Dies dient ausschließlich der Kontosicherheit: Unter Konto & Sicherheit >
-  Meine Geräte sehen Sie, wo Ihr Konto angemeldet ist, und können jedes Gerät abmelden;
-  wird Ihr Konto auf einem neuen Gerät angemeldet, werden Ihre anderen Geräte
-  benachrichtigt. Der Name, den Sie dem Gerät gegeben haben, Ihre IP-Adresse und Ihr
+  Meine Geräte siehst du, wo dein Konto angemeldet ist, und kannst jedes Gerät abmelden;
+  wird dein Konto auf einem neuen Gerät angemeldet, werden deine anderen Geräte
+  benachrichtigt. Der Name, den du dem Gerät gegeben hast, deine IP-Adresse und dein
   Standort sind **nicht** Teil dieses Eintrags. Bei der Nutzung als Gast (bevor das
   Konto gesichert ist) wird er nicht angelegt
-- **Standort:** Ausschließlich der aktuelle Standort Ihres Geräts, zur
+- **Standort:** Ausschließlich der aktuelle Standort deines Geräts, zur
   Berechnung der Gebetszeiten und der Qibla-Richtung. **Standortdaten werden weder an unsere
   Server übertragen noch dort gespeichert** – sie werden nur lokal auf
   dem Gerät zur Berechnung verwendet. Damit die App einen Ortswechsel bemerken und
-  Gebetszeiten für Ihre neue Stadt vorschlagen kann, wird die zuletzt bekannte Koordinate
-  **ausschließlich auf Ihrem Gerät** gespeichert; sie wird gelöscht, wenn Sie Ihre
-  Kontodaten löschen.
+  Gebetszeiten für deine neue Stadt vorschlagen kann, wird die zuletzt bekannte Koordinate
+  **ausschließlich auf deinem Gerät** gespeichert; sie wird gelöscht, wenn du deine
+  Kontodaten löschst.
 - **Gebetszeit-Server:** Die Gebetszeiten werden von externen Servern abgerufen. Bei der
   Berechnungsmethode Diyanet werden nur die Kennnummern von Land, Stadt und Bezirk an den
   Diyanet-Gebetszeitserver (ezanvakti.emushaf.net) gesendet. Wenn keine Diyanet-Daten
   abgerufen werden können oder eine andere Berechnungsmethode
   verwendet wird, werden die Koordinaten der Stadt, die Methode und das Datum an Aladhan gesendet; ist der automatische
-  Standort aktiviert, sind dies die auf etwa 1 km gerundeten Koordinaten Ihres Geräts. In Ländern mit mehreren
+  Standort aktiviert, sind dies die auf etwa 1 km gerundeten Koordinaten deines Geräts. In Ländern mit mehreren
   Zeitzonen (etwa USA, Kanada oder Russland) wird Aladhan außerdem einmalig nach der Zeitzone
-  der Stadt gefragt. Um den Namen der Stadt zu ermitteln, fragt das Betriebssystem Ihres
-  Geräts die Koordinaten beim Ortungsdienst von Apple bzw. Google ab. Diese Server sehen Ihre
+  der Stadt gefragt. Um den Namen der Stadt zu ermitteln, fragt das Betriebssystem deines
+  Geräts die Koordinaten beim Ortungsdienst von Apple bzw. Google ab. Diese Server sehen deine
   IP-Adresse; Kontodaten werden nicht übermittelt.
 - **Abonnementdaten:** Bei einem Premium-Abonnement: Laufzeit, Tariftyp,
   Store (App Store / Play Store), Abonnementstatus
@@ -228,71 +228,71 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
 
 ### 2.4. Teilnahme über das Web ohne Konto (manevihalka.app)
 
-Auf **manevihalka.app** können Sie ohne Konto einen Abschnitt übernehmen oder zu
+Auf **manevihalka.app** kannst du ohne Konto einen Abschnitt übernehmen oder zu
 einem gemeinsamen Dhikr beitragen. Dafür gibt es zwei Wege: den Einladungslink
-eines Kreises öffnen, wenn Sie die App nicht installiert haben, oder die
+eines Kreises öffnen, wenn du die App nicht installiert hast, oder die
 öffentliche Seite **Gemeinsames Lesen** besuchen (ohne Einladung). In beiden
 Fällen erheben wir **ausschließlich** Folgendes:
 
-- **Eine in Ihrem Browser erzeugte Zufallskennung.** Sie verbleibt im lokalen
-  Speicher Ihres Browsers. Die Kennung selbst wird auf unseren Servern **nicht
+- **Eine in deinem Browser erzeugte Zufallskennung.** Sie verbleibt im lokalen
+  Speicher deines Browsers. Die Kennung selbst wird auf unseren Servern **nicht
   gespeichert**, sondern nur ein nicht umkehrbarer Hashwert davon (SHA-256). Sie
-  dient einem einzigen Zweck: damit Sie beim erneuten Aufruf desselben Links
-  Ihren eigenen Abschnitt wiedersehen
-- **Ihre Oberflächensprache** (um die Seite in der richtigen Sprache anzuzeigen)
-- **Der von Ihnen übernommene Abschnitt** (Seiten- oder Kapitelbereich) und ob
-  Sie ihn als gelesen markiert haben
-- **Die Anzahl, die Sie zu einem gemeinsamen Dhikr beigetragen haben**
+  dient einem einzigen Zweck: damit du beim erneuten Aufruf desselben Links
+  deinen eigenen Abschnitt wiedersiehst
+- **Deine Oberflächensprache** (um die Seite in der richtigen Sprache anzuzeigen)
+- **Der von dir übernommene Abschnitt** (Seiten- oder Kapitelbereich) und ob
+  du ihn als gelesen markiert hast
+- **Die Anzahl, die du zu einem gemeinsamen Dhikr beigetragen hast**
 - **Zeitpunkt der ersten Teilnahme und des letzten Besuchs**
-- **Ein Name, sofern Sie einen angeben.** Er ist freiwillig und niemals
+- **Ein Name, sofern du einen angibst.** Er ist freiwillig und niemals
   Voraussetzung für irgendetwas: einen Abschnitt übernehmen, beitragen, als
-  gelesen markieren – all das funktioniert ohne Namen. Lassen Sie das Feld leer,
-  erscheinen Sie im Kreis als „Gast". Einen angegebenen Namen können Sie später
+  gelesen markieren – all das funktioniert ohne Namen. Lässt du das Feld leer,
+  erscheinst du im Kreis als „Gast". Einen angegebenen Namen kannst du später
   auf derselben Seite wieder entfernen
-- **Zur Begrenzung von Missbrauch:** Ihre IP-Adresse wird **niemals im Klartext
+- **Zur Begrenzung von Missbrauch:** Deine IP-Adresse wird **niemals im Klartext
   gespeichert**; es wird lediglich ein nicht umkehrbarer Hashwert (SHA-256)
   zusammen mit einem Zähler abgelegt, und diese Einträge werden **nach einer
   Stunde automatisch gelöscht**
 
 **Nicht erhoben werden:** E-Mail-Adresse, Telefonnummer, Konto, Standort. Ein
-Name wird nur erfasst, wenn Sie selbst einen eingeben.
-Die Seite enthält **keine** Werbe-, Analyse- oder Tracking-Werkzeuge. Solange Sie
-die Seite ansehen oder lesen, geht keine Anfrage an Dritte (sämtliche verwendeten
+Name wird nur erfasst, wenn du selbst einen eingibst.
+Die Seite enthält **keine** Werbe-, Analyse- oder Tracking-Werkzeuge. Solange du
+die Seite ansiehst oder liest, geht keine Anfrage an Dritte (sämtliche verwendeten
 Dateien stammen von unseren eigenen Servern).
 
-**Bot-Prüfung (Cloudflare Turnstile):** Nur in dem Moment, in dem Sie etwas
-beitragen (einen Abschnitt übernehmen, als erledigt markieren, zu einem
+**Bot-Prüfung (Cloudflare Turnstile):** Nur in dem Moment, in dem du etwas
+beiträgst (einen Abschnitt übernehmen, als erledigt markieren, zu einem
 gemeinsamen Dhikr beitragen oder einen Namen eingeben), startet die Seite den
 Prüfdienst von Cloudflare, um automatisierte Programme von echten Menschen zu
-unterscheiden. Ihr Browser verbindet sich dabei mit Cloudflare; Cloudflare
-verarbeitet Ihre IP-Adresse, Browserinformationen (etwa den User-Agent) und die
-Website, auf der die Prüfung läuft. Meist sehen Sie davon nichts; bei Verdacht
+unterscheiden. Dein Browser verbindet sich dabei mit Cloudflare; Cloudflare
+verarbeitet deine IP-Adresse, Browserinformationen (etwa den User-Agent) und die
+Website, auf der die Prüfung läuft. Meist siehst du davon nichts; bei Verdacht
 kann ein Kontrollkästchen erscheinen. Cloudflare kann dafür unbedingt
 erforderliche technische Daten auf der eigenen Domain speichern und nutzt diese
 Signale in eigener Verantwortung auch zur Verbesserung seiner Bot-Erkennung.
 Einzelheiten: [Datenschutzzusatz zu Cloudflare Turnstile](https://www.cloudflare.com/turnstile-privacy-policy/).
 
-Haben Sie keinen Namen angegeben, **können die Verwaltung und die Mitglieder des
-Kreises nicht sehen, wer Sie sind**; sie sehen lediglich, dass der Abschnitt
+Hast du keinen Namen angegeben, **können die Verwaltung und die Mitglieder des
+Kreises nicht sehen, wer du bist**; sie sehen lediglich, dass der Abschnitt
 übernommen wurde beziehungsweise dass ein Beitrag zur Zählung hinzugekommen ist.
-Haben Sie einen Namen angegeben, sehen sie diesen zusammen mit dem übernommenen
-Abschnitt und Ihrem Beitrag.
+Hast du einen Namen angegeben, sehen sie diesen zusammen mit dem übernommenen
+Abschnitt und deinem Beitrag.
 
-Wenn Sie die Websitedaten Ihres Browsers löschen, geht die Kennung verloren und
-die Verbindung zu Ihrem Abschnitt ist unterbrochen. Möchten Sie auf diese Daten
-zugreifen oder deren Löschung verlangen, genügt es, uns Ihre Kennung mitzuteilen;
+Wenn du die Websitedaten deines Browsers löschst, geht die Kennung verloren und
+die Verbindung zu deinem Abschnitt ist unterbrochen. Möchtest du auf diese Daten
+zugreifen oder deren Löschung verlangen, genügt es, uns deine Kennung mitzuteilen;
 ohne sie können wir den Eintrag nicht auffinden.
 
 
 **Auf der Seite „Gemeinsames Lesen" ist dreierlei anders:** Es gibt **kein
-Namensfeld**, Sie werden nie danach gefragt; die Seite hat weder Administrator
-noch Mitglieder, niemand sieht also etwas über Sie, es wächst nur der
-gemeinsame Zähler; und da die Seite nie endet, gilt für Ihren Eintrag eine
+Namensfeld**, du wirst nie danach gefragt; die Seite hat weder Administrator
+noch Mitglieder, niemand sieht also etwas über dich, es wächst nur der
+gemeinsame Zähler; und da die Seite nie endet, gilt für deinen Eintrag eine
 Aufbewahrungsfrist von 90 Tagen.
 
 ---
 
-## 3. Wie wir Ihre Daten verwenden
+## 3. Wie wir deine Daten verwenden
 
 - Zur Bereitstellung der Kernfunktionen der App (Gruppenverfolgung,
   Aufgabenverteilung, Fortschrittsaufzeichnung)
@@ -308,7 +308,7 @@ Aufbewahrungsfrist von 90 Tagen.
   unangemessen erkannter Text wird nicht gespeichert. Für diese Prüfung wird der Text
   nicht gesondert gespeichert und an keine Dritten gesendet
 
-**Wir verwenden Ihre Daten nicht für Werbezwecke.** Wir verkaufen Ihre Daten
+**Wir verwenden deine Daten nicht für Werbezwecke.** Wir verkaufen deine Daten
 nicht an Werbenetzwerke.
 
 ---
@@ -356,18 +356,18 @@ Dienstes:
   verlässt
 - **Eigene Auswendiglern-Ziele:** Werden sofort gelöscht, wenn du die Aufgabe
   oder den Kreis verlässt, und wenn die Leitung das Ziel entfernt
-- **Angemeldete Geräte:** Wenn Sie sich auf einem Gerät abmelden oder es unter Meine
-  Geräte entfernen, werden sein Eintrag und sein Benachrichtigungs-Token sofort
+- **Angemeldete Geräte:** Wenn du dich auf einem Gerät abmeldest oder es unter Meine
+  Geräte entfernst, werden sein Eintrag und sein Benachrichtigungs-Token sofort
   gelöscht. Einträge von Geräten, deren Sitzung beendet ist und die seit 30 Tagen nicht
   gesehen wurden, oder die seit 180 Tagen nicht genutzt wurden, löscht eine wöchentliche
   automatische Aufgabe
-- **Aktives Konto:** Daten werden so lange aufbewahrt, wie Ihr Konto aktiv ist
+- **Aktives Konto:** Daten werden so lange aufbewahrt, wie dein Konto aktiv ist
 - **Sprachaufnahmen beim Auswendiglernen:** Du bestimmst, wie lange sie aufbewahrt
   werden (1 Woche, 1 Monat oder bis du sie löschst; Standard: bis du sie löschst).
   Abgelaufene Aufnahmen werden auf deinem Gerät automatisch gelöscht. Wenn du dich
   abmeldest oder die App deinstallierst, werden die Aufnahmen auf diesem Gerät
   ebenfalls gelöscht
-- **Kontolöschung:** Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können Ihr Konto innerhalb von **30 Tagen** wiederherstellen, indem Sie sich erneut anmelden. Nach Ablauf der 30 Tage löscht ein automatisierter Cron-Auftrag (pg_cron) Ihre sämtlichen personenbezogenen Daten **endgültig**. Wenn Sie eine sofortige endgültige Löschung wünschen, können Sie uns per E-Mail kontaktieren. Lediglich Buchhaltungs- bzw. Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können (anonymisiert) erhalten bleiben
+- **Kontolöschung:** Dein Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Du kannst dein Konto innerhalb von **30 Tagen** wiederherstellen, indem du dich erneut anmeldest. Nach Ablauf der 30 Tage löscht ein automatisierter Cron-Auftrag (pg_cron) deine sämtlichen personenbezogenen Daten **endgültig**. Wenn du eine sofortige endgültige Löschung wünschst, kannst du uns per E-Mail kontaktieren. Lediglich Buchhaltungs- bzw. Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können (anonymisiert) erhalten bleiben
 - **Abgeschlossene einmalige Kreise:** Wenn ein einmaliger Kreis endet, wird eine
   Zusammenfassung (Teilnehmerzahl, abgeschlossene Aufgaben) archiviert; einzelne
   Aufgabendetails werden gelöscht
@@ -383,7 +383,7 @@ Dienstes:
   Löschprozess
 - **Geteilte Dhikr-Listen:** Eine beim Teilen einer Dhikr-Liste erstellte Momentaufnahme
   bleibt für diejenigen erhalten, die sie zu ihrer Bibliothek hinzugefügt haben, auch wenn
-  Sie Ihr Konto löschen; Ihr Name als teilende Person wird jedoch bei der Kontolöschung
+  du dein Konto löschst; dein Name als teilende Person wird jedoch bei der Kontolöschung
   anonymisiert
 - **Gastmitglieder:** Wird ein Gast aus einem Kreis entfernt, werden sein Name und
   die geteilten Planzusammenfassungen sofort gelöscht. Der anonyme Eintrag der von
@@ -413,25 +413,25 @@ Dienstes:
   Missbrauchszähler werden nach einer Stunde gelöscht, tägliche Dhikr- und
   Seitenzähler nach höchstens 3 Tagen.
   Da die Seite „Gemeinsames Lesen" nie endet, gilt dort eine eigene Regel:
-  Tragen Sie **90 Tage** lang nichts bei, werden Ihr Gasteintrag, der
-  übernommene Abschnitt und Ihr Dhikr-Beitrag automatisch gelöscht. Ist zu
-  diesem Zeitpunkt noch ein Abschnitt auf Sie offen, wartet die Löschung, bis
+  Trägst du **90 Tage** lang nichts bei, werden dein Gasteintrag, der
+  übernommene Abschnitt und dein Dhikr-Beitrag automatisch gelöscht. Ist zu
+  diesem Zeitpunkt noch ein Abschnitt auf dich offen, wartet die Löschung, bis
   er abgeschlossen ist
 
 ---
 
-## 6. Ihre Rechte (GDPR / KVKK)
+## 6. Deine Rechte (GDPR / KVKK)
 
-Gemäß GDPR (EU) und KVKK (Türkei) stehen Ihnen die folgenden Rechte zu:
+Gemäß GDPR (EU) und KVKK (Türkei) stehen dir die folgenden Rechte zu:
 
-- **Auskunftsrecht:** Erfahren, welche Daten wir über Sie speichern
+- **Auskunftsrecht:** Erfahren, welche Daten wir über dich speichern
 - **Berichtigung:** Korrektur unrichtiger Informationen (über die Profilseite
   in der App)
 - **Recht auf Löschung:** Konto und sämtliche Daten löschen (in der App:
-  Profil → Einstellungen → Konto und Sicherheit → Konto löschen)
-- **Datenübertragbarkeit:** Eine Kopie Ihrer Daten anfordern. **In der App:** Profil → Einstellungen → Datenexport (PDF) – hier können Sie sämtliche Ihrer Daten als PDF herunterladen
-- **Widerspruch:** Widerspruch gegen bestimmte Verarbeitungstätigkeiten. Sie können die Analytik-Datensammlung jederzeit deaktivieren: Profil → Einstellungen → Datenschutz → Analytik (standardmäßig aktiviert)
-- **Beschwerde:** Beschwerde bei Ihrer Datenschutzaufsichtsbehörde einreichen
+  Profil → Konto & Sicherheit → Konto endgültig löschen)
+- **Datenübertragbarkeit:** Eine Kopie deiner Daten anfordern. **In der App:** Profil → Konto & Sicherheit → Meine Daten herunterladen. Hier kannst du sämtliche deiner Daten als PDF herunterladen
+- **Widerspruch:** Widerspruch gegen bestimmte Verarbeitungstätigkeiten. Du kannst die Analytik-Datensammlung jederzeit deaktivieren: Profil → Konto & Sicherheit → Anonyme Nutzungsdaten (standardmäßig aktiviert)
+- **Beschwerde:** Beschwerde bei deiner Datenschutzaufsichtsbehörde einreichen
 
 Für Anfragen: **privacy@manevihalka.app**
 
@@ -440,8 +440,8 @@ Für Anfragen: **privacy@manevihalka.app**
 ## 7. Kinder
 
 Die App ist nicht für Kinder unter 13 Jahren bestimmt. Wir erheben wissentlich
-keine Daten von Nutzern unter 13 Jahren. Sollten Sie der Auffassung sein,
-dass Ihr Kind uns Daten übermittelt hat, kontaktieren Sie uns bitte – wir
+keine Daten von Nutzern unter 13 Jahren. Solltest du der Auffassung sein,
+dass dein Kind uns Daten übermittelt hat, kontaktiere uns bitte – wir
 werden diese unverzüglich löschen.
 
 App-Store-Altersfreigabe: **4+**
@@ -481,23 +481,23 @@ GDPR.
 ## 10. Cookies / lokale Speicherung
 
 Bei der App handelt es sich um eine mobile Anwendung; Web-Cookies werden
-nicht verwendet. Allerdings werden die folgenden Daten lokal auf Ihrem
+nicht verwendet. Allerdings werden die folgenden Daten lokal auf deinem
 Gerät gespeichert:
 
 - Sitzungs-Token (für die Anmeldung, in Keychain/Keystore)
-- Einstellungen (Sprache, Design, Städte, deren Gebetszeiten Sie verfolgen)
+- Einstellungen (Sprache, Design, Städte, deren Gebetszeiten du verfolgst)
 - Zwischengespeicherte Daten (zur Offline-Nutzung)
 - Benachrichtigungszähler
 - Widget-Daten (UserDefaults / SharedPreferences)
 - Heruntergeladene Rezitationen (Offline hören) und temporäre Kopien zuletzt gehörter Verse. Nach den Bedingungen des Anbieters werden sie höchstens 6 Tage gespeichert und erneuert, sobald du online bist; Downloads kannst du in der App löschen
 
-Durch das Löschen Ihres Kontos oder die Deinstallation der App werden
+Durch das Löschen deines Kontos oder die Deinstallation der App werden
 diese Daten entfernt.
 
 **Website (manevihalka.app):** Die Seite für die Teilnahme ohne Konto verwendet
-keine Cookies, legt jedoch **einen einzigen Wert** im lokalen Speicher Ihres
+keine Cookies, legt jedoch **einen einzigen Wert** im lokalen Speicher deines
 Browsers ab: die oben beschriebene Zufallskennung (Abschnitt 2.4). Für Analyse-
-oder Werbezwecke wird nichts gespeichert. Das Löschen der Websitedaten Ihres
+oder Werbezwecke wird nichts gespeichert. Das Löschen der Websitedaten deines
 Browsers entfernt auch diesen Wert. Die Cloudflare-Prüfung, die beim Beitragen
 läuft, kann auf ihrer eigenen Domain (challenges.cloudflare.com) für die
 Bot-Erkennung unbedingt erforderliche technische Daten speichern (Abschnitt 2.4).
@@ -507,7 +507,7 @@ Bot-Erkennung unbedingt erforderliche technische Daten speichern (Abschnitt 2.4)
 ## 11. Änderungen dieser Erklärung
 
 Wir können diese Erklärung von Zeit zu Zeit aktualisieren. Bei wesentlichen
-Änderungen senden wir Ihnen eine In-App-Benachrichtigung. Das Datum des
+Änderungen senden wir dir eine In-App-Benachrichtigung. Das Datum des
 Inkrafttretens ist oben aufgeführt.
 
 ---

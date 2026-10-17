@@ -17,7 +17,7 @@ You may delete your Manevi Halka account and data at any time.
 
 Account deletion is a **two-step process**:
 
-1. **Soft-delete (immediate, reversible):** Tapping "Delete Account" marks your account. Push notifications stop, and your account becomes invisible to other members.
+1. **Soft-delete (immediate, reversible):** Confirming with "Permanently delete my account" marks your account. Push notifications stop, and your account becomes invisible to other members.
 2. **30-day recovery window:** If you sign in again during this period, your account is restored with all your data intact.
 3. **Permanent deletion (automatic):** After 30 days, a daily cron job (pg_cron, 03:00 UTC) **permanently deletes** your account and all associated data. This step is irreversible.
 
@@ -28,15 +28,15 @@ If you want **immediate permanent deletion** without the 30-day wait, contact us
 1. Open the Manevi Halka app
 2. Sign in to your account
 3. Go to the **Profile** tab
-4. Open **Settings → Account & Security**
-5. Tap the red **"Delete Account"** button at the bottom
+4. Tap **Account & Security**
+5. Tap the red **"Delete account permanently"** row at the bottom
 6. Follow the confirmation steps
 
 ## 3. Export Your Data Before Deletion (Optional)
 
 If you wish, back up all your data before deletion:
 
-**Profile → Settings → Data Export → Download as PDF**
+**Profile → Account & Security → Download My Data** (downloaded as a PDF)
 
 This feature is provided under GDPR/KVKK data portability rights and includes: profile, halka memberships, worship progress, Quran/book notes, and subscription status.
 

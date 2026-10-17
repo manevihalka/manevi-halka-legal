@@ -49,7 +49,7 @@ parental consent may be required (legal requirement varies by country).
 ### 2.3. Account deletion
 
 You can delete your account anytime in-app:
-**Profile → Settings → Account Security → Delete My Account**
+**Profile → Account & Security → Delete account permanently**
 
 Your account is first marked as **soft-deleted**. You can restore it by signing in again within **30 days**; after that period, it is automatically and permanently deleted. See Privacy Policy §5 for details.
 

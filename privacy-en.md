@@ -379,9 +379,9 @@ Under GDPR (EU) and KVKK (Turkey), you have these rights:
 - **Access:** Learn what data we store about you
 - **Rectification:** Update inaccurate information (via app's profile screen)
 - **Erasure:** Delete your account and all data (in-app:
-  Profile → Settings → Account Security → Delete My Account)
-- **Portability:** Request a copy of your data. **In-app:** Profile → Settings → Data Export downloads all your data as a PDF
-- **Object:** Object to specific processing activities. **Analytics opt-out** is available anytime: Profile → Settings → Privacy → Analytics (default on)
+  Profile → Account & Security → Delete account permanently)
+- **Portability:** Request a copy of your data. **In-app:** Profile → Account & Security → Download My Data downloads all your data as a PDF
+- **Object:** Object to specific processing activities. **Analytics opt-out** is available anytime: Profile → Account & Security → Anonymous Usage Data (default on)
 - **Complaint:** File a complaint with your data protection authority
 
 For requests: **privacy@manevihalka.app**

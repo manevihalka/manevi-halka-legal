@@ -12,7 +12,7 @@ lang: tr
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
-haklarınızın neler olduğunu açıklar.
+haklarının neler olduğunu açıklar.
 
 ---
 
@@ -26,40 +26,40 @@ haklarınızın neler olduğunu açıklar.
 
 ## 2. Topladığımız Bilgiler
 
-### 2.1. Doğrudan sağladığınız bilgiler
+### 2.1. Doğrudan sağladığın bilgiler
 
 - **Hesap bilgileri:** E-posta adresi, ad-soyad, profil fotoğrafı (opsiyonel)
-- **Kimlik doğrulama:** Apple ile Giriş veya Google ile Giriş kullanırsanız ilgili
+- **Kimlik doğrulama:** Apple ile Giriş veya Google ile Giriş kullanırsan ilgili
   servisten alınan kimlik tokeni
-- **Tercihler:** Uygulama dili, tema, bildirim tercihleri, Halkalar listenizden
-  gizlediğiniz halkalar (bu bilgiyi yalnızca siz görürsünüz; halkadan ayrıldığınızda
-  silinir) ve Yolculuğum ile Manevi Hatıralarım'dan çıkardığınız halkalar (yalnızca siz
-  görürsünüz; kayıtlarınız silinmez, yalnız bu görünümlerde sayılmaz; siz geri ekleyene
-  ya da hesabınızı silene kadar saklanır)
-- **Cihazlar arası yedekleme:** Hesabınıza bağlı olarak tuttuğunuz kişisel ibadet
-  kayıtları ve okuma tercihleriniz, cihaz değiştirdiğinizde kaybolmasın diye
+- **Tercihler:** Uygulama dili, tema, bildirim tercihleri, Halkalar listenden
+  gizlediğin halkalar (bu bilgiyi yalnızca sen görürsün; halkadan ayrıldığında
+  silinir) ve Yolculuğum ile Manevi Hatıralarım'dan çıkardığın halkalar (yalnızca sen
+  görürsün; kayıtların silinmez, yalnız bu görünümlerde sayılmaz; sen geri ekleyene
+  ya da hesabını silene kadar saklanır)
+- **Cihazlar arası yedekleme:** Hesabına bağlı olarak tuttuğun kişisel ibadet
+  kayıtları ve okuma tercihlerin, cihaz değiştirdiğinde kaybolmasın diye
   sunucularımızda yedeklenir. Bu yedek şunları içerir: **namaz ve nafile takibi
-  kayıtlarınız**, namaz takibi tercihleriniz, Kuran yer imleriniz,
-  Kuran ve Cevşen'de kaldığınız son okuma konumu, okuyucu tercihleriniz (ikincil
-  meal dili, mushaf yazı stili). Aynı hesabı birden fazla cihazda kullanıyorsanız bu
-  kayıtlar cihazlarınız arasında eşitlenir; bildirim ve hatırlatma ayarları bu yedeğe
+  kayıtların**, namaz takibi tercihlerin, Kuran yer imlerin,
+  Kuran ve Cevşen'de kaldığın son okuma konumu, okuyucu tercihlerin (ikincil
+  meal dili, mushaf yazı stili). Aynı hesabı birden fazla cihazda kullanıyorsan bu
+  kayıtlar cihazların arasında eşitlenir; bildirim ve hatırlatma ayarları bu yedeğe
   girmez, her cihazda ayrı tutulur. **Bu yedeğe
-  yalnızca siz erişebilirsiniz**; halkanızdaki üyeler, halka yöneticileri ve diğer
+  yalnızca sen erişebilirsin**; halkandaki üyeler, halka yöneticileri ve diğer
   kullanıcılar göremez (veritabanı düzeyinde satır bazlı erişim kuralıyla korunur).
-  Hesabınızı sildiğinizde bu yedek de silinir. **Konum koordinatlarınız bu yedeğe
-  DAHİL DEĞİLDİR**, yalnızca cihazınızda kalır
-- **Kullanıcı içeriği:** Oluşturduğunuz halka açıklamaları, özel zikir metinleri,
+  Hesabını sildiğinde bu yedek de silinir. **Konum koordinatların bu yedeğe
+  DAHİL DEĞİLDİR**, yalnızca cihazında kalır
+- **Kullanıcı içeriği:** Oluşturduğun halka açıklamaları, özel zikir metinleri,
   Kuran ayet notları, kitap okuma notları
-- **Tek Seferlik Halka (Vesile):** Oluşturduğunuz tek seferlik halkanın başlığı ve
-  ithaf/vesile metni. İthaf metnine yazdığınız üçüncü kişilere ait bilgilerden
-  (örneğin bir isim) siz sorumlusunuz
-- **Zikir listesi paylaşımı:** Kişisel zikir listenizi bir paylaşım kodu/bağlantısı ile
-  başkalarıyla paylaşabilirsiniz. Paylaştığınızda listenizin o anki bir kopyası (anlık
+- **Tek Seferlik Halka (Vesile):** Oluşturduğun tek seferlik halkanın başlığı ve
+  ithaf/vesile metni. İthaf metnine yazdığın üçüncü kişilere ait bilgilerden
+  (örneğin bir isim) sen sorumlusun
+- **Zikir listesi paylaşımı:** Kişisel zikir listeni bir paylaşım kodu/bağlantısı ile
+  başkalarıyla paylaşabilirsin. Paylaştığında listenin o anki bir kopyası (anlık
   görüntü) paylaşım koduyla saklanır; kodu alanlar bu listeyi kendi kütüphanelerine
-  ekleyebilir. Paylaşımı istediğiniz zaman iptal edebilirsiniz
-- **Şikayet kayıtları:** Uygulama içi "Şikayet et" özelliğini kullandığınızda
-  şikayetiniz (şikayet eden hesap kimliği, şikayet edilen halka/üye/etkinlik
-  bilgisi, seçilen sebep ve varsa açıklamanız) sunucularımızda saklanır. Bu
+  ekleyebilir. Paylaşımı istediğin zaman iptal edebilirsin
+- **Şikayet kayıtları:** Uygulama içi "Şikayet et" özelliğini kullandığında
+  şikayetin (şikayet eden hesap kimliği, şikayet edilen halka/üye/etkinlik
+  bilgisi, seçilen sebep ve varsa açıklaman) sunucularımızda saklanır. Bu
   kayıtlar yalnız şikayetin incelenmesi ve kötüye kullanımın önlenmesi amacıyla
   kullanılır, üçüncü kişilerle paylaşılmaz ve inceleme tamamlandıktan sonra
   makul bir süre içinde silinir veya anonimleştirilir
@@ -138,36 +138,36 @@ haklarınızın neler olduğunu açıklar.
   planı PDF ya da görsel olarak paylaşabilir; bu belge **cihazda üretilir ve
   sunucularımıza yüklenmez**. Halkada bir değişiklik olduğunda sorumluyu ve
   yöneticiyi uyarabilmek için yalnızca planın kısa bir özeti (tur, okunacak
-  bölümün numarası ve tarih) saklanır. Bir yakınınızı misafir olarak eklerken bunu
-  onun bilgisiyle yapmanız gerekir; eklediğiniz kişiye ait bilgilerden siz
-  sorumlusunuz
+  bölümün numarası ve tarih) saklanır. Bir yakınını misafir olarak eklerken bunu
+  onun bilgisiyle yapman gerekir; eklediğin kişiye ait bilgilerden sen
+  sorumlusun
 
 ### 2.2. Otomatik toplanan bilgiler
 
 - **İlerleme verisi:** Kuran sayfa ilerlemesi, tamamlanan görevler, hatim sayısı,
-  zikir sayaçları, cevsen ukde tamamlamaları, Cetele (ezber) ilerlemeniz ve tekrar takvimi
+  zikir sayaçları, cevsen ukde tamamlamaları, Cetele (ezber) ilerlemen ve tekrar takvimi
 - **Bildirim tokeni:** Push bildirim göndermek için cihaz tokeni (Apple APNs / Google FCM)
-- **Oturum açık cihazlar:** Hesabınızın açık olduğu her cihaz için cihaz modeli (örneğin
+- **Oturum açık cihazlar:** Hesabının açık olduğu her cihaz için cihaz modeli (örneğin
   iPhone 15 Pro), işletim sistemi ve uygulama sürümü, o cihazın bildirim tokeni ve son
   etkinlik zamanı saklanır. Amaç yalnızca hesap güvenliğidir: Hesap & Güvenlik > Cihazlarım
-  ekranında hesabınızın açık olduğu cihazları görebilir, istediğinizi hesaptan
-  çıkarabilirsiniz; hesabınıza yeni bir cihazdan giriş yapıldığında diğer cihazlarınıza
-  bildirim gönderilir. Cihaza verdiğiniz ad, IP adresiniz ve konumunuz bu kayda **dahil
+  ekranında hesabının açık olduğu cihazları görebilir, istediğini hesaptan
+  çıkarabilirsin; hesabına yeni bir cihazdan giriş yapıldığında diğer cihazlarına
+  bildirim gönderilir. Cihaza verdiğin ad, IP adresin ve konumun bu kayda **dahil
   değildir**. Misafir kullanımda (hesap güvenceye alınmadan önce) bu kayıt tutulmaz
-- **Konum:** Sadece namaz vakitlerini ve kıble yönünü hesaplamak için cihazınızın anlık konumu.
+- **Konum:** Sadece namaz vakitlerini ve kıble yönünü hesaplamak için cihazının anlık konumu.
   **Konum verisi sunucularımıza gönderilmez ve kaydedilmez** — yalnızca cihazda
-  hesap için kullanılır. Şehir değiştirdiğinizi fark edip vakitleri yeni şehrinize
-  göre önerebilmek için son bilinen koordinat **yalnızca cihazınızda** saklanır;
-  hesap verilerinizi sildiğinizde bu kayıt da silinir.
+  hesap için kullanılır. Şehir değiştirdiğini fark edip vakitleri yeni şehrine
+  göre önerebilmek için son bilinen koordinat **yalnızca cihazında** saklanır;
+  hesap verilerini sildiğinde bu kayıt da silinir.
 - **Namaz vakti sunucuları:** Namaz vakitleri dış sunuculardan alınır. Diyanet hesaplama
   yönteminde Diyanet vakit sunucusuna (ezanvakti.emushaf.net) yalnızca ülke, şehir ve ilçenin
   numarası gönderilir. Diyanet verisi alınamadığında ya da Diyanet dışı bir hesaplama
   yöntemi kullanıldığında Aladhan'a şehrin koordinatı, yöntem ve tarih gönderilir; otomatik konum
-  açıksa bu koordinat, cihazınızın konumunun yaklaşık 1 km'ye yuvarlanmış hâlidir. Birden çok saat dilimi olan ülkelerde (ABD,
+  açıksa bu koordinat, cihazının konumunun yaklaşık 1 km'ye yuvarlanmış hâlidir. Birden çok saat dilimi olan ülkelerde (ABD,
   Kanada, Rusya gibi) şehrin saat dilimini öğrenmek için de Aladhan'a bir kez sorulur.
-  Şehrin adını bulmak için cihazınızın işletim sistemi koordinatı Apple'ın ya da Google'ın
-  konum hizmetine sorar. Bu sunucular IP adresinizi görür; hesap bilgisi gönderilmez.
-- **Abonelik bilgisi:** Premium aboneliğiniz varsa süre, plan tipi, mağaza (App Store /
+  Şehrin adını bulmak için cihazının işletim sistemi koordinatı Apple'ın ya da Google'ın
+  konum hizmetine sorar. Bu sunucular IP adresini görür; hesap bilgisi gönderilmez.
+- **Abonelik bilgisi:** Premium aboneliğin varsa süre, plan tipi, mağaza (App Store /
   Play Store), abonelik durumu
 - **Uygulamayı iyileştirme ölçümleri:** Yeni kullananların uygulamada nereye ulaştığını
   anlamak için, analitik açıksa, hesabına **bağlanmayan** birkaç olay gönderilir:
@@ -194,57 +194,57 @@ haklarınızın neler olduğunu açıklar.
 ### 2.4. Hesapsız web katılımı (manevihalka.app)
 
 **manevihalka.app** üzerinde hesap oluşturmadan bir bölüm üstlenebilir ya da
-ortak bir zikre katkı verebilirsiniz. Bunun iki yolu vardır: uygulama yüklü
+ortak bir zikre katkı verebilirsin. Bunun iki yolu vardır: uygulama yüklü
 değilken bir halkanın davet bağlantısını açmak, ya da herkese açık **Ortak
 Okuma** sayfasına girmek (davet gerekmez). İkisinde de toplananlar
 **yalnız şunlardır**:
 
-- **Tarayıcınızda üretilen rastgele bir tanıtıcı.** Tarayıcınızın yerel
+- **Tarayıcında üretilen rastgele bir tanıtıcı.** Tarayıcının yerel
   deposunda (local storage) durur. Sunucumuzda tanıtıcının kendisi
   **saklanmaz**, yalnızca geri çevrilemez bir özeti (SHA-256) tutulur. Tek bir
-  amaca hizmet eder: aynı bağlantıya tekrar geldiğinizde kendi bölümünüzü
-  görebilmeniz
-- **Arayüz diliniz** (sayfayı doğru dilde göstermek için)
-- **Üstlendiğiniz bölüm** (sayfa ya da bab aralığı) ve tamamladı olarak
-  işaretleyip işaretlemediğiniz
-- **Ortak zikre eklediğiniz sayı**
+  amaca hizmet eder: aynı bağlantıya tekrar geldiğinde kendi bölümünü
+  görebilmen
+- **Arayüz dilin** (sayfayı doğru dilde göstermek için)
+- **Üstlendiğin bölüm** (sayfa ya da bab aralığı) ve tamamladı olarak
+  işaretleyip işaretlemediğin
+- **Ortak zikre eklediğin sayı**
 - **İlk katılım ve son görülme zamanı**
-- **İsteğe bağlı olarak yazdığınız ad.** Zorunlu değildir ve hiçbir işlemin
+- **İsteğe bağlı olarak yazdığın ad.** Zorunlu değildir ve hiçbir işlemin
   ön koşulu değildir: bölüm üstlenmek, katkı vermek, tamamlamak, hepsi ad
-  vermeden çalışır. Boş bırakırsanız halkada "Misafir" olarak görünürsünüz.
-  Yazdığınız adı sonradan aynı sayfadan kaldırabilirsiniz
-- **Kötüye kullanımı sınırlamak için:** IP adresiniz **ham hâliyle yazılmaz**;
+  vermeden çalışır. Boş bırakırsan halkada "Misafir" olarak görünürsün.
+  Yazdığın adı sonradan aynı sayfadan kaldırabilirsin
+- **Kötüye kullanımı sınırlamak için:** IP adresin **ham hâliyle yazılmaz**;
   geri çevrilemez bir özeti (SHA-256) bir sayaçla birlikte tutulur ve bu
   kayıtlar **1 saat sonra otomatik silinir**
 
-**Toplanmayanlar:** e-posta, telefon, hesap, konum. Ad yalnızca siz
-yazarsanız alınır. Sayfada reklam,
+**Toplanmayanlar:** e-posta, telefon, hesap, konum. Ad yalnızca sen
+yazarsan alınır. Sayfada reklam,
 ölçümleme ya da izleme aracı **yoktur**. Sayfaya bakarken ya da okurken hiçbir
 üçüncü tarafa istek gitmez (kullandığı bütün dosyalar kendi sunucumuzdan gelir).
 
-**Bot doğrulaması (Cloudflare Turnstile):** Yalnız katkı verdiğiniz anda (bölüm
+**Bot doğrulaması (Cloudflare Turnstile):** Yalnız katkı verdiğin anda (bölüm
 üstlenmek, tamamladı olarak işaretlemek, ortak zikre sayı eklemek ya da ad
 yazmak) sayfa, otomatik programları gerçek kişilerden ayırmak için Cloudflare'in
-doğrulama hizmetini çalıştırır. Bu sırada tarayıcınız Cloudflare'e bağlanır;
-Cloudflare IP adresinizi, tarayıcı bilgilerinizi (User-Agent gibi) ve
-doğrulamanın hangi sitede yapıldığını işler. Çoğu zaman hiçbir şey görmezsiniz;
+doğrulama hizmetini çalıştırır. Bu sırada tarayıcın Cloudflare'e bağlanır;
+Cloudflare IP adresini, tarayıcı bilgilerini (User-Agent gibi) ve
+doğrulamanın hangi sitede yapıldığını işler. Çoğu zaman hiçbir şey görmezsin;
 şüphe durumunda bir onay kutusu çıkabilir. Cloudflare bu amaçla kendi alan
 adında zorunlu teknik veriler saklayabilir ve bu sinyalleri bot tespitini
 geliştirmek için kendi sorumluluğunda da kullanır. Ayrıntı:
 [Cloudflare Turnstile gizlilik eki](https://www.cloudflare.com/turnstile-privacy-policy/).
 
-Halkanın yöneticisi ve üyeleri, ad yazmadıysanız kim olduğunuzu **göremez**;
+Halkanın yöneticisi ve üyeleri, ad yazmadıysan kim olduğunu **göremez**;
 yalnızca o bölümün üstlenildiğini ya da sayıya katkı geldiğini görürler. Ad
-yazdıysanız o adı, üstlendiğiniz bölüm ve katkınızla birlikte görürler.
+yazdıysan o adı, üstlendiğin bölüm ve katkınla birlikte görürler.
 
-Tarayıcınızın site verilerini temizlerseniz tanıtıcı kaybolur ve o bölümle
-bağınız kopar. Bu verilere erişmek ya da sildirmek isterseniz tanıtıcınızı bize
-iletmeniz yeterlidir; onsuz kaydı bulmamız mümkün değildir.
+Tarayıcının site verilerini temizlersen tanıtıcı kaybolur ve o bölümle
+bağın kopar. Bu verilere erişmek ya da sildirmek istersen tanıtıcını bize
+iletmen yeterlidir; onsuz kaydı bulmamız mümkün değildir.
 
 
 **Ortak Okuma sayfasında üç şey farklıdır:** ad alanı **yoktur**, hiç sorulmaz;
-sayfanın yöneticisi ya da üyesi yoktur, yani kimse sizin hakkınızda bir şey
-görmez, yalnız ortak sayaç artar; ve sayfa bitmediği için kaydınız 90 günlük
+sayfanın yöneticisi ya da üyesi yoktur, yani kimse senin hakkında bir şey
+görmez, yalnız ortak sayaç artar; ve sayfa bitmediği için kaydın 90 günlük
 saklama kuralına tabidir.
 
 ---
@@ -265,7 +265,7 @@ saklama kuralına tabidir.
   metin kaydedilmez. Bu denetim için metin ayrıca saklanmaz ve hiçbir üçüncü tarafa
   gönderilmez
 
-**Pazarlama için kullanmıyoruz.** Verilerinizi reklam ağlarına satmıyoruz.
+**Pazarlama için kullanmıyoruz.** Verilerini reklam ağlarına satmıyoruz.
 
 ---
 
@@ -307,16 +307,16 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
   görevdeki kendi toplam sayın, görevden ya da halkadan ayrıldığında silinir
 - **Kişiye özel ezber hedefleri:** Görevden ya da halkadan ayrıldığında anında
   silinir; yönetici hedefi kaldırdığında da silinir
-- **Oturum açık cihazlar:** Bir cihazdan çıkış yaptığınızda ya da cihazı Cihazlarım
-  ekranından çıkardığınızda o cihazın kaydı ve bildirim tokeni hemen silinir. Oturumu
+- **Oturum açık cihazlar:** Bir cihazdan çıkış yaptığında ya da cihazı Cihazlarım
+  ekranından çıkardığında o cihazın kaydı ve bildirim tokeni hemen silinir. Oturumu
   kapanmış ve 30 gündür görülmeyen ya da 180 gündür hiç kullanılmayan cihazların kaydı
   haftalık otomatik bir görevle silinir
-- **Aktif hesap:** Hesabınız aktif olduğu sürece verileriniz saklanır
+- **Aktif hesap:** Hesabın aktif olduğu sürece verilerin saklanır
 - **Ezber ses kayıtları:** Ne kadar saklanacağını sen seçersin (1 hafta, 1 ay ya da
   sen silene kadar; varsayılan sen silene kadar). Süresi dolan kayıtlar cihazında
   kendiliğinden silinir. Hesabından çıktığında ya da uygulamayı kaldırdığında o
   cihazdaki kayıtların da silinir
-- **Hesap silindiğinde:** Hesabınız önce **soft-delete** olarak işaretlenir. **30 gün** içinde uygulamaya tekrar giriş yaparak hesabınızı geri yükleyebilirsiniz. 30 gün sonra otomatik bir cron görevi (pg_cron) tüm kişisel verilerinizi **kalıcı olarak siler**. Anında kalıcı silme isterseniz e-posta ile başvurabilirsiniz. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik kayıtları (anonim hale getirilmiş) tutulabilir
+- **Hesap silindiğinde:** Hesabın önce **soft-delete** olarak işaretlenir. **30 gün** içinde uygulamaya tekrar giriş yaparak hesabını geri yükleyebilirsin. 30 gün sonra otomatik bir cron görevi (pg_cron) tüm kişisel verilerini **kalıcı olarak siler**. Anında kalıcı silme istersen e-posta ile başvurabilirsin. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik kayıtları (anonim hale getirilmiş) tutulabilir
 - **Tamamlanan tek seferlik halkalar:** Halka bittiğinde özeti (katılımcı sayısı,
   tamamlanan iş) arşivlenir; bireysel görev detayları temizlenir
 - **Hareketsiz halkalar:** Uzun süre işlem görmeyen halkalar otomatik olarak
@@ -328,9 +328,9 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
   misafir hesaplar, 90 gün boyunca hiç kullanılmaz ve halka üyeliği, etkinlik katılımı,
   aile planı veya aboneliği bulunmazsa silinmek üzere işaretlenir; 30 gün sonra
   yukarıdaki kalıcı silme sürecine girer
-- **Paylaşılan zikir listeleri:** Bir zikir listesi paylaştığınızda oluşan anlık görüntü,
-  hesabınızı silseniz bile onu kütüphanesine ekleyenler için saklanmaya devam eder; ancak
-  paylaşan olarak adınız hesabınız silinince anonim hale getirilir
+- **Paylaşılan zikir listeleri:** Bir zikir listesi paylaştığında oluşan anlık görüntü,
+  hesabını silsen bile onu kütüphanesine ekleyenler için saklanmaya devam eder; ancak
+  paylaşan olarak adın hesabın silinince anonim hale getirilir
 - **Misafir üyeler:** Misafir halkadan çıkarıldığında adı ve paylaşılan plan
   özetleri hemen silinir. Okuduğu görevlerin isimsiz kaydı, yukarıdaki
   "kullanılmayan misafir hesaplar" kuralıyla kalıcı olarak silinir. Halkada
@@ -355,22 +355,22 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
   IP adresinden türetilen kötüye kullanım sayaçları 1 saat sonra, günlük zikir ve
   sayfa sayaçları en fazla 3 gün sonra silinir.
   Ortak Okuma sayfası bitmediği için oradaki kayıtlar ayrı bir kurala tabidir:
-  **90 gün** boyunca hiç katkı vermediyseniz misafir kaydınız, üstlendiğiniz
-  bölüm bilgisi ve zikir katkınız otomatik olarak silinir. O sırada üzerinizde
+  **90 gün** boyunca hiç katkı vermediysen misafir kaydın, üstlendiğin
+  bölüm bilgisi ve zikir katkın otomatik olarak silinir. O sırada sende
   kapanmamış bir bölüm varsa silme, o bölüm kapanana kadar bekler
 
 ---
 
-## 6. Haklarınız (KVKK / GDPR)
+## 6. Hakların (KVKK / GDPR)
 
-Türkiye'de KVKK, AB'de GDPR kapsamında şu haklara sahipsiniz:
+Türkiye'de KVKK, AB'de GDPR kapsamında şu haklara sahipsin:
 
 - **Erişim:** Hangi verileri sakladığımızı öğrenme
 - **Düzeltme:** Yanlış bilgileri güncelleme (uygulamadan profil ekranı üzerinden)
-- **Silme:** Hesabınızı ve tüm verilerinizi silme (uygulama içinden
-  Profil → Ayarlar → Hesap Güvenliği → Hesabımı Sil)
-- **Veri taşınabilirliği:** Verilerinizin bir kopyasını talep etme. **Uygulama içinden de** Profil → Ayarlar → Veri Dışa Aktar ile tüm verilerinizi PDF olarak indirebilirsiniz
-- **İtiraz:** Belirli işleme faaliyetlerine itiraz. **Analitik veri toplamayı** istediğiniz zaman kapatabilirsiniz: Profil → Ayarlar → Gizlilik → Analitik (varsayılan açık)
+- **Silme:** Hesabını ve tüm verilerini silme (uygulama içinden
+  Profil → Hesap & Güvenlik → Hesabı kalıcı olarak sil)
+- **Veri taşınabilirliği:** Verilerinin bir kopyasını talep etme. **Uygulama içinden de** Profil → Hesap & Güvenlik → Verilerimi İndir ile tüm verilerini PDF olarak indirebilirsin
+- **İtiraz:** Belirli işleme faaliyetlerine itiraz. **Analitik veri toplamayı** istediğin zaman kapatabilirsin: Profil → Hesap & Güvenlik → Anonim Kullanım Verisi (varsayılan açık)
 - **Şikayet:** Veri Koruma Otoritesi'ne şikayette bulunma (Türkiye için: KVKK)
 
 Talepler için: **privacy@manevihalka.app**
@@ -380,8 +380,8 @@ Talepler için: **privacy@manevihalka.app**
 ## 7. Çocuklar
 
 Uygulama 13 yaşın altındaki çocuklar için tasarlanmamıştır. Bilerek 13 yaşından küçük
-kullanıcılardan veri toplamayız. Eğer çocuğunuzun bize veri sağladığını fark
-ederseniz, lütfen iletişime geçin — derhal silinecektir.
+kullanıcılardan veri toplamayız. Eğer çocuğunun bize veri sağladığını fark
+edersen bizimle iletişime geç, veriler derhal silinir.
 
 App Store yaş derecelendirmesi: **4+**
 (İslami içerik — agresif/uygunsuz içerik içermez)
@@ -416,22 +416,22 @@ GDPR Madde 46 kapsamında "Standard Contractual Clauses" uygulanır.
 ## 10. Tanımlama Bilgileri (Cookie / Local Storage)
 
 Uygulama bir mobil app olduğu için web çerezleri kullanmaz. Ancak şu
-yerel veriler cihazınızda saklanır:
+yerel veriler cihazında saklanır:
 
 - Oturum tokeni (giriş için, Keychain/Keystore'da)
-- Tercih ayarları (dil, tema, namaz vakitlerini takip ettiğiniz şehirler)
+- Tercih ayarları (dil, tema, namaz vakitlerini takip ettiğin şehirler)
 - Önbelleğe alınmış veriler (offline kullanım için)
 - Bildirim sayaçları
 - Widget verisi (UserDefaults / SharedPreferences)
 - İndirdiğin tilavet dosyaları (çevrimdışı dinleme) ve son dinlenen ayetlerin geçici kopyaları. Kaynağın şartları gereği en fazla 6 gün saklanır ve internete bağlandıkça yenilenir; indirmeleri uygulama içinden silebilirsin
 
-Hesabınızı silerseniz veya uygulamayı kaldırırsanız bu veriler de silinir.
+Hesabını silersen veya uygulamayı kaldırırsan bu veriler de silinir.
 
 **Web sayfası (manevihalka.app):** Hesapsız katılım sayfası çerez kullanmaz,
 ancak tarayıcının yerel deposunda **tek bir değer** saklar: yukarıda anlatılan
 rastgele tanıtıcı (bölüm 2.4). Ölçümleme ya da reklam amaçlı hiçbir değer
-yazılmaz. Tarayıcınızın site verilerini temizlemek bu değeri de siler.
-Katkı verdiğiniz anda çalışan Cloudflare doğrulaması ise kendi alan adında
+yazılmaz. Tarayıcının site verilerini temizlemek bu değeri de siler.
+Katkı verdiğin anda çalışan Cloudflare doğrulaması ise kendi alan adında
 (challenges.cloudflare.com) bot tespiti için zorunlu teknik veriler saklayabilir
 (bölüm 2.4).
 
@@ -446,7 +446,7 @@ uygulama içi bildirim göndereceğiz. Yürürlük tarihi en üstte belirtilir.
 
 ## 12. İletişim
 
-Sorularınız için:
+Soruların için:
 
 **E-posta:** privacy@manevihalka.app<br>
 **Konu:** Manevi Halka — Gizlilik

@@ -8,9 +8,9 @@ lang: fr
 # Conditions d'utilisation
 
 **Date d'entrée en vigueur :** 3 mai 2026<br>
-**Dernière mise à jour :** 28 septembre 2026
+**Dernière mise à jour :** 17 octobre 2026
 
-En utilisant l'application mobile Manevi Halka (« l'Application »), vous acceptez les présentes Conditions d'utilisation. Veuillez les lire attentivement.
+En utilisant l'application mobile Manevi Halka (« l'Application »), tu acceptes les présentes Conditions d'utilisation. Lis-les attentivement.
 
 ---
 
@@ -33,27 +33,27 @@ l'identifiant conservé dans ce navigateur.
 
 ### 2.1. Condition d'âge
 
-Vous devez être âgé d'**au moins 13 ans** pour utiliser l'Application. Si vous avez moins de 16 ans, le consentement parental peut être requis (l'obligation légale varie selon les pays).
+Tu dois être âgé d'**au moins 13 ans** pour utiliser l'Application. Si tu as moins de 16 ans, le consentement parental peut être requis (l'obligation légale varie selon les pays).
 
 ### 2.2. Responsabilité du compte
 
-- Vous acceptez de fournir des informations exactes et à jour
-- Vous êtes responsable de la sécurité de votre compte (accès à l'e-mail, mot de passe)
-- Vous devez nous informer immédiatement de toute utilisation non autorisée
+- Tu acceptes de fournir des informations exactes et à jour
+- Tu es responsable de la sécurité de ton compte (accès à l'e-mail, mot de passe)
+- Tu dois nous informer immédiatement de toute utilisation non autorisée
 - Un compte ne peut être utilisé que par une seule personne ; le partage de compte est interdit
 
 ### 2.3. Suppression du compte
 
-Vous pouvez supprimer votre compte à tout moment dans l'application :
-**Profil → Paramètres → Sécurité du compte → Supprimer mon compte**
+Tu peux supprimer ton compte à tout moment dans l'application :
+**Profil → Compte & Sécurité → Supprimer définitivement le compte**
 
-Votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez le restaurer en vous reconnectant dans un délai de **30 jours** ; passé ce délai, il est automatiquement et définitivement supprimé. Voir la Politique de confidentialité §5 pour plus de détails.
+Ton compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Tu peux le restaurer en te reconnectant dans un délai de **30 jours** ; passé ce délai, il est automatiquement et définitivement supprimé. Voir la Politique de confidentialité §5 pour plus de détails.
 
 ---
 
 ## 3. Obligations de l'utilisateur
 
-Lors de l'utilisation de l'Application, vous **NE devez PAS** :
+Lors de l'utilisation de l'Application, tu **NE dois PAS** :
 
 - Créer du contenu illégal, dénigrant les valeurs religieuses ou contenant des propos haineux
 - Harceler, menacer ou discriminer autrui
@@ -67,11 +67,11 @@ Nous nous réservons le droit de suspendre ou de fermer les comptes en cas de vi
 
 ### 3.1. Descriptions de groupes et textes de dhikr personnalisés
 
-Vous êtes responsable de l'exactitude et du caractère approprié du contenu que vous créez (descriptions de groupes, textes de dhikr personnalisés, etc.). Tout contenu inapproprié peut être supprimé après examen lorsqu'il est signalé.
+Tu es responsable de l'exactitude et du caractère approprié du contenu que tu crées (descriptions de groupes, textes de dhikr personnalisés, etc.). Tout contenu inapproprié peut être supprimé après examen lorsqu'il est signalé.
 
 ### 3.2. Signalement de contenu et modération
 
-Les noms de groupes, les annonces, les noms affichés et tout contenu utilisateur similaire dans l'Application sont soumis aux règles de la communauté. Vous pouvez signaler tout contenu ou comportement inapproprié, offensant ou abusif via la fonctionnalité **« Signaler »** de l'application. Les signalements restent confidentiels ; ils sont examinés dans un délai maximal de **24 heures** et, si nécessaire, des mesures sont prises, pouvant aller jusqu'à la suppression du contenu, l'exclusion du membre du groupe ou la restriction du compte.
+Les noms de groupes, les annonces, les noms affichés et tout contenu utilisateur similaire dans l'Application sont soumis aux règles de la communauté. Tu peux signaler tout contenu ou comportement inapproprié, offensant ou abusif via la fonctionnalité **« Signaler »** de l'application. Les signalements restent confidentiels ; ils sont examinés dans un délai maximal de **24 heures** et, si nécessaire, des mesures sont prises, pouvant aller jusqu'à la suppression du contenu, l'exclusion du membre du groupe ou la restriction du compte.
 
 ---
 
@@ -86,19 +86,19 @@ Les prix sont indiqués dans l'application et peuvent varier selon les pays.
 
 ### 4.2. Paiement via Apple ID / compte Google
 
-- Vous initiez l'abonnement dans l'application
-- Le paiement est prélevé via votre **Apple ID** ou votre **compte Google** (nous ne le voyons jamais)
+- Tu inities l'abonnement dans l'application
+- Le paiement est prélevé via ton **Apple ID** ou ton **compte Google** (nous ne le voyons jamais)
 - Le montant prélevé correspond à celui affiché lors de la confirmation d'achat
 
 ### 4.3. Renouvellement automatique
 
-- **Votre abonnement se renouvelle automatiquement sauf annulation au moins 24 heures avant la fin de la période en cours**
-- Les frais de renouvellement sont prélevés dans les 24 heures suivant la fin de la période en cours, via votre Apple ID ou votre compte Google
-- Le prix de renouvellement est égal à celui de votre formule actuelle (toute augmentation sera notifiée à l'avance)
+- **Ton abonnement se renouvelle automatiquement sauf annulation au moins 24 heures avant la fin de la période en cours**
+- Les frais de renouvellement sont prélevés dans les 24 heures suivant la fin de la période en cours, via ton Apple ID ou ton compte Google
+- Le prix de renouvellement est égal à celui de ta formule actuelle (toute augmentation sera notifiée à l'avance)
 
 ### 4.4. Gestion / annulation de l'abonnement
 
-- **iOS :** Réglages → [Votre nom] → Abonnements → Manevi Halka → Annuler
+- **iOS :** Réglages → [Ton nom] → Abonnements → Manevi Halka → Annuler
 - **Android :** Play Store → Profil → Paiements et abonnements → Abonnements → Manevi Halka → Annuler
 
 Après l'annulation, les fonctionnalités Premium restent accessibles jusqu'à la fin de la période en cours.
@@ -106,7 +106,7 @@ Après l'annulation, les fonctionnalités Premium restent accessibles jusqu'à l
 ### 4.5. Essai gratuit (le cas échéant)
 
 Si un essai gratuit est proposé :
-- Si vous n'annulez pas pendant la période d'essai, vous serez automatiquement converti à un abonnement payant
+- Si tu n'annules pas pendant la période d'essai, tu seras automatiquement converti à un abonnement payant
 - L'essai ne peut être utilisé qu'une seule fois (politique Apple/Google)
 
 ### 4.6. Remboursements
@@ -118,10 +118,10 @@ Si un essai gratuit est proposé :
 
 ### 4.7. Paiements de soutien ponctuels
 
-- Vous pouvez effectuer depuis l'application un paiement de soutien ponctuel et facultatif
+- Tu peux effectuer depuis l'application un paiement de soutien ponctuel et facultatif
 - Les paiements de soutien financent le développement de Manevi Halka ; ce ne sont pas des dons et ils ne sont reversés à aucune association caritative
 - Ce ne sont pas des abonnements : ils ne se renouvellent pas et ne débloquent aucune fonctionnalité ni aucun contenu
-- Le paiement est prélevé sur votre identifiant Apple ou votre compte Google ; les remboursements suivent les règles des stores décrites en 4.6
+- Le paiement est prélevé sur ton identifiant Apple ou ton compte Google ; les remboursements suivent les règles des stores décrites en 4.6
 
 ---
 
@@ -133,9 +133,9 @@ Le code de l'Application, son design, son nom de marque (« Manevi Halka »), so
 
 Exception : le **texte du Coran, le Cevshen-i Kebir, les traductions de versets, les hadiths et les sources islamiques** inclus dans l'Application sont dans le domaine public ou utilisés en mentionnant dûment leurs sources.
 
-### 5.2. Votre contenu
+### 5.2. Ton contenu
 
-Le contenu que vous créez (notes, descriptions de groupes, dhikr personnalisés, dédicaces de cercles ponctuels) vous appartient. Vous nous accordez uniquement une licence limitée et transitoire nécessaire au fonctionnement de l'Application.
+Le contenu que tu crées (notes, descriptions de groupes, dhikr personnalisés, dédicaces de cercles ponctuels) t'appartient. Tu nous accordes uniquement une licence limitée et transitoire nécessaire au fonctionnement de l'Application.
 
 ---
 
@@ -154,24 +154,24 @@ L'Application est fournie « en l'état ». Nous **NE garantissons PAS** :
 
 Dans toute la mesure permise par la loi :
 - Nous ne sommes pas responsables des dommages indirects, spéciaux ou punitifs
-- Notre responsabilité totale est limitée au montant que vous nous avez payé au cours des 12 derniers mois (le cas échéant)
+- Notre responsabilité totale est limitée au montant que tu nous as payé au cours des 12 derniers mois (le cas échéant)
 
 ### 6.3. Contenu religieux
 
-Le contenu religieux figurant dans l'Application (traductions de versets, hadiths, prières) est **à titre informatif**. Pour des questions religieuses approfondies, nous vous recommandons de consulter des savants islamiques qualifiés. Cette Application n'est pas une autorité en matière de fiqh.
+Le contenu religieux figurant dans l'Application (traductions de versets, hadiths, prières) est **à titre informatif**. Pour des questions religieuses approfondies, nous te recommandons de consulter des savants islamiques qualifiés. Cette Application n'est pas une autorité en matière de fiqh.
 
 ---
 
 ## 7. Suspension et résiliation du compte
 
-Nous pouvons suspendre ou résilier votre compte en cas de :
+Nous pouvons suspendre ou résilier ton compte en cas de :
 
 - Violation des présentes Conditions
 - Utilisation illégale
 - Menace pour la sécurité (activité suspecte)
 - Inactivité prolongée (12 mois ou plus ; un préavis sera donné)
 
-En cas de résiliation, vos données sont supprimées dans les délais prévus par la Politique de confidentialité.
+En cas de résiliation, tes données sont supprimées dans les délais prévus par la Politique de confidentialité.
 
 ---
 
