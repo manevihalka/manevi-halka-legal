@@ -8,7 +8,7 @@ lang: de
 # Datenschutzerklärung
 
 **Gültig ab:** 3. Mai 2026<br>
-**Zuletzt aktualisiert:** 5. Oktober 2026
+**Zuletzt aktualisiert:** 17. Oktober 2026
 
 Manevi Halka („die App", „wir", „uns") schätzt Ihre Privatsphäre. Diese
 Erklärung beschreibt, welche Informationen wir bei der Nutzung der App
@@ -67,6 +67,14 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   ausschließlich zur Prüfung der Meldung und zur Verhinderung von Missbrauch
   verwendet, nicht an Dritte weitergegeben und nach Abschluss der Prüfung
   innerhalb einer angemessenen Frist gelöscht oder anonymisiert
+- **Personen, die du blockierst:** Wenn du jemanden über den Melde-Bildschirm
+  blockierst, speichern wir auf unseren Servern, wen du blockiert hast und wann. Die
+  Person wird nicht benachrichtigt, und nur du siehst diesen Eintrag. Motivations-
+  und Gesten-Benachrichtigungen dieser Person erreichen dich nicht mehr, und frei
+  geschriebene Texte von ihr (zum Beispiel ein eigener Bittgebetstext) werden dir
+  nicht angezeigt; die gemeinsamen Abläufe des Kreises und Ankündigungen laufen
+  weiter. Du kannst eine Blockierung unter Profil → Konto & Sicherheit → Blockierte
+  Personen aufheben
 
 - **Check-ins gemeinsamer Praxis:** Wenn du **aus eigenem Entschluss** an der
   gemeinsamen Praxis eines Kreises teilnimmst (Gebetsverfolgung, Auswendiglernen
@@ -108,6 +116,18 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   nur Absender und Empfänger. An den Empfänger wird **keine
   Push-Benachrichtigung gesendet**; sie erscheint in der Benachrichtigungsliste
   der App, höchstens einmal am Tag, mit dem Namen des Absenders
+- **Gemeinsamer Zähler bei „Alle lesen“-Aufgaben:** Wenn die Kreisleitung eine
+  Sure als „Alle lesen“-Aufgabe anlegt (zum Beispiel „41 × Yā-Sīn“ oder „Al-Kahf
+  jeden Freitag“), werden der Tag, den du als gelesen markierst, und wie oft du
+  an diesem Tag gelesen hast, auf unseren Servern gespeichert; außerdem die
+  Gesamtzahl der Lesungen des Kreises und deine eigene Gesamtzahl in dieser
+  Aufgabe. Bei diesen Aufgaben **kann niemand, auch die Kreisleitung nicht,
+  sehen, wer gelesen hat**: Der Kreis sieht nur die Gesamtzahl, deine eigene
+  Zahl siehst nur du. Hat der Kreis außer dir mindestens drei Mitglieder, werden
+  auch die Zahl der Lesungen und der Lesenden des Tages (ohne Namen) angezeigt;
+  in kleineren Kreisen bleiben diese Zahlen verborgen. Wenn du die Aufgabe oder
+  den Kreis verlässt, werden deine eigenen Einträge gelöscht; die Gesamtzahl des
+  Kreises ist niemandem zugeordnet und bleibt unverändert
 - **Eigene Ziele bei Auswendiglern-Aufgaben:** Die Kreisleitung kann einer
   Person, die einer Auswendiglern-Aufgabe beigetreten ist, ein eigenes
   Auswendiglern-Ziel geben (zum Beispiel eine Sure). Dafür werden das Ziel, wer
@@ -119,6 +139,15 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   Cetele-Fortschritt nur einen groben Stand (nicht begonnen, wird gelernt,
   auswendig gelernt); schwierige Stellen, Wiederholungsplan und
   Abschnittsdetails bleiben bei der Person
+- **Sprachaufnahmen beim Auswendiglernen:** In der Hifz-Tafel kannst du dich auf
+  Wunsch beim Rezitieren deines Auswendiggelernten aufnehmen und dich anhören. Die
+  Aufnahmen werden **nur auf deinem Gerät** gespeichert; sie werden nicht an unsere
+  Server gesendet und mit niemandem geteilt. Die Mikrofonberechtigung wird erst
+  abgefragt, wenn du deine erste Aufnahme startest. Verse, die du beim Anhören als
+  „hängen geblieben“ markierst, werden als Teil deines Fortschritts in der Hifz-Tafel
+  gespeichert (schwierige Stellen); der Ton selbst gehört nicht dazu. Wenn die
+  Sicherung deines Geräts (iCloud oder Google) aktiv ist, können die Aufnahmen darin
+  enthalten sein; das ist eine Einstellung deines Geräts
 - **Gastmitglieder ohne die App:** Die Leitung eines Kreises kann jemanden aus
   ihrem Umfeld, der die App nicht nutzt, als Gastmitglied in den Kreis aufnehmen.
   Dafür wird nur der Name gespeichert, den die Leitung eingibt (ein Nachname ist
@@ -170,6 +199,21 @@ erheben, wie wir sie verwenden und welche Rechte Ihnen zustehen.
   IP-Adresse; Kontodaten werden nicht übermittelt.
 - **Abonnementdaten:** Bei einem Premium-Abonnement: Laufzeit, Tariftyp,
   Store (App Store / Play Store), Abonnementstatus
+- **Messungen zur Verbesserung der App:** Um zu verstehen, wohin neue Nutzer in der App
+  gelangen, werden bei eingeschalteter Analyse einige Ereignisse gesendet, die **nicht mit
+  deinem Konto verknüpft** sind: die in der Einführung gewählten Interessen (nur der
+  Kategoriename, z. B. "Koran" oder "Gebet"), dass eine Funktion auf diesem Gerät zum ersten
+  Mal geöffnet wurde (z. B. der Koran-Leser oder der Dhikr-Zähler; einmal pro Funktion), die
+  Schritte beim Gründen eines Kreises und beim Einladen (nicht, an wen die Einladung ging,
+  nur wie der Teilen-Bildschirm geschlossen wurde), ob du im Fenster, das nach deinem Namen
+  fragt, fortgefahren bist (nicht der eingegebene Name), das Ergebnis des Bildschirms "Mit Code
+  beitreten" und deine Antwort auf die freiwillige Umfrage mit einer Frage. Diese Ereignisse
+  werden mit einer zufälligen, nur für diese Installation geltenden Nummer gesendet; deine
+  Konto-ID, E-Mail, dein Standort und dein Benachrichtigungs-Token werden nicht mitgesendet,
+  die Standortermittlung ist ausgeschaltet. **Der Inhalt deines Gebets** (welche Sure, welches
+  Bittgebet oder welcher Dhikr) und **seine Menge** (Seiten, Zahlen) werden nicht gesendet;
+  Gebetsmarkierungen werden nie gesendet. Wenn du die Analyse ausschaltest, enden auch diese
+  Ereignisse und die zufällige Nummer wird von deinem Gerät gelöscht.
 
 ### 2.3. Informationen, die wir NICHT erheben
 
@@ -258,6 +302,11 @@ Aufbewahrungsfrist von 90 Tagen.
 - Zur Diagnose von Fehlern und Leistungsproblemen (anonyme technische Daten)
 - Zur Erfüllung gesetzlicher Pflichten
 - Zur Verbesserung der Nutzererfahrung (aggregierte/anonyme Analyse)
+- **Prüfung auf unangemessene Texte:** Texte, die andere sehen können (Kreisname,
+  Ankündigung, eigener Bittgebetstext, Name einer Dhikr-Liste, Gastname, Profilname),
+  werden beim Speichern automatisch anhand einer Wortliste geprüft. Ein als
+  unangemessen erkannter Text wird nicht gespeichert. Für diese Prüfung wird der Text
+  nicht gesondert gespeichert und an keine Dritten gesendet
 
 **Wir verwenden Ihre Daten nicht für Werbezwecke.** Wir verkaufen Ihre Daten
 nicht an Werbenetzwerke.
@@ -280,10 +329,11 @@ Dienstes:
 | **Apple Sign In** | OAuth-Anmeldung | Apple-ID, E-Mail, Name |
 | **Google Sign In** | OAuth-Anmeldung | Google-ID, E-Mail, Name |
 | **Sentry** ([Datenschutz](https://sentry.io/privacy/)) | Fehlerberichte, Absturz-Tracking | Anonyme Fehlerprotokolle, Stack Traces, Geräte-/Betriebssystem-Informationen |
-| **PostHog** ([Datenschutz](https://posthog.com/privacy)) | Produktanalyse (Opt-out verfügbar) | Anonyme Nutzungsereignisse (keine personenbezogenen Daten), gehostet auf EU-Servern |
+| **PostHog** ([Datenschutz](https://posthog.com/privacy)) | Produktanalyse (Opt-out verfügbar) | Nutzungsereignisse (keine personenbezogenen Daten); Messungen zur Verbesserung der App werden nicht mit deinem Konto verknüpft (Abschnitt 2.2). Gehostet auf EU-Servern |
 | **Quran Foundation** ([Datenschutz](https://quran.com/privacy)) | Rezitationen (Rezitatorenliste und Audiodateien der Verse) | Audiodateien werden direkt von Servern der Quran Foundation und von quranicaudio.com auf dein Gerät geladen; diese Server sehen deine IP-Adresse und die angefragte Datei. Es werden keine Kontodaten übermittelt; die Rezitatorenliste wird anonym über unseren Server abgerufen |
 | **Diyanet-Gebetszeitserver** (ezanvakti.emushaf.net) | Gebetszeiten (Berechnungsmethode Diyanet) | Kennnummern von Land, Stadt und Bezirk; der Server sieht die IP-Adresse. Es werden keine Koordinaten und keine Kontodaten übermittelt |
 | **Aladhan** (api.aladhan.com) | Gebetszeiten, wenn keine Diyanet-Daten abrufbar sind, und bei anderen Berechnungsmethoden; Zeitzone der Stadt in Ländern mit mehreren Zeitzonen | Koordinaten der Stadt (bei automatischem Standort die des Geräts, auf etwa 1 km gerundet), Berechnungsmethode, Datum; der Server sieht die IP-Adresse. Es werden keine Kontodaten übermittelt |
+| **Esri** ([Datenschutz](https://www.esri.com/en-us/privacy/overview)) | Satellitenansicht auf dem Qibla-Bildschirm (Kartenkacheln) | Die Nummern der Kartenkacheln rund um deinen Standort; der Server sieht deine IP-Adresse. Es werden keine Kontodaten gesendet, und ohne Öffnen der Satellitenansicht erfolgt keine Anfrage |
 | **Cloudflare Turnstile** ([Datenschutz](https://www.cloudflare.com/turnstile-privacy-policy/)) | Bot-Prüfung bei Beiträgen auf manevihalka.app | IP-Adresse, Browserinformationen (User-Agent, TLS-Fingerabdruck), Name der Website; nur im Moment eines Beitrags auf der Website |
 
 ---
@@ -298,6 +348,12 @@ Dienstes:
   von einem wöchentlichen automatischen Vorgang endgültig gelöscht. Wenn du die
   Aufgabe oder den Kreis verlässt, werden die von dir gesendeten und empfangenen
   Gesten sofort gelöscht
+- **Zähler bei „Alle lesen“-Aufgaben:** Deine Tagesmarkierungen folgen
+  derselben Regel wie die Erklärungen bei gemeinsamen Praktiken (180 Tage). Die
+  Gesamtzahl des Kreises ist eine einzelne Zahl ohne Personenbezug; sie bleibt,
+  solange die Aufgabe besteht, und wird mit ihr gelöscht. Deine eigene
+  Gesamtzahl in der Aufgabe wird gelöscht, wenn du die Aufgabe oder den Kreis
+  verlässt
 - **Eigene Auswendiglern-Ziele:** Werden sofort gelöscht, wenn du die Aufgabe
   oder den Kreis verlässt, und wenn die Leitung das Ziel entfernt
 - **Angemeldete Geräte:** Wenn Sie sich auf einem Gerät abmelden oder es unter Meine
@@ -306,6 +362,11 @@ Dienstes:
   gesehen wurden, oder die seit 180 Tagen nicht genutzt wurden, löscht eine wöchentliche
   automatische Aufgabe
 - **Aktives Konto:** Daten werden so lange aufbewahrt, wie Ihr Konto aktiv ist
+- **Sprachaufnahmen beim Auswendiglernen:** Du bestimmst, wie lange sie aufbewahrt
+  werden (1 Woche, 1 Monat oder bis du sie löschst; Standard: bis du sie löschst).
+  Abgelaufene Aufnahmen werden auf deinem Gerät automatisch gelöscht. Wenn du dich
+  abmeldest oder die App deinstallierst, werden die Aufnahmen auf diesem Gerät
+  ebenfalls gelöscht
 - **Kontolöschung:** Ihr Konto wird zunächst als **vorläufig gelöscht (soft-delete)** markiert. Sie können Ihr Konto innerhalb von **30 Tagen** wiederherstellen, indem Sie sich erneut anmelden. Nach Ablauf der 30 Tage löscht ein automatisierter Cron-Auftrag (pg_cron) Ihre sämtlichen personenbezogenen Daten **endgültig**. Wenn Sie eine sofortige endgültige Löschung wünschen, können Sie uns per E-Mail kontaktieren. Lediglich Buchhaltungs- bzw. Abonnementaufzeichnungen, die gesetzlich aufzubewahren sind, können (anonymisiert) erhalten bleiben
 - **Abgeschlossene einmalige Kreise:** Wenn ein einmaliger Kreis endet, wird eine
   Zusammenfassung (Teilnehmerzahl, abgeschlossene Aufgaben) archiviert; einzelne
@@ -329,6 +390,18 @@ Dienstes:
   ihm gelesenen Aufgaben wird nach der obigen Regel für ungenutzte Gastkonten
   endgültig gelöscht. Bleiben in einem Kreis außer Gästen keine Mitglieder, werden
   auch die Gäste entfernt
+- **Blockierungen:** Wenn du eine Blockierung aufhebst, wird der Eintrag sofort
+  gelöscht. Er wird auch gelöscht, wenn du oder die blockierte Person das Konto löscht
+- **Eintrag bei Entfernung:** Wenn dich eine Kreisleitung oder Moderation aus einem
+  Kreis oder einem einmaligen Kreis entfernt, speichern wir, aus welchem Kreis, wann
+  und durch wen, damit du demselben Kreis nicht erneut beitreten kannst. Der Eintrag
+  bleibt bestehen, bis die Leitung ihn aufhebt, der Kreis gelöscht wird oder du dein
+  Konto löschst. Wenn du selbst austrittst, wird kein solcher Eintrag gespeichert
+- **Zähler gegen Missbrauch:** Um übermäßige Wiederholungen von Meldungen, Freigaben
+  und ähnlichen Aktionen zu verhindern, zählen wir, wie oft sie ausgeführt werden.
+  Diese Zähler werden höchstens 7 Tage gespeichert. Bei Personen, die ohne Konto über
+  das Web teilnehmen, werden die täglichen Dhikr- und Seitenzahlen zur Gastkennung
+  höchstens 3 Tage gespeichert
 - **Benachrichtigungsprotokolle:** Automatische Löschung nach 30 Tagen
 - **Audit-Protokolle:** Aufbewahrung 12 Monate zu Sicherheits- und
   Compliance-Zwecken
@@ -336,8 +409,9 @@ Dienstes:
 - **Teilnahme über das Web ohne Konto:** Ein Gasteintrag gehört zu dem Kreis, in
   dem er entstanden ist. Wird dieser Kreis nach seinem Ende gelöscht (24 Stunden
   nach dem Enddatum), werden der Gasteintrag, der übernommene Abschnitt und die
-  beigetragene Anzahl endgültig mitgelöscht. Missbrauchszähler werden nach einer
-  Stunde gelöscht.
+  beigetragene Anzahl endgültig mitgelöscht. Aus der IP-Adresse abgeleitete
+  Missbrauchszähler werden nach einer Stunde gelöscht, tägliche Dhikr- und
+  Seitenzähler nach höchstens 3 Tagen.
   Da die Seite „Gemeinsames Lesen" nie endet, gilt dort eine eigene Regel:
   Tragen Sie **90 Tage** lang nichts bei, werden Ihr Gasteintrag, der
   übernommene Abschnitt und Ihr Dhikr-Beitrag automatisch gelöscht. Ist zu
@@ -382,6 +456,9 @@ App-Store-Altersfreigabe: **4+**
 - Passwörter werden mit bcrypt gehasht (Supabase-Auth-Standard)
 - Authentifizierungs-Token sind kurzlebig und werden in sicheren
   Gerätebereichen gespeichert (iOS Keychain / Android Keystore)
+- Unter Android werden deine Anmeldesitzung und die Buchdateien deiner Bibliothek
+  nicht in die Gerätesicherung (Google) aufgenommen; auf einem aus der Sicherung
+  wiederhergestellten Telefon musst du dich erneut anmelden
 - Der Serverzugriff ist durch 2FA + IP-Allowlist eingeschränkt
   (Entwicklerkonto)
 

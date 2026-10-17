@@ -8,7 +8,7 @@ lang: fr
 # Politique de confidentialité
 
 **Date d'entrée en vigueur :** 3 mai 2026<br>
-**Dernière mise à jour :** 5 octobre 2026
+**Dernière mise à jour :** 17 octobre 2026
 
 Manevi Halka (« l'Application », « nous ») accorde une grande importance à votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez l'Application, comment nous les utilisons et quels droits vous avez.
 
@@ -56,6 +56,13 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
   votre liste à ce moment-là est stockée avec le code de partage ; les destinataires peuvent
   ajouter la liste à leur propre bibliothèque. Vous pouvez révoquer un partage à tout moment
 - **Signalements :** lorsque vous utilisez la fonctionnalité « Signaler » de l'application, votre signalement (identifiant du compte signalant, informations sur le groupe, le membre ou l'événement signalé, motif sélectionné et, le cas échéant, votre description) est conservé sur nos serveurs. Ces enregistrements sont utilisés uniquement pour examiner le signalement et prévenir les abus, ne sont jamais partagés avec des tiers et sont supprimés ou anonymisés dans un délai raisonnable après la clôture de l'examen
+- **Personnes que tu bloques :** lorsque tu bloques quelqu'un depuis l'écran de
+  signalement, nous enregistrons sur nos serveurs qui tu as bloqué et quand. La
+  personne n'est pas prévenue, et toi seul vois cet enregistrement. Ses notifications
+  d'encouragement et ses gestes ne t'atteignent plus, et les textes libres qu'elle
+  écrit (par exemple un texte d'invocation personnalisé) te sont masqués ; le
+  fonctionnement commun du cercle et les annonces continuent. Tu peux retirer un
+  blocage dans Profil → Compte & Sécurité → Personnes bloquées
 
 - **Marques des pratiques communes :** si tu rejoins **de ton propre gré** la
   pratique commune d'un cercle (suivi des prières, mémorisation/révision,
@@ -94,6 +101,18 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
   destinataire voient un geste. **Aucune notification push n'est envoyée** au
   destinataire ; le geste apparaît dans la liste des notifications de l'app, au
   plus une fois par jour, avec le nom de l'expéditeur
+- **Compteur commun des tâches « Tout le monde lit » :** quand
+  l'administrateur ouvre une sourate en tâche « tout le monde lit » (par exemple
+  « 41 × Yā-Sīn » ou « Al-Kahf chaque vendredi »), le jour que tu coches comme
+  lu et le nombre de fois où tu l'as lue ce jour-là sont enregistrés sur nos
+  serveurs ; le nombre total de lectures du cercle et ton propre total dans
+  cette tâche sont aussi conservés. Dans ces tâches, **personne, administrateur
+  compris, ne peut voir qui a lu** : le cercle ne voit que le total, et toi seul
+  vois ton propre nombre. Si le cercle compte au moins trois membres en dehors
+  de toi, le nombre de lectures et de lecteurs du jour est aussi affiché (sans
+  noms) ; dans un cercle plus petit, ces nombres sont masqués. Quand tu quittes
+  la tâche ou le cercle, tes propres données sont supprimées ; le total du
+  cercle n'est lié à personne et ne change pas
 - **Objectifs personnels dans les tâches de mémorisation :** l'administrateur
   d'un cercle peut fixer un objectif de mémorisation personnel (une sourate, par
   exemple) à une personne qui a rejoint une tâche de mémorisation. Pour cela,
@@ -106,6 +125,15 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
   progression Cetele (pas commencé, en cours, mémorisé) ; les passages
   difficiles, le calendrier de révision et le détail des sections restent chez
   la personne
+- **Enregistrements vocaux de mémorisation :** dans le Tableau de hifz, tu peux, si
+  tu le souhaites, t'enregistrer en récitant ce que tu mémorises et t'écouter. Les
+  enregistrements sont conservés **uniquement sur ton appareil** ; ils ne sont pas
+  envoyés à nos serveurs et ne sont partagés avec personne. L'autorisation du micro
+  n'est demandée qu'au lancement de ton premier enregistrement. Les versets que tu
+  marques « J'ai bloqué » pendant l'écoute sont enregistrés dans ta progression du
+  Tableau de hifz (les endroits où tu bloques) ; le son lui-même n'en fait pas partie.
+  Si la sauvegarde de ton appareil (iCloud ou Google) est activée, les enregistrements
+  peuvent y être inclus ; c'est un réglage de ton appareil
 - **Membres invités sans l'application :** l'administrateur d'un cercle peut y
   ajouter comme membre invité un proche qui n'utilise pas l'application. Pour cela,
   seul le nom saisi par l'administrateur est conservé (pas besoin de nom de
@@ -131,6 +159,22 @@ Manevi Halka (« l'Application », « nous ») accorde une grande importance à 
 - **Localisation :** uniquement la position actuelle de votre appareil, utilisée pour calculer les heures de prière et la direction de la qibla. **Les données de localisation ne sont ni transmises ni stockées sur nos serveurs** — elles sont utilisées uniquement sur l'appareil pour le calcul. Afin que l'application puisse remarquer un changement de lieu et vous proposer les horaires de votre nouvelle ville, la dernière coordonnée connue est conservée **uniquement sur votre appareil** ; elle est supprimée lorsque vous effacez les données de votre compte.
 - **Serveurs d'horaires de prière :** les horaires de prière sont obtenus auprès de serveurs externes. Avec la méthode de calcul Diyanet, seuls les numéros du pays, de la ville et du district sont envoyés au serveur d'horaires de la Diyanet (ezanvakti.emushaf.net). Lorsque les données de la Diyanet ne peuvent pas être obtenues, ou si une autre méthode de calcul est utilisée, les coordonnées de la ville, la méthode et la date sont envoyées à Aladhan ; si la localisation automatique est activée, ces coordonnées sont celles de votre appareil, arrondies à environ 1 km. Dans les pays qui comptent plusieurs fuseaux horaires (comme les États-Unis, le Canada ou la Russie), Aladhan est aussi interrogé une fois pour connaître le fuseau horaire de la ville. Pour trouver le nom de la ville, le système d'exploitation de votre appareil interroge le service de localisation d'Apple ou de Google. Ces serveurs voient votre adresse IP ; aucune donnée de compte n'est envoyée.
 - **Informations d'abonnement :** si vous avez un abonnement Premium : durée, type de formule, boutique (App Store / Play Store), statut de l'abonnement
+- **Mesures d'amélioration de l'application :** pour comprendre jusqu'où les nouveaux
+  utilisateurs vont dans l'application, quelques événements **non liés à ton compte** sont
+  envoyés si les analyses sont activées : les centres d'intérêt choisis dans l'introduction
+  (seulement le nom de la catégorie, par exemple « Coran » ou « Prière »), le fait qu'une
+  fonctionnalité a été ouverte pour la première fois sur cet appareil (par exemple le lecteur
+  du Coran ou le compteur de dhikr ; une fois par fonctionnalité), les étapes de création d'un
+  cercle et d'invitation (pas le destinataire de l'invitation, seulement la façon dont l'écran
+  de partage a été fermé), le fait d'avoir continué ou non à l'écran qui demande ton nom
+  (pas le nom saisi), le résultat de l'écran « Rejoindre avec un code » et ta réponse
+  au sondage facultatif d'une seule question. Ces événements sont envoyés avec un numéro
+  aléatoire propre à cette installation ; ton identifiant de compte, ton e-mail, ta
+  position et ton jeton de notification ne sont pas inclus, et la localisation est
+  désactivée. **Le contenu de ton adoration** (quelle sourate, quelle invocation ou quel
+  dhikr) et **sa quantité** (pages, nombres) ne sont pas envoyés ; les prières cochées ne sont
+  jamais envoyées. Si tu désactives les analyses, ces événements s'arrêtent aussi et le
+  numéro aléatoire est supprimé de ton appareil.
 
 ### 2.3. Informations que nous NE collectons PAS
 
@@ -213,6 +257,11 @@ enregistrement suit une règle de conservation de 90 jours.
 - Pour diagnostiquer les erreurs et les problèmes de performance (données techniques anonymes)
 - Pour respecter nos obligations légales
 - Pour améliorer l'expérience utilisateur (analyses agrégées/anonymes)
+- **Contrôle des textes inappropriés :** les textes visibles par d'autres (nom du
+  cercle, annonce, texte d'invocation personnalisé, nom d'une liste de dhikr, nom
+  d'invité, nom de profil) sont vérifiés automatiquement à l'aide d'une liste de mots
+  lors de leur enregistrement. Un texte jugé inapproprié n'est pas enregistré. Pour
+  ce contrôle, le texte n'est pas conservé à part ni envoyé à un tiers
 
 **Nous n'utilisons pas vos données à des fins publicitaires.** Nous ne vendons pas vos données à des régies publicitaires.
 
@@ -233,10 +282,11 @@ Nous utilisons les services tiers suivants pour fournir notre service :
 | **Apple Sign In** | Connexion OAuth | Apple ID, e-mail, nom |
 | **Google Sign In** | Connexion OAuth | Google ID, e-mail, nom |
 | **Sentry** ([confidentialité](https://sentry.io/privacy/)) | Rapports d'erreurs, suivi des plantages | Journaux d'erreurs anonymes, traces d'appels, informations appareil/système |
-| **PostHog** ([confidentialité](https://posthog.com/privacy)) | Analyses produit (désinscription possible) | Événements d'utilisation anonymes (aucune PII), hébergés sur des serveurs UE |
+| **PostHog** ([confidentialité](https://posthog.com/privacy)) | Analyses produit (désinscription possible) | Événements d'utilisation (aucune PII) ; les mesures d'amélioration de l'application ne sont pas liées à ton compte (section 2.2). Hébergés sur des serveurs UE |
 | **Quran Foundation** ([confidentialité](https://quran.com/privacy)) | Récitations audio (liste des récitateurs et fichiers audio des versets) | Les fichiers audio sont téléchargés directement sur ton appareil depuis les serveurs de Quran Foundation et de quranicaudio.com ; ces serveurs voient ton adresse IP et le fichier demandé. Aucune donnée de compte n'est envoyée ; la liste des récitateurs est obtenue anonymement via notre serveur |
 | **Serveur d'horaires de la Diyanet** (ezanvakti.emushaf.net) | Horaires de prière (méthode de calcul Diyanet) | Numéros du pays, de la ville et du district ; le serveur voit l'adresse IP. Aucune coordonnée ni donnée de compte n'est envoyée |
 | **Aladhan** (api.aladhan.com) | Horaires de prière lorsque les données de la Diyanet ne sont pas disponibles et pour les autres méthodes de calcul ; fuseau horaire de la ville dans les pays qui en comptent plusieurs | Coordonnées de la ville (celles de l'appareil, arrondies à environ 1 km, si la localisation automatique est activée), méthode de calcul, date ; le serveur voit l'adresse IP. Aucune donnée de compte n'est envoyée |
+| **Esri** ([confidentialité](https://www.esri.com/en-us/privacy/overview)) | Vue satellite de l'écran Qibla (tuiles de carte) | Les numéros des tuiles de carte autour de ta position ; le serveur voit ton adresse IP. Aucune information de compte n'est envoyée, et aucune requête n'a lieu tant que tu n'ouvres pas la vue satellite |
 | **Cloudflare Turnstile** ([confidentialité](https://www.cloudflare.com/turnstile-privacy-policy/)) | Vérification anti-robots lors des contributions sur manevihalka.app | Adresse IP, informations sur le navigateur (User-Agent, empreinte TLS), nom du site ; uniquement au moment d'une contribution sur le site |
 
 ---
@@ -251,10 +301,20 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   définitivement par une tâche automatique hebdomadaire. Si tu quittes la tâche
   ou le cercle, les gestes que tu as envoyés et reçus sont supprimés
   immédiatement
+- **Compteurs des tâches « Tout le monde lit » :** tes jours cochés suivent la
+  même règle que les déclarations de pratique commune (180 jours). Le total du
+  cercle est un nombre unique qui n'est lié à personne ; il est conservé tant
+  que la tâche existe et supprimé avec elle. Ton propre total dans la tâche est
+  supprimé quand tu quittes la tâche ou le cercle
 - **Objectifs de mémorisation personnels :** supprimés immédiatement si tu
   quittes la tâche ou le cercle, et quand l'administrateur retire l'objectif
 - **Appareils connectés :** lorsque vous vous déconnectez d'un appareil ou le retirez dans Mes appareils, son enregistrement et son jeton de notification sont supprimés immédiatement. Les enregistrements des appareils dont la session est terminée et qui n'ont pas été vus depuis 30 jours, ou qui n'ont pas été utilisés depuis 180 jours, sont supprimés par une tâche automatique hebdomadaire
 - **Compte actif :** les données sont conservées tant que votre compte est actif
+- **Enregistrements vocaux de mémorisation :** tu choisis combien de temps ils sont
+  gardés (1 semaine, 1 mois ou jusqu'à ce que tu les supprimes ; par défaut, jusqu'à
+  ce que tu les supprimes). Les enregistrements expirés sont supprimés automatiquement
+  sur ton appareil. Quand tu te déconnectes ou désinstalles l'application, les
+  enregistrements de cet appareil sont aussi supprimés
 - **Suppression du compte :** votre compte est d'abord marqué comme **supprimé de manière réversible (« soft-delete »)**. Vous pouvez **restaurer votre compte dans un délai de 30 jours** en vous reconnectant. Au-delà de 30 jours, une tâche cron automatisée (pg_cron) **supprime définitivement** toutes vos données personnelles. Si vous souhaitez une suppression définitive immédiate, contactez-nous par e-mail. Seuls les enregistrements comptables ou liés aux abonnements devant être conservés en vertu de la loi peuvent être conservés (sous forme anonymisée)
 - **Cercles ponctuels terminés :** lorsqu'un cercle ponctuel se termine, un résumé (nombre de participants, travail accompli) est archivé ; les détails individuels des tâches sont effacés
 - **Cercles inactifs :** les cercles sans activité prolongée sont automatiquement gelés puis archivés (le contenu est conservé, la distribution active des tâches s'arrête)
@@ -275,6 +335,19 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   des tâches qu'il a lues est supprimé définitivement selon la règle des comptes
   invités inutilisés ci-dessus. S'il ne reste dans un cercle que des invités, ils
   en sont retirés eux aussi
+- **Blocages :** lorsque tu retires un blocage, l'enregistrement est supprimé
+  immédiatement. Il est aussi supprimé lorsque ton compte ou celui de la personne
+  bloquée est supprimé
+- **Trace d'exclusion :** si un administrateur ou un modérateur te retire d'un cercle ou
+  d'un cercle ponctuel, nous enregistrons de quel cercle, quand et par qui, afin que tu
+  ne puisses pas rejoindre à nouveau le même cercle. La trace est conservée jusqu'à ce
+  que l'administrateur la lève, que le cercle soit supprimé ou que ton compte soit
+  supprimé. Aucune trace n'est conservée lorsque tu pars de toi-même
+- **Compteurs contre les abus :** pour éviter la répétition excessive de signalements,
+  de partages et d'actions similaires, nous comptons combien de fois ils sont effectués.
+  Ces compteurs sont conservés 7 jours au maximum. Pour les personnes qui participent
+  sur le web sans compte, les nombres quotidiens de dhikr et de pages sont conservés
+  avec l'identité d'invité 3 jours au maximum
 - **Journaux de notifications :** supprimés automatiquement après 30 jours
 - **Journaux d'audit :** conservés pendant 12 mois pour des raisons de sécurité et de conformité
 
@@ -282,7 +355,8 @@ Nous utilisons les services tiers suivants pour fournir notre service :
   appartient au cercle dans lequel il a été créé. Lorsque ce cercle est supprimé
   après sa clôture (24 heures après sa date de fin), l'enregistrement d'invité, la
   portion prise et le nombre contribué sont supprimés définitivement avec lui. Les
-  compteurs anti-abus sont supprimés au bout d'une heure.
+  compteurs anti-abus dérivés de l'adresse IP sont supprimés au bout d'une heure,
+  les compteurs quotidiens de dhikr et de pages au bout de 3 jours au maximum.
   Comme la page « Lecture commune » ne se termine jamais, une règle distincte
   s'y applique : si vous ne contribuez pas pendant **90 jours**, votre
   enregistrement d'invité, la portion prise et votre contribution au dhikr sont
@@ -321,6 +395,9 @@ Classification d'âge sur l'App Store : **4+**
 - L'accès à la base de données est protégé par des politiques Row-Level Security (RLS)
 - Les mots de passe sont hachés avec bcrypt (standard Supabase Auth)
 - Les jetons d'authentification ont une durée de vie courte et sont stockés dans des zones sécurisées de l'appareil (iOS Keychain / Android Keystore)
+- Sur Android, ta session de connexion et les fichiers de livres de ta Bibliothèque
+  sont exclus de la sauvegarde de l'appareil (Google) ; sur un téléphone restauré
+  depuis une sauvegarde, tu dois te reconnecter
 - L'accès aux serveurs est restreint par 2FA + liste d'IP autorisées (compte développeur)
 
 Aucun système n'est sûr à 100 %. Bien que nous ne puissions pas garantir une sécurité absolue, nous informerons les utilisateurs concernés et les autorités dans un délai de 72 heures après la découverte d'une violation de données.

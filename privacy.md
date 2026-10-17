@@ -8,7 +8,7 @@ lang: tr
 # Gizlilik Politikası
 
 **Yürürlük tarihi:** 3 Mayıs 2026<br>
-**Son güncelleme:** 5 Ekim 2026
+**Son güncelleme:** 17 Ekim 2026
 
 Manevi Halka ("Uygulama", "biz", "bize") gizliliğine önem verir. Bu politika,
 Uygulamayı kullanırken hangi bilgileri topladığımızı, nasıl kullandığımızı ve
@@ -63,6 +63,12 @@ haklarınızın neler olduğunu açıklar.
   kayıtlar yalnız şikayetin incelenmesi ve kötüye kullanımın önlenmesi amacıyla
   kullanılır, üçüncü kişilerle paylaşılmaz ve inceleme tamamlandıktan sonra
   makul bir süre içinde silinir veya anonimleştirilir
+- **Engellediğin kişiler:** Şikâyet ekranında bir kişiyi engellediğinde kimi
+  engellediğin ve ne zaman engellediğin sunucularımızda saklanır. Engellenen kişiye
+  haber verilmez ve bu kaydı yalnız sen görürsün. Engellediğin kişinin motivasyon ve
+  jest bildirimleri sana ulaşmaz, yazdığı serbest metinler (örneğin özel dua metni)
+  sana gösterilmez; halkanın ortak işleyişi ve duyurular sürer. Engeli Profil →
+  Hesap & Güvenlik → Engellediğin kişiler'den kaldırabilirsin
 
 - **Ortak amel görev beyanları:** Bir halkanın ortak ameline (namaz takibi,
   ezber/müracaa, dua) **kendi isteğinle** katılırsan, işaretlediğin gün ve birim
@@ -96,6 +102,16 @@ haklarınızın neler olduğunu açıklar.
   ve alıcı görür. Alıcıya **push bildirimi gönderilmez**; uygulama içindeki
   bildirim listesinde, günde en fazla bir kayıt olarak, gönderenin adıyla
   görünür
+- **"Herkes okusun" görevlerinde ortak sayaç:** Yönetici bir sureyi "herkes
+  okusun" görevi olarak açtığında (örneğin "41 Yâsîn" ya da "Her cuma Kehf"),
+  okuduğunu işaretlediğin gün ve o gün kaç kez okuduğun sunucularımızda
+  saklanır; ayrıca halkanın toplam okuma sayısı ve bu görevdeki kendi toplam
+  sayın tutulur. Bu görevlerde **kimin okuduğunu yönetici dahil hiç kimse
+  göremez**: halka yalnız toplam sayıyı görür, kendi sayını yalnız sen görürsün.
+  Halkada senin dışında en az üç üye varsa o günün okuma sayısı ve okuyan kişi
+  sayısı da (isim olmadan) gösterilir; daha küçük halkada bu sayılar gizlenir.
+  Görevden ya da halkadan ayrıldığında kendi kayıtların silinir; halkanın toplam
+  sayısı kimseye bağlı olmadığı için değişmez
 - **Ezber görevlerinde kişiye özel hedef:** Halka yöneticisi, bir ezber görevine
   katılmış kişiye kendine özel ezber hedefi verebilir (örneğin bir sure). Bunun
   için hedef, kimin verdiği ve ne zaman verildiği sunucularımızda saklanır;
@@ -104,6 +120,13 @@ haklarınızın neler olduğunu açıklar.
   Yönetici, o kişinin çalıştığı hedefler için (özel hedef ya da görevin hedefi)
   Cetele ilerlemesinden yalnız kaba durumu görür (başlamadı, çalışıyor,
   ezberledi); takılınan yerler, tekrar takvimi ve bölüm ayrıntıları kişide kalır
+- **Ezber ses kayıtları:** Ezber Çetelesi'nde istersen ezberlediğin yeri okurken
+  kendini kaydedip dinleyebilirsin. Kayıtlar **yalnızca cihazında** tutulur;
+  sunucularımıza gönderilmez ve kimseyle paylaşılmaz. Mikrofon izni yalnızca ilk
+  kaydı başlattığında istenir. Dinlerken "takıldım" diye işaretlediğin ayetler, Cetele
+  ilerlemenin bir parçası olarak (takıldığın yerler) kaydedilir; sesin kendisi bu
+  kayda girmez. Cihazının yedeği (iCloud ya da Google) açıksa kayıtlar o yedeğe dahil
+  olabilir; bu, cihazının kendi ayarıdır
 - **Uygulaması olmayan misafir üyeler:** Halka yöneticisi, uygulamayı kullanmayan
   bir yakınını halkaya misafir üye olarak ekleyebilir. Bunun için yalnızca
   yöneticinin girdiği ad saklanır (soyadı gerekmez); misafirin telefon numarası,
@@ -146,6 +169,18 @@ haklarınızın neler olduğunu açıklar.
   konum hizmetine sorar. Bu sunucular IP adresinizi görür; hesap bilgisi gönderilmez.
 - **Abonelik bilgisi:** Premium aboneliğiniz varsa süre, plan tipi, mağaza (App Store /
   Play Store), abonelik durumu
+- **Uygulamayı iyileştirme ölçümleri:** Yeni kullananların uygulamada nereye ulaştığını
+  anlamak için, analitik açıksa, hesabına **bağlanmayan** birkaç olay gönderilir:
+  tanıtımda seçtiğin ilgi alanları (yalnız kategori adı, örneğin "Kur'an" ya da "Namaz"),
+  bir özelliğin bu cihazda ilk kez açıldığı (örneğin Kur'an okuyucu ya da zikirmatik; her
+  özellik için bir kez), halka kurma ve davet adımları (davetin kime gönderildiği değil,
+  yalnız paylaşım ekranının nasıl kapandığı), adını soran pencerede devam edilip
+  edilmediği (yazdığın ad değil), davet koduyla katılma ekranının sonucu ve
+  isteğe bağlı tek soruluk ankete verdiğin cevap. Bu olaylar bu kuruluma özel rastgele
+  bir numarayla gönderilir; hesap kimliğin, e-postan, konumun ve bildirim tokenin
+  eklenmez, konum çıkarımı kapalıdır. **İbadetinin içeriği** (hangi sure, dua ya da zikir)
+  ve **miktarı** (sayfa, sayı) gönderilmez; namaz işaretlemeleri hiç gönderilmez.
+  Analitiği kapattığında bu olaylar da durur ve rastgele numara cihazından silinir.
 
 ### 2.3. Toplamadığımız bilgiler
 
@@ -224,6 +259,11 @@ saklama kuralına tabidir.
 - Hata ve performans sorunlarını teşhis etmek (anonim teknik veri)
 - Yasal yükümlülükleri yerine getirmek
 - Kullanıcı deneyimini iyileştirmek (toplu/anonim analiz)
+- **Uygunsuz metin denetimi:** Başkalarının görebileceği metinler (halka adı, duyuru,
+  özel dua metni, zikir listesi adı, misafir adı, profil adı) kaydedilirken uygunsuz
+  kelimeler için otomatik olarak bir kelime listesiyle denetlenir. Uygunsuz bulunan
+  metin kaydedilmez. Bu denetim için metin ayrıca saklanmaz ve hiçbir üçüncü tarafa
+  gönderilmez
 
 **Pazarlama için kullanmıyoruz.** Verilerinizi reklam ağlarına satmıyoruz.
 
@@ -244,10 +284,11 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 | **Apple Sign In** | OAuth giriş | Apple ID, e-posta, ad |
 | **Google Sign In** | OAuth giriş | Google ID, e-posta, ad |
 | **Sentry** ([gizlilik](https://sentry.io/privacy/)) | Hata raporlama, crash takibi | Anonim hata kayıtları, stack trace, cihaz/OS bilgisi |
-| **PostHog** ([gizlilik](https://posthog.com/privacy)) | Ürün analitiği (opt-out var) | Anonim kullanım olayları (PII yok), EU sunucularda barındırılır |
+| **PostHog** ([gizlilik](https://posthog.com/privacy)) | Ürün analitiği (opt-out var) | Kullanım olayları (PII yok); uygulamayı iyileştirme ölçümleri hesaba bağlanmaz (bölüm 2.2). EU sunucularda barındırılır |
 | **Quran Foundation** ([gizlilik](https://quran.com/privacy)) | Sesli tilavet (kârî listesi ve ayet ses dosyaları) | Ses dosyaları Quran Foundation ve quranicaudio.com sunucularından doğrudan cihazına iner; bu sunucular IP adresini ve istenen dosyayı görür. Hesap bilgisi gönderilmez; kârî listesi sunucumuz üzerinden kimliksiz alınır |
 | **Diyanet vakit sunucusu** (ezanvakti.emushaf.net) | Namaz vakitleri (Diyanet hesaplama yöntemi) | Ülke, şehir ve ilçe numarası; sunucu IP adresini görür. Konum koordinatı ve hesap bilgisi gönderilmez |
 | **Aladhan** (api.aladhan.com) | Diyanet verisi alınamadığında ve başka hesaplama yöntemlerinde namaz vakitleri; birden çok saat dilimi olan ülkelerde şehrin saat dilimi | Şehrin koordinatı (otomatik konum açıksa cihazın konumu, yaklaşık 1 km'ye yuvarlanmış), hesaplama yöntemi, tarih; sunucu IP adresini görür. Hesap bilgisi gönderilmez |
+| **Esri** ([gizlilik](https://www.esri.com/en-us/privacy/overview)) | Kıble ekranındaki uydu görünümü (harita karoları) | Bulunduğun yerin çevresine ait harita karolarının numaraları; sunucu IP adresini görür. Hesap bilgisi gönderilmez, uydu görünümünü açmadıkça istek gitmez |
 | **Cloudflare Turnstile** ([gizlilik](https://www.cloudflare.com/turnstile-privacy-policy/)) | manevihalka.app üzerinde katkı verirken bot doğrulaması | IP adresi, tarayıcı bilgisi (User-Agent, TLS parmak izi), sitenin adı; yalnız web sayfasından katkı verildiği anda |
 
 ---
@@ -260,6 +301,10 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
 - **Kardeşler arası jestler:** 30 günden eski jestler haftalık otomatik bir
   görevle kalıcı olarak silinir. Görevden ya da halkadan ayrıldığında
   gönderdiğin ve aldığın jestler anında silinir
+- **"Herkes okusun" sayaçları:** Gün işaretlerin ortak amel beyanlarıyla aynı
+  kurala tabidir (180 gün). Halkanın toplam okuma sayısı kimseye bağlı olmayan
+  tek bir sayıdır; görev durdukça saklanır ve görevle birlikte silinir. Bu
+  görevdeki kendi toplam sayın, görevden ya da halkadan ayrıldığında silinir
 - **Kişiye özel ezber hedefleri:** Görevden ya da halkadan ayrıldığında anında
   silinir; yönetici hedefi kaldırdığında da silinir
 - **Oturum açık cihazlar:** Bir cihazdan çıkış yaptığınızda ya da cihazı Cihazlarım
@@ -267,6 +312,10 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
   kapanmış ve 30 gündür görülmeyen ya da 180 gündür hiç kullanılmayan cihazların kaydı
   haftalık otomatik bir görevle silinir
 - **Aktif hesap:** Hesabınız aktif olduğu sürece verileriniz saklanır
+- **Ezber ses kayıtları:** Ne kadar saklanacağını sen seçersin (1 hafta, 1 ay ya da
+  sen silene kadar; varsayılan sen silene kadar). Süresi dolan kayıtlar cihazında
+  kendiliğinden silinir. Hesabından çıktığında ya da uygulamayı kaldırdığında o
+  cihazdaki kayıtların da silinir
 - **Hesap silindiğinde:** Hesabınız önce **soft-delete** olarak işaretlenir. **30 gün** içinde uygulamaya tekrar giriş yaparak hesabınızı geri yükleyebilirsiniz. 30 gün sonra otomatik bir cron görevi (pg_cron) tüm kişisel verilerinizi **kalıcı olarak siler**. Anında kalıcı silme isterseniz e-posta ile başvurabilirsiniz. Yalnızca yasal yükümlülük gereği saklanması gereken muhasebe/abonelik kayıtları (anonim hale getirilmiş) tutulabilir
 - **Tamamlanan tek seferlik halkalar:** Halka bittiğinde özeti (katılımcı sayısı,
   tamamlanan iş) arşivlenir; bireysel görev detayları temizlenir
@@ -286,13 +335,25 @@ Hizmetimizi sağlamak için aşağıdaki üçüncü taraf hizmetleri kullanırı
   özetleri hemen silinir. Okuduğu görevlerin isimsiz kaydı, yukarıdaki
   "kullanılmayan misafir hesaplar" kuralıyla kalıcı olarak silinir. Halkada
   misafirlerden başka üye kalmazsa misafirler de halkadan çıkarılır
+- **Engeller:** Engeli kaldırdığında kayıt hemen silinir. Sen ya da engellediğin kişi
+  hesabını sildiğinde kayıt da silinir
+- **Halkadan çıkarılma kaydı:** Bir halka yöneticisi ya da moderatörü seni bir halkadan
+  veya tek seferlik halkadan çıkarırsa, aynı halkaya yeniden katılmaman için hangi
+  halkadan, ne zaman ve kimin çıkardığı kaydedilir. Kayıt, yönetici kaldırana, halka
+  silinene ya da hesabın silinene kadar tutulur. Kendi isteğinle ayrıldığında böyle bir
+  kayıt tutulmaz
+- **Kötüye kullanımı sınırlama sayaçları:** Şikâyet, paylaşım ve benzeri işlemlerin aşırı
+  tekrarını önlemek için kaç kez yapıldığı sayılır. Bu sayaçlar en fazla 7 gün tutulur.
+  Web üzerinden hesapsız katılanların günlük zikir ve sayfa sayıları misafir kimliğine
+  bağlı olarak en fazla 3 gün tutulur
 - **Bildirim logları:** 30 gün sonra otomatik silinir
 - **Audit logları:** Güvenlik ve uyumluluk için 12 ay saklanır
 
 - **Hesapsız web katılımı:** Misafir kaydı, bağlı olduğu halkaya aittir. Halka
   bittikten sonra silindiğinde (bitiş tarihinden 24 saat sonra) misafir kaydı,
   üstlenilen bölüm bilgisi ve katkı sayısı da birlikte kalıcı olarak silinir.
-  Kötüye kullanım sayaçları 1 saat sonra silinir.
+  IP adresinden türetilen kötüye kullanım sayaçları 1 saat sonra, günlük zikir ve
+  sayfa sayaçları en fazla 3 gün sonra silinir.
   Ortak Okuma sayfası bitmediği için oradaki kayıtlar ayrı bir kurala tabidir:
   **90 gün** boyunca hiç katkı vermediyseniz misafir kaydınız, üstlendiğiniz
   bölüm bilgisi ve zikir katkınız otomatik olarak silinir. O sırada üzerinizde
@@ -334,6 +395,8 @@ App Store yaş derecelendirmesi: **4+**
 - Şifreler bcrypt ile hashleniyor (Supabase Auth standart)
 - Kimlik doğrulama tokenleri kısa ömürlü ve cihazda güvenli bölgelerde saklanır
   (iOS Keychain / Android Keystore)
+- Android'de cihaz yedeğine (Google) oturum bilgin ve Kitaplık'taki kitap dosyaları
+  dahil edilmez; yedekten geri yüklenen bir telefonda yeniden giriş yapman gerekir
 - Sunucu erişimi 2FA + IP allow-list ile sınırlı (geliştirici hesabı)
 
 Hiçbir sistem %100 güvenli olmadığı gibi, mutlak güvenlik garantisi

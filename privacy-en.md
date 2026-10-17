@@ -8,7 +8,7 @@ lang: en
 # Privacy Policy
 
 **Effective date:** May 3, 2026<br>
-**Last updated:** October 5, 2026
+**Last updated:** October 17, 2026
 
 Manevi Halka ("the App", "we", "us") values your privacy. This policy explains
 what information we collect when you use the App, how we use it, and what
@@ -64,6 +64,12 @@ rights you have.
   used solely to review the report and prevent abuse, are never shared with
   third parties, and are deleted or anonymized within a reasonable period
   after the review is completed
+- **People you block:** When you block someone from the report screen, who you
+  blocked and when are stored on our servers. The person is not notified, and only
+  you can see this record. Their encouragement and gesture notifications no longer
+  reach you, and free texts they write (for example a custom prayer text) are hidden
+  from you; the circle's shared activity and announcements continue. You can remove
+  a block under Profile → Account & Security → People you’ve blocked
 
 - **Shared practice check-ins:** If you join a circle's shared practice (prayer
   tracking, memorisation/review, supplication) **of your own accord**, the day
@@ -98,6 +104,17 @@ rights you have.
   written. Only the sender and the recipient see a gesture. **No push
   notification is sent** to the recipient; it appears in the in-app notification
   list, at most once a day, with the sender's name
+- **Shared counter in "Everyone reads" tasks:** When an admin opens a surah as
+  an "everyone reads" task (for example "41 × Yā-Sīn" or "Al-Kahf every
+  Friday"), the day you mark as read and how many times you read it that day are
+  stored on our servers; the circle's total number of readings and your own
+  total in that task are kept as well. In these tasks **nobody, the admin
+  included, can see who read**: the circle sees only the total, and only you see
+  your own count. If the circle has at least three members besides you, that
+  day's number of readings and number of readers are also shown (without names);
+  in a smaller circle these numbers are hidden. When you leave the task or the
+  circle your own records are deleted; the circle's total is not tied to anyone
+  and does not change
 - **Personal targets in memorization tasks:** A circle's admin can give someone
   who has joined a memorization task a personal memorization target (a surah,
   for example). For this, the target, who set it and when are stored on our
@@ -108,6 +125,14 @@ rights you have.
   state of their Cetele progress (not started, learning, memorized); the places
   they struggle with, the review schedule and section details stay with the
   person
+- **Memorization voice recordings:** In the Hifz Chart you can, if you wish,
+  record yourself reciting what you are memorizing and listen back. Recordings are
+  kept **only on your device**; they are not sent to our servers and are not shared
+  with anyone. Microphone permission is requested only when you start your first
+  recording. Verses you mark as "got stuck" while listening are saved as part of your
+  Hifz Chart progress (the places you struggle with); the audio itself is not part of
+  that record. If your device's backup (iCloud or Google) is on, recordings may be
+  included in it; this is your device's own setting
 - **Guest members without the app:** A circle's admin can add someone close to
   them who does not use the app to the circle as a guest member. For this, only
   the name the admin enters is stored (no surname needed); the guest's phone
@@ -154,6 +179,19 @@ rights you have.
   service. These servers see your IP address; no account information is sent.
 - **Subscription info:** If you have a Premium subscription: term, plan
   type, store (App Store / Play Store), subscription status
+- **App improvement measurements:** To understand where new users get to in the app, a few
+  events that are **not linked to your account** are sent if analytics is on: the interests
+  you chose in the introduction (category name only, e.g. "Quran" or "Prayer"), that a feature
+  was opened for the first time on this device (e.g. the Quran reader or the dhikr counter;
+  once per feature), the steps of creating a circle and inviting (not whom the invitation went
+  to, only how the share screen was closed), whether you continued at the screen asking for
+  your name (not the name you typed), the outcome of the join-with-code screen, and your
+  answer to the optional one-question survey. These events are sent with a random number unique
+  to this installation; your account ID, email, location and notification token are not
+  included, and location lookup is turned off. **The content of your worship** (which surah,
+  dua or dhikr) and **its amount** (pages, counts) are not sent; prayer check-offs are never
+  sent. When you turn analytics off, these events stop too and the random number is deleted
+  from your device.
 
 ### 2.3. Information we do NOT collect
 
@@ -231,6 +269,11 @@ because the page never ends, your record follows a 90-day retention rule.
 - To diagnose errors and performance issues (anonymous technical data)
 - To meet legal obligations
 - To improve user experience (aggregated/anonymous analytics)
+- **Inappropriate text check:** Texts other people can see (circle name, announcement,
+  custom prayer text, dhikr list name, guest name, profile name) are checked
+  automatically against a word list when they are saved. Text found inappropriate is
+  not saved. The text is not stored separately for this check and is not sent to any
+  third party
 
 **We do not use your data for advertising.** We do not sell your data to
 ad networks.
@@ -252,10 +295,11 @@ We use the following third-party services to provide our service:
 | **Apple Sign In** | OAuth login | Apple ID, email, name |
 | **Google Sign In** | OAuth login | Google ID, email, name |
 | **Sentry** ([privacy](https://sentry.io/privacy/)) | Error reporting, crash tracking | Anonymous error logs, stack traces, device/OS info |
-| **PostHog** ([privacy](https://posthog.com/privacy)) | Product analytics (opt-out available) | Anonymous usage events (no PII), hosted on EU servers |
+| **PostHog** ([privacy](https://posthog.com/privacy)) | Product analytics (opt-out available) | Usage events (no PII); app improvement measurements are not linked to your account (section 2.2). Hosted on EU servers |
 | **Quran Foundation** ([privacy](https://quran.com/privacy)) | Recitation audio (reciter list and verse audio files) | Audio files download directly to your device from Quran Foundation and quranicaudio.com servers; these servers see your IP address and the requested file. No account information is sent; the reciter list is fetched anonymously through our server |
 | **Diyanet prayer time server** (ezanvakti.emushaf.net) | Prayer times (Diyanet calculation method) | ID numbers of the country, city and district; the server sees the IP address. No coordinates or account information are sent |
 | **Aladhan** (api.aladhan.com) | Prayer times when Diyanet data cannot be retrieved and for other calculation methods; the city's time zone in countries with several time zones | The city's coordinates (the device's location rounded to about 1 km if automatic location is on), calculation method, date; the server sees the IP address. No account information is sent |
+| **Esri** ([privacy](https://www.esri.com/en-us/privacy/overview)) | Satellite view on the Qibla screen (map tiles) | The numbers of the map tiles around your location; the server sees your IP address. No account information is sent, and no request is made unless you open the satellite view |
 | **Cloudflare Turnstile** ([privacy](https://www.cloudflare.com/turnstile-privacy-policy/)) | Bot check when contributing on manevihalka.app | IP address, browser information (User-Agent, TLS fingerprint), site name; only at the moment you contribute on the website |
 
 ---
@@ -268,6 +312,10 @@ We use the following third-party services to provide our service:
 - **Gestures between participants:** Gestures older than 30 days are permanently
   deleted by a weekly automated job. If you leave the task or the circle, the
   gestures you sent and received are deleted immediately
+- **"Everyone reads" counters:** Your day marks follow the same rule as shared
+  practice declarations (180 days). The circle's total is a single number not
+  tied to anyone; it is kept as long as the task exists and is deleted with it.
+  Your own total in the task is deleted when you leave the task or the circle
 - **Personal memorization targets:** Deleted immediately when you leave the task
   or the circle, and when the admin removes the target
 - **Signed-in devices:** When you sign out of a device or remove it under My devices,
@@ -275,6 +323,10 @@ We use the following third-party services to provide our service:
   session has ended and that have not been seen for 30 days, or that have not been used
   for 180 days, are deleted by a weekly automated job
 - **Active account:** Data is retained as long as your account is active
+- **Memorization voice recordings:** You choose how long they are kept (1 week,
+  1 month or until you delete them; the default is until you delete them). Expired
+  recordings are deleted automatically on your device. When you sign out or uninstall
+  the app, the recordings on that device are deleted too
 - **Account deletion:** Your account is first marked as **soft-deleted**. You can **restore your account within 30 days** by signing in again. After 30 days, an automated cron job (pg_cron) **permanently deletes** all your personal data. If you want immediate permanent deletion, contact us by email. Only accounting/subscription records that must legally be retained may be kept (anonymized)
 - **Completed one-time circles:** When a one-time circle ends, a summary
   (participant count, work completed) is archived; individual task details are cleared
@@ -294,13 +346,24 @@ We use the following third-party services to provide our service:
   shared plan summaries are deleted immediately. The anonymous record of the tasks
   they read is permanently deleted under the "Unused guest accounts" rule above.
   If no members other than guests remain in a circle, the guests are removed too
+- **Blocks:** When you remove a block, the record is deleted immediately. It is also
+  deleted when you or the person you blocked delete the account
+- **Removal record:** If a circle admin or moderator removes you from a circle or a
+  one-time circle, we record which circle, when and by whom, so that you cannot rejoin
+  the same circle. The record is kept until the admin lifts it, the circle is deleted or
+  your account is deleted. No such record is kept when you leave on your own
+- **Abuse-limiting counters:** To prevent excessive repetition of reports, shares and
+  similar actions, we count how many times they are done. These counters are kept for
+  at most 7 days. For people who join on the web without an account, daily dhikr and
+  page counts are kept with the guest identity for at most 3 days
 - **Notification logs:** Auto-deleted after 30 days
 - **Audit logs:** Retained for 12 months for security and compliance
 
 - **Web participation without an account:** A guest record belongs to the circle
   it was created in. When that circle is deleted after it ends (24 hours after its
   end date), the guest record, the portion taken and the contributed count are
-  permanently deleted with it. Abuse counters are deleted after 1 hour.
+  permanently deleted with it. Abuse counters derived from the IP address are deleted after
+  1 hour, daily dhikr and page counters after at most 3 days.
   Because the Shared Reading page never ends, records there follow a separate
   rule: if you make no contribution for **90 days**, your guest record, the
   portion you took and your dhikr contribution are deleted automatically. If a
@@ -343,6 +406,9 @@ App Store age rating: **4+**
 - Passwords are hashed with bcrypt (Supabase Auth standard)
 - Auth tokens are short-lived and stored in secure device areas
   (iOS Keychain / Android Keystore)
+- On Android, your sign-in session and the book files in your Library are excluded
+  from the device backup (Google); on a phone restored from backup you need to sign
+  in again
 - Server access is restricted by 2FA + IP allow-list (developer account)
 
 No system is 100% secure. While we cannot guarantee absolute security,

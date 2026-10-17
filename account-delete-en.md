@@ -61,6 +61,11 @@ After the 30-day period (or upon immediate deletion request), the following is p
 - Quran verse notes, book reading notes
 - Push notification tokens
 - Subscription status
+- Your personal records on this device: your prayer trusts (people you pray for),
+  intention dhikrs and dedication records, favorite prayers, tasbihat progress,
+  and the books, notes and highlights in your Library (these are removed from the
+  device you delete the account on right away; on your other devices they stay on
+  that device)
 
 ## Data That May Be Retained
 
@@ -71,4 +76,4 @@ For legal obligations and fraud prevention, limited data may be retained in an a
 
 ---
 
-**Last updated:** September 6, 2026
+**Last updated:** October 17, 2026

@@ -61,6 +61,11 @@ Votre demande sera traitée **dans un délai de 30 jours** et nous vous informer
 - Notes sur les versets du Coran, notes de lecture de livres
 - Jetons de notification push
 - Statut d'abonnement
+- Vos enregistrements personnels sur cet appareil : vos invocations confiées
+  (personnes pour qui vous priez), dhikrs d'intention et dédicaces, invocations
+  favorites, progression du tesbihat, ainsi que les livres, notes et surlignages de
+  votre Bibliothèque (ils sont supprimés aussitôt de l'appareil sur lequel vous
+  supprimez le compte ; sur vos autres appareils, ils restent sur l'appareil concerné)
 
 ## Données pouvant être conservées
 
@@ -71,4 +76,4 @@ Pour les obligations légales et la prévention de la fraude, certaines données
 
 ---
 
-**Dernière mise à jour :** 6 septembre 2026
+**Dernière mise à jour :** 17 octobre 2026

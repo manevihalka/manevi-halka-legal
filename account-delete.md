@@ -61,6 +61,10 @@ Talebiniz **30 gün içinde** işleme alınır ve sonuç size e-posta ile bildir
 - Kuran ayet notlarınız, kitap okuma notlarınız
 - Push bildirim tokenları
 - Abonelik durumu
+- Bu cihazdaki kişisel kayıtlarınız: dua emanetleriniz, niyet zikirleriniz ve ithaf
+  kayıtlarınız, favori dualarınız, tesbihat ilerlemeniz, Kitaplık'taki kitaplarınız,
+  notlarınız ve vurgularınız (bunlar hesabınızı sildiğiniz cihazdan hemen silinir;
+  başka cihazlarınız varsa oradaki kayıtlar o cihazda kalır)
 
 ## Saklanan Veriler
 
@@ -71,4 +75,4 @@ Yasal yükümlülükler ve dolandırıcılık önleme amacıyla bazı sınırlı
 
 ---
 
-**Son güncelleme:** 6 Eylül 2026
+**Son güncelleme:** 17 Ekim 2026

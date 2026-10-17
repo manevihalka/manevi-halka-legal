@@ -61,6 +61,11 @@ Nach Ablauf der 30-tägigen Frist (oder bei sofortiger Löschungsanfrage) werden
 - Notizen zu Koranversen, Notizen zu Buchlektüren
 - Push-Benachrichtigungs-Token
 - Abonnementstatus
+- Ihre persönlichen Einträge auf diesem Gerät: Ihre anvertrauten Bittgebete
+  (Personen, für die Sie beten), Absichts-Dhikr und Widmungen, Lieblingsbittgebete,
+  Ihr Tesbihat-Fortschritt sowie Bücher, Notizen und Markierungen in Ihrer
+  Bibliothek (sie werden auf dem Gerät, auf dem Sie das Konto löschen, sofort
+  entfernt; auf Ihren anderen Geräten bleiben sie dort)
 
 ## Daten, die aufbewahrt werden können
 
@@ -71,4 +76,4 @@ Aufgrund gesetzlicher Pflichten und zur Betrugsprävention können eingeschränk
 
 ---
 
-**Zuletzt aktualisiert:** 6. September 2026
+**Zuletzt aktualisiert:** 17. Oktober 2026
