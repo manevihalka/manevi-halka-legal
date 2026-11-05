@@ -733,23 +733,23 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   var RD = {
     tr: { read:'Sayfaları oku', readNow:'Şimdi oku', page:'Sayfa {p}', meal:'Meal', mealOff:'Kapalı', mealTr:'Türkçe', mealEn:'İngilizce',
           close:'Kapat', smaller:'Yazıyı küçült', larger:'Yazıyı büyüt', finishQ:'Okumayı bitirdin mi?', loadErr:'Metin yüklenemedi. Bağlantını kontrol edip tekrar dene.', retry:'Tekrar dene',
-          srcMushaf:'Mushaf metni: Diyanet İşleri Başkanlığı (kuran.diyanet.gov.tr)', srcTr:'Meal: Elmalılı Hamdi Yazır', srcEn:'Meal: Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
+          srcTr:'Meal: Elmalılı Hamdi Yazır', srcEn:'Meal: Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
           appHint:'Sesli dinlemek ve kaldığın yerden devam etmek için', appLink:'uygulamada aç', surah:'{n} Suresi' },
     en: { read:'Read your pages', readNow:'Read now', page:'Page {p}', meal:'Translation', mealOff:'Off', mealTr:'Turkish', mealEn:'English',
           close:'Close', smaller:'Smaller text', larger:'Larger text', finishQ:'Finished reading?', loadErr:'Couldn’t load the text. Check your connection and try again.', retry:'Try again',
-          srcMushaf:'Mushaf text: Diyanet İşleri Başkanlığı, Turkey (kuran.diyanet.gov.tr)', srcTr:'Translation: Elmalılı Hamdi Yazır', srcEn:'Translation by Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
+          srcTr:'Translation: Elmalılı Hamdi Yazır', srcEn:'Translation by Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
           appHint:'To listen to the recitation and pick up where you left off,', appLink:'open the app', surah:'Surah {n}' },
     de: { read:'Deine Seiten lesen', readNow:'Jetzt lesen', page:'Seite {p}', meal:'Übersetzung', mealOff:'Aus', mealTr:'Türkisch', mealEn:'Englisch',
           close:'Schließen', smaller:'Kleinere Schrift', larger:'Größere Schrift', finishQ:'Fertig gelesen?', loadErr:'Der Text konnte nicht geladen werden. Prüfe deine Verbindung und versuche es erneut.', retry:'Erneut versuchen',
-          srcMushaf:'Mushaf-Text: Diyanet İşleri Başkanlığı, Türkei (kuran.diyanet.gov.tr)', srcTr:'Übersetzung: Elmalılı Hamdi Yazır', srcEn:'Übersetzung von Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
+          srcTr:'Übersetzung: Elmalılı Hamdi Yazır', srcEn:'Übersetzung von Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
           appHint:'Um die Rezitation zu hören und dort weiterzumachen, wo du aufgehört hast,', appLink:'öffne die App', surah:'Sure {n}' },
     fr: { read:'Lire tes pages', readNow:'Lire maintenant', page:'Page {p}', meal:'Traduction', mealOff:'Aucune', mealTr:'Turc', mealEn:'Anglais',
           close:'Fermer', smaller:'Texte plus petit', larger:'Texte plus grand', finishQ:'Lecture terminée ?', loadErr:'Le texte n’a pas pu être chargé. Vérifie ta connexion et réessaie.', retry:'Réessayer',
-          srcMushaf:'Texte du mushaf : Diyanet İşleri Başkanlığı, Turquie (kuran.diyanet.gov.tr)', srcTr:'Traduction : Elmalılı Hamdi Yazır', srcEn:'Traduction de Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
+          srcTr:'Traduction : Elmalılı Hamdi Yazır', srcEn:'Traduction de Talal Itani, ClearQuran.com (CC BY-ND 4.0)',
           appHint:'Pour écouter la récitation et reprendre là où tu t’es arrêté,', appLink:'ouvre l’application', surah:'Sourate {n}' },
     ar: { read:'اقرأ صفحاتك', readNow:'اقرأ الآن', page:'الصفحة {p}', meal:'الترجمة', mealOff:'بدون', mealTr:'التركية', mealEn:'الإنجليزية',
           close:'إغلاق', smaller:'تصغير الخط', larger:'تكبير الخط', finishQ:'هل أتممت القراءة؟', loadErr:'تعذّر تحميل النص. تحقّق من اتصالك ثم أعد المحاولة', retry:'إعادة المحاولة',
-          srcMushaf:'نص المصحف: رئاسة الشؤون الدينية التركية (kuran.diyanet.gov.tr)', srcTr:'الترجمة: إلمالِلي حمدي يازِر', srcEn:'ترجمة طلال إيتاني، ClearQuran.com (CC BY-ND 4.0)',
+          srcTr:'الترجمة: إلمالِلي حمدي يازِر', srcEn:'ترجمة طلال إيتاني، ClearQuran.com (CC BY-ND 4.0)',
           appHint:'للاستماع إلى التلاوة ومتابعة القراءة من حيث توقفت', appLink:'افتح التطبيق', surah:'سورة {n}' }
   };
   // Meal varsayılanı: yalnız telifi temiz iki meal (TR Elmalılı, EN Itani).
@@ -2047,7 +2047,6 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     end.appendChild(hint);
 
     var src = el('div', 'rd-src');
-    src.appendChild(el('div', null, RT.srcMushaf));
     if (rdMeal === 'tr') src.appendChild(el('div', null, RT.srcTr));
     if (rdMeal === 'en') src.appendChild(el('div', null, RT.srcEn));
     end.appendChild(src);
