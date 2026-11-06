@@ -258,11 +258,11 @@ function sayfa(dil) {
 // DE/FR meal YOK (telif, izin yok), AR'de meal yok: o dillerde Arapca asli + kunye.
 // ⚠️ Taha 20:14 bilerek YOK: Itani cevirisi "I—I am God" uzun tire tasiyor (ND lisansli, degistirilemez).
 const NAMAZ_AYETLERI = [
-  { k: "4:103", kesit: { ar: ["اِنَّ الصَّلٰوةَ"], tr: ["Çünkü namaz"], en: ["The prayer is obligatory"] } },
+  { k: "4:103", kesit: { ar: ["اِنَّ الصَّلٰوةَ"], tr: ["çünkü namaz"], en: ["The prayer is obligatory"] } },
   { k: "17:78" },
   { k: "2:238" },
-  { k: "11:114", kesit: { ar: ["", "اِنَّ الْحَسَنَاتِ"], tr: ["", "Muhakkak ki, iyilik"], en: ["", "The good deeds"] } },
-  { k: "29:45", kesit: { ar: ["اِنَّ الصَّلٰوةَ", "وَلَذِكْرُ"], tr: ["Muhakkak ki namaz", "Allah'ı anmak"], en: ["The prayer prevents", "And the remembrance"] } },
+  { k: "11:114", kesit: { ar: ["", "اِنَّ الْحَسَنَاتِ"], tr: ["", "çünkü hasenat"], en: ["", "The good deeds"] } },
+  { k: "29:45", kesit: { ar: ["اِنَّ الصَّلٰوةَ", "وَلَذِكْرُ"], tr: ["sahih namaz", "ve her halde"], en: ["The prayer prevents", "And the remembrance"] } },
   { k: "2:45" },
   { k: "2:43" },
 ];
@@ -296,7 +296,7 @@ function kes(metin, isaret, ne) {
   let i = 0, j = metin.length;
   if (bas) { i = metin.indexOf(bas); if (i < 0) hata(`${ne}: baslangic isareti bulunamadi`); }
   if (son) { j = metin.indexOf(son, i); if (j < 0) hata(`${ne}: bitis isareti bulunamadi`); }
-  return metin.slice(i, j).trim();
+  return metin.slice(i, j).trim().replace(/[,;:]$/, "");
 }
 function namazAyetleri(dil) {
   return NAMAZ_AYETLERI.map(({ k, kesit }) => {

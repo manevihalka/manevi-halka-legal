@@ -141,7 +141,7 @@ const T = {
   trust4t: { tr: "5 dilde", en: "In 5 languages", de: "In 5 Sprachen", fr: "En 5 langues", ar: "بخمس لغات" },
 
   // Maide 5:2: ana sayfayla ayni karar (build-home.mjs OZEL.yVerse*)
-  verseMeal: { tr: "İyilik ve takva üzerinde yardımlaşın, günah ve düşmanlık üzerinde yardımlaşmayın.",
+  verseMeal: { tr: "Birr-ü takvâ üzere yardımlaşın, günah-ü taaddi üzere yardımlaşmayın.",
     en: "And cooperate with one another in virtuous conduct and conscience, and do not cooperate with one another in sin and hostility.",
     de: "Der Koran ruft dazu auf, einander in Güte und Gottesfurcht beizustehen und einander nicht in Sünde und Feindschaft zu helfen.",
     fr: "Le Coran appelle à s'entraider dans le bien et la piété, et à ne pas s'entraider dans le péché et l'hostilité.",
