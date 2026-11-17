@@ -1308,7 +1308,9 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         if (it.surah) {
           row.appendChild(el('div', 'zmine', T.zReadHint));
           var r = el('button', 'primary', T.zRead);
-          r.onclick = function () { if (busy) return; zItem = it; zSession = 1; onContribute(); };
+          // Pano yerinde kalır, yalnız düğme bekler (17 Kas 2026, cihaz turu: bot doğrulaması
+          // beklenirken tahta "Wird geladen…" yazısına dönüyor, kalem kayboluyordu).
+          r.onclick = function () { if (busy) return; zItem = it; zSession = 1; onContribute(r); };
           row.appendChild(r);
         } else {
           var b = el('button', 'primary', T.zAdd);
@@ -1642,7 +1644,31 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     st.appendChild(no);
   }
 
-  function onContribute() {
+  // Sure kaleminin "Okudum" düğmesi: istek sürerken bekleme hâli, hata olursa eski hâli ve
+  // satırın altında kısa hata. Sayaç ekranındaki "Ekle" akışı eskisi gibi (o ekran zaten ayrı).
+  function btnWait(btn, on) {
+    if (!btn) return;
+    if (on) {
+      btn.setAttribute('data-label', btn.textContent);
+      btn.textContent = T.wait;
+      btn.disabled = true;
+      btn.setAttribute('aria-busy', 'true');
+    } else {
+      btn.textContent = btn.getAttribute('data-label') || T.zRead;
+      btn.disabled = false;
+      btn.removeAttribute('aria-busy');
+    }
+  }
+  function btnError(btn, text) {
+    if (!btn || !btn.parentNode) return;
+    var prev = btn.parentNode.querySelector('.zerr');
+    if (prev) prev.parentNode.removeChild(prev);
+    var e = el('div', 'msg err zerr', text);
+    e.setAttribute('role', 'alert');
+    btn.parentNode.insertBefore(e, btn.nextSibling);
+  }
+
+  function onContribute(btn) {
     if (zSession <= 0 || busy) { return; }
     // busy: yoklama ve yayın sinyali bu sürede tahtayı YENİDEN ÇİZMESİN. Bot
     // doğrulaması kutucuk isterse istek 2 dakikaya kadar bekliyor; bayrak
@@ -1655,11 +1681,13 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     // giderse sunucu GREATEST uyguladığı için ikinci gidiş hiçbir şey değiştirmez.
     var absolute = (zItem.mine || 0) + zSession;
     var item = zItem.id;
-    stageMessage(T.loading, false);
+    if (btn) btnWait(btn, true);
+    else stageMessage(T.loading, false);
     call('zikir_contribute', { item: item, count: absolute }).then(function (r) {
       busy = false;
       if (r.status !== 200 || !r.body.ok) {
         var m = errText(r.body && r.body.error);
+        if (btn) { btnWait(btn, false); zItem = null; zSession = 0; btnError(btn, m[0]); return; }
         renderCounter(m[0]);
         return;
       }
@@ -1671,7 +1699,11 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         if (mode === 'board') renderAnyBoard();
       }, 4000);
       return loadBoard().then(renderZikirBoard);
-    }).catch(function () { busy = false; renderCounter(T.error); });
+    }).catch(function () {
+      busy = false;
+      if (btn) { btnWait(btn, false); zItem = null; zSession = 0; btnError(btn, T.error); return; }
+      renderCounter(T.error);
+    });
   }
 
   function renderBoard() {
