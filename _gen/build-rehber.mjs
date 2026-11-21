@@ -70,11 +70,37 @@ for (const g of MERKEZ.gruplar) for (const i of g.idler) if (!IDLER.includes(i))
 // Her rehberin yeni ekranlari kendi dosyasinda durur; ayni kimlik iki dosyada olamaz.
 const SAHNE = { ...SAHNE_TABAN };
 let EK_CSS = "";
+// 21 Kas 2026: rehber sayfasina yalniz kullandigi sahnelerin dosyalarinin CSS'i girer (hepsi ~260 KB'ti, her sayfada
+// ayni). Sahnesi olmayan (yalniz CSS) dosyalar her sayfaya girer; merkez sayfa ve OG govdeleri hepsini alir.
+const DOSYA_CSS = [];
 for (const ad of readdirSync(join(KOK, "_gen", "rehber")).filter((f) => /^sahneler-[a-z0-9-]+\.mjs$/.test(f)).sort()) {
   const m = await import(pathToFileURL(join(KOK, "_gen", "rehber", ad)).href);
   for (const [k, d] of Object.entries(m.IKON || {})) { if (IKON[k] && IKON[k] !== d) hata(`ikon adi cakisiyor: ${k} (${ad})`); IKON[k] = d; }
   for (const [k, f] of Object.entries(m.SAHNE || {})) { if (SAHNE[k]) hata(`sahne kimligi iki kez tanimli: ${k} (${ad})`); SAHNE[k] = f; }
-  if (m.CSS) EK_CSS += `\n  /* ── ${ad} ── */\n  ${m.CSS.trim()}\n`;
+  if (m.CSS) {
+    EK_CSS += `\n  /* ── ${ad} ── */\n  ${m.CSS.trim()}\n`;
+    DOSYA_CSS.push({ ad, css: m.CSS.trim(), sahneler: new Set(Object.keys(m.SAHNE || {})), siniflar: new Set([...m.CSS.matchAll(/\.([a-zA-Z_][\w-]*)/g)].map((x) => x[1])) });
+  }
+}
+// Bir sahne baska dosyanin siniflarini da kullanabilir (orn. 41 Yasin, tek'in tk-* parcalarini). Sayfada kullanilip
+// sablonda ve secilen dosyalarda tanimi olmayan her sinif icin onu tanimlayan dosya da eklenir: once tek tanimlayanlar,
+// sonra birden cok dosyanin tanimladiklari. (Dogrulama 21 Kas 2026: 39 sayfa, onceki tam CSS'le piksel piksel ayni.)
+let TABAN_SINIF = null;
+function sayfaCss(kullanilan, html) {
+  if (!TABAN_SINIF) TABAN_SINIF = new Set([...readFileSync(join(KOK, "_gen", "rehber.src.html"), "utf8").matchAll(/\.([a-zA-Z_][\w-]*)/g)].map((x) => x[1]));
+  const sec = new Set(DOSYA_CSS.filter((d) => !d.sahneler.size || [...d.sahneler].some((k) => kullanilan.has(k))));
+  const sinif = new Set();
+  for (const m of html.matchAll(/class="([^"]+)"/g)) for (const c of m[1].split(/\s+/)) if (c) sinif.add(c);
+  for (const tekmi of [true, false]) {
+    const kapsanan = new Set(TABAN_SINIF);
+    for (const d of sec) for (const c of d.siniflar) kapsanan.add(c);
+    for (const c of sinif) {
+      if (kapsanan.has(c)) continue;
+      const t = DOSYA_CSS.filter((d) => d.siniflar.has(c));
+      if (t.length && (t.length === 1) === tekmi) for (const d of t) { sec.add(d); for (const x of d.siniflar) kapsanan.add(x); }
+    }
+  }
+  return DOSYA_CSS.filter((d) => sec.has(d)).map((d) => `\n  /* ── ${d.ad} ── */\n  ${d.css}\n`).join("");
 }
 
 // ─── kabuk metinleri: ortak kaynaklar ───────────────────────────────────────
@@ -190,6 +216,7 @@ function adim(a, n, K) {
 }
 function sahneHtml(id, K) {
   if (!SAHNE[id]) hata(`sahne yok: ${id}`);
+  (K.sahneKul || (K.sahneKul = new Set())).add(id);
   return SAHNE[id](K);
 }
 function bolumBasi(b, no, K, dil) {
@@ -528,7 +555,7 @@ function sayfa(id, dil, og = false) {
   const ham = {
     lang: dil, dir: dil === "ar" ? "rtl" : "ltr",
     homeHref: EV[dil], vakitHref: VAKIT[dil], readingHref: ORTAK[dil], hubHref: REHBER[dil], hubCurrent: id === "merkez" ? ' aria-current="page"' : "",
-    main, sprite: ikonSprite(K.kullanilan), extraCss: EK_CSS,
+    main, sprite: ikonSprite(K.kullanilan), extraCss: og || id === "merkez" ? EK_CSS : sayfaCss(K.sahneKul || new Set(), main),
     langMenuHtml: diller(), langsHtml: diller(), langCode: dil.toUpperCase(),
     iosHref: IOS, androidHref: play(`guide-${id}`, dil),
     privacyHref: politika("privacy", dil), termsHref: politika("terms", dil), deleteHref: politika("account-delete", dil),
