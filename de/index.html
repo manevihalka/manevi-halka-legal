@@ -909,6 +909,269 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .ss-txt span { font-size: 12.5px; font-weight: 500; color: var(--muted); }
   #solo, #together, #faq, #download, #top { scroll-margin-top: 76px; }
   @media (prefers-reduced-motion: reduce) { .dock-top, .dock-pill, .sec-sheet, .ss-panel { transition: none; } }
+  /* ══ 21 Kas 2026: sov katmani ══════════════════════════════════════════════════════════════════
+     Bir gun (kaydirmayla akan gokyuzu), halka sahnesi, tesbih, giris ve ayet isiltisi, kapanis halkasi.
+     Hepsi hareket azaltilinca ve yakinlastirinca duz ve sabit durur; betik yoksa son hal gorunur. */
+
+  /* ── giris: dogan basliklar ve donen halka ── */
+  .strip { overflow: clip; }
+  .st-track { z-index: 1; }
+  .st-ring { position: absolute; z-index: 0; left: 50%; top: 50%; width: min(124cqw, 660px); aspect-ratio: 1; translate: -50% -50%; fill: none; stroke: var(--gold-soft); stroke-linecap: round;
+    opacity: .34; pointer-events: none; animation: st-spin 150s linear infinite paused; }
+  .strip.is-run .st-ring { animation-play-state: running; }
+  @keyframes st-spin { to { rotate: 360deg; } }
+  html.mh-zoom .st-ring { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero .h1-brand, .hero .h1-main .l1, .hero .h1-main em, .hero .lead, .hero .stores:has(> .stores-end), .hero .mnav, .hero .trust { animation: mh-rise .9s cubic-bezier(.2, .7, .2, 1) both; }
+    .hero .h1-main .l1 { display: inline-block; animation-delay: .1s; }
+    .hero .h1-main em { animation-delay: .22s; }
+    .hero .stores:has(> .stores-end) { animation-delay: .34s; }
+    .hero .mnav { animation-delay: .42s; } .hero .lead { animation-delay: .46s; } .hero .trust { animation-delay: .56s; }
+    .hero .strip { animation: mh-fade 1.1s ease .05s both; }
+    /* seritteki telefonlar ortadan disa dogru yukselir (backwards: bitince hover kaldirmasi serbest) */
+    .st-ph { animation: st-in 1s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(.12s + var(--u) * var(--u) * 55ms); }
+  }
+  @keyframes st-in { from { opacity: 0; transform: translateY(60px) scale(.9); } }
+  @keyframes mh-rise { from { opacity: 0; transform: translateY(22px); } }
+  @keyframes mh-fade { from { opacity: 0; } }
+
+  /* ── yildizlar: bir gunun gecesi, imsagi ve tek seferlik halka bandi ── */
+  .day-sky .stars, .ch[data-k="isha"]::after, .ch[data-k="fajr"]::after, .band::before {
+    background-image:
+      radial-gradient(circle at 24px 30px, rgba(255, 255, 255, .95) 0 1.3px, transparent 2px), radial-gradient(circle at 92px 12px, rgba(255, 255, 255, .8) 0 .9px, transparent 1.6px),
+      radial-gradient(circle at 150px 66px, rgba(255, 250, 230, .95) 0 1.5px, transparent 2.2px), radial-gradient(circle at 212px 26px, rgba(255, 255, 255, .7) 0 .9px, transparent 1.6px),
+      radial-gradient(circle at 262px 92px, rgba(255, 255, 255, .85) 0 1.1px, transparent 1.8px), radial-gradient(circle at 42px 122px, rgba(255, 255, 255, .7) 0 .9px, transparent 1.6px),
+      radial-gradient(circle at 122px 152px, rgba(255, 250, 230, .9) 0 1.3px, transparent 2px), radial-gradient(circle at 190px 132px, rgba(255, 255, 255, .7) 0 .9px, transparent 1.6px),
+      radial-gradient(circle at 70px 186px, rgba(255, 255, 255, .8) 0 1.1px, transparent 1.8px), radial-gradient(circle at 244px 182px, rgba(255, 255, 255, .9) 0 1.4px, transparent 2.1px),
+      radial-gradient(circle at 60px 80px, rgba(255, 255, 255, .9) 0 1.8px, transparent 2.6px), radial-gradient(circle at 330px 124px, rgba(255, 246, 220, .95) 0 1.9px, transparent 2.8px),
+      radial-gradient(circle at 200px 236px, rgba(255, 255, 255, .8) 0 1.5px, transparent 2.3px), radial-gradient(circle at 384px 262px, rgba(255, 255, 255, .85) 0 1.3px, transparent 2px);
+    background-size: 280px 200px, 280px 200px, 280px 200px, 280px 200px, 280px 200px, 280px 200px, 280px 200px, 280px 200px, 280px 200px, 280px 200px,
+      430px 310px, 430px 310px, 430px 310px, 430px 310px;
+  }
+  .band::before { content: ""; position: absolute; inset: 0; opacity: .5; pointer-events: none; -webkit-mask-image: linear-gradient(180deg, #000, transparent 75%); mask-image: linear-gradient(180deg, #000, transparent 75%); }
+  .band > div:first-child { position: relative; }
+  html.mh-zoom .band::before { display: none; }
+
+  /* ── BIR GUN ──
+     Taban (betiksiz, hareket azaltilmis, yakinlastirilmis, kucuk ekran): bes ayri gokyuzu karti.
+     .is-live (betik): kap uzar, ic cerceve yapisir; gokyuzu kaydirmayla akar, bolumler sirayla belirir. */
+  .day { position: relative; margin-top: 44px; --k1: linear-gradient(180deg, #0d1533 0%, #232a57 36%, #574878 62%, #b4738a 82%, #efb48c 100%);
+    --k2: linear-gradient(180deg, #113c68 0%, #215b8f 42%, #3a80b8 68%, #93c6e1 100%); --k3: linear-gradient(180deg, #17466b 0%, #2f6890 40%, #7aa6b9 68%, #ecd39c 100%);
+    --k4: linear-gradient(180deg, #1d1b44 0%, #4a2d5c 32%, #9c4459 58%, #e27a4b 80%, #f7c66f 100%); --k5: linear-gradient(180deg, #050a1a 0%, #0a1430 48%, #13224a 82%, #1b2e57 100%); }
+  .day-sky, .day-top { display: none; }
+  .day-chs { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+  .ch { position: relative; isolation: isolate; overflow: hidden; border-radius: 32px; color: #f7f3e8; background: var(--sky); --sil: #0a1d15;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 40px; align-items: center; padding: clamp(30px, 5vw, 64px); }
+  .ch[data-k="fajr"] { --sky: var(--k1); --lit: .7; --sx: 18%; --sy: 96%; }
+  .ch[data-k="dhuhr"] { --sky: var(--k2); --lit: 0; --sx: 74%; --sy: 10%; }
+  .ch[data-k="asr"] { --sky: var(--k3); --lit: 0; --sx: 86%; --sy: 34%; }
+  .ch[data-k="maghrib"] { --sky: var(--k4); --lit: .55; --sx: 90%; --sy: 84%; }
+  .ch[data-k="isha"] { --sky: var(--k5); --lit: 1; --sx: 86%; --sy: 16%; }
+  .ch::before { content: ""; position: absolute; z-index: -1; left: var(--sx); top: var(--sy); width: 240px; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, #fffbea 0 12%, rgba(255, 236, 180, .9) 16%, rgba(255, 214, 140, .32) 34%, rgba(255, 200, 120, 0) 68%); }
+  .ch[data-k="isha"]::before { width: 58px; background: none; box-shadow: inset 15px -9px 0 0 #f4ead0; filter: drop-shadow(0 0 16px rgba(244, 234, 208, .45)); rotate: 12deg; }
+  .ch[data-k="isha"]::after, .ch[data-k="fajr"]::after { content: ""; position: absolute; z-index: -2; inset: 0 0 35%; pointer-events: none; }
+  .ch[data-k="fajr"]::after { opacity: .55; -webkit-mask-image: linear-gradient(#000, transparent); mask-image: linear-gradient(#000, transparent); }
+  .ch .skyl, .day-sky .skyl { position: absolute; z-index: -1; left: 0; bottom: 0; width: 100%; height: clamp(84px, 22%, 190px); pointer-events: none; }
+  .ch-when { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 12.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #f3d48b; }
+  :root[lang="ar"] .ch-when { letter-spacing: 0; font-size: 14px; }
+  .ch-when .t { font-family: var(--sans); font-variant-numeric: tabular-nums; letter-spacing: .04em; color: rgba(247, 243, 232, .78); }
+  .ch-when .t:empty { display: none; }
+  .ch-when .now { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px 3px 8px; border-radius: 999px; background: rgba(243, 212, 139, .16); color: #f8e2a8; letter-spacing: .08em; font-size: 11px; }
+  .ch-when .now::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #f3d48b; box-shadow: 0 0 0 3px rgba(243, 212, 139, .25); }
+  .ch-when .now[hidden] { display: none; }
+  .ch h3 { margin-top: 14px; font-size: clamp(28px, 3.5vw, 44px); line-height: 1.1; color: #fff; text-shadow: 0 2px 18px rgba(4, 10, 24, .28); }
+  .ch-d { margin-top: 14px; font-size: 17px; line-height: 1.6; color: rgba(247, 243, 232, .9); max-width: 30em; text-shadow: 0 1px 12px rgba(4, 10, 24, .3); }
+  .ch .qlink { display: inline-block; margin-top: 16px; font-weight: 700; font-size: 14.5px; color: #f3d48b; text-decoration: none; }
+  .ch .qlink:hover { text-decoration: underline; }
+  .ch-vis { position: relative; display: flex; justify-content: center; padding-block: 6px; }
+  .ch-vis .phone { position: relative; z-index: 1; width: 240px; aspect-ratio: 640 / 1391; box-shadow: 0 40px 70px -36px rgba(0, 0, 0, .8), inset 0 0 0 1px rgba(255, 255, 255, .1); }
+  @media (max-width: 860px) {
+    .ch { grid-template-columns: minmax(0, 1fr); padding: 30px 22px 26px; text-align: center; }
+    .ch-when { justify-content: center; } .ch-d { margin-inline: auto; }
+    .ch-vis .phone { width: 210px; }
+    /* tek sutunda metin ustte: gunes ve ay basligin ardina dusmesin, telefonun yanina iner */
+    .ch[data-k="dhuhr"] { --sx: 92%; --sy: 58%; } .ch[data-k="asr"] { --sx: 90%; --sy: 70%; } .ch[data-k="isha"] { --sx: 90%; --sy: 6%; }
+  }
+
+  .day.is-live { height: calc(100vh + 5 * 70vh); height: calc(100svh + 5 * 70svh); }
+  .day.is-live .day-pin { position: sticky; top: 8px; height: calc(100vh - 16px); height: calc(100svh - 16px); }
+  @media (min-width: 980px) { .day.is-live .day-pin { top: 70px; height: calc(100vh - 84px); } }
+  .day.is-live .day-frame { position: relative; height: 100%; margin-inline: -12px; border-radius: 30px; overflow: hidden; isolation: isolate; container-type: size; color: #f7f3e8; background: #0d1533; --sil: #0a1d15; }
+  @media (min-width: 980px) { .day.is-live .day-frame { margin-inline: 0; border-radius: 34px; } }
+  .day.is-live .day-sky { display: block; position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .day-sky .sky { position: absolute; inset: 0; opacity: 0; }
+  .day-sky .k1 { background: var(--k1); opacity: 1; } .day-sky .k2 { background: var(--k2); } .day-sky .k3 { background: var(--k3); } .day-sky .k4 { background: var(--k4); } .day-sky .k5 { background: var(--k5); }
+  .day-sky .stars { position: absolute; inset: 0 0 22%; opacity: .8; -webkit-mask-image: linear-gradient(#000 40%, transparent); mask-image: linear-gradient(#000 40%, transparent); }
+  .day-sky .sun { position: absolute; left: 0; top: 0; width: 26cqh; aspect-ratio: 1; margin: -13cqh 0 0 -13cqh; border-radius: 50%;
+    background: radial-gradient(circle, #fffbea 0 11%, rgba(255, 238, 186, .92) 15%, rgba(255, 214, 140, .3) 33%, rgba(255, 200, 120, 0) 68%); }
+  .day-sky .sun::after { content: ""; position: absolute; inset: 0; border-radius: 50%; opacity: var(--warm, 0);
+    background: radial-gradient(circle, #ffd49a 0 11%, rgba(255, 150, 80, .85) 16%, rgba(240, 110, 60, .35) 36%, rgba(240, 110, 60, 0) 70%); }
+  /* ay: yalniz transform (betik konumlar); rotate eklenirse kaydirma da doner */
+  .day-sky .moon { position: absolute; left: 0; top: 0; width: 6.4cqh; aspect-ratio: 1; margin: -3.2cqh 0 0 -3.2cqh; border-radius: 50%; opacity: 0;
+    box-shadow: inset 1.7cqh -.8cqh 0 0 #f4ead0; filter: drop-shadow(0 0 2.2cqh rgba(244, 234, 208, .5)); }
+  @media (min-width: 980px) { .day-sky .moon { width: 7.5cqh; margin: -3.75cqh 0 0 -3.75cqh; box-shadow: inset 1.9cqh -.9cqh 0 0 #f4ead0; } }
+  @media (max-width: 979px) { .day-sky .sun { width: 34cqh; margin: -17cqh 0 0 -17cqh; } }
+  .day-sky .skyl { z-index: 2; height: clamp(80px, 19cqh, 200px); }
+  html.mh-zoom .day-sky .stars { display: none; }
+
+  .day.is-live .day-top { display: block; position: absolute; z-index: 4; top: 16px; left: 0; right: 0; text-align: center; pointer-events: none; }
+  .day-rail { --rw: 64px; list-style: none; margin: 0 auto; padding: 0; display: inline-flex; position: relative; pointer-events: auto; }
+  .day-rail li { width: var(--rw); }
+  .day-rail button { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; display: grid; justify-items: center; gap: 4px; padding: 2px 0; color: rgba(247, 243, 232, .6); font-size: 11.5px; font-weight: 600; line-height: 1.25; transition: color .3s ease; }
+  .day-rail button i { display: block; position: relative; z-index: 1; width: 9px; height: 9px; border-radius: 50%; background: currentColor; transition: background-color .3s ease, transform .35s cubic-bezier(.3, 1.6, .5, 1), box-shadow .3s ease; }
+  .day-rail .t { font-family: var(--sans); font-size: 10.5px; font-weight: 500; font-variant-numeric: tabular-nums; opacity: .85; }
+  .day-rail .t:empty { display: none; }
+  .day-rail li.on button { color: #fff; }
+  .day-rail li.on button i { background: #f3d48b; transform: scale(1.4); box-shadow: 0 0 0 4px rgba(243, 212, 139, .2); }
+  .day-rail li.is-now button i { box-shadow: 0 0 0 4px rgba(243, 212, 139, .32), 0 0 14px 2px rgba(243, 212, 139, .5); }
+  .day-line { position: absolute; top: 6.5px; height: 2px; inset-inline: calc(var(--rw) / 2); background: rgba(247, 243, 232, .22); border-radius: 2px; }
+  .day-line > i { display: block; width: 100%; height: 100%; background: #f3d48b; border-radius: 2px; transform-origin: left center; transform: scaleX(0); }
+  :root[dir="rtl"] .day-line > i { transform-origin: right center; }
+  .day-city { margin-top: 6px; font-size: 11.5px; font-weight: 600; color: rgba(247, 243, 232, .66); letter-spacing: .02em; }
+  .day-city:empty { display: none; }
+  @media (min-width: 980px) { .day-rail { --rw: 96px; } .day-rail button { font-size: 12.5px; } .day-rail .t { font-size: 11.5px; } .day.is-live .day-top { top: 22px; } }
+
+  .day.is-live .day-chs { position: absolute; inset: 0; z-index: 3; }
+  .day.is-live .ch { position: absolute; inset: 0; display: block; padding: 0; border-radius: 0; background: none; overflow: visible; text-align: start; pointer-events: none; }
+  .day.is-live .ch.on { pointer-events: auto; }
+  .day.is-live .ch::before, .day.is-live .ch::after, .day.is-live .ch .skyl { display: none; }
+  .day.is-live .ch-txt { position: absolute; z-index: 2; }
+  .day.is-live .ch-txt > * { opacity: 0; transform: translateY(16px); transition: opacity .35s ease, transform .45s cubic-bezier(.2, .7, .2, 1); }
+  .day.is-live .ch.on .ch-txt > * { opacity: 1; transform: none; transition: opacity .55s ease, transform .7s cubic-bezier(.2, .7, .2, 1); transition-delay: .14s; }
+  .day.is-live .ch.on .ch-txt > h3 { transition-delay: .22s; } .day.is-live .ch.on .ch-txt > .ch-d { transition-delay: .3s; } .day.is-live .ch.on .ch-txt > .qlink { transition-delay: .38s; }
+  .day.is-live .ch-vis { position: absolute; z-index: 1; padding: 0; display: block; }
+  .day.is-live .ch-vis .phone { position: absolute; left: 50%; top: 0; height: 100%; margin-left: calc(var(--pw) / -2); width: var(--pw); aspect-ratio: auto; opacity: 0; transform: translateY(6%) scale(.97);
+    transition: opacity .4s ease, transform .6s cubic-bezier(.2, .7, .2, 1); }
+  .day.is-live .ch.on .ch-vis .phone { opacity: 1; transform: none; transition: opacity .55s ease .05s, transform .8s cubic-bezier(.2, .7, .2, 1) .05s; }
+  .day.is-live .ch:not(.on) .fx { opacity: 0 !important; transition: opacity .3s ease; }
+  /* telefon ve dar ekran: metin ustte ortada, telefon altta ufuktan yukselir (olculeri betik yazar: --top-h, --ph) */
+  .day.is-live .ch-txt { top: var(--top-h, 74px); left: 22px; right: 22px; text-align: center; }
+  .day.is-live .ch-when { justify-content: center; }
+  .day.is-live .ch h3 { margin-top: 10px; font-size: clamp(24px, 6.4vw, 34px); }
+  .day.is-live .ch-d { margin: 8px auto 0; font-size: 15px; line-height: 1.5; max-width: 32em; }
+  .day.is-live .ch .qlink { margin-top: 8px; }
+  .day.is-live .ch-vis { --pw: calc(var(--ph, 420px) * .46); height: var(--ph, 420px); width: calc(var(--pw) * 1.62); bottom: calc(var(--ph, 420px) * -.08); left: calc(50% - var(--pw) * .81); }
+  @media (min-width: 980px) {
+    .day.is-live .ch-txt { top: 52%; left: auto; right: auto; inset-inline-start: 6.5%; width: min(35%, 430px); transform: translateY(-50%); text-align: start; }
+    .day.is-live .ch-when { justify-content: flex-start; }
+    .day.is-live .ch h3 { margin-top: 14px; font-size: clamp(32px, 3.4vw, 46px); }
+    .day.is-live .ch-d { margin: 14px 0 0; font-size: 17px; line-height: 1.6; }
+    .day.is-live .ch .qlink { margin-top: 16px; }
+    .day.is-live .ch-vis { --pw: min(35cqh, 25cqw); height: calc(var(--pw) * 2.174); width: calc(var(--pw) * 1.7); bottom: calc(var(--pw) * -.16); left: auto; inset-inline-start: calc(70% - var(--pw) * .85); }
+  }
+
+  /* ── TESBIH ── */
+  .tsb { position: relative; overflow: hidden; margin-top: 22px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px 56px; align-items: center; padding: clamp(28px, 5vw, 60px); border-radius: 32px; background: var(--mint); }
+  .tsb::before { content: ""; position: absolute; width: 520px; aspect-ratio: 1; inset-inline-end: -120px; top: 50%; translate: 0 -50%; border-radius: 50%; border: 1px dashed color-mix(in srgb, var(--gold-soft) 45%, transparent); pointer-events: none; }
+  .tsb-txt { position: relative; }
+  .tsb h3 { margin-top: 12px; font-size: clamp(26px, 3.1vw, 38px); line-height: 1.15; }
+  .tsb-txt p { margin-top: 12px; font-size: 17px; color: var(--body); max-width: 30em; }
+  .tsb-dev { position: relative; display: grid; justify-items: center; gap: 12px; }
+  .tsb-btn { position: relative; width: min(300px, 76vw); aspect-ratio: 1; border: 0; padding: 0; border-radius: 50%; cursor: pointer; color: #f6f1e4; font: inherit; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    background: radial-gradient(circle at 50% 36%, #285d43, #133222 64%, #0d241a); box-shadow: 0 34px 60px -30px rgba(10, 30, 20, .75), inset 0 0 0 1px rgba(255, 255, 255, .06), 0 0 0 0 rgba(217, 181, 99, 0);
+    transition: transform .12s ease, box-shadow .5s ease; }
+  .tsb-btn:active { transform: scale(.975); }
+  .tsb-btn::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(226, 195, 116, .7); opacity: 0; pointer-events: none; }
+  .tsb-btn.rip::after { animation: tsb-rip .55s ease-out; }
+  @keyframes tsb-rip { from { opacity: .9; transform: scale(.92); } to { opacity: 0; transform: scale(1.1); } }
+  .tsb.full .tsb-btn { box-shadow: 0 34px 60px -30px rgba(10, 30, 20, .75), inset 0 0 0 1px rgba(255, 255, 255, .06), 0 0 0 12px rgba(217, 181, 99, .22); }
+  .tsb-ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .tsb-ip { fill: none; stroke: rgba(217, 181, 99, .3); stroke-width: .8; }
+  .tsb-imame { fill: #d9b563; }
+  .tb { fill: #2d6347; stroke: rgba(255, 255, 255, .14); stroke-width: .6; transform-box: fill-box; transform-origin: center; transition: fill .25s ease; }
+  .tb.on { fill: #e2c374; stroke: rgba(255, 246, 214, .5); }
+  .tb.cur { animation: tb-pop .4s cubic-bezier(.3, 1.6, .5, 1); }
+  @keyframes tb-pop { 40% { transform: scale(1.7); } }
+  .tsb-core { position: absolute; inset: 20%; display: grid; place-content: center; justify-items: center; gap: 2px; pointer-events: none; }
+  .tsb-ar { font-family: var(--arabic); font-size: clamp(20px, 5.6vw, 27px); line-height: 1.7; color: #f6f1e4; transition: opacity .3s ease; }
+  .tsb-n b { font-family: var(--sans); font-weight: 600; font-size: clamp(42px, 12vw, 58px); line-height: 1; font-variant-numeric: tabular-nums; color: #fff; display: inline-block; }
+  .tsb-n b.bump { animation: tsb-bump .25s ease; }
+  @keyframes tsb-bump { 40% { transform: translateY(-3px) scale(1.06); } }
+  .tsb-n small { font-family: var(--sans); font-weight: 600; font-size: 14px; color: rgba(246, 241, 228, .55); margin-inline-start: 2px; }
+  .tsb-tap { margin-top: 4px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #d9b563; }
+  :root[lang="ar"] .tsb-tap { letter-spacing: 0; font-size: 13px; }
+  .tsb-ph { min-height: 3.4em; text-align: center; }
+  .tsb-ph b { display: block; font-family: var(--display); font-weight: 400; font-size: 22px; line-height: 1.3; color: var(--ink); }
+  :root[lang="ar"] .tsb-ph b { font-family: var(--arabic); }
+  .tsb-ph span { display: block; margin-top: 2px; font-size: 14.5px; color: var(--muted); }
+  .tsb-ph span:empty { display: none; }
+  .tsb-foot { display: flex; align-items: center; gap: 14px; min-height: 34px; }
+  .tsb-dots i { display: inline-block; width: 8px; height: 8px; margin: 0 3px; border-radius: 50%; background: color-mix(in srgb, var(--ink) 18%, transparent); transition: background-color .3s ease; }
+  .tsb-dots i.on { background: var(--gold); }
+  .tsb-reset { font: inherit; font-size: 14px; font-weight: 700; padding: 7px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+  @media (max-width: 760px) { .tsb { grid-template-columns: minmax(0, 1fr); text-align: center; padding: 30px 20px 28px; } .tsb-txt p { margin-inline: auto; } .tsb::before { inset-inline-end: 50%; translate: 50% -50%; top: 70%; } }
+
+  /* ── HALKA SAHNESI ── */
+  .rg-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px 64px; align-items: center; margin-top: 44px; }
+  .rg-stage { display: grid; justify-items: center; gap: 12px; }
+  .rg { position: relative; width: min(420px, 100%); aspect-ratio: 1; }
+  .rg-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .rg-glow { fill: none; stroke: var(--gold-soft); stroke-width: 44; opacity: 0; }
+  .rg-track { fill: none; stroke: color-mix(in srgb, var(--gold-soft) 55%, transparent); stroke-width: 1.2; stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+  .rg-iz path { fill: none; stroke: color-mix(in srgb, var(--green) 11%, transparent); stroke-width: 24; }
+  .rg-fill path { fill: none; stroke: var(--green-2); stroke-width: 24; stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+  .rg-fill path.me { stroke: var(--gold-soft); }
+  .rg-av { position: absolute; width: 12.5%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; display: grid; place-items: center; font-family: var(--sans); font-weight: 700; font-size: clamp(12px, 3.4vw, 16px); color: #fff;
+    background: #4f7f69; box-shadow: 0 0 0 3px var(--page), 0 10px 18px -10px rgba(10, 30, 20, .6); }
+  .rg-av:nth-of-type(2) { background: #3f6f8f; } .rg-av:nth-of-type(3) { background: #8a5a7a; } .rg-av:nth-of-type(4) { background: #b0703f; } .rg-av:nth-of-type(5) { background: #5f6d9a; } .rg-av:nth-of-type(6) { background: #6b8f4a; }
+  .rg-av.me { background: var(--gold); color: var(--page); font-size: clamp(11px, 3vw, 13.5px); }
+  .rg-mid { position: absolute; inset: 24%; display: grid; place-items: center; text-align: center; }
+  .rg-count, .rg-done { grid-area: 1 / 1; display: grid; justify-items: center; transition: opacity .5s ease, transform .6s cubic-bezier(.2, .7, .2, 1); }
+  .rg-count { opacity: 0; transform: scale(.92); }
+  .rg-count b { font-family: var(--sans); font-weight: 600; font-size: clamp(46px, 11vw, 68px); line-height: 1; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .rg-count small { margin-top: 6px; font-family: var(--sans); font-weight: 600; font-size: 14px; color: var(--muted); }
+  .rg-done b { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 5.6vw, 34px); line-height: 1.15; color: var(--green); }
+  :root[lang="ar"] .rg-done b { font-family: var(--arabic); line-height: 1.6; }
+  .rg-done small { margin-top: 6px; font-size: 14px; font-weight: 600; color: var(--muted); }
+  .rg-replay { display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: 14px; font-weight: 700; padding: 8px 16px 8px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .rg-replay svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .rg-replay[hidden] { display: none; }
+  .rg-steps { grid-template-columns: minmax(0, 1fr); gap: 26px; margin: 0; }
+  .rg-steps::before { top: 28px; bottom: 28px; left: auto; right: auto; inset-inline-start: 26.5px; border-top: 0; border-inline-start: 3px dotted color-mix(in srgb, var(--gold-soft) 70%, transparent); }
+  .rg-steps li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 0 18px; text-align: start; padding: 0; transition: opacity .45s ease; }
+  .rg-steps .bead { grid-row: span 2; margin: 0; transition: background-color .4s ease, color .4s ease, transform .4s cubic-bezier(.3, 1.6, .5, 1); }
+  .rg-steps p { margin-inline: 0; max-width: 34ch; }
+  /* oynatma halleri: pre (bos) > s1 (halka cizilir) > s2 (kardesler gelir) > s3 (cuzler dolar) > fin */
+  .rg-wrap.nt, .rg-wrap.nt * { transition: none !important; animation: none !important; }
+  .rg-wrap.pre .rg-track { transition: stroke-dashoffset .7s cubic-bezier(.45, 0, .2, 1); }
+  .rg-wrap.pre:not(.s1) .rg-track { stroke-dashoffset: 1; }
+  .rg-wrap.pre .rg-iz { transition: opacity .5s ease .25s; }
+  .rg-wrap.pre:not(.s1) .rg-iz { opacity: 0; }
+  .rg-wrap.pre .rg-av { transition: scale .45s cubic-bezier(.3, 1.6, .5, 1), opacity .3s ease; transition-delay: calc(var(--g) * 110ms); }
+  .rg-wrap.pre:not(.s2) .rg-av { scale: 0; opacity: 0; }
+  .rg-wrap.pre .rg-fill path { transition: stroke-dashoffset .28s ease; transition-delay: calc(var(--i) * 64ms); }
+  .rg-wrap.pre:not(.s3) .rg-fill path { stroke-dashoffset: 1; }
+  .rg-wrap.pre.s3 .rg-av { animation: rg-av .55s ease both; animation-delay: calc((var(--g) * 5 + 4) * 64ms + .28s); }
+  @keyframes rg-av { 45% { scale: 1.2; box-shadow: 0 0 0 3px var(--page), 0 0 0 7px color-mix(in srgb, var(--gold-soft) 55%, transparent); } }
+  .rg-wrap.pre .rg-count { opacity: 1; transform: none; }
+  .rg-wrap.pre .rg-done { opacity: 0; transform: translateY(10px); }
+  .rg-wrap.pre .rg-steps li { opacity: .42; }
+  .rg-wrap.pre.s1:not(.s2) .rg-steps li:nth-child(1), .rg-wrap.pre.s2:not(.s3) .rg-steps li:nth-child(2), .rg-wrap.pre.s3 .rg-steps li:nth-child(3) { opacity: 1; }
+  .rg-wrap.pre.s1:not(.s2) .rg-steps li:nth-child(1) .bead, .rg-wrap.pre.s2:not(.s3) .rg-steps li:nth-child(2) .bead, .rg-wrap.pre.s3 .rg-steps li:nth-child(3) .bead { background: var(--gold-soft); color: #fff; transform: scale(1.08); }
+  .rg-wrap.fin .rg-glow { animation: rg-bloom 1.1s ease-out; }
+  @keyframes rg-bloom { 0% { opacity: 0; } 30% { opacity: .35; } 100% { opacity: 0; stroke-width: 70; } }
+  @media (max-width: 860px) { .rg-wrap { grid-template-columns: minmax(0, 1fr); } .rg { width: min(360px, 92%); } }
+
+  /* ── ayet: Arapca metinde sagdan sola giden altin isilti; kapanista 30 noktali halka dolar ── */
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    html.rv-on .verse .ar { background: linear-gradient(100deg, var(--ink) 0 40%, #c9a04a 46%, #f1d48c 50%, #c9a04a 54%, var(--ink) 60% 100%) 0 0 / 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+    html.rv-on .verse.in .ar { animation: mh-shine 2.8s cubic-bezier(.4, 0, .2, 1) .2s both; }
+  }
+  @keyframes mh-shine { from { background-position: 0 0; } to { background-position: 100% 0; } }
+  html.rv-on .verse.in .vmark { animation: mh-turn 1.8s cubic-bezier(.3, 0, .2, 1) both; }
+  @keyframes mh-turn { from { rotate: -120deg; opacity: 0; } }
+  @property --ca { syntax: "<angle>"; inherits: false; initial-value: 360deg; }
+  .closing .ring-close { opacity: .22; -webkit-mask-image: conic-gradient(#000 var(--ca), transparent 0); mask-image: conic-gradient(#000 var(--ca), transparent 0); }
+  html.rv-on .closing.rv:not(.in) .ring-close { --ca: 0deg; }
+  html.rv-on .closing.in .ring-close { animation: mh-ringfill 2.6s cubic-bezier(.45, 0, .2, 1) .25s both; }
+  @keyframes mh-ringfill { from { --ca: 0deg; } to { --ca: 360deg; } }
+
+  /* ── bolumler ekrana girerken hafifce yukselir (betik yalniz ekranin altindakilere .rv koyar) ── */
+  html.rv-on .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .95s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--rv-i, 0) * 70ms); }
+  html.rv-on .rv.in { opacity: 1; transform: none; }
+  html.mh-zoom .rv { opacity: 1 !important; transform: none !important; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1 !important; transform: none !important; } .tb.cur, .tsb-n b.bump, .tsb-btn.rip::after { animation: none; } }
 </style>
 </head>
 <body>
@@ -1027,8 +1290,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   <header class="top">
     <a class="brand" href="/de/"><img src="/img/brand-icon.webp" alt="" width="32" height="32" data-vt-brand><span>Manevi Halka</span></a>
     <nav aria-label="Bereiche">
-      <a href="#yeni" data-p="1.5">Neu</a>
       <a href="#solo" data-p="1">Allein</a>
+      <a href="#yeni" data-p="1.5">Neu</a>
       <a href="#together" data-p="2">Gemeinsam</a>
       <a href="#faq" data-p="3">Häufige Fragen</a>
       <a class="pg ilk" href="/de/gebetszeiten/">Gebetszeiten</a>
@@ -1055,10 +1318,11 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <!-- Seritte uygulamanin 2.1.0 ekranlari egik bir seritte yana akar. Ilk boyama CSS'ten (kartin yeri --u ile
          hesaplanir, betik yoksa da duzgun durur); betik akisi, surukleme ve durdurmayi ekler. -->
     <div class="strip" id="strip" role="group" aria-label="Bildschirme der App">
+      <svg class="st-ring" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="96" stroke-width="2.6" stroke-dasharray="0 10.05"/><circle cx="100" cy="100" r="84" stroke-width=".5"/><circle cx="100" cy="100" r="70" stroke-width="1.6" stroke-dasharray="0 7.33"/></svg>
       <div class="st-track" id="stTrack"><figure class="st-card" style="--u:0"><span class="st-ph"><img src="/img/app/de/st-mushaf.webp" width="432" height="939" alt="Koran-Leser" decoding="async" fetchpriority="high"></span><figcaption aria-hidden="true">Koran-Leser</figcaption></figure><figure class="st-card" style="--u:1"><span class="st-ph"><img src="/img/app/de/st-bahce.webp" width="432" height="939" alt="Garten der Absichten" decoding="async" fetchpriority="high"></span><figcaption aria-hidden="true">Garten der Absichten</figcaption></figure><figure class="st-card" style="--u:2"><span class="st-ph"><img src="/img/app/de/st-home.webp" width="432" height="939" alt="Start" decoding="async"></span><figcaption aria-hidden="true">Start</figcaption></figure><figure class="st-card" style="--u:3"><span class="st-ph"><img src="/img/app/de/st-halka.webp" width="432" height="939" alt="Gemeinsame Chatma" decoding="async"></span><figcaption aria-hidden="true">Gemeinsame Chatma</figcaption></figure><figure class="st-card" style="--u:4"><span class="st-ph"><img src="/img/app/de/st-sayac.webp" width="432" height="939" alt="Dhikr-Zähler" decoding="async"></span><figcaption aria-hidden="true">Dhikr-Zähler</figcaption></figure><figure class="st-card" style="--u:5"><span class="st-ph"><img src="/img/app/de/st-tek.webp" width="432" height="939" alt="Einmaliger Kreis" decoding="async"></span><figcaption aria-hidden="true">Einmaliger Kreis</figcaption></figure><figure class="st-card" style="--u:-4"><span class="st-ph"><img src="/img/app/de/st-video.webp" width="432" height="939" alt="Versvideo" decoding="async"></span><figcaption aria-hidden="true">Versvideo</figcaption></figure><figure class="st-card" style="--u:-3"><span class="st-ph"><img src="/img/app/de/st-namaz.webp" width="432" height="939" alt="Meine Gebete" decoding="async"></span><figcaption aria-hidden="true">Meine Gebete</figcaption></figure><figure class="st-card" style="--u:-2"><span class="st-ph"><img src="/img/app/de/st-defter.webp" width="432" height="939" alt="Mein Bittgebetsheft" decoding="async"></span><figcaption aria-hidden="true">Mein Bittgebetsheft</figcaption></figure><figure class="st-card" style="--u:-1"><span class="st-ph"><img src="/img/app/de/st-sahne.webp" width="432" height="939" alt="Hörszenen" decoding="async" fetchpriority="high"></span><figcaption aria-hidden="true">Hörszenen</figcaption></figure></div>
       <button type="button" class="st-pause" id="stPause" aria-pressed="false" aria-label="Laufende Bildschirme anhalten" data-on="Laufende Bildschirme anhalten" data-off="Bildschirme weiterlaufen lassen" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M9 6.5v11M15 6.5v11"/><path class="i-play" d="M8.5 6.2v11.6L18 12z"/></svg></button>
     </div>
-    <h1 class="hero-h1"><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">Jede gute Tat <em>beginnt mit einer Absicht.</em></span></h1>
+    <h1 class="hero-h1"><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main"><span class="l1">Jede gute Tat</span> <em>beginnt mit einer Absicht.</em></span></h1>
     <p class="lead">Lies und höre den Koran, behalte Gebet und Dhikr im Blick und lass deine Absichten wachsen. Und wenn du möchtest, gründe mit deinen Liebsten einen Kreis und vollende die Chatma gemeinsam.</p>
     <div class="stores">
       <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>Laden</small><b>App Store</b></span></a>
@@ -1086,6 +1350,101 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
     <p class="purpose">Manevi Halka wurde geschaffen, um diese gegenseitige Hilfe, so Allah will, leichter zu machen.</p>
   </div>
 
+  <!-- TEK BASINA -->
+  <section id="solo">
+    <div class="sec-head">
+      <span class="eyebrow">Allein</span>
+      <h2>Begleitet deine tägliche Andacht</h2>
+      <p>Manevi Halka ist nicht nur für gemeinsames Lesen da, sondern begleitet dich auch in der Andacht jedes Tages.</p>
+    </div>
+    <!-- BIR GUN (21 Kas 2026): kaydirdikca gokyuzu imsaktan yatsiya akar; sabit telefon o vaktin ekranini gosterir,
+         yakin planlar ekrandan kalkar. Ziyaretcinin sehri biliniyorsa vakit saatleri ve "Su an" onun vakitleriyle.
+         Betik yoksa, hareket azaltilmissa, sayfa yakinlastirilmissa ya da ekran kucukse bes ayri gokyuzu karti olarak durur. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="dsSky" viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax slice"><path style="fill:var(--hill,rgba(8,26,18,.42))" d="M0 122C150 102 300 114 450 106S750 98 900 110S1100 102 1200 112V150H0z"/><path style="fill:var(--sil,#0a1d15)" d="M0 118h40v32h-40zM36 108h46v42h-46zM78 124h30v26h-30zM104 112h38v38h-38zM280 116h36v34h-36zM312 104h30v46h-30zM338 120h44v30h-44zM378 110h28v40h-28zM770 112h40v38h-40zM806 122h30v28h-30zM832 106h44v44h-44zM872 118h32v32h-32zM1060 118h36v32h-36zM1092 108h40v42h-40zM1128 122h30v28h-30zM1154 112h46v38h-46zM150 112h100v38h-100zM162 112Q162 71.2 200 72Q238 71.2 238 112zM199 58h2v14h-2zM258 50h9v100h-9zM255 76h15v4h-15zM258 50L262.5 32L267 50zM448 24h12v126h-12zM445 50h18v4h-18zM448 24L454 0L460 24zM740 24h12v126h-12zM737 50h18v4h-18zM740 24L746 0L752 24zM444 88h20v4h-20zM736 88h20v4h-20zM476 96h248v54h-248zM476 96Q476 82.74 488 83Q500 82.74 500 96zM700 96Q700 82.74 712 83Q724 82.74 724 96zM488 96Q488 68.46000000000001 520 69Q552 68.46000000000001 552 96zM648 96Q648 68.46000000000001 680 69Q712 68.46000000000001 712 96zM540 78h120v20h-120zM534 80Q534 18.799999999999997 600 20Q666 18.799999999999997 666 80zM599 2h2v20h-2zM930 110h100v40h-100zM942 110Q942 73.28 980 74Q1018 73.28 1018 110zM979 60h2v14h-2zM1042 46h9v104h-9zM1039 72h15v4h-15zM1042 46L1046.5 28L1051 46z"/><g style="fill:var(--sil,#0a1d15)"><ellipse cx="124" cy="132" rx="7" ry="18"/><ellipse cx="430" cy="128" rx="6" ry="22"/><ellipse cx="764" cy="130" rx="6" ry="20"/><ellipse cx="1040" cy="134" rx="5" ry="16"/><ellipse cx="312" cy="134" rx="5" ry="16"/></g><path style="fill:#f5cd74;opacity:var(--lit,0)" d="M10 126h4v5h-4zM48 118h4v5h-4zM60 132h4v5h-4zM116 122h4v5h-4zM128 136h4v5h-4zM290 126h4v5h-4zM322 114h4v5h-4zM350 130h4v5h-4zM388 120h4v5h-4zM784 122h4v5h-4zM818 132h4v5h-4zM846 116h4v5h-4zM858 130h4v5h-4zM884 128h4v5h-4zM1070 128h4v5h-4zM1104 118h4v5h-4zM1116 134h4v5h-4zM1166 122h4v5h-4zM1180 136h4v5h-4zM168 124h4v5h-4zM228 124h4v5h-4zM944 122h4v5h-4zM1012 122h4v5h-4zM556 112h6v11h-6zM576 112h6v11h-6zM596 112h6v11h-6zM616 112h6v11h-6zM636 112h6v11h-6zM494 116h5v9h-5zM516 116h5v9h-5zM684 116h5v9h-5zM706 116h5v9h-5z"/></symbol></svg>
+    <div class="day" id="day" role="group" aria-label="Ein Tag mit Manevi Halka">
+      <div class="day-pin">
+        <div class="day-frame">
+          <div class="day-sky" aria-hidden="true"><i class="sky k1"></i><i class="sky k2"></i><i class="sky k3"></i><i class="sky k4"></i><i class="sky k5"></i><i class="stars"></i><i class="sun"></i><i class="moon"></i><svg class="skyl"><use href="#dsSky"/></svg></div>
+          <div class="day-top" aria-hidden="true"><ol class="day-rail"><i class="day-line"><i></i></i><li data-k="fajr"><button type="button" tabindex="-1" data-i="0"><i></i><b>Fadschr</b><span class="t"></span></button></li><li data-k="dhuhr"><button type="button" tabindex="-1" data-i="1"><i></i><b>Dhuhr</b><span class="t"></span></button></li><li data-k="asr"><button type="button" tabindex="-1" data-i="2"><i></i><b>Asr</b><span class="t"></span></button></li><li data-k="maghrib"><button type="button" tabindex="-1" data-i="3"><i></i><b>Maghrib</b><span class="t"></span></button></li><li data-k="isha"><button type="button" tabindex="-1" data-i="4"><i></i><b>Ischa</b><span class="t"></span></button></li></ol><p class="day-city"></p></div>
+          <ol class="day-chs">
+        <li class="ch" data-k="fajr">
+          <div class="ch-txt">
+            <p class="ch-when"><b>Fadschr</b><span class="t"></span><span class="now" hidden>Jetzt</span></p>
+            <h3>Beginne den Tag mit dem Koran.</h3>
+            <p class="ch-d">Die Ansichten Mushaf, Fließtext und Übersetzung, Tadschwid-Farben und Lupe. Beim Zuhören scrollt die Seite von selbst.</p>
+          </div>
+          <div class="ch-vis fx-host"><figure class="phone"><img src="/img/app/de/s21-quran.webp" alt="Koran-Leser, Sure Al-Mulk: Verse und Übersetzung in der Mushaf-Ansicht" width="640" height="1391" loading="lazy" decoding="async"></figure><img class="fx fx-card p-qa" src="/img/app/de/fx-q2-panel.webp" alt="" width="720" height="438" loading="lazy" decoding="async"><img class="fx fx-card p-qb" src="/img/app/de/fx-q2-bar.webp" alt="" width="720" height="100" loading="lazy" decoding="async"></div>
+          <svg class="skyl" aria-hidden="true" focusable="false"><use href="#dsSky"/></svg>
+        </li>
+        <li class="ch" data-k="dhuhr">
+          <div class="ch-txt">
+            <p class="ch-when"><b>Dhuhr</b><span class="t"></span><span class="now" hidden>Jetzt</span></p>
+            <h3>Du weißt, wann es Zeit ist.</h3>
+            <p class="ch-d">Gebetszeiten und Qibla in 106 Ländern, dazu Widgets für Start- und Sperrbildschirm. Markiere Gebete und Nachgeholtes, nur für dich.</p>
+            <a class="qlink" href="/de/gebetszeiten/">Die heutigen Gebetszeiten</a>
+          </div>
+          <div class="ch-vis fx-host"><figure class="phone"><img src="/img/app/de/s21-namaz.webp" alt="Meine Gebete: die heutigen Gebete mit Schaltflächen zum Nachholen" width="640" height="1391" loading="lazy" decoding="async"></figure><img class="fx fx-w p-va" src="/img/app/de/fx-w-med.webp" alt="" width="720" height="339" loading="lazy" decoding="async"><img class="fx fx-card p-vk" src="/img/app/de/fx-n-kaza.webp" alt="" width="720" height="342" loading="lazy" decoding="async"><img class="fx fx-w p-vc" src="/img/app/de/fx-w-lock.webp" alt="" width="720" height="261" loading="lazy" decoding="async"></div>
+          <svg class="skyl" aria-hidden="true" focusable="false"><use href="#dsSky"/></svg>
+        </li>
+        <li class="ch" data-k="asr">
+          <div class="ch-txt">
+            <p class="ch-when"><b>Asr</b><span class="t"></span><span class="now" hidden>Jetzt</span></p>
+            <h3>Dein Dhikr, immer zur Hand.</h3>
+            <p class="ch-d">Dhikr-Zähler, Tasbihat, Awrad und prophetische Bittgebete an einem Ort. Probier es gleich darunter aus.</p>
+          </div>
+          <div class="ch-vis fx-host"><figure class="phone"><img src="/img/app/de/st-sayac.webp" alt="Dhikr-Zähler im Gebetsketten-Modus: Salawat bei 73 von 100" width="432" height="939" loading="lazy" decoding="async"></figure></div>
+          <svg class="skyl" aria-hidden="true" focusable="false"><use href="#dsSky"/></svg>
+        </li>
+        <li class="ch" data-k="maghrib">
+          <div class="ch-txt">
+            <p class="ch-when"><b>Maghrib</b><span class="t"></span><span class="now" hidden>Jetzt</span></p>
+            <h3>Sammle deine Bittgebete in einem Heft.</h3>
+            <p class="ch-d">In Mein Bittgebetsheft ordnest du deine Bittgebete unter Überschriften wie nach dem Gebet, vor der Morgendämmerung oder Reise und beginnst mit einem Tippen.</p>
+          </div>
+          <div class="ch-vis fx-host"><figure class="phone"><img src="/img/app/de/nw-defter.webp" alt="Mein Bittgebetsheft: Abschnitte nach dem Gebet, Morgen und vor der Morgendämmerung" width="640" height="1391" loading="lazy" decoding="async"></figure></div>
+          <svg class="skyl" aria-hidden="true" focusable="false"><use href="#dsSky"/></svg>
+        </li>
+        <li class="ch" data-k="isha">
+          <div class="ch-txt">
+            <p class="ch-when"><b>Ischa</b><span class="t"></span><span class="now" hidden>Jetzt</span></p>
+            <h3>Beschließe den Tag mit einer Absicht.</h3>
+            <p class="ch-d">Im Garten der Absichten wird jede Absicht zu einem Setzling, der wächst, wenn du sie einhältst. Ein Weckalarm für Tahajjud steht auch bereit.</p>
+          </div>
+          <div class="ch-vis fx-host"><figure class="phone"><img src="/img/app/de/nw-bahce.webp" alt="Garten der Absichten: der Garten unter dem Nachthimmel und die Absichten von heute" width="640" height="1391" loading="lazy" decoding="async"></figure></div>
+          <svg class="skyl" aria-hidden="true" focusable="false"><use href="#dsSky"/></svg>
+        </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESBIH: dokundukca tane ilerler; 33'te siradaki tesbih. Sayac yalniz bu sayfada, hicbir yere gitmez. -->
+    <div class="tsb" id="tsb">
+      <div class="tsb-txt">
+        <span class="eyebrow">Probier es</span>
+        <h3>Ein Dhikr-Zähler an deiner Fingerspitze.</h3>
+        <p>Tippe auf den Kreis, mit jedem Tippen rückt eine Perle weiter. Bei 33 geht es zum nächsten Lobpreis.</p>
+      </div>
+      <div class="tsb-dev">
+        <button type="button" class="tsb-btn" id="tsbBtn" aria-label="Dhikr zählen" aria-describedby="tsbPh">
+          <svg class="tsb-ring" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle class="tsb-ip" cx="100" cy="100" r="84"/><path class="tsb-imame" d="M96.6 7.5h6.8l1.2 9.5h-9.2z"/><circle class="tsb-imame" cx="100" cy="21" r="4.6"/><circle class="tb" cx="115.43" cy="17.43" r="5.4"/><circle class="tb" cx="130.34" cy="21.67" r="5.4"/><circle class="tb" cx="144.22" cy="28.58" r="5.4"/><circle class="tb" cx="156.59" cy="37.92" r="5.4"/><circle class="tb" cx="167.03" cy="49.38" r="5.4"/><circle class="tb" cx="175.19" cy="62.56" r="5.4"/><circle class="tb" cx="180.79" cy="77.01" r="5.4"/><circle class="tb" cx="183.64" cy="92.25" r="5.4"/><circle class="tb" cx="183.64" cy="107.75" r="5.4"/><circle class="tb" cx="180.79" cy="122.99" r="5.4"/><circle class="tb" cx="175.19" cy="137.44" r="5.4"/><circle class="tb" cx="167.03" cy="150.62" r="5.4"/><circle class="tb" cx="156.59" cy="162.08" r="5.4"/><circle class="tb" cx="144.22" cy="171.42" r="5.4"/><circle class="tb" cx="130.34" cy="178.33" r="5.4"/><circle class="tb" cx="115.43" cy="182.57" r="5.4"/><circle class="tb" cx="100.00" cy="184.00" r="5.4"/><circle class="tb" cx="84.57" cy="182.57" r="5.4"/><circle class="tb" cx="69.66" cy="178.33" r="5.4"/><circle class="tb" cx="55.78" cy="171.42" r="5.4"/><circle class="tb" cx="43.41" cy="162.08" r="5.4"/><circle class="tb" cx="32.97" cy="150.62" r="5.4"/><circle class="tb" cx="24.81" cy="137.44" r="5.4"/><circle class="tb" cx="19.21" cy="122.99" r="5.4"/><circle class="tb" cx="16.36" cy="107.75" r="5.4"/><circle class="tb" cx="16.36" cy="92.25" r="5.4"/><circle class="tb" cx="19.21" cy="77.01" r="5.4"/><circle class="tb" cx="24.81" cy="62.56" r="5.4"/><circle class="tb" cx="32.97" cy="49.38" r="5.4"/><circle class="tb" cx="43.41" cy="37.92" r="5.4"/><circle class="tb" cx="55.78" cy="28.58" r="5.4"/><circle class="tb" cx="69.66" cy="21.67" r="5.4"/><circle class="tb" cx="84.57" cy="17.43" r="5.4"/></svg>
+          <span class="tsb-core"><span class="tsb-ar" id="tsbAr" lang="ar" dir="rtl">سُبْحَانَ اللهِ</span><span class="tsb-n"><b id="tsbN">0</b><small>/33</small></span><span class="tsb-tap">Tippen</span></span>
+        </button>
+        <p class="tsb-ph" id="tsbPh" aria-live="polite"><b id="tsbP">Subhanallah</b><span id="tsbM">Gepriesen sei Allah</span></p>
+        <div class="tsb-foot"><span class="tsb-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><button type="button" class="tsb-reset" id="tsbReset" hidden>Neu starten</button></div>
+      </div>
+    </div>
+
+    <ul class="areas">
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-1.6-1.4-4-2-7-2v13c3 0 5.4.6 7 2 1.6-1.4 4-2 7-2v-13c-3 0-5.4.6-7 2z"/><path d="M12 6.5v13"/></svg></span><div><b>Koran</b><span>Der Mushaf, Übersetzung, Tadschwid-Farben und Rezitation von einem Rezitator deiner Wahl.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Gebet</b><span>Gebetszeiten, Benachrichtigungen, Widgets, Qibla, Tahajjud und Nachholgebete.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><div><b>Dhikr und Bittgebet</b><span>Dhikr-Zähler, Tasbihat, Awrad, prophetische Bittgebete und Mein Bittgebetsheft.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/><path d="M9.5 10l2 2 3.5-3.5"/></svg></span><div><b>Auswendiglernen</b><span>Suren und Verse lernen, mit Wiederholung in Abständen und der Hifz-Tafel.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4z"/><path d="M15.5 5.5l3.6-1 3.2 14.6-3.6 1z"/></svg></span><div><b>Bücherregal</b><span>Deine eigenen PDF- und EPUB-Bücher und Notizen.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-8.5"/><path d="M12 13c0-3.6-2.6-6.2-6.6-6.2 0 3.6 2.6 6.2 6.6 6.2z"/><path d="M12 10.8c0-3.3 2.3-5.6 6-5.6 0 3.3-2.3 5.6-6 5.6z"/><path d="M7.5 21h9"/></svg></span><div><b>Garten der Absichten</b><span>Jede Absicht wird zu einem Setzling, der wächst, wenn du sie einhältst.</span></div></li>
+    </ul>
+  </section>
+
   <!-- YENI: 2.1.0 ile gelenler -->
   <section id="yeni" class="nw">
     <div class="nw-head">
@@ -1102,45 +1461,6 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
     <ul class="nw-rail" id="nwRail" tabindex="0" aria-label="Neuigkeiten"><li class="nw-card" style="--t:#f3e8cb;--td:#2a2416"><div class="nw-txt"><span class="nw-k">Koran-Leser</span><h3>Von Grund auf erneuert</h3><p>Ansichten Mushaf, Fließtext und Übersetzung, Tadschwid-Farben, Lupe und Suche in den Versen.</p></div><figure class="phone nw-ph"><img src="/img/app/de/nw-okuyucu.webp" width="640" height="1391" alt="Koran-Leser" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#ecdfc7;--td:#241d12"><div class="nw-txt"><span class="nw-k">Hörszenen</span><h3>Hör unter einer sich drehenden Kuppel zu</h3><p>Eine sich drehende Moscheekuppel, eine ziehende Landschaft oder ein Pastellbild. Dazu Szenen der Kaaba und der Prophetenmoschee.</p></div><figure class="phone nw-ph"><img src="/img/app/de/nw-sahne.webp" width="640" height="1391" alt="Hörszenen" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#dce4ef;--td:#121a26"><div class="nw-txt"><span class="nw-k">Versvideo</span><h3>Ein Video aus Versen deiner Wahl</h3><p>In drei Formaten, mit der Stimme eines Rezitators oder deiner eigenen; dann sichern und teilen.</p></div><figure class="phone nw-ph"><img src="/img/app/de/nw-video.webp" width="640" height="1391" alt="Versvideo" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#e1eddb;--td:#15241a"><div class="nw-txt"><span class="nw-k">Garten der Absichten</span><h3>Jede Absicht wird zum Setzling</h3><p>Er wächst, wenn du sie einhältst. Deinen Garten siehst nur du; brauchst du eine Pause, wartet er auf dich.</p></div><figure class="phone nw-ph"><img src="/img/app/de/nw-bahce.webp" width="640" height="1391" alt="Garten der Absichten" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#f2e7db;--td:#2a1f17"><div class="nw-txt"><span class="nw-k">Impuls nach dem Gebet</span><h3>Eine Minute nach jedem Gebet</h3><p>Erste Reihe: Aus dem Leben des Propheten. Quellen sind nur der Koran, Sahih al-Buchari, Sahih Muslim und als sahih oder hasan beurteilte Überlieferungen.</p></div><figure class="phone nw-ph"><img src="/img/app/de/nw-sohbet.webp" width="640" height="1391" alt="Impuls nach dem Gebet" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#dee4ec;--td:#101822"><div class="nw-txt"><span class="nw-k">Tahajjud</span><h3>Die Tahajjud-Zeit dieser Nacht</h3><p>Die Karte in „Meine Gebete“ hat auch Witr, eine Anleitung und einen Weckalarm.</p></div><figure class="phone nw-ph"><img src="/img/app/de/nw-gece.webp" width="640" height="1391" alt="Tahajjud" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#e0eee8;--td:#12231c"><div class="nw-txt"><span class="nw-k">Nachholgebete und -fasten</span><h3>Eins nach dem anderen, in deinem Tempo</h3><p>Mit Rechenhilfe und optionaler Erinnerung; deine Einträge siehst nur du.</p></div><figure class="phone nw-ph"><img src="/img/app/de/nw-kaza.webp" width="640" height="1391" alt="Nachholgebete und -fasten" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#e7eae5;--td:#18201c"><div class="nw-txt"><span class="nw-k">Mein Bittgebetsheft</span><h3>Schreib deine Bittgebete nach Abschnitten</h3><p>Füge Verse, Bittgebete und die Namen Allahs hinzu, richte eine Erinnerung ein und teile es als PDF.</p></div><figure class="phone nw-ph"><img src="/img/app/de/nw-defter.webp" width="640" height="1391" alt="Mein Bittgebetsheft" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#f1e2e7;--td:#2a1a21"><div class="nw-txt"><span class="nw-k">Offener Wochenkreis</span><h3>Mit einer Seite pro Woche Teil einer Chatma</h3><p>Tritt dem offenen wöchentlichen Koran-Kreis bei. Keine Mitgliederliste: sichtbar sind nur die Gesamtzahlen.</p></div><figure class="phone nw-ph"><img src="/img/app/de/nw-haftalik.webp" width="640" height="1391" alt="Offener Wochenkreis" loading="lazy" decoding="async"></figure></li></ul>
   </section>
 
-  <!-- TEK BASINA -->
-  <section id="solo">
-    <div class="sec-head">
-      <span class="eyebrow">Allein</span>
-      <h2>Begleitet deine tägliche Andacht</h2>
-      <p>Manevi Halka ist nicht nur für gemeinsames Lesen da, sondern begleitet dich auch in der Andacht jedes Tages.</p>
-    </div>
-    <ul class="areas">
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-1.6-1.4-4-2-7-2v13c3 0 5.4.6 7 2 1.6-1.4 4-2 7-2v-13c-3 0-5.4.6-7 2z"/><path d="M12 6.5v13"/></svg></span><div><b>Koran</b><span>Der Mushaf, Übersetzung, Tadschwid-Farben und Rezitation von einem Rezitator deiner Wahl.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Gebet</b><span>Gebetszeiten, Benachrichtigungen, Widgets, Qibla, Tahajjud und Nachholgebete.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><div><b>Dhikr und Bittgebet</b><span>Dhikr-Zähler, Tasbihat, Awrad, prophetische Bittgebete und Mein Bittgebetsheft.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/><path d="M9.5 10l2 2 3.5-3.5"/></svg></span><div><b>Auswendiglernen</b><span>Suren und Verse lernen, mit Wiederholung in Abständen und der Hifz-Tafel.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4z"/><path d="M15.5 5.5l3.6-1 3.2 14.6-3.6 1z"/></svg></span><div><b>Bücherregal</b><span>Deine eigenen PDF- und EPUB-Bücher und Notizen.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-8.5"/><path d="M12 13c0-3.6-2.6-6.2-6.6-6.2 0 3.6 2.6 6.2 6.6 6.2z"/><path d="M12 10.8c0-3.3 2.3-5.6 6-5.6 0 3.3-2.3 5.6-6 5.6z"/><path d="M7.5 21h9"/></svg></span><div><b>Garten der Absichten</b><span>Jede Absicht wird zu einem Setzling, der wächst, wenn du sie einhältst.</span></div></li>
-    </ul>
-
-    <div class="rows">
-      <div class="row">
-        <div>
-          <span class="eyebrow">Koran</span>
-          <h3>Lesen, hören, lernen.</h3>
-          <p>Lies in deinem Rhythmus, mit den Ansichten Mushaf, Fließtext und Übersetzung, Tadschwid-Farben und Lupe. Beim Zuhören scrollt die Seite von selbst.</p>
-          <ul class="ticks"><li>Rezitation nach Wahl, Surenwiederholung und Basmala zu Beginn jeder Sure</li><li>Wort für Wort üben, Verse ins Heft übernehmen</li><li>Suren oder Dschuz herunterladen und offline hören</li></ul>
-        </div>
-        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/de/s21-quran.webp" alt="Koran-Leser, Sure Al-Mulk: Verse und Übersetzung in der Mushaf-Ansicht" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-qa" src="/img/app/de/fx-q2-panel.webp" alt="" width="720" height="438" loading="lazy" decoding="async"><img class="fx fx-card p-qb" src="/img/app/de/fx-q2-bar.webp" alt="" width="720" height="100" loading="lazy" decoding="async"></div>
-      </div>
-      <div class="row">
-        <div>
-          <span class="eyebrow">Gebet</span>
-          <h3>Mitten in deinem Tag.</h3>
-          <p>Gebetszeiten und Qibla in 106 Ländern. Du erfährst, wann jede Gebetszeit beginnt, und für Tahajjud gibt es einen Weckalarm.</p>
-          <ul class="ticks"><li>Benachrichtigung zu Beginn jeder Gebetszeit und vor ihrem Ende</li><li>Widgets für Start- und Sperrbildschirm</li><li>Markiere Gebete, freiwillige Gebete und Nachgeholtes, nur für dich</li></ul>
-          <a class="qlink" href="/de/gebetszeiten/">Die heutigen Gebetszeiten</a>
-        </div>
-        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/de/s21-namaz.webp" alt="Meine Gebete: die heutigen Gebete mit Schaltflächen zum Nachholen" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w p-va" src="/img/app/de/fx-w-med.webp" alt="" width="720" height="339" loading="lazy" decoding="async"><img class="fx fx-card p-vk" src="/img/app/de/fx-n-kaza.webp" alt="" width="720" height="342" loading="lazy" decoding="async"><img class="fx fx-w p-vc" src="/img/app/de/fx-w-lock.webp" alt="" width="720" height="261" loading="lazy" decoding="async"></div>
-      </div>
-    </div>
-  </section>
-
   <!-- BIRLIKTE -->
   <section id="together">
     <div class="part"><span>Gemeinsam</span></div>
@@ -1148,11 +1468,24 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
       <h2>Gründe einen Kreis</h2>
       <p>Koran-, Dhikr- und Buchkreise mit Familie, Freunden oder Gemeinde. Das Aufteilen und den Überblick übernimmt Manevi Halka.</p>
     </div>
-    <ol class="steps">
-      <li><span class="bead">1</span><h3>Kreis anlegen</h3><p>Wähle, was gelesen wird und wie viele Tage eine Runde dauert.</p></li>
-      <li><span class="bead">2</span><h3>Link teilen</h3><p>Schick den Einladungslink, wer darauf tippt, ist im Kreis.</p></li>
-      <li><span class="bead">3</span><h3>Gemeinsam lesen</h3><p>Die Abschnitte werden verteilt, wer dran ist, wird benachrichtigt. Wer nicht hinterherkommt, kann um Hilfe bitten.</p></li>
-    </ol>
+    <!-- HALKA: 30 cuzluk halka kurulur, kardesler katilir, cuzler dolar. Ekrana girince bir kez (5 sn) oynar ve durur. -->
+    <div class="rg-wrap" id="rg">
+      <div class="rg-stage">
+        <div class="rg" role="img" aria-label="Ein Chatma-Kreis füllt sich: Der Kreis entsteht, Geschwister kommen dazu, alle 30 Dschuz werden gelesen">
+          <svg class="rg-svg" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle class="rg-glow" cx="200" cy="200" r="150"/><circle class="rg-track" cx="200" cy="200" r="150" pathLength="1" transform="rotate(-90 200 200)"/><g class="rg-iz"><path d="M203.40 50.04A150 150 0 0 1 227.85 52.61"/><path d="M234.51 54.02A150 150 0 0 1 257.89 61.62"/><path d="M264.10 64.39A150 150 0 0 1 285.39 76.68"/><path d="M290.90 80.68A150 150 0 0 1 309.17 97.13"/><path d="M313.72 102.19A150 150 0 0 1 328.17 122.07"/><path d="M331.57 127.97A150 150 0 0 1 341.57 150.42"/><path d="M343.67 156.90A150 150 0 0 1 348.78 180.94"/><path d="M349.50 187.71A150 150 0 0 1 349.50 212.29"/><path d="M348.78 219.06A150 150 0 0 1 343.67 243.10"/><path d="M341.57 249.58A150 150 0 0 1 331.57 272.03"/><path d="M328.17 277.93A150 150 0 0 1 313.72 297.81"/><path d="M309.17 302.87A150 150 0 0 1 290.90 319.32"/><path d="M285.39 323.32A150 150 0 0 1 264.10 335.61"/><path d="M257.89 338.38A150 150 0 0 1 234.51 345.98"/><path d="M227.85 347.39A150 150 0 0 1 203.40 349.96"/><path d="M196.60 349.96A150 150 0 0 1 172.15 347.39"/><path d="M165.49 345.98A150 150 0 0 1 142.11 338.38"/><path d="M135.90 335.61A150 150 0 0 1 114.61 323.32"/><path d="M109.10 319.32A150 150 0 0 1 90.83 302.87"/><path d="M86.28 297.81A150 150 0 0 1 71.83 277.93"/><path d="M68.43 272.03A150 150 0 0 1 58.43 249.58"/><path d="M56.33 243.10A150 150 0 0 1 51.22 219.06"/><path d="M50.50 212.29A150 150 0 0 1 50.50 187.71"/><path d="M51.22 180.94A150 150 0 0 1 56.33 156.90"/><path d="M58.43 150.42A150 150 0 0 1 68.43 127.97"/><path d="M71.83 122.07A150 150 0 0 1 86.28 102.19"/><path d="M90.83 97.13A150 150 0 0 1 109.10 80.68"/><path d="M114.61 76.68A150 150 0 0 1 135.90 64.39"/><path d="M142.11 61.62A150 150 0 0 1 165.49 54.02"/><path d="M172.15 52.61A150 150 0 0 1 196.60 50.04"/></g><g class="rg-fill"><path class="me" style="--i:0" pathLength="1" d="M203.40 50.04A150 150 0 0 1 227.85 52.61"/><path class="me" style="--i:1" pathLength="1" d="M234.51 54.02A150 150 0 0 1 257.89 61.62"/><path class="me" style="--i:2" pathLength="1" d="M264.10 64.39A150 150 0 0 1 285.39 76.68"/><path class="me" style="--i:3" pathLength="1" d="M290.90 80.68A150 150 0 0 1 309.17 97.13"/><path class="me" style="--i:4" pathLength="1" d="M313.72 102.19A150 150 0 0 1 328.17 122.07"/><path class="" style="--i:5" pathLength="1" d="M331.57 127.97A150 150 0 0 1 341.57 150.42"/><path class="" style="--i:6" pathLength="1" d="M343.67 156.90A150 150 0 0 1 348.78 180.94"/><path class="" style="--i:7" pathLength="1" d="M349.50 187.71A150 150 0 0 1 349.50 212.29"/><path class="" style="--i:8" pathLength="1" d="M348.78 219.06A150 150 0 0 1 343.67 243.10"/><path class="" style="--i:9" pathLength="1" d="M341.57 249.58A150 150 0 0 1 331.57 272.03"/><path class="" style="--i:10" pathLength="1" d="M328.17 277.93A150 150 0 0 1 313.72 297.81"/><path class="" style="--i:11" pathLength="1" d="M309.17 302.87A150 150 0 0 1 290.90 319.32"/><path class="" style="--i:12" pathLength="1" d="M285.39 323.32A150 150 0 0 1 264.10 335.61"/><path class="" style="--i:13" pathLength="1" d="M257.89 338.38A150 150 0 0 1 234.51 345.98"/><path class="" style="--i:14" pathLength="1" d="M227.85 347.39A150 150 0 0 1 203.40 349.96"/><path class="" style="--i:15" pathLength="1" d="M196.60 349.96A150 150 0 0 1 172.15 347.39"/><path class="" style="--i:16" pathLength="1" d="M165.49 345.98A150 150 0 0 1 142.11 338.38"/><path class="" style="--i:17" pathLength="1" d="M135.90 335.61A150 150 0 0 1 114.61 323.32"/><path class="" style="--i:18" pathLength="1" d="M109.10 319.32A150 150 0 0 1 90.83 302.87"/><path class="" style="--i:19" pathLength="1" d="M86.28 297.81A150 150 0 0 1 71.83 277.93"/><path class="" style="--i:20" pathLength="1" d="M68.43 272.03A150 150 0 0 1 58.43 249.58"/><path class="" style="--i:21" pathLength="1" d="M56.33 243.10A150 150 0 0 1 51.22 219.06"/><path class="" style="--i:22" pathLength="1" d="M50.50 212.29A150 150 0 0 1 50.50 187.71"/><path class="" style="--i:23" pathLength="1" d="M51.22 180.94A150 150 0 0 1 56.33 156.90"/><path class="" style="--i:24" pathLength="1" d="M58.43 150.42A150 150 0 0 1 68.43 127.97"/><path class="" style="--i:25" pathLength="1" d="M71.83 122.07A150 150 0 0 1 86.28 102.19"/><path class="" style="--i:26" pathLength="1" d="M90.83 97.13A150 150 0 0 1 109.10 80.68"/><path class="" style="--i:27" pathLength="1" d="M114.61 76.68A150 150 0 0 1 135.90 64.39"/><path class="" style="--i:28" pathLength="1" d="M142.11 61.62A150 150 0 0 1 165.49 54.02"/><path class="" style="--i:29" pathLength="1" d="M172.15 52.61A150 150 0 0 1 196.60 50.04"/></g></svg><span class="rg-av me" style="--g:0;left:73.50%;top:9.30%">Du</span><span class="rg-av" style="--g:1;left:97.00%;top:50.00%">A</span><span class="rg-av" style="--g:2;left:73.50%;top:90.70%">Y</span><span class="rg-av" style="--g:3;left:26.50%;top:90.70%">M</span><span class="rg-av" style="--g:4;left:3.00%;top:50.00%">Z</span><span class="rg-av" style="--g:5;left:26.50%;top:9.30%">F</span>
+          <div class="rg-mid" aria-hidden="true">
+            <span class="rg-count"><b id="rgN">30</b><small>/30 Dschuz</small></span>
+            <span class="rg-done"><b>Alhamdulillah</b><small>Chatma vollendet</small></span>
+          </div>
+        </div>
+        <button type="button" class="rg-replay" id="rgReplay" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4.5v4h4"/></svg>Nochmal abspielen</button>
+      </div>
+      <ol class="steps rg-steps">
+        <li><span class="bead">1</span><h3>Kreis anlegen</h3><p>Wähle, was gelesen wird und wie viele Tage eine Runde dauert.</p></li>
+        <li><span class="bead">2</span><h3>Link teilen</h3><p>Schick den Einladungslink, wer darauf tippt, ist im Kreis.</p></li>
+        <li><span class="bead">3</span><h3>Gemeinsam lesen</h3><p>Die Abschnitte werden verteilt, wer dran ist, wird benachrichtigt. Wer nicht hinterherkommt, kann um Hilfe bitten.</p></li>
+      </ol>
+    </div>
 
     <div class="rows">
       <div class="row">
@@ -1314,8 +1647,8 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
   <div class="wrap">
     <a class="brand" href="#top" data-sec="top" tabindex="-1"><img src="/img/brand-icon.webp" alt="" width="28" height="28"><span>Manevi Halka</span></a>
     <nav class="dock-nav" aria-label="Bereiche">
-      <a href="#yeni" data-sec="yeni" data-p="1.5">Neu</a>
       <a href="#solo" data-sec="solo" data-p="1">Allein</a>
+      <a href="#yeni" data-sec="yeni" data-p="1.5">Neu</a>
       <a href="#together" data-sec="together" data-p="2">Gemeinsam</a>
       <a href="#faq" data-sec="faq" data-p="3">Häufige Fragen</a>
       <a class="pg ilk" href="/de/gebetszeiten/">Gebetszeiten</a>
@@ -1337,8 +1670,8 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
   <div class="ss-panel">
     <div class="ss-title">Auf dieser Seite</div>
     <a href="#top" data-sec="top"><span>Anfang<small>ganz oben</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
-    <a href="#yeni" data-sec="yeni"><span>Neu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     <a href="#solo" data-sec="solo"><span>Allein</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#yeni" data-sec="yeni"><span>Neu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     <a href="#together" data-sec="together"><span>Gemeinsam</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     <a href="#faq" data-sec="faq"><span>Häufige Fragen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     <a href="#download" data-sec="download"><span>Laden</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
@@ -1350,7 +1683,9 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
 </div>
 
 <script>
-  var D = {"lang":"de","rtl":false,"imgBase":"/img/app/de/","aria":{"toDark":"Zum dunklen Design wechseln","toLight":"Zum hellen Design wechseln"},"links":{"ios":"https://apps.apple.com/app/manevi-halka/id6760654292","androidDock":"https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Ddock-de"},"strip":{"label":"Gebetszeiten"},"secName":{"top":"Anfang","yeni":"Neu","solo":"Allein","together":"Gemeinsam","faq":"Häufige Fragen","download":"Laden"},"sections":"Bereiche"};
+  var D = {"lang":"de","rtl":false,"imgBase":"/img/app/de/","aria":{"toDark":"Zum dunklen Design wechseln","toLight":"Zum hellen Design wechseln"},"links":{"ios":"https://apps.apple.com/app/manevi-halka/id6760654292","androidDock":"https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Ddock-de"},"strip":{"label":"Gebetszeiten"},"secName":{"top":"Anfang","yeni":"Neu","solo":"Allein","together":"Gemeinsam","faq":"Häufige Fragen","download":"Laden"},"sections":"Bereiche","day":{"city":"Gebetszeiten für {c}","keys":["fajr","dhuhr","asr","maghrib","isha"]},"ts":{"ar":["سُبْحَانَ اللهِ","الْحَمْدُ لِلهِ","اللهُ أَكْبَرُ"],"p":["Subhanallah","Alhamdulillah","Allahu akbar"],"m":["Gepriesen sei Allah","Alles Lob gebührt Allah","Allah ist der Größte"],"done":"Tasbihat vollendet. Möge Allah es annehmen."}};
+  // Yakin plan motoru (asagida) bir gun bolumune de hizmet eder: FX.place(host, p) kirpintiyi ekrandan (p=0) yerine (p=1) tasir.
+  var FX = null;
 
   // ── Tema: yeni tema dugmeden buyuyen bir daire olarak yayilir ──────────────
   (function () {
@@ -1449,7 +1784,7 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
   // ── Yuzen gezinme: bolum casusu, masaustu cubugu, telefon hapi, bolum listesi ──
   (function () {
     var $ = function (id) { return document.getElementById(id); };
-    var SECS = ["top", "yeni", "solo", "together", "faq", "download"];
+    var SECS = ["top", "solo", "yeni", "together", "faq", "download"];
     var secCur = "", tickQueued = false, sheetOpen = false, sheetReturn = null;
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     function setShown(el, on) {
@@ -1618,7 +1953,7 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     var PAD = 10;
     var hosts = [].slice.call(document.querySelectorAll(".fx-host")).map(function (h) {
-      return { el: h, fig: h.querySelector(".phone"), crops: [].slice.call(h.querySelectorAll(".fx")).map(function (c) {
+      return { el: h, day: h.closest(".day"), fig: h.querySelector(".phone"), crops: [].slice.call(h.querySelectorAll(".fx")).map(function (c) {
         var s = c.getAttribute("data-src");
         return { el: c, src: s ? s.split(",").map(Number) : null };
       }) };
@@ -1645,12 +1980,19 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
       raf = 0;
       var vh = window.innerHeight, R = vh * 0.6;
       hosts.forEach(function (h) {
+        // Bir gun sahnesi canliyken kirpintilarini kendisi oynatir (bolum degisince ekrandan kalkar)
+        if (h.day && h.day.classList.contains("is-live")) return;
         var b = h.el.getBoundingClientRect();
         if (b.bottom < -vh * 0.5 || b.top > vh * 1.5) return;
         var d = b.top + b.height / 2 - vh / 2;
         // Ortaya yakin genis bir bantta tam oturur, bant disinda yumusakca ekrana doner
         var t = Math.max(0, Math.min(1, (1 - Math.abs(d) / R) / 0.7));
-        var p = t * t * (3 - 2 * t), k = 1 - p;
+        place(h, t * t * (3 - 2 * t));
+      });
+    }
+
+    function place(h, p) {
+        var k = 1 - p;
         var S = h.scr;
         h.crops.forEach(function (c) {
           var f = c.f, cx = f.x + f.w / 2, cy = f.y + f.h / 2, tx, ty, s, op = 1, sh = 1;
@@ -1666,15 +2008,253 @@ if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentS
           c.el.style.opacity = op.toFixed(3);
           c.el.style.setProperty("--sh", sh.toFixed(3));
         });
-      });
     }
 
     function ask() { if (!raf) raf = requestAnimationFrame(frame); }
     function relayout() { measure(); ask(); }
+    FX = { hosts: hosts, measure: measure, place: place, ask: ask };
     relayout();
     window.addEventListener("scroll", ask, { passive: true });
     window.addEventListener("resize", relayout);
     window.addEventListener("load", relayout);
+  })();
+  // ── Bir gun: kaydirdikca gokyuzu imsaktan yatsiya akar ──────────────────────
+  // Kap (.day) uzar, ic cerceve yapisir. Ilerleme p (0..4) kaydirmadan gelir: gokyuzu katmanlari, gunes yayi,
+  // ay, yildizlar ve pencere isiklari p'ye surekli bagli; bolum (metin + telefon) p'nin yuvarlagi, zamanla gecer.
+  // Bolum degisince yakin planlar ekrandaki yerinden kalkar (FX.place). Hareket azaltilmissa, sayfa
+  // yakinlastirilmissa ya da ekran kucukse kurulmaz: bes ayri gokyuzu karti kalir.
+  (function () {
+    var day = document.getElementById("day");
+    if (!day || !window.requestAnimationFrame) return;
+    var root = document.documentElement;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var pin = day.querySelector(".day-pin"), frameEl = day.querySelector(".day-frame"), top = day.querySelector(".day-top");
+    var chs = [].slice.call(day.querySelectorAll(".ch")), N = chs.length;
+    var skies = [].slice.call(day.querySelectorAll(".day-sky .sky")), skyEl = day.querySelector(".day-sky");
+    var stars = skyEl.querySelector(".stars"), sun = skyEl.querySelector(".sun"), moon = skyEl.querySelector(".moon");
+    var rail = [].slice.call(day.querySelectorAll(".day-rail li")), line = day.querySelector(".day-line > i"), cityEl = day.querySelector(".day-city");
+    var HOLD = 0.35, live = false, cur = -1, raf = 0, g = null, anims = {};
+    var hostOf = function (ch) { if (!FX) return null; var el = ch.querySelector(".fx-host"); for (var i = 0; i < FX.hosts.length; i++) if (FX.hosts[i].el === el) return FX.hosts[i]; return null; };
+    function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+    function zoomed() { return root.classList.contains("mh-zoom") || (window.visualViewport && visualViewport.scale > 1.03); }
+    function want() { var w = root.clientWidth, h = root.clientHeight; return w >= 340 && h >= 560 && !(w > h * 1.9 && h < 700); }
+
+    function measure() {
+      var W = frameEl.clientWidth, H = frameEl.clientHeight, wide = root.clientWidth >= 980;
+      g = { top: parseFloat(getComputedStyle(pin).top) || 0, pinH: pin.offsetHeight, W: W, H: H, wide: wide };
+      if (!wide) {
+        var topH = top.offsetTop + top.offsetHeight + 14, txt = 0;
+        chs.forEach(function (c) { txt = Math.max(txt, c.querySelector(".ch-txt").offsetHeight); });
+        var ph = Math.min((H - topH - txt - 18) / 0.92, W * 0.68 / 0.46);
+        ph = Math.max(ph, 180);
+        frameEl.style.setProperty("--top-h", topH + "px");
+        frameEl.style.setProperty("--ph", ph.toFixed(1) + "px");
+        g.phTop = H - ph * 0.92;
+        g.peak = g.phTop - H * 0.012;
+      } else {
+        frameEl.style.removeProperty("--top-h"); frameEl.style.removeProperty("--ph");
+        g.peak = H * 0.2;
+      }
+      g.horizon = H - Math.min(200, Math.max(80, H * 0.19)) * 0.5;
+      if (FX) FX.measure();
+    }
+
+    function lift(ch) {
+      var h = hostOf(ch);
+      if (!h) return;
+      var key = chs.indexOf(ch);
+      if (anims[key]) cancelAnimationFrame(anims[key]);
+      FX.place(h, 0);
+      var t0 = performance.now() + 380, D = 950;
+      (function step(now) {
+        var t = clamp((now - t0) / D, 0, 1), e = t * t * (3 - 2 * t);
+        FX.place(h, e);
+        anims[key] = t < 1 ? requestAnimationFrame(step) : 0;
+      })(performance.now());
+    }
+
+    function setCh(i) {
+      if (i === cur) return;
+      cur = i;
+      chs.forEach(function (c, k) { c.classList.toggle("on", k === i); });
+      rail.forEach(function (r, k) { r.classList.toggle("on", k === i); });
+      lift(chs[i]);
+    }
+
+    function paint() {
+      raf = 0;
+      if (!live) return;
+      var r = day.getBoundingClientRect(), vh = root.clientHeight;
+      if (r.bottom < -40 || r.top > vh + 40) return;
+      var f = clamp((g.top - r.top) / Math.max(1, r.height - g.pinH), 0, 1);
+      var p = clamp(f * (N - 1 + 2 * HOLD) - HOLD, 0, N - 1);
+      setCh(Math.round(p));
+      // gokyuzu: alttaki tam, ustteki kesirli (karisimda kararma olmasin)
+      var b = Math.floor(p), fr = p - b;
+      for (var k = 0; k < skies.length; k++) skies[k].style.opacity = k === b ? 1 : k === b + 1 ? fr.toFixed(3) : 0;
+      // gunes: imsakta ufkun altindan, oglede tepede (telefonun ardinda), aksamda batida batar
+      var s = p <= 1 ? p * 0.5 : p <= 3 ? 0.5 + (p - 1) * 0.25 : 1 + (p - 3) * 0.2;
+      var x0 = g.wide ? 0.46 : 0.08, x1 = g.wide ? 0.97 : 0.92, x = g.W * (x0 + (x1 - x0) * Math.min(s, 1.15));
+      if (D.rtl) x = g.W - x;
+      var A = g.horizon - g.peak, y = g.horizon + g.H * 0.05 - Math.sin(Math.PI * Math.min(s, 1)) * A + (s > 1 ? (s - 1) * g.H * 0.9 : 0);
+      sun.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
+      sun.style.setProperty("--warm", clamp(Math.max(1 - s / 0.16, (s - 0.78) / 0.2), 0, 1).toFixed(3));
+      sun.style.opacity = clamp((1.12 - s) / 0.1, 0, 1).toFixed(3);
+      var night = clamp(Math.max(1 - p / 0.6, (p - 3.25) / 0.55), 0, 1);
+      stars.style.opacity = (night * 0.9).toFixed(3);
+      var mo = clamp((p - 3.3) / 0.55, 0, 1);
+      moon.style.opacity = mo.toFixed(3);
+      var mx = g.wide ? g.W * 0.9 : g.W - 38, my = (g.wide ? g.H * 0.2 : top.offsetTop + top.offsetHeight + 4) + (1 - mo) * g.H * 0.05;
+      if (D.rtl) mx = g.W - mx;
+      moon.style.transform = "translate(" + mx.toFixed(1) + "px," + my.toFixed(1) + "px)";
+      skyEl.style.setProperty("--lit", clamp(Math.max(1 - p / 0.9, (p - 2.5) / 0.9), 0, 1).toFixed(3));
+      line.style.transform = "scaleX(" + (p / (N - 1)).toFixed(4) + ")";
+    }
+    function ask() { if (!raf) raf = requestAnimationFrame(paint); }
+
+    function enter() {
+      live = true; cur = -1;
+      day.classList.add("is-live");
+      measure();
+      chs.forEach(function (c) { var h = hostOf(c); if (h) FX.place(h, 0); });
+      paint();
+    }
+    function leave() {
+      live = false; cur = -1;
+      day.classList.remove("is-live");
+      chs.forEach(function (c) { c.classList.remove("on"); });
+      frameEl.style.removeProperty("--top-h"); frameEl.style.removeProperty("--ph");
+      if (FX) { FX.measure(); FX.ask(); }
+    }
+    function check() { if (zoomed()) return; var w = want(); if (w && !live) enter(); else if (!w && live) leave(); else if (live) { measure(); cur = -1; paint(); } }
+
+    // Vakit cubugu: tiklayinca o vakte kayar. Klavyeyle bolumdeki baglantiya gelinince de oraya kayilir.
+    function goTo(i, smooth) {
+      if (!live) return;
+      var r = day.getBoundingClientRect(), f = (i + HOLD) / (N - 1 + 2 * HOLD);
+      var y = window.scrollY + r.top - g.top + f * (r.height - g.pinH) + 2;
+      window.scrollTo({ top: y, behavior: smooth ? "smooth" : "auto" });
+    }
+    rail.forEach(function (li, i) { li.querySelector("button").addEventListener("click", function () { goTo(i, true); }); });
+    chs.forEach(function (c, i) { c.addEventListener("focusin", function () { if (live && cur !== i) goTo(i, false); }); });
+
+    // Ziyaretcinin sehri biliniyorsa saatler ve "Su an" onun vakitleriyle (js/mh-dynamic.js)
+    function times() {
+      if (!window.MHPrayer) return;
+      var s = window.MHPrayer.snapshot();
+      if (s.state !== "ready") return;
+      var m = {};
+      s.rows.forEach(function (r) { m[r.key] = r.time; });
+      chs.forEach(function (c, i) {
+        var k = c.getAttribute("data-k"), now = !!s.inside && s.headKey === k;
+        c.querySelector(".ch-when .t").textContent = m[k] || "";
+        c.querySelector(".ch-when .now").hidden = !now;
+        if (rail[i]) { rail[i].querySelector(".t").textContent = m[k] || ""; rail[i].classList.toggle("is-now", now); }
+      });
+      var c = s.city ? D.day.city.replace("{c}", s.city) : "";
+      if (cityEl.textContent !== c) { cityEl.textContent = c; if (live) measure(); }
+    }
+    document.addEventListener("mh:prayer", times);
+    setInterval(times, 60000);
+    times();
+
+    if (want() && !zoomed()) enter();
+    window.addEventListener("scroll", ask, { passive: true });
+    var rt = 0;
+    window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(check, 180); });
+    window.addEventListener("load", function () { if (live) { measure(); cur = -1; paint(); } });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (live) { measure(); ask(); } });
+  })();
+
+  // ── Tesbih: her dokunusta bir tane; 33'te siradaki tesbih, uc tesbih sonunda dua ──
+  (function () {
+    var btn = document.getElementById("tsbBtn");
+    if (!btn) return;
+    var box = document.getElementById("tsb"), beads = btn.querySelectorAll(".tb"), numEl = document.getElementById("tsbN");
+    var arEl = document.getElementById("tsbAr"), pEl = document.getElementById("tsbP"), mEl = document.getElementById("tsbM");
+    var dots = box.querySelectorAll(".tsb-dots i"), reset = document.getElementById("tsbReset");
+    var n = 0, ph = 0, busy = false, done = false, T = D.ts;
+    function buzz(v) { try { if (navigator.vibrate) navigator.vibrate(v); } catch (e) { /* desteklenmiyor */ } }
+    function phrase(k) {
+      arEl.textContent = T.ar[k]; pEl.textContent = T.p[k] || T.ar[k]; mEl.textContent = T.m[k] || "";
+      [].forEach.call(dots, function (d, i) { d.classList.toggle("on", i <= k); });
+    }
+    function paint() {
+      numEl.textContent = n;
+      [].forEach.call(beads, function (b, i) { b.classList.toggle("on", i < n); });
+    }
+    function bump(el, c) { el.classList.remove(c); void el.getBoundingClientRect(); el.classList.add(c); }
+    function restart() { n = 0; ph = 0; done = false; busy = false; box.classList.remove("full"); reset.hidden = true; phrase(0); paint(); }
+    btn.addEventListener("click", function () {
+      if (busy) return;
+      if (done) { restart(); return; }
+      n++;
+      var b = beads[n - 1];
+      if (b) { b.classList.add("on"); bump(b, "cur"); }
+      numEl.textContent = n; bump(numEl, "bump"); bump(btn, "rip");
+      buzz(8);
+      if (n < 33) return;
+      box.classList.add("full"); buzz([18, 50, 18]);
+      ph++;
+      if (ph >= 3) { done = true; pEl.textContent = T.done; mEl.textContent = ""; reset.hidden = false; return; }
+      busy = true;
+      setTimeout(function () { busy = false; box.classList.remove("full"); n = 0; paint(); phrase(ph); }, 700);
+    });
+    reset.addEventListener("click", function () { restart(); btn.focus(); });
+  })();
+
+  // ── Halka sahnesi: ekrana girince bir kez oynar (yaklasik 4,5 sn) ve durur; "Yeniden oynat" ile tekrar ──
+  (function () {
+    var w = document.getElementById("rg");
+    if (!w || !("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var num = document.getElementById("rgN"), rep = document.getElementById("rgReplay"), timers = [], craf = 0;
+    var STEP = 64, S2 = 700, S3 = 1500, END = S3 + 29 * STEP + 280 + 120;
+    function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+    function clear() { timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(craf); }
+    function prime() {
+      w.classList.add("nt"); w.classList.remove("s1", "s2", "s3", "fin"); w.classList.add("pre"); num.textContent = "0";
+      void w.offsetWidth; w.classList.remove("nt");
+    }
+    function count() {
+      var t0 = performance.now();
+      (function step(t) { var v = Math.max(0, Math.min(30, Math.floor((t - t0 - 120) / STEP) + 1)); num.textContent = v; if (v < 30) craf = requestAnimationFrame(step); })(t0);
+    }
+    function play() {
+      clear(); rep.hidden = true;
+      if (document.documentElement.classList.contains("mh-zoom")) { w.classList.remove("pre", "s1", "s2", "s3"); return; }
+      prime();
+      requestAnimationFrame(function () {
+        w.classList.add("s1");
+        at(S2, function () { w.classList.add("s2"); });
+        at(S3, function () { w.classList.add("s3"); count(); });
+        at(END, function () { w.classList.remove("pre", "s1", "s2", "s3"); w.classList.add("fin"); num.textContent = "30"; });
+        at(END + 700, function () { rep.hidden = false; });
+      });
+    }
+    prime();
+    var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); play(); } }, { threshold: 0.5 });
+    io.observe(w.querySelector(".rg"));
+    rep.addEventListener("click", play);
+  })();
+
+  // ── Bolumler ekrana girerken yukselir; ayet isiler, kapanis halkasi dolar ──
+  // Yalniz yuklemede ekranin ALTINDA kalanlar gizlenir (gorunen icerik hic kaybolmaz).
+  (function () {
+    if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var root = document.documentElement;
+    root.classList.add("rv-on");
+    var sel = ".sec-head, .areas li, .tsb, .rg-wrap, .rows .row, .band, .quiet article, .faq details, .verse, .closing, .kis-strip";
+    var vh = root.clientHeight;
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.08 });
+    [].forEach.call(document.querySelectorAll(sel), function (el) {
+      if (el.closest(".day")) return;
+      if (el.getBoundingClientRect().top < vh * 0.94) { el.classList.add("in"); return; }
+      el.classList.add("rv");
+      if (el.matches(".areas li, .quiet article, .faq details")) el.style.setProperty("--rv-i", [].indexOf.call(el.parentNode.children, el) % 6);
+      io.observe(el);
+    });
   })();
 
   // ── Yakinlastirma: sus katmanlarini birak ──

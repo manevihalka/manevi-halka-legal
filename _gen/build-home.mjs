@@ -199,33 +199,74 @@ const T = {
     de: "Jede Absicht wird zu einem Setzling, der wächst, wenn du sie einhältst.", fr: "Chaque intention devient une pousse qui grandit quand tu la tiens.",
     ar: "كل نية تصير غرسة تكبر كلما وفيت بها." },
 
-  qKicker: { tr: "Kur'an", en: "Quran", de: "Koran", fr: "Coran", ar: "القرآن" },
-  qTitle: { tr: "Oku, dinle, çalış.", en: "Read, listen, memorise.", de: "Lesen, hören, lernen.", fr: "Lis, écoute, mémorise.", ar: "اقرأ واستمع واحفظ." },
-  qText: { tr: "Mushaf, Akan ve meal görünümleri, tecvid renkleri ve büyüteçle kendi düzeninde oku. Dinlerken sayfa kendiliğinden akar.", en: "Read at your own pace with Mushaf, Flowing and translation views, tajweed colours and a magnifier. As you listen, the page scrolls by itself.",
-    de: "Lies in deinem Rhythmus, mit den Ansichten Mushaf, Fließtext und Übersetzung, Tadschwid-Farben und Lupe. Beim Zuhören scrollt die Seite von selbst.", fr: "Lis à ton rythme avec les vues Mushaf, Continu et traduction, les couleurs du tajwid et la loupe. Pendant l'écoute, la page défile toute seule.",
-    ar: "اقرأ بإيقاعك مع عرض المصحف والنص المتصل والترجمة، وألوان التجويد والعدسة المكبّرة. وأثناء الاستماع تتقدّم الصفحة وحدها." },
-  qT1: { tr: "Dilediğin kârîden tilavet, sure tekrarı ve sure başında besmele", en: "Recitation by the reciter you choose, surah repeat and the Basmala",
-    de: "Rezitation nach Wahl, Surenwiederholung und Basmala zu Beginn jeder Sure", fr: "Récitation au choix, répétition de sourate et Basmala en début de sourate",
-    ar: "تلاوة بصوت القارئ الذي تختاره، وتكرار السورة، والبسملة في بداية كل سورة" },
-  qT2: { tr: "Kelime kelime çalış, ayeti defterine ekle", en: "Study word by word, add a verse to your journal",
-    de: "Wort für Wort üben, Verse ins Heft übernehmen", fr: "Étudie mot par mot, ajoute un verset à ton carnet",
-    ar: "ادرس كلمة كلمة، وأضف الآية إلى دفترك" },
-  qT3: { tr: "Sure ya da cüz indirip çevrimdışı dinleme", en: "Download a surah or juz to listen offline",
-    de: "Suren oder Dschuz herunterladen und offline hören", fr: "Télécharge une sourate ou un juz pour écouter hors ligne",
-    ar: "نزّل سورة أو جزءًا واستمع دون اتصال" },
-  pKicker: { tr: "Namaz", en: "Prayer", de: "Gebet", fr: "Prière", ar: "الصلاة" },
-  pTitle: { tr: "Gününün içinde.", en: "Woven into your day.", de: "Mitten in deinem Tag.", fr: "Au fil de ta journée.", ar: "في قلب يومك." },
-  pText: { tr: "106 ülkede namaz vakitleri ve kıble. Vakit girince haberin olur; teheccüd için uyandırma alarmı da var.", en: "Prayer times and qibla in 106 countries. You'll know when each time begins, and there's a wake-up alarm for tahajjud.",
-    de: "Gebetszeiten und Qibla in 106 Ländern. Du erfährst, wann jede Gebetszeit beginnt, und für Tahajjud gibt es einen Weckalarm.", fr: "Horaires de prière et qibla dans 106 pays. Tu sais quand chaque prière commence, et un réveil t'attend pour le tahajjud.",
-    ar: "مواقيت الصلاة والقبلة في 106 دول. تعرف متى يدخل كل وقت، وللتهجد منبّه استيقاظ." },
-  pT1: { tr: "Vakit girişinde ve çıkmadan önce bildirim", en: "A notification when each time begins and before it ends",
-    de: "Benachrichtigung zu Beginn jeder Gebetszeit und vor ihrem Ende", fr: "Une notification au début de chaque prière et avant sa fin",
-    ar: "تنبيه عند دخول كل وقت وقبل خروجه" },
-  pT2: { tr: "Ana ekran ve kilit ekranı widget'ları", en: "Home screen and lock screen widgets", de: "Widgets für Start- und Sperrbildschirm",
-    fr: "Widgets pour l'écran d'accueil et l'écran verrouillé", ar: "أدوات للشاشة الرئيسية وشاشة القفل" },
-  pT3: { tr: "Kıldıklarını, nafileleri ve kazalarını kendin için işaretle", en: "Mark your prayers, voluntary prayers and make-ups, just for yourself",
-    de: "Markiere Gebete, freiwillige Gebete und Nachgeholtes, nur für dich", fr: "Coche tes prières, surérogatoires et rattrapages, pour toi seul",
-    ar: "علّم صلواتك ونوافلك وما قضيت، لنفسك" },
+  // ── Bir gun (21 Kas 2026): kaydirdikca gokyuzu imsaktan yatsiya akar, sabit telefon o vaktin ekranini gosterir.
+  // Vakit adlari mh-dynamic.js'teki adlarla AYNI (MHPrayer gelince saatler de yazilir).
+  dsAria: { tr: "Manevi Halka ile bir gün", en: "A day with Manevi Halka", de: "Ein Tag mit Manevi Halka", fr: "Une journée avec Manevi Halka", ar: "يوم مع Manevi Halka" },
+  dsNow: { tr: "Şu an", en: "Now", de: "Jetzt", fr: "Maintenant", ar: "الآن" },
+  dsCity: { tr: "{c} vakitleriyle", en: "Prayer times for {c}", de: "Gebetszeiten für {c}", fr: "Horaires de {c}", ar: "مواقيت {c}" },
+  dsV1: { tr: "İmsak", en: "Fajr", de: "Fadschr", fr: "Fajr", ar: "الفجر" },
+  dsV2: { tr: "Öğle", en: "Dhuhr", de: "Dhuhr", fr: "Dhohr", ar: "الظهر" },
+  dsV3: { tr: "İkindi", en: "Asr", de: "Asr", fr: "Asr", ar: "العصر" },
+  dsV4: { tr: "Akşam", en: "Maghrib", de: "Maghrib", fr: "Maghrib", ar: "المغرب" },
+  dsV5: { tr: "Yatsı", en: "Isha", de: "Ischa", fr: "Icha", ar: "العشاء" },
+  ds1t: { tr: "Güne Kur'an'la başla.", en: "Begin the day with the Quran.", de: "Beginne den Tag mit dem Koran.", fr: "Commence la journée avec le Coran.", ar: "ابدأ يومك بالقرآن." },
+  ds1d: { tr: "Mushaf, Akan ve meal görünümleri, tecvid renkleri ve büyüteç. Dinlerken sayfa kendiliğinden akar.",
+    en: "Mushaf, Flowing and translation views, tajweed colours and a magnifier. As you listen, the page scrolls by itself.",
+    de: "Die Ansichten Mushaf, Fließtext und Übersetzung, Tadschwid-Farben und Lupe. Beim Zuhören scrollt die Seite von selbst.",
+    fr: "Vues Mushaf, Continu et traduction, couleurs du tajwid et loupe. Pendant l'écoute, la page défile toute seule.",
+    ar: "عرض المصحف والنص المتصل والترجمة، وألوان التجويد والعدسة المكبّرة. وأثناء الاستماع تتقدّم الصفحة وحدها." },
+  ds2t: { tr: "Vakit girince haberin olur.", en: "You'll know when it's time.", de: "Du weißt, wann es Zeit ist.", fr: "Tu sais quand c'est l'heure.", ar: "تعرف متى يدخل الوقت." },
+  ds2d: { tr: "106 ülkede namaz vakitleri ve kıble, ana ekran ve kilit ekranı widget'ları. Kıldıklarını ve kazalarını kendin için işaretle.",
+    en: "Prayer times and qibla in 106 countries, plus home and lock screen widgets. Mark your prayers and make-ups, just for yourself.",
+    de: "Gebetszeiten und Qibla in 106 Ländern, dazu Widgets für Start- und Sperrbildschirm. Markiere Gebete und Nachgeholtes, nur für dich.",
+    fr: "Horaires de prière et qibla dans 106 pays, avec des widgets pour l'écran d'accueil et l'écran verrouillé. Coche tes prières et tes rattrapages, pour toi seul.",
+    ar: "مواقيت الصلاة والقبلة في 106 دول، مع أدوات للشاشة الرئيسية وشاشة القفل. علّم صلواتك وما قضيت، لنفسك." },
+  ds3t: { tr: "Zikrin hep yanında.", en: "Your dhikr, always at hand.", de: "Dein Dhikr, immer zur Hand.", fr: "Ton dhikr, toujours à portée de main.", ar: "ذكرك في متناول يدك دائمًا." },
+  ds3d: { tr: "Zikirmatik, tesbihat, virdler ve Peygamber duaları bir arada. Hemen aşağıda bir dene.",
+    en: "Dhikr counter, tasbihat, awrad and prophetic duas in one place. Try it just below.",
+    de: "Dhikr-Zähler, Tasbihat, Awrad und prophetische Bittgebete an einem Ort. Probier es gleich darunter aus.",
+    fr: "Compteur de dhikr, tasbihat, awrad et invocations prophétiques au même endroit. Essaie juste en dessous.",
+    ar: "عداد الذكر والتسبيحات والأوراد والأدعية النبوية في مكان واحد. جرّبه في الأسفل." },
+  ds4t: { tr: "Dualarını bir defterde topla.", en: "Gather your duas in one journal.", de: "Sammle deine Bittgebete in einem Heft.", fr: "Rassemble tes invocations dans un carnet.", ar: "اجمع أدعيتك في دفتر واحد." },
+  ds4d: { tr: "Dua Defterim'de dualarını namaz sonu, seher ya da yolculuk gibi başlıklarla düzenle, okumaya tek dokunuşla başla.",
+    en: "In My dua journal, sort your duas under headings like after prayer, pre-dawn or travel, and start reading with one tap.",
+    de: "In Mein Bittgebetsheft ordnest du deine Bittgebete unter Überschriften wie nach dem Gebet, vor der Morgendämmerung oder Reise und beginnst mit einem Tippen.",
+    fr: "Dans Mon carnet d'invocations, range tes invocations sous des titres comme après la prière, avant l'aube ou voyage, et commence la lecture d'un seul geste.",
+    ar: "في دفتر أدعيتي رتّب أدعيتك تحت عناوين مثل بعد الصلاة والسَّحَر والسفر، وابدأ القراءة بلمسة واحدة." },
+  ds5t: { tr: "Günü bir niyetle kapat.", en: "Close the day with an intention.", de: "Beschließe den Tag mit einer Absicht.", fr: "Termine la journée avec une intention.", ar: "اختم يومك بنيّة." },
+  ds5d: { tr: "Niyet Bahçesi'nde her niyetin bir fidan olur, emek verdikçe büyür. Teheccüd için uyandırma alarmı da hazır.",
+    en: "In the Garden of Intentions each intention becomes a sapling that grows as you keep it. A wake-up alarm for tahajjud is ready too.",
+    de: "Im Garten der Absichten wird jede Absicht zu einem Setzling, der wächst, wenn du sie einhältst. Ein Weckalarm für Tahajjud steht auch bereit.",
+    fr: "Dans le Jardin des intentions, chaque intention devient une pousse qui grandit quand tu la tiens. Un réveil pour le tahajjud t'attend aussi.",
+    ar: "في بستان النية تصير كل نية غرسة تكبر كلما وفيت بها. ومنبّه الاستيقاظ للتهجد جاهز أيضًا." },
+  altZikir: { tr: "Zikirmatik, tesbih kipi: salavat ve 73/100", en: "Dhikr counter in prayer-bead mode: salawat at 73 of 100",
+    de: "Dhikr-Zähler im Gebetsketten-Modus: Salawat bei 73 von 100", fr: "Compteur de dhikr en mode chapelet : salawat à 73 sur 100",
+    ar: "عداد الذكر بوضع المسبحة: الصلاة على النبي، 73 من 100" },
+  altDefter: { tr: "Dua Defterim: namaz sonu, sabah ve seher başlıkları", en: "My dua journal: after prayer, morning and pre-dawn sections",
+    de: "Mein Bittgebetsheft: Abschnitte nach dem Gebet, Morgen und vor der Morgendämmerung", fr: "Mon carnet d'invocations : sections après la prière, matin et avant l'aube",
+    ar: "دفتر أدعيتي: أقسام بعد الصلاة والصباح والسَّحَر" },
+  altBahce: { tr: "Niyet Bahçesi: gece gökyüzü altında bahçe ve bugünün niyetleri", en: "Garden of Intentions: the garden under a night sky and today's intentions",
+    de: "Garten der Absichten: der Garten unter dem Nachthimmel und die Absichten von heute", fr: "Jardin des intentions : le jardin sous un ciel de nuit et les intentions du jour",
+    ar: "بستان النية: البستان تحت سماء الليل ونوايا اليوم" },
+
+  // ── Tesbih (dene): halkaya dokundukca tane ilerler, 33'te siradaki tesbihe gecer. Uygulamaya veri gitmez.
+  tsKicker: { tr: "Bir dene", en: "Try it", de: "Probier es", fr: "Essaie", ar: "جرّب" },
+  tsTitle: { tr: "Zikirmatik, parmağının ucunda.", en: "A dhikr counter at your fingertip.", de: "Ein Dhikr-Zähler an deiner Fingerspitze.", fr: "Un compteur de dhikr au bout du doigt.", ar: "عداد الذكر على طرف إصبعك." },
+  tsText: { tr: "Halkaya dokun, her dokunuşta bir tane ilerlesin. 33'te sıradaki tesbihe geçer.",
+    en: "Tap the ring and a bead moves on with every tap. At 33 it moves to the next phrase.",
+    de: "Tippe auf den Kreis, mit jedem Tippen rückt eine Perle weiter. Bei 33 geht es zum nächsten Lobpreis.",
+    fr: "Touche l'anneau : un grain avance à chaque fois. À 33, on passe à la formule suivante.",
+    ar: "اضغط على الحلقة فتتقدّم حبّة مع كل ضغطة. وعند 33 تنتقل إلى التسبيحة التالية." },
+  tsTap: { tr: "Dokun", en: "Tap", de: "Tippen", fr: "Touche", ar: "اضغط" },
+  tsAria: { tr: "Zikir say", en: "Count dhikr", de: "Dhikr zählen", fr: "Compter le dhikr", ar: "عُدّ الذكر" },
+  tsDone: { tr: "Tesbihat tamam. Allah kabul etsin.", en: "Tasbihat complete. May Allah accept it.", de: "Tasbihat vollendet. Möge Allah es annehmen.", fr: "Tasbihat terminées. Qu'Allah l'accepte.", ar: "اكتملت التسبيحات. تقبّل الله." },
+  tsReset: { tr: "Baştan", en: "Restart", de: "Neu starten", fr: "Recommencer", ar: "من جديد" },
+  tsP1: { tr: "Sübhânallah", en: "Subhanallah", de: "Subhanallah", fr: "Subhanallah", ar: "" },
+  tsP2: { tr: "Elhamdülillah", en: "Alhamdulillah", de: "Alhamdulillah", fr: "Alhamdulillah", ar: "" },
+  tsP3: { tr: "Allâhu ekber", en: "Allahu akbar", de: "Allahu akbar", fr: "Allahu akbar", ar: "" },
+  tsM1: { tr: "Allah her türlü eksiklikten uzaktır", en: "Glory be to Allah", de: "Gepriesen sei Allah", fr: "Gloire à Allah", ar: "" },
+  tsM2: { tr: "Hamd Allah'a mahsustur", en: "All praise belongs to Allah", de: "Alles Lob gebührt Allah", fr: "Louange à Allah", ar: "" },
+  tsM3: { tr: "Allah en büyüktür", en: "Allah is the Greatest", de: "Allah ist der Größte", fr: "Allah est le plus Grand", ar: "" },
 
   togKicker: { tr: "Birlikte", en: "Together", de: "Gemeinsam", fr: "Ensemble", ar: "معًا" },
   togTitle: { tr: "Bir halka kur", en: "Start a circle", de: "Gründe einen Kreis", fr: "Crée un cercle", ar: "أنشئ حلقة" },
@@ -248,6 +289,15 @@ const T = {
     de: "Die Abschnitte werden verteilt, wer dran ist, wird benachrichtigt. Wer nicht hinterherkommt, kann um Hilfe bitten.",
     fr: "Les portions sont réparties, chacun est prévenu quand vient son tour. Qui prend du retard peut demander de l'aide.",
     ar: "تُوزَّع الأجزاء ويصل التنبيه لمن حان دوره. ومن تأخّر يمكنه طلب المساعدة." },
+  // ── Halka sahnesi: 30 cuzluk halka kurulur, katilanlar gelir, cuzler dolar (bir kez, 5 sn; sonra durur)
+  rgAria: { tr: "Bir hatim halkasının dolması: halka kurulur, kardeşler katılır, 30 cüz okunur", en: "A khatm circle filling up: the circle is set up, members join, all 30 juz are read",
+    de: "Ein Chatma-Kreis füllt sich: Der Kreis entsteht, Geschwister kommen dazu, alle 30 Dschuz werden gelesen", fr: "Un cercle de khatma se remplit : le cercle est créé, les membres le rejoignent, les 30 juz sont lus",
+    ar: "حلقة ختمة تكتمل: تُنشأ الحلقة وينضم الإخوة وتُقرأ الأجزاء الثلاثون" },
+  rgJuz: { tr: "cüz", en: "juz", de: "Dschuz", fr: "juz", ar: "جزء" },
+  rgYou: { tr: "Sen", en: "You", de: "Du", fr: "Toi", ar: "أنت" },
+  rgDone1: { tr: "Elhamdülillah", en: "Alhamdulillah", de: "Alhamdulillah", fr: "Alhamdoulillah", ar: "الحمد لله" },
+  rgDone2: { tr: "Hatim tamamlandı", en: "Khatm complete", de: "Chatma vollendet", fr: "Khatma terminée", ar: "اكتملت الختمة" },
+  rgReplay: { tr: "Yeniden oynat", en: "Play again", de: "Nochmal abspielen", fr: "Rejouer", ar: "أعد التشغيل" },
   hKicker: { tr: "Ortak hatim", en: "Shared khatm", de: "Gemeinsame Chatma", fr: "Khatma commune", ar: "ختمة مشتركة" },
   hTitle: { tr: "Dağıtımı uygulama üstlensin.", en: "Let the app handle the sharing.", de: "Die Verteilung übernimmt die App.",
     fr: "L'appli se charge de la répartition.", ar: "دع التطبيق يتولّى التوزيع." },
@@ -549,6 +599,8 @@ function veri(dil) {
     strip: { label: T.stripLabel[dil] },
     secName: { top: T.secStart[dil], yeni: T.navNew[dil], solo: T.navSolo[dil], together: T.navTogether[dil], faq: T.navFaq[dil], download: kutu.I18N[dil].get },
     sections: T.navAria[dil],
+    day: { city: T.dsCity[dil], keys: ["fajr", "dhuhr", "asr", "maghrib", "isha"] },
+    ts: { ar: ["سُبْحَانَ اللهِ", "الْحَمْدُ لِلهِ", "اللهُ أَكْبَرُ"], p: [T.tsP1[dil], T.tsP2[dil], T.tsP3[dil]], m: [T.tsM1[dil], T.tsM2[dil], T.tsM3[dil]], done: T.tsDone[dil] },
   };
 }
 
@@ -706,6 +758,68 @@ function fxParcalari(dil) {
   };
 }
 
+// ── Bir gun: ufuk silueti (genel bir cami ve ev siluetleri; belirli bir yapi degil). Tek sembol, her bolum <use> ile
+// kullanir. .lit pencereleri gece yanar (--lit). Koordinatlar 1200x150, zemin y=150.
+function ufukSvg() {
+  const r = (x, y, w, h) => `M${x} ${y}h${w}v${h}h-${w}z`;
+  const kubbe = (x0, x1, y, h) => { const m = (x0 + x1) / 2; return `M${x0} ${y}Q${x0} ${y - h * 1.02} ${m} ${y - h}Q${x1} ${y - h * 1.02} ${x1} ${y}z`; };
+  const minare = (x, w, top, kon) => r(x, top, w, 150 - top) + r(x - 3, top + 26, w + 6, 4) + `M${x} ${top}L${x + w / 2} ${top - kon}L${x + w} ${top}z`;
+  const evler = [[0, 118, 40], [36, 108, 46], [78, 124, 30], [104, 112, 38], [280, 116, 36], [312, 104, 30], [338, 120, 44], [378, 110, 28],
+    [770, 112, 40], [806, 122, 30], [832, 106, 44], [872, 118, 32], [1060, 118, 36], [1092, 108, 40], [1128, 122, 30], [1154, 112, 46]];
+  const on = [
+    ...evler.map(([x, y, w]) => r(x, y, w, 150 - y)),
+    // sol kucuk cami
+    r(150, 112, 100, 38), kubbe(162, 238, 112, 40), r(199, 58, 2, 14), minare(258, 9, 50, 18),
+    // ortadaki buyuk cami: iki minare, yan yarim kubbeler, kasnak, ana kubbe, alem
+    minare(448, 12, 24, 24), minare(740, 12, 24, 24), r(444, 88, 20, 4), r(736, 88, 20, 4),
+    r(476, 96, 248, 54), kubbe(476, 500, 96, 13), kubbe(700, 724, 96, 13), kubbe(488, 552, 96, 27), kubbe(648, 712, 96, 27),
+    r(540, 78, 120, 20), kubbe(534, 666, 80, 60), r(599, 2, 2, 20),
+    // sag kucuk cami
+    r(930, 110, 100, 40), kubbe(942, 1018, 110, 36), r(979, 60, 2, 14), minare(1042, 9, 46, 18),
+  ].join("");
+  const agac = [[124, 132, 7, 18], [430, 128, 6, 22], [764, 130, 6, 20], [1040, 134, 5, 16], [262 + 50, 134, 5, 16]]
+    .map(([x, y, rx, ry]) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join("");
+  const pen = [[10, 126], [48, 118], [60, 132], [116, 122], [128, 136], [290, 126], [322, 114], [350, 130], [388, 120], [784, 122], [818, 132], [846, 116], [858, 130], [884, 128],
+    [1070, 128], [1104, 118], [1116, 134], [1166, 122], [1180, 136], [168, 124], [228, 124], [944, 122], [1012, 122]]
+    .map(([x, y]) => r(x, y, 4, 5)).join("") + [556, 576, 596, 616, 636].map((x) => r(x, 112, 6, 11)).join("") + [494, 516, 684, 706].map((x) => r(x, 116, 5, 9)).join("");
+  return `<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="dsSky" viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax slice">` +
+    `<path style="fill:var(--hill,rgba(8,26,18,.42))" d="M0 122C150 102 300 114 450 106S750 98 900 110S1100 102 1200 112V150H0z"/>` +
+    `<path style="fill:var(--sil,#0a1d15)" d="${on}"/><g style="fill:var(--sil,#0a1d15)">${agac}</g><path style="fill:#f5cd74;opacity:var(--lit,0)" d="${pen}"/></symbol></svg>`;
+}
+
+// ── Halka sahnesi: 30 cuz dilimi (iz + dolgu), 6 kisi (5'er cuz). Dolgu son hal: betik yoksa halka dolu durur.
+function halkaHtml(dil) {
+  const C = 200, R = 150, N = 30, GAP = 2.6;
+  const nokta = (a, r = R) => { const t = (a - 90) * Math.PI / 180; return [(C + r * Math.cos(t)).toFixed(2), (C + r * Math.sin(t)).toFixed(2)]; };
+  let iz = "", dolgu = "";
+  for (let i = 0; i < N; i++) {
+    const a0 = i * 360 / N + GAP / 2, a1 = (i + 1) * 360 / N - GAP / 2, [x0, y0] = nokta(a0), [x1, y1] = nokta(a1);
+    const d = `M${x0} ${y0}A${R} ${R} 0 0 1 ${x1} ${y1}`;
+    iz += `<path d="${d}"/>`;
+    dolgu += `<path class="${i < 5 ? "me" : ""}" style="--i:${i}" pathLength="1" d="${d}"/>`;
+  }
+  const harf = dil === "ar" ? ["أ", "ي", "م", "ز", "ف"] : ["A", "Y", "M", "Z", "F"];
+  const kisi = [0, 1, 2, 3, 4, 5].map((g) => {
+    const [x, y] = nokta((g * 5 + 2.5) * 360 / N, 188).map(Number);
+    const ad = g === 0 ? T.rgYou[dil] : harf[g - 1];
+    return `<span class="rg-av${g === 0 ? " me" : ""}" style="--g:${g};left:${(x / 4).toFixed(2)}%;top:${(y / 4).toFixed(2)}%">${kacis(ad)}</span>`;
+  }).join("");
+  return `<svg class="rg-svg" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle class="rg-glow" cx="200" cy="200" r="150"/>` +
+    `<circle class="rg-track" cx="200" cy="200" r="${R}" pathLength="1" transform="rotate(-90 200 200)"/><g class="rg-iz">${iz}</g><g class="rg-fill">${dolgu}</g></svg>${kisi}`;
+}
+
+// ── Tesbih (dene): 33 tane ve ustte imame. Son hal betiksiz de duzgun (taneler sonuk).
+function tesbihSvg() {
+  const C = 100, R = 84, N = 33;
+  let t = "";
+  for (let i = 0; i < N; i++) {
+    const a = (i + 1) * 360 / (N + 1) - 90, x = C + R * Math.cos(a * Math.PI / 180), y = C + R * Math.sin(a * Math.PI / 180);
+    t += `<circle class="tb" cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="5.4"/>`;
+  }
+  return `<svg class="tsb-ring" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle class="tsb-ip" cx="100" cy="100" r="${R}"/>` +
+    `<path class="tsb-imame" d="M96.6 7.5h6.8l1.2 9.5h-9.2z"/><circle class="tsb-imame" cx="100" cy="21" r="4.6"/>${t}</svg>`;
+}
+
 // "Kendi zevkine göre" seridi: her dilde uygulamanin o dildeki gercek ekrani
 // (gecici premium deneme hesabiyla cekildi, 4 Eki 2026). Ad ve aciklama
 // uygulamadaki adlarla birebir (backdrop.*, theme.*, counter.modeStrand).
@@ -847,6 +961,9 @@ function sayfa(dil) {
     // Serit kartlari HTML'de hazir ve yerleri CSS'te: betik gelince kayma olmaz.
     stripHtml: seritHtml(dil),
     nwHtml: yeniHtml(dil),
+    ufukSvg: ufukSvg(),
+    halkaHtml: halkaHtml(dil),
+    tesbihSvg: tesbihSvg(),
     // 21 Kas 2026: DE/FR ekran goruntulerinde de Itani'nin Ingilizce meali gorunuyor (uygulamada DE/FR meal gecici olarak Ingilizce): atif o dillerde de.
     creditHtml: ["en", "de", "fr"].includes(dil) ? `${kacis(s.itaniCredit)} <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span>` : "",
   };
