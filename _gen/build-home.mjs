@@ -821,19 +821,20 @@ function tesbihSvg() {
 }
 
 // "Kendi zevkine göre" seridi: her dilde uygulamanin o dildeki gercek ekrani
-// (gecici premium deneme hesabiyla cekildi, 4 Eki 2026). Ad ve aciklama
+// (2.1.0, Premium hesapla simulatorde cekildi, 21 Kas 2026; ilk surumu 4 Eki 2026). Ad ve aciklama
 // uygulamadaki adlarla birebir (backdrop.*, theme.*, counter.modeStrand).
 // Sayfa rengi, widget gorunumleri ve tesbih kipi ucretsiz; Premium notu yalniz
 // zemin ve temalari soyler, bu yuzden dogru kalir.
 const KIS = [
-  { img: "ufuk",
+  // 21 Kas 2026: Ufuk zemini kalkti, yerine Sis Denizi (uygulama e1bee13f; ad backdrop.sis, aciklama backdrop.sisDesc'ten kisaltildi).
+  { img: "sis",
     tag: { tr: "Zemin", en: "Backdrop", de: "Hintergrund", fr: "Fond", ar: "الخلفية" },
-    ad: { tr: "Ufuk", en: "Horizon", de: "Horizont", fr: "Horizon", ar: "الأفق" },
-    acik: { tr: "Güneş ve ay, şehrinin namaz vakitlerine göre doğar ve batar.",
-      en: "The sun and moon rise and set with your city's prayer times.",
-      de: "Sonne und Mond gehen mit den Gebetszeiten deiner Stadt auf und unter.",
-      fr: "Le soleil et la lune se lèvent et se couchent au rythme des heures de prière de ta ville.",
-      ar: "تشرق الشمس ويطلع القمر ويغيبان مع مواقيت الصلاة في مدينتك." } },
+    ad: { tr: "Sis Denizi", en: "Sea of Mist", de: "Nebelmeer", fr: "Mer de brume", ar: "بحر الضباب" },
+    acik: { tr: "Sisin üstünden yükselen bir cami. Vakit girince gök ve sis yeni vaktin rengine döner.",
+      en: "A mosque rising above a sea of mist. When a prayer time begins, the sky and the mist take on its colours.",
+      de: "Eine Moschee über einem Nebelmeer. Beginnt eine Gebetszeit, nehmen Himmel und Nebel ihre Farben an.",
+      fr: "Une mosquée s’élève au-dessus d’une mer de brume. À chaque nouvelle heure de prière, le ciel et la brume prennent ses couleurs.",
+      ar: "مسجد يعلو فوق بحر من الضباب. عند دخول كل وقت تتلوّن السماء والضباب بألوانه." } },
   { img: "kandil",
     tag: { tr: "Zemin · Koyu tema", en: "Backdrop · Dark theme", de: "Hintergrund · Dunkles Design", fr: "Fond · Thème sombre", ar: "الخلفية · السمة الداكنة" },
     ad: { tr: "Kandiller", en: "Lamps", de: "Lampen", fr: "Lampes", ar: "القناديل" },
