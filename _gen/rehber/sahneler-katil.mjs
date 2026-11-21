@@ -4,7 +4,9 @@
  *   davet karti        app/join/[id].tsx (DAVET, Katil, Simdilik Gec, Hos geldin penceresi)
  *   kodla katilma      app/join-group.tsx (Yapistir, Katil; kutu mesajin tamamini da tanir: lib/inviteCode.ts)
  *   Halkalar, hesapsiz app/(tabs)/halkalar.tsx (Halka kur / Davet koduyla katil, once "Adin ne?")
- *   uye halka ekrani   app/group/[id].tsx (uyede karsilama karti ve + dugmesi YOK)
+ *   uye halka ekrani   app/group/[id].tsx (2.1.0: tek satir baslik, uye seridi + Davet et, Gorevler/Uyeler sekmeleri;
+ *                      uyede "+ Gorev ekle" YOK; linkle katilinca ?joined=1 ile bir kez "Hos geldin" karti:
+ *                      components/circles/JoinWelcomeCard.tsx, "Halkanin N. tanesi sensin", altin yeni tane)
  *   tur ortasi katilan app/flow/[id].tsx (flow.noAssignment + flow.noAssignmentNextRound)
  *   web sayfalari      legal repo join.html (STRINGS) ve halka.html (S, RT): uygulama metni DEGIL,
  *                      sitenin kendi metni; asagidaki WEB tablosu o dosyalardan birebir kopya.
@@ -77,14 +79,18 @@ function inviteCard(K) {
     </div></div>`;
 }
 
-/** Halka ekrani, UYE gorunumu: karsilama karti ve sag alttaki + yok. toast: kodla katilinca ustte cikan bildirim. */
-function memberCircle(K, { toast = false } = {}) {
+/** Halka ekrani, UYE gorunumu (2.1.0): baslik, uye seridi + Davet et, Gorevler/Uyeler, gorev karti; sag altta dugme yok.
+ *  welcome: linkle katilinca ustte bir kez "Hos geldin" karti (12 tane, sondaki altin tane yeni gelen). toast: kodla katilinca. */
+function memberCircle(K, { toast = false, welcome = false, big = false } = {}) {
   const X = K.X, members = 6;
-  const sub = `${K.Le("group.createdOn")} ${K.e(X.date)} • ${K.e(K.L("group.membersCountPlural", { count: members }))}`;
-  return `${K.hd({ title: X.circle, sub, right: ["leaf", "personAdd", "dots"] })}
-    <div class="pg">
-      <div class="seg2"><span class="on">${K.Le("group.readingsTab")}</span><span>${K.Le("group.membersTab", { count: members })}</span></div>
-      <div class="cd task-row"${K.attr("taskRow")}><span class="tri">${K.ic("quran")}</span><div><small class="cap">${K.Le("group.sectionKuran")}</small><b>${K.e(X.task)}</b><small>30 ${K.Le("units.juz", { count: 30 })}</small></div><span class="act">${K.Le("group.statusActive")}</span></div>
+  const avs = [...X.names.slice(0, 5), X.member].slice(0, 5).map((n, i) => `<span class="kt-av${i === 0 ? " adm" : ""}">${K.e(Array.from(n)[0])}</span>`).join("");
+  const tane = Array.from({ length: 12 }, (_, i) => { const a = -Math.PI / 2 + (2 * Math.PI * i) / 12; return `<circle cx="${(22 + 16 * Math.cos(a)).toFixed(1)}" cy="${(22 + 16 * Math.sin(a)).toFixed(1)}" r="${i === members - 1 ? 3.8 : 3}" class="${i < members - 1 ? "on" : i === members - 1 ? "me" : ""}"${i === members - 1 ? K.attr("wbead") : ""}/>`; }).join("");
+  const wcard = welcome ? `<div class="kt-wc2${big ? " big" : ""}"${K.attr("wcard")}><svg viewBox="0 0 44 44" class="kt-wb" aria-hidden="true">${tane}</svg><div><b>${K.Le("group.joinWelcome.title")}</b><small>${K.Le("group.joinWelcome.body", { n: members })}</small></div>${K.ic("x")}</div>` : "";
+  return `<div class="kt-hd"><span class="kt-hb">${K.ic("back", "fl")}</span><b>${K.e(X.circle)}</b><span class="kt-hi">${K.ic("leaf")}</span><span class="kt-hi">${K.ic("ktDotsH")}</span></div>
+    <div class="kt-strip"><span class="kt-avs">${avs}</span><small>${K.Le("group.membersCountPlural", { count: members })}</small><span class="kt-ivp">${K.ic("plus")}${K.Le("group.inviteShort")}</span></div>
+    <div class="kt-tabs"><span class="on">${K.Le("group.tasksTab")} <em>1</em></span><span>${K.Le("group.membersMenu")} <em>${members}</em></span></div>
+    <div class="pg kt-pg">${wcard}
+      <div class="kt-card"${K.attr("taskRow")}><span class="kt-ri">${K.ic("quran")}</span><div class="kt-ct"><small class="kt-k">${K.Le("group.sectionKuran")}</small><b>${K.e(X.task)}</b><small class="kt-ln">${K.Le("flow.roundNo", { n: 3 })} • ${K.Le("flow.roundsLeft", { count: 4 })}</small></div>${K.ic("chev", "fl kt-chv")}</div>
     </div>${toast ? `<span class="kt-toast"${K.attr("toast")}>${K.ic("checkCircle")}<small>${K.Le("joinGroup.welcomeMsg", { name: X.circle })}</small></span>` : ""}`;
 }
 
@@ -211,10 +217,10 @@ export const SAHNE = {
   /** Katil -> Adin ne? -> Hos geldin -> halka ekrani. */
   "katil-katil": (K) => K.telefon({
     aria: `${K.L("joinGroup.join")} › ${K.L("nameSheet.title")} › ${K.L("join.welcome")} › ${K.X.circle}`,
-    views: [["i", inviteCard(K)], ["c", memberCircle(K), "push"]],
+    views: [["i", inviteCard(K)], ["c", memberCircle(K, { welcome: true }), "push"]],
     overlays: [["n", K.O.nameSheet(), "pop"], ["w", welcome(K), "pop"]],
     tl: [["w", 800], ["tap", "join"], ["ov", "n"], ["w", 400], ["tap", "name"], ["type", "name", K.X.member], ["on", "nameOk", "en"], ["w", 300], ["tap", "nameOk"], ["cl", "n"],
-      ["w", 300], ["ov", "w"], ["w", 1500], ["tap", "welOk"], ["cl", "w"], ["go", "c"], ["w", 1800]],
+      ["w", 300], ["ov", "w"], ["w", 1500], ["tap", "welOk"], ["cl", "w"], ["go", "c"], ["w", 500], ["on", "wbead", "show"], ["w", 1800]],
     still: 0, hint: "join",
   }),
 
@@ -275,19 +281,28 @@ export const SAHNE = {
     still: 3,
   }),
 
+  /** Merkez karti (dongu, ~8 sn): mesajdaki link -> davet karti -> Katil -> Hos geldin karti, altin tane yerine oturur. */
+  "katil-kart": (K) => K.telefon({
+    aria: `${K.L("join.invite")} › ${K.L("joinGroup.join")} › ${K.L("group.joinWelcome.title")}`,
+    views: [["m", chat(K)], ["i", inviteCard(K), "push"], ["c", memberCircle(K, { welcome: true, big: true }), "push"]],
+    tl: [["w", 900], ["tap", "link"], ["go", "i"], ["w", 1500], ["tap", "join"], ["go", "c"], ["w", 600], ["on", "wbead", "show"], ["w", 2600]],
+    still: 3,
+  }),
+
   /** Giris filmi: mesajdaki link -> davet karti -> Katil -> ad -> Hos geldin -> halka. */
   "film-katil": (K) => K.telefon({
     size: "lg",
     aria: `${K.L("join.invite")} › ${K.L("joinGroup.join")} › ${K.L("nameSheet.title")} › ${K.L("join.welcome")} › ${K.X.circle}`,
-    views: [["m", chat(K)], ["i", inviteCard(K), "push"], ["c", memberCircle(K), "push"]],
+    views: [["m", chat(K)], ["i", inviteCard(K), "push"], ["c", memberCircle(K, { welcome: true }), "push"]],
     overlays: [["n", K.O.nameSheet(), "pop"], ["w", welcome(K), "pop"]],
     tl: [["w", 1000], ["tap", "link"], ["go", "i"], ["w", 1100], ["tap", "join"], ["ov", "n"], ["w", 300], ["tap", "name"], ["type", "name", K.X.member], ["on", "nameOk", "en"],
-      ["tap", "nameOk"], ["cl", "n"], ["w", 300], ["ov", "w"], ["w", 1500], ["tap", "welOk"], ["cl", "w"], ["go", "c"], ["w", 2400]],
+      ["tap", "nameOk"], ["cl", "n"], ["w", 300], ["ov", "w"], ["w", 1500], ["tap", "welOk"], ["cl", "w"], ["go", "c"], ["w", 500], ["on", "wbead", "show"], ["w", 2400]],
     still: 0, hint: "link",
   }),
 };
 
 export const IKON = {
+  ktDotsH: '<circle cx="5.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18.5" cy="12" r="1.3" fill="currentColor"/>',
   ktEnter: '<path d="M13.5 4H18a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4.5"/><path d="M4 12h11M11 8l4 4-4 4"/>',
   ktClip: '<rect x="6" y="5" width="12" height="16" rx="2"/><path d="M9.5 5V4a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v1"/>',
   ktLock: '<rect x="6" y="11" width="12" height="9" rx="2"/><path d="M9 11V8a3 3 0 0 1 6 0v3"/>',
@@ -297,6 +312,45 @@ export const IKON = {
 };
 
 export const CSS = `
+
+  /* halka ekrani 2.1.0 (uye) ve Hos geldin karti */
+  .mp-s .kt-hd { display: flex; align-items: center; gap: .15em; padding: .35em .6em .2em; }
+  .mp-s .kt-hd > b { flex: 1; min-width: 0; font-size: 1.32em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-inline-start: .1em; }
+  .mp-s .kt-hb, .mp-s .kt-hi { width: 2.3em; height: 2.3em; display: grid; place-items: center; color: var(--a-pri); flex: none; }
+  .mp-s .kt-strip { display: flex; align-items: center; gap: .55em; padding: .15em 1.1em 0; }
+  .mp-s .kt-avs { display: flex; flex: none; }
+  .mp-s .kt-av { width: 1.9em; height: 1.9em; border-radius: 50%; display: grid; place-items: center; font-size: .72em; font-weight: 700; background: var(--a-soft); color: var(--a-pri); box-shadow: 0 0 0 .15em var(--a-bg); }
+  .mp-s .kt-av + .kt-av { margin-inline-start: -.5em; }
+  .mp-s .kt-av.adm { background: var(--a-pri); color: var(--a-on); }
+  .mp-s .kt-strip > small { flex: 1; min-width: 0; color: var(--a-mut); font-size: .76em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mp-s .kt-ivp { display: inline-flex; align-items: center; gap: .2em; padding: .45em .75em; border-radius: 2em; background: var(--a-soft); color: var(--a-pri); font-weight: 700; font-size: .78em; flex: none; white-space: nowrap; }
+  .mp-s .kt-ivp .ic { width: 1.05em; height: 1.05em; }
+  .mp-s .kt-tabs { display: flex; gap: .2em; margin: .65em 1.1em 0; padding: .2em; border-radius: .9em; background: color-mix(in srgb, var(--a-pri) 10%, transparent); }
+  .mp-s .kt-tabs span { flex: 1; text-align: center; padding: .5em .3em; border-radius: .7em; font-size: .82em; font-weight: 600; color: var(--a-mut); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mp-s .kt-tabs span.on { background: var(--a-card); color: var(--a-ink); font-weight: 700; }
+  .mp-s .kt-tabs em { font-style: normal; color: var(--a-mut); font-weight: 600; }
+  .mp-s .kt-pg { gap: .6em; padding-top: .75em; }
+  .mp-s .kt-card { display: flex; align-items: center; gap: .65em; padding: .75em .8em; border-radius: 1.1em; background: var(--a-card); border: 1px solid var(--a-line); }
+  .mp-s .kt-ri { width: 2.6em; height: 2.6em; border-radius: 50%; display: grid; place-items: center; color: var(--a-pri); box-shadow: inset 0 0 0 .16em var(--a-soft); flex: none; }
+  .mp-s .kt-ct { flex: 1; min-width: 0; }
+  .mp-s .kt-ct > * { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mp-s .kt-k { color: var(--a-pri); font-size: .62em; font-weight: 800; letter-spacing: .05em; }
+  :root[lang="ar"] .mp-s .kt-k { letter-spacing: 0; }
+  .mp-s .kt-ct b { font-size: .95em; margin: .05em 0; }
+  .mp-s .kt-ln { color: var(--a-mut); font-size: .72em; }
+  .mp-s .kt-chv { width: 1em; height: 1em; color: var(--a-mut); }
+  .mp-s .kt-wc2 { display: flex; align-items: center; gap: .75em; padding: .95em .9em; border-radius: 1.2em; background: var(--a-card); border: 1px solid var(--a-line); }
+  .mp-s .kt-wc2 > div { flex: 1; min-width: 0; }
+  .mp-s .kt-wc2 b, .mp-s .kt-wc2 small { display: block; }
+  .mp-s .kt-wc2 b { font-size: 1.05em; }
+  .mp-s .kt-wc2 small { color: var(--a-mut); font-size: .76em; line-height: 1.35; margin-top: .1em; }
+  .mp-s .kt-wc2 > .ic { color: var(--a-mut); width: 1.1em; height: 1.1em; align-self: flex-start; }
+  .mp-s .kt-wb { width: 3.7em; height: 3.7em; flex: none; overflow: visible; }
+  .mp-s .kt-wc2.big { font-size: 1.28em; margin: .3em -.35em; box-shadow: 0 .6em 1.4em -.9em rgba(0, 0, 0, .35); }
+  .mp-s .kt-wb circle { fill: transparent; stroke: color-mix(in srgb, var(--a-mut) 45%, transparent); stroke-width: 1.3; }
+  .mp-s .kt-wb circle.on { fill: var(--a-pri); stroke: var(--a-pri); }
+  .mp-s .kt-wb circle.me { fill: var(--a-gold); stroke: var(--a-gold); opacity: 0; transform: scale(.2); transform-box: fill-box; transform-origin: center; transition: opacity .4s ease, transform .55s cubic-bezier(.2, 1.5, .3, 1); }
+  .mp-s .kt-wb circle.me.show { opacity: 1; transform: none; }
   .mp-s .kt-chat-h { display: flex; align-items: center; gap: .55em; padding: .4em .9em .6em; background: var(--a-hd); border-bottom: 1px solid var(--a-line); }
   .mp-s .kt-chat-h b { font-size: .95em; }
   .mp-s .kt-chat-b { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: .5em; padding: 1em .85em; background: color-mix(in srgb, var(--a-bg) 72%, var(--a-soft)); }

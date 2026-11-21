@@ -2,7 +2,7 @@
 /**
  * Rehber sayfalari ureticisi (5 Eki 2026).
  *   _gen/rehber.src.html            sayfa kabugu (ust cubuk, altbilgi, tema, mini ekran motoru)
- *   _gen/rehber/icerik/<id>.<dil>.mjs  metinler (id: merkez, hatim, tek, zikir, katil)
+ *   _gen/rehber/icerik/<id>.<dil>.mjs  metinler (id: merkez ve IDLER; 21 Kas 2026'da 2.1.0 ile on iki rehber)
  *   _gen/rehber/sahne.mjs + sahneler.mjs  mini ekranlar (uygulamanin dugme adlariyla)
  *   _gen/rehber/app-labels.json     uygulama metinleri (node _gen/sync-app-labels.mjs)
  *   img/rehber/<dil>/*.webp         gercek ekran kareleri (store-assets/gallery-2026-10/raw,
@@ -38,8 +38,8 @@ import { readdirSync } from "node:fs";
 const KOK = dirname(dirname(fileURLToPath(import.meta.url)));
 const KONTROL = process.argv.includes("--check");
 const TAM = process.argv.includes("--tam");
-// --yalniz <id>: yalniz o rehberi uretir (paralel calisan yazarlar birbirinin yarim dosyasina takilmasin);
-// yalniz o rehberin sahne dosyasi yuklenir, site haritasi yazilmaz.
+// --yalniz <id>: yalniz o rehberin sayfalarini uretir; site haritasi ve merkez yazilmaz. Butun sahneler-*.mjs
+// dosyalari yine yuklenir (bozuk bir sahne dosyasi herkesin uretimini durdurur).
 const YALNIZ = (() => { const i = process.argv.indexOf("--yalniz"); return i > 0 ? process.argv[i + 1] : null; })();
 // --dil <dil>: yalniz o dilin icerik dosyalari yuklenir ve uretilir (paralel cevirmenler icin; site haritasi yazilmaz).
 // --og: paylasim gorseli icin 1200x630 sayfalar _gen/og-tmp/ altina yazilir (sayfa yazilmaz);
@@ -47,7 +47,24 @@ const YALNIZ = (() => { const i = process.argv.indexOf("--yalniz"); return i > 0
 const OGMOD = process.argv.includes("--og");
 const YDIL = (() => { const i = process.argv.indexOf("--dil"); return i > 0 ? process.argv[i + 1] : null; })();
 const hata = (m) => { console.error("HATA: " + m); process.exit(1); };
-const IDLER = ["hatim", "tek", "zikir", "katil"];
+// Uretim ve site haritasi sirasi. Merkezdeki gruplar ve "Yeni" isareti asagida (MERKEZ).
+const IDLER = ["tek", "yasin", "hatim", "zikir", "oruc", "buyuk", "katil", "kaza", "teheccud", "bahce", "defter", "video"];
+/**
+ * Merkez sayfasi (21 Kas 2026, 2.1.0): en ustte buyuk one cikan kart, sonra iki grup. "Birlikte" halkalarla
+ * yapilanlar, "Kendi ibadetin" tek basina. Grup adlari ve aciklamalari merkez.<dil>.mjs `gruplar`dan.
+ * yeni: 2.1.0 ile gelen rehberler ("Yeni"); yenilendi: 2.1.0'da bastan degisen ozellik ("Yenilendi").
+ * "Halkalar" reklam basligi olarak kullanilmaz (kullanici kurali): grubun adi "Birlikte".
+ */
+const MERKEZ = {
+  one: "tek",
+  gruplar: [
+    { id: "birlikte", idler: ["yasin", "hatim", "zikir", "oruc", "buyuk", "katil"] },
+    { id: "kendi", idler: ["kaza", "teheccud", "bahce", "defter", "video"] },
+  ],
+  yeni: new Set(["yasin", "oruc", "buyuk", "kaza", "teheccud", "bahce", "defter", "video"]),
+  yenilendi: new Set(["tek"]),
+};
+for (const g of MERKEZ.gruplar) for (const i of g.idler) if (!IDLER.includes(i)) throw new Error("MERKEZ: bilinmeyen rehber " + i);
 
 // Ek sahne dosyalari: _gen/rehber/sahneler-*.mjs  (export const SAHNE = {...}; isteğe bağlı export const CSS = "...")
 // Her rehberin yeni ekranlari kendi dosyasinda durur; ayni kimlik iki dosyada olamaz.
@@ -86,6 +103,9 @@ const OZEL = {
     fr: "Télécharge Manevi Halka gratuitement, crée ton cercle et partage le lien d’invitation.",
     ar: "حمّل Manevi Halka مجانًا، وأنشئ حلقتك، وشارك رابط الدعوة." },
   bolum: { tr: "Bölüm", en: "Part", de: "Teil", fr: "Partie", ar: "الجزء" },
+  buSayfada: { tr: "Bu sayfada", en: "On this page", de: "Auf dieser Seite", fr: "Sur cette page", ar: "في هذه الصفحة" },
+  yeni: { tr: "Yeni", en: "New", de: "Neu", fr: "Nouveau", ar: "جديد" },
+  yenilendi: { tr: "Yenilendi", en: "Renewed", de: "Erneuert", fr: "Renouvelé", ar: "تجدّد" },
   // Indirme bandinda magaza dugmelerinin yanindaki QR'in yazisi (yalniz genis ekran + fare; ana sayfayla ayni metin).
   qrCaption: { tr: "Telefonunla okut", en: "Scan with your phone", de: "Mit deinem Handy scannen", fr: "Scanne avec ton téléphone", ar: "امسح الرمز بهاتفك" },
 };
@@ -225,6 +245,8 @@ function rehberGovde(id, dil, K) {
         ${c.sss ? `<li><a href="#sss"><span class="tn">?</span><span>${kacirMetin(c.sss.baslik || OZEL.sss[dil])}</span></a></li>` : ""}
       </ul></nav>`;
 
+  const filmHtml = sahneHtml(c.film.sahne, K);
+  const filmTema = (filmHtml.match(/<figure class="mp[^"]*\bt-(gul|gece|koyu)\b/) || [0, "ocean"])[1];
   return `
     <nav class="crumbs" aria-label="${e(OZEL.crumbAria[dil])}"><ol>
       <li><a href="${EV[dil]}">Manevi Halka</a></li>
@@ -234,14 +256,14 @@ function rehberGovde(id, dil, K) {
 
     <header class="g-hero">
       <div>
-        <p class="eyebrow">${SVG.bead}${kacirMetin(c.eyebrow)}</p>
+        <p class="eyebrow">${SVG.bead}${kacirMetin(c.eyebrow)}${isaret(id, dil)}</p>
         <h1>${kacirMetin(c.h1)}</h1>
         <p class="lead">${satir(c.lead, K)}</p>
         <ul class="meta">${(c.meta || []).map((m, i) => `<li>${META_IKON[i % META_IKON.length]}${kacirMetin(m)}</li>`).join("")}</ul>
       </div>
-      <div class="film">
+      <div class="film" data-tema="${filmTema}">
         <svg class="halo" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0 9.64"/></svg>
-        ${sahneHtml(c.film.sahne, K)}
+        ${filmHtml}
         <p class="cap">${satir(c.film.cap, K)}</p>
       </div>
     </header>
@@ -274,36 +296,76 @@ function ilgiliKartlar(idler, dil, K) {
     </section>`;
 }
 
+// Merkez kartindaki telefon: rehberin kendi kisa dongu sahnesi (onizleme.sahne), EKRANA GELINCE OYNAR.
+// Kart bir baglanti degil <article>: oynat/durdur dugmesi baglantinin icinde olamaz; basliktaki baglanti
+// (::after) kartin tamamini kaplar, dugme onun ustunde kalir. Telefonun temasi (t-gul, t-gece, t-koyu)
+// kartin sahnesine renk verir (data-tema).
+function kartTelefonu(i, dil, K) {
+  const on = ICERIK[i][dil].onizleme;
+  if (!on) return { tel: "", tema: "" };
+  const tel = sahneHtml(on.sahne, K);
+  const m = tel.match(/<figure class="mp[^"]*\bt-(gul|gece|koyu)\b/);
+  return { tel, tema: m ? m[1] : "ocean" };
+}
+function isaret(i, dil) {
+  if (MERKEZ.yeni.has(i)) return `<span class="hc-new">${OZEL.yeni[dil]}</span>`;
+  if (MERKEZ.yenilendi.has(i)) return `<span class="hc-new">${OZEL.yenilendi[dil]}</span>`;
+  return "";
+}
+function merkezKart(i, dil, K, buyuk = false) {
+  const g = ICERIK[i][dil], k = g.kart;
+  const { tel, tema } = kartTelefonu(i, dil, K);
+  const baslik = `<a class="hc-a" href="${adres(i, dil)}">${kacirMetin(k.baslik)}</a>`;
+  return `<article class="hc${buyuk ? " hc-one" : ""}" data-tema="${tema}" data-id="${i}">
+        <div class="hc-stage">${buyuk ? `<svg class="hc-ring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="0 7.38"/><circle cx="100" cy="100" r="78" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-dasharray="0 5.1" opacity=".7"/></svg>` : ""}${tel}</div>
+        <div class="hc-body">
+          <p class="hc-top"><span class="kicker">${kacirMetin(k.kicker)}</span>${isaret(i, dil)}</p>
+          ${buyuk ? `<h2>${baslik}</h2>` : `<h3>${baslik}</h3>`}
+          <p class="hc-text">${satir(k.metin, K)}</p>
+          <span class="hc-more" aria-hidden="true">${OZEL.oku[dil]}${SVG.arrow}</span>
+        </div>
+      </article>`;
+}
+// Grup basligindaki halkanin icindeki simge: Birlikte iki kisi, Kendi ibadetin filizlenen yaprak.
+const GRUP_IKON = {
+  birlikte: '<svg class="gi" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.6 14c2.6.1 4.6 1.8 5.1 4.6"/></svg>',
+  kendi: '<svg class="gi" viewBox="0 0 24 24"><path d="M12 21v-8"/><path d="M12 13c0-4 2.6-6.6 7-7 0 4.3-2.6 7-7 7z"/><path d="M12 15.5c0-3.2-2.1-5.3-5.6-5.6 0 3.4 2.1 5.6 5.6 5.6z"/></svg>',
+};
 function merkezGovde(dil, K) {
   const c = ICERIK.merkez[dil];
-  const kartlar = IDLER.filter((i) => var_mi(i, dil)).map((i) => {
-    const g = ICERIK[i][dil], k = g.kart, on = g.onizleme;
-    let tel = "";
-    if (on) {
-      tel = sahneHtml(on.sahne, K).replace('<figure class="mp', '<figure data-static class="mp').replace(/data-still="\d+"/, `data-still="${on.adim ?? 0}"`);
-    }
-    return `<li><a href="${adres(i, dil)}"><div><span class="kicker">${kacirMetin(k.kicker)}</span><h2>${kacirMetin(k.baslik)}</h2><p>${satir(k.metin, K)}</p><em>${OZEL.oku[dil]}${SVG.arrow}</em></div>${tel}</a></li>`;
-  }).join("\n      ");
+  const one = var_mi(MERKEZ.one, dil) ? merkezKart(MERKEZ.one, dil, K, true) : "";
+  const gruplar = MERKEZ.gruplar.map((g) => {
+    const idler = g.idler.filter((i) => var_mi(i, dil));
+    if (!idler.length) return "";
+    const gm = (c.gruplar && c.gruplar[g.id]) || {};
+    return `<section class="hub-grp" id="${g.id}" aria-labelledby="h-${g.id}">
+      <header class="hub-gh"><span class="hub-gi" aria-hidden="true">${SVG.ring}${GRUP_IKON[g.id] || ""}</span><div><h2 id="h-${g.id}">${kacirMetin(gm.baslik || g.id)}</h2>${gm.metin ? `<p>${satir(gm.metin, K)}</p>` : ""}</div></header>
+      <ul class="hub-grid n${idler.length}">${idler.map((i) => `<li>${merkezKart(i, dil, K)}</li>`).join("\n      ")}</ul>
+    </section>`;
+  }).join("\n    ");
+  const atla = MERKEZ.gruplar.filter((g) => c.gruplar && c.gruplar[g.id]).map((g) => `<a href="#${g.id}">${kacirMetin(c.gruplar[g.id].baslik)}</a>`)
+    .concat(c.sozluk ? [`<a href="#terimler">${kacirMetin(c.sozluk.baslik)}</a>`] : []).join("");
+  const sozluk = c.sozluk ? `<section class="gloss" id="terimler" aria-labelledby="h-terimler">
+      <div class="gloss-h"><h2 id="h-terimler">${kacirMetin(c.sozluk.baslik)}</h2>${c.sozluk.giris ? `<p>${satir(c.sozluk.giris, K)}</p>` : ""}</div>
+      <dl>${c.sozluk.terimler.map((t) => `<div><dt>${kacirMetin(t.t)}</dt><dd>${satir(t.d, K)}</dd></div>`).join("")}</dl>
+    </section>` : "";
   return `
     <nav class="crumbs" aria-label="${e(OZEL.crumbAria[dil])}"><ol>
       <li><a href="${EV[dil]}">Manevi Halka</a></li>
       <li aria-current="page">${OZEL.navGuides[dil]}</li>
     </ol></nav>
-    <header class="g-hero" style="grid-template-columns:1fr;padding-bottom:28px">
-      <div>
+    <header class="hub-hero">
+      <svg class="hub-orn" viewBox="0 0 400 400" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="200" cy="200" r="190" stroke-width="2.2" stroke-dasharray="0 11.94"/><circle cx="200" cy="200" r="150" stroke-width="1.2" stroke-dasharray="0 7.85" opacity=".8"/><circle cx="200" cy="200" r="110" stroke-width="1" opacity=".35"/><path d="M200 120 222 178 280 200 222 222 200 280 178 222 120 200 178 178Z M143 143 210 174 257 143 226 210 257 257 190 226 143 257 174 190Z" stroke-width="1" opacity=".55"/></g></svg>
+      <div class="hub-hi">
         <p class="eyebrow">${SVG.bead}${kacirMetin(c.eyebrow)}</p>
         <h1>${kacirMetin(c.h1)}</h1>
         <p class="lead">${satir(c.lead, K)}</p>
+        ${atla ? `<nav class="hub-jump" aria-label="${e(OZEL.buSayfada[dil])}">${atla}</nav>` : ""}
       </div>
     </header>
-    <ul class="hub">
-      ${kartlar}
-    </ul>
-    ${c.halka ? `<section class="part"><div class="answer" style="grid-template-columns:1fr"><div><h2>${satir(c.halka.baslik, K)}</h2>${paragraflar(c.halka.metin, K)}</div></div></section>` : ""}
-    ${c.sss ? `<section class="faq" id="sss">
-      <div><h2>${kacirMetin(c.sss.baslik || OZEL.sss[dil])}</h2></div>
-      <div>${c.sss.sorular.map((q) => `<details><summary>${satir(q.s, K)}</summary>${paragraflar(q.c, K)}</details>`).join("\n        ")}</div>
-    </section>` : ""}`;
+    ${one}
+    ${gruplar}
+    ${sozluk}`;
 }
 
 // ─── bas bilgisi ────────────────────────────────────────────────────────────
@@ -363,6 +425,17 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": graf }, null, 2).
 </script>`;
 }
 
+// Site kurali: sayilar Marcellus ile yazilmaz (Onest 600). Basliklarda (h1-h3, ilgili kart basliklari,
+// sozluk terimleri) rakam dizileri <span class="rk"> ile sarilir; varliklara (&#39;) ve etiketlere dokunulmaz.
+function rakamlar(html) {
+  const sar = (ic) => ic.split(/(<[^>]+>)/).map((p) => (p.startsWith("<") ? p
+    : p.replace(/(&#?\w+;)|(\d+(?:[.,:]\d+)*)/g, (m, ent, d) => (ent ? ent : `<span class="rk">${d}</span>`)))).join("");
+  return html
+    .replace(/(<(h[123])\b[^>]*>)([\s\S]*?)(<\/\2>)/g, (m, a, t, ic, z) => a + sar(ic) + z)
+    .replace(/(<dt>)([\s\S]*?)(<\/dt>)/g, (m, a, ic, z) => a + sar(ic) + z)
+    .replace(/(<li><a href="[^"]*"><b>)([\s\S]*?)(<\/b>)/g, (m, a, ic, z) => a + sar(ic) + z);
+}
+
 // ─── sayfa ──────────────────────────────────────────────────────────────────
 const sablon = readFileSync(join(KOK, "_gen", "rehber.src.html"), "utf8");
 function navParcalari(metin) {
@@ -389,7 +462,7 @@ function ogGovde(id, dil, K) {
   const baslik = id === "merkez" ? c.h1 : c.kart.baslik;
   const alt = id === "merkez" ? duzMetin(c.lead, K).split(/(?<=[.!?؟])\s+/)[0] : duzMetin(c.kart.metin, K);
   const tel = (i) => { const on = ICERIK[i][dil].onizleme; return on ? sahneHtml(on.sahne, K).replace('<figure class="mp', '<figure data-static class="mp').replace(/data-still="\d+"/, `data-still="${on.adim ?? 0}"`) : ""; };
-  const teller = id === "merkez" ? ["hatim", "tek"].filter((i) => var_mi(i, dil)).map(tel).join("") : tel(id);
+  const teller = id === "merkez" ? ["tek", "bahce"].filter((i) => var_mi(i, dil)).map(tel).join("") : tel(id);
   return `<div class="og-sahne${id === "merkez" ? " cift" : ""}">
     <svg class="og-halka" viewBox="0 0 600 600" aria-hidden="true"><circle cx="300" cy="300" r="290" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 22"/></svg>
     <div class="og-sol">
@@ -483,6 +556,7 @@ function sayfa(id, dil, og = false) {
   out = out.replace("<!DOCTYPE html>", `<!DOCTYPE html>
 <!-- ⚠️ BU DOSYA URETILMISTIR, ELLE DUZENLEME. Kaynak: _gen/rehber.src.html + _gen/rehber/
      Uretici: node _gen/build-rehber.mjs · ${id} · dil=${dil} -->`);
+  out = rakamlar(out);
   if (/\{\{\w+\}\}/.test(out)) hata(`${id}.${dil}: doldurulmamis yer tutucu kaldi`);
   if (/\[\[[^\]]+\]\]/.test(out.replace(/<script[\s\S]*?<\/script>/g, ""))) hata(`${id}.${dil}: cozulmemis [[...]] isareti kaldi`);
   const gorunen = out.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, "");

@@ -31,7 +31,8 @@ import { fileURLToPath } from "node:url";
 const BURASI = dirname(fileURLToPath(import.meta.url));
 const ETIKET = JSON.parse(readFileSync(join(BURASI, "app-labels.json"), "utf8"));
 
-export const e = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+// Tek tirnak da kacar: zaman cizelgesi tek tirnakli data-tl niteligine yazilir; "Regaib Kandili'ne" gibi bir metin onu bozuyordu (21 Kas 2026).
+export const e = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 
 /** ICU'nun kucuk bir alt kumesi: {{x}}, {x}, {n, plural, one {...} other {...}} (# = sayi). */
 export function fmt(s, v = {}, dil = "tr") {
@@ -209,7 +210,7 @@ export function kit(dil) {
     /** Halka ekrani, yeni kurulmus: "Halkan hazir" karsilama karti. inviteDone: biri katildi. */
     circleReady: ({ inviteDone = false, members = 1 } = {}) => `${hd({ title: X.circle, sub: createdLine(members), right: ["leaf", "personAdd", "dots"], keyRight: { personAdd: "invite" } })}
       <div class="pg">
-        <div class="seg2"><span class="on">${Le("group.readingsTab")}</span><span>${Le("group.membersTab", { count: members })}</span></div>
+        <div class="seg2"><span class="on">${Le("group.tasksTab")}</span><span>${Le("group.membersMenu")}</span></div>
         <div class="cd wel">
           <div class="wel-h"><div><b>${Le("group.welcome.title")}</b><small>${Le("group.welcome.subtitle")}</small></div>${ic("x")}</div>
           <div class="wst${inviteDone ? " done" : ""}"><span class="wn">${inviteDone ? ic("check") : num("1")}</span><div><b>${Le("group.welcome.step1Title")}</b>${inviteDone ? "" : `<small>${Le("group.welcome.step1Desc")}</small>${bt(L("group.welcome.step1Btn"), { key: "shareInv", cls: "sm pill", icon: "share" })}`}</div></div>
@@ -220,7 +221,7 @@ export function kit(dil) {
     /** Halka ekrani, Kur'an gorevi kurulmus. */
     circleWithTask: () => `${hd({ title: X.circle, sub: createdLine(5), right: ["leaf", "personAdd", "dots"] })}
       <div class="pg">
-        <div class="seg2"><span class="on">${Le("group.readingsTab")}</span><span>${Le("group.membersTab", { count: 5 })}</span></div>
+        <div class="seg2"><span class="on">${Le("group.tasksTab")}</span><span>${Le("group.membersMenu")}</span></div>
         <div class="cd task-row new"${k("taskRow")}><span class="tri">${ic("quran")}</span><div><small class="cap">${e(L("group.sectionKuran"))}</small><b>${e(X.task)}</b><small>30 ${Le("units.juz", { count: 30 })}</small></div><span class="act">${Le("group.statusActive")}</span></div>
       </div><span class="fab">${ic("plus")}</span>`,
 
@@ -360,8 +361,43 @@ export function kit(dil) {
         <div class="row2">${bt(L("common.ok"), { cls: "gh" })}${bt(L("group.goToTaskScreen"), { key: "goTask" })}</div></div>`,
     readerConfirm: () => `<div class="card-c"><b class="t1 c">${Le("flow.readerFinishTitle")}</b><small class="t2 c">${e(L("flow.readerFinishBody", { start: "21", end: "40" })).replace("21–40", num("21–40"))}</small>
         <div class="row2">${bt(L("common.cancel"), { cls: "gh" })}${bt(L("hatim.markRead"), { key: "okRead" })}</div></div>`,
-    helpAsk: () => `<div class="card-c"><b class="t1 c">${Le("flow.askHelp")}</b><small class="t2 c">${Le("flow.howManyUnitsSelf", { unit: L("units.page", { count: dil === "ar" ? 1 : 2 }), total: 20 })}</small>
+    helpAsk: () => `<div class="card-c"><b class="t1 c">${Le("flow.askHelp")}</b><small class="t2 c">${Le("flow.howManyUnitsClaim", { total: 20 })}</small>
         <span class="nb wide c"${k("selfN")}>${num("10")}</span><div class="row2">${bt(L("common.cancelAction"), { cls: "gh" })}${bt(L("flow.askHelp"), { key: "askOk" })}</div></div>`,
+  };
+
+  // ── 2.1.0 kurma ekrani parcalari (components/task/composeUi.tsx, app/create-event.tsx) ──
+  // Tek seferlik halka, Kur'an/zikir/oruc gorevi ayni duzende: ustte onizleme karti (halka + tempo),
+  // altinda dokunulan satirlar, satira dokununca alt pencere, en altta tek dugme. Metinler cagirandan
+  // (L ile) gelir; burada yalniz iskelet. data-k anahtarlari: satir `key`, degeri `key + "V"`.
+  const C = {
+    /** Ust: yuvarlak geri (ya da kapat) dugmesi, baslik, alt satir. */
+    hdr: ({ title, sub, close = false, key } = {}) =>
+      `<div class="cx-hd"><span class="cx-hb"${k(key)}>${close ? ic("x") : ic("back", "fl")}</span><div class="cx-ht"><b>${e(title)}</b>${sub ? `<small>${e(sub)}</small>` : ""}</div></div>`,
+    /** Buyuk soru basligi + alt yazi (secim ekrani). */
+    ask: (title, sub) => `<b class="cx-ask">${e(title)}</b>${sub ? `<small class="cx-asks">${e(sub)}</small>` : ""}`,
+    /** Sablon karolari: [{ic, b, s, key, wide}] (wide: tam genislik, yatay). */
+    tiles: (items) => `<div class="cx-tiles">${items.map((t) => `<span class="cx-tile${t.wide ? " wide" : ""}"${k(t.key)}><i class="cx-ti">${ic(t.ic)}</i><span><b>${e(t.b)}</b>${t.s ? `<small>${e(t.s)}</small>` : ""}</span></span>`).join("")}</div>`,
+    /** Onizleme karti: cap ("Bu halka"), ad, aciklama, sagda noktali halka (n + birim), altta tempo cumlesi. */
+    preview: ({ cap, title, desc, n, unit, tempo, key, keyTitle, keyDesc, keyTempo, fill = 0 } = {}) => {
+      const dots = `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" class="cx-rt"/><circle cx="50" cy="50" r="44" class="cx-rf" style="stroke-dashoffset:${(276.5 * (1 - fill)).toFixed(1)}"/><circle cx="50" cy="6" r="3.2" class="cx-rg"/></svg>`;
+      return `<div class="cx-pv"${k(key)}><div class="cx-pt">${cap ? `<small class="cx-cap">${e(cap)}</small>` : ""}<b${k(keyTitle)}>${e(title)}</b>${desc ? `<small class="cx-ds"${k(keyDesc)}>${e(desc)}</small>` : ""}</div>`
+        + `${n != null ? `<span class="cx-ring">${dots}<b>${num(String(n))}</b>${unit ? `<small>${e(unit)}</small>` : ""}</span>` : ""}`
+        + `${tempo ? `<small class="cx-tp"${k(keyTempo)}>${e(tempo)}</small>` : ""}</div>`;
+    },
+    /** Dokunulan satirlar: [{lbl, val, key, mut}] (mut: deger soluk, "Istege bagli" gibi). */
+    rows: (items) => `<div class="cx-rows">${items.map((r) => `<div class="cx-r"${k(r.key)}><span>${e(r.lbl)}</span><b class="${r.mut ? "mu" : ""}"${k(r.key ? r.key + "V" : "")}>${e(r.val)}</b>${ic("chev", "fl")}</div>`).join("")}</div>`,
+    /** Etiketli giris karti: lbl, giris (key, ph, val), alt ipucu. */
+    field: ({ lbl, key, ph = "", val = "", hint } = {}) => `<div class="cx-fd"><small>${e(lbl)}</small>${input({ key, ph, val })}${hint ? `<small class="cx-hn">${e(hint)}</small>` : ""}</div>`,
+    /** Kapali "Diger ayarlar" karti. */
+    more: ({ title, sub, key } = {}) => `<div class="cx-more"${k(key)}><div><b>${e(title)}</b>${sub ? `<small>${e(sub)}</small>` : ""}</div>${ic("chev", "cx-dn")}</div>`,
+    /** Altta sabit tek dugme (ComposeShell CTA). note: dugmenin ustunde neden basilamadigini soyleyen satir. */
+    foot: (label, { key, dis = false, icon, note } = {}) => `<div class="cx-foot">${note ? `<small class="cx-note">${e(note)}</small>` : ""}${bt(label, { key, cls: `blk cx-cta${dis ? " dis" : ""}`, icon })}</div>`,
+    /** Kaydirilan govde: dis kap kirpar, ic kap (.sc) ["y", key, n] ile kayar. */
+    body: (html, key) => `<div class="cx-clip"><div class="cx-in sc"${k(key)}>${html}</div></div>`,
+    /** Alt pencere (ustluk, tur "sheet"): baslik, cipler [[etiket, secili, key]], sonuc satiri, tempo, dugme. */
+    sheet: ({ title, chips = [], line, lineKey, tempo, btn, btnKey, extra = "" } = {}) => `<div class="sheet cx-sheet"><i class="grab"></i><b class="cx-sh">${e(title)}</b>`
+      + `${chips.length ? `<div class="cx-chips">${chips.map(([lb, on, key]) => `<span class="cx-chip${on ? " on" : ""}"${k(key)}>${e(lb)}</span>`).join("")}</div>` : ""}${extra}`
+      + `${line ? `<b class="cx-line"${k(lineKey)}>${e(line)}</b>` : ""}${tempo ? `<small class="cx-tp2">${e(tempo)}</small>` : ""}${btn ? bt(btn, { key: btnKey, cls: "blk cx-cta" }) : ""}</div>`,
   };
 
   // ── ekran kurucu ──────────────────────────────────────────────────────────
@@ -369,15 +405,21 @@ export function kit(dil) {
    * views: [[id, html, gecis]] ilk taban gorunum acik baslar; overlays: [[id, html, tur]].
    * tl: zaman cizelgesi; still: hareketi azaltta kurulacak adim sayisi; aria: ekranin kisa anlatimi.
    */
-  function telefon({ views, overlays = [], tl = [], still = 0, aria, size = "", hint }) {
+  /**
+   * tema (21 Kas 2026, 2.1.0 ekranlarina gore): "" uygulamanin ocean temasi (sitenin temasiyla acik/koyu),
+   * "gul" pembe halka ekranlari (h-halka, h-flow; koyu temada koyu gul), "gece" Namazlarim'in gece mavisi
+   * (n-gece; her iki temada koyu), "koyu" uygulamanin koyu temasi, altin vurgu (z-hub, z-defter, v-video, b-bahce).
+   */
+  function telefon({ views, overlays = [], tl = [], still = 0, aria, size = "", hint, tema = "" }) {
+    if (tema && !["gul", "gece", "koyu"].includes(tema)) throw new Error("telefon: bilinmeyen tema " + tema);
     const vs = views.map(([id, html, gecis], i) => `<section class="vw${i === 0 ? " on" : ""}" data-v="${id}"${gecis ? ` data-in="${gecis}"` : ""}>${html}</section>`).join("");
     const os = overlays.map(([id, html, tur]) => `<div class="ov" data-v="${id}" data-in="${tur}"><i class="scrim"></i>${html}</div>`).join("");
-    return `<figure class="mp${size ? " " + size : ""}" data-tl='${e(JSON.stringify(tl))}' data-still="${still}"${hint ? ` data-hint="${hint}"` : ""}>
+    return `<figure class="mp${size ? " " + size : ""}${tema ? " t-" + tema : ""}" data-tl='${e(JSON.stringify(tl))}' data-still="${still}"${hint ? ` data-hint="${hint}"` : ""}>
       <div class="mp-f"><div class="mp-s" role="img" aria-label="${e(aria)}">${statusBar()}<div class="mp-b">${vs}${os}</div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
     </figure>`;
   }
 
   // Ek sahne dosyalari (sahneler-<id>.mjs) bu yapi taslarini K uzerinden kullanir.
-  return { dil, L, Le, V, O, X, num, ic, bt, input, tg, chip, hd, wizHd, tabbar, avatar, brand, attr: k, e, telefon, kullanilan, rtl, juz, EveryWeek, everyWeek };
+  return { dil, L, Le, V, O, C, X, num, ic, bt, input, tg, chip, hd, wizHd, tabbar, avatar, brand, attr: k, e, telefon, kullanilan, rtl, juz, EveryWeek, everyWeek };
 }

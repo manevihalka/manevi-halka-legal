@@ -1,6 +1,8 @@
 // P4 · Rejoindre un cercle avec une invitation (FR). Page d'aide pour les invités (join.html et halka.html y renvoient).
 // Les noms des boutons viennent de l'appli via [[clé]] ; les textes des pages web (join.html, halka.html) via [[=...]].
 // Pas de tiret long.
+// 21 nov. 2026 : vérifié avec l’appli 2.1.0 (écran du cercle avec Tâches/Membres et carte de bienvenue, rappel de compte après l’adhésion,
+// message pour un cercle ponctuel terminé, nouvelles images). Pages web (join.html, halka.html) telles qu’elles sont en ligne aujourd’hui.
 export default {
   title: "Rejoindre une khatma ou un cercle avec une invitation",
   desc: "Tu as reçu un lien ou un code ? Touche le lien, colle le code ou scanne le QR code. Sans l’appli, rejoins un cercle ponctuel depuis le navigateur.",
@@ -40,10 +42,10 @@ export default {
           baslik: "Touche Rejoindre et écris ton prénom",
           metin: [
             "Touche [[joinGroup.join]]. Si tu utilises l’appli pour la première fois, la carte [[tx:nameSheet.title]] s’affiche. Écris ton prénom et touche [[nameSheet.confirm]]. Les membres du cercle te verront sous ce nom.",
-            "Pour un cercle régulier, la fenêtre [[tx:join.welcome]] s’affiche ensuite ; quand tu touches [[common.ok]], l’écran du cercle s’ouvre. Pour un cercle ponctuel, l’écran du cercle s’ouvre directement.",
+            "Pour un cercle régulier, la fenêtre [[tx:join.welcome]] s’affiche ensuite ; quand tu touches [[common.ok]], l’écran du cercle s’ouvre. La carte [[tx:group.joinWelcome.title]] en haut te dit combien vous êtes maintenant dans le cercle. Si une part t’attend déjà, la carte affiche aussi un bouton [[group.joinWelcome.open]]. Pour un cercle ponctuel, l’écran du cercle s’ouvre directement.",
           ],
           fark: "Pas besoin de créer un compte pour rejoindre. Ni e-mail, ni mot de passe, ni numéro de téléphone : ton prénom suffit.",
-          ipucu: "Si tu as déjà rejoint ce cercle, toucher [[joinGroup.join]] ouvre directement l’écran du cercle.",
+          ipucu: "Si ton compte n’est pas relié, une fenêtre [[tx:secureNudge.title_joined]] peut s’afficher une fois après l’adhésion. Relie ton compte avec Apple, Google ou un e-mail et tes cercles te suivent même si tu changes de téléphone ; sinon, touche [[secureNudge.later]]. Si tu as déjà rejoint ce cercle, [[joinGroup.join]] t’emmène directement sur l’écran du cercle.",
           sahne: "katil-katil",
         },
       ],
@@ -110,7 +112,7 @@ export default {
     },
     {
       tur: "bolum", id: "katildiktan-sonra", rol: "Nouveau membre", baslik: "Après avoir rejoint",
-      giris: "L’écran du cercle a deux onglets. L’onglet [[tx:group.readingsTab]] montre les tâches du cercle, l’onglet [[tx:group.membersMenu]] montre ses membres.",
+      giris: "L’écran du cercle a deux onglets. L’onglet [[tx:group.tasksTab]] montre les tâches du cercle, l’onglet [[tx:group.membersMenu]] montre ses membres. Le bouton d’une carte de tâche, par exemple [[event.read]] ou [[event.count]], t’emmène directement à ta part.",
       adimlar: [
         {
           baslik: "Trouve ta tâche sur l’Accueil",
@@ -135,10 +137,8 @@ export default {
       tur: "ekranlar", id: "ekranlar", baslik: "Voici à quoi ça ressemble dans l’appli",
       giris: "Ces captures viennent de l’appli elle-même.",
       kareler: [
-        { img: "h01-home", alt: "Accueil : les tâches des cercles dans la section Tes tâches", cap: "Accueil : tes tâches" },
-        { img: "n01-halka", alt: "Écran du cercle : les tâches du cercle dans l’onglet Lectures", cap: "Écran du cercle : les tâches du cercle" },
-        { img: "n03b-uyeler", alt: "Onglet Membres : un membre invité, la ligne Ajouter un invité et le bouton Quitter le cercle", cap: "Onglet Membres (vue de l’administrateur) : membre invité et [[tx:group.leaveGroup]]" },
-        { img: "06c-event-davet", alt: "Carte d’invitation d’un cercle ponctuel : code d’invitation, lien d’invitation et note pour ceux qui n’ont pas l’appli", cap: "Cercle ponctuel : le lien s’ouvre même sans l’appli" },
+        { img: "n-home", alt: "Accueil : un cercle ponctuel et la Khatma familiale dans la section Ma part", cap: "Accueil : les tâches qui te reviennent" },
+        { img: "h-flow", alt: "Tâche de khatma : Ta tâche Juz 17 avec les boutons Commencer à lire et Terminer", cap: "La tâche : ta part" },
       ],
     },
   ],
@@ -153,17 +153,15 @@ export default {
         c: "Pour un cercle ponctuel, souvent oui : le lien s’ouvre dans le navigateur, et tu prends un juz ou tu participes au décompte. Pour un cercle régulier, il faut l’appli. Pour un parent âgé sans smartphone, l’administrateur peut l’ajouter comme **invité** ; le responsable choisi ou l’administrateur marque alors sa part du Coran." },
       { s: "Dois-je créer un compte ?",
         c: "Non. L’appli demande seulement ton prénom ; ni e-mail, ni mot de passe, ni numéro de téléphone. Plus tard, si tu veux, touche le bandeau en haut de l’écran [[tabs.circles]] ([[tx:secure.banner]]) et associe ton compte à Apple, Google ou une adresse e-mail. Ainsi, tes cercles ne se perdent pas, même si tu changes de téléphone." },
-      { s: "J’ai rejoint : où vois-je ma tâche ?",
-        c: "Dans la section [[tx:dashboard.myTasks]] de l’onglet [[tx:tabs.home]]. L’onglet [[tx:group.readingsTab]] de l’écran du cercle liste aussi toutes les tâches du cercle. Si tu as rejoint une khatma en plein tour, ta part arrive avec le tour suivant." },
       { s: "Comment quitter un cercle ?",
         c: "Sur l’écran du cercle, touche les trois points en haut à droite. Dans la liste qui s’ouvre, touche la ligne [[tx:group.leaveGroup]]. La page suivante montre ce qui va changer. Avec [[ol:common.leave]], tu quittes le cercle ; avec [[tx:notice.stayInCircle]], tu renonces. Tes parts du Coran non terminées sont remises dans le pool, où les membres du cercle peuvent les prendre. Si tu veux, tu peux revenir plus tard avec le même code." },
       { s: "Le lien d’invitation ou le code ne fonctionne pas : que faire ?",
-        c: "Si le lien pose problème, l’appli affiche : [[tx:join.invalidLink]] Si tu as essayé avec un code, elle affiche : [[tx:joinGroup.notFoundMsg]] Le code a peut-être été mal écrit, ou le cercle n’existe plus. Les cercles ponctuels se ferment à la fin de leur durée. Demande un nouveau lien ou un nouveau code à la personne qui te l’a envoyé. Si le cercle est complet, l’appli affiche : [[tx:joinGroup.groupFull]] Préviens alors l’administrateur." },
+        c: "Si le lien pose problème, l’appli affiche : [[tx:join.invalidLink]] Si tu as essayé avec un code, elle affiche : [[tx:joinGroup.notFoundMsg]] Le code a peut-être été mal écrit, ou le cercle n’existe plus. Les cercles ponctuels se ferment à la fin de leur durée ; si un cercle a déjà atteint son objectif, l’appli affiche : [[tx:event.joinCompleted]] Demande un nouveau lien ou un nouveau code à la personne qui te l’a envoyé. Si le cercle est complet, l’appli affiche : [[tx:joinGroup.groupFull]] Préviens alors l’administrateur." },
     ],
   },
 
-  ilgili: ["hatim", "tek", "zikir"],
+  ilgili: ["tek", "hatim", "zikir"],
   cta: { baslik: "Télécharge l’appli maintenant", metin: "Rejoindre un cercle est gratuit. Télécharge l’appli, touche le lien d’invitation, rejoins ton cercle." },
-  kart: { kicker: "Rejoindre", baslik: "Rejoindre un cercle avec une invitation", metin: "Touche le lien ou colle le code. Sans l’appli, rejoins un cercle ponctuel depuis le navigateur." },
-  onizleme: { sahne: "katil-link", adim: 3 },
+  kart: { kicker: "Rejoindre", baslik: "Rejoindre un cercle avec une invitation", metin: "Touche le lien, puis Rejoindre. Sans l’appli, rejoins un cercle ponctuel depuis le navigateur." },
+  onizleme: { sahne: "katil-kart", adim: 3 },
 };

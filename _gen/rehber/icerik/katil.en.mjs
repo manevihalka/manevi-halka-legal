@@ -2,6 +2,8 @@
 // Support page for people who received an invite (join.html and halka.html link here).
 // Button names come from the app through [[key]]; the web pages' own texts (join.html, halka.html) are [[=...]].
 // No em dash, no Jawshan.
+// 21 Nov 2026: checked against app 2.1.0 (circle screen with Tasks/Members and the welcome card, account nudge after joining,
+// notice for a completed one-time circle, new screenshots). Web pages (join.html, halka.html) as they are live today.
 export default {
   title: "How to join a khatam or dhikr circle from an invite",
   desc: "Got an invite link or code? Tap the link, paste the code or scan the QR code. No app? You can still join a one-time circle from your browser.",
@@ -41,10 +43,10 @@ export default {
           baslik: "Tap Join and type your name",
           metin: [
             "Tap [[joinGroup.join]]. If you are using the app for the first time, the [[tx:nameSheet.title]] card appears. Type your name and tap [[nameSheet.confirm]]. The others in the circle will see you by this name.",
-            "In a regular circle, the [[tx:join.welcome]] window comes next; tap [[common.ok]] and the circle's screen opens. In a one-time circle, the circle's screen opens straight away.",
+            "In a regular circle, the [[tx:join.welcome]] window comes next; tap [[common.ok]] and the circle's screen opens. The [[tx:group.joinWelcome.title]] card at the top tells you how many you now are in the circle. If a share is already waiting for you, the card also shows a [[group.joinWelcome.open]] button. In a one-time circle, the circle's screen opens straight away.",
           ],
           fark: "You do not need to open an account to join. No email, password or phone number is asked for; typing your name is enough.",
-          ipucu: "If you have already joined this circle, tapping [[joinGroup.join]] takes you straight to the circle's screen.",
+          ipucu: "If your account is not linked, a [[tx:secureNudge.title_joined]] window may appear once after you join. Link your account with Apple, Google or email and your circles come with you even if you change phones; if not now, tap [[secureNudge.later]]. If you have already joined this circle, [[joinGroup.join]] takes you straight to the circle's screen.",
           sahne: "katil-katil",
         },
       ],
@@ -111,7 +113,7 @@ export default {
     },
     {
       tur: "bolum", id: "katildiktan-sonra", rol: "Someone who just joined", baslik: "After you have joined",
-      giris: "The circle's screen has two tabs. The [[tx:group.readingsTab]] tab shows the circle's tasks, and the [[tx:group.membersMenu]] tab shows the others in the circle.",
+      giris: "The circle's screen has two tabs. The [[tx:group.tasksTab]] tab shows the circle's tasks, and the [[tx:group.membersMenu]] tab shows the others in the circle. The button on a task card, for example [[event.read]] or [[event.count]], takes you straight to your part.",
       adimlar: [
         {
           baslik: "Find your task on Home",
@@ -136,10 +138,8 @@ export default {
       tur: "ekranlar", id: "ekranlar", baslik: "What it looks like in the app",
       giris: "These screenshots are from the app itself.",
       kareler: [
-        { img: "h01-home", alt: "Home screen: circle tasks in the Your Tasks section", cap: "Home: your tasks" },
-        { img: "n01-halka", alt: "Circle screen: the circle's tasks in the Readings tab", cap: "Circle screen: the circle's tasks" },
-        { img: "n03b-uyeler", alt: "Members tab: a guest member, the Add a guest row and the Leave circle button", cap: "Members tab (as the admin sees it): a guest member and [[tx:group.leaveGroup]]" },
-        { img: "06c-event-davet", alt: "Invite card of a one-time circle: invite code, invite link and a note for people without the app", cap: "One-time circle: the link opens without the app too" },
+        { img: "n-home", alt: "Home screen: a one-time circle and the Family Khatm in the My Part section", cap: "Home: the tasks that fall to you" },
+        { img: "h-flow", alt: "Khatm task screen: Your task Juz 17 with the Start Reading and Complete buttons", cap: "Task screen: your share" },
       ],
     },
   ],
@@ -154,17 +154,15 @@ export default {
         c: "For a one-time circle, often yes: the link opens in the browser, and you take a juz or add to the count. For a regular circle you need the app. An older relative without a smartphone can be added by the admin as a **guest**; the person chosen to look after them, or the admin, marks their Quran share." },
       { s: "Do I need to open an account?",
         c: "No. The app only asks for your name; it does not ask for an email, password or phone number. If you like, you can later tap the [[tx:secure.banner]] strip at the top of the [[tabs.circles]] screen and link your account with Apple, Google or email. Then your circles stay with you even if you change phones." },
-      { s: "I have joined. Where do I see my task?",
-        c: "Under [[tx:dashboard.myTasks]] in the [[tx:tabs.home]] tab. The [[tx:group.readingsTab]] tab on the circle's screen also lists all the circle's tasks. If you joined a running khatam in the middle of a round, your share comes with the next round." },
       { s: "How do I leave a circle?",
         c: "On the circle's screen, tap the three dots at the top right. In the list that opens, tap the [[tx:group.leaveGroup]] row. The next page shows what will change. Tap [[ol:common.leave]] to leave, or [[tx:notice.stayInCircle]] to change your mind. Quran shares you have not finished are released to the pool; the others in the circle can take them from there. You can join again later with the same code if you like." },
       { s: "The invite link or code does not work. What should I do?",
-        c: "If there is a problem with the link, the app says: [[tx:join.invalidLink]] If you tried with a code, it says: [[tx:joinGroup.notFoundMsg]] The code may have been typed wrongly, or the circle may no longer exist. One-time circles close when their time is up. Ask the person who sent the link for a new link or code. If the circle is full, the app says: [[tx:joinGroup.groupFull]] In that case, let the admin know." },
+        c: "If there is a problem with the link, the app says: [[tx:join.invalidLink]] If you tried with a code, it says: [[tx:joinGroup.notFoundMsg]] The code may have been typed wrongly, or the circle may no longer exist. One-time circles close when their time is up; if a circle has already reached its goal, the app says: [[tx:event.joinCompleted]] Ask the person who sent the link for a new link or code. If the circle is full, the app says: [[tx:joinGroup.groupFull]] In that case, let the admin know." },
     ],
   },
 
-  ilgili: ["hatim", "tek", "zikir"],
+  ilgili: ["tek", "hatim", "zikir"],
   cta: { baslik: "Download the app now", metin: "Joining a circle is free. Download the app, tap the invite link and join your circle." },
-  kart: { kicker: "Joining", baslik: "Joining a circle from an invite", metin: "Tap the link or paste the code. No app? Join a one-time circle from your browser." },
-  onizleme: { sahne: "katil-link", adim: 3 },
+  kart: { kicker: "Joining", baslik: "Joining a circle from an invite", metin: "Tap the link, tap Join, type your name. No app? Join a one-time circle from your browser." },
+  onizleme: { sahne: "katil-kart", adim: 3 },
 };

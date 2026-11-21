@@ -29,6 +29,15 @@ export const REHBER_SAYFA = {
   tek: { en: "one-time-circle/", tr: "tek-seferlik-halka/", de: "einmaliger-kreis/", fr: "cercle-ponctuel/", ar: "halqa-li-marra-wahida/" },
   zikir: { en: "group-dhikr-salawat/", tr: "toplu-zikir-salavat/", de: "dhikr-salawat-gemeinsam/", fr: "dhikr-salawat-en-groupe/", ar: "dhikr-jamai/" },
   katil: { en: "join-a-circle/", tr: "halkaya-katilma/", de: "kreis-beitreten/", fr: "rejoindre-un-cercle/", ar: "indimam-ila-halqa/" },
+  // 21 Kas 2026 (2.1.0 rehberleri): her dilin arama sozcugu; Arapca ASCII harf cevirisi. Mevcut adresler degismedi.
+  yasin: { en: "group-41-yasin/", tr: "toplu-41-yasin/", de: "41-yasin-gemeinsam/", fr: "41-yasin-en-groupe/", ar: "yasin-41-jamaiya/" },
+  oruc: { en: "group-fasting/", tr: "halkada-oruc-gorevi/", de: "fasten-in-der-gruppe/", fr: "jeune-en-groupe/", ar: "siyam-jamai/" },
+  buyuk: { en: "weekly-quran-circle/", tr: "haftalik-kuran-halkasi/", de: "woechentlicher-koran-kreis/", fr: "cercle-coran-hebdomadaire/", ar: "halqat-quran-usbuiya/" },
+  kaza: { en: "make-up-prayers-and-fasts/", tr: "kaza-namazi-ve-orucu/", de: "nachholgebete-und-fasten/", fr: "prieres-et-jeunes-de-rattrapage/", ar: "qada-al-salat-wal-siyam/" },
+  teheccud: { en: "tahajjud-alarm/", tr: "teheccud-alarmi/", de: "tahajjud-wecker/", fr: "reveil-du-tahajjud/", ar: "munabbih-al-tahajjud/" },
+  bahce: { en: "garden-of-intentions/", tr: "niyet-bahcesi/", de: "garten-der-absichten/", fr: "jardin-des-intentions/", ar: "bustan-al-niyya/" },
+  defter: { en: "dua-journal/", tr: "dua-defterim/", de: "bittgebetsheft/", fr: "carnet-d-invocations/", ar: "daftar-adiyati/" },
+  video: { en: "quran-verse-video/", tr: "ayetli-video/", de: "koran-versvideo/", fr: "video-de-versets/", ar: "video-al-ayat/" },
 };
 /** Rehber adresi: rehberAdresi("hatim", "tr") -> "/tr/rehber/hatim-grubu-kurma/"; kimlik yoksa merkez. */
 export const rehberAdresi = (id, dil) => REHBER[dil] + (id ? REHBER_SAYFA[id][dil] : "");

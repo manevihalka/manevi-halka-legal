@@ -1,6 +1,8 @@
 // P4 · Davet linkiyle halkaya katılma (TR). Davet alanların destek sayfası (join.html ve halka.html buraya bağlanır).
 // Düğme adları [[anahtar]] ile uygulamadan gelir; web sayfalarının (join.html, halka.html) kendi metinleri [[=...]].
 // Metinde uzun tire yok, Cevşen yok.
+// 21 Kas 2026: 2.1.0'a göre denetlendi. Değişenler: halka ekranı (Görevler/Üyeler, Hoş geldin kartı), katılınca hesap güvencesi penceresi,
+// tamamlanmış tek seferlik halkaya katılma uyarısı, ekran kareleri. Web (join.html, halka.html) bugünkü canlı hâliyle.
 export default {
   title: "Davet linkiyle halkaya nasıl katılırım?",
   desc: "Sana bir hatim ya da zikir daveti mi geldi? Linke dokun, kodu yapıştır ya da QR kodu tara. Uygulaman yoksa tek seferlik halkaya tarayıcıdan katıl.",
@@ -40,10 +42,10 @@ export default {
           baslik: "Katıl'a dokun ve adını yaz",
           metin: [
             "[[joinGroup.join]] düğmesine dokun. Uygulamayı ilk kez kullanıyorsan [[tx:nameSheet.title]] kartı çıkar. Adını yaz ve [[nameSheet.confirm]] de. Halkadakiler seni bu adla görür.",
-            "Düzenli bir halkada sonra [[tx:join.welcome]] penceresi gelir; [[common.ok]] deyince halkanın ekranı açılır. Tek seferlik halkada halkanın ekranı doğrudan açılır.",
+            "Düzenli bir halkada sonra [[tx:join.welcome]] penceresi gelir; [[common.ok]] deyince halkanın ekranı açılır. Üstte bir [[tx:group.joinWelcome.title]] kartı çıkar ve halkanın kaçıncı tanesi olduğunu sana söyler. Sana şimdiden düşen bir pay varsa kartta [[group.joinWelcome.open]] düğmesi de çıkar. Tek seferlik halkada halkanın ekranı doğrudan açılır.",
           ],
           fark: "Katılmak için hesap açman gerekmez. E-posta, şifre ya da telefon numarası istenmez; adını yazman yeter.",
-          ipucu: "Bu halkaya zaten katıldıysan [[joinGroup.join]] düğmesine dokununca doğrudan halkanın ekranı açılır.",
+          ipucu: "Hesabın bağlı değilse katıldıktan sonra bir kez [[tx:secureNudge.title_joined]] penceresi çıkabilir. Hesabını Apple, Google ya da e-postayla bağlarsan telefonun değişse de halkaların seninle gelir; şimdi istemiyorsan [[secureNudge.later]] de. Bu halkaya zaten katıldıysan [[joinGroup.join]] düğmesi seni doğrudan halkanın ekranına götürür.",
           sahne: "katil-katil",
         },
       ],
@@ -110,7 +112,7 @@ export default {
     },
     {
       tur: "bolum", id: "katildiktan-sonra", rol: "Yeni katılan", baslik: "Katıldıktan sonra",
-      giris: "Halkanın ekranında iki sekme vardır. [[tx:group.readingsTab]] sekmesinde halkadaki görevler, [[tx:group.membersMenu]] sekmesinde kardeşlerin görünür.",
+      giris: "Halkanın ekranında iki sekme vardır. [[tx:group.tasksTab]] sekmesinde halkadaki görevler, [[tx:group.membersMenu]] sekmesinde kardeşlerin görünür. Görev kartındaki düğmeyle, örneğin [[event.read]] ya da [[event.count]], işine doğrudan geçersin.",
       adimlar: [
         {
           baslik: "Görevini Ana Sayfa'da bul",
@@ -135,10 +137,8 @@ export default {
       tur: "ekranlar", id: "ekranlar", baslik: "Uygulamada böyle görünür",
       giris: "Bu kareler uygulamanın kendisinden.",
       kareler: [
-        { img: "h01-home", alt: "Ana Sayfa: Görevlerin bölümünde halka görevleri", cap: "Ana Sayfa: senin görevlerin" },
-        { img: "n01-halka", alt: "Halka ekranı: Okumalar sekmesinde halkadaki görevler", cap: "Halka ekranı: halkadaki görevler" },
-        { img: "n03b-uyeler", alt: "Üyeler sekmesi: misafir üye, Misafir ekle satırı ve Halkadan ayrıl düğmesi", cap: "Üyeler sekmesi (yöneticinin gördüğü hâli): misafir üye ve [[tx:group.leaveGroup]]" },
-        { img: "06c-event-davet", alt: "Tek seferlik halkanın davet kartı: davet kodu, davet linki ve uygulaması olmayanlar için not", cap: "Tek seferlik halka: link uygulamasız da açılır" },
+        { img: "n-home", alt: "Ana Sayfa: Bana düşenler bölümünde tek seferlik halka ve Aile Hatmi kartları", cap: "Ana Sayfa: sana düşen görevler" },
+        { img: "h-flow", alt: "Hatim görev ekranı: Senin görevin 17. Cüz, Okumaya Başla ve Tamamla düğmeleri", cap: "Görev ekranı: senin payın" },
       ],
     },
   ],
@@ -153,17 +153,15 @@ export default {
         c: "Tek seferlik bir halkada çoğu zaman evet: link tarayıcıda açılır, cüz alırsın ya da sayıma katılırsın. Düzenli bir halkada uygulama gerekir. Akıllı telefonu olmayan bir büyüğünü ise yönetici **misafir** olarak ekleyebilir; onun Kur'an payını seçilen sorumlu ya da yönetici işaretler." },
       { s: "Hesap açmam gerekir mi?",
         c: "Hayır. Uygulama yalnız adını sorar; e-posta, şifre ya da telefon numarası istemez. İstersen sonra [[tabs.circles]] ekranının üstündeki [[tx:secure.banner]] şeridine dokunup hesabını Apple, Google ya da e-postayla bağlarsın. Böylece telefonun değişse de halkaların kaybolmaz." },
-      { s: "Katıldım, görevimi nerede görürüm?",
-        c: "[[tx:tabs.home]] sekmesindeki [[tx:dashboard.myTasks]] bölümünde. Halkanın ekranındaki [[tx:group.readingsTab]] sekmesinde de halkadaki bütün görevler listelenir. Süren bir hatme tur ortasında katıldıysan payın bir sonraki turla gelir." },
       { s: "Halkadan nasıl ayrılırım?",
         c: "Halkanın ekranında sağ üstteki üç noktaya dokun. Açılan listede [[tx:group.leaveGroup]] satırına dokun. Sonraki sayfada neyin değişeceğini görürsün. [[ol:common.leave]] dersen ayrılırsın, [[tx:notice.stayInCircle]] dersen vazgeçersin. Bitirmediğin Kur'an payların havuza bırakılır; halkadakiler oradan alabilir. İstersen sonra aynı kodla yeniden katılabilirsin." },
       { s: "Davet linki ya da kod çalışmıyor, ne yapmalıyım?",
-        c: "Linkte sorun varsa uygulama şunu yazar: [[tx:join.invalidLink]] Kodla denediysen şunu yazar: [[tx:joinGroup.notFoundMsg]] Kod yanlış yazılmış ya da halka artık bulunmuyor olabilir. Tek seferlik halkalar süresi bitince kapanır. Linki gönderen kişiden yeni bir link ya da kod iste. Halka dolmuşsa uygulama şunu yazar: [[tx:joinGroup.groupFull]] O zaman yöneticiye haber ver." },
+        c: "Linkte sorun varsa uygulama şunu yazar: [[tx:join.invalidLink]] Kodla denediysen şunu yazar: [[tx:joinGroup.notFoundMsg]] Kod yanlış yazılmış ya da halka artık bulunmuyor olabilir. Tek seferlik halkalar süresi bitince kapanır; hedefine ulaşmış bir halkaya katılmak istersen uygulama şunu yazar: [[tx:event.joinCompleted]] Linki gönderen kişiden yeni bir link ya da kod iste. Halka dolmuşsa uygulama şunu yazar: [[tx:joinGroup.groupFull]] O zaman yöneticiye haber ver." },
     ],
   },
 
-  ilgili: ["hatim", "tek", "zikir"],
+  ilgili: ["tek", "hatim", "zikir"],
   cta: { baslik: "Uygulamayı şimdi indir", metin: "Halkaya katılmak ücretsiz. İndir, davet linkine dokun, halkana katıl." },
-  kart: { kicker: "Katılma", baslik: "Davetle halkaya katılma", metin: "Linke dokun ya da kodu yapıştır. Uygulaman yoksa tek seferlik halkaya tarayıcıdan katıl." },
-  onizleme: { sahne: "katil-link", adim: 3 },
+  kart: { kicker: "Katılma", baslik: "Davetle halkaya katılma", metin: "Linke dokun, Katıl de, adını yaz. Uygulaman yoksa tek seferlik halkaya tarayıcıdan katıl." },
+  onizleme: { sahne: "katil-kart", adim: 3 },
 };

@@ -1,6 +1,8 @@
 // P4 · Einem Kreis per Einladung beitreten (DE). Hilfeseite für Eingeladene (join.html und halka.html verlinken hierher).
 // Knopfnamen kommen über [[schlüssel]] aus der App; die eigenen Texte der Webseiten (join.html, halka.html) als [[=...]].
 // Kein langer Gedankenstrich, kein Cevşen.
+// 21. Nov. 2026: mit App 2.1.0 abgeglichen (Kreis mit Aufgaben/Mitglieder und Willkommenskarte, Konto-Hinweis nach dem Beitritt,
+// Hinweis bei einem abgeschlossenen einmaligen Kreis, neue Bilder). Webseiten (join.html, halka.html) so, wie sie heute live sind.
 export default {
   title: "Einem Khatm- oder Dhikr-Kreis per Einladung beitreten",
   desc: "Einladungslink oder Code bekommen? Link antippen, Code einfügen oder QR-Code scannen. Ohne App kannst du einem einmaligen Kreis im Browser beitreten.",
@@ -40,10 +42,10 @@ export default {
           baslik: "Auf Beitreten tippen und deinen Namen eingeben",
           metin: [
             "Tippe auf [[joinGroup.join]]. Nutzt du die App zum ersten Mal, fragt dich die Karte [[tx:nameSheet.title]] nach deinem Namen. Gib ihn ein und tippe auf [[nameSheet.confirm]]. Unter diesem Namen sehen dich die anderen im Kreis.",
-            "In einem regelmäßigen Kreis folgt das Fenster [[tx:join.welcome]]; tippst du auf [[common.ok]], öffnet sich der Kreis. Bei einem einmaligen Kreis öffnet sich der Kreis direkt.",
+            "In einem regelmäßigen Kreis folgt das Fenster [[tx:join.welcome]]; tippst du auf [[common.ok]], öffnet sich der Kreis. Die Karte [[tx:group.joinWelcome.title]] oben sagt dir, wie viele ihr mit dir im Kreis seid. Wartet schon ein Teil auf dich, zeigt die Karte auch den Knopf [[group.joinWelcome.open]]. Bei einem einmaligen Kreis öffnet sich der Kreis direkt.",
           ],
           fark: "Zum Beitreten brauchst du kein Konto. E-Mail, Passwort oder Telefonnummer werden nicht abgefragt; dein Name genügt.",
-          ipucu: "Bist du diesem Kreis schon beigetreten, öffnet sich nach dem Tippen auf [[joinGroup.join]] direkt der Kreis.",
+          ipucu: "Ist dein Konto nicht verbunden, kann nach dem Beitritt einmal das Fenster [[tx:secureNudge.title_joined]] erscheinen. Verbindest du dein Konto mit Apple, Google oder E-Mail, kommen deine Kreise auch auf ein neues Handy mit; wenn nicht jetzt, tippe auf [[secureNudge.later]]. Bist du diesem Kreis schon beigetreten, bringt dich [[joinGroup.join]] direkt in den Kreis.",
           sahne: "katil-katil",
         },
       ],
@@ -110,7 +112,7 @@ export default {
     },
     {
       tur: "bolum", id: "katildiktan-sonra", rol: "Neu im Kreis", baslik: "Nach dem Beitreten",
-      giris: "Im Kreis gibt es zwei Tabs. Im Tab [[tx:group.readingsTab]] stehen die Aufgaben des Kreises, im Tab [[tx:group.membersMenu]] siehst du die anderen Mitglieder.",
+      giris: "Im Kreis gibt es zwei Tabs. Im Tab [[tx:group.tasksTab]] stehen die Aufgaben des Kreises, im Tab [[tx:group.membersMenu]] siehst du die anderen Mitglieder. Mit dem Knopf auf einer Aufgabenkarte, zum Beispiel [[event.read]] oder [[event.count]], kommst du direkt zu deinem Teil.",
       adimlar: [
         {
           baslik: "Finde deine Aufgabe auf der Startseite",
@@ -135,10 +137,8 @@ export default {
       tur: "ekranlar", id: "ekranlar", baslik: "So sieht es in der App aus",
       giris: "Diese Bilder stammen direkt aus der App.",
       kareler: [
-        { img: "h01-home", alt: "Startseite: Bereich Deine Aufgaben mit den Aufgaben der Kreise", cap: "Startseite: deine Aufgaben" },
-        { img: "n01-halka", alt: "Kreis-Bildschirm: Aufgaben des Kreises im Tab Lesungen", cap: "Kreis-Bildschirm: die Aufgaben des Kreises" },
-        { img: "n03b-uyeler", alt: "Tab Mitglieder: ein Gast, die Zeile Gast hinzufügen und der Knopf Kreis verlassen", cap: "Tab Mitglieder (so sieht ihn der Admin): ein Gast und der Knopf [[tx:group.leaveGroup]]" },
-        { img: "06c-event-davet", alt: "Einladungskarte eines einmaligen Kreises: Einladungscode, Einladungslink und Hinweis für Menschen ohne App", cap: "Einmaliger Kreis: der Link öffnet sich auch ohne App" },
+        { img: "n-home", alt: "Startseite: ein einmaliger Kreis und die Familien-Chatma im Bereich Mein Teil", cap: "Startseite: die Aufgaben, die auf dich fallen" },
+        { img: "h-flow", alt: "Khatm-Aufgabe: Deine Aufgabe Dschuz 17 mit den Knöpfen Lesen beginnen und Fertig", cap: "Die Aufgabe: dein Teil" },
       ],
     },
   ],
@@ -153,17 +153,15 @@ export default {
         c: "Bei einem einmaligen Kreis meist ja: Der Link öffnet sich im Browser, du nimmst einen Dschuz oder zählst mit. In einem regelmäßigen Kreis brauchst du die App. Einen Angehörigen ohne Smartphone kann der Admin als **Gast** hinzufügen; seinen Koran-Teil markiert die gewählte verantwortliche Person oder der Admin." },
       { s: "Muss ich ein Konto anlegen?",
         c: "Nein. Die App fragt nur nach deinem Namen; E-Mail, Passwort oder Telefonnummer brauchst du nicht. Wenn du willst, verknüpfst du dein Konto später mit Apple, Google oder E-Mail: Tippe dazu oben auf dem Bildschirm [[tabs.circles]] auf den Hinweis [[tx:secure.banner]]. So bleiben deine Kreise erhalten, auch wenn du das Handy wechselst." },
-      { s: "Ich bin beigetreten. Wo sehe ich meine Aufgabe?",
-        c: "Im Tab [[tx:tabs.home]] im Bereich [[tx:dashboard.myTasks]]. Im Kreis stehen im Tab [[tx:group.readingsTab]] außerdem alle Aufgaben des Kreises. Bist du mitten in einer Runde einer laufenden Khatm beigetreten, kommt dein Teil mit der nächsten Runde." },
       { s: "Wie verlasse ich einen Kreis?",
         c: "Tippe im Kreis oben rechts auf die drei Punkte. Tippe in der Liste auf [[tx:group.leaveGroup]]. Auf der nächsten Seite siehst du, was sich ändert. Mit [[ol:common.leave]] verlässt du den Kreis, mit [[tx:notice.stayInCircle]] brichst du ab. Deine nicht gelesenen Koran-Teile gehen in den Pool; die anderen im Kreis können sie von dort übernehmen. Später kannst du mit demselben Code wieder beitreten." },
       { s: "Der Einladungslink oder der Code funktioniert nicht. Was tun?",
-        c: "Stimmt etwas mit dem Link nicht, zeigt die App: [[tx:join.invalidLink]] Hast du es mit dem Code versucht, zeigt sie: [[tx:joinGroup.notFoundMsg]] Vielleicht ist der Code falsch geschrieben oder den Kreis gibt es nicht mehr. Einmalige Kreise schließen, wenn ihre Zeit um ist. Bitte die Person, die dir den Link geschickt hat, um einen neuen Link oder Code. Ist der Kreis voll, zeigt die App: [[tx:joinGroup.groupFull]] Sag dann dem Admin Bescheid." },
+        c: "Stimmt etwas mit dem Link nicht, zeigt die App: [[tx:join.invalidLink]] Hast du es mit dem Code versucht, zeigt sie: [[tx:joinGroup.notFoundMsg]] Vielleicht ist der Code falsch geschrieben oder den Kreis gibt es nicht mehr. Einmalige Kreise schließen, wenn ihre Zeit um ist; hat ein Kreis sein Ziel schon erreicht, zeigt die App: [[tx:event.joinCompleted]] Bitte die Person, die dir den Link geschickt hat, um einen neuen Link oder Code. Ist der Kreis voll, zeigt die App: [[tx:joinGroup.groupFull]] Sag dann dem Admin Bescheid." },
     ],
   },
 
-  ilgili: ["hatim", "tek", "zikir"],
+  ilgili: ["tek", "hatim", "zikir"],
   cta: { baslik: "Lade die App jetzt", metin: "Einem Kreis beitreten ist kostenlos. Lade die App, tippe auf den Einladungslink und tritt deinem Kreis bei." },
-  kart: { kicker: "Beitreten", baslik: "Einem Kreis per Einladung beitreten", metin: "Tippe auf den Link oder füge den Code ein. Ohne App trittst du einem einmaligen Kreis im Browser bei." },
-  onizleme: { sahne: "katil-link", adim: 3 },
+  kart: { kicker: "Beitreten", baslik: "Einem Kreis per Einladung beitreten", metin: "Link antippen, Beitreten, Namen eingeben. Ohne App trittst du einem einmaligen Kreis im Browser bei." },
+  onizleme: { sahne: "katil-kart", adim: 3 },
 };

@@ -13,13 +13,35 @@ adım adım anlatır. 5 dil: tr, en, de, fr, ar. Adresler `_gen/site-urls.mjs` (
 | `_gen/rehber/sahne.mjs` | Çekirdek: yapı taşları, ortak görünümler (`K.V.*`, `K.O.*`), ikonlar, `ORNEK` (dile göre örnek veriler). |
 | `_gen/rehber/sahneler.mjs` | Hatim rehberinin ekranları (`SAHNE`) ve 30 taneli tur halkası. |
 | `_gen/rehber/sahneler-<id>.mjs` | **Her rehberin kendi ek ekranları.** `export const SAHNE = {...}`, isteğe bağlı `export const CSS = "..."`, `export const IKON = {...}`. Üretici hepsini birleştirir; aynı kimlik iki yerde olamaz. |
-| `_gen/rehber/icerik/<id>.<dil>.mjs` | Sayfa metni (`export default {...}`). id: `merkez`, `hatim`, `tek`, `zikir`, `katil`. |
+| `_gen/rehber/icerik/<id>.<dil>.mjs` | Sayfa metni (`export default {...}`). id: `merkez`, `tek`, `yasin`, `hatim`, `zikir`, `oruc`, `buyuk`, `katil`, `kaza`, `teheccud`, `bahce`, `defter`, `video` (21 Kas 2026, 2.1.0). |
 | `_gen/rehber/app-labels.json` | Uygulamanın metinleri, ÜRETİLİR: `node _gen/sync-app-labels.mjs` (kaynak `../SpiritualCircleApp/locales`). |
 | `img/rehber/<dil>/*.webp` | Gerçek ekran kareleri (640 px). |
 
 Paralel çalışırken **yalnız kendi dosyalarına** dokun (`sahneler-<id>.mjs`, `icerik/<id>.*.mjs`).
 `sahne.mjs`, `sahneler.mjs`, `rehber.src.html`, `build-rehber.mjs` ortak; değişiklik gerekiyorsa
 kendi dosyanda çöz (ek CSS, ek ikon, kendi görünüm fonksiyonların).
+
+## Merkez sayfası (21 Kas 2026, 2.1.0)
+
+`build-rehber.mjs` başındaki `MERKEZ`: en üstte büyük öne çıkan kart (`one`, şimdi `tek`), sonra iki grup:
+**Birlikte** (halkalarla yapılanlar) ve **Kendi ibadetin**. "Halkalar" reklam başlığı olarak kullanılmaz.
+`yeni` kümesindeki rehberlerde "Yeni", `yenilendi`dekinde "Yenilendi" işareti (kartta ve rehberin girişinde).
+Grup adları, açıklamaları ve kısa sözlük `merkez.<dil>.mjs` içinde (`gruplar`, `sozluk`). Yeni rehber eklerken
+`site-urls.mjs` `REHBER_SAYFA`, `IDLER` ve `MERKEZ.gruplar`a ekle.
+Karttaki telefon rehberin `onizleme.sahne`si ve **ekrana gelince oynar** (hareketi azaltta `still` hâli). Bunun için her
+rehberin kendi kısa döngü sahnesi var (`<id>-kart`: tek fikir, 6-9 sn, iri öğeler). OG görseli aynı sahnenin
+`onizleme.adim` hâlini kullanır. Kartın sahne rengi telefonun temasından gelir.
+
+## Temalar ve kurma ekranı parçaları
+
+- `K.telefon({ tema })`: `""` ocean (varsayılan), `"gul"` pembe halka ekranları, `"gece"` Namazlarım gece mavisi,
+  `"koyu"` uygulamanın koyu teması (altın vurgu). Renkler 2.1.0 karelerinden ölçüldü (`rehber.src.html`, "temalar").
+- `K.C.*`: 2.1.0 kurma ekranı (`composeUi.tsx` düzeni): `hdr`, `ask`, `tiles`, `preview`, `rows`, `field`, `more`,
+  `foot`, `body`, `sheet`. Tek seferlik halka, Kur'an, zikir ve oruç görevi bu düzende.
+- Başlıklardaki rakamlar (h1-h3, ilgili kart başlıkları, sözlük terimleri) üretici tarafından `<span class="rk">` ile
+  sarılır: sayılar Marcellus ile yazılmaz, Onest 600.
+- `e()` tek tırnağı da kaçırır (21 Kas 2026): zaman çizelgesindeki "Kandili'ne" gibi metinler `data-tl`'yi bozmaz.
+- Yakınlaştırınca (`html.mh-zoom`, ana sayfadaki betikle aynı) süs katmanları (halkalar, ışık) kalkar.
 
 ## Değişmez kurallar
 
@@ -107,8 +129,8 @@ Her rehber sayfasının kendi 1200×630 görseli var: `img/rehber/og/<id>-<dil>.
 kısa açıklama, rehberin mini telefonu; merkezde iki telefon). Metin ya da mini telefon değişince yeniden üret:
 
 ```
-node _gen/build-rehber.mjs --og      # _gen/og-tmp/ altına 25 sahne sayfası
-python3 -m http.server 7789          # depo kökünden, ayrı pencerede
+node _gen/build-rehber.mjs --og      # _gen/og-tmp/ altına 65 sahne sayfası (13 sayfa x 5 dil)
+python3 -m http.server 7789          # depo kökünden, ayrı pencerede (başka port: OG_TABAN=http://127.0.0.1:<port>)
 python3 _gen/rehber-og.py            # Chrome ile çeker, JPEG yazar, og-tmp'yi siler
 node _gen/build-rehber.mjs --tam     # og:image bu dosyaları gösterir (dosya yoksa og-cover)
 ```
@@ -116,8 +138,8 @@ node _gen/build-rehber.mjs --tam     # og:image bu dosyaları gösterir (dosya y
 ## Kontrol
 
 ```
-node _gen/sync-app-labels.mjs
-node _gen/build-rehber.mjs --yalniz <id> --dil <dil>   # yalnız o rehber ve o dil (paralel çalışırken bunu kullan)
+node _gen/sync-app-labels.mjs        # uygulama deposu başka yerdeyse: APP_REPO=/yol/SpiritualCircleApp
+node _gen/build-rehber.mjs --yalniz <id> --dil <dil>   # yalnız o rehber ve o dil (paralel çalışırken bunu kullan; bütün sahne dosyaları yine yüklenir)
 node _gen/build-rehber.mjs            # hepsi + site haritası; durursa hata mesajını oku (eksik anahtar, Cevşen, uzun tire, kare yok)
 python3 -m http.server 7789           # sonra http://localhost:7789/tr/rehber/...
 ```

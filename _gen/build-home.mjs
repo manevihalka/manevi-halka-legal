@@ -408,13 +408,14 @@ const T = {
 
 // ── Giris seridi: on kart (sira ilk gorunusu belirler: ortada Kur'an, yanlarinda bahce ve kubbe) ──
 // [dosya, kaynak kare, ad]. Adlar uygulamadaki ekran adlariyla ayni (locales/*.json).
+// ⚠️ ev-hazir karesi KULLANILMAZ: Hud 41 ayetini (eski gemi mottosu, 19 Kas 2026'da uygulamadan kalkti) tasiyor.
 const SERIT = [
   ["st-mushaf", "q-mushaf", { tr: "Kur'an okuyucusu", en: "Quran reader", de: "Koran-Leser", fr: "Lecteur du Coran", ar: "قارئ القرآن" }],
   ["st-bahce", "b-bahce", { tr: "Niyet Bahçesi", en: "Garden of Intentions", de: "Garten der Absichten", fr: "Jardin des intentions", ar: "بستان النية" }],
   ["st-home", "n-home", { tr: "Ana Sayfa", en: "Home", de: "Start", fr: "Accueil", ar: "الرئيسية" }],
   ["st-halka", "h-halka-ust", { tr: "Ortak hatim", en: "Group khatm", de: "Gemeinsame Chatma", fr: "Khatma commune", ar: "ختمة جماعية" }],
   ["st-sayac", "z-sayac", { tr: "Zikirmatik", en: "Dhikr Counter", de: "Dhikr-Zähler", fr: "Compteur de dhikr", ar: "عداد الذكر" }],
-  ["st-tek", "ev-hazir", { tr: "Tek seferlik halka", en: "One-time circle", de: "Einmaliger Kreis", fr: "Cercle ponctuel", ar: "حلقة لمرة واحدة" }],
+  ["st-tek", "ev-ozet", { tr: "Tek seferlik halka", en: "One-time circle", de: "Einmaliger Kreis", fr: "Cercle ponctuel", ar: "حلقة لمرة واحدة" }],
   ["st-video", "v-45", { tr: "Ayetli video", en: "Verse video", de: "Versvideo", fr: "Vidéo de versets", ar: "فيديو الآيات" }],
   ["st-namaz", "n-namazlarim", { tr: "Namazlarım", en: "My Prayers", de: "Meine Gebete", fr: "Mes prières", ar: "صلواتي" }],
   ["st-defter", "z-defter", { tr: "Dua Defterim", en: "My dua journal", de: "Mein Bittgebetsheft", fr: "Mon carnet d'invocations", ar: "دفتر أدعيتي" }],
