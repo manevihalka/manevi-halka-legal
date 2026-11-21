@@ -17,9 +17,12 @@ from PIL import Image
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DILLER = ["tr", "en", "de", "fr", "ar"]
 # kirpinti -> ait oldugu ekran (build-home.mjs fxParcalari ile ayni gruplar)
-EKRAN = {"fx-q-meal": "quran", "fx-q-line": "quran", "fx-q-bar": "quran",
-         "fx-w-med": "vakit", "fx-w-ring": "vakit", "fx-w-lock": "vakit", "fx-w-small": "vakit",
-         "fx-h-tur": "halka", "fx-h-task": "halka", "fx-a-today": "amel", "fx-a-hadis": "amel"}
+# fx-h2-tur (dagitim ekranindan) BILEREK yok: halka ekraninda karsiligi yok, uye satirlarina
+# yanlis eslesiyordu (mse ~440, esigin hemen alti). Telefonun ortasindan acilir.
+# 21 Kas 2026: Kur'an, Namaz ve Halka satirlari 2.1.0 ekranlarina gecti (s21-*, kaynak gallery-2026-11 raw).
+EKRAN = {"fx-q2-panel": "s21-quran", "fx-q2-bar": "s21-quran",
+         "fx-w-med": "s21-namaz", "fx-w-lock": "s21-namaz", "fx-w-small": "s21-namaz", "fx-n-kaza": "s21-namaz",
+         "fx-h2-next": "s21-halka", "fx-a-today": "amel", "fx-a-hadis": "amel"}
 ESIK = 450          # kabul edilen en buyuk ortalama kare hata (0-255 gri, 1/4 olcek)
 OLCEK = np.arange(0.66, 0.96, 0.02)  # kirpinti genisliginin telefon goruntusune orani
 
@@ -63,7 +66,6 @@ for dil in DILLER:
     klasor = os.path.join(KOK, "img", "app", dil)
     for ad, ekran in EKRAN.items():
         yol = os.path.join(klasor, ad + ".webp")
-        if ad == "fx-q-line": yol = os.path.join(KOK, "img", "app", "fx-q-line.webp")
         if not os.path.exists(yol): continue
         tel = Image.open(os.path.join(klasor, ekran + ".webp")).convert("RGB")
         r = ara(tel, duz(yol))

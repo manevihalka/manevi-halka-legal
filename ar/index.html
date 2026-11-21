@@ -106,7 +106,7 @@
           "name": "أي مصحف يُستخدم؟",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "مصحف بالرسم المتداول في تركيا، مع تلاوة بأصوات ثلاثة قرّاء."
+            "text": "مصحف بالرسم المتداول في تركيا، مع ترجمة وتلاوة بصوت القارئ الذي تختاره."
           }
         },
         {
@@ -321,11 +321,16 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   @media (max-width: 360px) { .top { gap: 6px; } .brand { font-size: 17px; } .lang-btn, .theme-btn, .get { width: 36px; height: 36px; } }
 
   /* ── giris ── */
-  .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 36px 72px; }
+  /* Giris (21 Kas 2026, kullanici secimi "A serit"): telefonda ONCE uygulamanin ekranlari (serit), sonra motto ve
+     yan yana magaza dugmeleri, en son sayfa baglantilari ve tanitim cumlesi. Genis ekranda solda metin, sagda serit;
+     serit sayfanin bitis kenarina kadar uzanir. Siralama yalniz CSS (grid alanlari), DOM sirasi tek. */
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "strip" "h1" "stores" "mnav" "lead" "trust"; padding-block: 2px 56px; }
+  .hero .strip { grid-area: strip; } .hero .hero-h1 { grid-area: h1; } .hero .lead { grid-area: lead; } .hero .stores { grid-area: stores; }
+  .hero .mnav { grid-area: mnav; } .hero .trust { grid-area: trust; }
   .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
   .eyebrow svg { width: 16px; height: 16px; }
-  .hero h1 { font-size: clamp(42px, 5.6vw, 72px); line-height: 1.03; margin-top: 18px; }
-  .hero h1 em { font-style: normal; color: var(--green); }
+  .hero h1 { font-size: clamp(29px, 8.3vw, 42px); line-height: 1.08; text-align: center; }
+  .hero h1 em { font-style: normal; color: var(--green); display: block; }
   .lead { margin-top: 20px; font-size: 18.5px; line-height: 1.6; color: var(--body); max-width: 34em; }
   .stores { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
   .store { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 14px; border-radius: 14px; text-decoration: none; background: var(--green); color: var(--page); min-width: 172px; }
@@ -373,111 +378,95 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .trust li { font-size: 13.5px; line-height: 1.35; color: var(--body); }
   .trust b { display: block; font-size: 14.5px; color: var(--ink); }
   @media (max-width: 560px) { .trust { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .hero .stores { justify-content: center; flex-wrap: nowrap; margin-top: 18px; }
+  .hero .store { flex: 1 1 0; min-width: 0; max-width: 200px; justify-content: center; padding: 10px 12px; }
+  .hero .store span { text-align: start; }
+  .hero .mnav { justify-content: center; margin-top: 16px; }
+  .hero .lead { margin: 22px auto 0; text-align: center; font-size: 16.5px; }
+  @media (max-width: 360px) { .hero .store { padding-inline: 9px; gap: 7px; } .hero .store b { font-size: 14.5px; } }
+  @media (min-width: 901px) {
+    .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); grid-template-rows: 1fr auto auto auto auto 1fr; column-gap: 32px;
+      grid-template-areas: ". strip" "h1 strip" "lead strip" "stores strip" "trust strip" ". strip"; padding-block: 24px 64px; }
+    .hero h1 { font-size: clamp(44px, 5vw, 66px); line-height: 1.04; text-align: start; }
+    .hero h1 .h1-brand { margin-inline: 0; }
+    .hero .lead { margin: 20px 0 0; text-align: start; font-size: 18px; }
+    .hero .stores { justify-content: flex-start; flex-wrap: wrap; margin-top: 28px; }
+    .hero .store { flex: 0 0 auto; min-width: 172px; max-width: none; padding: 10px 18px 10px 14px; }
+  }
 
-  /* ── halkali ekran destesi ──
-     Onde bir ekran ve etrafinda o ekrana ozel halka; arkasinda sıradaki ekran hafif
-     egik durur. Oklar, sekmeler, kaydirma ya da arkadaki karta dokunma one getirir. */
+  /* ── giris seridi ──
+     Kartlarin ilk yeri CSS'te: --u kartin ortaya gore sirasi (uretici yazar), egim 6 derece (sin .1045, cos .9945).
+     Betik ayni formulle surdurur, yani betik gelince kayma olmaz; betik yoksa serit durur ama duzgun gorunur.
+     Yukseklik: kart H = 2.1126w + 38 (cerceve ve iki satirlik ad); serit = H cos + w sin + 2 (W/2 + w) sin + 8.
+     W serit genisligi (cqw), w kart genisligi. Kart transform'u fiziksel (left/translate): Arapcada yon --dir ile. */
+  .strip { position: relative; margin-inline: -20px; container-type: inline-size; touch-action: pan-y pinch-zoom; user-select: none; -webkit-user-select: none; }
+  .st-track { --dir: 1; --w: clamp(104px, 31cqw, 140px); --step: calc(var(--w) * 1.11); --H: calc(var(--w) * 2.1126 + 38px);
+    --vh: calc(var(--w) * 2.4145 + 10.45cqw + 46px); position: relative; height: 420px; height: var(--vh); overflow: hidden; }
+  :root[dir="rtl"] .st-track { --dir: -1; }
+  .st-card { position: absolute; left: 50%; top: 0; width: var(--w); margin: 0 0 0 calc(var(--w) / -2);
+    transform: translate(calc(var(--u) * var(--step) * .9945 * var(--dir)), calc((var(--vh) - var(--H)) / 2 - var(--u) * var(--step) * .1045)) rotate(calc(-6deg * var(--dir))); }
+  .st-ph { display: block; padding: calc(var(--w) * .026); border-radius: calc(var(--w) * .16); background: #101a16;
+    box-shadow: 0 18px 30px -18px rgba(10, 30, 20, .6), inset 0 0 0 1px rgba(255, 255, 255, .08); transition: transform .35s cubic-bezier(.3, 1.4, .5, 1); }
+  .st-ph img { display: block; width: 100%; height: auto; aspect-ratio: 432 / 939; border-radius: calc(var(--w) * .135); background: var(--mint); pointer-events: none; -webkit-user-drag: none; }
+  .st-card figcaption { margin: 8px -12% 0; height: 30px; overflow: hidden; font-size: 11.5px; line-height: 15px; font-weight: 600; color: var(--muted); text-align: center; text-wrap: balance; }
+  /* serit boyunca yumusak bir isik (sus: yakinlastirinca kalkar) */
+  .st-track::before { content: ""; position: absolute; inset: 22% -10% 16%; background: radial-gradient(closest-side, color-mix(in srgb, var(--gold-soft) 26%, transparent), transparent);
+    transform: rotate(calc(-6deg * var(--dir))); pointer-events: none; }
+  html.mh-zoom .st-track::before { display: none; }
+  .strip.is-run .st-card { will-change: transform; }
+  html.mh-zoom .strip .st-card { will-change: auto; }
+  html.mh-js .strip { cursor: grab; } .strip.drag { cursor: grabbing; }
+  html.mh-zoom .strip { touch-action: auto; cursor: auto; }
+  @media (hover: hover) { .st-card:hover .st-ph { transform: translateY(-7px); } }
+  /* Durdur dugmesi: kendiliginden akan icerik 5 sn'den uzun surerse durdurulabilmeli (WCAG 2.2.2) */
+  .st-pause { position: absolute; z-index: 3; bottom: 4px; inset-inline-end: 18px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+    color: var(--ink); background: color-mix(in srgb, var(--paper) 88%, transparent); border: 1px solid var(--line); box-shadow: 0 8px 18px -12px rgba(10, 30, 20, .5); }
+  .st-pause svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .st-pause .i-play { fill: currentColor; stroke-width: 1.2; }
+  .st-pause[aria-pressed="true"] .i-pause, .st-pause:not([aria-pressed="true"]) .i-play { display: none; }
+  @media (min-width: 901px) {
+    /* Serit sag sutundan sayfanin bitis kenarina uzanir; metin tarafinda yumusak kaybolur. */
+    .strip { margin-inline: 0 calc(-20px - max(0px, (100vw - 1160px) / 2)); -webkit-mask-image: linear-gradient(to right, transparent, #000 72px); mask-image: linear-gradient(to right, transparent, #000 72px); }
+    :root[dir="rtl"] .strip { -webkit-mask-image: linear-gradient(to left, transparent, #000 72px); mask-image: linear-gradient(to left, transparent, #000 72px); }
+    .st-track { --w: clamp(128px, 28cqw, 192px); }
+    .st-card figcaption { font-size: 12.5px; }
+    .st-pause { inset-inline-end: max(20px, (100vw - 1160px) / 2 + 20px); }
+  }
+
   /* alt bolumlerdeki telefon cercevesi (band ve row gorselleri) */
   .phone { margin: 0; padding: 8px; border-radius: 40px; background: #101a16; box-shadow: 0 40px 70px -40px rgba(10, 30, 20, .75), inset 0 0 0 1px rgba(255, 255, 255, .08); user-select: none; }
   .phone img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 33px; pointer-events: none; background: var(--mint); }
-  .showcase { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-  /* Halkanin disindaki vakit etiketleri sahneden ~35 px tasar; sutun darken (iPad yatay 1024) sahne
-     kenara kadar buyuyup "Maghrib"i ekran kenarinda kesiyordu. 560 px altinda dis etiketler gizli. */
-  .stage { position: relative; width: min(520px, calc(100% - 72px)); aspect-ratio: 1; touch-action: pan-y pinch-zoom; user-select: none; }
-  @media (max-width: 560px) { .stage { width: min(520px, 100%); } }
-  .card { position: absolute; inset: 0; transition: transform .75s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; will-change: transform; }
-  .card[data-pos="0"] { z-index: 3; transform: rotate(calc(-2.5deg * var(--s))); }
-  .card[data-pos="1"] { z-index: 2; transform: translate(calc(14% * var(--s)), -3%) rotate(calc(6deg * var(--s))) scale(.82); cursor: pointer; }
-  .card[data-pos="out"] { z-index: 4; transform: translate(calc(-16% * var(--s)), 5%) rotate(calc(-9deg * var(--s))) scale(.88); opacity: 0; pointer-events: none; }
-  .card[data-pos="hide"] { z-index: 1; transform: translate(calc(10% * var(--s)), -3%) rotate(calc(8deg * var(--s))) scale(.72); opacity: 0; pointer-events: none; }
-  .card.drag { transition: none; }
-  .hring { direction: ltr; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; transition: opacity .5s ease; pointer-events: none; }
-  .card:not([data-pos="0"]) .hring { opacity: .16; }
-  .hring .track { fill: none; stroke: var(--line); stroke-width: 1.2; }
-  .hring .hour { fill: var(--gold-soft); opacity: .45; }
-  .hring .day { fill: none; stroke: var(--gold-soft); stroke-width: 2.6; stroke-linecap: round; }
-  .hring .pr { stroke: var(--green); stroke-width: 2.2; fill: var(--page); }
-  .hring .done { fill: var(--green); }
-  .hring .sun { fill: var(--gold-soft); }
-  .hring .now { fill: var(--gold); }
-  .hring .halo { fill: none; stroke: var(--gold-soft); stroke-width: 1.4; opacity: .6; }
-  .hring .bead { fill: color-mix(in srgb, var(--ink) 16%, transparent); }
-  .hring .gold { fill: var(--gold-soft); }
-  .hring .lbl { font: 600 11.5px var(--sans); fill: var(--muted); letter-spacing: .02em; }
-  /* etiket arka telefonun koyu kasasina dusebiliyor: zemin renginde ince hale okunur tutar */
-  .hring .lbl, .hring .num { paint-order: stroke; stroke: var(--page); stroke-width: 3.5px; stroke-linejoin: round; }
-  .hring .lbl.in { display: none; }
-  .hring .seg { fill: none; stroke-width: 9; stroke-linecap: round; }
-  .hring .seg.open { stroke: color-mix(in srgb, var(--ink) 12%, transparent); }
-  .hring .seg.done { stroke: var(--green); fill: none; }
-  .hring .seg.prog { stroke: var(--gold-soft); }
-  .hring .seg.thin { stroke-width: 7; }
-  .hring .tick { stroke: var(--page); stroke-width: 2; }
-  .hring .num { font: 600 10.5px var(--sans); fill: var(--muted); text-anchor: middle; dominant-baseline: middle; }
-  .hc-phone { position: absolute; left: 50%; top: 50%; width: 36.5%; aspect-ratio: 640 / 1391; transform: translate(-50%, -50%); margin: 0; padding: 7px; border-radius: 36px; background: #101a16;
-    box-shadow: 0 34px 60px -34px rgba(10, 30, 20, .7), inset 0 0 0 1px rgba(255, 255, 255, .08); transition: filter .5s ease; }
-  .card:not([data-pos="0"]) .hc-phone { filter: brightness(var(--side-dim)); }
-  .hc-phone img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 29px; background: var(--mint); pointer-events: none; }
-  .more-in { position: absolute; inset: 7px; border-radius: 29px; background: var(--paper); padding: 26px 17px 20px; display: flex; flex-direction: column; overflow: hidden; }
-  .more-in small { font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
-  .more-in h3 { font-size: 22px; line-height: 1.05; margin-top: 7px; }
-  .more-in ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 6px; font-size: 13px; line-height: 1.3; font-weight: 600; }
-  .more-in li { display: flex; align-items: center; gap: 9px; }
-  .more-in li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold-soft); flex: none; }
-  .more-in a { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--green); text-decoration: none; }
-  .hring .imame { fill: var(--green); }
-  .chip { position: absolute; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 12.5px; font-weight: 600; color: var(--ink);
-    background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px 6px 9px; box-shadow: 0 8px 20px -14px rgba(10, 30, 20, .5); transition: opacity .4s ease; }
-  .chip i { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--green); }
-  .chip i.g { background: var(--gold-soft); }
-  .chip small { font-weight: 500; color: var(--muted); font-size: 12px; }
-  .card:not([data-pos="0"]) .chip { opacity: 0; }
-  .nav { position: absolute; top: 50%; z-index: 6; width: 44px; height: 44px; margin-top: -22px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); color: var(--ink);
-    display: grid; place-items: center; cursor: pointer; box-shadow: 0 10px 24px -14px rgba(10, 30, 20, .55); }
-  .nav:hover { background: var(--mint); }
-  .nav.prev { inset-inline-start: -6px; }
-  .nav.next { inset-inline-end: -6px; }
-  .nav svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  .tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 520px; }
-  /* Sekmeler ve ilk altyazi HTML'de hazir (vitrin sonradan uzayip giristeki magaza dugmelerini kaydirmasin); betik
-     calismiyorsa ise yaramazlar, gizli kalir (yerine noscript notu). mh-js bastaki betikten. */
-  html:not(.mh-js) .tabs, html:not(.mh-js) #scap { display: none; }
-  .tabs button { position: relative; overflow: hidden; font: 600 13.5px var(--sans); color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 8px 15px; cursor: pointer; }
-  .tabs button:hover { background: var(--mint); }
-  .tabs button[aria-selected="true"] { background: var(--green); border-color: var(--green); color: var(--page); }
-  .tabs button .fill { position: absolute; inset-inline-start: 0; bottom: 0; height: 3px; width: 0; background: var(--gold-soft); }
-  .scap { font-size: 14.5px; color: var(--body); text-align: center; min-height: 2.8em; max-width: 34ch; }
 
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; padding-block: 16px 56px; }
-    .showcase { order: 2; margin-top: 12px; }
+  /* ── yeni gelenler (21 Kas 2026): yatay galeri. Kartta telefon alttan bakar (alt kismi kartin icinde kirpilir).
+     Kaydirma-yakalama dogal; destekleyen tarayicida (animation-timeline) kart girerken telefon yukselir.
+     Galeri iki yana sayfa kenarina kadar uzanir, ilk kart icerik hizasindan baslar. ── */
+  .nw { padding-top: 64px; }
+  .nw-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  .nw-nav { display: none; gap: 10px; flex: none; }
+  @media (hover: hover) and (min-width: 761px) { .nw-nav { display: flex; } }
+  .nw-nav .kis-btn:disabled { opacity: .35; cursor: default; background: var(--paper); }
+  .nw-rail { list-style: none; margin: 34px calc(50% - 50vw) 0; padding: 6px max(20px, calc(50vw - 560px)) 20px; display: flex; gap: 16px; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding-inline: max(20px, calc(50vw - 560px)); scrollbar-width: none; }
+  .nw-rail::-webkit-scrollbar { display: none; }
+  .nw-rail:focus-visible { outline: 2px solid var(--green); outline-offset: -2px; }
+  .nw-card { flex: 0 0 min(78vw, 300px); scroll-snap-align: start; position: relative; overflow: hidden; border-radius: 28px; background: var(--t);
+    display: flex; flex-direction: column; min-height: 520px; box-shadow: inset 0 0 0 1px var(--line); }
+  :root[data-theme="dark"] .nw-card { background: var(--td); }
+  .nw-txt { padding: 26px 24px 18px; }
+  .nw-k { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+  :root[lang="ar"] .nw-k { letter-spacing: 0; font-size: 13px; }
+  .nw-txt h3 { font-size: 25px; line-height: 1.14; margin-top: 8px; }
+  .nw-txt p { margin-top: 9px; font-size: 15px; line-height: 1.5; color: var(--body); }
+  .nw-ph { width: 74%; margin: auto auto -42%; padding: 7px; border-radius: 34px; aspect-ratio: 640 / 1391; flex: none; }
+  .nw-ph img { border-radius: 27px; }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .nw-ph { animation: nw-rise linear both; animation-timeline: view(inline); animation-range: entry 0% contain 25%; }
+      @keyframes nw-rise { from { transform: translateY(18%) rotate(calc(5deg * var(--s, 1))); } to { transform: none; } }
+    }
   }
-  /* Genis ekranda iki sutun dikeyde ortali: vitrin (sag sutun) okundukca uzarken sol sutun (baslik, magaza dugmeleri)
-     30 px asagi kayiyordu (yavas baglantida olculdu). Giris, vitrinin altyazisi (#scap) okunana kadar gorunmez; bu kisa
-     bir an (vitrin birkac KB), ust cubuk ve vakit seridi gorunur kalir. Dar ekranda vitrin altta, gerek yok. */
-  @media (min-width: 901px) { .hero:not(:has(#scap)) { visibility: hidden; animation: mh-stores-show 0s 3s forwards; } }
-  @media (max-width: 560px) {
-    .chip { display: none; }
-    .card[data-pos="1"] { transform: translate(calc(8% * var(--s)), -2%) rotate(calc(5deg * var(--s))) scale(.84); }
-    .card[data-pos="1"] .hring { opacity: 0; }
-    .tabs { gap: 6px; }
-    .more-in { padding: 16px 11px 12px; }
-    .more-in small { display: none; }
-    .more-in h3 { font-size: 16px; margin-top: 0; }
-    .more-in ul { margin-top: 8px; gap: 3px; font-size: 10.5px; }
-    .more-in li { gap: 6px; }
-    .more-in li::before { width: 5px; height: 5px; }
-    .more-in a { font-size: 10.5px; }
-    .tabs button { font-size: 12.5px; padding: 7px 10px; }
-    .hring .lbl { font-size: 17px; }
-    .hring .lbl.out { display: none; }
-    .hring .lbl.in { display: inline; }
-    .hring .num { font-size: 15px; }
-    .nav { width: 40px; height: 40px; margin-top: -20px; }
-    .nav.prev { inset-inline-start: -4px; }
-    .nav.next { inset-inline-end: -4px; }
-  }
-  @media (prefers-reduced-motion: reduce) { .card, .hring, .chip, .hc-phone { transition: none; } }
+  html.mh-zoom .nw-ph { animation: none !important; }
+  @media (max-width: 760px) { .nw-txt h3 { font-size: 23px; } .nw-card { min-height: 490px; } }
 
   /* ── bolum basliklari ── */
   section { padding-block: 72px; }
@@ -563,7 +552,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
      kismin ustune dikissiz oturur. calc'li satir desteklenmezse ustteki duz golge kalir. */
   .fx { position: absolute; z-index: 2; height: auto; display: block; pointer-events: none; user-select: none; transform-origin: 50% 50%; --sh: 1; }
   .fx-move .fx, .fx-move .band-visual .ves-done, .fx-move .ves-tag, .fx-move .webcard { will-change: transform, opacity; }
-  html.mh-zoom .fx, html.mh-zoom .band-visual .ves-done, html.mh-zoom .ves-tag, html.mh-zoom .webcard, html.mh-zoom .card { will-change: auto !important; }
+  html.mh-zoom .fx, html.mh-zoom .band-visual .ves-done, html.mh-zoom .ves-tag, html.mh-zoom .webcard { will-change: auto !important; }
   .fx-w { filter: drop-shadow(0 18px 24px rgba(10, 30, 20, .22)) drop-shadow(0 2px 4px rgba(10, 30, 20, .10)); filter: drop-shadow(0 18px 24px rgba(10, 30, 20, calc(.22 * var(--sh)))) drop-shadow(0 2px 4px rgba(10, 30, 20, calc(.10 * var(--sh)))); }
   .fx-card { background: #fff; border-radius: 18px; box-shadow: 0 22px 44px -18px rgba(10, 30, 20, .38), 0 0 0 1px rgba(20, 35, 28, .06); box-shadow: 0 22px 44px -18px rgba(10, 30, 20, calc(.38 * var(--sh))), 0 0 0 1px rgba(20, 35, 28, calc(.06 * var(--sh))); }
   :root[data-theme="dark"] .fx-w { filter: drop-shadow(0 18px 26px rgba(0, 0, 0, .5)); filter: drop-shadow(0 18px 26px rgba(0, 0, 0, calc(.5 * var(--sh)))); }
@@ -576,9 +565,13 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .p-vb { width: 27%; top: 44%; inset-inline-end: -1%; }
   .p-vc { width: 50%; bottom: 7%; inset-inline-start: -2%; }
   .p-vs { width: 27%; top: 12%; inset-inline-start: 2%; }
+  /* 21 Kas 2026: kaza karti (Kaza namazlarim ekranindan) telefonun bitis yaninda */
+  .p-vk { width: 62%; top: 40%; inset-inline-end: -7%; }
+  /* Sutun sayfa kenarina yakinken (1240 px'e kadar) tasan parcalar kenarda durur: 1024'te p-qb ve p-va 3 px disari cikiyordu */
+  @media (min-width: 861px) and (max-width: 1240px) { .p-qb, .p-vk { inset-inline-end: 0; } .p-va, .p-ab, .p-qa { inset-inline-start: 0; } }
   /* Hatim: tur geri sayimi telefondaki kartin ustunde (buyutec gibi), uygulamanin dagittigi gorev karti altta */
   .p-ha { width: 66%; top: 24%; inset-inline-start: 4%; }
-  .p-hb { width: 46%; bottom: 4%; inset-inline-end: -2%; }
+  .p-hb { width: 58%; bottom: 4%; inset-inline-end: -4%; }
   /* Ortak Ameller: bugunun isaretleri telefondaki listenin ustunde (buyutec), hadis altta */
   .p-aa { width: 60%; top: 33%; inset-inline-end: 12%; }
   .p-ab { width: 66%; bottom: 5%; inset-inline-start: -3%; }
@@ -596,6 +589,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     .p-va { width: 76%; top: 5%; }
     .p-vc { width: 64%; }
     .p-vb, .p-vs { width: 34%; }
+    .p-vk { width: 72%; inset-inline-end: 0; }
     .p-ha { width: 76%; }
     .p-hb { width: 58%; bottom: 2%; }
     .p-ha { inset-inline-start: 2%; }
@@ -660,7 +654,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   .kis.is-ring .kis-strip.drag { cursor: grabbing; }
   /* Yakinlastirilmis sayfada surukleme tarayicinin: iki parmakla uzaklastirma ve yatay kaydirma
      engellenmesin (pan-y yakinlasinca ekrani dolduran alanda geri cikmayi imkansiz kiliyordu). */
-  html.mh-zoom .stage, html.mh-zoom .kis.is-ring .kis-strip { touch-action: auto; cursor: auto; }
+  html.mh-zoom .kis.is-ring .kis-strip { touch-action: auto; cursor: auto; }
   .kis.is-ring .kis-card { position: absolute; top: 18px; left: calc(50% - var(--kw) / 2); width: var(--kw); display: block;
     transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .5s ease; }
   .kis.is-ring .kis-card[data-d="0"] { cursor: default; }
@@ -788,8 +782,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   /* ── Arapca: sag-sol aynalama ve Arap yazisinda harf araligi yok ── */
   :root[dir="rtl"] { --s: -1; --display: "Marcellus", "Noto Naskh Arabic", "Geeza Pro", "Segoe UI", serif;
     --sans: "Onest", "Noto Sans Arabic", "Geeza Pro", "Segoe UI", system-ui, sans-serif; }
-  :root[dir="rtl"] .nav svg { transform: scaleX(-1); }
-  :root[lang="ar"] .eyebrow, :root[lang="ar"] .verse .ref, :root[lang="ar"] .part span, :root[lang="ar"] .more-in small { letter-spacing: 0; }
+  :root[lang="ar"] .eyebrow, :root[lang="ar"] .verse .ref, :root[lang="ar"] .part span { letter-spacing: 0; }
   :root[lang="ar"] .hero h1 { line-height: 1.25; }
   /* ── canli vakit seridi (en ustte, kaydirinca gider; vakit motoru js/mh-dynamic.js) ── */
   /* Renkler SABIT: tema degiskeni --green koyu temada acik naneye doner, serit okunmaz olurdu */
@@ -818,10 +811,13 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     .vs-go .short { display: inline; }
   }
   @media (max-width: 340px) { .vs-left, #vsSep3 { display: none; } }
+  /* 761-900 px: uzun "tum vakitler" yazisi tarih ve geri sayimla birlikte sigmiyordu (768'de 10 px tasma, 21 Kas 2026 olculdu) */
+  @media (min-width: 761px) and (max-width: 900px) { .vs-date, #vsSep2 { display: none; } .vs-go .long { display: none; } .vs-go .short { display: inline; } }
 
   /* ── marka satiri h1'in icinde (arama gorunurlugu: marka h1'de kalir) ── */
   .hero h1 { margin-top: 0; }
-  .hero h1 .h1-brand { display: flex; width: fit-content; margin-bottom: 18px; font-family: var(--sans); line-height: 1.2; }
+  .hero h1 .h1-brand { display: flex; width: fit-content; margin: 0 auto 12px; font-family: var(--sans); line-height: 1.2; }
+  @media (min-width: 901px) { .hero h1 .h1-brand { margin: 0 0 18px; } }
   .hero h1 .h1-main { display: block; }
   .ticks + .qlink { display: inline-block; margin-top: 16px; font-weight: 700; font-size: 14.5px; color: var(--green); text-decoration: none; }
   .ticks + .qlink:hover { text-decoration: underline; }
@@ -1031,6 +1027,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   <header class="top">
     <a class="brand" href="/ar/"><img src="/img/brand-icon.webp" alt="" width="32" height="32" data-vt-brand><span>Manevi Halka</span></a>
     <nav aria-label="الأقسام">
+      <a href="#yeni" data-p="1.5">الجديد</a>
       <a href="#solo" data-p="1">بمفردك</a>
       <a href="#together" data-p="2">معًا</a>
       <a href="#faq" data-p="3">الأسئلة الشائعة</a>
@@ -1051,39 +1048,33 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     </button>
     <a class="get" href="#download" data-get aria-label="حمّل التطبيق"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg><span class="gl">حمّل التطبيق</span><span class="gs">حمّل</span></a>
   </header>
-  <nav class="mnav" aria-label="الصفحات"><a class="pg" href="/ar/qiraa-mushtaraka/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg>القراءة المشتركة</a><a class="pg" href="/ar/dalil/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5v13c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z"/><path d="M12 6v13.5"/></svg>الأدلة</a></nav>
 
   <main>
   <!-- GIRIS -->
   <div class="hero" id="top">
-    <div>
-      <h1><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">نيّة واحدة، حلقة واحدة، <em>وأعمال صالحة كثيرة.</em></span></h1>
-      <p class="lead">حافظ في يومك على القرآن والصلاة والذكر والحفظ والقراءة. وإن شئت، أنشئ حلقة مع أحبّتك لتتقاسموا الأجزاء وتُتمّوا الختمة معًا.</p>
-      <div class="stores">
-        <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>حمّل</small><b>App Store</b></span></a>
-        <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dhero-ar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>حمّل</small><b>Google Play</b></span></a>
-        <i class="stores-end" hidden></i>
-      </div>
-      <script>/* Android: gorunen sira CSS'te (is-android); klavye ve ekran okuyucu sirasi da uysun diye Google Play DOM'da one alinir. Gorunen yer degismez, kayma olmaz. */
+    <!-- Seritte uygulamanin 2.1.0 ekranlari egik bir seritte yana akar. Ilk boyama CSS'ten (kartin yeri --u ile
+         hesaplanir, betik yoksa da duzgun durur); betik akisi, surukleme ve durdurmayi ekler. -->
+    <div class="strip" id="strip" role="group" aria-label="شاشات التطبيق">
+      <div class="st-track" id="stTrack"><figure class="st-card" style="--u:0"><span class="st-ph"><img src="/img/app/ar/st-mushaf.webp" width="432" height="939" alt="قارئ القرآن" decoding="async" fetchpriority="high"></span><figcaption aria-hidden="true">قارئ القرآن</figcaption></figure><figure class="st-card" style="--u:1"><span class="st-ph"><img src="/img/app/ar/st-bahce.webp" width="432" height="939" alt="بستان النية" decoding="async" fetchpriority="high"></span><figcaption aria-hidden="true">بستان النية</figcaption></figure><figure class="st-card" style="--u:2"><span class="st-ph"><img src="/img/app/ar/st-home.webp" width="432" height="939" alt="الرئيسية" decoding="async"></span><figcaption aria-hidden="true">الرئيسية</figcaption></figure><figure class="st-card" style="--u:3"><span class="st-ph"><img src="/img/app/ar/st-halka.webp" width="432" height="939" alt="ختمة جماعية" decoding="async"></span><figcaption aria-hidden="true">ختمة جماعية</figcaption></figure><figure class="st-card" style="--u:4"><span class="st-ph"><img src="/img/app/ar/st-sayac.webp" width="432" height="939" alt="عداد الذكر" decoding="async"></span><figcaption aria-hidden="true">عداد الذكر</figcaption></figure><figure class="st-card" style="--u:5"><span class="st-ph"><img src="/img/app/ar/st-tek.webp" width="432" height="939" alt="حلقة لمرة واحدة" decoding="async"></span><figcaption aria-hidden="true">حلقة لمرة واحدة</figcaption></figure><figure class="st-card" style="--u:-4"><span class="st-ph"><img src="/img/app/ar/st-video.webp" width="432" height="939" alt="فيديو الآيات" decoding="async"></span><figcaption aria-hidden="true">فيديو الآيات</figcaption></figure><figure class="st-card" style="--u:-3"><span class="st-ph"><img src="/img/app/ar/st-namaz.webp" width="432" height="939" alt="صلواتي" decoding="async"></span><figcaption aria-hidden="true">صلواتي</figcaption></figure><figure class="st-card" style="--u:-2"><span class="st-ph"><img src="/img/app/ar/st-defter.webp" width="432" height="939" alt="دفتر أدعيتي" decoding="async"></span><figcaption aria-hidden="true">دفتر أدعيتي</figcaption></figure><figure class="st-card" style="--u:-1"><span class="st-ph"><img src="/img/app/ar/st-sahne.webp" width="432" height="939" alt="مشاهد الاستماع" decoding="async" fetchpriority="high"></span><figcaption aria-hidden="true">مشاهد الاستماع</figcaption></figure></div>
+      <button type="button" class="st-pause" id="stPause" aria-pressed="false" aria-label="إيقاف حركة الشاشات" data-on="إيقاف حركة الشاشات" data-off="استئناف حركة الشاشات" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M9 6.5v11M15 6.5v11"/><path class="i-play" d="M8.5 6.2v11.6L18 12z"/></svg></button>
+    </div>
+    <h1 class="hero-h1"><span class="eyebrow h1-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 4.45"/></svg>Manevi Halka</span><span class="h1-main">كل عمل صالح <em>يبدأ بنيّة.</em></span></h1>
+    <p class="lead">اقرأ القرآن واستمع إليه، وتابع صلاتك وذكرك، ودَع نواياك تنمو. وإن شئت، أنشئ حلقة مع أحبّتك لتُتمّوا الختمة معًا.</p>
+    <div class="stores">
+      <a class="store" target="_blank" rel="noopener" data-store="ios" href="https://apps.apple.com/app/manevi-halka/id6760654292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.28 1.86-3.38 1.95-3.43-1.06-1.56-2.72-1.77-3.31-1.79-1.41-.14-2.75.83-3.47.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.89-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.23-.02 2.02-1.12 2.78-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.43-3.65zM14.79 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.01.61-2.67 1.37-.59.67-1.1 1.75-.96 2.78 1.01.08 2.05-.51 2.69-1.25z"/></svg><span><small>حمّل</small><b>App Store</b></span></a>
+      <a class="store alt" target="_blank" rel="noopener" data-store="android" href="https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Dhero-ar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.24.26-.38.66-.38 1.18v17.04c0 .52.14.92.38 1.18l.06.06 9.545-9.545v-.225L3.66 2.44l-.06-.14z"/><path d="M16.33 15.4l-3.125-3.13v-.225l3.13-3.13.07.04 3.7 2.105c1.06.6 1.06 1.585 0 2.19l-3.7 2.1-.075.05z"/><path d="M16.405 15.35l-3.2-3.2L3.6 21.76c.35.37.925.415 1.575.045l11.23-6.455z"/><path d="M16.405 8.955L5.175 2.5C4.525 2.135 3.95 2.18 3.6 2.55l9.605 9.6 3.2-3.195z"/></svg><span><small>حمّل</small><b>Google Play</b></span></a>
+      <i class="stores-end" hidden></i>
+    </div>
+    <script>/* Android: gorunen sira CSS'te (is-android); klavye ve ekran okuyucu sirasi da uysun diye Google Play DOM'da one alinir. Gorunen yer degismez, kayma olmaz. */
 (function (s) { if (!s || !document.documentElement.classList.contains("is-android")) return; var a = s.querySelector('[data-store="android"]'), i = s.querySelector('[data-store="ios"]');
-  if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentScript.previousElementSibling);</script>
-      <ul class="trust">
-        <li><b>بلا إعلانات</b>ليبقى انتباهك في العبادة</li>
-        <li><b>العبادة مجانية</b>العبادة نفسها، دائمًا</li>
-        <li><b>بلا مقارنة</b>لا ترتيب ولا نقاط ولا شارات</li>
-        <li><b>آيفون وأندرويد</b>بخمس لغات</li>
-      </ul>
-    </div>
-
-    <div class="showcase">
-      <div class="stage" id="stage">
-        <button type="button" class="nav prev" id="prev" aria-label="الشاشة السابقة"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button type="button" class="nav next" id="next" aria-label="الشاشة التالية"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-      </div>
-      <div class="tabs" id="tabs" role="tablist" aria-label="الشاشات"><button type="button" role="tab" aria-selected="true">الصلاة<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">القرآن<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">الحلقة<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">أعمال مشتركة<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">لمرة واحدة<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">رف الكتب<span class="fill"></span></button><button type="button" role="tab" aria-selected="false">المزيد<span class="fill"></span></button></div>
-      <p class="scap" id="scap">المواقيت على مدار يومك. علّم ما صلّيت لنفسك.</p>
-      <noscript><p class="scap">فعّل JavaScript لرؤية شاشات التطبيق.</p></noscript>
-    </div>
+if (a && i) s.insertBefore(a, i); })(document.currentScript && document.currentScript.previousElementSibling);</script>
+    <nav class="mnav" aria-label="الصفحات"><a class="pg" href="/ar/qiraa-mushtaraka/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="17" cy="10" r="2.4"/><path d="M15.5 14.6c2.3.2 4 1.8 4.5 4.4"/></svg>القراءة المشتركة</a><a class="pg" href="/ar/dalil/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5v13c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z"/><path d="M12 6v13.5"/></svg>الأدلة</a></nav>
+    <ul class="trust">
+      <li><b>بلا إعلانات</b>ليبقى انتباهك في العبادة</li>
+      <li><b>العبادة مجانية</b>العبادة نفسها، دائمًا</li>
+      <li><b>بلا مقارنة</b>لا ترتيب ولا نقاط ولا شارات</li>
+      <li><b>آيفون وأندرويد</b>بخمس لغات</li>
+    </ul>
   </div>
 
   <!-- KURUCU AYET -->
@@ -1095,6 +1086,22 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     <p class="purpose">أُسِّس Manevi Halka لتيسير هذا التعاون إن شاء الله.</p>
   </div>
 
+  <!-- YENI: 2.1.0 ile gelenler -->
+  <section id="yeni" class="nw">
+    <div class="nw-head">
+      <div class="sec-head">
+        <span class="eyebrow">جديد</span>
+        <h2>ما الجديد في التطبيق؟</h2>
+        <p>تجدّد قسم القرآن والحلقة لمرة واحدة من أساسهما، وجاء بستان النية و«خاطرة بعد الصلاة» والمزيد.</p>
+      </div>
+      <div class="nw-nav">
+        <button type="button" class="kis-btn" id="nwPrev" aria-controls="nwRail" aria-label="الشاشة السابقة"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="kis-btn" id="nwNext" aria-controls="nwRail" aria-label="الشاشة التالية"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <ul class="nw-rail" id="nwRail" tabindex="0" aria-label="الجديد"><li class="nw-card" style="--t:#f3e8cb;--td:#2a2416"><div class="nw-txt"><span class="nw-k">قارئ القرآن</span><h3>تجدّد من أساسه</h3><p>عرض المصحف والنص المتصل والترجمة، وألوان التجويد، والعدسة المكبّرة، والبحث في الآيات.</p></div><figure class="phone nw-ph"><img src="/img/app/ar/nw-okuyucu.webp" width="640" height="1391" alt="قارئ القرآن" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#ecdfc7;--td:#241d12"><div class="nw-txt"><span class="nw-k">مشاهد الاستماع</span><h3>استمع تحت قبة تدور</h3><p>قبة مسجد تدور، أو منظر يتحرك، أو لوحة باستيل. وهناك مشاهد للكعبة والمسجد النبوي أيضًا.</p></div><figure class="phone nw-ph"><img src="/img/app/ar/nw-sahne.webp" width="640" height="1391" alt="مشاهد الاستماع" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#dce4ef;--td:#121a26"><div class="nw-txt"><span class="nw-k">فيديو الآيات</span><h3>فيديو من الآيات التي تختارها</h3><p>بثلاثة أشكال، بصوت قارئ أو بصوتك، ثم احفظه وشاركه.</p></div><figure class="phone nw-ph"><img src="/img/app/ar/nw-video.webp" width="640" height="1391" alt="فيديو الآيات" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#e1eddb;--td:#15241a"><div class="nw-txt"><span class="nw-k">بستان النية</span><h3>كل نية تصير غرسة</h3><p>تكبر كلما وفيت بها. بستانك لا يراه أحد سواك، وإن احتجت إلى استراحة فهو ينتظرك.</p></div><figure class="phone nw-ph"><img src="/img/app/ar/nw-bahce.webp" width="640" height="1391" alt="بستان النية" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#f2e7db;--td:#2a1f17"><div class="nw-txt"><span class="nw-k">خاطرة بعد الصلاة</span><h3>دقيقة بعد كل صلاة</h3><p>السلسلة الأولى «من حياة النبي ﷺ»، ولا يُروى فيها إلا ما يستند إلى القرآن الكريم وصحيحي البخاري ومسلم والروايات الصحيحة أو الحسنة.</p></div><figure class="phone nw-ph"><img src="/img/app/ar/nw-sohbet.webp" width="640" height="1391" alt="خاطرة بعد الصلاة" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#dee4ec;--td:#101822"><div class="nw-txt"><span class="nw-k">التهجد</span><h3>وقت التهجد لهذه الليلة</h3><p>وفي بطاقة «صلواتي» أيضًا الوتر ودليل ومنبّه الاستيقاظ.</p></div><figure class="phone nw-ph"><img src="/img/app/ar/nw-gece.webp" width="640" height="1391" alt="التهجد" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#e0eee8;--td:#12231c"><div class="nw-txt"><span class="nw-k">قضاء الصلاة والصيام</span><h3>واحدةً تلو الأخرى، على مهلك</h3><p>مع مساعد للحساب وتذكير اختياري، ولا يرى سجلاتك أحد سواك.</p></div><figure class="phone nw-ph"><img src="/img/app/ar/nw-kaza.webp" width="640" height="1391" alt="قضاء الصلاة والصيام" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#e7eae5;--td:#18201c"><div class="nw-txt"><span class="nw-k">دفتر أدعيتي</span><h3>اكتب أدعيتك قسمًا قسمًا</h3><p>أضف الآيات والأدعية وأسماء الله الحسنى، واضبط تذكيرًا، وشاركه ملف PDF.</p></div><figure class="phone nw-ph"><img src="/img/app/ar/nw-defter.webp" width="640" height="1391" alt="دفتر أدعيتي" loading="lazy" decoding="async"></figure></li><li class="nw-card" style="--t:#f1e2e7;--td:#2a1a21"><div class="nw-txt"><span class="nw-k">حلقة مفتوحة</span><h3>شارك في ختمة بصفحة واحدة في الأسبوع</h3><p>انضم إلى حلقة القرآن الأسبوعية المفتوحة. لا توجد قائمة أعضاء، ويظهر مجموع الحلقة فقط.</p></div><figure class="phone nw-ph"><img src="/img/app/ar/nw-haftalik.webp" width="640" height="1391" alt="حلقة مفتوحة" loading="lazy" decoding="async"></figure></li></ul>
+  </section>
+
   <!-- TEK BASINA -->
   <section id="solo">
     <div class="sec-head">
@@ -1103,12 +1110,12 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <p>لا يقتصر Manevi Halka على القراءة الجماعية، بل يرافقك في عبادة كل يوم.</p>
     </div>
     <ul class="areas">
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-1.6-1.4-4-2-7-2v13c3 0 5.4.6 7 2 1.6-1.4 4-2 7-2v-13c-3 0-5.4.6-7 2z"/><path d="M12 6.5v13"/></svg></span><div><b>القرآن</b><span>المصحف مع تلاوة بأصوات ثلاثة قرّاء.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>الصلاة</b><span>المواقيت والتنبيهات والأدوات والقبلة والأيام الدينية.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><div><b>الذكر والدعاء</b><span>عداد الذكر والتسبيحات والأوراد والأدعية النبوية.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/><path d="M9.5 10l2 2 3.5-3.5"/></svg></span><div><b>الحفظ</b><span>حفظ السور والآيات بمراجعة متباعدة.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5c-1.6-1.4-4-2-7-2v13c3 0 5.4.6 7 2 1.6-1.4 4-2 7-2v-13c-3 0-5.4.6-7 2z"/><path d="M12 6.5v13"/></svg></span><div><b>القرآن</b><span>المصحف والترجمة وألوان التجويد، وتلاوة بصوت القارئ الذي تختاره.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>الصلاة</b><span>المواقيت والتنبيهات والأدوات والقبلة والتهجد وقضاء الصلاة.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5" stroke-dasharray="0 4.2" stroke-width="3"/><circle cx="12" cy="4.5" r="1.6"/></svg></span><div><b>الذكر والدعاء</b><span>عداد الذكر والتسبيحات والأوراد والأدعية النبوية ودفتر أدعيتي.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/><path d="M9.5 10l2 2 3.5-3.5"/></svg></span><div><b>الحفظ</b><span>حفظ السور والآيات بمراجعة متباعدة وجدول الحفظ.</span></div></li>
       <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4z"/><path d="M15.5 5.5l3.6-1 3.2 14.6-3.6 1z"/></svg></span><div><b>رف الكتب</b><span>كتبك بصيغة PDF وEPUB وملاحظاتك.</span></div></li>
-      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c2-6 4-9 7-9s5-3 7-6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="4" r="1.6"/></svg></span><div><b>رحلتي</b><span>تذكّر طريقك الخاص، بلا مقارنة.</span></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-8.5"/><path d="M12 13c0-3.6-2.6-6.2-6.6-6.2 0 3.6 2.6 6.2 6.6 6.2z"/><path d="M12 10.8c0-3.3 2.3-5.6 6-5.6 0 3.3-2.3 5.6-6 5.6z"/><path d="M7.5 21h9"/></svg></span><div><b>بستان النية</b><span>كل نية تصير غرسة تكبر كلما وفيت بها.</span></div></li>
     </ul>
 
     <div class="rows">
@@ -1116,20 +1123,20 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <div>
           <span class="eyebrow">القرآن</span>
           <h3>اقرأ واستمع واحفظ.</h3>
-          <p>داوم على قراءة القرآن بإيقاعك. وأثناء الاستماع تُظلَّل كل كلمة.</p>
-          <ul class="ticks"><li>تلاوة بأصوات ثلاثة قرّاء مع تتبّع الكلمات</li><li>وضع للحفظ وملاحظات وعلامات</li><li>نزّل سورة أو جزءًا واستمع دون اتصال</li></ul>
+          <p>اقرأ بإيقاعك مع عرض المصحف والنص المتصل والترجمة، وألوان التجويد والعدسة المكبّرة. وأثناء الاستماع تتقدّم الصفحة وحدها.</p>
+          <ul class="ticks"><li>تلاوة بصوت القارئ الذي تختاره، وتكرار السورة، والبسملة في بداية كل سورة</li><li>ادرس كلمة كلمة، وأضف الآية إلى دفترك</li><li>نزّل سورة أو جزءًا واستمع دون اتصال</li></ul>
         </div>
-        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/quran.webp" alt="قارئ القرآن، سورة الملك، والتلاوة قيد التشغيل" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-qa" src="/img/app/fx-q-line.webp" alt="" width="720" height="232" loading="lazy" decoding="async"><img class="fx fx-w p-qb" src="/img/app/ar/fx-q-bar.webp" alt="" width="720" height="101" data-src="2.5,83.25,94.38,6.04" loading="lazy" decoding="async"></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/s21-quran.webp" alt="قارئ القرآن، سورة الملك: الآيات في عرض المصحف" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-qa" src="/img/app/ar/fx-q2-panel.webp" alt="" width="720" height="438" loading="lazy" decoding="async"><img class="fx fx-card p-qb" src="/img/app/ar/fx-q2-bar.webp" alt="" width="720" height="100" loading="lazy" decoding="async"></div>
       </div>
       <div class="row">
         <div>
           <span class="eyebrow">الصلاة</span>
           <h3>في قلب يومك.</h3>
-          <p>مواقيت الصلاة والقبلة في 106 دول. تعرف متى يدخل كل وقت.</p>
-          <ul class="ticks"><li>تنبيه عند دخول كل وقت وقبل خروجه</li><li>أدوات للشاشة الرئيسية وشاشة القفل</li><li>علّم صلواتك ونوافلك لنفسك</li></ul>
+          <p>مواقيت الصلاة والقبلة في 106 دول. تعرف متى يدخل كل وقت، وللتهجد منبّه استيقاظ.</p>
+          <ul class="ticks"><li>تنبيه عند دخول كل وقت وقبل خروجه</li><li>أدوات للشاشة الرئيسية وشاشة القفل</li><li>علّم صلواتك ونوافلك وما قضيت، لنفسك</li></ul>
           <a class="qlink" href="/ar/mawaqit/">مواقيت اليوم</a>
         </div>
-        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/vakit.webp" alt="شاشة مواقيت الصلاة، مكة المكرمة" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w fx-sq p-vs" src="/img/app/ar/fx-w-small.webp" alt="" width="400" height="400" loading="lazy" decoding="async"><img class="fx fx-w fx-sq p-vb" src="/img/app/ar/fx-w-ring.webp" alt="" width="400" height="400" loading="lazy" decoding="async"></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/s21-namaz.webp" alt="صلواتي: صلوات اليوم مع أزرار القضاء" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w fx-sq p-vs" src="/img/app/ar/fx-w-small.webp" alt="" width="400" height="400" loading="lazy" decoding="async"><img class="fx fx-card p-vk" src="/img/app/ar/fx-n-kaza.webp" alt="" width="720" height="342" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -1153,10 +1160,10 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="eyebrow">ختمة مشتركة</span>
           <h3>دع التطبيق يتولّى التوزيع.</h3>
           <p>تسير الجولات بانتظام، وترى بنظرة واحدة من يقرأ أي جزء.</p>
-          <ul class="ticks"><li>تُوزَّع الأجزاء تلقائيًا في كل جولة</li><li>من تأخّر يمكنه إعادة نصيبه إلى المجمع</li><li>وضع المرشد: يمكن لمنشئ الحلقة أن يكتفي بالمتابعة</li></ul>
+          <ul class="ticks"><li>تُوزَّع الأجزاء تلقائيًا في كل جولة، ويمكنك ضبط نصيب كل شخص</li><li>من تأخّر يمكنه إعادة نصيبه إلى المجمع</li><li>وضع المرشد: يمكن لمنشئ الحلقة أن يكتفي بالمتابعة</li></ul>
           <a class="qlink" href="/ar/dalil/khatma-jamaiya/">خطوة بخطوة: كيف تنشئ ختمة جماعية</a>
         </div>
-        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/halka.webp" alt="ختمة العائلة، تبويب الحلقة: أربعة أعضاء وأجزاؤهم" width="640" height="1391" loading="lazy"></figure><img class="fx fx-w p-ha" src="/img/app/ar/fx-h-tur.webp" alt="" width="720" height="139" data-src="8.12,25.74,84.06,7.33" loading="lazy" decoding="async"><img class="fx fx-w p-hb" src="/img/app/ar/fx-h-task.webp" alt="" width="720" height="866" loading="lazy" decoding="async"></div>
+        <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/s21-halka.webp" alt="ختمة العائلة، تبويب الحلقة: أربعة أعضاء وأجزاؤهم" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-ha" src="/img/app/ar/fx-h2-next.webp" alt="" width="720" height="515" data-src="1.25,40.83,97.19,31.92" loading="lazy" decoding="async"><img class="fx fx-card p-hb" src="/img/app/ar/fx-h2-tur.webp" alt="" width="720" height="437" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -1166,18 +1173,18 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <div>
         <span class="eyebrow">حلقة لمرة واحدة</span>
         <h2>اجتمعوا لمناسبة.</h2>
-        <p>أنشئ حلقة لمرة واحدة لليلة مباركة أو لفقيد أو بنية الشفاء. ومن يصله رابط الدعوة يمكنه أخذ نصيب من المتصفح دون تثبيت التطبيق.</p>
+        <p>أنشئ حلقة لمرة واحدة لختمة أو «يس 41 مرة» أو الصلاة على النبي ﷺ: حدّد لمن هي ومتى تنتهي، وأنشئها في شاشة واحدة وادعُ إليها. ومن يصله رابط الدعوة يمكنه أخذ نصيب من المتصفح دون تثبيت التطبيق.</p>
         <ul class="ticks">
           <li>مشاركة من المتصفح دون حساب</li>
-          <li>يأخذ كلٌّ الجزء الذي يختاره</li>
-          <li>شاهد مباشرة كم شخصًا يقرأ</li>
+          <li>أنت تختار النهاية: الليلة، أو حتى الجمعة، أو حتى الليلة المباركة القادمة</li>
+          <li>عند اكتمال الحلقة يصل إشعار إلى كل المشاركين</li>
         </ul>
         <a class="qlink" href="/ar/dalil/halqa-li-marra-wahida/">خطوة بخطوة: كيف تنشئ حلقة لمرة واحدة</a>
       </div>
       <div class="band-visual">
-        <figure class="phone ves-done"><img src="/img/app/ar/vesile-done.webp" alt="نتيجة الحلقة: اكتملت الختمة، 30 جزءًا، 4 أشخاص، 6 أيام ومساهمتك" width="640" height="1053" loading="lazy"></figure>
-        <figure class="phone ves-now"><img src="/img/app/ar/vesile.webp" alt="حلقة لمرة واحدة: ختمة الليلة المباركة، التقدم الجماعي ومجمع الأجزاء" width="640" height="1391"></figure>
-        <span class="ves-tag" aria-hidden="true"><i></i>عند اكتمال الحلقة</span>
+        <figure class="phone ves-done"><img src="/img/app/ar/s21-tek-bitis.webp" alt="حتى متى: الليلة، حتى الجمعة، 3 أيام، أسبوع، أو حتى الليلة المباركة القادمة" width="640" height="1053" loading="lazy"></figure>
+        <figure class="phone ves-now"><img src="/img/app/ar/s21-tek.webp" alt="حلقة لمرة واحدة: يس 41 مرة، لمن، وماذا يُقرأ، وحتى متى" width="640" height="1391"></figure>
+        <span class="ves-tag" aria-hidden="true"><i></i>حتى متى</span>
         <div class="webcard" aria-hidden="true">
           <span class="url"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>manevihalka.app/halka</span>
           <b>ختمة الليلة المباركة</b>
@@ -1194,7 +1201,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <div>
           <span class="eyebrow">أعمال مشتركة</span>
           <h3>تشجيع بلا مقارنة.</h3>
-          <p>داوم مع حلقتك على الصلوات الخمس أو الحفظ أو دعاء. يعلّم كلٌّ يومه بنفسه.</p>
+          <p>داوم مع حلقتك على الصلوات الخمس أو الصيام أو الحفظ أو دعاء. يعلّم كلٌّ يومه بنفسه.</p>
           <ul class="ticks"><li>لا ترتيب ولا نقاط ولا شارات</li><li>الرؤية محددة من البداية: المسؤول فقط أو متبادلة</li><li>تذكيرات وفق أوقاتك</li></ul>
         </div>
         <div class="row-visual fx-host"><figure class="phone"><img src="/img/app/ar/amel.webp" alt="عمل مشترك: الصلوات الخمس، والفجر والظهر معلَّمتان" width="640" height="1391" loading="lazy"></figure><img class="fx fx-card p-aa" src="/img/app/ar/fx-a-today.webp" alt="" width="720" height="390" data-src="4.69,32.78,90.62,22.57" loading="lazy" decoding="async"><img class="fx fx-w p-ab" src="/img/app/ar/fx-a-hadis.webp" alt="" width="720" height="217" data-src="3.44,73.62,93.44,12.94" loading="lazy" decoding="async"></div>
@@ -1258,7 +1265,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <details><summary>هل إنشاء حلقة مجاني؟</summary><p>نعم. يمكنك مجانًا إدارة حلقة واحدة، وتنظيم حلقة لمرة واحدة نشطة في كل مرة. والانضمام إلى الحلقات مجاني دائمًا وبلا حدود. وإن أردت حلقات أكثر، فبريميوم اختياري.</p></details>
         <details><summary>هل أحتاج إلى حساب؟</summary><p>لا. افتح التطبيق وابدأ فورًا. وإن شئت، أمّن حسابك لاحقًا عبر Apple أو Google أو البريد الإلكتروني.</p></details>
         <details><summary>هل يمكن لمن لا يملك التطبيق أن يشارك؟</summary><p>في الحلقات لمرة واحدة، نعم. من يضغط على رابط الدعوة يمكنه أخذ جزء وقراءته في المتصفح.</p></details>
-        <details><summary>أي مصحف يُستخدم؟</summary><p>مصحف بالرسم المتداول في تركيا، مع تلاوة بأصوات ثلاثة قرّاء.</p></details>
+        <details><summary>أي مصحف يُستخدم؟</summary><p>مصحف بالرسم المتداول في تركيا، مع ترجمة وتلاوة بصوت القارئ الذي تختاره.</p></details>
         <details><summary>هل يعمل على آيفون وأندرويد؟</summary><p>على كليهما. والتطبيق متاح بالتركية والإنجليزية والألمانية والفرنسية والعربية.</p></details>
       </div>
     </div>
@@ -1307,6 +1314,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   <div class="wrap">
     <a class="brand" href="#top" data-sec="top" tabindex="-1"><img src="/img/brand-icon.webp" alt="" width="28" height="28"><span>Manevi Halka</span></a>
     <nav class="dock-nav" aria-label="الأقسام">
+      <a href="#yeni" data-sec="yeni" data-p="1.5">الجديد</a>
       <a href="#solo" data-sec="solo" data-p="1">بمفردك</a>
       <a href="#together" data-sec="together" data-p="2">معًا</a>
       <a href="#faq" data-sec="faq" data-p="3">الأسئلة الشائعة</a>
@@ -1329,6 +1337,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   <div class="ss-panel">
     <div class="ss-title">في هذه الصفحة</div>
     <a href="#top" data-sec="top"><span>البداية<small>أعلى الصفحة</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a href="#yeni" data-sec="yeni"><span>الجديد</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     <a href="#solo" data-sec="solo"><span>بمفردك</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     <a href="#together" data-sec="together"><span>معًا</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
     <a href="#faq" data-sec="faq"><span>الأسئلة الشائعة</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
@@ -1341,7 +1350,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 </div>
 
 <script>
-  var D = {"lang":"ar","rtl":true,"imgBase":"/img/app/ar/","screens":[{"t":"الصلاة","d":"المواقيت على مدار يومك. علّم ما صلّيت لنفسك.","img":"vakit.webp","alt":"شاشة مواقيت الصلاة، مكة المكرمة","ring":"day","rd":{"now":14.133333333333333,"pr":[{"n":"الفجر","h":4.95,"done":1},{"sun":1,"h":6.066666666666666},{"n":"الظهر","h":12.283333333333333,"done":1},{"n":"العصر","h":15.666666666666666},{"n":"المغرب","h":18.316666666666666},{"n":"العشاء","h":19.366666666666667}]},"chips":[[13,76,"","الفجر والظهر","أُدّيتا"],[18,12,"g","العصر","15:40"]]},{"t":"القرآن","d":"اقرأ واستمع واحفظ. تُظلَّل كل كلمة أثناء التلاوة.","img":"quran.webp","alt":"قارئ القرآن، سورة الملك، والتلاوة قيد التشغيل","ring":"verse","rd":{"label":"الملك · 30 آية"},"chips":[[85,22,"g","مشاري العفاسي","قيد الاستماع"],[14,74,"","الملك","الآية 2"]]},{"t":"الحلقة","d":"ختمة مع عائلتك. من يقرأ أي جزء، بنظرة واحدة.","img":"halka.webp","alt":"ختمة العائلة، تبويب الحلقة: أربعة أعضاء وأجزاؤهم","ring":"juz","rd":{},"chips":[[80,6,"g","يوسف","يقرأ الجزء 3"],[16,90,"","4 أعضاء","الجولة 1"]]},{"t":"أعمال مشتركة","d":"الصلوات الخمس مع حلقتك. يعلّم كلٌّ يومه، بلا مقارنة.","img":"amel.webp","alt":"عمل مشترك: الصلوات الخمس، والفجر والظهر معلَّمتان","ring":"week","rd":{"label":"اليوم"},"chips":[[87,74,"","اليوم","2 / 5"],[14,28,"g","آخر 7 أيام","بلا ترتيب"]]},{"t":"لمرة واحدة","d":"ختمة لليلة مباركة: يأخذ كلٌّ الجزء الذي يريد، حتى من المتصفح.","img":"vesile.webp","alt":"حلقة لمرة واحدة: ختمة الليلة المباركة، التقدم الجماعي ومجمع الأجزاء","ring":"pages","rd":{"label":"33%"},"chips":[[86,20,"g","114 صفحة","قيد القراءة"],[14,86,"","دون تطبيق","من المتصفح"]]},{"t":"رف الكتب","d":"كتبك وملاحظاتك وحيث توقفت.","img":"kitaplik.webp","alt":"رف الكتب: كتبك الخاصة","ring":"books","rd":{},"chips":[[86,78,"","PDF وEPUB",""],[14,24,"g","الملاحظات","داخل الكتاب"]]},{"t":"المزيد","d":"من الذكر إلى القبلة، ومن الحفظ إلى الأدوات. كل ذلك أدناه.","ring":"beads","chips":[],"more":{"small":"في Manevi Halka","title":"والمزيد","link":"عرض الكل","list":["عداد الذكر","التسبيحات","سجل الصلاة","أسماء الله الحسنى","الأوراد والأدعية","القبلة","الأيام الدينية","الحفظ","الأدوات","رحلتي"]}}],"aria":{"toDark":"التبديل إلى السمة الداكنة","toLight":"التبديل إلى السمة الفاتحة"},"links":{"ios":"https://apps.apple.com/app/manevi-halka/id6760654292","androidDock":"https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Ddock-ar"},"strip":{"label":"مواقيت الصلاة"},"secName":{"top":"البداية","solo":"بمفردك","together":"معًا","faq":"الأسئلة الشائعة","download":"حمّل"},"sections":"الأقسام"};
+  var D = {"lang":"ar","rtl":true,"imgBase":"/img/app/ar/","aria":{"toDark":"التبديل إلى السمة الداكنة","toLight":"التبديل إلى السمة الفاتحة"},"links":{"ios":"https://apps.apple.com/app/manevi-halka/id6760654292","androidDock":"https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=utm_source%3Dmanevihalka.app%26utm_medium%3Dwebsite%26utm_content%3Ddock-ar"},"strip":{"label":"مواقيت الصلاة"},"secName":{"top":"البداية","yeni":"الجديد","solo":"بمفردك","together":"معًا","faq":"الأسئلة الشائعة","download":"حمّل"},"sections":"الأقسام"};
 
   // ── Tema: yeni tema dugmeden buyuyen bir daire olarak yayilir ──────────────
   (function () {
@@ -1440,7 +1449,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
   // ── Yuzen gezinme: bolum casusu, masaustu cubugu, telefon hapi, bolum listesi ──
   (function () {
     var $ = function (id) { return document.getElementById(id); };
-    var SECS = ["top", "solo", "together", "faq", "download"];
+    var SECS = ["top", "yeni", "solo", "together", "faq", "download"];
     var secCur = "", tickQueued = false, sheetOpen = false, sheetReturn = null;
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     function setShown(el, on) {
@@ -1508,220 +1517,94 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
     spy();
   })();
 
-  // ── Halkali ekran vitrini ────────────────────────────────────────────────
-  // Onde bir ekran ve etrafinda o ekrana ozel halka; arkasinda siradaki ekran
-  // hafif egik durur. Halkalardaki saat, isim ve sayilar o dilin ekran
-  // goruntusuyle birebir aynidir (img/app/<dil>/), uydurma veri yoktur.
+  // ── Giris seridi: uygulamanin 2.1.0 ekranlari egik bir seritte yana akar ─────
+  // Kartlarin ilk yeri CSS'te (--u); betik AYNI formulle surdurur (kayma yok). Yavas kendiliginden akar,
+  // parmakla ya da fareyle suruklenir, birakinca suzulur. Durdur dugmesi (WCAG 2.2.2); fare ustundeyken,
+  // serit ekran disindayken, sekme arka plandayken ve sayfa yakinlastirilmisken (mh-zoom) akis durur.
+  // Hareketi azalt: kendiliginden akis yok, dugme gizli, surukleme var. Katman (will-change) yalniz akarken.
   (function () {
-    var NS = "http://www.w3.org/2000/svg", C = 200, R = 190, RTL = D.rtl, S = RTL ? -1 : 1;
-    function pt(deg, r) { var a = deg * Math.PI / 180; return [C + r * Math.sin(a), C - r * Math.cos(a)]; }
-    function el(tag, attrs, parent) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
-    function arc(d0, d1, r) { var a = pt(d0, r), b = pt(d1, r), large = (d1 - d0) > 180 ? 1 : 0; return "M" + a[0] + " " + a[1] + " A" + r + " " + r + " 0 " + large + " 1 " + b[0] + " " + b[1]; }
-    // SVG'de metin bas-son yonu 'direction' ile belirlenir: Arapcada start/end yer degistirir.
-    function anchor(physicalRight) { return RTL ? (physicalRight ? "end" : "start") : (physicalRight ? "start" : "end"); }
-    function text(g, x, y, cls, t, anc) {
-      var e = el("text", { x: x, y: y, "class": cls, "text-anchor": anc }, g);
-      if (RTL) e.setAttribute("direction", "rtl");
-      e.textContent = t; return e;
-    }
-    function label(g, d, t, outOnly) {
-      var p = pt(d, R + 22), side = Math.abs(p[0] - C) >= 60 && !outOnly;
-      // Ok dugmeleri halkanin tam yan ortasinda duruyor: o banda dusen dis etiket tanenin altina iner
-      if (side && Math.abs(p[1] - C) < 30) { var b = pt(d, R); text(g, b[0], b[1] + 30, "lbl out", t, "middle"); }
-      else text(g, p[0], p[1] + 4, "lbl" + (side ? " out" : ""), t, Math.abs(p[0] - C) < 60 ? "middle" : anchor(p[0] > C));
-      if (side) {
-        // Dar ekranda icteki etiket: icine dogru uzarken on telefona (x 120-280) degecekse tanenin altina/ustune iner
-        var u = pt(d, R - 20), right = p[0] > C, inner = right ? u[0] - t.length * 10 : u[0] + t.length * 10;
-        if (right ? inner < 290 : inner > 110) { var v = pt(d, R); text(g, v[0], v[1] + (v[1] > C ? 32 : -20), "lbl in", t, "middle"); }
-        else text(g, u[0], u[1] + 5, "lbl in", t, anchor(!right));
+    var box = document.getElementById("strip"), track = document.getElementById("stTrack"), btn = document.getElementById("stPause");
+    if (!box || !track || !track.children.length) return;
+    var cards = [].slice.call(track.children), N = cards.length, root = document.documentElement;
+    var dir = D.rtl ? -1 : 1, A = 6 * Math.PI / 180, SIN = Math.sin(A), COS = Math.cos(A), SPEED = 0.026;
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var step = 0, total = 0, top0 = 0, off = 0, vel = 0, drag = null, idleUntil = performance.now() + 900, last = 0, raf = 0;
+    var paused = false, hover = false, inView = true;
+    function zoomed() { return root.classList.contains("mh-zoom"); }
+    function size() { var c = cards[0]; step = c.offsetWidth * 1.11; total = step * N; top0 = (track.clientHeight - c.offsetHeight) / 2; }
+    function draw() {
+      for (var i = 0; i < N; i++) {
+        var u = ((i * step - off) % total + total) % total;
+        if (u > total / 2) u -= total;
+        cards[i].style.transform = "translate(" + (dir * u * COS).toFixed(1) + "px," + (top0 - u * SIN).toFixed(1) + "px) rotate(" + (-dir * 6) + "deg)";
       }
     }
-
-    var RINGS = {
-      // Gun: ogle tepede, gece yarisi altta; o dilin ekranindaki sehir ve saat
-      day: function (g, r) {
-        function hd(h) { return (h - 12) / 24 * 360; }
-        for (var h = 0; h < 24; h++) {
-          if (r.pr.some(function (p) { return Math.abs(p.h - h) < .45; })) continue;
-          var q = pt(hd(h), R); el("circle", { cx: q[0], cy: q[1], r: 2.1, "class": "hour" }, g);
-        }
-        el("path", { d: arc(180, 360 + hd(r.now), R), "class": "day" }, g);
-        r.pr.forEach(function (p) {
-          var q = pt(hd(p.h), R);
-          if (p.sun) { el("circle", { cx: q[0], cy: q[1], r: 4.2, "class": "sun" }, g); return; }
-          el("circle", { cx: q[0], cy: q[1], r: 6.6, "class": "pr" + (p.done ? " done" : "") }, g);
-          label(g, hd(p.h), p.n);
-        });
-        var n = pt(hd(r.now), R);
-        el("circle", { cx: n[0], cy: n[1], r: 12, "class": "halo" }, g);
-        el("circle", { cx: n[0], cy: n[1], r: 5.4, "class": "now" }, g);
-      },
-      // Mulk suresi: 30 ayet tanesi; 1. okundu, 2. dinleniyor
-      verse: function (g, r) {
-        for (var i = 0; i < 30; i++) {
-          var q = pt(i * 12, R);
-          if (i === 1) { el("circle", { cx: q[0], cy: q[1], r: 12, "class": "halo" }, g); el("circle", { cx: q[0], cy: q[1], r: 6.4, "class": "gold" }, g); }
-          else el("circle", { cx: q[0], cy: q[1], r: i === 0 ? 5.6 : 4.4, "class": i === 0 ? "done" : "bead" }, g);
-        }
-        label(g, 180, r.label, true);
-      },
-      // Hatim: 30 cuz; 4'u tamam, 4'u okunuyor (Aile Hatmi ekraniyla ayni)
-      juz: function (g) {
-        for (var i = 0; i < 30; i++) {
-          var st = [1, 3, 5, 7].indexOf(i) >= 0 ? "done" : ([0, 2, 4, 6].indexOf(i) >= 0 ? "prog" : "open");
-          el("path", { d: arc(i * 12 + 2.2, (i + 1) * 12 - 2.2, R), "class": "seg " + st }, g);
-          if (i % 5 === 0) { var m = pt(i * 12 + 6, R + 22); text(g, m[0], m[1], "num", String(i + 1), "middle"); }
-        }
-      },
-      // Ortak amel: son 7 gun, her gunde 5 vakit; bugun tepede (ilk iki vakit isaretli)
-      week: function (g, r) {
-        var step = 360 / 7;
-        for (var k = 0; k < 7; k++) {
-          for (var j = 0; j < 5; j++) {
-            var q = pt(-k * step + (j - 2) * 6.4, R);
-            var on = k === 0 ? j < 2 : !(k === 3 && j === 3);
-            el("circle", { cx: q[0], cy: q[1], r: 4.6, "class": on ? "done" : "bead" }, g);
-          }
-        }
-        label(g, 0, r.label, true);
-      },
-      // Tek seferlik hatim: 604 sayfa; 200 okundu, 114 okunuyor, 290 bosta (vesile.webp ile birebir)
-      pages: function (g, r) {
-        el("circle", { cx: C, cy: C, r: R, "class": "seg thin open" }, g);
-        var d1 = 200 / 604 * 360, d2 = 314 / 604 * 360;
-        el("path", { d: arc(0, d1, R), "class": "seg thin done" }, g);
-        el("path", { d: arc(d1, d2, R), "class": "seg thin prog" }, g);
-        for (var i = 0; i < 30; i++) { var a = pt(i * 12, R - 6), b = pt(i * 12, R + 6); el("line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1], "class": "tick" }, g); }
-        // Etiket okunan yayin bittigi yerde (yan ortadaki ok dugmesine denk gelmesin)
-        label(g, d1, r.label, true);
-      },
-      // Kitapligim: alti kitap, her yay bir kitabin ilerlemesi
-      books: function (g) {
-        [.18, .64, .3, .1, 1, .45].forEach(function (f, i) {
-          var d0 = i * 60 + 4, d1 = (i + 1) * 60 - 4;
-          el("path", { d: arc(d0, d1, R), "class": "seg thin open" }, g);
-          if (f > 0) el("path", { d: arc(d0, d0 + (d1 - d0) * f, R), "class": "seg thin done" }, g);
-        });
-      },
-      // Tesbih: 33 tane ve tepede imame (logodaki halka)
-      beads: function (g) {
-        for (var i = 1; i <= 33; i++) { var q = pt(i * 360 / 34, R); el("circle", { cx: q[0], cy: q[1], r: 4.8, "class": "gold" }, g); }
-        var t = pt(0, R); el("ellipse", { cx: t[0], cy: t[1], rx: 6.5, ry: 11, "class": "imame" }, g);
+    function flows() { return !reduce && !paused && !hover && inView && !zoomed(); }
+    function loop(t) {
+      raf = 0;
+      var dt = last ? Math.min(48, t - last) : 16, moved = false; last = t;
+      if (!drag) {
+        if (Math.abs(vel) > 0.01) { off += vel * dt; vel *= Math.pow(0.94, dt / 16); moved = true; }
+        else if (t > idleUntil && flows()) { off += SPEED * dt; moved = true; }
       }
-    };
-
-    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-    var stage = document.getElementById("stage"), tabs = document.getElementById("tabs"), cap = document.getElementById("scap");
-    var SC = D.screens, n = SC.length, cur = 0, cards = [], tbtn = [];
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    SC.forEach(function (s, i) {
-      var c = document.createElement("div"); c.className = "card";
-      var svg = el("svg", { "class": "hring", viewBox: "-20 -20 440 440", "aria-hidden": "true" }, c);
-      if (s.ring !== "pages" && s.ring !== "books") el("circle", { cx: C, cy: C, r: R, "class": "track" }, svg);
-      RINGS[s.ring](el("g", {}, svg), s.rd || {});
-      var f = document.createElement("figure"); f.className = "hc-phone";
-      if (s.more) f.innerHTML = '<div class="more-in"><small>' + esc(s.more.small) + "</small><h3>" + esc(s.more.title) + "</h3><ul>" +
-        s.more.list.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + '</ul><a href="#solo">' + esc(s.more.link) + "</a></div>";
-      else f.innerHTML = '<img src="' + D.imgBase + s.img + '" alt="' + esc(s.alt) + '" width="640" height="1391"' + (i > 1 ? ' loading="lazy"' : "") + ">";
-      c.appendChild(f);
-      (s.chips || []).forEach(function (ch) {
-        var sp = document.createElement("span"); sp.className = "chip";
-        sp.style.left = (RTL ? 100 - ch[0] : ch[0]) + "%"; sp.style.top = ch[1] + "%";
-        sp.innerHTML = '<i class="' + ch[2] + '"></i>' + esc(ch[3]) + (ch[4] ? " <small>" + esc(ch[4]) + "</small>" : "");
-        c.appendChild(sp);
-      });
-      c.addEventListener("click", function () { if (!moved && c.getAttribute("data-pos") === "1") { stop(); go(cur + 1); } });
-      stage.insertBefore(c, stage.firstChild); cards.push(c);
-      // Sekmeler HTML'de hazir gelir (uretici, tabsHtml): sonradan eklenince genis ekranda vitrin uzuyor, soldaki
-      // sutun magaza dugmeleriyle birlikte asagi kayiyordu. Yoksa (eski kopya) burada kurulur.
-      var b = tabs.children[i];
-      if (!b) {
-        b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab");
-        b.innerHTML = esc(s.t) + '<span class="fill"></span>';
-        tabs.appendChild(b);
-      }
-      b.addEventListener("click", function () { stop(); go(i); });
-      tbtn.push(b);
+      if (moved) draw();
+      if (moved || drag || flows()) go(); else { last = 0; box.classList.remove("is-run"); }
+    }
+    function go() { if (!raf && inView && !zoomed()) { box.classList.add("is-run"); raf = requestAnimationFrame(loop); } }
+    size();
+    box.addEventListener("pointerdown", function (e) {
+      if (e.button > 0 || zoomed() || (e.target.closest && e.target.closest(".st-pause"))) return;
+      drag = { x: e.clientX, o: off, lx: e.clientX, lt: e.timeStamp, on: false, id: e.pointerId }; vel = 0;
     });
-    function paint() {
-      cards.forEach(function (c, i) {
-        var p = (i - cur + n) % n;
-        c.setAttribute("data-pos", p === 0 ? "0" : p === 1 ? "1" : p === n - 1 ? "out" : "hide");
-        c.setAttribute("aria-hidden", p === 0 ? "false" : "true");
-        c.style.transform = "";
-      });
-      tbtn.forEach(function (b, i) { b.setAttribute("aria-selected", i === cur ? "true" : "false"); b.querySelector(".fill").style.width = "0"; });
-      // Canli bolge bu gorevde yeni acildiysa (asagida arm) metin bir kare sonra yazilir: ayni gorevde
-      // hem aria-live hem metin degisirse ekran okuyucu ilk duyuruyu kaciriyordu.
-      if (capLate) { capLate = false; requestAnimationFrame(function () { requestAnimationFrame(function () { cap.textContent = SC[cur].d; }); }); }
-      else cap.textContent = SC[cur].d;
-    }
-    function go(i) { cur = (i + n) % n; start = 0; held = 0; paint(); }
-    document.getElementById("next").addEventListener("click", function (e) { e.stopPropagation(); stop(); go(cur + 1); });
-    document.getElementById("prev").addEventListener("click", function (e) { e.stopPropagation(); stop(); go(cur - 1); });
-
-    // Kaydirma: okuma yonunde ileri cekince siradaki gelir (Arapcada yon ters)
-    // Iki parmak (yakinlastirma) ya da yakinlastirilmis sayfa: surukleme yok, hareket tarayicinin.
-    var sx = 0, dx = 0, drag = false, moved = false, touches = 0;
-    function zoomed() { return document.documentElement.classList.contains("mh-zoom"); }
-    function abort() { if (!drag) return; drag = false; cards[cur].classList.remove("drag"); paint(); }
-    stage.addEventListener("pointerdown", function (e) {
-      if (e.pointerType === "touch") touches++;
-      if (touches > 1 || zoomed()) { abort(); return; }
-      if (e.target.closest(".nav")) return; drag = true; moved = false; sx = e.clientX; dx = 0; cards[cur].classList.add("drag");
-    });
-    stage.addEventListener("pointermove", function (e) {
-      if (!drag) return; dx = e.clientX - sx; if (Math.abs(dx) > 6) moved = true;
-      cards[cur].style.transform = "translateX(" + dx * .5 + "px) rotate(" + (-2.5 * S + dx * .02) + "deg)";
+    box.addEventListener("pointermove", function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var dx = e.clientX - drag.x;
+      if (!drag.on) {
+        if (Math.abs(dx) < 6) return;
+        drag.on = true; box.classList.add("drag"); try { box.setPointerCapture(e.pointerId); } catch (x) { /* eski tarayici */ }
+        go();
+      }
+      off = drag.o - dx * dir;
+      var dt = Math.max(1, e.timeStamp - drag.lt); vel = -(e.clientX - drag.lx) * dir / dt; drag.lx = e.clientX; drag.lt = e.timeStamp;
+      draw();
     });
     function end(e) {
-      if (e && e.pointerType === "touch" && (e.type === "pointerup" || e.type === "pointercancel")) touches = Math.max(0, touches - 1);
-      if (!drag) return; drag = false; cards[cur].classList.remove("drag");
-      if (e && e.type !== "pointercancel" && Math.abs(dx) > 50) { stop(); go((dx < 0) !== RTL ? cur + 1 : cur - 1); } else paint();
-      setTimeout(function () { moved = false; }, 0);
+      if (!drag || (e && e.pointerId !== drag.id)) return;
+      if (!drag.on || e.type === "pointercancel") vel = 0;
+      vel = Math.max(-2.4, Math.min(2.4, vel)); drag = null; box.classList.remove("drag");
+      idleUntil = performance.now() + 1600; go();
     }
-    stage.addEventListener("pointerup", end); stage.addEventListener("pointercancel", end); stage.addEventListener("pointerleave", end);
-    document.addEventListener("keydown", function (e) {
-      if (e.defaultPrevented || !inView) return;
-      if (e.target.closest && e.target.closest("details, input, textarea, .kis-strip")) return;
-      var fwd = RTL ? "ArrowLeft" : "ArrowRight", back = RTL ? "ArrowRight" : "ArrowLeft";
-      if (e.key === fwd) { stop(); go(cur + 1); } else if (e.key === back) { stop(); go(cur - 1); }
-    });
+    box.addEventListener("pointerup", end); box.addEventListener("pointercancel", end);
+    track.addEventListener("dragstart", function (e) { e.preventDefault(); });
+    box.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") hover = true; });
+    box.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { hover = false; go(); } });
+    if (btn && !reduce) {
+      btn.hidden = false;
+      btn.addEventListener("click", function () {
+        paused = !paused; btn.setAttribute("aria-pressed", paused ? "true" : "false");
+        btn.setAttribute("aria-label", btn.getAttribute(paused ? "data-off" : "data-on"));
+        if (!paused) { idleUntil = 0; go(); }
+      });
+    }
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { inView = en[0].isIntersecting; if (inView) go(); }).observe(box);
+    // Yakinlastirma bitince akis kaldigi yerden surer (sinif bastaki yakinlastirma betiginden)
+    if ("MutationObserver" in window) new MutationObserver(function () { if (!zoomed()) go(); }).observe(root, { attributes: true, attributeFilter: ["class"] });
+    var rq = 0;
+    addEventListener("resize", function () { if (rq) return; rq = requestAnimationFrame(function () { rq = 0; size(); draw(); }); });
+    go();
+  })();
 
-    // Kendiliginden ilerleme: etkin sekmenin altindaki cizgi dolar; dokununca durur.
-    // Sahne ekranin disindayken ya da sekme arka plandayken BEKLER (kaldigi yerden surer).
-    // Altyazi (#scap) baslangicta canli bolge DEGIL: kendiliginden donerken ekran okuyucu ilgisiz cumleleri
-    // surekli okuyordu. Kullanici vitrine dokununca ya da odak girince canli bolge olur (asagida arm).
-    // Canli bolge kullanici vitrine ilk dokundugunda ya da odak vitrine ilk girdiginde, yani DEGISIKLIKTEN
-    // ONCE acilir (arm). Odak vitrindeyken kendiliginden donme bekler (WAI-ARIA vitrin deseni), cikinca surer:
-    // klavyeyle gezen kisiye kendiliginden donen cumleler okunmaz. Ok tuslari odak disindayken de calisir;
-    // o yolda canli bolge ayni gorevde aciliyorsa metin bir kare sonra yazilir (capLate).
-    var raf = null, start = 0, held = 0, DUR = 5600, auto = !reduce, inView = true, shown = !document.hidden, focusIn = false, capLate = false;
-    var show = stage.parentNode;
-    function arm() { if (!cap.hasAttribute("aria-live")) { cap.setAttribute("aria-live", "polite"); return true; } return false; }
-    show.addEventListener("pointerdown", arm, true);
-    show.addEventListener("focusin", function () { arm(); focusIn = true; hold(); });
-    show.addEventListener("focusout", function (e) { if (!e.relatedTarget || !show.contains(e.relatedTarget)) { focusIn = false; run(); } });
-    function tick(t) {
-      if (!start) { start = t - held; held = 0; }
-      var f = Math.min(1, (t - start) / DUR);
-      tbtn[cur].querySelector(".fill").style.width = (f * 100) + "%";
-      if (f >= 1) go(cur + 1);
-      raf = requestAnimationFrame(tick);
-    }
-    function run() { if (auto && inView && shown && !focusIn && !raf) raf = requestAnimationFrame(tick); }
-    function hold() { if (!raf) return; cancelAnimationFrame(raf); raf = null; if (start) held = Math.min(DUR, performance.now() - start); start = 0; }
-    function stop() {
-      auto = false; held = 0; if (raf) cancelAnimationFrame(raf); raf = null;
-      tbtn.forEach(function (b) { b.querySelector(".fill").style.width = "0"; });
-      if (arm()) capLate = true;
-    }
-    paint();
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (es) { inView = es[es.length - 1].isIntersecting; if (inView) run(); else hold(); }).observe(stage);
-    }
-    document.addEventListener("visibilitychange", function () { shown = !document.hidden; if (shown) run(); else hold(); });
-    run();
+  // ── Yeni gelenler galerisi: oklar (fareli genis ekranda gorunur; dokunmatikte kaydirma dogal) ──
+  (function () {
+    var rail = document.getElementById("nwRail"), p = document.getElementById("nwPrev"), n = document.getElementById("nwNext");
+    if (!rail || !p || !n) return;
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, k = D.rtl ? -1 : 1;
+    function adim() { var c = rail.firstElementChild; return c ? c.getBoundingClientRect().width + 16 : 316; }
+    function git(d) { rail.scrollBy({ left: d * k * adim(), behavior: reduce ? "auto" : "smooth" }); }
+    p.addEventListener("click", function () { git(-1); });
+    n.addEventListener("click", function () { git(1); });
+    function guncel() { var max = rail.scrollWidth - rail.clientWidth, x = Math.abs(rail.scrollLeft); p.disabled = x < 4; n.disabled = x > max - 4; }
+    rail.addEventListener("scroll", guncel, { passive: true }); addEventListener("resize", guncel); guncel();
   })();
 
   // ── Yakin plan kirpintilari: ekrandan kalkan yakin plan ──

@@ -21,9 +21,11 @@
  * "Ortak Okuma" adi ortak sozlukten (_gen/site-i18n.js) SOKULUR, kopyalanmaz.
  * Sayfaya ozgu metinler asagidaki T'de.
  *
- * Giristeki halkali vitrin (7 kart) dile gore D.screens'ten beslenir. Halkalardaki
- * saat, sehir, isim ve sayilar o dilin ekran goruntusuyle BIREBIR AYNIDIR
- * (img/app/<dil>/). Ekran goruntuleri yenilenirse DAY ve SCREENS de guncellenir.
+ * Giris (21 Kas 2026, kullanicinin sectigi "A serit"): uygulamanin 2.1.0 ekranlari egik bir seritte
+ * yana akar (SERIT, img/app/<dil>/st-*.webp, 432 px). Eski halkali vitrin (7 kart, DAY/TABS/CAPS)
+ * kaldirildi. Bolum gorselleri s21-*, yeni ozellik galerisi nw-*: hepsi gallery-2026-11 ham
+ * karelerinden (Premium yazisi, rozet, kilit gorunmeyen kareler). Uretim betigi oturum
+ * cizimindeki mkimg21.py; kaynak kare adlari SERIT/YENI listelerinde yazili.
  *
  * Kurallar: Turkce "sen", Almanca "du", Fransizca "tu"; terimler uygulamayla
  * ayni (DE Chatma/Dschuz, FR khatma/juz, EN khatm/juz; Rehber Modu =
@@ -101,6 +103,7 @@ const T = {
     fr: "Le Coran, les horaires de prière, le dhikr, la mémorisation et la lecture dans une seule appli. Et si tu veux, crée un cercle de khatma ou de dhikr avec tes proches. Sans publicité, en 5 langues.",
     ar: "القرآن ومواقيت الصلاة والذكر والحفظ والقراءة في تطبيق واحد. وإن شئت، أنشئ حلقة ختمة أو ذكر مع أحبّتك. بلا إعلانات وبخمس لغات." },
   navAria: { tr: "Bölümler", en: "Sections", de: "Bereiche", fr: "Sections", ar: "الأقسام" },
+  navNew: { tr: "Yenilikler", en: "What's new", de: "Neu", fr: "Nouveautés", ar: "الجديد" },
   navSolo: { tr: "Tek başına", en: "On your own", de: "Allein", fr: "Seul", ar: "بمفردك" },
   navTogether: { tr: "Birlikte", en: "Together", de: "Gemeinsam", fr: "Ensemble", ar: "معًا" },
   navFaq: { tr: "Sık sorulanlar", en: "FAQ", de: "Häufige Fragen", fr: "Questions fréquentes", ar: "الأسئلة الشائعة" },
@@ -109,26 +112,24 @@ const T = {
   qrCaption: { tr: "Telefonunla okut", en: "Scan with your phone", de: "Mit deinem Handy scannen", fr: "Scanne avec ton téléphone", ar: "امسح الرمز بهاتفك" },
   themeToDark: { tr: "Koyu temaya geç", en: "Switch to dark theme", de: "Zum dunklen Design wechseln", fr: "Passer au thème sombre", ar: "التبديل إلى السمة الداكنة" },
   themeToLight: { tr: "Açık temaya geç", en: "Switch to light theme", de: "Zum hellen Design wechseln", fr: "Passer au thème clair", ar: "التبديل إلى السمة الفاتحة" },
+  stripAria: { tr: "Uygulamanın ekranları", en: "App screens", de: "Bildschirme der App", fr: "Écrans de l'appli", ar: "شاشات التطبيق" },
+  stPause: { tr: "Ekranların akışını durdur", en: "Pause the moving screens", de: "Laufende Bildschirme anhalten", fr: "Mettre en pause le défilement", ar: "إيقاف حركة الشاشات" },
+  stPlay: { tr: "Ekranların akışını sürdür", en: "Play the moving screens", de: "Bildschirme weiterlaufen lassen", fr: "Reprendre le défilement", ar: "استئناف حركة الشاشات" },
   prevAria: { tr: "Önceki ekran", en: "Previous screen", de: "Vorheriger Bildschirm", fr: "Écran précédent", ar: "الشاشة السابقة" },
   nextAria: { tr: "Sonraki ekran", en: "Next screen", de: "Nächster Bildschirm", fr: "Écran suivant", ar: "الشاشة التالية" },
-  tabsAria: { tr: "Ekranlar", en: "Screens", de: "Bildschirme", fr: "Écrans", ar: "الشاشات" },
-  noscript: { tr: "Uygulamanın ekranlarını görmek için JavaScript'i aç.", en: "Turn on JavaScript to see the app's screens.",
-    de: "Aktiviere JavaScript, um die Bildschirme der App zu sehen.", fr: "Active JavaScript pour voir les écrans de l'appli.", ar: "فعّل JavaScript لرؤية شاشات التطبيق." },
   langAria: { tr: "Dil", en: "Language", de: "Sprache", fr: "Langue", ar: "اللغة" },
 
   eyebrow: { tr: "Günlük ibadetlerin için bir yol arkadaşı", en: "A companion for your daily worship", de: "Ein Begleiter für deine tägliche Andacht",
     fr: "Un compagnon pour ta pratique quotidienne", ar: "رفيق لعباداتك اليومية" },
-  // 28 Eyl 2026 kullanıcı isteği: "Tek başına da, birlikte de" yerine. Vurgulu (yeşil) kısım h1b.
-  h1a: { tr: "Bir niyet, bir halka,", en: "One intention, one circle,", de: "Eine Absicht, ein Kreis,", fr: "Une intention, un cercle,",
-    ar: "نيّة واحدة، حلقة واحدة،" },
-  h1b: { tr: "nice ameller.", en: "many good deeds.", de: "viele gute Taten.", fr: "tant de bonnes œuvres.", ar: "وأعمال صالحة كثيرة." },
-  // 5 Eki 2026: ikinci cumle halkanin ne yaptigini soyler (telefonun ilk ekraninda "hatim" hic gecmiyordu).
-  // Uzunluk 390 px'te olculdu: TR/DE/FR/AR satir sayisi ayni, EN +1 satir. Almanca "ihr" (kommt) kaldirildi.
-  lead: { tr: "Kur'an, namaz, zikir, ezber ve okumalarını günlük hayatında sürdür. Dilersen sevdiklerinle bir halka kur: cüzler paylaşılsın, hatim birlikte tamamlansın.",
-    en: "Keep up your Quran, prayers, dhikr, memorisation and reading in daily life. And if you like, start a circle with your loved ones to share the juz and complete the khatm together.",
-    de: "Bleib im Alltag bei Koran, Gebet, Dhikr, Auswendiglernen und Lesen. Und wenn du möchtest, gründe mit deinen Liebsten einen Kreis, verteile die Dschuz und vollende die Chatma gemeinsam.",
-    fr: "Garde au quotidien le Coran, la prière, le dhikr, la mémorisation et la lecture. Et si tu veux, crée un cercle avec tes proches pour partager les juz et terminer la khatma ensemble.",
-    ar: "حافظ في يومك على القرآن والصلاة والذكر والحفظ والقراءة. وإن شئت، أنشئ حلقة مع أحبّتك لتتقاسموا الأجزاء وتُتمّوا الختمة معًا." },
+  // 21 Kas 2026: 2.1.0 ile uygulamanin mottosu (uygulamayla birebir; FR uygulamadaki kisa bicim). Vurgulu (yesil) kisim h1b.
+  h1a: { tr: "Her güzel iş", en: "Every good deed", de: "Jede gute Tat", fr: "Toute bonne action", ar: "كل عمل صالح" },
+  h1b: { tr: "bir niyetle başlar.", en: "begins with an intention.", de: "beginnt mit einer Absicht.", fr: "naît d'une intention.", ar: "يبدأ بنيّة." },
+  // Telefonda magaza dugmelerinin ve sayfa baglantilarinin altinda; genis ekranda basligin altinda.
+  lead: { tr: "Kur'an'ı oku ve dinle, namazını ve zikrini takip et, niyetlerini büyüt. Dilersen sevdiklerinle bir halka kur, hatim birlikte tamamlansın.",
+    en: "Read and listen to the Quran, keep track of your prayers and dhikr, and let your intentions grow. And if you like, start a circle with your loved ones and complete the khatm together.",
+    de: "Lies und höre den Koran, behalte Gebet und Dhikr im Blick und lass deine Absichten wachsen. Und wenn du möchtest, gründe mit deinen Liebsten einen Kreis und vollende die Chatma gemeinsam.",
+    fr: "Lis et écoute le Coran, suis tes prières et ton dhikr, fais grandir tes intentions. Et si tu veux, crée un cercle avec tes proches pour terminer la khatma ensemble.",
+    ar: "اقرأ القرآن واستمع إليه، وتابع صلاتك وذكرك، ودَع نواياك تنمو. وإن شئت، أنشئ حلقة مع أحبّتك لتُتمّوا الختمة معًا." },
   trust1b: { tr: "Reklamsız", en: "No ads", de: "Keine Werbung", fr: "Sans publicité", ar: "بلا إعلانات" },
   trust1t: { tr: "Dikkatin ibadette kalsın", en: "Your attention stays on worship", de: "Dein Fokus bleibt beim Gebet",
     fr: "Ton attention reste sur l'adoration", ar: "ليبقى انتباهك في العبادة" },
@@ -151,6 +152,18 @@ const T = {
   purpose: { tr: "Manevi Halka, inşallah bu yardımlaşmayı kolaylaştırmak için kuruldu.", en: "Manevi Halka was built to make this cooperation easier, inshallah.",
     de: "Manevi Halka wurde geschaffen, um diese gegenseitige Hilfe, so Allah will, leichter zu machen.", fr: "Manevi Halka a été créé pour faciliter, si Allah le veut, cette entraide.",
     ar: "أُسِّس Manevi Halka لتيسير هذا التعاون إن\u00a0شاء\u00a0الله." },
+  nwKicker: { tr: "Yeni", en: "New",
+    de: "Neu", fr: "Nouveau",
+    ar: "جديد" },
+  nwTitle: { tr: "Uygulamada neler yeni?", en: "What's new in the app",
+    de: "Was ist neu in der App?", fr: "Quoi de neuf dans l'appli ?",
+    ar: "ما الجديد في التطبيق؟" },
+  nwText: { tr: "Kur'an bölümü ve tek seferlik halka baştan yenilendi; Niyet Bahçesi, Vakit sohbeti ve daha fazlası geldi.", en: "The Quran section and the one-time circle have been renewed from the ground up, and the Garden of Intentions, Talk after prayer and more have arrived.",
+    de: "Der Koran-Bereich und der einmalige Kreis sind von Grund auf erneuert; dazu kommen der Garten der Absichten, der Impuls nach dem Gebet und mehr.", fr: "L'espace Coran et le cercle ponctuel sont entièrement renouvelés, et voici le Jardin des intentions, la Causerie après la prière et plus encore.",
+    ar: "تجدّد قسم القرآن والحلقة لمرة واحدة من أساسهما، وجاء بستان النية و«خاطرة بعد الصلاة» والمزيد." },
+  nwAria: { tr: "Yeni gelenler", en: "What's new",
+    de: "Neuigkeiten", fr: "Nouveautés",
+    ar: "الجديد" },
 
   soloKicker: { tr: "Tek başına", en: "On your own", de: "Allein", fr: "Seul", ar: "بمفردك" },
   soloTitle: { tr: "Günlük ibadetlerine eşlik eder", en: "A companion to your daily worship", de: "Begleitet deine tägliche Andacht",
@@ -161,58 +174,58 @@ const T = {
     fr: "Manevi Halka n'est pas seulement pour lire ensemble : il t'accompagne aussi dans l'adoration de chaque jour.",
     ar: "لا يقتصر Manevi Halka على القراءة الجماعية، بل يرافقك في عبادة كل يوم." },
   area1t: { tr: "Kur'an", en: "Quran", de: "Koran", fr: "Coran", ar: "القرآن" },
-  area1d: { tr: "Türkiye mushafı, meal ve üç kâriden sesli tilavet.", en: "The Mushaf, translation and recitation by three reciters.",
-    de: "Der Mushaf, Übersetzung und Rezitation von drei Rezitatoren.", fr: "Le Mushaf, la traduction et la récitation de trois récitateurs.",
-    ar: "المصحف مع تلاوة بأصوات ثلاثة قرّاء." },
+  area1d: { tr: "Türkiye mushafı, meal, tecvid renkleri ve dilediğin kârîden tilavet.", en: "The Mushaf, translation, tajweed colours and recitation by the reciter you choose.",
+    de: "Der Mushaf, Übersetzung, Tadschwid-Farben und Rezitation von einem Rezitator deiner Wahl.", fr: "Le Mushaf, la traduction, les couleurs du tajwid et la récitation par le récitateur de ton choix.",
+    ar: "المصحف والترجمة وألوان التجويد، وتلاوة بصوت القارئ الذي تختاره." },
   area2t: { tr: "Namaz", en: "Prayer", de: "Gebet", fr: "Prière", ar: "الصلاة" },
-  area2d: { tr: "Vakitler, bildirimler, widget'lar, kıble ve dini günler.", en: "Prayer times, notifications, widgets, qibla and religious days.",
-    de: "Gebetszeiten, Benachrichtigungen, Widgets, Qibla und religiöse Tage.", fr: "Horaires, notifications, widgets, qibla et jours religieux.",
-    ar: "المواقيت والتنبيهات والأدوات والقبلة والأيام الدينية." },
+  area2d: { tr: "Vakitler, bildirimler, widget'lar, kıble, teheccüd ve kaza takibi.", en: "Prayer times, notifications, widgets, qibla, tahajjud and make-up prayers.",
+    de: "Gebetszeiten, Benachrichtigungen, Widgets, Qibla, Tahajjud und Nachholgebete.", fr: "Horaires, notifications, widgets, qibla, tahajjud et prières de rattrapage.",
+    ar: "المواقيت والتنبيهات والأدوات والقبلة والتهجد وقضاء الصلاة." },
   area3t: { tr: "Zikir ve dua", en: "Dhikr and dua", de: "Dhikr und Bittgebet", fr: "Dhikr et invocation", ar: "الذكر والدعاء" },
-  area3d: { tr: "Zikirmatik, tesbihat, virdler ve Peygamber duaları.", en: "Dhikr counter, tasbihat, awrad and prophetic duas.",
-    de: "Dhikr-Zähler, Tasbihat, Awrad und prophetische Bittgebete.", fr: "Compteur de dhikr, tasbihat, awrad et invocations prophétiques.",
-    ar: "عداد الذكر والتسبيحات والأوراد والأدعية النبوية." },
+  area3d: { tr: "Zikirmatik, tesbihat, virdler, Peygamber duaları ve Dua Defterim.", en: "Dhikr counter, tasbihat, awrad, prophetic duas and My dua journal.",
+    de: "Dhikr-Zähler, Tasbihat, Awrad, prophetische Bittgebete und Mein Bittgebetsheft.", fr: "Compteur de dhikr, tasbihat, awrad, invocations prophétiques et Mon carnet d'invocations.",
+    ar: "عداد الذكر والتسبيحات والأوراد والأدعية النبوية ودفتر أدعيتي." },
   area4t: { tr: "Ezber", en: "Memorisation", de: "Auswendiglernen", fr: "Mémorisation", ar: "الحفظ" },
-  area4d: { tr: "Sure ve ayet ezberi, aralıklı tekrarla.", en: "Memorise surahs and verses with spaced review.",
-    de: "Suren und Verse lernen, mit Wiederholung in Abständen.", fr: "Mémorise sourates et versets avec des révisions espacées.",
-    ar: "حفظ السور والآيات بمراجعة متباعدة." },
+  area4d: { tr: "Sure ve ayet ezberi, aralıklı tekrar ve Ezber Çetelesi.", en: "Memorise surahs and verses with spaced review and the Hifz Chart.",
+    de: "Suren und Verse lernen, mit Wiederholung in Abständen und der Hifz-Tafel.", fr: "Mémorise sourates et versets avec des révisions espacées et le Tableau de hifz.",
+    ar: "حفظ السور والآيات بمراجعة متباعدة وجدول الحفظ." },
   area5t: { tr: "Kitaplık", en: "Bookshelf", de: "Bücherregal", fr: "Bibliothèque de lecture", ar: "رف الكتب" },
   area5d: { tr: "Kendi PDF ve EPUB kitapların, notların.", en: "Your own PDF and EPUB books and notes.",
     de: "Deine eigenen PDF- und EPUB-Bücher und Notizen.", fr: "Tes propres livres PDF et EPUB, et tes notes.", ar: "كتبك بصيغة PDF وEPUB وملاحظاتك." },
-  area6t: { tr: "Yolculuğum", en: "My Journey", de: "Mein Weg", fr: "Mon parcours", ar: "رحلتي" },
-  area6d: { tr: "Kendi yolunu hatırla, kıyas olmadan.", en: "Look back on your own path, without comparison.",
-    de: "Blick auf deinen eigenen Weg zurück, ohne Vergleich.", fr: "Revois ton propre chemin, sans comparaison.", ar: "تذكّر طريقك الخاص، بلا مقارنة." },
+  area6t: { tr: "Niyet Bahçesi", en: "Garden of Intentions",
+    de: "Garten der Absichten", fr: "Jardin des intentions",
+    ar: "بستان النية" },
+  area6d: { tr: "Her niyetin bir fidan olur, emek verdikçe büyür.", en: "Each intention becomes a sapling that grows as you keep it.",
+    de: "Jede Absicht wird zu einem Setzling, der wächst, wenn du sie einhältst.", fr: "Chaque intention devient une pousse qui grandit quand tu la tiens.",
+    ar: "كل نية تصير غرسة تكبر كلما وفيت بها." },
 
   qKicker: { tr: "Kur'an", en: "Quran", de: "Koran", fr: "Coran", ar: "القرآن" },
   qTitle: { tr: "Oku, dinle, çalış.", en: "Read, listen, memorise.", de: "Lesen, hören, lernen.", fr: "Lis, écoute, mémorise.", ar: "اقرأ واستمع واحفظ." },
-  qText: { tr: "Kur'an okumalarını kendi düzeninde sürdür. Dinlerken okunan kelime işaretlenir.",
-    en: "Keep up your Quran reading at your own pace. As you listen, each word is highlighted.",
-    de: "Lies den Koran in deinem eigenen Rhythmus. Beim Zuhören wird jedes Wort markiert.",
-    fr: "Lis le Coran à ton propre rythme. Pendant l'écoute, chaque mot est surligné.",
-    ar: "داوم على قراءة القرآن بإيقاعك. وأثناء الاستماع تُظلَّل كل كلمة." },
-  qT1: { tr: "Üç kâriden kelime takipli sesli tilavet", en: "Recitation by three reciters, followed word by word",
-    de: "Rezitation von drei Rezitatoren, Wort für Wort mitverfolgt", fr: "Récitation par trois récitateurs, suivie mot à mot",
-    ar: "تلاوة بأصوات ثلاثة قرّاء مع تتبّع الكلمات" },
-  qT2: { tr: "Ezber çalışma kipi, notlar ve yer imleri", en: "A memorisation mode, notes and bookmarks",
-    de: "Lernmodus, Notizen und Lesezeichen", fr: "Un mode mémorisation, des notes et des signets", ar: "وضع للحفظ وملاحظات وعلامات" },
+  qText: { tr: "Mushaf, Akan ve meal görünümleri, tecvid renkleri ve büyüteçle kendi düzeninde oku. Dinlerken sayfa kendiliğinden akar.", en: "Read at your own pace with Mushaf, Flowing and translation views, tajweed colours and a magnifier. As you listen, the page scrolls by itself.",
+    de: "Lies in deinem Rhythmus, mit den Ansichten Mushaf, Fließtext und Übersetzung, Tadschwid-Farben und Lupe. Beim Zuhören scrollt die Seite von selbst.", fr: "Lis à ton rythme avec les vues Mushaf, Continu et traduction, les couleurs du tajwid et la loupe. Pendant l'écoute, la page défile toute seule.",
+    ar: "اقرأ بإيقاعك مع عرض المصحف والنص المتصل والترجمة، وألوان التجويد والعدسة المكبّرة. وأثناء الاستماع تتقدّم الصفحة وحدها." },
+  qT1: { tr: "Dilediğin kârîden tilavet, sure tekrarı ve sure başında besmele", en: "Recitation by the reciter you choose, surah repeat and the Basmala",
+    de: "Rezitation nach Wahl, Surenwiederholung und Basmala zu Beginn jeder Sure", fr: "Récitation au choix, répétition de sourate et Basmala en début de sourate",
+    ar: "تلاوة بصوت القارئ الذي تختاره، وتكرار السورة، والبسملة في بداية كل سورة" },
+  qT2: { tr: "Kelime kelime çalış, ayeti defterine ekle", en: "Study word by word, add a verse to your journal",
+    de: "Wort für Wort üben, Verse ins Heft übernehmen", fr: "Étudie mot par mot, ajoute un verset à ton carnet",
+    ar: "ادرس كلمة كلمة، وأضف الآية إلى دفترك" },
   qT3: { tr: "Sure ya da cüz indirip çevrimdışı dinleme", en: "Download a surah or juz to listen offline",
     de: "Suren oder Dschuz herunterladen und offline hören", fr: "Télécharge une sourate ou un juz pour écouter hors ligne",
     ar: "نزّل سورة أو جزءًا واستمع دون اتصال" },
   pKicker: { tr: "Namaz", en: "Prayer", de: "Gebet", fr: "Prière", ar: "الصلاة" },
   pTitle: { tr: "Gününün içinde.", en: "Woven into your day.", de: "Mitten in deinem Tag.", fr: "Au fil de ta journée.", ar: "في قلب يومك." },
-  pText: { tr: "106 ülkede namaz vakitleri ve kıble. Vakit girince haberin olur.",
-    en: "Prayer times and qibla in 106 countries. You'll know when each time begins.",
-    de: "Gebetszeiten und Qibla in 106 Ländern. Du erfährst, wann jede Gebetszeit beginnt.",
-    fr: "Horaires de prière et qibla dans 106 pays. Tu sais quand chaque prière commence.",
-    ar: "مواقيت الصلاة والقبلة في 106 دول. تعرف متى يدخل كل وقت." },
+  pText: { tr: "106 ülkede namaz vakitleri ve kıble. Vakit girince haberin olur; teheccüd için uyandırma alarmı da var.", en: "Prayer times and qibla in 106 countries. You'll know when each time begins, and there's a wake-up alarm for tahajjud.",
+    de: "Gebetszeiten und Qibla in 106 Ländern. Du erfährst, wann jede Gebetszeit beginnt, und für Tahajjud gibt es einen Weckalarm.", fr: "Horaires de prière et qibla dans 106 pays. Tu sais quand chaque prière commence, et un réveil t'attend pour le tahajjud.",
+    ar: "مواقيت الصلاة والقبلة في 106 دول. تعرف متى يدخل كل وقت، وللتهجد منبّه استيقاظ." },
   pT1: { tr: "Vakit girişinde ve çıkmadan önce bildirim", en: "A notification when each time begins and before it ends",
     de: "Benachrichtigung zu Beginn jeder Gebetszeit und vor ihrem Ende", fr: "Une notification au début de chaque prière et avant sa fin",
     ar: "تنبيه عند دخول كل وقت وقبل خروجه" },
   pT2: { tr: "Ana ekran ve kilit ekranı widget'ları", en: "Home screen and lock screen widgets", de: "Widgets für Start- und Sperrbildschirm",
     fr: "Widgets pour l'écran d'accueil et l'écran verrouillé", ar: "أدوات للشاشة الرئيسية وشاشة القفل" },
-  pT3: { tr: "Kıldığın vakitleri ve nafileleri kendin için işaretle", en: "Mark your prayers and voluntary prayers, just for yourself",
-    de: "Markiere deine Gebete und freiwilligen Gebete, nur für dich", fr: "Coche tes prières et prières surérogatoires, pour toi seul",
-    ar: "علّم صلواتك ونوافلك لنفسك" },
+  pT3: { tr: "Kıldıklarını, nafileleri ve kazalarını kendin için işaretle", en: "Mark your prayers, voluntary prayers and make-ups, just for yourself",
+    de: "Markiere Gebete, freiwillige Gebete und Nachgeholtes, nur für dich", fr: "Coche tes prières, surérogatoires et rattrapages, pour toi seul",
+    ar: "علّم صلواتك ونوافلك وما قضيت، لنفسك" },
 
   togKicker: { tr: "Birlikte", en: "Together", de: "Gemeinsam", fr: "Ensemble", ar: "معًا" },
   togTitle: { tr: "Bir halka kur", en: "Start a circle", de: "Gründe einen Kreis", fr: "Crée un cercle", ar: "أنشئ حلقة" },
@@ -243,9 +256,9 @@ const T = {
     de: "Die Runden laufen regelmäßig weiter, und du siehst auf einen Blick, wer welchen Dschuz liest.",
     fr: "Les tours avancent régulièrement, et tu vois d'un coup d'œil qui lit quel juz.",
     ar: "تسير الجولات بانتظام، وترى بنظرة واحدة من يقرأ أي جزء." },
-  hT1: { tr: "Cüzler her tur kendiliğinden dağıtılır", en: "Portions are handed out automatically each round",
-    de: "Die Abschnitte werden jede Runde automatisch verteilt", fr: "Les portions sont réparties automatiquement à chaque tour",
-    ar: "تُوزَّع الأجزاء تلقائيًا في كل جولة" },
+  hT1: { tr: "Cüzler her tur kendiliğinden dağıtılır; istersen payları kişiye göre ayarlarsın", en: "Portions are handed out automatically each round, and you can adjust each person's share",
+    de: "Die Abschnitte werden jede Runde automatisch verteilt; die Anteile kannst du pro Person anpassen", fr: "Les portions sont réparties automatiquement à chaque tour, et tu peux ajuster la part de chacun",
+    ar: "تُوزَّع الأجزاء تلقائيًا في كل جولة، ويمكنك ضبط نصيب كل شخص" },
   hT2: { tr: "Yetişemeyen payını havuza bırakabilir", en: "Anyone who falls behind can return their part to the pool",
     de: "Wer nicht hinterherkommt, kann seinen Teil in den Pool geben", fr: "Qui prend du retard peut remettre sa part dans le pool",
     ar: "من تأخّر يمكنه إعادة نصيبه إلى المجمع" },
@@ -256,17 +269,17 @@ const T = {
   vKicker: { tr: "Tek Seferlik Halka", en: "One-Time Circle", de: "Einmaliger Kreis", fr: "Cercle ponctuel", ar: "حلقة لمرة واحدة" },
   vTitle: { tr: "Bir vesile için bir araya gel.", en: "Come together for an occasion.", de: "Kommt zu einem Anlass zusammen.",
     fr: "Rassemblez-vous pour une occasion.", ar: "اجتمعوا لمناسبة." },
-  vText: { tr: "Kandil, vefat ya da şifa niyetiyle tek seferlik bir halka kur. Davet linkini alan, uygulamayı indirmeden de tarayıcıdan pay alabilir.",
-    en: "Set up a one-time circle for a blessed night, for someone who passed away or with an intention of healing. Whoever gets the invite link can take a share in the browser, without installing the app.",
-    de: "Gründe einen einmaligen Kreis für eine gesegnete Nacht, für einen Verstorbenen oder mit der Absicht der Heilung. Wer den Einladungslink bekommt, kann auch ohne App im Browser einen Teil übernehmen.",
-    fr: "Crée un cercle ponctuel pour une nuit bénie, pour un défunt ou avec une intention de guérison. Qui reçoit le lien d'invitation peut prendre une part dans le navigateur, sans installer l'appli.",
-    ar: "أنشئ حلقة لمرة واحدة لليلة مباركة أو لفقيد أو بنية الشفاء. ومن يصله رابط الدعوة يمكنه أخذ نصيب من المتصفح دون تثبيت التطبيق." },
+  vText: { tr: "Hatim, 41 Yâsîn ya da salavat için tek seferlik bir halka kur: kimin için olduğunu ve ne zamana kadar süreceğini seç, tek ekranda kur ve davet et. Davet linkini alan, uygulamayı indirmeden de tarayıcıdan pay alabilir.", en: "Set up a one-time circle for a khatm, 41 Yasin or salawat: choose who it is for and when it ends, set it up on a single screen and invite. Whoever gets the invite link can take a share in the browser, without installing the app.",
+    de: "Gründe einen einmaligen Kreis für eine Chatma, 41 Yasin oder Salawat: Wähle, für wen und bis wann, lege ihn auf einem Bildschirm an und lade ein. Wer den Einladungslink bekommt, kann auch ohne App im Browser einen Teil übernehmen.", fr: "Crée un cercle ponctuel pour une khatma, 41 Yasin ou des salawat : choisis pour qui et jusqu'à quand, crée-le en un écran et invite. Qui reçoit le lien d'invitation peut prendre une part dans le navigateur, sans installer l'appli.",
+    ar: "أنشئ حلقة لمرة واحدة لختمة أو «يس 41 مرة» أو الصلاة على النبي ﷺ: حدّد لمن هي ومتى تنتهي، وأنشئها في شاشة واحدة وادعُ إليها. ومن يصله رابط الدعوة يمكنه أخذ نصيب من المتصفح دون تثبيت التطبيق." },
   vT1: { tr: "Hesap açmadan, tarayıcıdan katılım", en: "Join from the browser, no account needed", de: "Mitmachen im Browser, ohne Konto",
     fr: "Participation depuis le navigateur, sans compte", ar: "مشاركة من المتصفح دون حساب" },
-  vT2: { tr: "Dileyen dilediği cüzü alır", en: "Everyone takes the juz they choose", de: "Jeder nimmt sich den Dschuz, den er möchte",
-    fr: "Chacun prend le juz qu'il souhaite", ar: "يأخذ كلٌّ الجزء الذي يختاره" },
-  vT3: { tr: "Kaç kişinin okuduğu canlı görünür", en: "See live how many people are reading", de: "Live sehen, wie viele gerade lesen",
-    fr: "Vois en direct combien de personnes lisent", ar: "شاهد مباشرة كم شخصًا يقرأ" },
+  vT2: { tr: "Bitişi sen seç: bu gece, cumaya kadar ya da sıradaki kandile kadar", en: "You choose the end: tonight, by Friday or until the next blessed night",
+    de: "Du wählst das Ende: heute Nacht, bis Freitag oder bis zur nächsten gesegneten Nacht", fr: "Tu choisis la fin : cette nuit, d'ici vendredi ou jusqu'à la prochaine nuit bénie",
+    ar: "أنت تختار النهاية: الليلة، أو حتى الجمعة، أو حتى الليلة المباركة القادمة" },
+  vT3: { tr: "Halka tamamlanınca katılanlara haber gider", en: "When the circle completes, everyone who took part is notified",
+    de: "Ist der Kreis vollendet, erhalten alle Teilnehmenden eine Mitteilung", fr: "Cercle terminé : tous les participants sont prévenus",
+    ar: "عند اكتمال الحلقة يصل إشعار إلى كل المشاركين" },
   wcTitle: { tr: "Kandil Hatmi", en: "Blessed Night Khatm", de: "Chatma zur gesegneten Nacht", fr: "Khatma de la nuit bénie", ar: "ختمة الليلة المباركة" },
   wcJuz: { tr: "Cüz 7", en: "Juz 7", de: "Dschuz 7", fr: "Juz 7", ar: "الجزء 7" },
   wcRead: { tr: "Oku", en: "Read", de: "Lesen", fr: "Lire", ar: "اقرأ" },
@@ -275,11 +288,9 @@ const T = {
   aKicker: { tr: "Ortak Ameller", en: "Shared practices", de: "Gemeinsame Praxis", fr: "Pratiques communes", ar: "أعمال مشتركة" },
   aTitle: { tr: "Teşvik var, kıyas yok.", en: "Encouragement, not comparison.", de: "Ermutigung statt Vergleich.",
     fr: "L'encouragement, pas la comparaison.", ar: "تشجيع بلا مقارنة." },
-  aText: { tr: "Beş vakti, ezberi ya da bir duayı halkanla birlikte sürdür. Herkes kendi gününü işaretler.",
-    en: "Keep up the five prayers, memorisation or a dua together with your circle. Everyone marks their own day.",
-    de: "Halte die fünf Gebete, das Auswendiglernen oder ein Bittgebet gemeinsam mit deinem Kreis durch. Jeder markiert seinen eigenen Tag.",
-    fr: "Maintiens les cinq prières, la mémorisation ou une invocation avec ton cercle. Chacun coche sa propre journée.",
-    ar: "داوم مع حلقتك على الصلوات الخمس أو الحفظ أو دعاء. يعلّم كلٌّ يومه بنفسه." },
+  aText: { tr: "Beş vakti, orucu, ezberi ya da bir duayı halkanla birlikte sürdür. Herkes kendi gününü işaretler.", en: "Keep up the five prayers, fasting, memorisation or a dua together with your circle. Everyone marks their own day.",
+    de: "Halte die fünf Gebete, das Fasten, das Auswendiglernen oder ein Bittgebet gemeinsam mit deinem Kreis durch. Jeder markiert seinen eigenen Tag.", fr: "Maintiens les cinq prières, le jeûne, la mémorisation ou une invocation avec ton cercle. Chacun coche sa propre journée.",
+    ar: "داوم مع حلقتك على الصلوات الخمس أو الصيام أو الحفظ أو دعاء. يعلّم كلٌّ يومه بنفسه." },
   aT1: { tr: "Sıralama, puan ve rozet yok", en: "No rankings, points or badges", de: "Keine Ranglisten, Punkte oder Abzeichen",
     fr: "Ni classement, ni points, ni badges", ar: "لا ترتيب ولا نقاط ولا شارات" },
   aT2: { tr: "Görünürlük baştan belli: yalnız yönetici ya da karşılıklı", en: "Visibility is set from the start: organiser only, or mutual",
@@ -352,11 +363,11 @@ const T = {
     fr: "Dans les cercles ponctuels, oui. Celui qui touche le lien d'invitation peut prendre un juz et le lire dans le navigateur.",
     ar: "في الحلقات لمرة واحدة، نعم. من يضغط على رابط الدعوة يمكنه أخذ جزء وقراءته في المتصفح." },
   q4: { tr: "Hangi mushaf kullanılıyor?", en: "Which Mushaf is used?", de: "Welcher Mushaf wird verwendet?", fr: "Quel Mushaf est utilisé ?", ar: "أي مصحف يُستخدم؟" },
-  a4: { tr: "Türkiye'de okunan imlaya göre mushaf. Meal ve üç kâriden sesli tilavet de var.",
-    en: "A Mushaf in the spelling used in Türkiye, with translation and recitation by three reciters.",
-    de: "Ein Mushaf in der in der Türkei üblichen Schreibweise, mit Übersetzung und Rezitation von drei Rezitatoren.",
-    fr: "Un Mushaf selon l'orthographe en usage en Turquie, avec traduction et récitation par trois récitateurs.",
-    ar: "مصحف بالرسم المتداول في تركيا، مع تلاوة بأصوات ثلاثة قرّاء." },
+  a4: { tr: "Türkiye'de okunan imlaya göre mushaf. Meal ve dilediğin kârîden sesli tilavet de var.",
+    en: "A Mushaf in the spelling used in Türkiye, with translation and recitation by the reciter you choose.",
+    de: "Ein Mushaf in der in der Türkei üblichen Schreibweise, mit Übersetzung und Rezitation von einem Rezitator deiner Wahl.",
+    fr: "Un Mushaf selon l'orthographe en usage en Turquie, avec traduction et récitation par le récitateur de ton choix.",
+    ar: "مصحف بالرسم المتداول في تركيا، مع ترجمة وتلاوة بصوت القارئ الذي تختاره." },
   q5: { tr: "iPhone ve Android'de çalışıyor mu?", en: "Does it work on iPhone and Android?", de: "Läuft es auf iPhone und Android?",
     fr: "Ça marche sur iPhone et Android ?", ar: "هل يعمل على آيفون وأندرويد؟" },
   a5: { tr: "İkisinde de. Uygulama Türkçe, İngilizce, Almanca, Fransızca ve Arapça kullanılabilir.",
@@ -371,117 +382,142 @@ const T = {
   closeSub: { tr: "Manevi Halka'yı ücretsiz indir.", en: "Download Manevi Halka for free.", de: "Lade Manevi Halka kostenlos herunter.",
     fr: "Télécharge Manevi Halka gratuitement.", ar: "حمّل Manevi Halka مجانًا." },
 
-  altVakit: { tr: "Namaz vakitleri ekranı, İstanbul", en: "Prayer times screen, London", de: "Gebetszeiten, Berlin",
-    fr: "Écran des horaires de prière, Paris", ar: "شاشة مواقيت الصلاة، مكة المكرمة" },
-  altQuran: { tr: "Kur'an okuyucu, Mülk suresi, sesli tilavet açık", en: "Quran reader, Surah Al-Mulk, with recitation playing",
-    de: "Koran-Leser, Sure Al-Mulk, Rezitation läuft", fr: "Lecteur du Coran, sourate Al-Mulk, récitation en cours",
-    ar: "قارئ القرآن، سورة الملك، والتلاوة قيد التشغيل" },
+  altVakit: { tr: "Namazlarım: bugünün vakitleri ve kazalar için düğmeler", en: "My Prayers: today's prayers with buttons for make-ups",
+    de: "Meine Gebete: die heutigen Gebete mit Schaltflächen zum Nachholen", fr: "Mes prières : les prières du jour et des boutons pour les rattrapages",
+    ar: "صلواتي: صلوات اليوم مع أزرار القضاء" },
+  altQuran: { tr: "Kur'an okuyucusu, Mülk suresi: Mushaf görünümünde ayetler ve meal", en: "Quran reader, Surah Al-Mulk: verses and translation in Mushaf view",
+    de: "Koran-Leser, Sure Al-Mulk: Verse und Übersetzung in der Mushaf-Ansicht", fr: "Lecteur du Coran, sourate Al-Mulk : versets et traduction en vue Mushaf",
+    ar: "قارئ القرآن، سورة الملك: الآيات في عرض المصحف" },
   altHalka: { tr: "Aile Hatmi, halka sekmesi: dört kişi ve cüzleri", en: "Family Khatm, circle tab: four members and their juz",
     de: "Familien-Chatma, Kreis-Ansicht: vier Mitglieder und ihre Dschuz", fr: "Khatma familiale, onglet Cercle : quatre membres et leurs juz",
     ar: "ختمة العائلة، تبويب الحلقة: أربعة أعضاء وأجزاؤهم" },
   altAmel: { tr: "Ortak amel: 5 vakit, sabah ve öğle işaretli", en: "Shared practice: all 5 prayers, Fajr and Dhuhr marked",
     de: "Gemeinsame Praxis: alle 5 Gebete, Fadschr und Dhuhr markiert", fr: "Pratique commune : les 5 prières, Fajr et Dhohr cochées",
     ar: "عمل مشترك: الصلوات الخمس، والفجر والظهر معلَّمتان" },
-  altVesile: { tr: "Tek seferlik halka: Kandil Hatmi, ortak ilerleme ve cüz havuzu",
-    en: "One-time circle: Blessed Night Khatm, shared progress and juz pool",
-    de: "Einmaliger Kreis: Chatma zur gesegneten Nacht, gemeinsamer Fortschritt und Dschuz-Pool",
-    fr: "Cercle ponctuel : Khatma de la nuit bénie, progression commune et pool de juz",
-    ar: "حلقة لمرة واحدة: ختمة الليلة المباركة، التقدم الجماعي ومجمع الأجزاء" },
+  altVesile: { tr: "Tek seferlik halka: 41 Yâsîn, kimin için, ne okunacak ve ne zamana kadar", en: "One-time circle: 41 Yasin, who it is for, what is read and until when",
+    de: "Einmaliger Kreis: 41 Yasin, für wen, was gelesen wird und bis wann", fr: "Cercle ponctuel : 41 Yasin, pour qui, quoi lire et jusqu'à quand",
+    ar: "حلقة لمرة واحدة: يس 41 مرة، لمن، وماذا يُقرأ، وحتى متى" },
   // Vesile bandinda arkadaki egik telefon: ayni halkanin bittigi hal (Halka Neticesi)
-  vDone: { tr: "Halka tamamlanınca", en: "When the circle completes", de: "Wenn der Kreis vollendet ist",
-    fr: "Quand le cercle est achevé", ar: "عند اكتمال الحلقة" },
-  altVesileDone: { tr: "Halka Neticesi: hatim tamamlandı, 30 cüz, 4 kişi, 6 gün ve senin katkın",
-    en: "Circle Result: khatm complete, 30 juz, 4 people, 6 days and your contribution",
-    de: "Ergebnis des Kreises: Chatma abgeschlossen, 30 Dschuz, 4 Personen, 6 Tage und dein Beitrag",
-    fr: "Résultat du cercle : khatma achevée, 30 juz, 4 personnes, 6 jours et ta contribution",
-    ar: "نتيجة الحلقة: اكتملت الختمة، 30 جزءًا، 4 أشخاص، 6 أيام ومساهمتك" },
-  altKitap: { tr: "Kitaplık: kendi kitapların", en: "Bookshelf: your own books", de: "Bücherregal: deine eigenen Bücher",
-    fr: "Bibliothèque de lecture : tes propres livres", ar: "رف الكتب: كتبك الخاصة" },
+  vDone: { tr: "Ne zamana kadar", en: "Until when",
+    de: "Bis wann", fr: "Jusqu'à quand",
+    ar: "حتى متى" },
+  altVesileDone: { tr: "Ne zamana kadar: bu gece, cumaya kadar, 3 gün, 1 hafta ya da sıradaki kandile kadar", en: "Until when: tonight, by Friday, 3 days, 1 week or until the next blessed night",
+    de: "Bis wann: heute Nacht, bis Freitag, 3 Tage, 1 Woche oder bis zur nächsten gesegneten Nacht", fr: "Jusqu'à quand : cette nuit, d'ici vendredi, 3 jours, 1 semaine ou jusqu'à la prochaine nuit bénie",
+    ar: "حتى متى: الليلة، حتى الجمعة، 3 أيام، أسبوع، أو حتى الليلة المباركة القادمة" },
 };
 
-// ── Vitrin: yedi kart ────────────────────────────────────────────────────────
-const hm = (h, m) => h + m / 60;
-// Her dilin Namaz ekranindaki sehir, saat ve vakitler (img/app/<dil>/vakit.webp)
-const DAY = {
-  tr: { now: hm(13, 58), pr: [{ n: "İmsak", h: hm(5, 26), done: 1 }, { sun: 1, h: hm(6, 50) }, { n: "Öğle", h: hm(13, 0), done: 1 },
-    { n: "İkindi", h: hm(16, 20) }, { n: "Akşam", h: hm(19, 0) }, { n: "Yatsı", h: hm(20, 19) }] },
-  en: { now: hm(12, 3), pr: [{ n: "Fajr", h: hm(5, 3), done: 1 }, { sun: 1, h: hm(6, 49) }, { n: "Dhuhr", h: hm(12, 56) },
-    { n: "Asr", h: hm(16, 6) }, { n: "Maghrib", h: hm(18, 54) }, { n: "Isha", h: hm(20, 26) }] },
-  de: { now: hm(13, 3), pr: [{ n: "Fadschr", h: hm(5, 7), done: 1 }, { sun: 1, h: hm(6, 55) }, { n: "Dhuhr", h: hm(13, 2) },
-    { n: "Asr", h: hm(16, 11) }, { n: "Maghrib", h: hm(19, 0) }, { n: "Ischa", h: hm(20, 34) }] },
-  fr: { now: hm(13, 4), pr: [{ n: "Fajr", h: hm(5, 59), done: 1 }, { sun: 1, h: hm(7, 38) }, { n: "Dhohr", h: hm(13, 46) },
-    { n: "Asr", h: hm(17, 0) }, { n: "Maghrib", h: hm(19, 45) }, { n: "Icha", h: hm(21, 11) }] },
-  ar: { now: hm(14, 8), pr: [{ n: "الفجر", h: hm(4, 57), done: 1 }, { sun: 1, h: hm(6, 4) }, { n: "الظهر", h: hm(12, 17), done: 1 },
-    { n: "العصر", h: hm(15, 40) }, { n: "المغرب", h: hm(18, 19) }, { n: "العشاء", h: hm(19, 22) }] },
-};
-const TABS = {
-  tr: ["Namaz", "Kur'an", "Halka", "Ortak Ameller", "Tek Seferlik", "Kitaplık", "Dahası"],
-  en: ["Prayer", "Quran", "Circle", "Shared practices", "One-time", "Bookshelf", "More"],
-  de: ["Gebet", "Koran", "Kreis", "Gemeinsame Praxis", "Einmalig", "Bücherregal", "Mehr"],
-  fr: ["Prière", "Coran", "Cercle", "Pratiques communes", "Ponctuel", "Bibliothèque", "Plus"],
-  ar: ["الصلاة", "القرآن", "الحلقة", "أعمال مشتركة", "لمرة واحدة", "رف الكتب", "المزيد"],
-};
-const CAPS = {
-  tr: ["Vakitler günün içinde. Kıldığını kendin için işaretle.", "Oku, dinle, çalış. Dinlerken okunan kelime işaretlenir.",
-    "Ailenle bir hatim. Kimin hangi cüzü okuduğu tek bakışta.", "Halkanla beş vakit. Herkes kendi gününü işaretler, kıyas yok.",
-    "Kandil hatmi: dileyen dilediği cüzü alır, tarayıcıdan da katılır.", "Kendi kitapların, notların ve kaldığın yer.",
-    "Zikirden kıbleye, ezberden widget'lara. Hepsi aşağıda."],
-  en: ["Prayer times through your day. Mark what you've prayed, just for yourself.", "Read, listen, memorise. Each word is highlighted as it is recited.",
-    "A khatm with your family. Who is reading which juz, at a glance.", "The five prayers with your circle. Everyone marks their own day, no comparisons.",
-    "A khatm for a blessed night: anyone takes the juz they like, even from the browser.", "Your own books, your notes and where you left off.",
-    "From dhikr to the qibla, from memorisation to widgets. It's all below."],
-  de: ["Gebetszeiten über deinen Tag. Markiere für dich, was du gebetet hast.", "Lesen, hören, lernen. Jedes Wort wird beim Vortrag markiert.",
-    "Eine Chatma mit deiner Familie. Wer welchen Dschuz liest, auf einen Blick.", "Die fünf Gebete mit deinem Kreis. Jeder markiert seinen eigenen Tag, ohne Vergleiche.",
-    "Eine Chatma für eine gesegnete Nacht: Jeder nimmt sich einen Dschuz, auch im Browser.", "Deine eigenen Bücher, deine Notizen und wo du stehen geblieben bist.",
-    "Vom Dhikr bis zur Qibla, vom Auswendiglernen bis zu Widgets. Alles weiter unten."],
-  fr: ["Les horaires au fil de ta journée. Coche pour toi les prières accomplies.", "Lis, écoute, mémorise. Chaque mot est surligné pendant la récitation.",
-    "Une khatma en famille. Qui lit quel juz, en un coup d'œil.", "Les cinq prières avec ton cercle. Chacun coche sa journée, sans comparaison.",
-    "Une khatma pour une nuit bénie : chacun prend le juz qu'il veut, même depuis le navigateur.", "Tes propres livres, tes notes et là où tu t'es arrêté.",
-    "Du dhikr à la qibla, de la mémorisation aux widgets. Tout est plus bas."],
-  ar: ["المواقيت على مدار يومك. علّم ما صلّيت لنفسك.", "اقرأ واستمع واحفظ. تُظلَّل كل كلمة أثناء التلاوة.",
-    "ختمة مع عائلتك. من يقرأ أي جزء، بنظرة واحدة.", "الصلوات الخمس مع حلقتك. يعلّم كلٌّ يومه، بلا مقارنة.",
-    "ختمة لليلة مباركة: يأخذ كلٌّ الجزء الذي يريد، حتى من المتصفح.", "كتبك وملاحظاتك وحيث توقفت.",
-    "من الذكر إلى القبلة، ومن الحفظ إلى الأدوات. كل ذلك أدناه."],
-};
-// Kutucuklar: [x %, y %, renk ("" yesil, "g" altin), kalin metin, soluk metin]; Arapcada x aynalanir.
-const CHIPS = {
-  tr: [[["Sabah ve öğle", "kılındı"], ["İkindi", "16:20"]], [["Mishary Alafasy", "dinleniyor"], ["Mülk", "2. ayet"]],
-    [["Yusuf", "Cüz 3 okunuyor"], ["4 kardeş", "1. tur"]], [["Bugün", "2 / 5"], ["Son 7 gün", "sıralama yok"]],
-    [["114 sayfa", "okunuyor"], ["Uygulamasız", "tarayıcıdan"]], [["PDF ve EPUB", ""], ["Notlar", "kitabın içinde"]]],
-  en: [[["Fajr", "prayed"], ["Dhuhr", "12:56"]], [["Mishary Alafasy", "now playing"], ["Al-Mulk", "verse 2"]],
-    [["Yusuf", "reading juz 3"], ["4 members", "round 1"]], [["Today", "2 / 5"], ["Last 7 days", "no rankings"]],
-    [["114 pages", "in progress"], ["No app", "in the browser"]], [["PDF and EPUB", ""], ["Notes", "inside the book"]]],
-  de: [[["Fadschr", "verrichtet"], ["Asr", "16:11"]], [["Mishary Alafasy", "läuft gerade"], ["Al-Mulk", "Vers 2"]],
-    [["Yusuf", "liest Dschuz 3"], ["4 Mitglieder:innen", "1. Runde"]], [["Heute", "2 / 5"], ["Letzte 7 Tage", "keine Ranglisten"]],
-    [["114 Seiten", "in Arbeit"], ["Ohne App", "im Browser"]], [["PDF und EPUB", ""], ["Notizen", "im Buch"]]],
-  fr: [[["Fajr", "accomplie"], ["Dhohr", "13:46"]], [["Mishary Alafasy", "en écoute"], ["Al-Mulk", "verset 2"]],
-    [["Youssef", "lit le juz 3"], ["4 membres", "tour 1"]], [["Aujourd'hui", "2 / 5"], ["7 derniers jours", "sans classement"]],
-    [["114 pages", "en cours"], ["Sans appli", "dans le navigateur"]], [["PDF et EPUB", ""], ["Notes", "dans le livre"]]],
-  ar: [[["الفجر والظهر", "أُدّيتا"], ["العصر", "15:40"]], [["مشاري العفاسي", "قيد الاستماع"], ["الملك", "الآية 2"]],
-    [["يوسف", "يقرأ الجزء 3"], ["4 أعضاء", "الجولة 1"]], [["اليوم", "2 / 5"], ["آخر 7 أيام", "بلا ترتيب"]],
-    [["114 صفحة", "قيد القراءة"], ["دون تطبيق", "من المتصفح"]], [["PDF وEPUB", ""], ["الملاحظات", "داخل الكتاب"]]],
-};
-// Namaz halkasinda ikinci kutucuk sol ustte: 06:00-12:00 ceyreginde hicbir dilde etiket yok
-// (sag alt yatsi etiketinin yeri, yatsi dile gore 19:22 ile 21:11 arasinda kayiyor).
-const CHIP_POS = [[[13, 76, ""], [18, 12, "g"]], [[85, 22, "g"], [14, 74, ""]], [[80, 6, "g"], [16, 90, ""]],
-  [[87, 74, ""], [14, 28, "g"]], [[86, 20, "g"], [14, 86, ""]], [[86, 78, ""], [14, 24, "g"]]];
-const RING_LABEL = {
-  verse: { tr: "Mülk · 30 ayet", en: "Al-Mulk · 30 verses", de: "Al-Mulk · 30 Verse", fr: "Al-Mulk · 30 versets", ar: "الملك · 30 آية" },
-  week: { tr: "Bugün", en: "Today", de: "Heute", fr: "Aujourd'hui", ar: "اليوم" },
-  pages: { tr: "%33", en: "33%", de: "33 %", fr: "33 %", ar: "33%" },
-};
-const MORE = {
-  small: { tr: "Manevi Halka'da", en: "In Manevi Halka", de: "In Manevi Halka", fr: "Dans Manevi Halka", ar: "في Manevi Halka" },
-  title: { tr: "ve daha niceleri", en: "and much more", de: "und vieles mehr", fr: "et bien plus", ar: "والمزيد" },
-  link: { tr: "Hepsini gör", en: "See all", de: "Alle ansehen", fr: "Tout voir", ar: "عرض الكل" },
-  list: {
-    tr: ["Zikirmatik", "Tesbihat", "Namaz takibi", "Esmâü'l-Hüsnâ", "Virdler, dualar", "Kıble", "Dini günler", "Ezber", "Widget'lar", "Yolculuğum"],
-    en: ["Dhikr Counter", "Tasbihat", "Prayer log", "Asma ul-Husna", "Awrad and duas", "Qibla", "Religious Days", "Hifz", "Widgets", "My Journey"],
-    de: ["Dhikr-Zähler", "Tasbihat", "Gebetsprotokoll", "Asma ul-Husna", "Awrad, Bittgebete", "Qibla", "Religiöse Tage", "Hifz", "Widgets", "Mein Weg"],
-    fr: ["Compteur de dhikr", "Tasbihat", "Suivi des prières", "Asma ul-Husna", "Awrad, invocations", "Qibla", "Jours religieux", "Hifz", "Widgets", "Mon parcours"],
-    ar: ["عداد الذكر", "التسبيحات", "سجل الصلاة", "أسماء الله الحسنى", "الأوراد والأدعية", "القبلة", "الأيام الدينية", "الحفظ", "الأدوات", "رحلتي"],
-  },
-};
+// ── Giris seridi: on kart (sira ilk gorunusu belirler: ortada Kur'an, yanlarinda bahce ve kubbe) ──
+// [dosya, kaynak kare, ad]. Adlar uygulamadaki ekran adlariyla ayni (locales/*.json).
+const SERIT = [
+  ["st-mushaf", "q-mushaf", { tr: "Kur'an okuyucusu", en: "Quran reader", de: "Koran-Leser", fr: "Lecteur du Coran", ar: "قارئ القرآن" }],
+  ["st-bahce", "b-bahce", { tr: "Niyet Bahçesi", en: "Garden of Intentions", de: "Garten der Absichten", fr: "Jardin des intentions", ar: "بستان النية" }],
+  ["st-home", "n-home", { tr: "Ana Sayfa", en: "Home", de: "Start", fr: "Accueil", ar: "الرئيسية" }],
+  ["st-halka", "h-halka-ust", { tr: "Ortak hatim", en: "Group khatm", de: "Gemeinsame Chatma", fr: "Khatma commune", ar: "ختمة جماعية" }],
+  ["st-sayac", "z-sayac", { tr: "Zikirmatik", en: "Dhikr Counter", de: "Dhikr-Zähler", fr: "Compteur de dhikr", ar: "عداد الذكر" }],
+  ["st-tek", "ev-hazir", { tr: "Tek seferlik halka", en: "One-time circle", de: "Einmaliger Kreis", fr: "Cercle ponctuel", ar: "حلقة لمرة واحدة" }],
+  ["st-video", "v-45", { tr: "Ayetli video", en: "Verse video", de: "Versvideo", fr: "Vidéo de versets", ar: "فيديو الآيات" }],
+  ["st-namaz", "n-namazlarim", { tr: "Namazlarım", en: "My Prayers", de: "Meine Gebete", fr: "Mes prières", ar: "صلواتي" }],
+  ["st-defter", "z-defter", { tr: "Dua Defterim", en: "My dua journal", de: "Mein Bittgebetsheft", fr: "Mon carnet d'invocations", ar: "دفتر أدعيتي" }],
+  ["st-sahne", "s-kubbe", { tr: "Dinleme sahneleri", en: "Listening scenes", de: "Hörszenen", fr: "Scènes d'écoute", ar: "مشاهد الاستماع" }],
+];
+function seritHtml(dil) {
+  const n = SERIT.length;
+  return SERIT.map(([dosya, , ad], i) => {
+    const u = i <= n / 2 ? i : i - n;            // ortaya gore sira (betikteki sarma ile ayni)
+    const yol = join(KOK, "img", "app", dil, dosya + ".webp");
+    if (!existsSync(yol)) hata(`${dil}: serit gorseli yok: ${dosya}`);
+    const [w, h] = webpBoyut(yol);
+    const oncelik = Math.abs(u) <= 1 ? ' fetchpriority="high"' : "";
+    return `<figure class="st-card" style="--u:${u}"><span class="st-ph"><img src="/img/app/${dil}/${dosya}.webp" width="${w}" height="${h}" alt="${kacis(ad[dil])}" decoding="async"${oncelik}></span><figcaption aria-hidden="true">${kacis(ad[dil])}</figcaption></figure>`;
+  }).join("");
+}
+
+// ── Yeni gelenler galerisi (21 Kas 2026): 2.1.0 ozellikleri, dokuz kart. [dosya, kaynak kare, renk (acik, koyu), k ad, t baslik, p metin]
+// Metinler release-notes-2.1.0.md'deki onayli App Store notundan (bes dil); ozellik adlari uygulamayla ayni.
+// "Buyuk Halka" reklam basligi olarak kullanilmaz: kartin adi "Herkese acik halka". Anlatimda Cevsen gecmez.
+const YENI = [
+  ["nw-okuyucu", "q-mini", "#f3e8cb", "#2a2416",
+    { tr: "Kur'an okuyucusu", en: "Quran reader", de: "Koran-Leser", fr: "Lecteur du Coran", ar: "قارئ القرآن" },
+    { tr: "Baştan yenilendi", en: "Renewed from the ground up", de: "Von Grund auf erneuert", fr: "Entièrement renouvelé", ar: "تجدّد من أساسه" },
+    { tr: "Mushaf, Akan ve meal görünümleri, tecvid renkleri, büyüteç ve ayetlerde arama.",
+      en: "Mushaf, Flowing and translation views, tajweed colours, a magnifier and verse search.",
+      de: "Ansichten Mushaf, Fließtext und Übersetzung, Tadschwid-Farben, Lupe und Suche in den Versen.",
+      fr: "Vues Mushaf, Continu et traduction, couleurs du tajwid, loupe et recherche de versets.",
+      ar: "عرض المصحف والنص المتصل والترجمة، وألوان التجويد، والعدسة المكبّرة، والبحث في الآيات." }],
+  ["nw-sahne", "s-kubbe", "#ecdfc7", "#241d12",
+    { tr: "Dinleme sahneleri", en: "Listening scenes", de: "Hörszenen", fr: "Scènes d'écoute", ar: "مشاهد الاستماع" },
+    { tr: "Tilaveti bir kubbenin altında dinle", en: "Listen beneath a turning dome", de: "Hör unter einer sich drehenden Kuppel zu", fr: "Écoute sous une coupole qui tourne", ar: "استمع تحت قبة تدور" },
+    { tr: "Dönen bir cami kubbesi, akan bir manzara ya da pastel bir resim. Kâbe ve Mescid-i Nebevî sahneleri de var.",
+      en: "A turning mosque dome, a moving landscape or a pastel painting. There are scenes of the Kaaba and the Prophet's Mosque too.",
+      de: "Eine sich drehende Moscheekuppel, eine ziehende Landschaft oder ein Pastellbild. Dazu Szenen der Kaaba und der Prophetenmoschee.",
+      fr: "Une coupole de mosquée qui tourne, un paysage qui défile ou une peinture au pastel. Aussi : la Kaaba et la Mosquée du Prophète.",
+      ar: "قبة مسجد تدور، أو منظر يتحرك، أو لوحة باستيل. وهناك مشاهد للكعبة والمسجد النبوي أيضًا." }],
+  ["nw-video", "v-45", "#dce4ef", "#121a26",
+    { tr: "Ayetli video", en: "Verse video", de: "Versvideo", fr: "Vidéo de versets", ar: "فيديو الآيات" },
+    { tr: "Seçtiğin ayetlerden video", en: "A video from the verses you choose", de: "Ein Video aus Versen deiner Wahl", fr: "Une vidéo avec les versets de ton choix", ar: "فيديو من الآيات التي تختارها" },
+    { tr: "Bir kârînin ya da kendi sesinle üç biçimde oluştur, kaydet ve paylaş.",
+      en: "Make it in three formats with a reciter's voice or your own, then save and share it.",
+      de: "In drei Formaten, mit der Stimme eines Rezitators oder deiner eigenen; dann sichern und teilen.",
+      fr: "En trois formats, avec la voix d'un récitateur ou la tienne ; puis enregistre-la et partage-la.",
+      ar: "بثلاثة أشكال، بصوت قارئ أو بصوتك، ثم احفظه وشاركه." }],
+  ["nw-bahce", "b-bahce", "#e1eddb", "#15241a",
+    { tr: "Niyet Bahçesi", en: "Garden of Intentions", de: "Garten der Absichten", fr: "Jardin des intentions", ar: "بستان النية" },
+    { tr: "Her niyetin bir fidan olur", en: "Each intention becomes a sapling", de: "Jede Absicht wird zum Setzling", fr: "Chaque intention devient une pousse", ar: "كل نية تصير غرسة" },
+    { tr: "Sen emek verdikçe büyür. Bahçeni yalnız sen görürsün; ara vermen gerekirse bahçen seni bekler.",
+      en: "It grows as you keep it. Only you see your garden, and if you need a break, it waits for you.",
+      de: "Er wächst, wenn du sie einhältst. Deinen Garten siehst nur du; brauchst du eine Pause, wartet er auf dich.",
+      fr: "Elle grandit quand tu la tiens. Toi seul vois ton jardin ; si tu as besoin d'une pause, il t'attend.",
+      ar: "تكبر كلما وفيت بها. بستانك لا يراه أحد سواك، وإن احتجت إلى استراحة فهو ينتظرك." }],
+  ["nw-sohbet", "sohbet-ust", "#f2e7db", "#2a1f17",
+    { tr: "Vakit sohbeti", en: "Talk after prayer", de: "Impuls nach dem Gebet", fr: "Causerie après la prière", ar: "خاطرة بعد الصلاة" },
+    { tr: "Her namazdan sonra bir dakika", en: "One minute after each prayer", de: "Eine Minute nach jedem Gebet", fr: "Une minute après chaque prière", ar: "دقيقة بعد كل صلاة" },
+    { tr: "İlk dizi Efendimiz'in Hayatından. Anlatılanlar Kur'an'a, Buhârî ve Müslim'e ve sahih ya da hasen rivayetlere dayanır.",
+      en: "The first series is From the Life of the Prophet. It rests only on the Quran, Sahih al-Bukhari, Sahih Muslim and narrations graded sahih or hasan.",
+      de: "Erste Reihe: Aus dem Leben des Propheten. Quellen sind nur der Koran, Sahih al-Buchari, Sahih Muslim und als sahih oder hasan beurteilte Überlieferungen.",
+      fr: "Première série : De la vie du Prophète. Seuls servent de source le Coran, Sahih al-Bukhari, Sahih Muslim et les récits jugés sahih ou hasan.",
+      ar: "السلسلة الأولى «من حياة النبي ﷺ»، ولا يُروى فيها إلا ما يستند إلى القرآن الكريم وصحيحي البخاري ومسلم والروايات الصحيحة أو الحسنة." }],
+  ["nw-gece", "n-gece", "#dee4ec", "#101822",
+    { tr: "Teheccüd", en: "Tahajjud", de: "Tahajjud", fr: "Tahajjud", ar: "التهجد" },
+    { tr: "Bu gecenin teheccüd vakti", en: "Tonight's time for tahajjud", de: "Die Tahajjud-Zeit dieser Nacht", fr: "L'heure du tahajjud de la nuit", ar: "وقت التهجد لهذه الليلة" },
+    { tr: "Namazlarım'daki kartta vitir, kısa bir rehber ve uyandırma alarmı da var.",
+      en: "The card in My Prayers also has witr, a short guide and a wake-up alarm.",
+      de: "Die Karte in „Meine Gebete“ hat auch Witr, eine Anleitung und einen Weckalarm.",
+      fr: "La carte de Mes prières a aussi le witr, un guide et un réveil.",
+      ar: "وفي بطاقة «صلواتي» أيضًا الوتر ودليل ومنبّه الاستيقاظ." }],
+  ["nw-kaza", "n-kaza", "#e0eee8", "#12231c",
+    { tr: "Kaza namazlarım ve oruçlarım", en: "Make-up prayers and fasts", de: "Nachholgebete und -fasten", fr: "Prières et jeûnes de rattrapage", ar: "قضاء الصلاة والصيام" },
+    { tr: "Tane tane, kendi hızında", en: "One by one, at your own pace", de: "Eins nach dem anderen, in deinem Tempo", fr: "Un à un, à ton rythme", ar: "واحدةً تلو الأخرى، على مهلك" },
+    { tr: "Hesap yardımcısı ve isteğe bağlı hatırlatma var; kayıtlarını yalnız sen görürsün.",
+      en: "There is a calculation helper and an optional reminder; only you see your records.",
+      de: "Mit Rechenhilfe und optionaler Erinnerung; deine Einträge siehst nur du.",
+      fr: "Aide au calcul et rappel facultatif ; toi seul vois tes données.",
+      ar: "مع مساعد للحساب وتذكير اختياري، ولا يرى سجلاتك أحد سواك." }],
+  ["nw-defter", "z-defter", "#e7eae5", "#18201c",
+    { tr: "Dua Defterim", en: "My dua journal", de: "Mein Bittgebetsheft", fr: "Mon carnet d'invocations", ar: "دفتر أدعيتي" },
+    { tr: "Dualarını bölüm bölüm yaz", en: "Write your duas, section by section", de: "Schreib deine Bittgebete nach Abschnitten", fr: "Écris tes invocations par sections", ar: "اكتب أدعيتك قسمًا قسمًا" },
+    { tr: "Ayet, dua ve Esmâ ekle, hatırlatıcı kur, PDF olarak paylaş.",
+      en: "Add verses, duas and the Names of Allah, set a reminder and share it as a PDF.",
+      de: "Füge Verse, Bittgebete und die Namen Allahs hinzu, richte eine Erinnerung ein und teile es als PDF.",
+      fr: "Ajoute versets, invocations et noms d'Allah, règle un rappel et partage-le en PDF.",
+      ar: "أضف الآيات والأدعية وأسماء الله الحسنى، واضبط تذكيرًا، وشاركه ملف PDF." }],
+  ["nw-haftalik", "h-buyuk", "#f1e2e7", "#2a1a21",
+    { tr: "Herkese açık halka", en: "Open weekly circle", de: "Offener Wochenkreis", fr: "Cercle ouvert à tous", ar: "حلقة مفتوحة" },
+    { tr: "Haftada bir sayfayla hatme ortak ol", en: "Share in a khatm with one page a week", de: "Mit einer Seite pro Woche Teil einer Chatma", fr: "Une page par semaine pour une khatma commune", ar: "شارك في ختمة بصفحة واحدة في الأسبوع" },
+    { tr: "Haftalık Kur'an halkasına katıl. Üye listesi yok, yalnız halkanın toplamı görünür.",
+      en: "Join the open weekly Quran circle. There is no member list, only the circle's totals are shown.",
+      de: "Tritt dem offenen wöchentlichen Koran-Kreis bei. Keine Mitgliederliste: sichtbar sind nur die Gesamtzahlen.",
+      fr: "Rejoins le cercle hebdomadaire du Coran. Pas de liste de membres : seuls les totaux du cercle s'affichent.",
+      ar: "انضم إلى حلقة القرآن الأسبوعية المفتوحة. لا توجد قائمة أعضاء، ويظهر مجموع الحلقة فقط." }],
+];
+function yeniHtml(dil) {
+  return YENI.map(([dosya, , acik, koyu, k, t, p]) => {
+    const yol = join(KOK, "img", "app", dil, dosya + ".webp");
+    if (!existsSync(yol)) hata(`${dil}: galeri gorseli yok: ${dosya}`);
+    const [w, h] = webpBoyut(yol);
+    return `<li class="nw-card" style="--t:${acik};--td:${koyu}"><div class="nw-txt"><span class="nw-k">${kacis(k[dil])}</span><h3>${kacis(t[dil])}</h3><p>${kacis(p[dil])}</p></div>` +
+      `<figure class="phone nw-ph"><img src="/img/app/${dil}/${dosya}.webp" width="${w}" height="${h}" alt="${kacis(k[dil])}" loading="lazy" decoding="async"></figure></li>`;
+  }).join("");
+}
 
 const IOS = "https://apps.apple.com/app/manevi-halka/id6760654292";
 const play = (yer, dil) => "https://play.google.com/store/apps/details?id=com.emrhnayz.spiritualcircle&referrer=" +
@@ -505,23 +541,12 @@ function sozlukFor(dil) {
 }
 
 function veri(dil) {
-  const img = ["vakit.webp", "quran.webp", "halka.webp", "amel.webp", "vesile.webp", "kitaplik.webp"];
-  const alt = [T.altVakit, T.altQuran, T.altHalka, T.altAmel, T.altVesile, T.altKitap];
-  const rings = ["day", "verse", "juz", "week", "pages", "books"];
-  const screens = rings.map((ring, i) => ({
-    t: TABS[dil][i], d: CAPS[dil][i], img: img[i], alt: alt[i][dil], ring,
-    rd: ring === "day" ? DAY[dil] : (RING_LABEL[ring] ? { label: RING_LABEL[ring][dil] } : {}),
-    chips: CHIP_POS[i].map((p, j) => [p[0], p[1], p[2], CHIPS[dil][i][j][0], CHIPS[dil][i][j][1]]),
-  }));
-  screens.push({ t: TABS[dil][6], d: CAPS[dil][6], ring: "beads", chips: [],
-    more: { small: MORE.small[dil], title: MORE.title[dil], link: MORE.link[dil], list: MORE.list[dil] } });
-  for (const k of Object.keys(TABS)) if (TABS[k].length !== 7 || CAPS[k].length !== 7 || CHIPS[k].length !== 6) hata(`vitrin verisi eksik: ${k}`);
   return {
-    lang: dil, rtl: dil === "ar", imgBase: `/img/app/${dil}/`, screens,
+    lang: dil, rtl: dil === "ar", imgBase: `/img/app/${dil}/`,
     aria: { toDark: T.themeToDark[dil], toLight: T.themeToLight[dil] },
     links: { ios: IOS, androidDock: play("dock", dil) },
     strip: { label: T.stripLabel[dil] },
-    secName: { top: T.secStart[dil], solo: T.navSolo[dil], together: T.navTogether[dil], faq: T.navFaq[dil], download: kutu.I18N[dil].get },
+    secName: { top: T.secStart[dil], yeni: T.navNew[dil], solo: T.navSolo[dil], together: T.navTogether[dil], faq: T.navFaq[dil], download: kutu.I18N[dil].get },
     sections: T.navAria[dil],
   };
 }
@@ -665,15 +690,17 @@ function fxParcalari(dil) {
     const veri = yer ? ` data-src="${yer.join(",")}"` : "";
     return `<img class="fx ${sinif}" src="${src}" alt="" width="${w}" height="${h}"${veri} loading="lazy" decoding="async">`;
   };
-  const mealli = dil === "tr" || dil === "en";
   const ar = dil === "ar";
   return {
-    fxQuran: (mealli ? parca("fx-q-meal.webp", "fx-card p-qa") : parca("/img/app/fx-q-line.webp", "fx-card p-qa"))
-      + parca("fx-q-bar.webp", "fx-w p-qb"),
+    // 21 Kas 2026: Kur'an, Namaz ve Halka satirlari 2.1.0 ekranlarinda; parcalar ayni ham karelerden (mkimg21.py).
+    // Kur'an: ayet penceresi (Sahneyle dinle, Kelime kelime calis, Defterime ekle, Video olarak paylas) ve dinleme cubugu.
+    fxQuran: parca("fx-q2-panel.webp", "fx-card p-qa") + parca("fx-q2-bar.webp", "fx-card p-qb"),
+    // Namaz: widget'lar (onceki gibi) ve Kaza namazlarim karti
     fxVakit: ar
-      ? parca("fx-w-small.webp", "fx-w fx-sq p-vs") + parca("fx-w-ring.webp", "fx-w fx-sq p-vb")
-      : parca("fx-w-med.webp", "fx-w p-va") + parca("fx-w-ring.webp", "fx-w fx-sq p-vb") + parca("fx-w-lock.webp", "fx-w p-vc"),
-    fxHalka: parca("fx-h-tur.webp", "fx-w p-ha") + parca("fx-h-task.webp", "fx-w p-hb"),
+      ? parca("fx-w-small.webp", "fx-w fx-sq p-vs") + parca("fx-n-kaza.webp", "fx-card p-vk")
+      : parca("fx-w-med.webp", "fx-w p-va") + parca("fx-n-kaza.webp", "fx-card p-vk") + parca("fx-w-lock.webp", "fx-w p-vc"),
+    // Halka: sonraki tur karti (ekrandaki yerinden kalkar) ve dagitim ekranindaki kisi kisi paylar
+    fxHalka: parca("fx-h2-next.webp", "fx-card p-ha") + parca("fx-h2-tur.webp", "fx-card p-hb"),
     fxAmel: parca("fx-a-today.webp", "fx-card p-aa") + parca("fx-a-hadis.webp", "fx-w p-ab"),
   };
 }
@@ -816,11 +843,11 @@ function sayfa(dil) {
     langCode: dil.toUpperCase(),
     ...fxParcalari(dil),
     kisHtml: kisSeridi(dil),
-    // Vitrin sekmeleri ve ilk altyazi HTML'de hazir (eskiden betik sonradan ekliyordu: genis ekranda vitrin 84 px
-    // uzuyor, soldaki sutun magaza dugmeleriyle 32 px asagi kayiyordu, CLS 0,033; 5 Eki 2026 olculdu).
-    tabsHtml: TABS[dil].map((t, i) => `<button type="button" role="tab" aria-selected="${i === 0}">${kacis(t)}<span class="fill"></span></button>`).join(""),
-    scap0: kacis(CAPS[dil][0]),
-    creditHtml: dil === "en" ? `${kacis(s.itaniCredit)} <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span>` : "",
+    // Serit kartlari HTML'de hazir ve yerleri CSS'te: betik gelince kayma olmaz.
+    stripHtml: seritHtml(dil),
+    nwHtml: yeniHtml(dil),
+    // 21 Kas 2026: DE/FR ekran goruntulerinde de Itani'nin Ingilizce meali gorunuyor (uygulamada DE/FR meal gecici olarak Ingilizce): atif o dillerde de.
+    creditHtml: ["en", "de", "fr"].includes(dil) ? `${kacis(s.itaniCredit)} <span dir="ltr"><a href="https://www.clearquran.com" target="_blank" rel="noopener">ClearQuran.com</a> (<a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">CC BY-ND 4.0</a>)</span>` : "",
   };
   const eksik = new Set();
   let cikti = sablon.replace(/\{\{(\w+)\}\}/g, (_, k) => {
