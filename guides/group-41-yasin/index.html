@@ -134,7 +134,7 @@
           "name": "Can people without the app join?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Whoever opens the link in a browser counts their readings with the Add to the count button and taps Add my count; no account is needed. This works when the count is Collective."
+            "text": "Yes. Whoever opens the link in a browser reads Yasin from their own mushaf and taps I read it; no account is needed. This works when the count is Collective."
           }
         },
         {
@@ -1514,14 +1514,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .yz-nums { display: flex; justify-content: space-between; font-size: .76em; color: var(--body); }
 .mp-s .yz-nums b { color: var(--ink); }
 .mp-s .yz-mine { color: var(--green); font-size: .7em; }
-.mp-s .tk-wbtn.yz-add { background: var(--mint); color: var(--green); }
-.mp-s .yz-cnt { align-items: center; text-align: center; margin-top: .6em; }
-.mp-s .yz-cnt .yz-ar { text-align: center; }
-.mp-s .yz-dial { align-self: center; width: 8.4em; height: 8.4em; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--paper); box-shadow: inset 0 0 0 .2em var(--green-2), 0 .8em 1.6em -1em rgba(20, 60, 40, .5); margin: .4em 0; }
-.mp-s .yz-dial b { font-size: 2.3em; font-weight: 600; color: var(--green); line-height: 1; }
-.mp-s .yz-dial small { max-width: 7em; font-size: .6em; color: var(--body); margin-top: .3em; }
-.mp-s .yz-chips { display: flex; justify-content: center; gap: .5em; }
-.mp-s .yz-chips span { padding: .4em .9em; border-radius: 1em; box-shadow: inset 0 0 0 1px var(--line); font-weight: 600; font-size: .78em; color: var(--green); }
+.mp-s .yz-hint { color: var(--body); font-size: .7em; line-height: 1.35; }
 
 </style>
 </head>
@@ -1808,14 +1801,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <li class="gstep">
         <span class="bead">6</span>
         <div class="gs-text">
-          <h3>Without the app: count in the browser</h3>
-          <p>On the phone of someone without the app, the link opens in the browser. The page shows the <span class="kb tx">Surah Yasin</span> line, the total and an <span class="kb">Add to the count</span> button.</p><p>Read Yasin from your own mushaf. Then tap <span class="kbw"><span class="kb">Add to the count</span>,</span> tap the big circle once for each Yasin you read, and tap <span class="kbw"><span class="kb">Add my count</span>.</span> Your count is added to the circle's total.</p>
+          <h3>Without the app: tap I read it in the browser</h3>
+          <p>On the phone of someone without the app, the link opens in the browser. The page shows the <span class="kb tx">Surah Yasin</span> line, the total and an <span class="kb">I read it</span> button.</p><p>Read Yasin from your own mushaf and tap <span class="kb">I read it</span> once when you finish. Your reading is added to the circle's total; if you read it again, tap again.</p>
           
           <p class="why"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>No account needed; the link is enough.</span></p>
           <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>This works only with a <span class="kb tx">Collective</span> count. In a circle set to <span class="kbw"><span class="kb tx">Individual</span>,</span> the browser shows <span class="kbw"><span class="kb">For circle members</span>.</span></span></p>
         </div>
-        <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,1800],[&quot;tap&quot;,&quot;zAdd&quot;],[&quot;go&quot;,&quot;c&quot;],[&quot;w&quot;,700],[&quot;tap&quot;,&quot;dial&quot;],[&quot;txt&quot;,&quot;dialV&quot;,&quot;1&quot;],[&quot;w&quot;,1000],[&quot;tap&quot;,&quot;zSub&quot;],[&quot;go&quot;,&quot;d&quot;],[&quot;w&quot;,2800]]' data-still="0" data-hint="zAdd">
-      <div class="mp-f"><div class="mp-s" role="img" aria-label="manevihalka.app › Add to the count › Add my count › Your count has been added."><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="b"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
+        <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,2000],[&quot;tap&quot;,&quot;zRead&quot;],[&quot;go&quot;,&quot;d&quot;],[&quot;w&quot;,3000]]' data-still="0" data-hint="zRead">
+      <div class="mp-f"><div class="mp-s" role="img" aria-label="manevihalka.app › I read it › Your count has been added."><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="b"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
       <div class="tk-wclip"><div class="tk-wb sc" data-k="wz1"><span class="tk-wbr"><img class="bri " src="/img/brand-icon.webp" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Manevi Halka</span></span>
       <div class="tk-wh"><small class="ey">Intention of this supplication</small><b>With the intention of healing for our sick</b><i class="ru"></i><small>41 Yasin</small><small class="dt">Until 27 November</small></div>
       
@@ -1824,11 +1817,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="tk-wbar"><i class="d" style="width:29.3%"></i></span>
           <div class="yz-nums"><span><b>12</b> / 41</span></div>
           
-          <span class="tk-wbtn yz-add" data-k="zAdd">Add to the count</span></div></div></div></div></div></section><section class="vw" data-v="c" data-in="push"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
-      <div class="tk-wclip"><div class="tk-wb sc" data-k="wzc"><div class="tk-wp yz-cnt"><b class="yz-n">Surah Yasin</b><span class="yz-ar" lang="ar" dir="rtl">سُورَةُ يٰس</span></div>
-      <div class="yz-dial" data-k="dial"><b data-k="dialV">0</b><small>Counted in this session</small></div>
-      <div class="yz-chips"><span>+33</span><span>+100</span></div>
-      <span class="tk-wbtn" data-k="zSub">Add my count</span><span class="tk-wbtn gh">Cancel</span></div></div></div></section><section class="vw" data-v="d" data-in="fade"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
+          <small class="yz-hint">Read the surah from your own mushaf, then tap once.</small>
+          <span class="tk-wbtn" data-k="zRead">I read it</span></div></div></div></div></div></section><section class="vw" data-v="d" data-in="fade"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
       <div class="tk-wclip"><div class="tk-wb sc" data-k="wz2"><span class="tk-wbr"><img class="bri " src="/img/brand-icon.webp" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Manevi Halka</span></span>
       <div class="tk-wh"><small class="ey">Intention of this supplication</small><b>With the intention of healing for our sick</b><i class="ru"></i><small>41 Yasin</small><small class="dt">Until 27 November</small></div>
       <div class="yz-msg">Your count has been added.</div>
@@ -1837,7 +1827,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="tk-wbar"><i class="d" style="width:31.7%"></i></span>
           <div class="yz-nums"><span><b>13</b> / 41</span></div>
           <small class="yz-mine">Your contribution: 1</small>
-          <span class="tk-wbtn yz-add">Add to the count</span></div></div></div></div></div></section></div><i class="fg" aria-hidden="true"></i></div></div>
+          <small class="yz-hint">Read the surah from your own mushaf, then tap once.</small>
+          <span class="tk-wbtn">I read it</span></div></div></div></div></div></section></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
     </figure></div>
       </li>
@@ -1876,7 +1867,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <details><summary>How do you read 41 Yasin as a group?</summary><p>In the app, tap <b>+</b> in the <span class="kb">Circles</span> tab, then the <span class="kb tx">One-Time Circle</span> card and the <span class="kb tx">41 Yasin</span> template. Choose the <span class="kb tx">For whom</span> and <span class="kb tx">Until when</span> rows, tap <span class="kb">Open the circle</span> and send the link. Everyone reads Yasin with the <span class="kb">Read</span> button on the circle screen; when the counter reaches 41, the circle completes.</p></details>
         <details><summary>Do we need 41 people?</summary><p>Not in the app. The counter counts readings, not people: if 10 people join, everyone reads about 4 or 5 times. The line at the bottom of the circle card shows each person's remaining share.</p></details>
         <details><summary>How do I add a reading from my own mushaf to the counter?</summary><p>On the circle screen, tap <span class="kb tx uzun">I read it from a book, mark it</span> and confirm; your reading is added to the counter. If you read in the app's reader, the <span class="kb">Mark as read</span> button on the last page does the same.</p></details>
-        <details><summary>Can people without the app join?</summary><p>Yes. Whoever opens the link in a browser counts their readings with the <span class="kb">Add to the count</span> button and taps <span class="kbw"><span class="kb">Add my count</span>;</span> no account is needed. This works when the count is <span class="kbw"><span class="kb tx">Collective</span>.</span></p></details>
+        <details><summary>Can people without the app join?</summary><p>Yes. Whoever opens the link in a browser reads Yasin from their own mushaf and taps <span class="kbw"><span class="kb">I read it</span>;</span> no account is needed. This works when the count is <span class="kbw"><span class="kb tx">Collective</span>.</span></p></details>
         <details><summary>Does it cost anything?</summary><p>Setting up and joining a 41 Yasin circle is free. With a free account you can run one one-time circle at a time; when it completes or is deleted, you can set up the next.</p></details></div>
     </section>
 

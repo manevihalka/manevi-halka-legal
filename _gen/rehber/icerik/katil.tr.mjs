@@ -101,7 +101,7 @@ export default {
           baslik: "Tek seferlik halkaya tarayıcıdan katıl",
           metin: [
             "Vefat eden biri için hatim, kandil hatmi ya da toplu salavat gibi tek seferlik bir halkanın linki çoğu zaman uygulama olmadan da açılır ve tarayıcıda halkanın sayfası gelir. Hesap ya da uygulama gerekmez. Sayfada yalnız [[tx:=Davet Kodu]] ve mağaza düğmeleri görürsen bu link uygulama ister; 3. adımdan devam et.",
-            "Hatimde [[=Bunu al]] düğmesine dokun. [[=Ne kadar okuyacaksın?]] sorusunda kaç sayfa okuyacağını seç ve [[=Onaylıyorum, alıyorum]] de. Sonra [[=Şimdi oku]] ile sayfaların tarayıcıda açılır. Zikir ya da salavat hedefinde [[=Sayıma katıl]] düğmesine dokun, saydığın kadar daireye dokun ve sonunda [[=Katkımı ekle]] de.",
+            "Hatimde [[=Bunu al]] düğmesine dokun. [[=Ne kadar okuyacaksın?]] sorusunda kaç sayfa okuyacağını seç ve [[=Onaylıyorum, alıyorum]] de. Sonra [[=Şimdi oku]] ile sayfaların tarayıcıda açılır. Zikir ya da salavat hedefinde [[=Sayıma katıl]] düğmesine dokun, saydığın kadar daireye dokun ve sonunda [[=Katkımı ekle]] de. 41 Yâsîn gibi bir sure hedefinde sureyi kendi mushafından oku ve [[=Okudum]] düğmesine bir kez dokun.",
             "Herkes kendi yerinde okur ya da çeker; sayfa yalnız payları dağıtır ve sayıları toplar. Bazı halkalarda sayfa yalnız halkayı gösterir; o zaman katılmak için uygulama gerekir. Ayrıntılar: [Tek seferlik halka](/tr/rehber/tek-seferlik-halka/) ve [Toplu zikir ve salavat](/tr/rehber/toplu-zikir-salavat/).",
           ],
           fark: "Uygulaması olmayan bir yakının da çoğu zaman linke dokunup payını tarayıcıdan alabilir.",

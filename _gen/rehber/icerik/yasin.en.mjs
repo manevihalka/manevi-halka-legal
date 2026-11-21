@@ -78,10 +78,10 @@ export default {
           ipucu: "The app asks before marking, because a confirmed reading can't be taken back off the counter.",
         },
         {
-          baslik: "Without the app: count in the browser",
+          baslik: "Without the app: tap I read it in the browser",
           metin: [
-            "On the phone of someone without the app, the link opens in the browser. The page shows the [[tx:event.presetYasin]] line, the total and an [[=Add to the count]] button.",
-            "Read Yasin from your own mushaf. Then tap [[=Add to the count]], tap the big circle once for each Yasin you read, and tap [[=Add my count]]. Your count is added to the circle's total.",
+            "On the phone of someone without the app, the link opens in the browser. The page shows the [[tx:event.presetYasin]] line, the total and an [[=I read it]] button.",
+            "Read Yasin from your own mushaf and tap [[=I read it]] once when you finish. Your reading is added to the circle's total; if you read it again, tap again.",
           ],
           fark: "No account needed; the link is enough.",
           ipucu: "This works only with a [[tx:event.modeCollective]] count. In a circle set to [[tx:event.modeIndividual]], the browser shows [[=For circle members]].",
@@ -131,7 +131,7 @@ export default {
       { s: "How do I add a reading from my own mushaf to the counter?",
         c: "On the circle screen, tap [[tx:readTogether.markFromBook]] and confirm; your reading is added to the counter. If you read in the app's reader, the [[hatim.markRead]] button on the last page does the same." },
       { s: "Can people without the app join?",
-        c: "Yes. Whoever opens the link in a browser counts their readings with the [[=Add to the count]] button and taps [[=Add my count]]; no account is needed. This works when the count is [[tx:event.modeCollective]]." },
+        c: "Yes. Whoever opens the link in a browser reads Yasin from their own mushaf and taps [[=I read it]]; no account is needed. This works when the count is [[tx:event.modeCollective]]." },
       { s: "Does it cost anything?",
         c: "Setting up and joining a 41 Yasin circle is free. With a free account you can run one one-time circle at a time; when it completes or is deleted, you can set up the next." },
     ],

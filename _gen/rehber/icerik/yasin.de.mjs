@@ -78,10 +78,10 @@ export default {
           ipucu: "Die App fragt vor dem Markieren nach, denn eine bestätigte Lesung lässt sich vom Zähler nicht mehr abziehen.",
         },
         {
-          baslik: "Ohne App: im Browser zählen",
+          baslik: "Ohne App: im Browser bestätigen",
           metin: [
-            "Auf dem Handy von jemandem ohne App öffnet sich der Link im Browser. Die Seite zeigt die Zeile [[tx:event.presetYasin]], die Gesamtzahl und den Knopf [[=Mitzählen]].",
-            "Lies Yasin aus deinem eigenen Mushaf. Tippe dann auf [[=Mitzählen]], tippe für jede gelesene Yasin einmal auf den großen Kreis und dann auf [[=Beitrag hinzufügen]]. Deine Zahl kommt zur Gesamtzahl des Kreises dazu.",
+            "Auf dem Handy von jemandem ohne App öffnet sich der Link im Browser. Die Seite zeigt die Zeile [[tx:event.presetYasin]], die Gesamtzahl und den Knopf [[=Ich habe sie gelesen]].",
+            "Lies Yasin aus deinem eigenen Mushaf und tippe danach einmal auf [[=Ich habe sie gelesen]]. Deine Lesung kommt zur Gesamtzahl des Kreises dazu; liest du noch einmal, tippst du noch einmal.",
           ],
           fark: "Kein Konto nötig; der Link genügt.",
           ipucu: "Das geht nur bei einer Zählung [[tx:event.modeCollective]]. In einem Kreis mit [[tx:event.modeIndividual]] zeigt der Browser [[=Für Kreismitglieder]].",
@@ -131,7 +131,7 @@ export default {
       { s: "Wie trage ich eine Lesung aus meinem eigenen Mushaf ein?",
         c: "Tippe auf dem Kreis-Bildschirm auf [[tx:readTogether.markFromBook]] und bestätige; deine Lesung kommt zum Zähler dazu. Liest du im Koran-Leser der App, erledigt das der Knopf [[hatim.markRead]] auf der letzten Seite." },
       { s: "Können Menschen ohne App mitmachen?",
-        c: "Ja. Wer den Link im Browser öffnet, zählt seine Lesungen mit [[=Mitzählen]] und tippt auf [[=Beitrag hinzufügen]]; ein Konto ist nicht nötig. Das geht, wenn die Zählung [[tx:event.modeCollective]] ist." },
+        c: "Ja. Wer den Link im Browser öffnet, liest Yasin aus dem eigenen Mushaf und tippt auf [[=Ich habe sie gelesen]]; ein Konto ist nicht nötig. Das geht, wenn die Zählung [[tx:event.modeCollective]] ist." },
       { s: "Kostet das etwas?",
         c: "Einen 41-Yasin-Kreis anzulegen und mitzumachen ist kostenlos. Mit einem kostenlosen Konto leitest du jeweils einen einmaligen Kreis; ist er abgeschlossen oder gelöscht, legst du den nächsten an." },
     ],

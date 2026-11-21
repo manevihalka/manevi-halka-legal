@@ -153,7 +153,7 @@ export default {
           metin: [
             "Bei einer Chatma mit gemeinsamem Pool öffnet der Link die Seite des Kreises im Browser. Oben steht die Absicht, darunter, wie viele Seiten gelesen sind.",
             "Tippe in der Karte [[=Nächster Abschnitt]] auf [[=Diesen nehmen]], wähle, wie viele Seiten du liest, und tippe auf [[=Ich bestätige, ich nehme ihn]]. [[=Jetzt lesen]] öffnet die Seiten im Browser; danach tippst du am Ende der Seiten auf [[=Ich habe ihn gelesen]].",
-            "In einem 41-Yasin-, Salawat- oder Dhikr-Kreis hat die Seite den Knopf [[=Mitzählen]]: Er öffnet einen Zähler, du zählst, was du gelesen oder gesprochen hast, und tippst auf [[=Beitrag hinzufügen]].",
+            "In einem Suren-Kreis wie 41 Yasin hat die Seite den Knopf [[=Ich habe sie gelesen]]: Du liest die Sure aus deinem eigenen Mushaf und tippst einmal. In einem Salawat- oder Dhikr-Kreis öffnet [[=Mitzählen]] einen Zähler; du zählst, was du gesprochen hast, und tippst auf [[=Beitrag hinzufügen]].",
           ],
           fark: "Auch wenn deine Tante keine App hat: ohne Konto, nur mit dem Link übernimmt sie ihren Anteil und liest.",
           ipucu: "Bei einer Chatma mit [[tx:eventCompose.shareDivide]] kann man im Browser nicht an der Verteilung teilnehmen; nur nicht fertig gewordene Anteile lassen sich übernehmen, wenn sie in den Pool gehen.",

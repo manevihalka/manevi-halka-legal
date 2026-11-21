@@ -102,7 +102,7 @@ export default {
           baslik: "Join a one-time circle from your browser",
           metin: [
             "The link of a one-time circle, such as a khatam for someone who passed away, a khatam for a blessed night or a group salawat, often opens without the app as well, and the circle's page appears in the browser. You need no account and no app. If the page only shows the [[tx:=Invite Code]] and the store buttons, this link needs the app; carry on from step 3.",
-            "For a khatam, tap [[=Take this]]. At the question [[=How much will you read?]], choose how many pages you will read and tap [[=I confirm, I will take it]]. Then [[=Read now]] opens your pages in the browser. For a dhikr or salawat goal, tap [[=Add to the count]], tap the circle as many times as you counted, and at the end tap [[=Add my count]].",
+            "For a khatam, tap [[=Take this]]. At the question [[=How much will you read?]], choose how many pages you will read and tap [[=I confirm, I will take it]]. Then [[=Read now]] opens your pages in the browser. For a dhikr or salawat goal, tap [[=Add to the count]], tap the circle as many times as you counted, and at the end tap [[=Add my count]]. For a surah goal like 41 Yasin, read the surah from your own mushaf and tap [[=I read it]] once.",
             "Everyone reads or recites in their own place; the page only shares out the parts and adds up the counts. For some circles, the page only shows the circle; then you need the app to join. More details: [One-time circle](/guides/one-time-circle/) and [Group dhikr and salawat](/guides/group-dhikr-salawat/).",
           ],
           fark: "A relative of yours without the app can often tap the link and take their share in the browser too.",

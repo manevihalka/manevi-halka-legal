@@ -48,7 +48,8 @@ function yasinHalka(K, s = {}) {
   });
 }
 
-/** Web: zikir tahtasi (halka.html renderZikirBoard), tek sure kalemi. */
+/** Web: zikir tahtasi (halka.html renderZikirBoard), tek sure kalemi. 2.1.0 (17 Kas 2026): sure kaleminde sayac yok;
+ *  "Sureyi kendi mushafindan oku" notu ve tek "Okudum" dugmesi (her dokunus bir okuma). */
 function webTahta(K, { total = 12, mine = 0, added = false } = {}) {
   const pct = ((total / 41) * 100).toFixed(1);
   return webKabuk(K, `${webUst(K, { ded: sifa(K), title: ad(K), eb: "ebDua", until: ornek(K).webFriday })}
@@ -58,14 +59,8 @@ function webTahta(K, { total = 12, mine = 0, added = false } = {}) {
           <span class="tk-wbar"><i class="d" style="width:${pct}%"></i></span>
           <div class="yz-nums"><span><b>${total}</b> / 41</span></div>
           ${mine ? `<small class="yz-mine">${K.e(W(K, "zMine", { n: mine }))}</small>` : ""}
-          <span class="tk-wbtn yz-add"${K.attr(added ? "" : "zAdd")}>${K.e(W(K, "zAdd"))}</span></div></div>`, added ? "wz2" : "wz1");
-}
-/** Web: sayac (halka.html renderCounter): daireye her dokunus bir, +33/+100, Katkimi ekle. */
-function webSayac(K) {
-  return webKabuk(K, `<div class="tk-wp yz-cnt"><b class="yz-n">${K.Le("event.presetYasin")}</b><span class="yz-ar" lang="ar" dir="rtl">${AR}</span></div>
-      <div class="yz-dial"${K.attr("dial")}><b${K.attr("dialV")}>0</b><small>${K.e(W(K, "zSession"))}</small></div>
-      <div class="yz-chips"><span>+33</span><span>+100</span></div>
-      <span class="tk-wbtn"${K.attr("zSub")}>${K.e(W(K, "zSubmit"))}</span><span class="tk-wbtn gh">${K.e(W(K, "cancel"))}</span>`, "wzc");
+          <small class="yz-hint">${K.e(W(K, "zReadHint"))}</small>
+          <span class="tk-wbtn"${K.attr(added ? "" : "zRead")}>${K.e(W(K, "zRead"))}</span></div></div>`, added ? "wz2" : "wz1");
 }
 
 export const SAHNE = {
@@ -127,12 +122,12 @@ export const SAHNE = {
     still: 5, hint: "res",
   }),
 
-  /** Uygulamasi olmayan: tarayicida Sayima katil › daireye bir dokunus › Katkimi ekle. */
+  /** Uygulamasi olmayan: tarayicida sureyi kendi mushafindan okur, Okudum'a bir kez dokunur, toplam bir artar. */
   "yasin-web": (K) => tel(K, {
-    aria: `manevihalka.app › ${W(K, "zAdd")} › ${W(K, "zSubmit")} › ${W(K, "zDone")}`,
-    views: [["b", webTahta(K)], ["c", webSayac(K), "push"], ["d", webTahta(K, { total: 13, mine: 1, added: true }), "fade"]],
-    tl: [["w", 1800], ["tap", "zAdd"], ["go", "c"], ["w", 700], ["tap", "dial"], ["txt", "dialV", "1"], ["w", 1000], ["tap", "zSub"], ["go", "d"], ["w", 2800]],
-    still: 0, hint: "zAdd",
+    aria: `manevihalka.app › ${W(K, "zRead")} › ${W(K, "zDone")}`,
+    views: [["b", webTahta(K)], ["d", webTahta(K, { total: 13, mine: 1, added: true }), "fade"]],
+    tl: [["w", 2000], ["tap", "zRead"], ["go", "d"], ["w", 3000]],
+    still: 0, hint: "zRead",
   }),
 
   /** Giris filmi: 41 Yasin sablonu › Kimin icin › Halkayi ac › Davet et › halka ekrani. */
@@ -174,12 +169,5 @@ export const CSS = `
 .mp-s .yz-nums { display: flex; justify-content: space-between; font-size: .76em; color: var(--body); }
 .mp-s .yz-nums b { color: var(--ink); }
 .mp-s .yz-mine { color: var(--green); font-size: .7em; }
-.mp-s .tk-wbtn.yz-add { background: var(--mint); color: var(--green); }
-.mp-s .yz-cnt { align-items: center; text-align: center; margin-top: .6em; }
-.mp-s .yz-cnt .yz-ar { text-align: center; }
-.mp-s .yz-dial { align-self: center; width: 8.4em; height: 8.4em; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--paper); box-shadow: inset 0 0 0 .2em var(--green-2), 0 .8em 1.6em -1em rgba(20, 60, 40, .5); margin: .4em 0; }
-.mp-s .yz-dial b { font-size: 2.3em; font-weight: 600; color: var(--green); line-height: 1; }
-.mp-s .yz-dial small { max-width: 7em; font-size: .6em; color: var(--body); margin-top: .3em; }
-.mp-s .yz-chips { display: flex; justify-content: center; gap: .5em; }
-.mp-s .yz-chips span { padding: .4em .9em; border-radius: 1em; box-shadow: inset 0 0 0 1px var(--line); font-weight: 600; font-size: .78em; color: var(--green); }
+.mp-s .yz-hint { color: var(--body); font-size: .7em; line-height: 1.35; }
 `;

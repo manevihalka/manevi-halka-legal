@@ -1,6 +1,6 @@
 // Toplu 41 Yâsîn (TR), 21 Kas 2026. Uygulamadaki karşılığı: tek seferlik halkanın "41 Yâsîn" şablonu (2.1.0).
 // Gelenek tarafsız ve kısa anlatılır: fazilet vaadi, fıkıh hükmü ve belli gün önerisi yok (README madde 5).
-// Web sayfası (halka.html) bugün sure kalemini sayaçla alır; 2.1.0 web yaması ("Okudum") canlı değil, anlatılmaz.
+// Web sayfası (halka.html) sure kalemini 2.1.0 yamasından beri (17 Kas 2026, canlı) sayaçla değil tek "Okudum" düğmesiyle alır.
 export default {
   title: "Toplu 41 Yâsîn okuma: 41 Yâsîn halkası nasıl kurulur?",
   desc: "Şifa niyetiyle, vefat eden bir yakın ya da bir vesile için toplu 41 Yâsîn okumayı düzenle: herkes payını uygulamada okur, sayaç 41'e birlikte varır.",
@@ -79,10 +79,10 @@ export default {
           ipucu: "Uygulama işaretlemeden önce sorar, çünkü onaylanan okuma sayaçtan geri alınmaz.",
         },
         {
-          baslik: "Uygulaman yoksa: tarayıcıdan say",
+          baslik: "Uygulaman yoksa: tarayıcıdan Okudum de",
           metin: [
-            "Bağlantı, uygulaması olmayan birinin telefonunda tarayıcıda açılır. Sayfada [[tx:event.presetYasin]] satırı, toplam sayı ve [[=Sayıma katıl]] düğmesi var.",
-            "Yâsîn'i kendi mushafından oku. Sonra [[=Sayıma katıl]] düğmesine dokun, okuduğun her Yâsîn için büyük daireye bir kez dokun ve [[=Katkımı ekle]] de. Sayın halkanın toplamına eklenir.",
+            "Bağlantı, uygulaması olmayan birinin telefonunda tarayıcıda açılır. Sayfada [[tx:event.presetYasin]] satırı, toplam sayı ve [[=Okudum]] düğmesi var.",
+            "Yâsîn'i kendi mushafından oku, bitince [[=Okudum]] düğmesine bir kez dokun. Okuman halkanın toplamına eklenir; bir daha okursan bir daha dokunursun.",
           ],
           fark: "Hesap açmak gerekmez; bağlantı yeter.",
           ipucu: "Bu yalnız [[tx:event.modeCollective]] sayımda olur. [[tx:event.modeIndividual]] seçilen halkada tarayıcıda [[=Halka üyeleri için]] yazar.",
@@ -132,7 +132,7 @@ export default {
       { s: "Yâsîn'i kendi mushafımdan okursam sayaca nasıl eklerim?",
         c: "Halka ekranında [[tx:readTogether.markFromBook]] satırına dokunup onayla; okuman sayaca eklenir. Uygulamanın okuyucusunda okursan son sayfadaki [[hatim.markRead]] düğmesi aynı işi görür." },
       { s: "Uygulaması olmayanlar katılabilir mi?",
-        c: "Evet. Bağlantıyı tarayıcıda açan kişi [[=Sayıma katıl]] düğmesiyle okuduğunu sayar ve [[=Katkımı ekle]] der; hesap açması gerekmez. Bu, sayım [[tx:event.modeCollective]] olduğunda olur." },
+        c: "Evet. Bağlantıyı tarayıcıda açan kişi Yâsîn'i kendi mushafından okur ve [[=Okudum]] düğmesine dokunur; hesap açması gerekmez. Bu, sayım [[tx:event.modeCollective]] olduğunda olur." },
       { s: "Ücretli mi?",
         c: "41 Yâsîn halkası kurmak ve katılmak ücretsizdir. Ücretsiz hesapla aynı anda bir tek seferlik halka yönetebilirsin; o halka tamamlanınca ya da silinince yenisini kurarsın." },
     ],

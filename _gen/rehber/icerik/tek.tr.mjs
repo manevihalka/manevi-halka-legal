@@ -156,7 +156,7 @@ export default {
           metin: [
             "Ortak havuzlu bir hatimde bağlantıya dokunan kişinin tarayıcısında halkanın sayfası açılır. En üstte niyet yazar, altında kaç sayfanın okunduğu görünür.",
             "[[=Sıradaki bölüm]] kartında [[=Bunu al]] düğmesine dokun, kaç sayfa okuyacağını seç ve [[=Onaylıyorum, alıyorum]] de. [[=Şimdi oku]] düğmesi sayfaları tarayıcıda açar; okuyunca sayfaların sonundaki [[=Tamamladım]] düğmesine dokun.",
-            "41 Yâsîn, salavat ve zikir halkasında sayfada [[=Sayıma katıl]] düğmesi var: sayacı açar, okuduğunu ya da çektiğini sayarsın ve [[=Katkımı ekle]] dersin.",
+            "41 Yâsîn gibi bir sure halkasında sayfada [[=Okudum]] düğmesi var: sureyi kendi mushafından okursun ve bir kez dokunursun. Salavat ve zikir halkasında [[=Sayıma katıl]] düğmesi sayacı açar; çektiğini sayarsın ve [[=Katkımı ekle]] dersin.",
           ],
           fark: "Teyzenin telefonunda uygulama yoksa da olur: hesap açmadan, yalnız bağlantıyla payını alıp okur.",
           ipucu: "[[tx:eventCompose.shareDivide]] seçilen hatimde tarayıcıdan dağıtıma katılınmaz; yalnız yetişmeyen paylar havuza açılınca üstlenilebilir.",

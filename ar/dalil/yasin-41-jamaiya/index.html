@@ -120,7 +120,7 @@
           "name": "هل يستطيع من لا يملك التطبيق أن يشارك؟",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "نعم. من يفتح الرابط في المتصفح يعدّ قراءاته بزر شارك في العدّ ثم يضغط أضف عدّي؛ ولا يحتاج إلى حساب. وهذا حين يكون العدّ جماعي."
+            "text": "نعم. من يفتح الرابط في المتصفح يقرأ سورة يس من مصحفه ثم يضغط قرأتُها؛ ولا يحتاج إلى حساب. وهذا حين يكون العدّ جماعي."
           }
         },
         {
@@ -1500,14 +1500,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .yz-nums { display: flex; justify-content: space-between; font-size: .76em; color: var(--body); }
 .mp-s .yz-nums b { color: var(--ink); }
 .mp-s .yz-mine { color: var(--green); font-size: .7em; }
-.mp-s .tk-wbtn.yz-add { background: var(--mint); color: var(--green); }
-.mp-s .yz-cnt { align-items: center; text-align: center; margin-top: .6em; }
-.mp-s .yz-cnt .yz-ar { text-align: center; }
-.mp-s .yz-dial { align-self: center; width: 8.4em; height: 8.4em; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--paper); box-shadow: inset 0 0 0 .2em var(--green-2), 0 .8em 1.6em -1em rgba(20, 60, 40, .5); margin: .4em 0; }
-.mp-s .yz-dial b { font-size: 2.3em; font-weight: 600; color: var(--green); line-height: 1; }
-.mp-s .yz-dial small { max-width: 7em; font-size: .6em; color: var(--body); margin-top: .3em; }
-.mp-s .yz-chips { display: flex; justify-content: center; gap: .5em; }
-.mp-s .yz-chips span { padding: .4em .9em; border-radius: 1em; box-shadow: inset 0 0 0 1px var(--line); font-weight: 600; font-size: .78em; color: var(--green); }
+.mp-s .yz-hint { color: var(--body); font-size: .7em; line-height: 1.35; }
 
 </style>
 </head>
@@ -1794,14 +1787,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <li class="gstep">
         <span class="bead">6</span>
         <div class="gs-text">
-          <h3>إن لم يكن لديك التطبيق: عُدّ من المتصفح</h3>
-          <p>في هاتف من لا يملك التطبيق يُفتح الرابط في المتصفح. في الصفحة سطر <span class="kbw"><span class="kb tx">سورة يس</span>،</span> والمجموع، وزر <span class="kbw"><span class="kb">شارك في العدّ</span>.</span></p><p>اقرأ سورة يس من مصحفك. ثم اضغط <span class="kbw"><span class="kb">شارك في العدّ</span>،</span> والمس الدائرة الكبيرة مرة عن كل قراءة، ثم اضغط <span class="kbw"><span class="kb">أضف عدّي</span>.</span> فيُضاف عددك إلى مجموع الحلقة.</p>
+          <h3>إن لم يكن لديك التطبيق: اضغط «قرأتُها» في المتصفح</h3>
+          <p>في هاتف من لا يملك التطبيق يُفتح الرابط في المتصفح. في الصفحة سطر <span class="kbw"><span class="kb tx">سورة يس</span>،</span> والمجموع، وزر <span class="kbw"><span class="kb">قرأتُها</span>.</span></p><p>اقرأ سورة يس من مصحفك، ثم اضغط <span class="kb">قرأتُها</span> مرة واحدة. تُضاف قراءتك إلى مجموع الحلقة؛ وإن قرأتها مرة أخرى فاضغط مرة أخرى.</p>
           
           <p class="why"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>لا حاجة إلى حساب؛ يكفي الرابط.</span></p>
           <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>هذا في العدّ <span class="kb tx">جماعي</span> فقط. وفي الحلقة المضبوطة على <span class="kb tx">فردي</span> يظهر في المتصفح <span class="kbw"><span class="kb">لأعضاء الحلقة</span>.</span></span></p>
         </div>
-        <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,1800],[&quot;tap&quot;,&quot;zAdd&quot;],[&quot;go&quot;,&quot;c&quot;],[&quot;w&quot;,700],[&quot;tap&quot;,&quot;dial&quot;],[&quot;txt&quot;,&quot;dialV&quot;,&quot;1&quot;],[&quot;w&quot;,1000],[&quot;tap&quot;,&quot;zSub&quot;],[&quot;go&quot;,&quot;d&quot;],[&quot;w&quot;,2800]]' data-still="0" data-hint="zAdd">
-      <div class="mp-f"><div class="mp-s" role="img" aria-label="manevihalka.app › شارك في العدّ › أضف عدّي › تمت إضافة مشاركتك."><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="b"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
+        <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,2000],[&quot;tap&quot;,&quot;zRead&quot;],[&quot;go&quot;,&quot;d&quot;],[&quot;w&quot;,3000]]' data-still="0" data-hint="zRead">
+      <div class="mp-f"><div class="mp-s" role="img" aria-label="manevihalka.app › قرأتُها › تمت إضافة مشاركتك."><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="b"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
       <div class="tk-wclip"><div class="tk-wb sc" data-k="wz1"><span class="tk-wbr"><img class="bri " src="/img/brand-icon.webp" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Manevi Halka</span></span>
       <div class="tk-wh"><small class="ey">نية هذا الدعاء</small><b>بنية الشفاء لمرضانا</b><i class="ru"></i><small>يس 41 مرة</small><small class="dt">حتى 27 نوفمبر</small></div>
       
@@ -1810,11 +1803,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="tk-wbar"><i class="d" style="width:29.3%"></i></span>
           <div class="yz-nums"><span><b>12</b> / 41</span></div>
           
-          <span class="tk-wbtn yz-add" data-k="zAdd">شارك في العدّ</span></div></div></div></div></div></section><section class="vw" data-v="c" data-in="push"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
-      <div class="tk-wclip"><div class="tk-wb sc" data-k="wzc"><div class="tk-wp yz-cnt"><b class="yz-n">سورة يس</b><span class="yz-ar" lang="ar" dir="rtl">سُورَةُ يٰس</span></div>
-      <div class="yz-dial" data-k="dial"><b data-k="dialV">0</b><small>ما عددته في هذه الجلسة</small></div>
-      <div class="yz-chips"><span>+33</span><span>+100</span></div>
-      <span class="tk-wbtn" data-k="zSub">أضف عدّي</span><span class="tk-wbtn gh">إلغاء</span></div></div></div></section><section class="vw" data-v="d" data-in="fade"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
+          <small class="yz-hint">اقرأ السورة من مصحفك، ثم اضغط مرة واحدة.</small>
+          <span class="tk-wbtn" data-k="zRead">قرأتُها</span></div></div></div></div></div></section><section class="vw" data-v="d" data-in="fade"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
       <div class="tk-wclip"><div class="tk-wb sc" data-k="wz2"><span class="tk-wbr"><img class="bri " src="/img/brand-icon.webp" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Manevi Halka</span></span>
       <div class="tk-wh"><small class="ey">نية هذا الدعاء</small><b>بنية الشفاء لمرضانا</b><i class="ru"></i><small>يس 41 مرة</small><small class="dt">حتى 27 نوفمبر</small></div>
       <div class="yz-msg">تمت إضافة مشاركتك.</div>
@@ -1823,7 +1813,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="tk-wbar"><i class="d" style="width:31.7%"></i></span>
           <div class="yz-nums"><span><b>13</b> / 41</span></div>
           <small class="yz-mine">مشاركتك: 1</small>
-          <span class="tk-wbtn yz-add">شارك في العدّ</span></div></div></div></div></div></section></div><i class="fg" aria-hidden="true"></i></div></div>
+          <small class="yz-hint">اقرأ السورة من مصحفك، ثم اضغط مرة واحدة.</small>
+          <span class="tk-wbtn">قرأتُها</span></div></div></div></div></div></section></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
     </figure></div>
       </li>
@@ -1862,7 +1853,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <details><summary>كيف تُقرأ يس 41 مرة جماعيًا؟</summary><p>في التطبيق اضغط <b>+</b> في تبويب <span class="kbw"><span class="kb">الحلقات</span>،</span> ثم بطاقة <span class="kb tx">حلقة لمرة واحدة</span> وقالب <span class="kbw"><span class="kb tx">يس 41 مرة</span>.</span> اختر سطري <span class="kb tx">لمن</span> و<span class="kbw"><span class="kb tx">حتى متى</span>،</span> واضغط <span class="kbw"><span class="kb">افتح الحلقة</span>،</span> وأرسل الرابط. يقرأ كلٌّ سورة يس بزر <span class="kb">اقرأ</span> في شاشة الحلقة؛ وحين يبلغ العدّاد 41 تكتمل الحلقة.</p></details>
         <details><summary>هل يلزم 41 شخصًا؟</summary><p>ليس في التطبيق. العدّاد يعدّ القراءات لا الأشخاص: إن شارك 10 أشخاص يقرأ كلٌّ نحو 4 أو 5 مرات. والجملة أسفل بطاقة الحلقة تبيّن نصيب كل شخص الباقي.</p></details>
         <details><summary>كيف أضيف إلى العدّاد قراءة من مصحفي؟</summary><p>في شاشة الحلقة اضغط <span class="kb tx uzun">قرأتها من المصحف، علّمها</span> وأكّد؛ فتُضاف قراءتك إلى العدّاد. وإن قرأت في قارئ التطبيق فزر <span class="kb">تم القراءة</span> في الصفحة الأخيرة يؤدي المهمة نفسها.</p></details>
-        <details><summary>هل يستطيع من لا يملك التطبيق أن يشارك؟</summary><p>نعم. من يفتح الرابط في المتصفح يعدّ قراءاته بزر <span class="kb">شارك في العدّ</span> ثم يضغط <span class="kb">أضف عدّي</span>؛ ولا يحتاج إلى حساب. وهذا حين يكون العدّ <span class="kbw"><span class="kb tx">جماعي</span>.</span></p></details>
+        <details><summary>هل يستطيع من لا يملك التطبيق أن يشارك؟</summary><p>نعم. من يفتح الرابط في المتصفح يقرأ سورة يس من مصحفه ثم يضغط <span class="kb">قرأتُها</span>؛ ولا يحتاج إلى حساب. وهذا حين يكون العدّ <span class="kbw"><span class="kb tx">جماعي</span>.</span></p></details>
         <details><summary>هل هي مدفوعة؟</summary><p>إنشاء حلقة يس 41 مرة والانضمام إليها مجاني. وبالحساب المجاني تدير حلقة واحدة لمرة واحدة في الوقت نفسه؛ وحين تكتمل أو تُحذف تنشئ التالية.</p></details></div>
     </section>
 

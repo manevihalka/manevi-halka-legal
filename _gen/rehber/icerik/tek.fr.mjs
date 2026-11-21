@@ -153,7 +153,7 @@ export default {
           metin: [
             "Dans une khatma avec pool commun, le lien ouvre la page du cercle dans le navigateur. L’intention est en haut, et le nombre de pages lues juste en dessous.",
             "Dans la carte [[=Portion suivante]], touche [[=Prendre celle-ci]], choisis combien de pages tu liras et touche [[=Je confirme, je la prends]]. [[=Lire maintenant]] ouvre les pages dans le navigateur ; une fois lues, touche [[=Je l’ai terminée]] à la fin des pages.",
-            "Dans un cercle de 41 Yasin, de salawat ou de dhikr, la page a un bouton [[=Participer au décompte]] : il ouvre un compteur, tu comptes ce que tu as lu ou récité et tu touches [[=Ajouter mon décompte]].",
+            "Dans un cercle de sourate comme 41 Yasin, la page a un bouton [[=Je l’ai lue]] : tu lis la sourate dans ton propre mushaf et tu touches une fois. Dans un cercle de salawat ou de dhikr, [[=Participer au décompte]] ouvre un compteur ; tu comptes ce que tu as récité et tu touches [[=Ajouter mon décompte]].",
           ],
           fark: "Même si ta tante n’a pas l’appli : sans compte, avec le seul lien, elle prend sa part et la lit.",
           ipucu: "Dans une khatma réglée sur [[tx:eventCompose.shareDivide]], le navigateur ne participe pas à la répartition ; on peut seulement reprendre les parts restées inachevées quand elles s’ouvrent au pool.",

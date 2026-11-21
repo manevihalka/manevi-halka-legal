@@ -78,10 +78,10 @@ export default {
           ipucu: "L’appli demande confirmation, car une lecture confirmée ne peut plus être retirée du compteur.",
         },
         {
-          baslik: "Sans l’appli : compter dans le navigateur",
+          baslik: "Sans l’appli : « Je l’ai lue » dans le navigateur",
           metin: [
-            "Sur le téléphone de quelqu’un qui n’a pas l’appli, le lien s’ouvre dans le navigateur. La page montre la ligne [[tx:event.presetYasin]], le total et un bouton [[=Participer au décompte]].",
-            "Lis Yasin dans ton propre mushaf. Touche ensuite [[=Participer au décompte]], touche le grand cercle une fois par Yasin lue, puis [[=Ajouter mon décompte]]. Ton nombre s’ajoute au total du cercle.",
+            "Sur le téléphone de quelqu’un qui n’a pas l’appli, le lien s’ouvre dans le navigateur. La page montre la ligne [[tx:event.presetYasin]], le total et un bouton [[=Je l’ai lue]].",
+            "Lis Yasin dans ton propre mushaf, puis touche une fois [[=Je l’ai lue]]. Ta lecture s’ajoute au total du cercle ; si tu la relis, touche encore.",
           ],
           fark: "Aucun compte nécessaire ; le lien suffit.",
           ipucu: "Cela fonctionne seulement avec un décompte [[tx:event.modeCollective]]. Dans un cercle en [[tx:event.modeIndividual]], le navigateur affiche [[=Pour les membres du cercle]].",
@@ -131,7 +131,7 @@ export default {
       { s: "Comment ajouter une lecture faite dans mon propre mushaf ?",
         c: "Sur l’écran du cercle, touche [[tx:readTogether.markFromBook]] et confirme ; ta lecture s’ajoute au compteur. Si tu lis dans le lecteur de l’appli, le bouton [[hatim.markRead]] de la dernière page fait la même chose." },
       { s: "Les personnes sans l’appli peuvent-elles participer ?",
-        c: "Oui. La personne qui ouvre le lien dans un navigateur compte ses lectures avec [[=Participer au décompte]] et touche [[=Ajouter mon décompte]] ; aucun compte n’est nécessaire. Cela fonctionne quand le décompte est [[tx:event.modeCollective]]." },
+        c: "Oui. La personne qui ouvre le lien dans un navigateur lit Yasin dans son propre mushaf et touche [[=Je l’ai lue]] ; aucun compte n’est nécessaire. Cela fonctionne quand le décompte est [[tx:event.modeCollective]]." },
       { s: "Est-ce payant ?",
         c: "Créer un cercle de 41 Yasin et y participer est gratuit. Avec un compte gratuit, tu gères un cercle ponctuel à la fois ; quand il est terminé ou supprimé, tu crées le suivant." },
     ],

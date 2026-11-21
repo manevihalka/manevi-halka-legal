@@ -153,7 +153,7 @@ export default {
           metin: [
             "In a khatm with a shared pool, the link opens the circle's page in the browser. The intention is at the top, with how many pages have been read below it.",
             "In the [[=Next portion]] card, tap [[=Take this]], choose how many pages you'll read and tap [[=I confirm, I will take it]]. [[=Read now]] opens the pages in the browser; when you've read them, tap [[=I finished it]] at the end of the pages.",
-            "In a 41 Yasin, salawat or dhikr circle, the page has an [[=Add to the count]] button: it opens a counter, you count what you read or recited and tap [[=Add my count]].",
+            "In a surah circle like 41 Yasin, the page has an [[=I read it]] button: you read the surah from your own mushaf and tap it once. In a salawat or dhikr circle, [[=Add to the count]] opens a counter; you count what you recited and tap [[=Add my count]].",
           ],
           fark: "It works even if your aunt doesn't have the app: no account, just the link, and she takes her part and reads it.",
           ipucu: "In a khatm set to [[tx:eventCompose.shareDivide]], the browser can't join the division; it can only take on parts that weren't finished once they open to the pool.",

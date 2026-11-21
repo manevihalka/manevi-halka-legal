@@ -120,7 +120,7 @@
           "name": "Uygulaması olmayanlar katılabilir mi?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Evet. Bağlantıyı tarayıcıda açan kişi Sayıma katıl düğmesiyle okuduğunu sayar ve Katkımı ekle der; hesap açması gerekmez. Bu, sayım Toplu olduğunda olur."
+            "text": "Evet. Bağlantıyı tarayıcıda açan kişi Yâsîn'i kendi mushafından okur ve Okudum düğmesine dokunur; hesap açması gerekmez. Bu, sayım Toplu olduğunda olur."
           }
         },
         {
@@ -1500,14 +1500,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
 .mp-s .yz-nums { display: flex; justify-content: space-between; font-size: .76em; color: var(--body); }
 .mp-s .yz-nums b { color: var(--ink); }
 .mp-s .yz-mine { color: var(--green); font-size: .7em; }
-.mp-s .tk-wbtn.yz-add { background: var(--mint); color: var(--green); }
-.mp-s .yz-cnt { align-items: center; text-align: center; margin-top: .6em; }
-.mp-s .yz-cnt .yz-ar { text-align: center; }
-.mp-s .yz-dial { align-self: center; width: 8.4em; height: 8.4em; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--paper); box-shadow: inset 0 0 0 .2em var(--green-2), 0 .8em 1.6em -1em rgba(20, 60, 40, .5); margin: .4em 0; }
-.mp-s .yz-dial b { font-size: 2.3em; font-weight: 600; color: var(--green); line-height: 1; }
-.mp-s .yz-dial small { max-width: 7em; font-size: .6em; color: var(--body); margin-top: .3em; }
-.mp-s .yz-chips { display: flex; justify-content: center; gap: .5em; }
-.mp-s .yz-chips span { padding: .4em .9em; border-radius: 1em; box-shadow: inset 0 0 0 1px var(--line); font-weight: 600; font-size: .78em; color: var(--green); }
+.mp-s .yz-hint { color: var(--body); font-size: .7em; line-height: 1.35; }
 
 </style>
 </head>
@@ -1794,14 +1787,14 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
       <li class="gstep">
         <span class="bead">6</span>
         <div class="gs-text">
-          <h3>Uygulaman yoksa: tarayıcıdan say</h3>
-          <p>Bağlantı, uygulaması olmayan birinin telefonunda tarayıcıda açılır. Sayfada <span class="kb tx">Yâsîn Sûresi</span> satırı, toplam sayı ve <span class="kb">Sayıma katıl</span> düğmesi var.</p><p>Yâsîn'i kendi mushafından oku. Sonra <span class="kb">Sayıma katıl</span> düğmesine dokun, okuduğun her Yâsîn için büyük daireye bir kez dokun ve <span class="kb">Katkımı ekle</span> de. Sayın halkanın toplamına eklenir.</p>
+          <h3>Uygulaman yoksa: tarayıcıdan Okudum de</h3>
+          <p>Bağlantı, uygulaması olmayan birinin telefonunda tarayıcıda açılır. Sayfada <span class="kb tx">Yâsîn Sûresi</span> satırı, toplam sayı ve <span class="kb">Okudum</span> düğmesi var.</p><p>Yâsîn'i kendi mushafından oku, bitince <span class="kb">Okudum</span> düğmesine bir kez dokun. Okuman halkanın toplamına eklenir; bir daha okursan bir daha dokunursun.</p>
           
           <p class="why"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>Hesap açmak gerekmez; bağlantı yeter.</span></p>
           <p class="tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><span>Bu yalnız <span class="kb tx">Toplu</span> sayımda olur. <span class="kb tx">Bireysel</span> seçilen halkada tarayıcıda <span class="kb">Halka üyeleri için</span> yazar.</span></p>
         </div>
-        <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,1800],[&quot;tap&quot;,&quot;zAdd&quot;],[&quot;go&quot;,&quot;c&quot;],[&quot;w&quot;,700],[&quot;tap&quot;,&quot;dial&quot;],[&quot;txt&quot;,&quot;dialV&quot;,&quot;1&quot;],[&quot;w&quot;,1000],[&quot;tap&quot;,&quot;zSub&quot;],[&quot;go&quot;,&quot;d&quot;],[&quot;w&quot;,2800]]' data-still="0" data-hint="zAdd">
-      <div class="mp-f"><div class="mp-s" role="img" aria-label="manevihalka.app › Sayıma katıl › Katkımı ekle › Katkın eklendi."><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="b"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
+        <div class="gs-fig"><figure class="mp" data-tl='[[&quot;w&quot;,2000],[&quot;tap&quot;,&quot;zRead&quot;],[&quot;go&quot;,&quot;d&quot;],[&quot;w&quot;,3000]]' data-still="0" data-hint="zRead">
+      <div class="mp-f"><div class="mp-s" role="img" aria-label="manevihalka.app › Okudum › Katkın eklendi."><div class="sb"><b>9:41</b><span class="sbi"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div><div class="mp-b"><section class="vw on" data-v="b"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
       <div class="tk-wclip"><div class="tk-wb sc" data-k="wz1"><span class="tk-wbr"><img class="bri " src="/img/brand-icon.webp" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Manevi Halka</span></span>
       <div class="tk-wh"><small class="ey">Dua niyeti</small><b>Hastalarımıza şifa niyetiyle</b><i class="ru"></i><small>41 Yâsîn</small><small class="dt">27 Kasım tarihine kadar</small></div>
       
@@ -1810,11 +1803,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="tk-wbar"><i class="d" style="width:29.3%"></i></span>
           <div class="yz-nums"><span><b>12</b> / 41</span></div>
           
-          <span class="tk-wbtn yz-add" data-k="zAdd">Sayıma katıl</span></div></div></div></div></div></section><section class="vw" data-v="c" data-in="push"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
-      <div class="tk-wclip"><div class="tk-wb sc" data-k="wzc"><div class="tk-wp yz-cnt"><b class="yz-n">Yâsîn Sûresi</b><span class="yz-ar" lang="ar" dir="rtl">سُورَةُ يٰس</span></div>
-      <div class="yz-dial" data-k="dial"><b data-k="dialV">0</b><small>Bu oturumda saydığın</small></div>
-      <div class="yz-chips"><span>+33</span><span>+100</span></div>
-      <span class="tk-wbtn" data-k="zSub">Katkımı ekle</span><span class="tk-wbtn gh">Vazgeç</span></div></div></div></section><section class="vw" data-v="d" data-in="fade"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
+          <small class="yz-hint">Sureyi kendi mushafından oku, bitince bir kez dokun.</small>
+          <span class="tk-wbtn" data-k="zRead">Okudum</span></div></div></div></div></div></section><section class="vw" data-v="d" data-in="fade"><div class="tk-wv"><span class="tk-url"><svg class="ic" aria-hidden="true"><use href="#r-tkLock"/></svg><bdi dir="ltr">manevihalka.app</bdi></span>
       <div class="tk-wclip"><div class="tk-wb sc" data-k="wz2"><span class="tk-wbr"><img class="bri " src="/img/brand-icon.webp" alt="" width="28" height="28" loading="lazy" decoding="async"><span>Manevi Halka</span></span>
       <div class="tk-wh"><small class="ey">Dua niyeti</small><b>Hastalarımıza şifa niyetiyle</b><i class="ru"></i><small>41 Yâsîn</small><small class="dt">27 Kasım tarihine kadar</small></div>
       <div class="yz-msg">Katkın eklendi.</div>
@@ -1823,7 +1813,8 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
           <span class="tk-wbar"><i class="d" style="width:31.7%"></i></span>
           <div class="yz-nums"><span><b>13</b> / 41</span></div>
           <small class="yz-mine">Senin katkın: 1</small>
-          <span class="tk-wbtn yz-add">Sayıma katıl</span></div></div></div></div></div></section></div><i class="fg" aria-hidden="true"></i></div></div>
+          <small class="yz-hint">Sureyi kendi mushafından oku, bitince bir kez dokun.</small>
+          <span class="tk-wbtn">Okudum</span></div></div></div></div></div></section></div><i class="fg" aria-hidden="true"></i></div></div>
       <button type="button" class="mp-pp" aria-label="" hidden></button>
     </figure></div>
       </li>
@@ -1862,7 +1853,7 @@ try{var L=JSON.parse(sessionStorage.getItem("mh-land")||"null");sessionStorage.r
         <details><summary>Toplu 41 Yâsîn nasıl okunur?</summary><p>Uygulamada <span class="kb">Halkalar</span> sekmesinde <b>+</b> düğmesine bas, <span class="kb tx">Tek Seferlik Halka</span> kartına ve <span class="kb tx">41 Yâsîn</span> şablonuna dokun. <span class="kb tx">Kimin için</span> ve <span class="kb tx">Ne zamana kadar</span> satırlarını seç, <span class="kb">Halkayı aç</span> de ve bağlantıyı gönder. Herkes halka ekranında <span class="kb">Oku</span> düğmesiyle Yâsîn'i okur; sayaç 41'e varınca halka tamamlanır.</p></details>
         <details><summary>41 kişi bulmak gerekir mi?</summary><p>Uygulamada gerekmez. Sayaç kişi değil okuma sayar: 10 kişi katılırsa herkes yaklaşık 4 ya da 5 kez okur. Halka kartının dibindeki cümle kişi başı kalan payı gösterir.</p></details>
         <details><summary>Yâsîn'i kendi mushafımdan okursam sayaca nasıl eklerim?</summary><p>Halka ekranında <span class="kb tx uzun">Kitaptan okudum, işaretle</span> satırına dokunup onayla; okuman sayaca eklenir. Uygulamanın okuyucusunda okursan son sayfadaki <span class="kb">Okudum</span> düğmesi aynı işi görür.</p></details>
-        <details><summary>Uygulaması olmayanlar katılabilir mi?</summary><p>Evet. Bağlantıyı tarayıcıda açan kişi <span class="kb">Sayıma katıl</span> düğmesiyle okuduğunu sayar ve <span class="kb">Katkımı ekle</span> der; hesap açması gerekmez. Bu, sayım <span class="kb tx">Toplu</span> olduğunda olur.</p></details>
+        <details><summary>Uygulaması olmayanlar katılabilir mi?</summary><p>Evet. Bağlantıyı tarayıcıda açan kişi Yâsîn'i kendi mushafından okur ve <span class="kb">Okudum</span> düğmesine dokunur; hesap açması gerekmez. Bu, sayım <span class="kb tx">Toplu</span> olduğunda olur.</p></details>
         <details><summary>Ücretli mi?</summary><p>41 Yâsîn halkası kurmak ve katılmak ücretsizdir. Ücretsiz hesapla aynı anda bir tek seferlik halka yönetebilirsin; o halka tamamlanınca ya da silinince yenisini kurarsın.</p></details></div>
     </section>
 
